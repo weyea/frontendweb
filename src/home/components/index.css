@@ -1,0 +1,125 @@
+html #nav {
+  position: absolute;
+  top:20px;
+  left:0;
+  width: 100%;
+  box-shadow: 0px 0px 0px #888888;
+}
+
+html #nav a {
+    color: #FFF;
+    font-size:14px;
+}
+
+html #nav a:hover {
+font-size:14px;
+color:#00c2d6;
+background-color:transparent;
+}
+
+#banner{
+  background-image: url("../../../img/banner@3x.png");
+  height: 630px;
+}
+
+#cta-text{
+  margin-top: 205px;
+  text-align: center;
+}
+
+#cta-text h1{
+  font-family:MicrosoftYaHei;
+font-size:45px;
+color:#ffffff;
+}
+
+#cta-text  .create{
+  border:1px solid #00c4d8;
+border-radius:4px;
+width:212px;
+height:46px;
+font-size:18px;
+color:#00d9ef;
+display: inline-block;
+vertical-align: middle;;
+line-height: 46px;
+margin-top: 87px;
+}
+
+.features{
+  background:#ffffff;
+
+height:418px;
+}
+
+.features .card{
+  width: 268px;
+  margin: auto;
+  margin-top: 97px;
+  text-align: center;
+}
+.features  .img{
+
+  width:90px;
+  height:90px;
+  display: inline-block;
+}
+
+.features .more-template .img{
+  background: url("../../../img/sea.png") center  no-repeat;
+}
+
+.features  .response .img{
+background: url("../../../img/duan.png") center  no-repeat;
+}
+
+.features  .ocode .img{
+background: url("../../../img/0.png") center  no-repeat;
+}
+
+.features h3{
+  font-family:MicrosoftYaHei;
+font-size:30px;
+color:#333333;
+letter-spacing:2.5px;
+margin-top: 42px;
+}
+.features p{
+  font-size:13px;
+color:#666666;
+letter-spacing:1.85px;
+text-align:center;
+}
+
+#top-template{
+  background:#00c4d8;
+height:801px;
+}
+
+#top-template:before,#top-template:after{
+
+}
+#top-template h1{
+text-align: center;
+font-size:55px;
+color:#ffffff;
+letter-spacing:4.58px;
+margin-top: 75px;
+}
+
+#top-template .slide{
+  margin-top: 70px;
+  height: 737px;
+}
+
+#template-list{
+  margin-top: 260px;
+}
+
+#template-list h3{
+  font-family:MicrosoftYaHei;
+font-size:55px;
+color:#00c4d8;
+letter-spacing:4.58px;
+text-align: center;
+}

@@ -1,0 +1,184 @@
+<leaf-element name="site-manager">
+
+    <style>
+        site-list {
+            overflow: hidden;
+            display: block;
+
+            margin: 50px 0 16px 0px;
+
+        }
+
+        .templ {
+            width: 480px;
+            float: left;
+            margin-right: 30px;
+            margin-bottom: 30px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .templ .bd {
+
+            background: url("/images/browser.png") 0 0 no-repeat;
+            padding-top: 19px;
+            background-size: contain;
+
+            display: inline-block;
+            width: 280px;
+
+            vertical-align: top;
+            position: relative;
+        }
+
+        .templ .mobile {
+            position: absolute;
+            top: 90px;
+            left: 195px;
+            background: url("/images/mobile.png") 0 0 no-repeat;
+            width: 100px;
+            height: 140px;
+        }
+
+        .templ .mobile img {
+
+            width: 73px;
+
+            margin: 9px 0 0 19px;
+        }
+
+        .templ .des {
+            display: inline-block;
+            width: 160px;
+            vertical-align: top;
+            text-align: left;
+            margin-left: 10px;
+        }
+
+        .templ h3 {
+            color: #373737;
+
+            font-size: 30px;
+            margin-top: 0;
+        }
+
+        .templ img {
+            width: 100%;
+        }
+
+        .templ .title, .templ .action {
+
+            color: #363636;
+
+            font-family: 'Helvetica45';
+            text-decoration: none;
+
+        }
+
+        .templ .action {
+            margin-top: 120px;
+        }
+
+    </style>
+
+    <template>
+
+
+        <div class="container">
+        <div class="templ">
+            <div class="bd">
+                <a target="_blank" href="http://localhost:3000/app/{{site.name}}"> <img
+                        src="/template_img/{{site.id}}-1024x768.png"/></a>
+
+
+            </div>
+            <div class="mobile"><a target="_blank" href="http://localhost:3000/app/{{site.name}}"> <img
+                    src="/template_img/{{site.id}}-480x320.png"/></a></div>
+            <div class="des">
+                <h3 class="title">{{site.name}}</h3>
+
+                <div><a href="http://localhost:3000/app/{{site.name}}">http://localhost:3000/app/{{site.name}}</a></h3>
+                    <p class="action">
+                        <a class="" href="/design/site/{{site.id}}">设计</a>| <a class="del-site"
+                                                                               href="/json/site/{{site.id}}">删除</a>
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+        </div>
+
+
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#home" role="tab" data-toggle="tab">我的站点</a></li>
+            <li role="presentation"><a href="#profile" role="tab" data-toggle="tab">我的模板</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="home">
+
+
+                    <div style="height:300px"></div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="profile">...</div>
+
+        </div>
+
+
+    </template>
+
+    <script>
+
+        Leaf({
+
+            ready: function () {
+                var self = this;
+                this.flush(window.siteId)
+                this.delBind();
+            },
+            site: {},
+
+
+            flush: function (id) {
+                var self = this;
+                $.get("/json/site/" + id, function (data) {
+
+                    self.site = data.data;
+                })
+            },
+
+            delBind:function(){
+
+                $(document).delegate(".del-site","click", function(ev){
+
+                    ev.preventDefault();
+
+                    var target  =  $(ev.target);
+
+
+
+                    $.ajax({
+                        type:"delete",
+                        url:target.attr("href"),
+                        success:function(){
+                            alert("站点删除");
+                            location.href = "/my"
+                        }
+                    })
+
+
+
+                })
+
+            }
+
+
+
+        })
+    </script>
+
+
+</leaf-element>
