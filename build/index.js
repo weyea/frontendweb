@@ -96,9 +96,17 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	var _reactRouter = __webpack_require__(98);
+
+	var currentScript = document.currentScript || document.getElementsByTagName("script");
+
+	if (currentScript.src) {
+	  var lastIndex = currentScript.src.lastIndexOf("/");
+	  var src = currentScript.src.substring(0, lastIndex);
+	  __webpack_require__.p = src + "/";
+	}
 
 	var history;
 	if (location.host == "localhost:8484") {

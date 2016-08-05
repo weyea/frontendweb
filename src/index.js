@@ -2,6 +2,16 @@
 import { browserHistory,hashHistory, Router, Route, IndexRoute } from 'react-router'
 
 
+var currentScript = document.currentScript|| document.getElementsByTagName("script");
+
+if(currentScript.src){
+  var lastIndex = currentScript.src.lastIndexOf("/");
+  var src = currentScript.src.substring(0,lastIndex);
+  __webpack_public_path__ =  src+"/";
+}
+
+
+
 var history;
 if(location.host == "localhost:8484"){
   history = hashHistory
