@@ -25,7 +25,7 @@ webpackJsonp([2,9],{
 
 	module.exports = {
 
-	  path: '/user',
+	  path: 'user',
 	  getChildRoutes: function getChildRoutes(partialNextState, callback) {
 	    __webpack_require__.e/* nsure */(4, function (require) {
 	      callback(null, [__webpack_require__(260)]);
