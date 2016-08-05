@@ -23,27 +23,27 @@ webpackJsonp([5,9],{
 	  render: function render() {
 	    return React.createElement(
 	      "div",
-	      { "class": "container" },
+	      { className: "container" },
 	      React.createElement(
 	        "form",
-	        { "class": "form-signin", id: "", role: "form", action: "/user/login", method: "POST" },
+	        { className: "form-signin", id: "", role: "form", action: "/user/login", method: "POST" },
 	        React.createElement(
 	          "h2",
-	          { "class": "form-signin-heading" },
+	          { className: "form-signin-heading" },
 	          "登录"
 	        ),
-	        React.createElement("input", { name: "username", type: "text", "class": "form-control", placeholder: "用户名", required: true, autofocus: true }),
-	        React.createElement("input", { type: "password", name: "password", "class": "form-control", placeholder: "密码", required: true }),
-	        React.createElement("input", { type: "hidden", name: "redirect", value: "<%= locals.redirect %>", "class": "form-control", placeholder: "Password", required: true }),
+	        React.createElement("input", { name: "username", type: "text", className: "form-control", placeholder: "用户名", required: true, autofocus: true }),
+	        React.createElement("input", { type: "password", name: "password", className: "form-control", placeholder: "密码", required: true }),
+	        React.createElement("input", { type: "hidden", name: "redirect", value: "<%= locals.redirect %>", className: "form-control", placeholder: "Password", required: true }),
 	        React.createElement(
 	          "label",
-	          { "class": "checkbox" },
+	          { className: "checkbox" },
 	          React.createElement("input", { type: "checkbox", value: "remember-me" }),
 	          " Remember me"
 	        ),
 	        React.createElement(
 	          "button",
-	          { "class": "btn btn-lg btn-primary btn-block", type: "submit" },
+	          { className: "btn btn-lg btn-primary btn-block", type: "submit" },
 	          "登录"
 	        )
 	      )

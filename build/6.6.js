@@ -5,11 +5,8 @@ webpackJsonp([6,9],{
 
 	"use strict";
 
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = React.createClass({
-	  displayName: "CreateTemplate",
+	module.exports = React.createClass({
+	  displayName: "exports",
 
 	  getInitialState: function getInitialState() {
 	    return { secondsElapsed: 0 };

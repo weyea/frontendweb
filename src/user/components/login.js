@@ -14,16 +14,16 @@ module.exports =  React.createClass({
   },
   render: function() {
     return (
-      <div class="container">
-        <form class="form-signin" id="" role="form" action="/user/login" method="POST">
-            <h2 class="form-signin-heading">登录</h2>
-            <input name="username" type="text" class="form-control" placeholder="用户名" required autofocus />
-            <input type="password" name="password" class="form-control" placeholder="密码" required />
-            <input type="hidden" name="redirect" value="<%= locals.redirect %>" class="form-control" placeholder="Password" required />
-            <label class="checkbox">
+      <div className="container">
+        <form className="form-signin" id="" role="form" action="/user/login" method="POST">
+            <h2 className="form-signin-heading">登录</h2>
+            <input name="username" type="text" className="form-control" placeholder="用户名" required autofocus />
+            <input type="password" name="password" className="form-control" placeholder="密码" required />
+            <input type="hidden" name="redirect" value="<%= locals.redirect %>" className="form-control" placeholder="Password" required />
+            <label className="checkbox">
                 <input type="checkbox" value="remember-me" /> Remember me
             </label>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+            <button className="btn btn-lg btn-primary btn-block" type="submit">登录</button>
         </form>
       </div>
     );
