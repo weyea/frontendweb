@@ -24,7 +24,7 @@ module.exports =   React.createClass({
               <label htmlFor="exampleInputEmail1">模板名称</label>
               <input type="text" className="form-control" id="exampleInputEmail1" placeholder=""/>
             </div>
-            <button  onClick={this.createTemplate} className="btn btn-default">Submit</button>
+            <a  href="#" onClick={this.createTemplate} className="btn btn-default">Submit</a>
         </form>
 
       </div>

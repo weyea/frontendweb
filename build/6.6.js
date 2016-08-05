@@ -41,8 +41,8 @@ webpackJsonp([6,9],{
 	          React.createElement("input", { type: "text", className: "form-control", id: "exampleInputEmail1", placeholder: "" })
 	        ),
 	        React.createElement(
-	          "button",
-	          { onClick: this.createTemplate, className: "btn btn-default" },
+	          "a",
+	          { href: "#", onClick: this.createTemplate, className: "btn btn-default" },
 	          "Submit"
 	        )
 	      )
