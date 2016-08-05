@@ -1,0 +1,122 @@
+<leaf-element name="template-list">
+
+    <style>
+        template-list {
+            overflow: hidden;
+            display: block;
+            margin: auto;
+            margin-bottom: 16px;
+        }
+
+        .templ {
+            width: 386px;
+            float: left;
+            margin-right: 36px;
+            margin-bottom: 30px;
+
+            position: relative;
+        }
+
+        .templ .bd {
+            background: url("/images/browser.png") 0 0 no-repeat;
+            padding-top: 26px;
+            background-size: contain;
+        }
+        .templ .mobile{
+            position: absolute;
+            top: 254px;
+            left: 379px;
+            background: url("/images/mobile.png") 0 0 no-repeat;
+            width: 100px;
+            height: 140px;
+        }
+
+        .templ .mobile img{
+            width: 73px;
+
+            margin: 9px 0 0 19px;
+        }
+
+        .templ img {
+            width: 100%;
+        }
+
+        .templ .title, .templ .action {
+            color: #363636;
+            font-family: 'Helvetica45';
+            text-decoration: none;
+            margin: 0;
+
+        }
+
+        .templ .action .btn {
+            float: right;
+            margin-left: 10px;
+        }
+
+    </style>
+
+
+    <template repeat="{{site, index in siteList}}">
+
+        <div class="templ">
+            <h3 class="title">{{site.name}}</h3>
+
+            <p class="bd">
+                <a href="/template/detail/?id={{id}}"><img src="/template_img/{{site.id}}-1024x768.png"/></a>
+            </p>
+            <div class="mobile"><a  target="_blank" href="http://localhost:3000/app/{{site.name}}"> <img src="/template_img/{{site.id}}-480x320.png"/></a></div>
+
+
+            <p class="action">
+                价格：<span>免费</span>
+                <a class="btn btn-default create" href="/template/detail/?id={{id}}" data-id="{{site.id}}"
+                   data-name="{{site.name}}">查看</a>
+
+            </p>
+        </div>
+
+
+    </template>
+
+
+    <script>
+
+        Leaf({
+
+            ready: function () {
+                var self = this;
+                self.flush();
+                $(this).delegate(".create", "click", function (ev) {
+                    return;
+                    ev.preventDefault();
+                    $.post("/json/site?template=" + $(ev.target).attr("data-id"), {name: $(ev.target).attr("data-name") + new Date().getTime() }, function (data) {
+                        if (data.needLogin) {
+                            location.href = data.loginURL + "?redirect=" + encodeURIComponent(location.href)
+                            return;
+                        }
+                        self.flush();
+                    })
+                })
+
+
+            },
+
+            flush: function () {
+                var self = this;
+                $.get("/template/json/?page=0", function (data) {
+                    if (data.needLogin) {
+                        location.href = "/user/login"
+                        return;
+                    }
+                    self.siteList = data;
+                })
+            }
+
+
+
+        })
+    </script>
+
+
+</leaf-element>

@@ -1,0 +1,64 @@
+.template-list:{
+    overflow: hidden;
+    display: block;
+    margin: auto;
+    margin-bottom: 16px;
+}
+.template-list .list{
+  text-align: center;
+  margin-top: 55px;
+}
+.template-list .list a{
+  margin: 0 41px;
+  font-size:14px;
+color:#666666;
+letter-spacing:1.16px;
+padding:0px 30px;
+height:36px;
+line-height: 34px;
+}
+.template-list .list a.active{
+  border:1px solid #00c4d8;
+border-radius:18px;
+display: inline-block;
+
+color:#00c4d8;
+}
+
+.templ:{
+    width: 386px;
+    float: left;
+    margin-right: 36px;
+    margin-bottom: 30px;
+    position: relative;
+}
+.templ .bd:{
+    background: url("../../img/browser.png") 0 0 no-repeat;
+    padding-top: 26px;
+    background-size: contain;
+}
+.templ .mobile{
+    position: absolute;
+    top: 254px;
+    left: 379px;
+    background: url("../../img/mobile.png") 0 0 no-repeat;
+    width: 100px;
+    height: 140px;
+}
+.templ .mobile img{
+    width: 73px;
+    margin: 9px 0 0 19px;
+}
+.templ img:{
+    width: 100%;
+}
+.templ .title, .templ .action:{
+    color: #363636;
+    font-family: 'Helvetica45';
+    text-decoration: none;
+    margin: 0;
+}
+.templ .action .btn:{
+    float: right;
+    margin-left: 10px;
+}
