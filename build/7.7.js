@@ -468,17 +468,17 @@ webpackJsonp([7,9],{
 	    componentDidMount: function componentDidMount() {
 	        var self = this;
 	        self.flush();
-	        $(this).delegate(".create", "click", function (ev) {
-	            return;
-	            ev.preventDefault();
-	            $.post("/json/site?template=" + $(ev.target).attr("data-id"), { name: $(ev.target).attr("data-name") + new Date().getTime() }, function (data) {
-	                if (data.needLogin) {
-	                    location.href = data.loginURL + "?redirect=" + encodeURIComponent(location.href);
-	                    return;
-	                }
-	                self.flush();
-	            });
-	        });
+	        // $(this).delegate(".create", "click", function (ev){
+	        //     return;
+	        //     ev.preventDefault();
+	        //     $.post("/json/site?template=" + $(ev.target).attr("data-id"),{name: $(ev.target).attr("data-name") + new Date().getTime() }, function (data){
+	        //         if (data.needLogin){
+	        //             location.href = data.loginURL + "?redirect=" + encodeURIComponent(location.href)
+	        //             return;
+	        //         }
+	        //         self.flush();
+	        //     })
+	        // })
 	    },
 	    flush: function flush() {
 	        var self = this;
@@ -539,37 +539,37 @@ webpackJsonp([7,9],{
 	    renderItem: function renderItem() {
 	        var result = [];
 	        for (var i = 0; i < this.state.siteList.length; i++) {
-	            var site = this.state.stateList[i];
+	            var site = this.state.siteList[i];
 	            var item = React.createElement(
 	                "div",
-	                { "class": "templ" },
+	                { className: "templ" },
 	                React.createElement(
 	                    "h3",
-	                    { "class": "title" },
-	                    site.name
+	                    { className: "title" },
+	                    site.title
 	                ),
 	                React.createElement(
 	                    "p",
-	                    { "class": "bd" },
+	                    { className: "bd" },
 	                    React.createElement(
 	                        "a",
-	                        { href: "/template/detail/?id=" + id },
+	                        { href: "/template/detail/?id=" + site.id },
 	                        React.createElement("img", { src: "/template_img/" + site.id + "-1024x768.png" })
 	                    )
 	                ),
 	                React.createElement(
 	                    "div",
-	                    { "class": "mobile" },
+	                    { className: "mobile" },
 	                    React.createElement(
 	                        "a",
-	                        { target: "_blank", href: "http://localhost:3000/app/" + site.name },
+	                        { target: "_blank", href: "http://localhost:3000/app/" + site.id },
 	                        " ",
 	                        React.createElement("img", { src: "/template_img/" + site.id + "-480x320.png" })
 	                    )
 	                ),
 	                React.createElement(
 	                    "p",
-	                    { "class": "action" },
+	                    { className: "action" },
 	                    "价格：",
 	                    React.createElement(
 	                        "span",
@@ -578,8 +578,8 @@ webpackJsonp([7,9],{
 	                    ),
 	                    React.createElement(
 	                        "a",
-	                        { "class": "btn btn-default create", href: "/template/detail/?id=" + id, "data-id": site.id,
-	                            "data-name": site.name },
+	                        { className: "btn btn-default create", href: "/template/detail/?id=" + id, "data-id": site.id,
+	                            "data-name": site.title },
 	                        "查看"
 	                    )
 	                )

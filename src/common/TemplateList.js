@@ -8,17 +8,17 @@ module.exports = React.createClass({
     componentDidMount: function (){
         var self = this;
         self.flush();
-        $(this).delegate(".create", "click", function (ev){
-            return;
-            ev.preventDefault();
-            $.post("/json/site?template=" + $(ev.target).attr("data-id"),{name: $(ev.target).attr("data-name") + new Date().getTime() }, function (data){
-                if (data.needLogin){
-                    location.href = data.loginURL + "?redirect=" + encodeURIComponent(location.href)
-                    return;
-                }
-                self.flush();
-            })
-        })
+        // $(this).delegate(".create", "click", function (ev){
+        //     return;
+        //     ev.preventDefault();
+        //     $.post("/json/site?template=" + $(ev.target).attr("data-id"),{name: $(ev.target).attr("data-name") + new Date().getTime() }, function (data){
+        //         if (data.needLogin){
+        //             location.href = data.loginURL + "?redirect=" + encodeURIComponent(location.href)
+        //             return;
+        //         }
+        //         self.flush();
+        //     })
+        // })
     },
     flush: function (){
         var self = this;
@@ -54,18 +54,18 @@ module.exports = React.createClass({
     renderItem:function(){
       var result = []
       for(var i=0;i<this.state.siteList.length;i++){
-        var site = this.state.stateList[i];
+        var site = this.state.siteList[i];
         var item =(
-          <div class="templ">
-              <h3 class="title">{site.name}</h3>
-              <p class="bd">
-                  <a href={"/template/detail/?id="+id}><img src={"/template_img/"+site.id+"-1024x768.png"}/></a>
+          <div className="templ">
+              <h3 className="title">{site.title}</h3>
+              <p className="bd">
+                  <a href={"/template/detail/?id="+site.id}><img src={"/template_img/"+site.id+"-1024x768.png"}/></a>
               </p>
-              <div class="mobile"><a  target="_blank" href={"http://localhost:3000/app/"+site.name}> <img src ={"/template_img/"+site.id+"-480x320.png"}/></a></div>
-              <p class="action">
+              <div className="mobile"><a  target="_blank" href={"http://localhost:3000/app/"+site.id}> <img src ={"/template_img/"+site.id+"-480x320.png"}/></a></div>
+              <p className="action">
                   价格：<span>免费</span>
-                  <a class="btn btn-default create" href={"/template/detail/?id="+id} data-id={site.id}
-                     data-name={site.name}>查看</a>
+                  <a className="btn btn-default create" href={"/template/detail/?id="+id} data-id={site.id}
+                     data-name={site.title}>查看</a>
 
               </p>
           </div>
