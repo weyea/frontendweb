@@ -19,7 +19,7 @@ webpackJsonp([6,9],{
 	    clearInterval(this.interval);
 	  },
 	  createTemplate: function createTemplate() {
-	    $.post("/template/json", { name: 123 }, function () {
+	    $.post("/template/json", { title: 123 }, function () {
 	      alert("创建成功");
 	    });
 	  },
