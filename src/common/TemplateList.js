@@ -64,7 +64,7 @@ module.exports = React.createClass({
               <div className="mobile"><a  target="_blank" href={"http://localhost:3000/app/"+site.id}> <img src ={"/template_img/"+site.id+"-480x320.png"}/></a></div>
               <p className="action">
                   价格：<span>免费</span>
-                  <a className="btn btn-default create" href={"/template/detail/?id="+id} data-id={site.id}
+                  <a className="btn btn-default create" href={"/template/detail/?id="+site.id} data-id={site.id}
                      data-name={site.title}>查看</a>
 
               </p>

@@ -578,7 +578,7 @@ webpackJsonp([7,9],{
 	                    ),
 	                    React.createElement(
 	                        "a",
-	                        { className: "btn btn-default create", href: "/template/detail/?id=" + id, "data-id": site.id,
+	                        { className: "btn btn-default create", href: "/template/detail/?id=" + site.id, "data-id": site.id,
 	                            "data-name": site.title },
 	                        "查看"
 	                    )
