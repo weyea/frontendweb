@@ -282,48 +282,7 @@ webpackJsonp([8,9],{
 
 /***/ },
 
-/***/ 276:
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _Header = __webpack_require__(277);
-
-	var _Header2 = _interopRequireDefault(_Header);
-
-	var _Footer = __webpack_require__(278);
-
-	var _Footer2 = _interopRequireDefault(_Footer);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	__webpack_require__(279);
-	// var Header = require('./common/Header');
-	// var Footer = require('./common/Footer');
-
-	module.exports = React.createClass({
-	  displayName: 'exports',
-
-	  getInitialState: function getInitialState() {
-	    return { secondsElapsed: 0 };
-	  },
-	  tick: function tick() {},
-	  componentDidMount: function componentDidMount() {},
-	  componentWillUnmount: function componentWillUnmount() {},
-	  render: function render() {
-	    return React.createElement(
-	      'div',
-	      { className: 'app' },
-	      React.createElement(_Header2.default, null),
-	      this.props.children,
-	      React.createElement(_Footer2.default, null)
-	    );
-	  }
-	});
-
-/***/ },
-
-/***/ 277:
+/***/ 262:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -442,7 +401,7 @@ webpackJsonp([8,9],{
 
 /***/ },
 
-/***/ 278:
+/***/ 263:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -897,6 +856,45 @@ webpackJsonp([8,9],{
 	            )
 	        );
 	    }
+	});
+
+/***/ },
+
+/***/ 278:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _Header = __webpack_require__(262);
+
+	var _Header2 = _interopRequireDefault(_Header);
+
+	var _Footer = __webpack_require__(263);
+
+	var _Footer2 = _interopRequireDefault(_Footer);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	__webpack_require__(279);
+	// var Header = require('./common/Header');
+	// var Footer = require('./common/Footer');
+
+	module.exports = React.createClass({
+	  displayName: 'exports',
+
+	  getInitialState: function getInitialState() {
+	    return { secondsElapsed: 0 };
+	  },
+	  tick: function tick() {},
+	  componentDidMount: function componentDidMount() {},
+	  componentWillUnmount: function componentWillUnmount() {},
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      { className: 'app' },
+	      this.props.children
+	    );
+	  }
 	});
 
 /***/ },

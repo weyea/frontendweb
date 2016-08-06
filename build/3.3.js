@@ -4775,14 +4775,10 @@ webpackJsonp([3,9],[
 
 	"use strict";
 
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
 	var designer = __webpack_require__(194);
 
-	exports.default = React.createClass({
-	  displayName: "components",
+	module.exports = React.createClass({
+	  displayName: "exports",
 
 	  getInitialState: function getInitialState() {
 	    return { secondsElapsed: 0 };

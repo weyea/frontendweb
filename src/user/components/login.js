@@ -1,4 +1,5 @@
-
+import Header from '../../common/Header'
+import Footer from '../../common/Footer'
 module.exports =  React.createClass({
   getInitialState: function() {
     return {secondsElapsed: 0};
@@ -14,6 +15,8 @@ module.exports =  React.createClass({
   },
   render: function() {
     return (
+      <div>
+      <Header></Header>
       <div className="container">
         <form className="form-signin" id="" role="form" action="/user/login" method="POST">
             <h2 className="form-signin-heading">登录</h2>
@@ -25,6 +28,8 @@ module.exports =  React.createClass({
             </label>
             <button className="btn btn-lg btn-primary btn-block" type="submit">登录</button>
         </form>
+      </div>
+      <Footer></Footer>
       </div>
     );
   }

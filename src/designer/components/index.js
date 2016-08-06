@@ -4,7 +4,7 @@ var designer = require("designer");
 
 
 
-export default  React.createClass({
+module.exports =   React.createClass({
   getInitialState: function() {
     return {secondsElapsed: 0};
   },

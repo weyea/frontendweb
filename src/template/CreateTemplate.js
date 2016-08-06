@@ -1,4 +1,5 @@
-
+import Header from '../common/Header'
+import Footer from '../common/Footer'
 module.exports =   React.createClass({
   getInitialState: function() {
     return {secondsElapsed: 0};

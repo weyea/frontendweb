@@ -120,19 +120,19 @@
 	  path: '/',
 	  getChildRoutes: function getChildRoutes(partialNextState, callback) {
 	    __webpack_require__.e/* nsure */(2, function (require) {
-	      callback(null, [__webpack_require__(192), __webpack_require__(259), __webpack_require__(262)]);
+	      callback(null, [__webpack_require__(192), __webpack_require__(259), __webpack_require__(264)]);
 	    });
 	  },
 	  getIndexRoute: function getIndexRoute(partialNextState, callback) {
 	    __webpack_require__.e/* nsure */(7, function (require) {
 	      callback(null, {
-	        component: __webpack_require__(264)
+	        component: __webpack_require__(266)
 	      });
 	    });
 	  },
 	  getComponents: function getComponents(nextState, callback) {
 	    __webpack_require__.e/* nsure */(8, function (require) {
-	      callback(null, __webpack_require__(276));
+	      callback(null, __webpack_require__(278));
 	    });
 	  }
 	};

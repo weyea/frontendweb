@@ -1,5 +1,7 @@
 var TemplateList= require('../../common/TemplateList');
 require('./index.css');
+import Header from '../../common/Header'
+import Footer from '../../common/Footer'
 module.exports =  React.createClass({
   getInitialState: function() {
     return {secondsElapsed: 0};
@@ -17,6 +19,7 @@ module.exports =  React.createClass({
   render: function() {
     return (
       <div>
+        <Header></Header>
         <div id="banner">
           <div  className="container">
               <div id="cta-text" className="row">
@@ -81,7 +84,7 @@ module.exports =  React.createClass({
 
         <div id="template-list" >
           <div className="container">
-          <h3>选择模板</h3>
+          <h3 class="header">选择模板</h3>
 
 
 
@@ -90,7 +93,7 @@ module.exports =  React.createClass({
           </div>
           </div>
 
-
+          <Footer></Footer>
       </div>
 
 

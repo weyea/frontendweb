@@ -1,4 +1,5 @@
-
+import Header from '../../common/Header'
+import Footer from '../../common/Footer'
 module.exports =    React.createClass({
   getInitialState: function() {
     return {secondsElapsed: 0};
@@ -14,6 +15,8 @@ module.exports =    React.createClass({
   },
   render: function() {
     return (
+      <div>
+      <Header></Header>
       <div class="container">
         <div class="row">
           <div class="col-sm-6">
@@ -34,6 +37,8 @@ module.exports =    React.createClass({
             </div>
           </div>
         </div>
+      </div>
+      <Footer></Footer>
       </div>
     );
   }

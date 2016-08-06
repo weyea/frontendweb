@@ -19,9 +19,9 @@ module.exports =  React.createClass({
   render: function() {
     return (
       <div className="app">
-        <Header></Header>
+
         {this.props.children}
-        <Footer></Footer>
+
       </div>
     );
   }
