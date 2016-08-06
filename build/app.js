@@ -5414,7 +5414,9 @@
 	module.exports = {
 	    App: APP,
 	    renderData: function renderData(data) {
-	        _renderData(data || defaultData);
+	        var currentData = data && data.html ? data : defaultData;
+
+	        _renderData(currentData);
 	    }
 	};
 
