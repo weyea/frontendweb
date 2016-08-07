@@ -5338,9 +5338,11 @@
 	    var htmlData = data.html;
 
 	    if (htmlData) {
-	        var site = JSON.parse(htmlData);
+	        if (typeof htmlData == "string") {
+	            htmlData = JSON.parse(htmlData);
+	        }
 
-	        Sophie.renderFromJSON(site, null, callback);
+	        Sophie.renderFromJSON(htmlData, null, callback);
 	    }
 	};
 
@@ -5376,7 +5378,10 @@
 	module.exports = {
 	    App: APP,
 	    renderData: function renderData(data) {
-	        var currentData = data && data.html ? data : defaultData;
+	        var currentData = data;
+	        if (!currentData || !currentData.html) {
+	            currentData = defaultData;
+	        }
 
 	        _renderData(currentData);
 	    }
