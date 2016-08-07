@@ -601,7 +601,7 @@ webpackJsonp([11,15],{
 	    },
 
 	    render: function render() {
-	        var site = window.serverData;
+	        var site = window.serverData || {};
 	        return React.createElement(
 	            'div',
 	            null,
@@ -687,7 +687,7 @@ webpackJsonp([11,15],{
 	                    React.createElement(
 	                        'div',
 	                        { role: 'tabpanel', className: 'tab-pane active', id: 'home' },
-	                        React.createElement('div', { style: 'height:300px' })
+	                        React.createElement('div', null)
 	                    ),
 	                    React.createElement(
 	                        'div',

@@ -7,7 +7,7 @@ module.exports =  React.createClass({
   },
 
   render: function() {
-    var site = window.serverData;
+    var site = window.serverData||{};
     return (
       <div>
         <Header></Header>
@@ -51,16 +51,13 @@ module.exports =  React.createClass({
                 <div role="tabpanel" className="tab-pane active" id="home">
 
 
-                        <div style="height:300px"></div>
+                        <div ></div>
                 </div>
                 <div role="tabpanel" className="tab-pane" id="profile">...</div>
 
             </div>
 
       </div>
-
-
-
 
         <Footer></Footer>
       </div>
