@@ -666,7 +666,7 @@ webpackJsonp([12,15],{
 	  },
 	  flush: function flush() {
 	    var self = this;
-	    $.get("/my/app", function (data) {
+	    $.get("/my/json/app", function (data) {
 	      if (data.needLogin) {
 	        location.href = "/user/login";
 	        return;
