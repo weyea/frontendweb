@@ -53,7 +53,7 @@ webpackJsonp([3,15],[
 	  registry: Register.registry,
 	  upgradeDocument: Register.upgradeDocument,
 	  isThunk: function isThunk(node) {
-	    return node.type === '#thunk';
+	    return node.type === 'thunk';
 	  }
 
 	};
