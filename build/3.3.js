@@ -4249,6 +4249,7 @@ webpackJsonp([3,15],[
 	        currentData.type = vnode.type;
 	        currentData.nodeValue = vnode.nodeValue;
 	      } else if (vnode.type == "native") {
+	        currentData.type = "native";
 	        currentData.tagName = vnode.tagName;
 	        var attributes = {};
 	        for (var p in vnode.attributes) {
@@ -4288,7 +4289,7 @@ webpackJsonp([3,15],[
 	                  type: 'text',
 	                  nodeValue: c.nodeValue
 	                });
-	              } else {
+	              } else if (c.type = "native") {
 	                result.push(self.element(c.tagName, c.attributes, func(c.children)));
 	              }
 	            }
