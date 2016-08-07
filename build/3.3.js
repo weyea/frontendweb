@@ -4793,7 +4793,7 @@ webpackJsonp([3,15],[
 	    }
 
 	    designer.configs.templateUrl = url;
-	    designer.configs.saveUrl = "designer/json/" + this.props.params.type + "/" + this.props.params.appId;
+	    designer.configs.saveUrl = "/designer/json/" + this.props.params.type + "/" + this.props.params.appId;
 	    designer.run();
 	  },
 	  componentWillUnmount: function componentWillUnmount() {},
