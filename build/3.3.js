@@ -10620,7 +10620,6 @@ webpackJsonp([3,15],[
 	    step: function step(msg) {
 	        var t = new Date().getTime();
 	        //  console.log("pfm step "+(t- this.time),msg)  ;
-
 	        this.time = t;
 	    }
 	};
@@ -10629,6 +10628,7 @@ webpackJsonp([3,15],[
 
 	var play = (_play = {
 	    uploadUrl: "url",
+	    saveUrl: "/design/json/site/",
 	    container: "#editor",
 	    position: "static",
 	    idPrefix: "p",
@@ -28736,13 +28736,13 @@ webpackJsonp([3,15],[
 	    },
 	    save: function save() {
 
-	        var data = play.utils.getPageData();
+	        var data = play.getPageData();
 
 	        data.siteID = window.siteID;
 	        data.pageID = window.pageID;
 
 	        if (window.pageID) {
-	            $.post("/json/design/site/" + window.siteID + "/page/" + window.pageID, data, function (result) {
+	            $.post(play.saveUrl, data, function (result) {
 
 	                localStorage.removeItem(window.siteName + window.pageID);
 	            });
