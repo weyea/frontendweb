@@ -1,0 +1,58 @@
+
+require("./preview.css")
+var Header =require("../../common/HeaderTemplate.js")
+
+module.exports =  React.createClass({
+  getInitialState: function() {
+    return {};
+  },
+
+  componentDidMount: function() {
+
+          $(document).delegate(".cmd-create-site", "click", function (ev) {
+                ev.preventDefault();
+                $.post("/json/site?template=" + $(ev.target).attr("data-id"), {name: $("#create-site-name").val()}, function (data) {
+                    if (data.needLogin) {
+                        location.href = data.loginURL + "?redirect=" + encodeURIComponent(location.href)
+                        return;
+                    }
+                    var url = "http://" + location.host + "/app/" + data.name
+                    $("#new-url").attr("href", url);
+                    $("#new-url").html(url);
+                    $("#site-manager").attr("href", "/my");
+                    $("#create-site").modal("hide");
+                    $("#create-site-success").modal("show")
+                })
+          });
+          (function () {
+              var self = this;
+              $(document).delegate(".viewport-pic", "click", function () {
+                  $("#container-iframe").width(1280);
+              })
+
+              $(document).delegate(".viewport-mobile", "click", function () {
+                  $("#container-iframe").width(480)
+              })
+
+          })()
+
+
+
+  },
+  componentWillUnmount: function() {
+
+  },
+  render: function() {
+    return (
+      <div>
+        <Header></Header>
+        <div id="container-iframe">
+          <iframe src="/designer/source/template/<%= id %>"></iframe>
+
+      </div>
+      </div>
+
+
+    );
+  }
+});
