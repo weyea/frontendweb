@@ -957,7 +957,7 @@ webpackJsonp([10,12],{
 	                    React.createElement(
 	                        "a",
 	                        { href: "/template/preview/?id=" + site.id },
-	                        React.createElement("img", { src: "/img/01.jpg" })
+	                        React.createElement("img", { src: window.rootPath + "img/01.jpg" })
 	                    )
 	                ),
 	                React.createElement(
@@ -1205,7 +1205,7 @@ webpackJsonp([10,12],{
 	            React.createElement(
 	              'a',
 	              { href: '#' },
-	              React.createElement('img', { src: './img/template.png' })
+	              React.createElement('img', { src: window.rootPath + "img/template.png" })
 	            )
 	          )
 	        )
@@ -1218,7 +1218,7 @@ webpackJsonp([10,12],{
 	          { className: 'container' },
 	          React.createElement(
 	            'h3',
-	            { 'class': 'header' },
+	            { className: 'header' },
 	            '选择模板'
 	          ),
 	          React.createElement(TemplateList, null)

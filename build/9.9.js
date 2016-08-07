@@ -1007,7 +1007,7 @@ webpackJsonp([9,12],{
 	                    React.createElement(
 	                        "a",
 	                        { href: "/template/preview/?id=" + site.id },
-	                        React.createElement("img", { src: "/img/01.jpg" })
+	                        React.createElement("img", { src: window.rootPath + "img/01.jpg" })
 	                    )
 	                ),
 	                React.createElement(

@@ -111,8 +111,10 @@
 	var history;
 	if (location.host == "localhost:8484") {
 	  history = _reactRouter.hashHistory;
+	  window.rootPath = "/";
 	} else {
 	  history = _reactRouter.browserHistory;
+	  window.rootPath = "/frontendweb/";
 	}
 
 	var rootRoute = {
