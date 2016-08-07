@@ -5263,136 +5263,77 @@
 	var Footer = __webpack_require__(77);
 	var Page = __webpack_require__(73);
 
-	var defaultData = {
-	    "html": {
-	        "type": "app",
-	        "attributes": {},
-	        "children": [{
-	            "type": "#thunk",
-	            "attributes": {
-	                "activePageId": "main-page"
-	            },
-	            "name": "p-site",
-	            "children": [{
-	                "type": "#thunk",
-	                "attributes": {
-	                    "ref": "header"
-	                },
-	                "name": "p-header",
-	                "children": []
-	            }, {
-	                "type": "#thunk",
-	                "attributes": {
-	                    "activePageId": "main-page",
-	                    "ref": "body"
-	                },
-	                "name": "p-body",
-	                "children": [{
-	                    "type": "#thunk",
-	                    "attributes": {
-	                        "class": "active",
-	                        "id": "main-page",
-	                        "title": "首页",
-	                        "key": "main-page"
-	                    },
-	                    "name": "p-page",
-	                    "children": []
-	                }, {
-	                    "type": "#thunk",
-	                    "attributes": {
-	                        "id": "p1468328840127",
-	                        "title": "关于",
-	                        "key": "p1468328840127"
-	                    },
-	                    "name": "p-page",
-	                    "children": []
-	                }]
-	            }, {
-	                "type": "#thunk",
-	                "attributes": {
-	                    "ref": "footer"
-	                },
-	                "name": "p-footer",
-	                "children": []
-	            }]
-	        }]
-	    },
-	    "pagecss": "",
-	    "links": "",
-	    "selectornum": 0
-	};
-
 	var _renderData = function _renderData(data, callback) {
 
-	    var links = data.links.split(",");
-	    //创建links
-	    for (var i = 0; i < links.length; i++) {
-	        var hasExit = $('[href="' + $.trim(links[i]) + '"]').length;
-	        if (!hasExit && !$.trim(links[i])) {
-	            var linkEl = $('<link custom="true" rel="import" href="' + $.trim(links[i]) + '">');
-	            $("head").append(linkEl);
-	        }
+	  var links = data.links.split(",");
+	  //创建links
+	  for (var i = 0; i < links.length; i++) {
+	    var hasExit = $('[href="' + $.trim(links[i]) + '"]').length;
+	    if (!hasExit && !$.trim(links[i])) {
+	      var linkEl = $('<link custom="true" rel="import" href="' + $.trim(links[i]) + '">');
+	      $("head").append(linkEl);
+	    }
+	  }
+
+	  var pageStyle = $("#page-style").get(0);
+	  $("#page-style").text("");
+
+	  if (pageStyle.styleSheet) {
+	    pageStyle.styleSheet.cssText = data.pagecss;
+	  } else {
+	    pageStyle.appendChild(document.createTextNode(data.pagecss));
+	  }
+
+	  var htmlData = data.html;
+
+	  if (htmlData) {
+	    if (typeof htmlData == "string") {
+	      htmlData = JSON.parse(htmlData);
 	    }
 
-	    var pageStyle = $("#page-style").get(0);
-	    $("#page-style").text("");
+	    Sophie.renderFromJSON(htmlData, null, callback);
+	  } else {
 
-	    if (pageStyle.styleSheet) {
-	        pageStyle.styleSheet.cssText = data.pagecss;
-	    } else {
-	        pageStyle.appendChild(document.createTextNode(data.pagecss));
-	    }
-
-	    var htmlData = data.html;
-
-	    if (htmlData) {
-	        if (typeof htmlData == "string") {
-	            htmlData = JSON.parse(htmlData);
-	        }
-
-	        Sophie.renderFromJSON(htmlData, null, callback);
-	    }
+	    Sophie.runApp(APP, document.body, true);
+	  }
 	};
 
 	var APP = Sophie.createClass("app", {
-	    componentDidMount: function componentDidMount() {},
+	  componentDidMount: function componentDidMount() {},
 
-	    render: function render() {
-	        return this.element(
-	            'app',
-	            null,
-	            this.element(
-	                Site,
-	                null,
-	                this.element(Header, { ref: 'header' }),
-	                this.element(
-	                    Body,
-	                    { ref: 'body' },
-	                    this.element(Page, { 'class': 'active', id: 'main-page', title: '首页' })
-	                ),
-	                this.element(Footer, { ref: 'footer' })
-	            )
-	        );
-	    }
+	  render: function render() {
+	    return this.element(
+	      'app',
+	      null,
+	      this.element(
+	        Site,
+	        null,
+	        this.element(Header, { ref: 'header' }),
+	        this.element(
+	          Body,
+	          { ref: 'body' },
+	          this.element(Page, { 'class': 'active', id: 'main-page', title: '首页' })
+	        ),
+	        this.element(Footer, { ref: 'footer' })
+	      )
+	    );
+	  }
 
 	});
 
 	Sophie.createStyleSheet({
-	    app: {
-	        display: "block"
-	    }
+	  app: {
+	    display: "block"
+	  }
 	});
 
 	module.exports = {
-	    App: APP,
-	    renderData: function renderData(data) {
-	        var currentData = data;
-	        if (!currentData || !currentData.html) {
-	            currentData = defaultData;
-	        }
+	  App: APP,
+	  renderData: function renderData(data) {
+	    var currentData = data;
 
-	        _renderData(currentData);
-	    }
+	    _renderData(currentData);
+	  }
 	};
 
 /***/ },
