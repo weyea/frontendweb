@@ -1,10 +1,10 @@
 module.exports = {
 
-    path: 'create',
+    path: 'app/:id',
 
     getComponents(nextState, callback) {
       require.ensure([], function (require) {
-        callback(null, require('../components/CreateTemplate'))
+        callback(null, require('../components/app'))
       })
     }
   }

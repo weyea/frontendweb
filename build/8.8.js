@@ -1,4 +1,4 @@
-webpackJsonp([8,12],{
+webpackJsonp([8,15],{
 
 /***/ 68:
 /***/ function(module, exports) {
@@ -291,53 +291,56 @@ webpackJsonp([8,12],{
 	var Header = __webpack_require__(271);
 
 	module.exports = React.createClass({
-	    displayName: "exports",
+	  displayName: "exports",
 
-	    getInitialState: function getInitialState() {
-	        return {};
-	    },
+	  getInitialState: function getInitialState() {
+	    return {};
+	  },
 
-	    componentDidMount: function componentDidMount() {
+	  componentDidMount: function componentDidMount() {
 
-	        $(document).delegate(".cmd-create-site", "click", function (ev) {
-	            ev.preventDefault();
-	            $.post("/json/site?template=" + $(ev.target).attr("data-id"), { name: $("#create-site-name").val() }, function (data) {
-	                if (data.needLogin) {
-	                    location.href = data.loginURL + "?redirect=" + encodeURIComponent(location.href);
-	                    return;
-	                }
-	                var url = "http://" + location.host + "/app/" + data.name;
-	                $("#new-url").attr("href", url);
-	                $("#new-url").html(url);
-	                $("#site-manager").attr("href", "/my");
-	                $("#create-site").modal("hide");
-	                $("#create-site-success").modal("show");
-	            });
-	        });
-	        (function () {
-	            var self = this;
-	            $(document).delegate(".viewport-pic", "click", function () {
-	                $("#container-iframe").width(1280);
-	            });
+	    var id = this.props.params.id;
 
-	            $(document).delegate(".viewport-mobile", "click", function () {
-	                $("#container-iframe").width(480);
-	            });
-	        })();
-	    },
-	    componentWillUnmount: function componentWillUnmount() {},
-	    render: function render() {
-	        return React.createElement(
-	            "div",
-	            null,
-	            React.createElement(Header, null),
-	            React.createElement(
-	                "div",
-	                { id: "container-iframe" },
-	                React.createElement("iframe", { src: "/designer/source/template/<%= id %>" })
-	            )
-	        );
-	    }
+	    $(document).delegate(".cmd-create-site", "click", function (ev) {
+	      ev.preventDefault();
+	      $.post("/app/json?templateid=" + id, { name: $("#create-site-name").val() }, function (data) {
+	        if (data.needLogin) {
+	          location.href = data.loginURL + "?redirect=" + encodeURIComponent(location.href);
+	          return;
+	        }
+	        var url = "http://" + location.host + "/app/" + data.id;
+	        $("#new-url").attr("href", url);
+	        $("#new-url").html(url);
+	        $("#site-manager").attr("href", "/my");
+	        $("#create-site").modal("hide");
+	        $("#create-site-success").modal("show");
+	      });
+	    });
+	    (function () {
+	      var self = this;
+	      $(document).delegate(".viewport-pic", "click", function () {
+	        $("#container-iframe").width(1280);
+	      });
+
+	      $(document).delegate(".viewport-mobile", "click", function () {
+	        $("#container-iframe").width(480);
+	      });
+	    })();
+	  },
+	  componentWillUnmount: function componentWillUnmount() {},
+	  render: function render() {
+	    var id = this.props.params.id;
+	    return React.createElement(
+	      "div",
+	      null,
+	      React.createElement(Header, null),
+	      React.createElement(
+	        "div",
+	        { id: "container-iframe" },
+	        React.createElement("iframe", { src: "/designer/source/template/" + id })
+	      )
+	    );
+	  }
 	});
 
 /***/ },

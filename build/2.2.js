@@ -1,4 +1,4 @@
-webpackJsonp([2,12],{
+webpackJsonp([2,15],{
 
 /***/ 192:
 /***/ function(module, exports, __webpack_require__) {
@@ -42,10 +42,34 @@ webpackJsonp([2,12],{
 
 	module.exports = {
 
-	  path: 'tempalte',
+	  path: 'template',
 	  getChildRoutes: function getChildRoutes(partialNextState, callback) {
 	    __webpack_require__.e/* nsure */(6, function (require) {
 	      callback(null, [__webpack_require__(265), __webpack_require__(267), __webpack_require__(272)]);
+	    });
+	  }
+	};
+
+/***/ },
+
+/***/ 279:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	module.exports = {
+
+	  path: 'my',
+	  getChildRoutes: function getChildRoutes(partialNextState, callback) {
+	    __webpack_require__.e/* nsure */(10, function (require) {
+	      callback(null, [__webpack_require__(280)]);
+	    });
+	  },
+	  getIndexRoute: function getIndexRoute(partialNextState, callback) {
+	    __webpack_require__.e/* nsure */(12, function (require) {
+	      callback(null, {
+	        component: __webpack_require__(282)
+	      });
 	    });
 	  }
 	};

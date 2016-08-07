@@ -1,6 +1,6 @@
 module.exports = {
 
-    path: 'preivew',
+    path: 'preview/:id',
 
     getComponents(nextState, callback) {
     require.ensure([], function (require) {

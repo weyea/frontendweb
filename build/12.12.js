@@ -1,73 +1,4 @@
-webpackJsonp([5,15],{
-
-/***/ 261:
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _Header = __webpack_require__(262);
-
-	var _Header2 = _interopRequireDefault(_Header);
-
-	var _Footer = __webpack_require__(263);
-
-	var _Footer2 = _interopRequireDefault(_Footer);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	module.exports = React.createClass({
-	  displayName: 'exports',
-
-	  getInitialState: function getInitialState() {
-	    return { secondsElapsed: 0 };
-	  },
-	  tick: function tick() {
-	    this.setState({ secondsElapsed: this.state.secondsElapsed + 1 });
-	  },
-	  componentDidMount: function componentDidMount() {
-	    this.interval = setInterval(this.tick, 1000);
-	  },
-	  componentWillUnmount: function componentWillUnmount() {
-	    clearInterval(this.interval);
-	  },
-	  render: function render() {
-	    return React.createElement(
-	      'div',
-	      null,
-	      React.createElement(_Header2.default, null),
-	      React.createElement(
-	        'div',
-	        { className: 'container' },
-	        React.createElement(
-	          'form',
-	          { className: 'form-signin', id: '', role: 'form', action: '/user/login', method: 'POST' },
-	          React.createElement(
-	            'h2',
-	            { className: 'form-signin-heading' },
-	            '登录'
-	          ),
-	          React.createElement('input', { name: 'username', type: 'text', className: 'form-control', placeholder: '用户名', required: true, autofocus: true }),
-	          React.createElement('input', { type: 'password', name: 'password', className: 'form-control', placeholder: '密码', required: true }),
-	          React.createElement('input', { type: 'hidden', name: 'redirect', value: '<%= locals.redirect %>', className: 'form-control', placeholder: 'Password', required: true }),
-	          React.createElement(
-	            'label',
-	            { className: 'checkbox' },
-	            React.createElement('input', { type: 'checkbox', value: 'remember-me' }),
-	            ' Remember me'
-	          ),
-	          React.createElement(
-	            'button',
-	            { className: 'btn btn-lg btn-primary btn-block', type: 'submit' },
-	            '登录'
-	          )
-	        )
-	      ),
-	      React.createElement(_Footer2.default, null)
-	    );
-	  }
-	});
-
-/***/ },
+webpackJsonp([12,15],{
 
 /***/ 262:
 /***/ function(module, exports) {
@@ -643,6 +574,178 @@ webpackJsonp([5,15],{
 	            )
 	        );
 	    }
+	});
+
+/***/ },
+
+/***/ 282:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _Header = __webpack_require__(262);
+
+	var _Header2 = _interopRequireDefault(_Header);
+
+	var _Footer = __webpack_require__(263);
+
+	var _Footer2 = _interopRequireDefault(_Footer);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var SiteList = __webpack_require__(283);
+	module.exports = React.createClass({
+	  displayName: 'exports',
+
+	  getInitialState: function getInitialState() {
+	    return {};
+	  },
+
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      null,
+	      React.createElement(_Header2.default, null),
+	      React.createElement(
+	        'div',
+	        { className: 'container', id: 'my-container' },
+	        React.createElement(
+	          'a',
+	          { className: 'btn btn-primary add-site', href: '/template/market' },
+	          '创建新站点'
+	        ),
+	        React.createElement(
+	          'ul',
+	          { className: 'nav nav-tabs', role: 'tablist' },
+	          React.createElement(
+	            'li',
+	            { role: 'presentation', className: 'active' },
+	            React.createElement(
+	              'a',
+	              { href: '#home', role: 'tab', 'data-toggle': 'tab' },
+	              '我的站点'
+	            )
+	          )
+	        ),
+	        React.createElement(
+	          'div',
+	          { className: 'tab-content' },
+	          React.createElement(
+	            'div',
+	            { role: 'tabpanel', className: 'tab-pane active', id: 'home' },
+	            React.createElement(SiteList, null)
+	          ),
+	          React.createElement(
+	            'div',
+	            { role: 'tabpanel', className: 'tab-pane', id: 'profile' },
+	            '...'
+	          )
+	        )
+	      ),
+	      React.createElement(_Footer2.default, null)
+	    );
+	  }
+	});
+
+/***/ },
+
+/***/ 283:
+/***/ function(module, exports) {
+
+	"use strict";
+
+	module.exports = React.createClass({
+	  displayName: "exports",
+
+	  getInitialState: function getInitialState() {
+	    return { siteList: [] };
+	  },
+	  componentDidMount: function componentDidMount() {
+	    var self = this;
+	    self.flush();
+	  },
+	  flush: function flush() {
+	    var self = this;
+	    $.get("/my/app", function (data) {
+	      if (data.needLogin) {
+	        location.href = "/user/login";
+	        return;
+	      }
+
+	      self.setState({ siteList: data });
+	    });
+	  },
+
+	  renderItem: function renderItem() {
+	    var result = [];
+	    for (var i = 0; i < this.state.siteList.length; i++) {
+	      var site = this.state.siteList[i];
+	      var item = React.createElement(
+	        "div",
+	        { className: "templ" },
+	        React.createElement(
+	          "p",
+	          { className: "bd" },
+	          React.createElement(
+	            "a",
+	            { href: "/my/app/" + site.id },
+	            React.createElement("img", { src: window.rootPath + "img/01.jpg" })
+	          )
+	        ),
+	        React.createElement(
+	          "div",
+	          { className: "mobile" },
+	          React.createElement(
+	            "a",
+	            { target: "_blank", href: "/my/app/" + site.id },
+	            React.createElement("img", { src: "/template_img/" + site.id + "-480x320.png" })
+	          )
+	        ),
+	        React.createElement(
+	          "div",
+	          { className: "des" },
+	          React.createElement(
+	            "h3",
+	            { className: "title" },
+	            site.title
+	          ),
+	          React.createElement(
+	            "div",
+	            null,
+	            React.createElement(
+	              "h3",
+	              null,
+	              React.createElement(
+	                "a",
+	                { href: "/app/" + site.id },
+	                site.title
+	              )
+	            ),
+	            React.createElement(
+	              "p",
+	              { className: "action" },
+	              React.createElement(
+	                "a",
+	                { className: "", href: "/design/app/" + site.id },
+	                "设计"
+	              )
+	            )
+	          )
+	        )
+	      );
+
+	      result.push(item);
+	    }
+	    return result;
+	  },
+
+	  render: function render() {
+	    return React.createElement(
+	      "div",
+	      { className: "site-list" },
+	      this.renderItem()
+	    );
+	  }
 	});
 
 /***/ }

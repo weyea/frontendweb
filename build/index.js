@@ -28,7 +28,7 @@
 /******/ 	// Array means "loading", array contains callbacks
 /******/ 	var installedChunks = {
 /******/ 		1:0,
-/******/ 		12:0
+/******/ 		15:0
 /******/ 	};
 
 /******/ 	// The require function
@@ -122,19 +122,19 @@
 	  path: '/',
 	  getChildRoutes: function getChildRoutes(partialNextState, callback) {
 	    __webpack_require__.e/* nsure */(2, function (require) {
-	      callback(null, [__webpack_require__(192), __webpack_require__(259), __webpack_require__(264)]);
+	      callback(null, [__webpack_require__(192), __webpack_require__(259), __webpack_require__(264), __webpack_require__(279)]);
 	    });
 	  },
 	  getIndexRoute: function getIndexRoute(partialNextState, callback) {
-	    __webpack_require__.e/* nsure */(10, function (require) {
+	    __webpack_require__.e/* nsure */(13, function (require) {
 	      callback(null, {
-	        component: __webpack_require__(279)
+	        component: __webpack_require__(284)
 	      });
 	    });
 	  },
 	  getComponents: function getComponents(nextState, callback) {
-	    __webpack_require__.e/* nsure */(11, function (require) {
-	      callback(null, __webpack_require__(286));
+	    __webpack_require__.e/* nsure */(14, function (require) {
+	      callback(null, __webpack_require__(291));
 	    });
 	  }
 	};

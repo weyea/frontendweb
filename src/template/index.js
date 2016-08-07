@@ -2,13 +2,13 @@
 
   module.exports  = {
 
-      path: 'tempalte',
+      path: 'template',
       getChildRoutes(partialNextState, callback) {
         require.ensure([], function (require) {
           callback(null, [
-            require('./routes/create.js'),
-            require('./routes/preview.js'),
-            require('./routes/market.js')
+            require('./routes/create'),
+            require('./routes/preview'),
+            require('./routes/market')
           ])
         })
       }

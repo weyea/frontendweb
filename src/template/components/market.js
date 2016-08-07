@@ -17,10 +17,6 @@ module.exports =  React.createClass({
 
         <div id="template-list" >
           <div className="container">
-          <h3 class="header">选择模板</h3>
-
-
-
             <TemplateList></TemplateList>
 
           </div>

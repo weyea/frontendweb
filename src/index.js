@@ -35,6 +35,7 @@ const rootRoute = {
           require('./designer'),
           require('./user'),
           require('./template'),
+            require('./my'),
         ])
       })
     },

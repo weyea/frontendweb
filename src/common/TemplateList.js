@@ -59,7 +59,7 @@ module.exports = React.createClass({
           <div className="templ">
 
               <p className="bd">
-                  <a href={"/template/preview/?id="+site.id}><img src={window.rootPath+"img/01.jpg"}/></a>
+                  <a href={"/template/preview/"+site.id}><img src={window.rootPath+"img/01.jpg"}/></a>
               </p>
               <div className="mobile">
                 <a  target="_blank" href={"http://localhost:3000/app/"+site.id}>
@@ -69,7 +69,7 @@ module.exports = React.createClass({
               <h3 className="title">{site.title}</h3>
               <p className="action" >
                   价格：<span>免费</span>
-                  <a className="btn btn-default create" href={"/template/preview/?id="+site.id} data-id={site.id}
+                  <a className="btn btn-default create" href={"/template/preview/"+site.id} data-id={site.id}
                      data-name={site.title}>查看</a>
 
               </p>

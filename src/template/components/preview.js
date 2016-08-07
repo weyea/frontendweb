@@ -9,14 +9,17 @@ module.exports =  React.createClass({
 
   componentDidMount: function() {
 
+    var id =  this.props.params.id;
+
+
           $(document).delegate(".cmd-create-site", "click", function (ev) {
                 ev.preventDefault();
-                $.post("/json/site?template=" + $(ev.target).attr("data-id"), {name: $("#create-site-name").val()}, function (data) {
+                $.post("/app/json?templateid=" + id, {name: $("#create-site-name").val()}, function (data) {
                     if (data.needLogin) {
                         location.href = data.loginURL + "?redirect=" + encodeURIComponent(location.href)
                         return;
                     }
-                    var url = "http://" + location.host + "/app/" + data.name
+                    var url = "http://" + location.host + "/app/" + data.id
                     $("#new-url").attr("href", url);
                     $("#new-url").html(url);
                     $("#site-manager").attr("href", "/my");
@@ -43,11 +46,12 @@ module.exports =  React.createClass({
 
   },
   render: function() {
+    var id =  this.props.params.id
     return (
       <div>
         <Header></Header>
         <div id="container-iframe">
-          <iframe src="/designer/source/template/<%= id %>"></iframe>
+          <iframe src={"/designer/source/template/"+id}></iframe>
 
       </div>
       </div>

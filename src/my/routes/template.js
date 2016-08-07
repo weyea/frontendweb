@@ -1,6 +1,6 @@
 module.exports = {
 
-    path: 'create',
+    path: 'template/:id',
 
     getComponents(nextState, callback) {
       require.ensure([], function (require) {

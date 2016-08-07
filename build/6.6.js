@@ -1,4 +1,4 @@
-webpackJsonp([6,12],{
+webpackJsonp([6,15],{
 
 /***/ 265:
 /***/ function(module, exports, __webpack_require__) {
@@ -25,7 +25,7 @@ webpackJsonp([6,12],{
 
 	module.exports = {
 
-	  path: 'preivew',
+	  path: 'preview/:id',
 
 	  getComponents: function getComponents(nextState, callback) {
 	    __webpack_require__.e/* nsure */(8, function (require) {
