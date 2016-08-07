@@ -4195,6 +4195,13 @@ webpackJsonp([3,15],[
 	  }
 	};
 
+	var fireReady = function fireReady() {
+	  if (!isReady) return;
+	  for (var i = 0; i < callbacks.length; i++) {
+	    callbacks[i] && callbacks[i]();
+	  }
+	};
+
 	module.exports = {
 	  runApp: function runApp(compontent, container, fire) {
 	    // utils.ready(function () {
