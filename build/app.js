@@ -4457,13 +4457,6 @@
 	  }
 	};
 
-	var fireReady = function fireReady() {
-	  if (!isReady) return;
-	  for (var i = 0; i < callbacks.length; i++) {
-	    callbacks[i] && callbacks[i]();
-	  }
-	};
-
 	module.exports = {
 	  runApp: function runApp(compontent, container, fire) {
 	    // utils.ready(function () {
@@ -4474,11 +4467,14 @@
 	    Sophie.firstVnode = vnode;
 	    render(vnode);
 	    mount(vnode);
-	    isReady = true;
-	    if (fire !== false) {
-	      EE.trigger("ready", [vnode]);
-	      fireReady();
+	    if (!isReady) {
+	      isReady = true;
+	      if (fire !== false) {
+	        EE.trigger("ready", [vnode]);
+	        fireReady();
+	      }
 	    }
+
 	    // })
 	  },
 
@@ -5342,44 +5338,10 @@
 	    var htmlData = data.html;
 
 	    if (htmlData) {
-	        var site = htmlData;
+	        var site = JSON.parse(htmlData);
 
-	        var APP = Sophie.createClass("app", {
-
-	            render: function render() {
-	                var self = this;
-
-	                var func = function func(children) {
-	                    var result = [];
-	                    for (var i = 0; i < children.length; i++) {
-	                        var c = children[i];
-	                        if (c.type == "#thunk") {
-	                            result.push(self.element(Sophie.registry[c.name], c.attributes, func(c.children)));
-	                        } else if (c.type == "#text") {
-
-	                            result.push({
-	                                type: '#text',
-	                                nodeValue: c.nodeValue
-	                            });
-	                        } else {
-	                            result.push(self.element(c.type, c.attributes, func(c.children)));
-	                        }
-	                    }
-
-	                    return result;
-	                };
-
-	                return this.element("app", {}, func(site.children));
-	            }
-
-	        });
-
-	        Sophie.runApp(APP, $("#dotlinkface").get(0), true);
+	        Sophie.renderFromJSON(site, null, callback);
 	    }
-
-	    setTimeout(function () {
-	        callback && callback();
-	    }, 0);
 	};
 
 	var APP = Sophie.createClass("app", {

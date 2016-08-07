@@ -4195,13 +4195,6 @@ webpackJsonp([3,15],[
 	  }
 	};
 
-	var fireReady = function fireReady() {
-	  if (!isReady) return;
-	  for (var i = 0; i < callbacks.length; i++) {
-	    callbacks[i] && callbacks[i]();
-	  }
-	};
-
 	module.exports = {
 	  runApp: function runApp(compontent, container, fire) {
 	    // utils.ready(function () {
@@ -4212,11 +4205,14 @@ webpackJsonp([3,15],[
 	    Sophie.firstVnode = vnode;
 	    render(vnode);
 	    mount(vnode);
-	    isReady = true;
-	    if (fire !== false) {
-	      EE.trigger("ready", [vnode]);
-	      fireReady();
+	    if (!isReady) {
+	      isReady = true;
+	      if (fire !== false) {
+	        EE.trigger("ready", [vnode]);
+	        fireReady();
+	      }
 	    }
+
 	    // })
 	  },
 
@@ -10857,9 +10853,10 @@ webpackJsonp([3,15],[
 	            }
 	        });
 
+	        var html = play.iframeWin.Sophie.renderToJSON();
 	        return {
 
-	            "html": this.getPageJSON(),
+	            "html": JSON.stringify(html),
 	            "pagecss": this.getPageStyleText(),
 	            "links": links.join(","),
 	            "selectornum": this.getID()
@@ -11116,39 +11113,8 @@ webpackJsonp([3,15],[
 	            var htmlData = data.html;
 
 	            if (htmlData) {
-	                var site = htmlData;
-
-	                var APP = play.iframeWin.Sophie.createClass("app", {
-
-	                    render: function render() {
-	                        var self = this;
-
-	                        var func = function func(children) {
-	                            var result = [];
-	                            for (var i = 0; i < children.length; i++) {
-	                                var c = children[i];
-	                                if (c.type == "#thunk") {
-	                                    result.push(self.element(play.iframeWin.Sophie.registry[c.name], c.attributes, func(c.children)));
-	                                } else if (c.type == "#text") {
-
-	                                    result.push({
-	                                        type: '#text',
-	                                        nodeValue: c.nodeValue
-	                                    });
-	                                } else {
-	                                    result.push(self.element(c.type, c.attributes, func(c.children)));
-	                                }
-	                            }
-
-	                            return result;
-	                        };
-
-	                        return this.element("app", {}, func(site.children));
-	                    }
-
-	                });
-
-	                play.iframeWin.Sophie.runApp(APP, play.iframeDoc.body, false);
+	                var site = JSON.parse(htmlData);
+	                play.iframeWin.Sophie.renderFromJSON(site);
 	            }
 
 	            setTimeout(function () {
@@ -28737,6 +28703,7 @@ webpackJsonp([3,15],[
 	    save: function save() {
 
 	        var data = play.getPageData();
+
 	        $.post(designer.configs.saveUrl, data, function (result) {
 	            localStorage.removeItem(window.siteName + window.pageID);
 	        });

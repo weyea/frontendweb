@@ -29,10 +29,11 @@
     "webpack-merge": "^0.1.1"
   },
   "dependencies": {
+    "sophie": "git+https://github.com/zhangquan/sophie.git",
     "app": "git+https://github.com/zhangquan/app.git",
     "designer": "git+https://github.com/zhangquan/designer.git",
     "react-router": "^2.6.0",
-    "react-style": "~0.5.5",
-    "sophie": "git+https://github.com/zhangquan/sophie.git"
+    "react-style": "~0.5.5"
+
   }
 }
