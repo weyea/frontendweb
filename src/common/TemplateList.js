@@ -3,7 +3,7 @@ require('./TemplateList.css');
 
 module.exports = React.createClass({
     getInitialState:function(){
-      return {siteList:[]};
+      return {siteList:[{title:123}]};
     },
     componentDidMount: function (){
         var self = this;
@@ -58,21 +58,23 @@ module.exports = React.createClass({
         var item =(
           <div className="templ">
 
-              <p className="bd">
+              <div className="bd">
                   <a href={"/template/preview/"+site.id}><img src={window.rootPath+"img/01.jpg"}/></a>
-              </p>
+              </div>
               <div className="mobile">
                 <a  target="_blank" href={"http://localhost:3000/app/"+site.id}>
                   <img src ={"/template_img/"+site.id+"-480x320.png"}/>
                   </a>
               </div>
               <h3 className="title">{site.title}</h3>
-              <p className="action" >
-                  价格：<span>免费</span>
-                  <a className="btn btn-default create" href={"/template/preview/"+site.id} data-id={site.id}
-                     data-name={site.title}>查看</a>
+              <div className="action" >
 
-              </p>
+              <a className="btn btn-default create" href={"/template/preview/"+site.id} data-id={site.id}
+                 data-name={site.title}>预览</a>
+                  {/*价格：<span>免费</span>*/}
+
+
+              </div>
           </div>
         );
 

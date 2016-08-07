@@ -4,7 +4,8 @@ module.exports  = {
     getChildRoutes(partialNextState, callback) {
       require.ensure([], function (require) {
         callback(null, [
-          require('./routes/login')
+          require('./routes/login'),
+          require('./routes/signup')
         ])
       })
     }

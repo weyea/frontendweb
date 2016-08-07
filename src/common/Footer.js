@@ -21,21 +21,7 @@ export default  React.createClass({
     <div className="btt" ></div>
     <section className="new_footer">
         <div >
-            <div className="left_summery">
-                <div className="footer_logo"></div>
-
-                <nav>
-                    <ul>
-                        <li><a target="_blank" href="https://www.facebook.com/wix"><img src="http://static.parastorage.com/services/html-landing/hp/brazil/images/1920/footer-new/fb.png" alt="Wix on Facebook" /></a></li>
-                        <li><a target="_blank" href="https://twitter.com/wix"><img src="http://static.parastorage.com/services/html-landing/hp/brazil/images/1920/footer-new/twitter.png" alt="Wix on Twitter"/></a></li>
-                        <li><a target="_blank" href="https://plus.google.com/+Wix/posts"><img src="http://static.parastorage.com/services/html-landing/hp/brazil/images/1920/footer-new/google.png" alt="Wix on Google Plus"/></a></li>
-                        <li><a target="_blank" href="http://www.youtube.com/user/Wix"><img src="http://static.parastorage.com/services/html-landing/hp/brazil/images/1920/footer-new/youtube.png" alt="Wix on Youtube"/></a></li>
-                        <li><a target="_blank" href="http://www.pinterest.com/wixcom/"><img src="http://static.parastorage.com/services/html-landing/hp/brazil/images/1920/footer-new/pinterest.png" alt="Wix on Pinterest"/></a></li>
-                        <li><a target="_blank" href="http://instagram.com/wix"><img src="http://static.parastorage.com/services/html-landing/hp/brazil/images/1920/footer-new/instagram.png" alt="Wix on Instagram"/></a></li>
-                        <li><a target="_blank" href="http://www.linkedin.com/company/wix.com"><img src="http://static.parastorage.com/services/html-landing/hp/brazil/images/1920/footer-new/linkedin.png" alt="Wix on Linkedin"/></a></li>
-                    </ul>
-                </nav>
-            </div>
+            
             <nav className="footer_nav">
                 <h3>PRODUCT</h3>
                 <ul>

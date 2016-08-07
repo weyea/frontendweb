@@ -1,4 +1,4 @@
-webpackJsonp([12,15],{
+webpackJsonp([12,16],{
 
 /***/ 262:
 /***/ function(module, exports) {
@@ -20,9 +20,8 @@ webpackJsonp([12,15],{
 	      var user = window.serverData.user;
 	      return React.createElement(
 	        "span",
-	        null,
+	        { className: "login" },
 	        React.createElement("i", { className: "fa fa-user-md" }),
-	        " 您好！",
 	        React.createElement(
 	          "a",
 	          { href: "#", className: "navbar-link" },
@@ -36,10 +35,19 @@ webpackJsonp([12,15],{
 	      );
 	    } else {
 	      return React.createElement(
-	        "a",
-	        { href: "/user/login", className: "navbar-link" },
-	        "登录 ",
-	        React.createElement("span", { className: "oi oi-account-login" })
+	        "span",
+	        { "class": "signup" },
+	        React.createElement(
+	          "a",
+	          { href: "/user/login", className: "navbar-link" },
+	          "登录"
+	        ),
+	        " ",
+	        React.createElement(
+	          "a",
+	          { href: "/user/signup", className: "navbar-link" },
+	          "注册"
+	        )
 	      );
 	    }
 	  },
@@ -82,7 +90,7 @@ webpackJsonp([12,15],{
 	          ),
 	          React.createElement(
 	            "ul",
-	            { className: "nav navbar-nav navbar-right " },
+	            { className: "nav navbar-nav navbar-right main" },
 	            React.createElement(
 	              "li",
 	              null,
@@ -90,6 +98,15 @@ webpackJsonp([12,15],{
 	                "a",
 	                { href: "/" },
 	                "首页"
+	              )
+	            ),
+	            React.createElement(
+	              "li",
+	              null,
+	              React.createElement(
+	                "a",
+	                { href: "/template/market" },
+	                "模板市场"
 	              )
 	            ),
 	            React.createElement(
@@ -106,8 +123,8 @@ webpackJsonp([12,15],{
 	              null,
 	              React.createElement(
 	                "a",
-	                { href: "/template" },
-	                "模板市场"
+	                { href: "/template/market" },
+	                "新手指南"
 	              )
 	            )
 	          )
@@ -154,82 +171,6 @@ webpackJsonp([12,15],{
 	                React.createElement(
 	                    "div",
 	                    null,
-	                    React.createElement(
-	                        "div",
-	                        { className: "left_summery" },
-	                        React.createElement("div", { className: "footer_logo" }),
-	                        React.createElement(
-	                            "nav",
-	                            null,
-	                            React.createElement(
-	                                "ul",
-	                                null,
-	                                React.createElement(
-	                                    "li",
-	                                    null,
-	                                    React.createElement(
-	                                        "a",
-	                                        { target: "_blank", href: "https://www.facebook.com/wix" },
-	                                        React.createElement("img", { src: "http://static.parastorage.com/services/html-landing/hp/brazil/images/1920/footer-new/fb.png", alt: "Wix on Facebook" })
-	                                    )
-	                                ),
-	                                React.createElement(
-	                                    "li",
-	                                    null,
-	                                    React.createElement(
-	                                        "a",
-	                                        { target: "_blank", href: "https://twitter.com/wix" },
-	                                        React.createElement("img", { src: "http://static.parastorage.com/services/html-landing/hp/brazil/images/1920/footer-new/twitter.png", alt: "Wix on Twitter" })
-	                                    )
-	                                ),
-	                                React.createElement(
-	                                    "li",
-	                                    null,
-	                                    React.createElement(
-	                                        "a",
-	                                        { target: "_blank", href: "https://plus.google.com/+Wix/posts" },
-	                                        React.createElement("img", { src: "http://static.parastorage.com/services/html-landing/hp/brazil/images/1920/footer-new/google.png", alt: "Wix on Google Plus" })
-	                                    )
-	                                ),
-	                                React.createElement(
-	                                    "li",
-	                                    null,
-	                                    React.createElement(
-	                                        "a",
-	                                        { target: "_blank", href: "http://www.youtube.com/user/Wix" },
-	                                        React.createElement("img", { src: "http://static.parastorage.com/services/html-landing/hp/brazil/images/1920/footer-new/youtube.png", alt: "Wix on Youtube" })
-	                                    )
-	                                ),
-	                                React.createElement(
-	                                    "li",
-	                                    null,
-	                                    React.createElement(
-	                                        "a",
-	                                        { target: "_blank", href: "http://www.pinterest.com/wixcom/" },
-	                                        React.createElement("img", { src: "http://static.parastorage.com/services/html-landing/hp/brazil/images/1920/footer-new/pinterest.png", alt: "Wix on Pinterest" })
-	                                    )
-	                                ),
-	                                React.createElement(
-	                                    "li",
-	                                    null,
-	                                    React.createElement(
-	                                        "a",
-	                                        { target: "_blank", href: "http://instagram.com/wix" },
-	                                        React.createElement("img", { src: "http://static.parastorage.com/services/html-landing/hp/brazil/images/1920/footer-new/instagram.png", alt: "Wix on Instagram" })
-	                                    )
-	                                ),
-	                                React.createElement(
-	                                    "li",
-	                                    null,
-	                                    React.createElement(
-	                                        "a",
-	                                        { target: "_blank", href: "http://www.linkedin.com/company/wix.com" },
-	                                        React.createElement("img", { src: "http://static.parastorage.com/services/html-landing/hp/brazil/images/1920/footer-new/linkedin.png", alt: "Wix on Linkedin" })
-	                                    )
-	                                )
-	                            )
-	                        )
-	                    ),
 	                    React.createElement(
 	                        "nav",
 	                        { className: "footer_nav" },
@@ -578,7 +519,7 @@ webpackJsonp([12,15],{
 
 /***/ },
 
-/***/ 282:
+/***/ 283:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -593,159 +534,107 @@ webpackJsonp([12,15],{
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var SiteList = __webpack_require__(283);
 	module.exports = React.createClass({
-	  displayName: 'exports',
+	    displayName: 'exports',
 
-	  getInitialState: function getInitialState() {
-	    return {};
-	  },
+	    getInitialState: function getInitialState() {
+	        return {};
+	    },
 
-	  render: function render() {
-	    return React.createElement(
-	      'div',
-	      null,
-	      React.createElement(_Header2.default, null),
-	      React.createElement(
-	        'div',
-	        { className: 'container', id: 'my-container' },
-	        React.createElement(
-	          'a',
-	          { className: 'btn btn-primary add-site', href: '/template/market' },
-	          '创建新站点'
-	        ),
-	        React.createElement(
-	          'ul',
-	          { className: 'nav nav-tabs', role: 'tablist' },
-	          React.createElement(
-	            'li',
-	            { role: 'presentation', className: 'active' },
-	            React.createElement(
-	              'a',
-	              { href: '#home', role: 'tab', 'data-toggle': 'tab' },
-	              '我的站点'
-	            )
-	          )
-	        ),
-	        React.createElement(
-	          'div',
-	          { className: 'tab-content' },
-	          React.createElement(
+	    render: function render() {
+	        var site = window.serverData || {};
+	        return React.createElement(
 	            'div',
-	            { role: 'tabpanel', className: 'tab-pane active', id: 'home' },
-	            React.createElement(SiteList, null)
-	          ),
-	          React.createElement(
-	            'div',
-	            { role: 'tabpanel', className: 'tab-pane', id: 'profile' },
-	            '...'
-	          )
-	        )
-	      ),
-	      React.createElement(_Footer2.default, null)
-	    );
-	  }
-	});
-
-/***/ },
-
-/***/ 283:
-/***/ function(module, exports) {
-
-	"use strict";
-
-	module.exports = React.createClass({
-	  displayName: "exports",
-
-	  getInitialState: function getInitialState() {
-	    return { siteList: [] };
-	  },
-	  componentDidMount: function componentDidMount() {
-	    var self = this;
-	    self.flush();
-	  },
-	  flush: function flush() {
-	    var self = this;
-	    $.get("/my/json/app", function (data) {
-	      if (data.needLogin) {
-	        location.href = "/user/login";
-	        return;
-	      }
-
-	      self.setState({ siteList: data });
-	    });
-	  },
-
-	  renderItem: function renderItem() {
-	    var result = [];
-	    for (var i = 0; i < this.state.siteList.length; i++) {
-	      var site = this.state.siteList[i];
-	      var item = React.createElement(
-	        "div",
-	        { className: "templ" },
-	        React.createElement(
-	          "p",
-	          { className: "bd" },
-	          React.createElement(
-	            "a",
-	            { href: "/my/app/" + site.id },
-	            React.createElement("img", { src: window.rootPath + "img/01.jpg" })
-	          )
-	        ),
-	        React.createElement(
-	          "div",
-	          { className: "mobile" },
-	          React.createElement(
-	            "a",
-	            { target: "_blank", href: "/my/app/" + site.id },
-	            React.createElement("img", { src: "/template_img/" + site.id + "-480x320.png" })
-	          )
-	        ),
-	        React.createElement(
-	          "div",
-	          { className: "des" },
-	          React.createElement(
-	            "h3",
-	            { className: "title" },
-	            site.title
-	          ),
-	          React.createElement(
-	            "div",
 	            null,
+	            React.createElement(_Header2.default, null),
 	            React.createElement(
-	              "h3",
-	              null,
-	              React.createElement(
-	                "a",
-	                { href: "/app/" + site.id },
-	                site.title
-	              )
+	                'div',
+	                { className: 'container' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'templ' },
+	                    React.createElement(
+	                        'p',
+	                        { className: 'bd' },
+	                        React.createElement(
+	                            'a',
+	                            { href: "/my/app/" + site.id },
+	                            React.createElement('img', { src: window.rootPath + "img/01.jpg" })
+	                        )
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'des' },
+	                        React.createElement(
+	                            'h3',
+	                            null,
+	                            React.createElement(
+	                                'a',
+	                                { href: "/app/" + site.id },
+	                                site.title
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            null,
+	                            React.createElement(
+	                                'p',
+	                                { className: 'action' },
+	                                React.createElement(
+	                                    'a',
+	                                    { className: '', href: "/designer/app/" + site.id },
+	                                    '设计'
+	                                ),
+	                                React.createElement(
+	                                    'span',
+	                                    null,
+	                                    '|'
+	                                ),
+	                                React.createElement(
+	                                    'a',
+	                                    { className: 'del-site', href: "/app/json/" + site.id },
+	                                    '删除 '
+	                                )
+	                            )
+	                        )
+	                    )
+	                ),
+	                React.createElement(
+	                    'ul',
+	                    { className: 'nav nav-tabs', role: 'tablist' },
+	                    React.createElement(
+	                        'li',
+	                        { role: 'presentation', className: 'active' },
+	                        React.createElement(
+	                            'a',
+	                            { href: '#home', role: 'tab', 'data-toggle': 'tab' },
+	                            '数据'
+	                        )
+	                    ),
+	                    React.createElement(
+	                        'li',
+	                        { role: 'presentation' },
+	                        React.createElement('a', { href: '#profile', role: 'tab', 'data-toggle': 'tab' })
+	                    )
+	                ),
+	                React.createElement(
+	                    'div',
+	                    { className: 'tab-content' },
+	                    React.createElement(
+	                        'div',
+	                        { role: 'tabpanel', className: 'tab-pane active', id: 'home' },
+	                        React.createElement('div', null)
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { role: 'tabpanel', className: 'tab-pane', id: 'profile' },
+	                        '...'
+	                    )
+	                )
 	            ),
-	            React.createElement(
-	              "p",
-	              { className: "action" },
-	              React.createElement(
-	                "a",
-	                { className: "", href: "/design/app/" + site.id },
-	                "设计"
-	              )
-	            )
-	          )
-	        )
-	      );
-
-	      result.push(item);
+	            React.createElement(_Footer2.default, null)
+	        );
 	    }
-	    return result;
-	  },
-
-	  render: function render() {
-	    return React.createElement(
-	      "div",
-	      { className: "site-list" },
-	      this.renderItem()
-	    );
-	  }
 	});
 
 /***/ }

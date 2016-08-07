@@ -19,12 +19,10 @@ module.exports =  React.createClass({
                         </p>
 
                         <div className="des">
-                            <h3 className="title">{site.title}</h3>
+                            <h3><a href={"/app/"+site.id}>{site.title}</a></h3>
                             <div>
-                                <h3><a href={"/app/"+site.id}>{site.title}</a></h3>
-
                                 <p className="action">
-                                    <a className="" href={"/design/app/"+site.id}>设计</a>
+                                    <a className="" href={"/designer/app/"+site.id}>设计</a>
                                     <span>|</span>
                                     <a className="del-site" href={"/app/json/"+site.id}>删除 </a>
 

@@ -11,16 +11,15 @@ export default  React.createClass({
     if(window.serverData&&window.serverData.user){
       var user = window.serverData.user;
     return (
-      <span>
-        <i className="fa fa-user-md"></i> 您好！
-        <a href="#" className="navbar-link">{user.username}</a>
+      <span className="login">
+        <i className="fa fa-user-md"></i><a href="#" className="navbar-link">{user.username}</a>
         <a href="/user/logout" className=""><span className="oi oi-account-logout"></span></a>
       </span>
     )
 
     }
     else {
-      return  <a href="/user/login" className="navbar-link">登录 <span className="oi oi-account-login"></span></a>
+      return  <span class="signup"><a href="/user/login" className="navbar-link">登录</a> <a href="/user/signup" className="navbar-link">注册</a></span>
     }
   },
   render: function() {
@@ -45,10 +44,11 @@ export default  React.createClass({
                 <p className="navbar-text navbar-right">
                   {this.renderLoginInfo()}
                 </p>
-                  <ul className="nav navbar-nav navbar-right ">
+                  <ul className="nav navbar-nav navbar-right main">
                     <li><a href="/">首页</a></li>
+                    <li><a href="/template/market">模板市场</a></li>
                       <li><a href="/my">我的站点</a></li>
-                      <li><a href="/template">模板市场</a></li>
+                      <li><a href="/template/market">新手指南</a></li>
                   </ul>
               </div>
           </div>

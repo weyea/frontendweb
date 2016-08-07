@@ -1,4 +1,4 @@
-webpackJsonp([5,15],{
+webpackJsonp([5,16],{
 
 /***/ 261:
 /***/ function(module, exports, __webpack_require__) {
@@ -89,9 +89,8 @@ webpackJsonp([5,15],{
 	      var user = window.serverData.user;
 	      return React.createElement(
 	        "span",
-	        null,
+	        { className: "login" },
 	        React.createElement("i", { className: "fa fa-user-md" }),
-	        " 您好！",
 	        React.createElement(
 	          "a",
 	          { href: "#", className: "navbar-link" },
@@ -105,10 +104,19 @@ webpackJsonp([5,15],{
 	      );
 	    } else {
 	      return React.createElement(
-	        "a",
-	        { href: "/user/login", className: "navbar-link" },
-	        "登录 ",
-	        React.createElement("span", { className: "oi oi-account-login" })
+	        "span",
+	        { "class": "signup" },
+	        React.createElement(
+	          "a",
+	          { href: "/user/login", className: "navbar-link" },
+	          "登录"
+	        ),
+	        " ",
+	        React.createElement(
+	          "a",
+	          { href: "/user/signup", className: "navbar-link" },
+	          "注册"
+	        )
 	      );
 	    }
 	  },
@@ -151,7 +159,7 @@ webpackJsonp([5,15],{
 	          ),
 	          React.createElement(
 	            "ul",
-	            { className: "nav navbar-nav navbar-right " },
+	            { className: "nav navbar-nav navbar-right main" },
 	            React.createElement(
 	              "li",
 	              null,
@@ -159,6 +167,15 @@ webpackJsonp([5,15],{
 	                "a",
 	                { href: "/" },
 	                "首页"
+	              )
+	            ),
+	            React.createElement(
+	              "li",
+	              null,
+	              React.createElement(
+	                "a",
+	                { href: "/template/market" },
+	                "模板市场"
 	              )
 	            ),
 	            React.createElement(
@@ -175,8 +192,8 @@ webpackJsonp([5,15],{
 	              null,
 	              React.createElement(
 	                "a",
-	                { href: "/template" },
-	                "模板市场"
+	                { href: "/template/market" },
+	                "新手指南"
 	              )
 	            )
 	          )
@@ -223,82 +240,6 @@ webpackJsonp([5,15],{
 	                React.createElement(
 	                    "div",
 	                    null,
-	                    React.createElement(
-	                        "div",
-	                        { className: "left_summery" },
-	                        React.createElement("div", { className: "footer_logo" }),
-	                        React.createElement(
-	                            "nav",
-	                            null,
-	                            React.createElement(
-	                                "ul",
-	                                null,
-	                                React.createElement(
-	                                    "li",
-	                                    null,
-	                                    React.createElement(
-	                                        "a",
-	                                        { target: "_blank", href: "https://www.facebook.com/wix" },
-	                                        React.createElement("img", { src: "http://static.parastorage.com/services/html-landing/hp/brazil/images/1920/footer-new/fb.png", alt: "Wix on Facebook" })
-	                                    )
-	                                ),
-	                                React.createElement(
-	                                    "li",
-	                                    null,
-	                                    React.createElement(
-	                                        "a",
-	                                        { target: "_blank", href: "https://twitter.com/wix" },
-	                                        React.createElement("img", { src: "http://static.parastorage.com/services/html-landing/hp/brazil/images/1920/footer-new/twitter.png", alt: "Wix on Twitter" })
-	                                    )
-	                                ),
-	                                React.createElement(
-	                                    "li",
-	                                    null,
-	                                    React.createElement(
-	                                        "a",
-	                                        { target: "_blank", href: "https://plus.google.com/+Wix/posts" },
-	                                        React.createElement("img", { src: "http://static.parastorage.com/services/html-landing/hp/brazil/images/1920/footer-new/google.png", alt: "Wix on Google Plus" })
-	                                    )
-	                                ),
-	                                React.createElement(
-	                                    "li",
-	                                    null,
-	                                    React.createElement(
-	                                        "a",
-	                                        { target: "_blank", href: "http://www.youtube.com/user/Wix" },
-	                                        React.createElement("img", { src: "http://static.parastorage.com/services/html-landing/hp/brazil/images/1920/footer-new/youtube.png", alt: "Wix on Youtube" })
-	                                    )
-	                                ),
-	                                React.createElement(
-	                                    "li",
-	                                    null,
-	                                    React.createElement(
-	                                        "a",
-	                                        { target: "_blank", href: "http://www.pinterest.com/wixcom/" },
-	                                        React.createElement("img", { src: "http://static.parastorage.com/services/html-landing/hp/brazil/images/1920/footer-new/pinterest.png", alt: "Wix on Pinterest" })
-	                                    )
-	                                ),
-	                                React.createElement(
-	                                    "li",
-	                                    null,
-	                                    React.createElement(
-	                                        "a",
-	                                        { target: "_blank", href: "http://instagram.com/wix" },
-	                                        React.createElement("img", { src: "http://static.parastorage.com/services/html-landing/hp/brazil/images/1920/footer-new/instagram.png", alt: "Wix on Instagram" })
-	                                    )
-	                                ),
-	                                React.createElement(
-	                                    "li",
-	                                    null,
-	                                    React.createElement(
-	                                        "a",
-	                                        { target: "_blank", href: "http://www.linkedin.com/company/wix.com" },
-	                                        React.createElement("img", { src: "http://static.parastorage.com/services/html-landing/hp/brazil/images/1920/footer-new/linkedin.png", alt: "Wix on Linkedin" })
-	                                    )
-	                                )
-	                            )
-	                        )
-	                    ),
 	                    React.createElement(
 	                        "nav",
 	                        { className: "footer_nav" },
