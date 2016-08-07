@@ -16,7 +16,7 @@ module.exports =  React.createClass({
                 ev.preventDefault();
                 $.post("/app/json?templateid=" + id, {name: $("#create-site-name").val()}, function (data) {
                     if (data.needLogin) {
-                        location.href = data.loginURL + "?redirect=" + encodeURIComponent(location.href)
+                        location.href = data.loginURL;
                         return;
                     }
                     var url = "http://" + location.host + "/app/" + data.id
