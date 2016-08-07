@@ -28737,7 +28737,7 @@ webpackJsonp([3,15],[
 	    save: function save() {
 
 	        var data = play.getPageData();
-	        $.post(play.saveUrl, data, function (result) {
+	        $.post(designer.configs.saveUrl, data, function (result) {
 	            localStorage.removeItem(window.siteName + window.pageID);
 	        });
 	    },
