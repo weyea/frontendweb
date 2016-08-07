@@ -36,7 +36,7 @@ export default  React.createClass({
                       <span className="icon-bar"></span>
                       <span className="icon-bar"></span>
                   </button>
-                  <a className="navbar-brand" href="/">weiye</a>
+                  <a className="navbar-brand" href="/">点线面</a>
               </div>
 
 

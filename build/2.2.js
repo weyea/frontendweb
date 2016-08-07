@@ -1,4 +1,4 @@
-webpackJsonp([2,9],{
+webpackJsonp([2,12],{
 
 /***/ 192:
 /***/ function(module, exports, __webpack_require__) {
@@ -42,11 +42,10 @@ webpackJsonp([2,9],{
 
 	module.exports = {
 
-	  path: 'template/create',
-
-	  getComponents: function getComponents(nextState, callback) {
+	  path: 'tempalte',
+	  getChildRoutes: function getChildRoutes(partialNextState, callback) {
 	    __webpack_require__.e/* nsure */(6, function (require) {
-	      callback(null, __webpack_require__(265));
+	      callback(null, [__webpack_require__(265), __webpack_require__(267), __webpack_require__(272)]);
 	    });
 	  }
 	};

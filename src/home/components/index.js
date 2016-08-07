@@ -4,18 +4,9 @@ import Header from '../../common/Header'
 import Footer from '../../common/Footer'
 module.exports =  React.createClass({
   getInitialState: function() {
-    return {secondsElapsed: 0};
+    return {};
   },
-  tick: function() {
-    this.setState({secondsElapsed: this.state.secondsElapsed + 1});
-  },
-  componentDidMount: function() {
-    this.interval = setInterval(this.tick, 1000);
 
-  },
-  componentWillUnmount: function() {
-    clearInterval(this.interval);
-  },
   render: function() {
     return (
       <div>

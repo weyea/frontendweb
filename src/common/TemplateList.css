@@ -26,11 +26,16 @@ color:#00c4d8;
 }
 
 .template-list .templ{
-    width: 386px;
+    width: 300px;
     float: left;
-    margin-right: 36px;
+    margin-right: 50px;
     margin-bottom: 30px;
     position: relative;
+    margin-top: 30px;
+}
+
+.template-list .templ h3{
+  text-align:center;
 }
 .template-list .templ .bd{
     background: url("../../img/browser.png") 0 0 no-repeat;
@@ -40,10 +45,11 @@ color:#00c4d8;
 .template-list .templ .mobile{
     position: absolute;
     top: 188px;
-left: 306px;
+    left: 306px;
     background: url("../../img/mobile.png") 0 0 no-repeat;
     width: 100px;
     height: 140px;
+    display: none;
 }
 .template-list .templ .mobile img{
     width: 73px;
@@ -57,6 +63,9 @@ left: 306px;
     font-family: 'Helvetica45';
     text-decoration: none;
     margin: 0;
+}
+.template-list .templ .action{
+  display: none;
 }
 .template-list .templ .action .btn{
     float: right;

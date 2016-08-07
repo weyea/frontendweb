@@ -1,4 +1,4 @@
-webpackJsonp([5,9],{
+webpackJsonp([5,12],{
 
 /***/ 261:
 /***/ function(module, exports, __webpack_require__) {
@@ -138,7 +138,7 @@ webpackJsonp([5,9],{
 	          React.createElement(
 	            "a",
 	            { className: "navbar-brand", href: "/" },
-	            "weiye"
+	            "点线面"
 	          )
 	        ),
 	        React.createElement(
