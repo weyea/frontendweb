@@ -66,7 +66,7 @@ module.exports =  React.createClass({
             <h1>每日精选</h1>
             <div className="slide">
               <a href="#">
-                <img src="./img/template.png"/>
+                <img src={window.rootPath +"img/template.png"}/>
 
               </a>
             </div>

@@ -12,12 +12,18 @@ if(currentScript.src){
 
 
 
+
+
+
 var history;
 if(location.host == "localhost:8484"){
   history = hashHistory
+  window.rootPath = "/"
 }
 else {
   history = browserHistory
+    window.rootPath = "/frontendweb/"
+
 }
 
 const rootRoute = {
