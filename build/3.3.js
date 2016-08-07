@@ -28737,18 +28737,9 @@ webpackJsonp([3,15],[
 	    save: function save() {
 
 	        var data = play.getPageData();
-
-	        data.siteID = window.siteID;
-	        data.pageID = window.pageID;
-
-	        if (window.pageID) {
-	            $.post(play.saveUrl, data, function (result) {
-
-	                localStorage.removeItem(window.siteName + window.pageID);
-	            });
-	        } else {
-	            alert("页面不存在");
-	        }
+	        $.post(play.saveUrl, data, function (result) {
+	            localStorage.removeItem(window.siteName + window.pageID);
+	        });
 	    },
 
 	    lockcmd: function lockcmd() {
