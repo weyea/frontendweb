@@ -28719,7 +28719,8 @@ webpackJsonp([3,16],[
 	        );
 	    },
 	    capture: function capture() {
-	        $.get(designer.configs.captureUrl, data, function (result) {
+	        console.log("capture");
+	        $.get(designer.configs.captureUrl, function (result) {
 
 	            alert("截图成功" + result.url);
 	            console.log(result);
