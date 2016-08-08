@@ -388,10 +388,11 @@ webpackJsonp([9,16],{
 /***/ },
 
 /***/ 273:
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
+	__webpack_require__(274);
 	module.exports = React.createClass({
 	    displayName: "exports",
 
@@ -467,15 +468,6 @@ webpackJsonp([9,16],{
 	                                "a",
 	                                { href: "#", className: "viewport-mobile" },
 	                                React.createElement("span", { className: "oi oi-phone" })
-	                            )
-	                        ),
-	                        React.createElement(
-	                            "li",
-	                            null,
-	                            React.createElement(
-	                                "a",
-	                                { href: "#", className: "viewport-all" },
-	                                "100%"
 	                            )
 	                        )
 	                    ),
@@ -581,6 +573,48 @@ webpackJsonp([9,16],{
 	        );
 	    }
 	});
+
+/***/ },
+
+/***/ 274:
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(275);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(69)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./HeaderTemplate.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./HeaderTemplate.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+
+/***/ 275:
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(68)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "\n#nav {\n    margin-bottom: 0;\n}\n\n#nav .to-create-site{\n  background:#444444;\nborder-radius:3px;\nwidth:114px;\nheight:34px;\nmargin-top: 2px;\nfont-size:14px;\ncolor:#ffffff;\n}\n", ""]);
+
+	// exports
+
 
 /***/ }
 

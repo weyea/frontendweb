@@ -19,34 +19,42 @@ webpackJsonp([12,16],{
 	    if (window.serverData && window.serverData.user) {
 	      var user = window.serverData.user;
 	      return React.createElement(
-	        "span",
-	        { className: "login" },
-	        React.createElement("i", { className: "fa fa-user-md" }),
+	        "p",
+	        { className: "navbar-text navbar-right login" },
 	        React.createElement(
-	          "a",
-	          { href: "#", className: "navbar-link" },
-	          user.username
-	        ),
-	        React.createElement(
-	          "a",
-	          { href: "/user/logout", className: "" },
-	          React.createElement("span", { className: "oi oi-account-logout" })
+	          "span",
+	          null,
+	          React.createElement("i", { className: "fa fa-user-md" }),
+	          React.createElement(
+	            "a",
+	            { href: "#", className: "navbar-link" },
+	            user.username
+	          ),
+	          React.createElement(
+	            "a",
+	            { href: "/user/logout", className: "" },
+	            React.createElement("span", { className: "oi oi-account-logout" })
+	          )
 	        )
 	      );
 	    } else {
 	      return React.createElement(
-	        "span",
-	        { "class": "signup" },
+	        "p",
+	        { className: "navbar-text navbar-right signup" },
 	        React.createElement(
-	          "a",
-	          { href: "/user/login", className: "navbar-link" },
-	          "登录"
-	        ),
-	        " ",
-	        React.createElement(
-	          "a",
-	          { href: "/user/signup", className: "navbar-link" },
-	          "注册"
+	          "span",
+	          { className: "" },
+	          React.createElement(
+	            "a",
+	            { href: "/user/login", className: "navbar-link" },
+	            "登录"
+	          ),
+	          " ",
+	          React.createElement(
+	            "a",
+	            { href: "/user/signup", className: "navbar-link" },
+	            "注册"
+	          )
 	        )
 	      );
 	    }
@@ -83,11 +91,7 @@ webpackJsonp([12,16],{
 	        React.createElement(
 	          "div",
 	          { className: "collapse navbar-collapse ", id: "bs-example-navbar-collapse-1" },
-	          React.createElement(
-	            "p",
-	            { className: "navbar-text navbar-right" },
-	            this.renderLoginInfo()
-	          ),
+	          this.renderLoginInfo(),
 	          React.createElement(
 	            "ul",
 	            { className: "nav navbar-nav navbar-right main" },
@@ -519,7 +523,7 @@ webpackJsonp([12,16],{
 
 /***/ },
 
-/***/ 283:
+/***/ 285:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';

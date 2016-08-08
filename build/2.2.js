@@ -45,14 +45,14 @@ webpackJsonp([2,16],{
 	  path: 'template',
 	  getChildRoutes: function getChildRoutes(partialNextState, callback) {
 	    __webpack_require__.e/* nsure */(7, function (require) {
-	      callback(null, [__webpack_require__(267), __webpack_require__(269), __webpack_require__(274)]);
+	      callback(null, [__webpack_require__(267), __webpack_require__(269), __webpack_require__(276)]);
 	    });
 	  }
 	};
 
 /***/ },
 
-/***/ 281:
+/***/ 283:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -62,13 +62,13 @@ webpackJsonp([2,16],{
 	  path: 'my',
 	  getChildRoutes: function getChildRoutes(partialNextState, callback) {
 	    __webpack_require__.e/* nsure */(11, function (require) {
-	      callback(null, [__webpack_require__(282)]);
+	      callback(null, [__webpack_require__(284)]);
 	    });
 	  },
 	  getIndexRoute: function getIndexRoute(partialNextState, callback) {
 	    __webpack_require__.e/* nsure */(13, function (require) {
 	      callback(null, {
-	        component: __webpack_require__(284)
+	        component: __webpack_require__(286)
 	      });
 	    });
 	  }

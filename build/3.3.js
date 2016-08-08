@@ -4798,6 +4798,7 @@ webpackJsonp([3,16],[
 
 	    designer.configs.templateUrl = url;
 	    designer.configs.saveUrl = "/designer/json/" + this.props.params.type + "/" + this.props.params.appId;
+	    designer.configs.captureUrl = "/designer/json/capture/" + this.props.params.type + "/" + this.props.params.appId;
 	    designer.run();
 	  },
 	  componentWillUnmount: function componentWillUnmount() {},
@@ -28701,12 +28702,28 @@ webpackJsonp([3,16],[
 	                    null,
 	                    this.element(
 	                        "a",
+	                        { "class": "cmd-capture", href: "#" },
+	                        this.element("i", { "class": "fa fa-binoculars" })
+	                    )
+	                ),
+	                this.element(
+	                    "li",
+	                    null,
+	                    this.element(
+	                        "a",
 	                        { "class": "", href: "#", "data-cmd": "cmd-save" },
 	                        this.element("i", { "class": "fa fa-floppy-o" })
 	                    )
 	                )
 	            )
 	        );
+	    },
+	    capture: function capture() {
+	        $.get(designer.configs.captureUrl, data, function (result) {
+
+	            alert("截图成功" + result.url);
+	            console.log(result);
+	        });
 	    },
 	    save: function save() {
 

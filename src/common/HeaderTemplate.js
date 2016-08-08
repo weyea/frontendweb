@@ -1,4 +1,4 @@
-
+require("./HeaderTemplate.css")
 module.exports =  React.createClass({
 
   componentDidMount: function() {
@@ -39,7 +39,6 @@ module.exports =  React.createClass({
                       <li><a href="#" className="viewport-pic"><span className="oi oi-monitor"></span></a></li>
                       <li><a href="#" className="viewport-pad"><span className="oi oi-tablet"></span></a></li>
                       <li><a href="#" className="viewport-mobile"><span className="oi oi-phone"></span></a></li>
-                      <li><a href="#" className="viewport-all">100%</a></li>
 
 
                   </ul>

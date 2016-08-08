@@ -16,7 +16,7 @@ module.exports =  React.createClass({
               <div id="cta-text" className="row">
                       <h1 className="title1">零代码/一站式服务</h1>
                       <h1 className="title2">无障碍自由建站/乐在其中！</h1>
-                      <a  className="create" href="/template" >免费创建</a>
+                      <a  className="create" href="/template/market">免费创建</a>
               </div>
           </div>
 
