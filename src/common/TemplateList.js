@@ -74,6 +74,14 @@ module.exports = React.createClass({
                   {/*价格：<span>免费</span>*/}
 
 
+              <div className="more-action">
+                  <a href="#" className="icon"></a>
+                  <a href="#" className="icon"></a>
+                  <a href="#" className="icon"></a>
+                  <a href="#" className="icon"></a>
+              </div>
+
+
               </div>
           </div>
         );

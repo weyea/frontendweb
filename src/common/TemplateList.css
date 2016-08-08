@@ -83,6 +83,22 @@ color:#00c4d8;
   display: none;
   border-radius: 5px;
 }
+
+.template-list .templ .action .more-action{
+  position: absolute;
+  bottom:40px;
+  left:0;
+  text-align: center;
+  width: 100%;
+}
+.template-list .templ .action .more-action  .icon{
+  width: 16px;
+  height:16px;
+  background:url("../../img/icon_template.png") center no-repeat;
+  margin-right: 20px;
+  display: inline-block;
+
+}
 .template-list .templ .action .btn{
 
     position: absolute;
