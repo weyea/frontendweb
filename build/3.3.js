@@ -28804,6 +28804,10 @@ webpackJsonp([3,16],[
 
 	            $("body").addClass("preview");
 	        });
+	        $(document).delegate(".cmd-capture", "click", function () {
+
+	            self.capture();
+	        });
 
 	        $(document).on("cmd", function (ev, type) {
 
