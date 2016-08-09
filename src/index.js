@@ -36,6 +36,7 @@ const rootRoute = {
           require('./user'),
           require('./template'),
             require('./my'),
+              require('./preview'),
         ])
       })
     },

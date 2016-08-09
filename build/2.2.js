@@ -45,7 +45,31 @@ webpackJsonp([2,16],{
 	  path: 'template',
 	  getChildRoutes: function getChildRoutes(partialNextState, callback) {
 	    __webpack_require__.e/* nsure */(7, function (require) {
-	      callback(null, [__webpack_require__(275), __webpack_require__(277), __webpack_require__(284)]);
+	      callback(null, [__webpack_require__(275), __webpack_require__(277)]);
+	    });
+	  }
+	};
+
+/***/ },
+
+/***/ 285:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	module.exports = {
+
+	  path: 'my',
+	  getChildRoutes: function getChildRoutes(partialNextState, callback) {
+	    __webpack_require__.e/* nsure */(10, function (require) {
+	      callback(null, [__webpack_require__(286)]);
+	    });
+	  },
+	  getIndexRoute: function getIndexRoute(partialNextState, callback) {
+	    __webpack_require__.e/* nsure */(12, function (require) {
+	      callback(null, {
+	        component: __webpack_require__(288)
+	      });
 	    });
 	  }
 	};
@@ -59,17 +83,11 @@ webpackJsonp([2,16],{
 
 	module.exports = {
 
-	  path: 'my',
-	  getChildRoutes: function getChildRoutes(partialNextState, callback) {
-	    __webpack_require__.e/* nsure */(11, function (require) {
-	      callback(null, [__webpack_require__(293)]);
-	    });
-	  },
-	  getIndexRoute: function getIndexRoute(partialNextState, callback) {
+	  path: 'preview/template/:id',
+
+	  getComponents: function getComponents(nextState, callback) {
 	    __webpack_require__.e/* nsure */(13, function (require) {
-	      callback(null, {
-	        component: __webpack_require__(295)
-	      });
+	      callback(null, __webpack_require__(293));
 	    });
 	  }
 	};
