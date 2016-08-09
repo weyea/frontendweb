@@ -945,21 +945,16 @@ webpackJsonp([13,16],{
 	          { className: "des" },
 	          React.createElement(
 	            "h3",
-	            { className: "title" },
-	            site.title
+	            null,
+	            React.createElement(
+	              "a",
+	              { href: "/app/" + site.id },
+	              site.title
+	            )
 	          ),
 	          React.createElement(
 	            "div",
 	            null,
-	            React.createElement(
-	              "h3",
-	              null,
-	              React.createElement(
-	                "a",
-	                { href: "/app/" + site.id },
-	                site.title
-	              )
-	            ),
 	            React.createElement(
 	              "p",
 	              { className: "action" },

@@ -40,7 +40,7 @@ color:#00c4d8;
 }
 .template-list .templ .bd{
     background: url("../../img/browser.png") 0 0 no-repeat;
-    padding-top: 26px;
+    padding-top: 22px;
     background-size: contain;
     width: 330px;
     height: 246px;
@@ -79,7 +79,7 @@ color:#00c4d8;
   position: absolute;
   top:0;
   left:0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.6);
   display: none;
   border-radius: 5px;
 }

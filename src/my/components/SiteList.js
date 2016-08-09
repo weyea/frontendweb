@@ -38,9 +38,9 @@ module.exports =  React.createClass({
                 </a>
             </div>
             <div className="des">
-                <h3 className="title">{site.title}</h3>
-                <div>
                 <h3><a href={"/app/"+site.id}>{site.title}</a></h3>
+                <div>
+
 
                 <p className="action"><a className="" href={"/designer/app/"+site.id}>设计</a></p>
 
