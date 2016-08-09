@@ -69,7 +69,7 @@ module.exports = React.createClass({
               <h3 className="title">{site.title}</h3>
               <div className="action" >
 
-              <a className="btn btn-default create" href={"/template/preview/"+site.id} data-id={site.id}
+              <a className="btn btn-default create" href={"/preview/template"+site.id} data-id={site.id}
                  data-name={site.title}>预览</a>
                   {/*价格：<span>免费</span>*/}
 
