@@ -49,7 +49,7 @@ module.exports =  React.createClass({
     var id =  this.props.params.id
     return (
       <div>
-        <Header></Header>
+        <Header active="market"></Header>
         <div id="container-iframe">
           <iframe src={"/designer/source/template/"+id}></iframe>
 

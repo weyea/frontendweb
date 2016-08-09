@@ -16,7 +16,7 @@ module.exports =    React.createClass({
   render: function() {
     return (
       <div>
-      <Header></Header>
+      <Header active="my"></Header>
       <div class="container">
         <form class="form-signin" id="" role="form" action="/user/login" method="POST">
             <h2 class="form-signin-heading">登录</h2>

@@ -59,7 +59,7 @@ module.exports = React.createClass({
           <div className="templ">
 
               <div className="bd">
-                  <a href={"/template/preview/"+site.id}><img src={window.rootPath+"img/01.jpg"}/></a>
+                  <a href={"/template/preview/"+site.id}><img src={site.logo||window.rootPath+"img/01.jpg"}/></a>
               </div>
               <div className="mobile">
                 <a  target="_blank" href={"http://localhost:3000/app/"+site.id}>

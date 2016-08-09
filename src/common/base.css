@@ -85,11 +85,18 @@ border-radius: 0;
 
 }
 
-#nav a:hover {
+#nav a:hover,#nav a.active {
 
 color:#00c2d6;
 background-color:transparent;
 }
+
+#nav li.active a {
+
+color:#00c2d6;
+background-color:transparent;
+}
+
 
 #nav .login .fa-user-md{
 

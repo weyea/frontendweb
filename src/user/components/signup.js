@@ -13,7 +13,7 @@ module.exports =   React.createClass({
   render: function() {
     return (
       <div>
-      <Header></Header>
+      <Header active="my"></Header>
         <div className="container signup-page">
 
             <div className="signup">

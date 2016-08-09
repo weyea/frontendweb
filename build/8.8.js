@@ -59,7 +59,53 @@ webpackJsonp([8,16],{
 	      );
 	    }
 	  },
+
+	  renderItem: function renderItem() {
+	    var result = [];
+	    var items = {
+	      "home": React.createElement(
+	        "a",
+	        { className: "home", href: "/" },
+	        "首页"
+	      ),
+	      "market": React.createElement(
+	        "a",
+	        { className: "market", href: "/template/market" },
+	        "模板市场"
+	      ),
+	      "my": React.createElement(
+	        "a",
+	        { className: "my", href: "/my" },
+	        "我的站点"
+	      ),
+	      "tru": React.createElement(
+	        "a",
+	        { className: "tru", href: "/template/market" },
+	        "新手指南"
+	      )
+	    };
+	    var active = this.props.active || "home";
+	    for (var p in items) {
+	      if (p == active) {
+	        result.push(React.createElement(
+	          "li",
+	          { className: "active" },
+	          items[p]
+	        ));
+	      } else {
+	        result.push(React.createElement(
+	          "li",
+	          null,
+	          items[p]
+	        ));
+	      }
+	    }
+	    return result;
+	  },
 	  render: function render() {
+
+	    var active = this.props.active || "home";
+
 	    return React.createElement(
 	      "div",
 	      { id: "nav", className: "navbar", role: "navigation" },
@@ -94,43 +140,8 @@ webpackJsonp([8,16],{
 	          this.renderLoginInfo(),
 	          React.createElement(
 	            "ul",
-	            { className: "nav navbar-nav navbar-right main" },
-	            React.createElement(
-	              "li",
-	              null,
-	              React.createElement(
-	                "a",
-	                { href: "/" },
-	                "首页"
-	              )
-	            ),
-	            React.createElement(
-	              "li",
-	              null,
-	              React.createElement(
-	                "a",
-	                { href: "/template/market" },
-	                "模板市场"
-	              )
-	            ),
-	            React.createElement(
-	              "li",
-	              null,
-	              React.createElement(
-	                "a",
-	                { href: "/my" },
-	                "我的站点"
-	              )
-	            ),
-	            React.createElement(
-	              "li",
-	              null,
-	              React.createElement(
-	                "a",
-	                { href: "/template/market" },
-	                "新手指南"
-	              )
-	            )
+	            { className: "nav navbar-nav navbar-right main " },
+	            this.renderItem()
 	          )
 	        )
 	      )

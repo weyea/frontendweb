@@ -8,7 +8,7 @@ export default  React.createClass({
 
   renderLoginInfo:function(){
 
-  
+
     if(window.serverData&&window.serverData.user){
       var user = window.serverData.user;
     return (
@@ -25,7 +25,30 @@ export default  React.createClass({
       return  <p className="navbar-text navbar-right signup"><span className=""><a href="/user/login" className="navbar-link">登录</a> <a href="/user/signup" className="navbar-link">注册</a></span></p>
     }
   },
+
+  renderItem:function(){
+    var result = [];
+    var items = {
+      "home":<a className="home" href="/">首页</a>,
+      "market":<a className="market" href="/template/market">模板市场</a>,
+      "my":<a className="my" href="/my">我的站点</a>,
+      "tru":<a className="tru" href="/template/market">新手指南</a>
+    }
+      var active = this.props.active ||"home"
+      for(var p in items){
+        if(p == active){
+            result.push(<li className="active">{items[p]}</li>)
+        }
+        else{
+          result.push(<li >{items[p]}</li>)
+        }
+      }
+      return result;
+  },
   render: function() {
+
+    var active = this.props.active ||"home"
+
     return (
 
       <div id="nav" className="navbar" role="navigation">
@@ -47,11 +70,8 @@ export default  React.createClass({
 
                   {this.renderLoginInfo()}
 
-                  <ul className="nav navbar-nav navbar-right main">
-                    <li><a href="/">首页</a></li>
-                    <li><a href="/template/market">模板市场</a></li>
-                      <li><a href="/my">我的站点</a></li>
-                      <li><a href="/template/market">新手指南</a></li>
+                  <ul className={"nav navbar-nav navbar-right main "}>
+                        {this.renderItem()}
                   </ul>
               </div>
           </div>

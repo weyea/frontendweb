@@ -16,7 +16,7 @@ module.exports =    React.createClass({
   render: function() {
     return (
       <div>
-      <Header></Header>
+      <Header active="my"></Header>
       <div class="container">
         <div class="row">
           <div class="col-sm-6">

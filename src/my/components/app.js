@@ -10,7 +10,7 @@ module.exports =  React.createClass({
     var site = window.serverData||{};
     return (
       <div>
-        <Header></Header>
+        <Header active="my"></Header>
 
         <div className="container">
               <div className="templ">

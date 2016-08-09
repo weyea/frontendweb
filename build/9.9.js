@@ -333,7 +333,7 @@ webpackJsonp([9,16],{
 	    return React.createElement(
 	      "div",
 	      null,
-	      React.createElement(Header, null),
+	      React.createElement(Header, { active: "market" }),
 	      React.createElement(
 	        "div",
 	        { id: "container-iframe" },

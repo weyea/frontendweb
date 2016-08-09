@@ -10,7 +10,7 @@ module.exports =  React.createClass({
   render: function() {
     return (
       <div>
-        <Header></Header>
+        <Header active="home"></Header>
         <div id="banner">
           <div  className="container">
               <div id="cta-text" className="row">

@@ -10,7 +10,7 @@ module.exports =  React.createClass({
   render: function() {
     return (
       <div>
-        <Header></Header>
+        <Header active="my"></Header>
         <div className="container" id="my-container">
             <a className="btn btn-primary add-site" href="/template/market">创建新站点</a>
 
