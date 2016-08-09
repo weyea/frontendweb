@@ -332,7 +332,7 @@ webpackJsonp([13,16],{
 	    var id = this.props.params.id;
 	    return React.createElement(
 	      "div",
-	      null,
+	      { id: "preview" },
 	      React.createElement(Header, { active: "market" }),
 	      React.createElement(
 	        "div",
@@ -380,7 +380,7 @@ webpackJsonp([13,16],{
 
 
 	// module
-	exports.push([module.id, "html, body {\n        height: 100%;\n        overflow: hidden;\n    }\n    #container-iframe {\n        width: 100%;\n        margin: auto;\n        height: 100%;\n    }\n    iframe {\n        width: 100%;\n        height: 100%;\n        border: 0;\n    }\n", ""]);
+	exports.push([module.id, "html, body {\n        height: 100%;\n        overflow: hidden;\n    }\n\n#root,.app,#preview{\n  height:100%;\n}\n\n    #container-iframe {\n        width: 100%;\n        margin: auto;\n        height: 100%;\n    }\n    iframe {\n        width: 100%;\n        height: 100%;\n        border: 0;\n    }\n", ""]);
 
 	// exports
 
