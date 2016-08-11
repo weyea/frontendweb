@@ -1,0 +1,19 @@
+html, body {
+        height: 100%;
+        overflow: hidden;
+    }
+
+#root,.app,#preview{
+  height:100%;
+}
+
+    #container-iframe {
+        width: 100%;
+        margin: auto;
+        height: 100%;
+    }
+    iframe {
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }

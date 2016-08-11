@@ -2,9 +2,6 @@ import Header from '../../common/Header'
 import Footer from '../../common/Footer'
  require('./signup.css');
 module.exports =   React.createClass({
-  getInitialState: function() {
-    return {secondsElapsed: 0};
-  },
 
   componentDidMount: function() {
 
@@ -30,15 +27,15 @@ module.exports =   React.createClass({
 
 
                     <div className="form-group ">
-                      <input type="text" name="username" value="" placeholder="请输入邮箱/手机号码快速注册" className="form-control"/>
+                      <input type="text" name="username" placeholder="请输入邮箱/手机号码快速注册" className="form-control"/>
                       <span className="help-block"></span>
                     </div>
                     <div className="form-group ">
-                      <input type="password" name="password" placeholder="输入密码"  value="" className="form-control"/>
+                      <input type="password" name="password" placeholder="输入密码"   className="form-control"/>
                       <span className="help-block"></span>
                     </div>
                     <div className="form-group ">
-                      <input type="password" name="password" placeholder="再次输入密码"  value="" className="form-control"/>
+                      <input type="password" name="repassword" placeholder="再次输入密码"   className="form-control"/>
                       <span className="help-block"></span>
                     </div>
                     <div className="alerts"></div>
