@@ -39,7 +39,7 @@ module.exports =   React.createClass({
                       <span className="help-block"></span>
                     </div>
                     <div className="form-group ">
-                      <input type="password" name="password" placeholder="再次输入密码"  value="" className="form-control"/>
+                      <input type="password" name="repassword" placeholder="再次输入密码"   className="form-control"/>
                       <span className="help-block"></span>
                     </div>
                     <div className="alerts"></div>

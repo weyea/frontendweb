@@ -891,7 +891,7 @@ webpackJsonp([6,16],{
 	            React.createElement(
 	              'div',
 	              { className: 'form-group ' },
-	              React.createElement('input', { type: 'password', name: 'password', placeholder: '再次输入密码', value: '', className: 'form-control' }),
+	              React.createElement('input', { type: 'password', name: 'repassword', placeholder: '再次输入密码', className: 'form-control' }),
 	              React.createElement('span', { className: 'help-block' })
 	            ),
 	            React.createElement('div', { className: 'alerts' }),
