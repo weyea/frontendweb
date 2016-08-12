@@ -4264,6 +4264,9 @@ webpackJsonp([3,16],[
 	          if (children[i]) currentData.children.push(walk(children[i]));
 	        }
 	      }
+	      if (!currentData.type) {
+	        currentData = undefined;
+	      }
 	      return currentData;
 	    };
 
@@ -4281,6 +4284,8 @@ webpackJsonp([3,16],[
 	            var result = [];
 	            for (var i = 0; i < children.length; i++) {
 	              var c = children[i];
+	              if (!c || !c.type) continue;
+
 	              if (c.type == "thunk") {
 	                result.push(self.element(Sophie.registry[c.name], c.attributes, func(c.children)));
 	              } else if (c.type == "text") {
