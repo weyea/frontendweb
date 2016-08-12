@@ -13,7 +13,7 @@ module.exports =   React.createClass({
     clearInterval(this.interval);
   },
   createTemplate:function(){
-    $.post("/template/json",{title:123}, function(){
+    $.post("/template/json",{title:$("#tempalte-name").val()}, function(){
       alert("创建成功")
     })
   },
@@ -23,7 +23,7 @@ module.exports =   React.createClass({
           <form>
             <div className="form-group">
               <label htmlFor="exampleInputEmail1">模板名称</label>
-              <input type="text" className="form-control" id="exampleInputEmail1" placeholder=""/>
+              <input type="text" className="form-control" id="tempalte-name" placeholder=""/>
             </div>
             <a  href="#" onClick={this.createTemplate} className="btn btn-default">Submit</a>
         </form>

@@ -563,7 +563,7 @@ webpackJsonp([8,16],{
 	    clearInterval(this.interval);
 	  },
 	  createTemplate: function createTemplate() {
-	    $.post("/template/json", { title: 123 }, function () {
+	    $.post("/template/json", { title: $("#tempalte-name").val() }, function () {
 	      alert("创建成功");
 	    });
 	  },
@@ -582,7 +582,7 @@ webpackJsonp([8,16],{
 	            { htmlFor: 'exampleInputEmail1' },
 	            '模板名称'
 	          ),
-	          React.createElement('input', { type: 'text', className: 'form-control', id: 'exampleInputEmail1', placeholder: '' })
+	          React.createElement('input', { type: 'text', className: 'form-control', id: 'tempalte-name', placeholder: '' })
 	        ),
 	        React.createElement(
 	          'a',

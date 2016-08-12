@@ -332,7 +332,7 @@ webpackJsonp([5,16],{
 	              { className: 'form-signin-heading' },
 	              '登录'
 	            ),
-	            React.createElement('input', { name: 'username', type: 'text', className: 'form-control', placeholder: '用户名', required: true }),
+	            React.createElement('input', { name: 'email', type: 'text', className: 'form-control', placeholder: '邮箱/电话', required: true }),
 	            React.createElement('input', { type: 'password', name: 'password', className: 'form-control', placeholder: '密码', required: true }),
 	            React.createElement('input', { type: 'hidden', name: 'redirect', value: '<%= locals.redirect %>', className: 'form-control', placeholder: 'Password', required: true }),
 	            React.createElement(
