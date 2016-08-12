@@ -27,7 +27,11 @@ module.exports =   React.createClass({
 
 
                     <div className="form-group ">
-                      <input type="text" name="username" placeholder="请输入邮箱/手机号码快速注册" className="form-control"/>
+                      <input type="text" name="username" placeholder="您希望我们怎么称呼您？" className="form-control"/>
+                      <span className="help-block"></span>
+                    </div>
+                    <div className="form-group ">
+                      <input type="text" name="email" placeholder="请输入邮箱/手机号码" className="form-control"/>
                       <span className="help-block"></span>
                     </div>
                     <div className="form-group ">
@@ -35,7 +39,7 @@ module.exports =   React.createClass({
                       <span className="help-block"></span>
                     </div>
                     <div className="form-group ">
-                      <input type="password" name="repassword" placeholder="再次输入密码"   className="form-control"/>
+                      <input type="password" name="password" placeholder="再次输入密码"  value="" className="form-control"/>
                       <span className="help-block"></span>
                     </div>
                     <div className="alerts"></div>

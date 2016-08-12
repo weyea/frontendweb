@@ -873,7 +873,13 @@ webpackJsonp([6,16],{
 	            React.createElement(
 	              'div',
 	              { className: 'form-group ' },
-	              React.createElement('input', { type: 'text', name: 'username', placeholder: '请输入邮箱/手机号码快速注册', className: 'form-control' }),
+	              React.createElement('input', { type: 'text', name: 'username', placeholder: '您希望我们怎么称呼您？', className: 'form-control' }),
+	              React.createElement('span', { className: 'help-block' })
+	            ),
+	            React.createElement(
+	              'div',
+	              { className: 'form-group ' },
+	              React.createElement('input', { type: 'text', name: 'email', placeholder: '请输入邮箱/手机号码', className: 'form-control' }),
 	              React.createElement('span', { className: 'help-block' })
 	            ),
 	            React.createElement(
@@ -885,7 +891,7 @@ webpackJsonp([6,16],{
 	            React.createElement(
 	              'div',
 	              { className: 'form-group ' },
-	              React.createElement('input', { type: 'password', name: 'repassword', placeholder: '再次输入密码', className: 'form-control' }),
+	              React.createElement('input', { type: 'password', name: 'password', placeholder: '再次输入密码', value: '', className: 'form-control' }),
 	              React.createElement('span', { className: 'help-block' })
 	            ),
 	            React.createElement('div', { className: 'alerts' }),
