@@ -935,7 +935,7 @@ webpackJsonp([14,16],{
 	                    { className: "action" },
 	                    React.createElement(
 	                        "a",
-	                        { className: "btn btn-default create", href: "/preview/template" + site.id, "data-id": site.id,
+	                        { className: "btn btn-default create", href: "/preview/template/" + site.id, "data-id": site.id,
 	                            "data-name": site.title },
 	                        "预览"
 	                    ),
