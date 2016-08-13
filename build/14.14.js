@@ -445,8 +445,14 @@ webpackJsonp([14,17],{
 
 	"use strict";
 
+	var _Header = __webpack_require__(262);
+
+	var _Header2 = _interopRequireDefault(_Header);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 	__webpack_require__(301);
-	var Header = __webpack_require__(262);
+
 
 	module.exports = React.createClass({
 	  displayName: "exports",
@@ -462,14 +468,14 @@ webpackJsonp([14,17],{
 	    return React.createElement(
 	      "div",
 	      { id: "preview" },
-	      React.createElement(Header, { type: "home", active: "market" }),
+	      React.createElement(_Header2.default, { active: "" }),
 	      React.createElement(
 	        "div",
 	        { id: "nofound-container" },
 	        React.createElement(
 	          "span",
 	          null,
-	          "nofound"
+	          "抱歉！页面无法访问……"
 	        )
 	      )
 	    );
@@ -513,7 +519,7 @@ webpackJsonp([14,17],{
 
 
 	// module
-	exports.push([module.id, "", ""]);
+	exports.push([module.id, "#nofound-container{\n  text-align: center;\n  padding: 100px;\n  font-size: 48px;\n  font-weight: bold;\n}\n", ""]);
 
 	// exports
 

@@ -1,6 +1,6 @@
 
 require("./index.css")
-var Header =require("../../common/Header.js")
+import Header from '../../common/Header'
 
 module.exports =  React.createClass({
   getInitialState: function() {
@@ -19,9 +19,9 @@ module.exports =  React.createClass({
 
     return (
       <div id="preview">
-        <Header type="home" active="market"></Header>
+        <Header active=""></Header>
         <div id="nofound-container">
-          <span>nofound</span>
+          <span>抱歉！页面无法访问……</span>
         </div>
       </div>
 
