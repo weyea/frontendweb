@@ -303,7 +303,7 @@ webpackJsonp([13,17],{
 
 	    $(document).delegate(".cmd-create-site", "click", function (ev) {
 	      ev.preventDefault();
-	      $.post("/app/json?templateid=" + id, { name: $("#create-site-name").val() }, function (data) {
+	      $.post("/json/app?templateid=" + id, { name: $("#create-site-name").val() }, function (data) {
 	        if (data.needLogin) {
 	          location.href = data.loginURL;
 	          return;

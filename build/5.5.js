@@ -318,7 +318,7 @@ webpackJsonp([5,17],{
 	    var self = this;
 	    var emailValue = $(this.refs["email"]).val();
 	    var password = $(this.refs["password"]).val();
-	    $.post("/user/login", { email: emailValue, password: password }, function (result) {
+	    $.post("/json/user/login", { email: emailValue, password: password }, function (result) {
 	      if (result.success) {
 	        if (result.defaultReturnUrl) {
 	          location.href = result.defaultReturnUrl;

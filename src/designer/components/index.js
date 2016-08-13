@@ -19,8 +19,8 @@ module.exports =   React.createClass({
     }
 
     designer.configs.templateUrl = url;
-    designer.configs.saveUrl = "/designer/json/"+this.props.params.type+"/"+this.props.params.appId;
-    designer.configs.captureUrl = "/designer/json/capture/"+this.props.params.type+"/"+this.props.params.appId;
+    designer.configs.saveUrl = "/json/designer/"+this.props.params.type+"/"+this.props.params.appId;
+    designer.configs.captureUrl = "/json/designer/capture/"+this.props.params.type+"/"+this.props.params.appId;
     designer.run();
 
   },

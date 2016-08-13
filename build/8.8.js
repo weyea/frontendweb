@@ -570,7 +570,7 @@ webpackJsonp([8,17],{
 	    clearInterval(this.interval);
 	  },
 	  createTemplate: function createTemplate() {
-	    $.post("/template/json", { title: $("#tempalte-name").val() }, function () {
+	    $.post("/json/template", { title: $("#tempalte-name").val() }, function () {
 	      alert("创建成功");
 	    });
 	  },

@@ -47,7 +47,11 @@ webpackJsonp([2,17],{
 	    __webpack_require__.e/* nsure */(7, function (require) {
 	      callback(null, [__webpack_require__(275), __webpack_require__(277)]);
 	    });
-	  }
+	  },
+
+	  indexRoute: { onEnter: function onEnter(nextState, replace) {
+	      return replace('/template/market');
+	    } }
 	};
 
 /***/ },

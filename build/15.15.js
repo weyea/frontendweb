@@ -853,7 +853,7 @@ webpackJsonp([15,17],{
 	    },
 	    flush: function flush() {
 	        var self = this;
-	        $.get("/template/json/?page=0", function (data) {
+	        $.get("/json/template/?page=0", function (data) {
 	            if (data.needLogin) {
 	                location.href = "/user/login";
 	                return;

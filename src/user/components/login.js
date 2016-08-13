@@ -17,7 +17,7 @@ module.exports =  React.createClass({
       var self = this;
       var emailValue = $(this.refs["email"]).val();
       var password = $(this.refs["password"]).val();
-      $.post("/user/login",{email:emailValue,password:password}, (result) =>{
+      $.post("/json/user/login",{email:emailValue,password:password}, (result) =>{
           if(result.success){
             if(result.defaultReturnUrl){
               location.href = result.defaultReturnUrl;

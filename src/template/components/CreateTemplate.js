@@ -13,7 +13,7 @@ module.exports =   React.createClass({
     clearInterval(this.interval);
   },
   createTemplate:function(){
-    $.post("/template/json",{title:$("#tempalte-name").val()}, function(){
+    $.post("/json/template",{title:$("#tempalte-name").val()}, function(){
       alert("创建成功")
     })
   },

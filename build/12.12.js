@@ -912,7 +912,7 @@ webpackJsonp([12,17],{
 	  },
 	  flush: function flush() {
 	    var self = this;
-	    $.get("/my/json/app", function (data) {
+	    $.get("/json/my/app", function (data) {
 	      if (data.needLogin) {
 	        location.href = "/user/login";
 	        return;

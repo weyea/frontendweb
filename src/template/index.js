@@ -10,5 +10,6 @@
             require('./routes/market')
           ])
         })
-      }
+      },
+      indexRoute: { onEnter: (nextState, replace) => replace('/template/market') },
     }

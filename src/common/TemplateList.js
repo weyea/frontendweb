@@ -22,7 +22,7 @@ module.exports = React.createClass({
     },
     flush: function (){
         var self = this;
-        $.get("/template/json/?page=0", function (data){
+        $.get("/json/template/?page=0", function (data){
             if (data.needLogin){
                 location.href = "/user/login"
                 return;
@@ -30,7 +30,7 @@ module.exports = React.createClass({
             if(typeof data !=="string"){
               self.setState({siteList:data})
             }
-            
+
 
 
         })
