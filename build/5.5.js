@@ -308,11 +308,27 @@ webpackJsonp([5,16],{
 	    this.setState({ secondsElapsed: this.state.secondsElapsed + 1 });
 	  },
 	  componentDidMount: function componentDidMount() {
-	    this.interval = setInterval(this.tick, 1000);
+	    $("#submit-login").click(function () {
+	      var email = $("");
+	    });
 	  },
-	  componentWillUnmount: function componentWillUnmount() {
-	    clearInterval(this.interval);
+	  submitLogin: function submitLogin(e) {
+	    var _this = this;
+
+	    var self = this;
+	    var emailValue = $(this.refs["email"]).val();
+	    var password = $(this.refs["password"]).val();
+	    $.post("/user/login", { email: emailValue, password: password }, function (result) {
+	      if (result.success) {
+	        if (result.defaultReturnUrl) {
+	          location.href = result.defaultReturnUrl;
+	        }
+	      } else {
+	        $(_this.refs["errors"]).text(result.errors);
+	      }
+	    });
 	  },
+	  componentWillUnmount: function componentWillUnmount() {},
 	  render: function render() {
 	    return React.createElement(
 	      'div',
@@ -325,15 +341,16 @@ webpackJsonp([5,16],{
 	          'div',
 	          { className: 'login' },
 	          React.createElement(
-	            'form',
-	            { className: 'form-signin', id: '', role: 'form', action: '/user/login', method: 'POST' },
+	            'div',
+	            { className: 'form-signin' },
 	            React.createElement(
 	              'h2',
 	              { className: 'form-signin-heading' },
 	              '登录'
 	            ),
-	            React.createElement('input', { name: 'email', type: 'text', className: 'form-control', placeholder: '邮箱/电话', required: true }),
-	            React.createElement('input', { type: 'password', name: 'password', className: 'form-control', placeholder: '密码', required: true }),
+	            React.createElement('div', { ref: 'errors' }),
+	            React.createElement('input', { name: 'email', type: 'text', ref: 'email', className: 'form-control email', placeholder: '邮箱/电话', required: true }),
+	            React.createElement('input', { type: 'password', name: 'password', ref: 'password', className: 'form-control password', placeholder: '密码', required: true }),
 	            React.createElement('input', { type: 'hidden', name: 'redirect', value: '<%= locals.redirect %>', className: 'form-control', placeholder: 'Password', required: true }),
 	            React.createElement(
 	              'div',
@@ -346,7 +363,7 @@ webpackJsonp([5,16],{
 	            ),
 	            React.createElement(
 	              'button',
-	              { className: 'btn', type: 'submit' },
+	              { className: 'btn', onClick: this.submitLogin },
 	              '登录'
 	            ),
 	            React.createElement(

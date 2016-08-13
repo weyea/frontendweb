@@ -9,10 +9,27 @@ module.exports =  React.createClass({
     this.setState({secondsElapsed: this.state.secondsElapsed + 1});
   },
   componentDidMount: function() {
-    this.interval = setInterval(this.tick, 1000);
+      $("#submit-login").click(function(){
+         var email = $("")
+      })
+  },
+  submitLogin:function(e){
+      var self = this;
+      var emailValue = $(this.refs["email"]).val();
+      var password = $(this.refs["password"]).val();
+      $.post("/user/login",{email:emailValue,password:password}, (result) =>{
+          if(result.success){
+            if(result.defaultReturnUrl){
+              location.href = result.defaultReturnUrl;
+            }
+          }
+          else {
+            $(this.refs["errors"]).text(result.errors)
+          }
+      })
   },
   componentWillUnmount: function() {
-    clearInterval(this.interval);
+
   },
   render: function() {
     return (
@@ -20,18 +37,19 @@ module.exports =  React.createClass({
       <Header active="my"></Header>
       <div className="container login-page">
         <div className="login">
-          <form className="form-signin" id="" role="form" action="/user/login" method="POST">
+          <div className="form-signin">
               <h2 className="form-signin-heading">登录</h2>
-              <input name="email" type="text" className="form-control" placeholder="邮箱/电话" required  />
-              <input type="password" name="password" className="form-control" placeholder="密码" required />
+              <div ref="errors"></div>
+              <input name="email" type="text" ref="email" className="form-control email" placeholder="邮箱/电话" required  />
+              <input type="password" name="password" ref="password" className="form-control password" placeholder="密码" required />
               <input type="hidden" name="redirect" value="<%= locals.redirect %>" className="form-control" placeholder="Password" required />
 
               <div className="forgot"><a href="/user/forgot">忘记密码</a></div>
 
-              <button className="btn" type="submit">登录</button>
+              <button className="btn" onClick={this.submitLogin} >登录</button>
               <div className="signup"><a href="/user/signup">没有账号，创建一个</a></div>
 
-          </form>
+          </div>
       </div>
       </div>
 
