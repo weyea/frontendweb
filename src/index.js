@@ -36,8 +36,9 @@ const rootRoute = {
           require('./designer'),
           require('./user'),
           require('./template'),
-            require('./my'),
-              require('./preview'),
+          require('./my'),
+          require('./preview'),
+          require("./nofound")
         ])
       })
     },
@@ -67,11 +68,13 @@ const rootRoute = {
 //     ]
 //   } ]
 // }
+var onError = function(error){
 
+}
 
 
 
 ReactDOM.render(
-  <Router history={history}  routes={rootRoute}/>,
+  <Router history={history} onError={onError}  routes={rootRoute}/>,
   document.getElementById('root')
 )

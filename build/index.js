@@ -28,7 +28,7 @@
 /******/ 	// Array means "loading", array contains callbacks
 /******/ 	var installedChunks = {
 /******/ 		1:0,
-/******/ 		16:0
+/******/ 		17:0
 /******/ 	};
 
 /******/ 	// The require function
@@ -122,19 +122,19 @@
 	  path: '/',
 	  getChildRoutes: function getChildRoutes(partialNextState, callback) {
 	    __webpack_require__.e/* nsure */(2, function (require) {
-	      callback(null, [__webpack_require__(192), __webpack_require__(259), __webpack_require__(274), __webpack_require__(285), __webpack_require__(292)]);
+	      callback(null, [__webpack_require__(192), __webpack_require__(259), __webpack_require__(274), __webpack_require__(285), __webpack_require__(292), __webpack_require__(299)]);
 	    });
 	  },
 	  getIndexRoute: function getIndexRoute(partialNextState, callback) {
-	    __webpack_require__.e/* nsure */(14, function (require) {
+	    __webpack_require__.e/* nsure */(15, function (require) {
 	      callback(null, {
-	        component: __webpack_require__(299)
+	        component: __webpack_require__(303)
 	      });
 	    });
 	  },
 	  getComponents: function getComponents(nextState, callback) {
-	    __webpack_require__.e/* nsure */(15, function (require) {
-	      callback(null, __webpack_require__(306));
+	    __webpack_require__.e/* nsure */(16, function (require) {
+	      callback(null, __webpack_require__(310));
 	    });
 	  }
 	};
@@ -151,9 +151,9 @@
 	//     ]
 	//   } ]
 	// }
+	var onError = function onError(error) {};
 
-
-	ReactDOM.render(React.createElement(_reactRouter.Router, { history: history, routes: rootRoute }), document.getElementById('root'));
+	ReactDOM.render(React.createElement(_reactRouter.Router, { history: history, onError: onError, routes: rootRoute }), document.getElementById('root'));
 
 /***/ },
 /* 1 */,
