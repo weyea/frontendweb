@@ -283,13 +283,16 @@ webpackJsonp([14,16],{
 /***/ },
 
 /***/ 262:
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+
+	var _reactRouter = __webpack_require__(98);
+
 	exports.default = React.createClass({
 	  displayName: "Header",
 
@@ -309,7 +312,7 @@ webpackJsonp([14,16],{
 	          React.createElement("i", { className: "fa fa-user-md" }),
 	          React.createElement(
 	            "a",
-	            { href: "#", className: "navbar-link" },
+	            { href: "#", className: "navbar-Link" },
 	            user.username
 	          ),
 	          React.createElement(
@@ -328,13 +331,13 @@ webpackJsonp([14,16],{
 	          { className: "" },
 	          React.createElement(
 	            "a",
-	            { href: "/user/login", className: "navbar-link" },
+	            { href: "/user/login", className: "navbar-Link" },
 	            "登录"
 	          ),
 	          " ",
 	          React.createElement(
 	            "a",
-	            { href: "/user/signup", className: "navbar-link" },
+	            { href: "/user/signup", className: "navbar-Link" },
 	            "注册"
 	          )
 	        )
@@ -346,23 +349,23 @@ webpackJsonp([14,16],{
 	    var result = [];
 	    var items = {
 	      "home": React.createElement(
-	        "a",
-	        { className: "home", href: "/" },
+	        _reactRouter.Link,
+	        { className: "home", to: "/" },
 	        "首页"
 	      ),
 	      "market": React.createElement(
-	        "a",
-	        { className: "market", href: "/template/market" },
+	        _reactRouter.Link,
+	        { className: "market", to: "/template/market" },
 	        "模板市场"
 	      ),
 	      "my": React.createElement(
-	        "a",
-	        { className: "my", href: "/my" },
+	        _reactRouter.Link,
+	        { className: "my", to: "/my" },
 	        "我的站点"
 	      ),
 	      "tru": React.createElement(
-	        "a",
-	        { className: "tru", href: "/template/market" },
+	        _reactRouter.Link,
+	        { className: "tru", to: "/template/market" },
 	        "新手指南"
 	      )
 	    };
@@ -387,10 +390,14 @@ webpackJsonp([14,16],{
 	  render: function render() {
 
 	    var active = this.props.active || "home";
+	    var className = "navbar";
+	    if (this.props.type == "home") {
+	      className = "navbar home";
+	    }
 
 	    return React.createElement(
 	      "div",
-	      { id: "nav", className: "navbar", role: "navigation" },
+	      { id: "nav", className: className, role: "navigation" },
 	      React.createElement(
 	        "div",
 	        { className: "container" },
@@ -851,8 +858,9 @@ webpackJsonp([14,16],{
 	                location.href = "/user/login";
 	                return;
 	            }
-
-	            self.setState({ siteList: data });
+	            if (typeof data !== "string") {
+	                self.setState({ siteList: data });
+	            }
 	        });
 	    },
 	    render: function render() {
@@ -1050,7 +1058,7 @@ webpackJsonp([14,16],{
 	    return React.createElement(
 	      'div',
 	      null,
-	      React.createElement(_Header2.default, { active: 'home' }),
+	      React.createElement(_Header2.default, { type: 'home', active: 'home' }),
 	      React.createElement(
 	        'div',
 	        { id: 'banner' },
@@ -1231,7 +1239,7 @@ webpackJsonp([14,16],{
 
 
 	// module
-	exports.push([module.id, "html #nav {\n  position: absolute;\n  top:20px;\n  left:0;\n  width: 100%;\n\n  background-color: transparent;\n}\n\n\nhtml #nav .navbar-right {\n    color: #FFF;\n\n}\nhtml #nav a {\n    color: #FFF;\n\n}\n\nhtml #nav a:hover {\n\ncolor:#00c2d6;\nbackground-color:transparent;\n}\n\n#banner{\n  background-image: url(" + __webpack_require__(302) + ");\n  height: 630px;\n}\n\n#cta-text{\n  margin-top: 205px;\n  text-align: center;\n}\n\n#cta-text h1{\n  font-family:MicrosoftYaHei;\nfont-size:45px;\ncolor:#ffffff;\n}\n\n#cta-text  .create{\n  border:1px solid #00c4d8;\nborder-radius:4px;\nwidth:212px;\nheight:46px;\nfont-size:18px;\ncolor:#00d9ef;\ndisplay: inline-block;\nvertical-align: middle;;\nline-height: 46px;\nmargin-top: 87px;\n}\n\n.features{\n  background:#ffffff;\n\nheight:418px;\n}\n\n.features .card{\n  width: 268px;\n  margin: auto;\n  margin-top: 97px;\n  text-align: center;\n}\n.features  .img{\n\n  width:90px;\n  height:90px;\n  display: inline-block;\n}\n\n.features .more-template .img{\n  background: url(" + __webpack_require__(303) + ") center  no-repeat;\n}\n\n.features  .response .img{\nbackground: url(" + __webpack_require__(304) + ") center  no-repeat;\n}\n\n.features  .ocode .img{\nbackground: url(" + __webpack_require__(305) + ") center  no-repeat;\n}\n\n.features h3{\n  font-family:MicrosoftYaHei;\nfont-size:30px;\ncolor:#333333;\nletter-spacing:2.5px;\nmargin-top: 42px;\n}\n.features p{\n  font-size:13px;\ncolor:#666666;\nletter-spacing:1.85px;\ntext-align:center;\n}\n\n#top-template{\n  background:#00c4d8;\nheight:801px;\n}\n\n#top-template:before,#top-template:after{\n\n}\n#top-template h1{\ntext-align: center;\nfont-size:55px;\ncolor:#ffffff;\nletter-spacing:4.58px;\nmargin-top: 75px;\n}\n\n#top-template .slide{\n  margin-top: 70px;\n  height: 737px;\n}\n\n#template-list{\n  margin-top: 260px;\n}\n\n#template-list .header{\n  font-family:MicrosoftYaHei;\nfont-size:55px;\ncolor:#00c4d8;\nletter-spacing:4.58px;\ntext-align: center;\n}\n", ""]);
+	exports.push([module.id, "#nav.home {\n  position: absolute;\n  top:20px;\n  left:0;\n  width: 100%;\n\n  background-color: transparent;\n}\n\n\n#nav.home .navbar-right {\n    color: #FFF;\n\n}\n#nav.home  a {\n    color: #FFF;\n\n}\n\n#nav.home  a:hover {\n\ncolor:#00c2d6;\nbackground-color:transparent;\n}\n\n#banner{\n  background-image: url(" + __webpack_require__(302) + ");\n  height: 630px;\n}\n\n#cta-text{\n  margin-top: 205px;\n  text-align: center;\n}\n\n#cta-text h1{\n  font-family:MicrosoftYaHei;\nfont-size:45px;\ncolor:#ffffff;\n}\n\n#cta-text  .create{\n  border:1px solid #00c4d8;\nborder-radius:4px;\nwidth:212px;\nheight:46px;\nfont-size:18px;\ncolor:#00d9ef;\ndisplay: inline-block;\nvertical-align: middle;;\nline-height: 46px;\nmargin-top: 87px;\n}\n\n.features{\n  background:#ffffff;\n\nheight:418px;\n}\n\n.features .card{\n  width: 268px;\n  margin: auto;\n  margin-top: 97px;\n  text-align: center;\n}\n.features  .img{\n\n  width:90px;\n  height:90px;\n  display: inline-block;\n}\n\n.features .more-template .img{\n  background: url(" + __webpack_require__(303) + ") center  no-repeat;\n}\n\n.features  .response .img{\nbackground: url(" + __webpack_require__(304) + ") center  no-repeat;\n}\n\n.features  .ocode .img{\nbackground: url(" + __webpack_require__(305) + ") center  no-repeat;\n}\n\n.features h3{\n  font-family:MicrosoftYaHei;\nfont-size:30px;\ncolor:#333333;\nletter-spacing:2.5px;\nmargin-top: 42px;\n}\n.features p{\n  font-size:13px;\ncolor:#666666;\nletter-spacing:1.85px;\ntext-align:center;\n}\n\n#top-template{\n  background:#00c4d8;\nheight:801px;\n}\n\n#top-template:before,#top-template:after{\n\n}\n#top-template h1{\ntext-align: center;\nfont-size:55px;\ncolor:#ffffff;\nletter-spacing:4.58px;\nmargin-top: 75px;\n}\n\n#top-template .slide{\n  margin-top: 70px;\n  height: 737px;\n}\n\n#template-list{\n  margin-top: 260px;\n}\n\n#template-list .header{\n  font-family:MicrosoftYaHei;\nfont-size:55px;\ncolor:#00c4d8;\nletter-spacing:4.58px;\ntext-align: center;\n}\n", ""]);
 
 	// exports
 

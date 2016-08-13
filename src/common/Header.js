@@ -1,4 +1,4 @@
-
+import {  Link } from 'react-router';
 export default  React.createClass({
 
   componentDidMount: function() {
@@ -14,7 +14,7 @@ export default  React.createClass({
     return (
       <p className="navbar-text navbar-right login">
         <span >
-          <i className="fa fa-user-md"></i><a href="#" className="navbar-link">{user.username}</a>
+          <i className="fa fa-user-md"></i><a href="#" className="navbar-Link">{user.username}</a>
           <a href="/user/logout" className=""><span className="oi oi-account-logout"></span></a>
         </span>
     </p>
@@ -22,17 +22,17 @@ export default  React.createClass({
 
     }
     else {
-      return  <p className="navbar-text navbar-right signup"><span className=""><a href="/user/login" className="navbar-link">登录</a> <a href="/user/signup" className="navbar-link">注册</a></span></p>
+      return  <p className="navbar-text navbar-right signup"><span className=""><a href="/user/login" className="navbar-Link">登录</a> <a href="/user/signup" className="navbar-Link">注册</a></span></p>
     }
   },
 
   renderItem:function(){
     var result = [];
     var items = {
-      "home":<a className="home" href="/">首页</a>,
-      "market":<a className="market" href="/template/market">模板市场</a>,
-      "my":<a className="my" href="/my">我的站点</a>,
-      "tru":<a className="tru" href="/template/market">新手指南</a>
+      "home":<Link className="home" to="/">首页</Link>,
+      "market":<Link className="market" to="/template/market">模板市场</Link>,
+      "my":<Link className="my" to="/my">我的站点</Link>,
+      "tru":<Link className="tru" to="/template/market">新手指南</Link>
     }
       var active = this.props.active ||"home"
       for(var p in items){
@@ -48,10 +48,17 @@ export default  React.createClass({
   render: function() {
 
     var active = this.props.active ||"home"
+      var className = "navbar"
+    if(this.props.type == "home"){
+      className = "navbar home"
+    }
+
 
     return (
 
-      <div id="nav" className="navbar" role="navigation">
+
+
+      <div id="nav" className={className} role="navigation">
           <div className="container">
               <div className="navbar-header">
                   <button type="button" className="navbar-toggle collapsed" data-toggle="collapse"

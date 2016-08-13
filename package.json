@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "TARGET=dev webpack-dev-server --hot --port 8484 --host 0.0.0.0 --colors",
+    "dev": "TARGET=dev webpack-dev-server --hot --port 8484 --host 0.0.0.0 --colors --history-api-fallback",
     "bundle": "TARGET=bundle webpack"
   },
   "devDependencies": {

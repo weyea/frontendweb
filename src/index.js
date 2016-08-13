@@ -17,7 +17,7 @@ if(currentScript.src){
 
 var history;
 if(location.host == "localhost:8484"){
-  history = hashHistory
+  history = browserHistory
   window.rootPath = "/"
 }
 else {
@@ -25,6 +25,7 @@ else {
     window.rootPath = "/frontendweb/"
 
 }
+
 
 const rootRoute = {
 

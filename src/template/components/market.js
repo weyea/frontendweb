@@ -15,7 +15,7 @@ module.exports =  React.createClass({
 
 
 
-        <div id="template-list" >
+        <div id="template-market">
           <div className="container">
             <TemplateList></TemplateList>
 

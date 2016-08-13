@@ -110,7 +110,7 @@
 
 	var history;
 	if (location.host == "localhost:8484") {
-	  history = _reactRouter.hashHistory;
+	  history = _reactRouter.browserHistory;
 	  window.rootPath = "/";
 	} else {
 	  history = _reactRouter.browserHistory;

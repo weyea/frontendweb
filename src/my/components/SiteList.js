@@ -17,8 +17,9 @@ module.exports =  React.createClass({
               return;
           }
 
-
+            if(typeof data !=="string"){
           self.setState({siteList:data})
+        }
       })
   },
 

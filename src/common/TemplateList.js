@@ -27,9 +27,12 @@ module.exports = React.createClass({
                 location.href = "/user/login"
                 return;
             }
+            if(typeof data !=="string"){
+              self.setState({siteList:data})
+            }
+            
 
 
-            self.setState({siteList:data})
         })
     },
     render:function(){

@@ -1,4 +1,4 @@
-html #nav {
+#nav.home {
   position: absolute;
   top:20px;
   left:0;
@@ -8,16 +8,16 @@ html #nav {
 }
 
 
-html #nav .navbar-right {
+#nav.home .navbar-right {
     color: #FFF;
 
 }
-html #nav a {
+#nav.home  a {
     color: #FFF;
 
 }
 
-html #nav a:hover {
+#nav.home  a:hover {
 
 color:#00c2d6;
 background-color:transparent;

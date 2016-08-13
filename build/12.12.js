@@ -283,13 +283,16 @@ webpackJsonp([12,16],{
 /***/ },
 
 /***/ 262:
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+
+	var _reactRouter = __webpack_require__(98);
+
 	exports.default = React.createClass({
 	  displayName: "Header",
 
@@ -309,7 +312,7 @@ webpackJsonp([12,16],{
 	          React.createElement("i", { className: "fa fa-user-md" }),
 	          React.createElement(
 	            "a",
-	            { href: "#", className: "navbar-link" },
+	            { href: "#", className: "navbar-Link" },
 	            user.username
 	          ),
 	          React.createElement(
@@ -328,13 +331,13 @@ webpackJsonp([12,16],{
 	          { className: "" },
 	          React.createElement(
 	            "a",
-	            { href: "/user/login", className: "navbar-link" },
+	            { href: "/user/login", className: "navbar-Link" },
 	            "登录"
 	          ),
 	          " ",
 	          React.createElement(
 	            "a",
-	            { href: "/user/signup", className: "navbar-link" },
+	            { href: "/user/signup", className: "navbar-Link" },
 	            "注册"
 	          )
 	        )
@@ -346,23 +349,23 @@ webpackJsonp([12,16],{
 	    var result = [];
 	    var items = {
 	      "home": React.createElement(
-	        "a",
-	        { className: "home", href: "/" },
+	        _reactRouter.Link,
+	        { className: "home", to: "/" },
 	        "首页"
 	      ),
 	      "market": React.createElement(
-	        "a",
-	        { className: "market", href: "/template/market" },
+	        _reactRouter.Link,
+	        { className: "market", to: "/template/market" },
 	        "模板市场"
 	      ),
 	      "my": React.createElement(
-	        "a",
-	        { className: "my", href: "/my" },
+	        _reactRouter.Link,
+	        { className: "my", to: "/my" },
 	        "我的站点"
 	      ),
 	      "tru": React.createElement(
-	        "a",
-	        { className: "tru", href: "/template/market" },
+	        _reactRouter.Link,
+	        { className: "tru", to: "/template/market" },
 	        "新手指南"
 	      )
 	    };
@@ -387,10 +390,14 @@ webpackJsonp([12,16],{
 	  render: function render() {
 
 	    var active = this.props.active || "home";
+	    var className = "navbar";
+	    if (this.props.type == "home") {
+	      className = "navbar home";
+	    }
 
 	    return React.createElement(
 	      "div",
-	      { id: "nav", className: "navbar", role: "navigation" },
+	      { id: "nav", className: className, role: "navigation" },
 	      React.createElement(
 	        "div",
 	        { className: "container" },
@@ -911,7 +918,9 @@ webpackJsonp([12,16],{
 	        return;
 	      }
 
-	      self.setState({ siteList: data });
+	      if (typeof data !== "string") {
+	        self.setState({ siteList: data });
+	      }
 	    });
 	  },
 
