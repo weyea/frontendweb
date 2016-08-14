@@ -293,6 +293,7 @@ webpackJsonp([14,17],{
 
 	var _reactRouter = __webpack_require__(98);
 
+	var login = __webpack_require__(263);
 	exports.default = React.createClass({
 	  displayName: "Header",
 
@@ -301,8 +302,8 @@ webpackJsonp([14,17],{
 
 	  renderLoginInfo: function renderLoginInfo() {
 
-	    if (window.serverData && window.serverData.user) {
-	      var user = window.serverData.user;
+	    if (login.isLogin()) {
+	      var user = login.getUser();
 	      return React.createElement(
 	        "p",
 	        { className: "navbar-text navbar-right login" },
@@ -440,7 +441,7 @@ webpackJsonp([14,17],{
 
 /***/ },
 
-/***/ 300:
+/***/ 301:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -451,7 +452,7 @@ webpackJsonp([14,17],{
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	__webpack_require__(301);
+	__webpack_require__(302);
 
 
 	module.exports = React.createClass({
@@ -484,13 +485,13 @@ webpackJsonp([14,17],{
 
 /***/ },
 
-/***/ 301:
+/***/ 302:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(302);
+	var content = __webpack_require__(303);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(69)(content, {});
@@ -511,7 +512,7 @@ webpackJsonp([14,17],{
 
 /***/ },
 
-/***/ 302:
+/***/ 303:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(68)();

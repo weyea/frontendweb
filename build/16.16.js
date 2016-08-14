@@ -293,6 +293,7 @@ webpackJsonp([16,17],{
 
 	var _reactRouter = __webpack_require__(98);
 
+	var login = __webpack_require__(263);
 	exports.default = React.createClass({
 	  displayName: "Header",
 
@@ -301,8 +302,8 @@ webpackJsonp([16,17],{
 
 	  renderLoginInfo: function renderLoginInfo() {
 
-	    if (window.serverData && window.serverData.user) {
-	      var user = window.serverData.user;
+	    if (login.isLogin()) {
+	      var user = login.getUser();
 	      return React.createElement(
 	        "p",
 	        { className: "navbar-text navbar-right login" },
@@ -441,6 +442,130 @@ webpackJsonp([16,17],{
 /***/ },
 
 /***/ 263:
+/***/ function(module, exports) {
+
+	"use strict";
+
+	var login = {
+		isLogin: function isLogin() {
+			return $.cookie("isLogin");
+		},
+		getUser: function getUser() {
+			var username = $.cookie("username");
+			return {
+				username: username
+			};
+		},
+		checkLoginRouter: function checkLoginRouter(nextState, replace, callback) {
+			if (!login.isLogin()) {
+				if (sessionStorage) {
+					console.log(nextState);
+					sessionStorage.setItem("redirect", nextState.location.pathname || "/");
+				}
+				replace("/user/login");
+			}
+			callback();
+		}
+	};
+
+	(function ($) {
+
+		var pluses = /\+/g;
+
+		function encode(s) {
+			return config.raw ? s : encodeURIComponent(s);
+		}
+
+		function decode(s) {
+			return config.raw ? s : decodeURIComponent(s);
+		}
+
+		function stringifyCookieValue(value) {
+			return encode(config.json ? JSON.stringify(value) : String(value));
+		}
+
+		function parseCookieValue(s) {
+			if (s.indexOf('"') === 0) {
+				// This is a quoted cookie as according to RFC2068, unescape...
+				s = s.slice(1, -1).replace(/\\"/g, '"').replace(/\\\\/g, '\\');
+			}
+
+			try {
+				// Replace server-side written pluses with spaces.
+				// If we can't decode the cookie, ignore it, it's unusable.
+				// If we can't parse the cookie, ignore it, it's unusable.
+				s = decodeURIComponent(s.replace(pluses, ' '));
+				return config.json ? JSON.parse(s) : s;
+			} catch (e) {}
+		}
+
+		function read(s, converter) {
+			var value = config.raw ? s : parseCookieValue(s);
+			return $.isFunction(converter) ? converter(value) : value;
+		}
+
+		var config = $.cookie = function (key, value, options) {
+
+			// Write
+
+			if (arguments.length > 1 && !$.isFunction(value)) {
+				options = $.extend({}, config.defaults, options);
+
+				if (typeof options.expires === 'number') {
+					var days = options.expires,
+					    t = options.expires = new Date();
+					t.setMilliseconds(t.getMilliseconds() + days * 864e+5);
+				}
+
+				return document.cookie = [encode(key), '=', stringifyCookieValue(value), options.expires ? '; expires=' + options.expires.toUTCString() : '', // use expires attribute, max-age is not supported by IE
+				options.path ? '; path=' + options.path : '', options.domain ? '; domain=' + options.domain : '', options.secure ? '; secure' : ''].join('');
+			}
+
+			// Read
+
+			var result = key ? undefined : {},
+
+			// To prevent the for loop in the first place assign an empty array
+			// in case there are no cookies at all. Also prevents odd result when
+			// calling $.cookie().
+			cookies = document.cookie ? document.cookie.split('; ') : [],
+			    i = 0,
+			    l = cookies.length;
+
+			for (; i < l; i++) {
+				var parts = cookies[i].split('='),
+				    name = decode(parts.shift()),
+				    cookie = parts.join('=');
+
+				if (key === name) {
+					// If second argument (value) is a function it's a converter...
+					result = read(cookie, value);
+					break;
+				}
+
+				// Prevent storing a cookie that we couldn't decode.
+				if (!key && (cookie = read(cookie)) !== undefined) {
+					result[name] = cookie;
+				}
+			}
+
+			return result;
+		};
+
+		config.defaults = {};
+
+		$.removeCookie = function (key, options) {
+			// Must not alter options, thus extending a fresh object...
+			$.cookie(key, '', $.extend({}, options, { expires: -1 }));
+			return !$.cookie(key);
+		};
+	})(jQuery);
+
+	module.exports = login;
+
+/***/ },
+
+/***/ 264:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -823,7 +948,7 @@ webpackJsonp([16,17],{
 
 /***/ },
 
-/***/ 310:
+/***/ 311:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -832,13 +957,13 @@ webpackJsonp([16,17],{
 
 	var _Header2 = _interopRequireDefault(_Header);
 
-	var _Footer = __webpack_require__(263);
+	var _Footer = __webpack_require__(264);
 
 	var _Footer2 = _interopRequireDefault(_Footer);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	__webpack_require__(311);
+	__webpack_require__(312);
 	// var Header = require('./common/Header');
 	// var Footer = require('./common/Footer');
 
@@ -862,13 +987,13 @@ webpackJsonp([16,17],{
 
 /***/ },
 
-/***/ 311:
+/***/ 312:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(312);
+	var content = __webpack_require__(313);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(69)(content, {});
@@ -889,7 +1014,7 @@ webpackJsonp([16,17],{
 
 /***/ },
 
-/***/ 312:
+/***/ 313:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(68)();

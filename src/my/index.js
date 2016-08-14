@@ -1,23 +1,25 @@
 
+var login = require("../common/login");
 
-  module.exports  = {
+module.exports  = {
 
-      path: 'my',
-      getChildRoutes(partialNextState, callback) {
-        require.ensure([], function (require) {
-          callback(null, [
-            require('./routes/app'),
-            // require('./routes/preview'),
-            // require('./routes/market')
-          ])
+    path: 'my',
+    getChildRoutes(partialNextState, callback) {
+      require.ensure([], function (require) {
+        callback(null, [
+          require('./routes/app'),
+          // require('./routes/preview'),
+          // require('./routes/market')
+        ])
+      })
+    },
+    onEnter:login.checkLoginRouter,
+    getIndexRoute(partialNextState, callback) {
+      require.ensure([], function (require) {
+        callback(null, {
+          component: require('./components'),
         })
-      },
-      getIndexRoute(partialNextState, callback) {
-        require.ensure([], function (require) {
-          callback(null, {
-            component: require('./components'),
-          })
-        })
-      },
+      })
+    },
 
-    }
+  }

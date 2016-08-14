@@ -1573,6 +1573,10 @@
 	  var output = vnode.fn(model);
 	  var childPath = (0, _element.createPath)(path, output.key || '0');
 	  var DOMElement = createElement(output, childPath, dispatch, context);
+	  var id = vnode.attributes.id || vnode.attributes.key;
+	  if (id) {
+	    (0, _setAttribute.setAttribute)(DOMElement, "id", id);
+	  }
 	  if (onCreate) dispatch(onCreate(model));
 
 	  //++
@@ -5250,7 +5254,7 @@
 	            newStyle["#media-pc " + p] = styles[p];
 	        }
 
-	        createStyleSheet(newStyle, mediaQuery, name);
+	        // createStyleSheet(newStyle,mediaQuery,name)
 	        createStyleSheet(styles, mediaQuery, name);
 	    }
 	};
@@ -7037,8 +7041,8 @@
 
 	    getDefaultProps: function getDefaultProps() {
 	        return {
-	            src: "http://img.tuku.cn/file_big/201502/ad45f0968eba4b92ba549cc7abf0e70a.jpg",
-	            href: "http://img.tuku.cn/file_big/201502/ad45f0968eba4b92ba549cc7abf0e70a.jpg"
+	            src: "http://dotlinkface.oss-cn-shanghai.aliyuncs.com/default.jpg",
+	            href: "http://dotlinkface.oss-cn-shanghai.aliyuncs.com/default.jpg"
 	        };
 	    },
 	    componentDidMount: function componentDidMount() {
@@ -7096,7 +7100,6 @@
 	        display: 'block',
 	        width: '5em',
 	        height: '5em',
-	        border: 0,
 	        overflow: 'hidden',
 	        position: 'relative'
 	    },
@@ -7144,6 +7147,7 @@
 	    }
 
 	});
+
 	PIC.createStyleSheet({
 	    "p-pic": {}
 	}, "@media (max-width: 767px)");

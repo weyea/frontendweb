@@ -293,6 +293,7 @@ webpackJsonp([12,17],{
 
 	var _reactRouter = __webpack_require__(98);
 
+	var login = __webpack_require__(263);
 	exports.default = React.createClass({
 	  displayName: "Header",
 
@@ -301,8 +302,8 @@ webpackJsonp([12,17],{
 
 	  renderLoginInfo: function renderLoginInfo() {
 
-	    if (window.serverData && window.serverData.user) {
-	      var user = window.serverData.user;
+	    if (login.isLogin()) {
+	      var user = login.getUser();
 	      return React.createElement(
 	        "p",
 	        { className: "navbar-text navbar-right login" },
@@ -440,7 +441,7 @@ webpackJsonp([12,17],{
 
 /***/ },
 
-/***/ 263:
+/***/ 264:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -823,7 +824,7 @@ webpackJsonp([12,17],{
 
 /***/ },
 
-/***/ 288:
+/***/ 289:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -832,13 +833,13 @@ webpackJsonp([12,17],{
 
 	var _Header2 = _interopRequireDefault(_Header);
 
-	var _Footer = __webpack_require__(263);
+	var _Footer = __webpack_require__(264);
 
 	var _Footer2 = _interopRequireDefault(_Footer);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var SiteList = __webpack_require__(289);
+	var SiteList = __webpack_require__(290);
 	module.exports = React.createClass({
 	  displayName: 'exports',
 
@@ -894,12 +895,12 @@ webpackJsonp([12,17],{
 
 /***/ },
 
-/***/ 289:
+/***/ 290:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	__webpack_require__(290);
+	__webpack_require__(291);
 	module.exports = React.createClass({
 	  displayName: "exports",
 
@@ -993,13 +994,13 @@ webpackJsonp([12,17],{
 
 /***/ },
 
-/***/ 290:
+/***/ 291:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(291);
+	var content = __webpack_require__(292);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(69)(content, {});
@@ -1020,7 +1021,7 @@ webpackJsonp([12,17],{
 
 /***/ },
 
-/***/ 291:
+/***/ 292:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(68)();

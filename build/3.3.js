@@ -1440,6 +1440,10 @@ webpackJsonp([3,17],[
 	  var output = vnode.fn(model);
 	  var childPath = (0, _element.createPath)(path, output.key || '0');
 	  var DOMElement = createElement(output, childPath, dispatch, context);
+	  var id = vnode.attributes.id || vnode.attributes.key;
+	  if (id) {
+	    (0, _setAttribute.setAttribute)(DOMElement, "id", id);
+	  }
 	  if (onCreate) dispatch(onCreate(model));
 
 	  //++
@@ -18219,6 +18223,7 @@ webpackJsonp([3,17],[
 	        };
 
 	        if (!isMediaCSS(cssName)) {
+
 	            utils.createCSSRule(target, cssName, value, "all");
 	        } else {
 
@@ -18227,6 +18232,7 @@ webpackJsonp([3,17],[
 
 	            if (media == "all") {
 	                media = play.mediaQuery.pc;
+
 	                utils.createCSSRule(target, cssName, value, "all");
 	                utils.createCSSRule(target, cssName, value, media);
 	            } else {
@@ -21897,7 +21903,7 @@ webpackJsonp([3,17],[
 	            });
 
 	            $(document).on("csschange", function (e, cssname, value, unit) {
-	                console.log(cssname);
+
 	                var cfg = self.css[cssname];
 	                if (!cfg) return;
 
@@ -22256,10 +22262,6 @@ webpackJsonp([3,17],[
 	                    if (!v) v = "solid";
 	                    borderStyleValue = v;
 	                }
-
-	                console.log("border" + host.borderDir + "Width", borderWidthValue);
-	                console.log("border" + host.borderDir + "Color", borderColorValue);
-	                console.log(host.borderDir + "Style", borderStyleValue);
 
 	                play.dom.css(play.select.selectedEL, "border" + host.borderDir + "Width", borderWidthValue);
 	                play.dom.css(play.select.selectedEL, "border" + host.borderDir + "Color", borderColorValue);
@@ -26842,7 +26844,7 @@ webpackJsonp([3,17],[
 	                                this.element(
 	                                    "div",
 	                                    null,
-	                                    this.element("input", { "class": "border-width", "data-cssname": "borderWidth", type: "text", value: "0" }),
+	                                    this.element("input", { "class": "border-width", "data-cssunit": "px", "data-cssname": "borderWidth", type: "text", value: "0" }),
 	                                    this.element(
 	                                        "div",
 	                                        { "class": "border-color" },

@@ -19,7 +19,11 @@ module.exports =  React.createClass({
       var password = $(this.refs["password"]).val();
       $.post("/json/user/login",{email:emailValue,password:password}, (result) =>{
           if(result.success){
-            if(result.defaultReturnUrl){
+            if(sessionStorage&&  sessionStorage.getItem("redirect")){
+              var redirect = sessionStorage.getItem("redirect")
+              sessionStorage.removeItem("redirect");
+              location.href = redirect;
+            }else  if(result.defaultReturnUrl){
               location.href = result.defaultReturnUrl;
             }
           }

@@ -11,6 +11,7 @@ webpackJsonp([11,17],{
 
 	var _reactRouter = __webpack_require__(98);
 
+	var login = __webpack_require__(263);
 	exports.default = React.createClass({
 	  displayName: "Header",
 
@@ -19,8 +20,8 @@ webpackJsonp([11,17],{
 
 	  renderLoginInfo: function renderLoginInfo() {
 
-	    if (window.serverData && window.serverData.user) {
-	      var user = window.serverData.user;
+	    if (login.isLogin()) {
+	      var user = login.getUser();
 	      return React.createElement(
 	        "p",
 	        { className: "navbar-text navbar-right login" },
@@ -158,7 +159,7 @@ webpackJsonp([11,17],{
 
 /***/ },
 
-/***/ 263:
+/***/ 264:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -541,7 +542,7 @@ webpackJsonp([11,17],{
 
 /***/ },
 
-/***/ 287:
+/***/ 288:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -550,7 +551,7 @@ webpackJsonp([11,17],{
 
 	var _Header2 = _interopRequireDefault(_Header);
 
-	var _Footer = __webpack_require__(263);
+	var _Footer = __webpack_require__(264);
 
 	var _Footer2 = _interopRequireDefault(_Footer);
 

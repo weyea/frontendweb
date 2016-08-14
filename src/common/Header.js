@@ -1,4 +1,5 @@
 import {  Link } from 'react-router';
+var login = require("./login")
 export default  React.createClass({
 
   componentDidMount: function() {
@@ -9,8 +10,8 @@ export default  React.createClass({
   renderLoginInfo:function(){
 
 
-    if(window.serverData&&window.serverData.user){
-      var user = window.serverData.user;
+    if(login.isLogin()){
+      var user = login.getUser();
     return (
       <p className="navbar-text navbar-right login">
         <span >
