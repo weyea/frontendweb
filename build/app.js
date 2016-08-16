@@ -1559,6 +1559,10 @@
 	    }
 	  }
 
+	  if (vnode.options.componentWillMount) {
+	    vnode.options.componentWillMount();
+	  }
+
 	  var props = vnode.props;
 	  var children = vnode.children;
 	  var onCreate = vnode.options.onCreate;
@@ -1591,9 +1595,7 @@
 	  DOMElement.vnode = vnode.options;
 	  DOMElement.vnodeInstance = vnode;
 
-	  if (vnode.options.componentWillMount) {
-	    vnode.options.componentWillMount();
-	  }
+	  vnode.state.vnode = output;
 
 	  return DOMElement;
 	}
@@ -1617,6 +1619,8 @@
 	  });
 
 	  DOMElement.vnode = vnode;
+
+	  vnode.node = vnode.nativeNode = vnode.rootNode = DOMElement;
 
 	  return DOMElement;
 	}
@@ -2615,12 +2619,12 @@
 	    this.refs = {};
 
 	    var defaultProps = this.getDefaultProps && this.getDefaultProps();
-	    var newProps = merge.recursive(defaultProps || {}, this.props);
+	    var newProps = merge(defaultProps || {}, this.props);
 	    this.props = newProps;
 	    this.attributes = newProps;
 
 	    var defaultState = this.getInitialState && this.getInitialState();
-	    var newState = merge.recursive({}, defaultState || {});
+	    var newState = merge({}, defaultState || {});
 	    this.state = newState;
 	  };
 
@@ -2629,8 +2633,18 @@
 	  var oldComponentWillMount = definition.componentWillMount;
 	  var componentDidInsert = definition.componentDidInsert;
 	  var componentDidInsert = definition.componentDidInsert;
+	  var getDefaultChildren = definition.getDefaultChildren;
 
 	  SohpieConstructor.prototype = definition;
+
+	  if (getDefaultChildren) {
+	    SohpieConstructor.prototype.getDefaultChildren = function () {
+
+	      var result = getDefaultChildren.apply(this, arguments);
+
+	      return result;
+	    };
+	  }
 
 	  SohpieConstructor.prototype.render = function () {
 	    currentOwner.target = this;
@@ -2667,7 +2681,7 @@
 
 	  SohpieConstructor.prototype.setState = function (value) {
 
-	    this.state = merge.recursive(this.state, value);
+	    this.state = merge(this.state, value);
 	    this._update();
 	  };
 
@@ -3390,6 +3404,12 @@
 
 	    options.props.children = result.children;
 
+	    if (!options.props.children || options.props.children == 0) {
+	      if (options.getDefaultChildren) {
+	        options.props.children = options.getDefaultChildren();
+	      }
+	    }
+
 	    //保持deku的结构
 	    options.options = options;
 	    result = options;
@@ -3419,7 +3439,9 @@
 
 	"use strict";
 
-	var currentOwner = {};
+	var currentOwner = {
+	  target: undefined
+	};
 
 	module.exports = currentOwner;
 
@@ -4585,11 +4607,8 @@
 	  },
 
 	  getOwner: function getOwner(vnode) {
-	    if (Sophie.isThunk(vnode)) {
-	      return vnode;
-	    } else {
-	      return vnode._owner;
-	    }
+
+	    return vnode._owner;
 	  },
 
 	  getParent: function getParent(vnode) {
@@ -4613,13 +4632,13 @@
 	    }
 	  },
 
-	  createVnodeByTagName: function createVnodeByTagName(name) {
+	  createVnodeByTagName: function createVnodeByTagName(name, attributes) {
 	    var compontent = Register.registry[name];
 	    if (!compontent) throw new Error("name 没有注册");
 
 	    currentOwner.target = Sophie.firstVnode;
 
-	    var vnode = Element(compontent, {}, null);
+	    var vnode = Element(compontent, attributes || {}, null);
 	    currentOwner.target = undefined;
 	    return vnode;
 	  },
@@ -4629,9 +4648,9 @@
 	    return _index.dom.createElement(vnode, 0);
 	  },
 
-	  createElementByTagName: function createElementByTagName(name) {
+	  createElementByTagName: function createElementByTagName(name, attributes) {
 
-	    var vnode = this.createVnodeByTagName(name);
+	    var vnode = this.createVnodeByTagName(name, attributes);
 
 	    return this.createElementByVnode(vnode);
 	  }
@@ -5380,13 +5399,12 @@
 	    var self = this;
 
 	    var id = play.idPrefix + play.utils.generateID();
-	    var page = this.element(Page, { id: id, title: title });
 
-	    page.componentContext = Sophie.firstVnode;
+	    var pageVnode = Sophie.createVnodeByTagName("p-page", { id: id, title: title });
 
 	    var appVnode = Sophie.firstVnode;
 
-	    appVnode.refs["body"].append(page);
+	    appVnode.refs["body"].append(pageVnode);
 
 	    if ($("p-nav-page").get(0)) {
 	      var nav = $("p-nav-page").get(0).vnode;
@@ -5902,7 +5920,7 @@
 	      "p-layout-inner",
 	      { style: this.props.style, "class": this.props.class },
 	      " ",
-	      this.children,
+	      this.props.children,
 	      " "
 	    );
 	  }
@@ -5950,11 +5968,10 @@
 	      height: 100
 	    };
 	  },
-	  componentWillMount: function componentWillMount() {
-	    if (this.children.length == 0) {
-	      this.children.push(this.element(Layout, { "class": "c-row-1 p-layout-wrap" }));
-	      this.children.push(this.element(Layout, { "class": "c-row-2 p-layout-wrap" }));
-	    }
+	  componentWillMount: function componentWillMount() {},
+
+	  getDefaultChildren: function getDefaultChildren() {
+	    return [this.element(Layout, { "class": "c-row-1 p-layout-wrap" }), this.element(Layout, { "class": "c-row-2 p-layout-wrap" })];
 	  },
 
 	  componentDidInsert: function componentDidInsert() {
@@ -6011,6 +6028,7 @@
 	    }, 10);
 	  },
 	  render: function render() {
+
 	    return this.element(
 	      "p-layout-two",
 	      null,
@@ -6018,9 +6036,10 @@
 	    );
 	  },
 	  renderItem: function renderItem() {
-	    this.children[0].attributes.style = "width:" + this.props.firstWidth;
-	    this.children[1].attributes.style = "width:" + this.props.secondWidth;
-	    return this.children;
+
+	    this.props.children[0].attributes.style = "width:" + this.props.firstWidth;
+	    this.props.children[1].attributes.style = "width:" + this.props.secondWidth;
+	    return this.props.children;
 	  },
 	  setItemWidth: function setItemWidth(firstWidth, secondWidth) {
 	    this.props.firstWidth = firstWidth, this.props.secondWidth = secondWidth;
@@ -6215,13 +6234,7 @@
 	      });
 	    }, 100);
 	  },
-	  componentWillMount: function componentWillMount() {
-	    if (this.children.length == 0) {
-	      this.children.push(this.element(Layout, { "class": "c-row-1 p-layout-wrap" }));
-	      this.children.push(this.element(Layout, { "class": "c-row-2 p-layout-wrap" }));
-	      this.children.push(this.element(Layout, { "class": "c-row-3 p-layout-wrap" }));
-	    }
-	  },
+	  componentWillMount: function componentWillMount() {},
 	  render: function render() {
 	    return this.element(
 	      "p-layout-three",
@@ -6229,12 +6242,14 @@
 	      this.renderItem()
 	    );
 	  },
+
+	  getDefaultChildren: function getDefaultChildren() {
+	    return [this.element(Layout, { style: "width:" + this.props.firstWidth, "class": "c-row-1 p-layout-wrap" }), this.element(Layout, { style: "width:" + this.props.secondWidth, "class": "c-row-2 p-layout-wrap" }), this.element(Layout, { style: "width:" + this.props.threeWidth, "class": "c-row-3 p-layout-wrap" })];
+	  },
+
 	  renderItem: function renderItem() {
 
-	    this.children[0].attributes.style = "width:" + this.props.firstWidth;
-	    this.children[1].attributes.style = "width:" + this.props.secondWidth;
-	    this.children[2].attributes.style = "width:" + this.props.threeWidth;
-	    return this.children;
+	    return this.props.children;
 	  },
 	  setItemWidth: function setItemWidth(firstWidth, secondWidth, threeWidth) {
 	    this.props.firstWidth = firstWidth, this.props.secondWidth = secondWidth;
@@ -6395,12 +6410,7 @@
 	      secondWidthPercent: "50", //第二列宽度,%
 	      secondFontSize: 1 }, "firstHeight", null);
 	  },
-	  componentWillMount: function componentWillMount() {
-	    if (this.children.length == 0) {
-	      this.children.push(this.element(Layout, { "class": "c-row-1 p-layout-wrap" }));
-	      this.children.push(this.element(Layout, { "class": "c-row-2 p-layout-wrap" }));
-	    }
-	  },
+	  componentWillMount: function componentWillMount() {},
 
 	  componentDidMount: function componentDidMount() {
 	    var self = this;
@@ -6462,6 +6472,9 @@
 	      this.renderItem()
 	    );
 	  },
+	  getDefaultChildren: function getDefaultChildren() {
+	    return [this.element(Layout, { "class": "c-row-1 p-layout-wrap" }), this.element(Layout, { "class": "c-row-2 p-layout-wrap" })];
+	  },
 
 	  renderItem: function renderItem() {
 
@@ -6476,15 +6489,15 @@
 	        var height = this.props.phoneHeight / (fontSize1 + fontSize2);
 	      }
 
-	      this.children[0].attributes.style = "width:" + this.props.width * this.props.firstWidthPercent / 100 + "em;" + "height:" + height + "em; " + "font-size:" + fontSize1 + "rem";
-	      this.children[1].attributes.style = "width:" + this.props.width * this.props.secondWidthPercent / 100 + "em;" + "height:" + height + "em; " + "font-size:" + fontSize2 + "rem";
+	      this.props.children[0].attributes.style = "width:" + this.props.width * this.props.firstWidthPercent / 100 + "em;" + "height:" + height + "em; " + "font-size:" + fontSize1 + "rem";
+	      this.props.children[1].attributes.style = "width:" + this.props.width * this.props.secondWidthPercent / 100 + "em;" + "height:" + height + "em; " + "font-size:" + fontSize2 + "rem";
 	    } else {
 
-	      this.children[0].attributes.style = "width:" + this.props.firstWidthPercent + "%";
-	      this.children[1].attributes.style = "width:" + this.props.secondWidthPercent + "%";
+	      this.props.children[0].attributes.style = "width:" + this.props.firstWidthPercent + "%";
+	      this.props.children[1].attributes.style = "width:" + this.props.secondWidthPercent + "%";
 	    }
 
-	    return this.children;
+	    return this.props.children;
 	  },
 
 	  //resize时需要设置宽度
@@ -6502,8 +6515,8 @@
 	      this.props.phoneWidth = coord.width / coord.fontSize;
 
 	      this._update();
-	      this.children[0]._update();
-	      this.children[1]._update();
+	      this.props.children[0]._update();
+	      this.props.children[1]._update();
 	    } else {
 	      this.props.height = coord.height / coord.fontSize;
 	      this.props.width = coord.width / coord.fontSize;
@@ -6657,12 +6670,7 @@
 	      secondWidth: "50%"
 	    };
 	  },
-	  componentWillMount: function componentWillMount() {
-	    if (this.children.length == 0) {
-	      this.children.push(this.element(Layout, { "class": "c-row-1 p-layout-wrap" }));
-	      this.children.push(this.element(Layout, { "class": "c-row-2 p-layout-wrap" }));
-	    }
-	  },
+	  componentWillMount: function componentWillMount() {},
 
 	  componentDidInsert: function componentDidInsert() {
 	    var self = this;
@@ -6678,10 +6686,12 @@
 	      this.renderItem()
 	    );
 	  },
+	  getDefaultChildren: function getDefaultChildren() {
+	    return [this.element(Layout, { style: "width:" + this.props.firstWidth, "class": "c-row-1 p-layout-wrap" }), this.element(Layout, { style: "width:" + this.props.secondWidth, "class": "c-row-2 p-layout-wrap" })];
+	  },
 	  renderItem: function renderItem() {
-	    this.children[0].attributes.style = "width:" + this.props.firstWidth;
-	    this.children[1].attributes.style = "width:" + this.props.secondWidth;
-	    return this.children;
+
+	    return this.props.children;
 	  },
 	  setItemWidth: function setItemWidth(firstWidth, secondWidth) {
 	    this.props.firstWidth = firstWidth, this.props.secondWidth = secondWidth;
@@ -6696,7 +6706,7 @@
 	    minHeight: '10px',
 	    height: "2em",
 	    display: 'table',
-	    width: '10em'
+	    width: '100%'
 
 	  },
 
@@ -6738,13 +6748,7 @@
 	      height: 100
 	    };
 	  },
-	  componentWillMount: function componentWillMount() {
-	    if (this.children.length == 0) {
-	      this.children.push(this.element(Layout, { "class": "c-row-1 p-layout-wrap" }));
-	      this.children.push(this.element(Layout, { "class": "c-row-2 p-layout-wrap" }));
-	      this.children.push(this.element(Layout, { "class": "c-row-3 p-layout-wrap" }));
-	    }
-	  },
+	  componentWillMount: function componentWillMount() {},
 
 	  componentAfterMount: function componentAfterMount() {
 	    var self = this;
@@ -6792,12 +6796,16 @@
 	    );
 	  },
 
+	  getDefaultChildren: function getDefaultChildren() {
+	    return [this.element(Layout, { "class": "c-row-1 p-layout-wrap" }), this.element(Layout, { "class": "c-row-2 p-layout-wrap" }), this.element(Layout, { "class": "c-row-3 p-layout-wrap" })];
+	  },
+
 	  renderItem: function renderItem() {
 
-	    this.children[0].attributes.style = "width:" + this.props.firstWidth;
-	    this.children[1].attributes.style = "width:" + this.props.secondWidth;
-	    this.children[2].attributes.style = "width:" + this.props.threeWidth;
-	    return this.children;
+	    this.props.children[0].attributes.style = "width:" + this.props.firstWidth;
+	    this.props.children[1].attributes.style = "width:" + this.props.secondWidth;
+	    this.props.children[2].attributes.style = "width:" + this.props.threeWidth;
+	    return this.props.children;
 	  },
 
 	  setItemWidth: function setItemWidth(firstWidth, secondWidth, threeWidth) {
@@ -6957,13 +6965,7 @@
 	      threeWidth: "33.3%"
 	    };
 	  },
-	  componentWillMount: function componentWillMount() {
-	    if (this.children.length == 0) {
-	      this.children.push(this.element(Layout, { "class": "c-row-1 p-layout-wrap" }));
-	      this.children.push(this.element(Layout, { "class": "c-row-2 p-layout-wrap" }));
-	      this.children.push(this.element(Layout, { "class": "c-row-3 p-layout-wrap" }));
-	    }
-	  },
+	  componentWillMount: function componentWillMount() {},
 
 	  componentDidInsert: function componentDidInsert() {
 	    var self = this;
@@ -6979,11 +6981,12 @@
 	      this.renderItem()
 	    );
 	  },
+	  getDefaultChildren: function getDefaultChildren() {
+	    return [this.element(Layout, { style: "width:" + this.props.firstWidth, "class": "c-row-1 p-layout-wrap" }), this.element(Layout, { style: "width:" + this.props.secondWidth, "class": "c-row-2 p-layout-wrap" }), this.element(Layout, { style: "width:" + this.props.threeWidth, "class": "c-row-3 p-layout-wrap" })];
+	  },
 	  renderItem: function renderItem() {
-	    this.children[0].attributes.style = "width:" + this.props.firstWidth;
-	    this.children[1].attributes.style = "width:" + this.props.secondWidth;
-	    this.children[2].attributes.style = "width:" + this.props.threeWidth;
-	    return this.children;
+
+	    return this.props.children;
 	  },
 
 	  setItemWidth: function setItemWidth(firstWidth, secondWidth, threeWidth) {
@@ -8243,7 +8246,7 @@
 	Nav.createStyleSheet({
 
 	  'p-nav-page-absolute': {
-	    height: '10em',
+	    height: '2em',
 	    width: '20em',
 	    marginLeft: 10,
 

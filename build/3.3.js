@@ -1426,6 +1426,10 @@ webpackJsonp([3,17],[
 	    }
 	  }
 
+	  if (vnode.options.componentWillMount) {
+	    vnode.options.componentWillMount();
+	  }
+
 	  var props = vnode.props;
 	  var children = vnode.children;
 	  var onCreate = vnode.options.onCreate;
@@ -1458,9 +1462,7 @@ webpackJsonp([3,17],[
 	  DOMElement.vnode = vnode.options;
 	  DOMElement.vnodeInstance = vnode;
 
-	  if (vnode.options.componentWillMount) {
-	    vnode.options.componentWillMount();
-	  }
+	  vnode.state.vnode = output;
 
 	  return DOMElement;
 	}
@@ -1484,6 +1486,8 @@ webpackJsonp([3,17],[
 	  });
 
 	  DOMElement.vnode = vnode;
+
+	  vnode.node = vnode.nativeNode = vnode.rootNode = DOMElement;
 
 	  return DOMElement;
 	}
@@ -2482,12 +2486,12 @@ webpackJsonp([3,17],[
 	    this.refs = {};
 
 	    var defaultProps = this.getDefaultProps && this.getDefaultProps();
-	    var newProps = merge.recursive(defaultProps || {}, this.props);
+	    var newProps = merge(defaultProps || {}, this.props);
 	    this.props = newProps;
 	    this.attributes = newProps;
 
 	    var defaultState = this.getInitialState && this.getInitialState();
-	    var newState = merge.recursive({}, defaultState || {});
+	    var newState = merge({}, defaultState || {});
 	    this.state = newState;
 	  };
 
@@ -2496,8 +2500,18 @@ webpackJsonp([3,17],[
 	  var oldComponentWillMount = definition.componentWillMount;
 	  var componentDidInsert = definition.componentDidInsert;
 	  var componentDidInsert = definition.componentDidInsert;
+	  var getDefaultChildren = definition.getDefaultChildren;
 
 	  SohpieConstructor.prototype = definition;
+
+	  if (getDefaultChildren) {
+	    SohpieConstructor.prototype.getDefaultChildren = function () {
+
+	      var result = getDefaultChildren.apply(this, arguments);
+
+	      return result;
+	    };
+	  }
 
 	  SohpieConstructor.prototype.render = function () {
 	    currentOwner.target = this;
@@ -2534,7 +2548,7 @@ webpackJsonp([3,17],[
 
 	  SohpieConstructor.prototype.setState = function (value) {
 
-	    this.state = merge.recursive(this.state, value);
+	    this.state = merge(this.state, value);
 	    this._update();
 	  };
 
@@ -3257,6 +3271,12 @@ webpackJsonp([3,17],[
 
 	    options.props.children = result.children;
 
+	    if (!options.props.children || options.props.children == 0) {
+	      if (options.getDefaultChildren) {
+	        options.props.children = options.getDefaultChildren();
+	      }
+	    }
+
 	    //保持deku的结构
 	    options.options = options;
 	    result = options;
@@ -3286,7 +3306,9 @@ webpackJsonp([3,17],[
 
 	"use strict";
 
-	var currentOwner = {};
+	var currentOwner = {
+	  target: undefined
+	};
 
 	module.exports = currentOwner;
 
@@ -4323,11 +4345,8 @@ webpackJsonp([3,17],[
 	  },
 
 	  getOwner: function getOwner(vnode) {
-	    if (Sophie.isThunk(vnode)) {
-	      return vnode;
-	    } else {
-	      return vnode._owner;
-	    }
+
+	    return vnode._owner;
 	  },
 
 	  getParent: function getParent(vnode) {
@@ -4351,13 +4370,13 @@ webpackJsonp([3,17],[
 	    }
 	  },
 
-	  createVnodeByTagName: function createVnodeByTagName(name) {
+	  createVnodeByTagName: function createVnodeByTagName(name, attributes) {
 	    var compontent = Register.registry[name];
 	    if (!compontent) throw new Error("name 没有注册");
 
 	    currentOwner.target = Sophie.firstVnode;
 
-	    var vnode = Element(compontent, {}, null);
+	    var vnode = Element(compontent, attributes || {}, null);
 	    currentOwner.target = undefined;
 	    return vnode;
 	  },
@@ -4367,9 +4386,9 @@ webpackJsonp([3,17],[
 	    return _index.dom.createElement(vnode, 0);
 	  },
 
-	  createElementByTagName: function createElementByTagName(name) {
+	  createElementByTagName: function createElementByTagName(name, attributes) {
 
-	    var vnode = this.createVnodeByTagName(name);
+	    var vnode = this.createVnodeByTagName(name, attributes);
 
 	    return this.createElementByVnode(vnode);
 	  }
@@ -10649,6 +10668,7 @@ webpackJsonp([3,17],[
 	    topContainer: "p-container-fluid",
 	    scale: 1,
 	    isSnap: true,
+	    supportRowLayout: false, //是
 	    //是否支持删格
 	    isGrid: false,
 	    templateUrl: './template.html',
@@ -11051,9 +11071,7 @@ webpackJsonp([3,17],[
 	        return data;
 	    },
 	    cloneFromVnodeJSON: function cloneFromVnodeJSON(vnodeData) {
-
 	        var firstVnode = play.iframeWin.Sophie.firstVnode.options.rootVnode;
-
 	        var create = function create(vnodeData) {
 
 	            if (vnodeData.attributes["key"] || vnodeData.attributes["id"]) {
@@ -15125,6 +15143,9 @@ webpackJsonp([3,17],[
 
 	    var isAvailablePoint = function isAvailablePoint(point) {
 
+	        if (!play.supportRowLayout && point.type == "row") {
+	            return false;
+	        }
 	        //暂时不支持行
 	        // if(point.type=="row"&&!point.parent.is("p-header")){
 	        //   return false;
@@ -17971,7 +17992,6 @@ webpackJsonp([3,17],[
 
 	        var vnode = play.iframeWin.Sophie.createVnodeByTagName(tagName);
 
-	        vnode.compontentContext = $("app").get(0).vnode;
 	        vnode.key = id;
 	        vnode.attributes.id = id;
 	        vnode.attributes.key = id;
@@ -21867,7 +21887,7 @@ webpackJsonp([3,17],[
 	                } else {
 	                    $('[data-cssname="' + cssname + '"]', target.parent()).removeClass("active");
 	                    target.addClass("active");
-	                    var value = target.attr("value");
+	                    var value = target.attr("value") || target.attr("data-edit");
 	                }
 
 	                var unit = target.attr("data-cssunit");
@@ -22011,7 +22031,6 @@ webpackJsonp([3,17],[
 	            if (target.length == 1) {
 
 	                if (/.*Color/ig.test(cssName)) {
-
 	                    cssName = "backgroundColor";
 	                    target.css(cssName, value);
 	                } else if (cssName == "backgroundImage") {
@@ -29439,7 +29458,7 @@ webpackJsonp([3,17],[
 	            ev.stopPropagation();
 	            ev.preventDefault();
 
-	            self.setViewportWdith(320);
+	            self.setViewportWdith(480);
 
 	            $("#editor-margin").removeClass("preview-pad");
 	            $("#editor-margin").removeClass("preview-pc");
@@ -29756,12 +29775,12 @@ webpackJsonp([3,17],[
 
 	    '#editor-margin.preview-phone #editor-margin-header': {
 	        background: 'url("/images/iphone-preview.png") no-repeat center top',
-	        height: '139px'
+	        height: '0'
 	    },
 
 	    '#editor-margin.preview-phone #editor-margin-footer': {
 	        background: 'url("/images/iphone-preview.png") no-repeat center bottom',
-	        height: '214px'
+	        height: '0'
 	    },
 
 	    '#editor-scroll': (_editorScroll = {
@@ -29784,6 +29803,10 @@ webpackJsonp([3,17],[
 	        height: '1000px',
 	        margin: 'auto'
 
+	    },
+
+	    '#editor-margin.preview-phone #editor': {
+	        boxShadow: '0px 2px 6px 2px #888888'
 	    },
 
 	    '#editor-bar': {
