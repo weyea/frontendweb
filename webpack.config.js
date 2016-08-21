@@ -64,5 +64,10 @@ module.exports ={
     })
 
   ],
+  resolve: {
+      alias: {
+           "jquery": path.join(__dirname, "./jquery-stub.js")
+      }
+    }
 
 }

@@ -70,27 +70,27 @@
 	  render: template.renderData,
 
 	  Header: __webpack_require__(75),
-	  Body: __webpack_require__(76),
-	  Footer: __webpack_require__(77),
+	  Body: __webpack_require__(77),
+	  Footer: __webpack_require__(78),
 	  Page: __webpack_require__(73),
 	  Site: __webpack_require__(72),
 
-	  LayoutInner: __webpack_require__(78),
-	  LayoutTwo: __webpack_require__(79),
-	  LayoutThree: __webpack_require__(80),
-	  LayoutTwoResponse: __webpack_require__(81),
-	  LayoutTwoNoResponse: __webpack_require__(82),
-	  LayoutThreeResponse: __webpack_require__(83),
-	  LayoutThreeNoResponse: __webpack_require__(84),
-	  Pic: __webpack_require__(85),
-	  Logo: __webpack_require__(87),
-	  Grid: __webpack_require__(88),
+	  LayoutInner: __webpack_require__(79),
+	  LayoutTwo: __webpack_require__(80),
+	  LayoutThree: __webpack_require__(81),
+	  LayoutTwoResponse: __webpack_require__(82),
+	  LayoutTwoNoResponse: __webpack_require__(83),
+	  LayoutThreeResponse: __webpack_require__(84),
+	  LayoutThreeNoResponse: __webpack_require__(85),
+	  Pic: __webpack_require__(86),
+	  Logo: __webpack_require__(88),
+	  Grid: __webpack_require__(89),
 
-	  NavPage: __webpack_require__(89),
+	  NavPage: __webpack_require__(90),
 	  NavPageInline: __webpack_require__(92),
 	  NavPageAbsolute: __webpack_require__(93),
 
-	  A: __webpack_require__(90),
+	  A: __webpack_require__(91),
 	  Text: __webpack_require__(94),
 
 	  List: __webpack_require__(95),
@@ -131,6 +131,7 @@
 	};
 
 	app.render(window.serverData);
+	window.App = app;
 	module.exports = app;
 
 /***/ },
@@ -4632,13 +4633,13 @@
 	    }
 	  },
 
-	  createVnodeByTagName: function createVnodeByTagName(name, attributes) {
+	  createVnodeByTagName: function createVnodeByTagName(name, attributes, children) {
 	    var compontent = Register.registry[name];
 	    if (!compontent) throw new Error("name 没有注册");
 
 	    currentOwner.target = Sophie.firstVnode;
 
-	    var vnode = Element(compontent, attributes || {}, null);
+	    var vnode = Element(compontent, attributes || {}, children || null);
 	    currentOwner.target = undefined;
 	    return vnode;
 	  },
@@ -4648,9 +4649,9 @@
 	    return _index.dom.createElement(vnode, 0);
 	  },
 
-	  createElementByTagName: function createElementByTagName(name, attributes) {
+	  createElementByTagName: function createElementByTagName(name, attributes, children) {
 
-	    var vnode = this.createVnodeByTagName(name, attributes);
+	    var vnode = this.createVnodeByTagName(name, attributes, children || null);
 
 	    return this.createElementByVnode(vnode);
 	  }
@@ -5287,8 +5288,8 @@
 	var Sophie = __webpack_require__(2);
 	var Site = __webpack_require__(72);
 	var Header = __webpack_require__(75);
-	var Body = __webpack_require__(76);
-	var Footer = __webpack_require__(77);
+	var Body = __webpack_require__(77);
+	var Footer = __webpack_require__(78);
 	var Page = __webpack_require__(73);
 
 	var _renderData = function _renderData(data, callback) {
@@ -5705,17 +5706,66 @@
 
 /***/ },
 /* 75 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
 	// <link rel="import" href="p-container-fluid.html">
-
+	var NavBar = __webpack_require__(76);
 
 	var Header = Sophie.createClass('p-header', {
+
 	  componentDidMount: function componentDidMount() {
 	    var siteTitle = $(this).attr("title");
 	    $("title").text(siteTitle);
+	    var self = this;
+	    setTimeout(function () {
+
+	      // $(".navbar-toggle-render","p-header").remove();
+	      self.navbarToggle = $("p-nav-bar", self.nativeNode);
+	      self.navbar = $(".navbar-nav", self.nativeNode);
+	      //
+	      // self.navbarToggle.appendTo("p-header .p-container-fluid");
+	      // self.navbarToggle.addClass("navbar-toggle-render")
+	      //
+
+
+	      self.navbarToggle.click(function () {
+	        // self.showPopup()
+	        self.showSidebar();
+	      });
+
+	      $(document).click(function (ev) {
+	        var target = $(ev.target);
+
+	        if (!target.closest(self.navbarToggle).length && !target.closest(self.navbar).length) {
+	          self.hideSidebar();
+	        }
+	      });
+	    }, 0);
+	  },
+	  showSidebar: function showSidebar() {
+	    var self = this;
+	    if (this.props.isShow == true) {
+
+	      $("p-site").removeClass("nav-open");
+	      $("p-site").addClass("nav-close");
+	      this.props.isShow = false;
+	    } else {
+	      $("p-site").addClass("nav-open");
+	      $("p-site").removeClass("nav-close");
+
+	      this.props.isShow = true;
+	    }
+	  },
+	  hideSidebar: function hideSidebar() {
+	    var self = this;
+	    if (this.isShow == true) {
+
+	      $(this.nativeNode).removeClass("nav-open");
+	      $(this.nativeNode).addClass("nav-close");
+	      this.isShow = false;
+	    }
 	  },
 
 	  render: function render() {
@@ -5725,7 +5775,8 @@
 	      this.element(
 	        "div",
 	        { "class": "p-container" },
-	        this.children
+	        this.children,
+	        this.element(NavBar, null)
 	      )
 	    );
 	  }
@@ -5752,13 +5803,53 @@
 	    lineHeight: 0,
 	    content: "",
 	    clear: 'both'
+	  },
+
+	  'p-header > .p-container > p-nav-bar': {
+	    display: 'none',
+	    position: 'absolute'
+
 	  }
 
 	});
 
 	Sophie.createStyleSheet({
+
+	  'p-site.nav-open': {
+	    "transform": "translate3d(-300px, 0px, 0px)",
+	    transition: "all 0.5s"
+	  },
+	  'p-site.nav-close': {
+	    "transform": "translate3d(0px, 0px, 0px)",
+	    transition: "all 0.5s"
+	  },
+	  'p-site p-header': {
+	    position: "fixed",
+	    top: 0,
+	    left: "100%",
+	    width: "300px!important",
+	    height: "100%!important"
+
+	  },
+	  'p-site p-header p-nav-page': {
+	    position: "static",
+	    width: "100%",
+	    height: "auto"
+	  },
+
 	  'p-header': {
 	    height: '2em'
+	  },
+
+	  'p-header  p-logo': {
+	    "left": "-450px"
+
+	  },
+	  'p-header > .p-container > p-nav-bar': {
+	    display: 'block',
+	    left: "-50px",
+	    top: "0"
+
 	  }
 
 	}, '@media (max-width: 767px)');
@@ -5767,6 +5858,61 @@
 
 /***/ },
 /* 76 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	var NavBar = Sophie.createClass("p-nav-bar", {
+	  render: function render() {
+	    return this.element(
+	      "p-nav-bar",
+	      null,
+	      this.element(
+	        "button",
+	        { "class": "navbar-toggle", type: "button", "data-toggle": "collapse", "data-target": ".bs-navbar-collapse" },
+	        this.element("span", { "class": "icon-bar" }),
+	        this.element("span", { "class": "icon-bar" }),
+	        this.element("span", { "class": "icon-bar" })
+	      )
+	    );
+	  }
+	});
+
+	Sophie.createStyleSheet({
+	  "p-nav-bar": {
+	    display: 'block',
+	    width: '44px',
+	    height: '34px',
+	    overflow: 'hidden',
+	    position: 'absolute'
+
+	  },
+
+	  'p-nav-bar .navbar-toggle': {
+	    position: 'relative',
+	    float: 'none',
+	    padding: '9px 10px',
+	    marginTop: '8px',
+	    marginRight: '15px',
+	    marginBottom: '8px',
+	    backgroundColor: 'transparent',
+	    backgroundImage: 'none',
+	    border: '1px solid transparent',
+	    borderRadius: '4px',
+	    margin: '0'
+
+	  },
+
+	  'p-nav-bar .navbar-toggle .icon-bar': {
+	    backgroundColor: 'red'
+	  }
+
+	});
+
+	module.exports = NavBar;
+
+/***/ },
+/* 77 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -5844,7 +5990,7 @@
 	module.exports = PBody;
 
 /***/ },
-/* 77 */
+/* 78 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -5904,7 +6050,7 @@
 	module.exports = Footer;
 
 /***/ },
-/* 78 */
+/* 79 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -5953,12 +6099,12 @@
 	module.exports = Layout;
 
 /***/ },
-/* 79 */
+/* 80 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var Layout = __webpack_require__(78);
+	var Layout = __webpack_require__(79);
 	var LayoutTow = Sophie.createClass("p-layout-two", {
 
 	  getDefaultProps: function getDefaultProps() {
@@ -6170,12 +6316,12 @@
 	module.exports = LayoutTow;
 
 /***/ },
-/* 80 */
+/* 81 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var Layout = __webpack_require__(78);
+	var Layout = __webpack_require__(79);
 	var LayoutTow = Sophie.createClass("p-layout-three", {
 
 	  getDefaultProps: function getDefaultProps() {
@@ -6383,14 +6529,14 @@
 	module.exports = LayoutTow;
 
 /***/ },
-/* 81 */
+/* 82 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-	var Layout = __webpack_require__(78);
+	var Layout = __webpack_require__(79);
 
 	//响应式元素不能被嵌套
 	//@todo 实现这个机制，嵌套了也不会做响应
@@ -6655,12 +6801,12 @@
 	module.exports = LayoutTow;
 
 /***/ },
-/* 82 */
+/* 83 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var Layout = __webpack_require__(78);
+	var Layout = __webpack_require__(79);
 	var LayoutTow = Sophie.createClass("p-layout-two-noresponse", {
 
 	  getDefaultProps: function getDefaultProps() {
@@ -6732,12 +6878,12 @@
 	module.exports = LayoutTow;
 
 /***/ },
-/* 83 */
+/* 84 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var Layout = __webpack_require__(78);
+	var Layout = __webpack_require__(79);
 	var LayoutTow = Sophie.createClass("p-layout-three-response", {
 
 	  getDefaultProps: function getDefaultProps() {
@@ -6949,12 +7095,12 @@
 	module.exports = LayoutTow;
 
 /***/ },
-/* 84 */
+/* 85 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var Layout = __webpack_require__(78);
+	var Layout = __webpack_require__(79);
 	var LayoutTow = Sophie.createClass("p-layout-three-noresponse", {
 
 	  getDefaultProps: function getDefaultProps() {
@@ -7030,7 +7176,7 @@
 	module.exports = LayoutTow;
 
 /***/ },
-/* 85 */
+/* 86 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -7039,7 +7185,7 @@
 
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-	var Layout = __webpack_require__(86);
+	var Layout = __webpack_require__(87);
 	var PIC = Sophie.createClass("p-pic", {
 
 	    getDefaultProps: function getDefaultProps() {
@@ -7327,7 +7473,7 @@
 	module.exports = PIC;
 
 /***/ },
-/* 86 */
+/* 87 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -7370,7 +7516,7 @@
 	module.exports = Layout;
 
 /***/ },
-/* 87 */
+/* 88 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -7430,7 +7576,7 @@
 	module.exports = Logo;
 
 /***/ },
-/* 88 */
+/* 89 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -7509,14 +7655,14 @@
 	module.exports = Grid;
 
 /***/ },
-/* 89 */
+/* 90 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
 	var Page = __webpack_require__(73);
-	var A = __webpack_require__(90);
-	var NavBar = __webpack_require__(91);
+	var A = __webpack_require__(91);
+	var NavBar = __webpack_require__(76);
 
 	var Nav = Sophie.createClass("p-nav-page", {
 
@@ -7822,8 +7968,8 @@
 
 	    'p-nav-page': {
 	        position: 'fixed',
-	        left: '100px',
-	        top: '260px',
+	        left: '12.13em',
+	        top: '2.1em',
 	        width: '200px',
 	        height: "200px",
 	        backgroundColor: 'rgba(255, 255, 255, 0.0)',
@@ -7863,7 +8009,7 @@
 	module.exports = Nav;
 
 /***/ },
-/* 90 */
+/* 91 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -7949,61 +8095,6 @@
 	module.exports = A;
 
 /***/ },
-/* 91 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	var NavBar = Sophie.createClass("p-nav-bar", {
-	  render: function render() {
-	    return this.element(
-	      "p-nav-bar",
-	      null,
-	      this.element(
-	        "button",
-	        { "class": "navbar-toggle", type: "button", "data-toggle": "collapse", "data-target": ".bs-navbar-collapse" },
-	        this.element("span", { "class": "icon-bar" }),
-	        this.element("span", { "class": "icon-bar" }),
-	        this.element("span", { "class": "icon-bar" })
-	      )
-	    );
-	  }
-	});
-
-	Sophie.createStyleSheet({
-	  "p-nav-bar": {
-	    display: 'block',
-	    width: '44px',
-	    height: '34px',
-	    overflow: 'hidden',
-	    position: 'absolute'
-
-	  },
-
-	  'p-nav-bar .navbar-toggle': {
-	    position: 'relative',
-	    float: 'none',
-	    padding: '9px 10px',
-	    marginTop: '8px',
-	    marginRight: '15px',
-	    marginBottom: '8px',
-	    backgroundColor: 'transparent',
-	    backgroundImage: 'none',
-	    border: '1px solid transparent',
-	    borderRadius: '4px',
-	    margin: '0'
-
-	  },
-
-	  'p-nav-bar .navbar-toggle .icon-bar': {
-	    backgroundColor: 'red'
-	  }
-
-	});
-
-	module.exports = NavBar;
-
-/***/ },
 /* 92 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -8013,11 +8104,11 @@
 
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-	var PageNav = __webpack_require__(89);
-	var LayoutGrid = __webpack_require__(82);
-	var Layout = __webpack_require__(86);
-	var Logo = __webpack_require__(87);
-	var Pic = __webpack_require__(85);
+	var PageNav = __webpack_require__(90);
+	var LayoutGrid = __webpack_require__(83);
+	var Layout = __webpack_require__(87);
+	var Logo = __webpack_require__(88);
+	var Pic = __webpack_require__(86);
 
 	var Nav = Sophie.createClass("p-nav-page-inline", {
 	  getDefaultProps: function getDefaultProps() {
@@ -8131,12 +8222,12 @@
 
 	"use strict";
 
-	var PageNav = __webpack_require__(89);
-	var LayoutGrid = __webpack_require__(82);
-	var Layout = __webpack_require__(86);
-	var Logo = __webpack_require__(87);
-	var Pic = __webpack_require__(85);
-	var NavBar = __webpack_require__(91);
+	var PageNav = __webpack_require__(90);
+	var LayoutGrid = __webpack_require__(83);
+	var Layout = __webpack_require__(87);
+	var Logo = __webpack_require__(88);
+	var Pic = __webpack_require__(86);
+	var NavBar = __webpack_require__(76);
 
 	var Nav = Sophie.createClass("p-nav-page-absolute", {
 	  getDefaultProps: function getDefaultProps() {
@@ -8416,7 +8507,7 @@
 
 	"use strict";
 
-	var Layout = __webpack_require__(78);
+	var Layout = __webpack_require__(79);
 
 	var padding = 5;
 	var List = Sophie.createClass("p-list", {
@@ -8754,7 +8845,7 @@
 	"use strict";
 
 	var List = __webpack_require__(95);
-	var Pic = __webpack_require__(85);
+	var Pic = __webpack_require__(86);
 
 	var ListImg = Sophie.createClass("p-list-img", {
 
@@ -8832,7 +8923,7 @@
 	'use strict';
 
 	var Text = __webpack_require__(94);
-	var Pic = __webpack_require__(85);
+	var Pic = __webpack_require__(86);
 
 	var Slide = Sophie.createClass("p-slide", {
 	    render: function render() {
