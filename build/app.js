@@ -56,12 +56,14 @@
 
 	window.__DEV__ = true;
 	var Sophie = __webpack_require__(2);
+
 	__webpack_require__(65);
 	__webpack_require__(66);
 
 	__webpack_require__(70);
 	var template = __webpack_require__(71);
 
+	var creater = __webpack_require__(79);
 	var app = {
 	  template: template,
 	  // run:function(APP){
@@ -75,27 +77,27 @@
 	  Page: __webpack_require__(73),
 	  Site: __webpack_require__(72),
 
-	  LayoutInner: __webpack_require__(79),
-	  LayoutTwo: __webpack_require__(80),
-	  LayoutThree: __webpack_require__(81),
-	  LayoutTwoResponse: __webpack_require__(82),
-	  LayoutTwoNoResponse: __webpack_require__(83),
-	  LayoutThreeResponse: __webpack_require__(84),
-	  LayoutThreeNoResponse: __webpack_require__(85),
-	  Pic: __webpack_require__(86),
-	  Logo: __webpack_require__(88),
-	  Grid: __webpack_require__(89),
+	  LayoutInner: __webpack_require__(81),
+	  LayoutTwo: __webpack_require__(83),
+	  LayoutThree: __webpack_require__(84),
+	  LayoutTwoResponse: __webpack_require__(85),
+	  LayoutTwoNoResponse: __webpack_require__(86),
+	  LayoutThreeResponse: __webpack_require__(87),
+	  LayoutThreeNoResponse: __webpack_require__(88),
+	  Pic: __webpack_require__(82),
+	  Logo: __webpack_require__(89),
+	  Grid: __webpack_require__(90),
 
-	  NavPage: __webpack_require__(90),
-	  NavPageInline: __webpack_require__(92),
-	  NavPageAbsolute: __webpack_require__(93),
+	  NavPage: __webpack_require__(92),
+	  NavPageInline: __webpack_require__(94),
+	  NavPageAbsolute: __webpack_require__(96),
 
-	  A: __webpack_require__(91),
-	  Text: __webpack_require__(94),
+	  A: __webpack_require__(93),
+	  Text: __webpack_require__(97),
 
-	  List: __webpack_require__(95),
+	  List: __webpack_require__(80),
 
-	  ListImg: __webpack_require__(96),
+	  ListImg: __webpack_require__(98),
 
 	  //--
 	  // require('./components/p-masonry.js')
@@ -106,7 +108,7 @@
 	  // require('./components/p-nav-h.js')
 	  //
 	  // require('./components/p-nav-v.js')
-	  Slide: __webpack_require__(97)
+	  Slide: __webpack_require__(99),
 	  // require('./components/p-list-layout.js')
 	  // require('./components/p-tabs.js')
 	  // require('./components/p-scroll-h.js')
@@ -128,6 +130,7 @@
 
 	  //
 	  // require('./components/p-nav-bar.js')
+	  creater: creater
 	};
 
 	app.render(window.serverData);
@@ -5147,7 +5150,6 @@
 
 	    //通知父页面加载
 	    Sophie.on("ready", function () {
-	        console.log("ready");
 	        if (parent.play && parent.play.dom) {
 	            var jQuery = parent.$;
 	            jQuery(parent).trigger("iframeComplete", [window]);
@@ -5264,14 +5266,14 @@
 	    if (mediaQuery === "@media (max-width: 767px)") {
 	        var newStyle = {};
 	        for (var p in styles) {
-	            newStyle["#media-phone " + p] = styles[p];
+	            newStyle["#media-phone #dotlinkface " + p] = styles[p];
 	        }
 
 	        createStyleSheet(newStyle, mediaQuery, name);
 	    } else if (!mediaQuery) {
 	        var newStyle = {};
 	        for (var p in styles) {
-	            newStyle["#media-pc " + p] = styles[p];
+	            newStyle["#media-pc #dotlinkface " + p] = styles[p];
 	        }
 
 	        // createStyleSheet(newStyle,mediaQuery,name)
@@ -5331,19 +5333,19 @@
 	  componentDidMount: function componentDidMount() {},
 
 	  render: function render() {
-	    return this.element(
+	    return Sophie.element(
 	      'app',
 	      null,
-	      this.element(
+	      Sophie.element(
 	        Site,
 	        null,
-	        this.element(Header, { ref: 'header' }),
-	        this.element(
+	        Sophie.element(Header, { ref: 'header' }),
+	        Sophie.element(
 	          Body,
 	          { ref: 'body' },
-	          this.element(Page, { 'class': 'active', id: 'main-page', title: '首页' })
+	          Sophie.element(Page, { 'class': 'active', id: 'main-page', title: '首页' })
 	        ),
-	        this.element(Footer, { ref: 'footer' })
+	        Sophie.element(Footer, { ref: 'footer' })
 	      )
 	    );
 	  }
@@ -5384,14 +5386,13 @@
 	  componentDidMount: function componentDidMount() {
 	    var siteTitle = $(this).attr("title");
 	    $("title").text(siteTitle);
-
 	    this.active(this.props.activePageId);
 	  },
 
 	  render: function render() {
-	    return this.element(
+	    return Sophie.element(
 	      "p-site",
-	      null,
+	      { id: "app" },
 	      this.children
 	    );
 	  },
@@ -5518,7 +5519,7 @@
 	    if (this.state.isActive) {
 	      className = "acitve";
 	    }
-	    return this.element(
+	    return Sophie.element(
 	      "p-page",
 	      { "class": className, id: this.props.id, title: this.props.title },
 	      this.renderChild()
@@ -5532,13 +5533,13 @@
 	      for (var i = 0; i < this.children.length; i++) {
 
 	        if (this.children[i].attributes.fullWidth) {
-	          child.push(this.element(
+	          child.push(Sophie.element(
 	            "div",
 	            { "class": "p-container-fluid" },
 	            this.children[i]
 	          ));
 	        } else {
-	          child.push(this.element(
+	          child.push(Sophie.element(
 	            "div",
 	            { "class": "p-container" },
 	            this.children[i]
@@ -5581,6 +5582,7 @@
 	    //document的宽度不准
 	    var winWidth = $('body').width();
 	    if (winWidth <= play.mediaQueryValue.phone) {
+	      return;
 
 	      var children = $(".p-container-fluid", self).children();
 	      children.each(function (index, el) {
@@ -5633,7 +5635,7 @@
 	  'p-page': {
 	    display: 'none',
 	    width: '100%!important',
-	    height: 1360,
+	    minHeight: 800,
 	    overflowX: 'hidden',
 	    margin: '0!important',
 	    padding: '0!important'
@@ -5641,7 +5643,7 @@
 	  },
 
 	  'p-page.active': {
-	    display: 'table!important'
+	    display: 'block!important'
 	  },
 
 	  'p-page > .p-container-fluid, p-page > .p-container': {
@@ -5717,45 +5719,36 @@
 
 	  componentDidMount: function componentDidMount() {
 	    var siteTitle = $(this).attr("title");
+	    this.isShow = false;
 	    $("title").text(siteTitle);
 	    var self = this;
-	    setTimeout(function () {
 
-	      // $(".navbar-toggle-render","p-header").remove();
-	      self.navbarToggle = $("p-nav-bar", self.nativeNode);
-	      self.navbar = $(".navbar-nav", self.nativeNode);
-	      //
-	      // self.navbarToggle.appendTo("p-header .p-container-fluid");
-	      // self.navbarToggle.addClass("navbar-toggle-render")
-	      //
+	    $(document).click(function (ev) {
+	      var target = $(ev.target);
+	      var bar = $("p-nav-bar", self.nativeNode);
+	      var navbar = $(".navbar-nav", self.nativeNode);
 
+	      if (!target.closest(bar).length && !target.closest(navbar).length) {
+	        self.hideSidebar();
+	      }
 
-	      self.navbarToggle.click(function () {
-	        // self.showPopup()
+	      if (target.closest(bar).length) {
 	        self.showSidebar();
-	      });
-
-	      $(document).click(function (ev) {
-	        var target = $(ev.target);
-
-	        if (!target.closest(self.navbarToggle).length && !target.closest(self.navbar).length) {
-	          self.hideSidebar();
-	        }
-	      });
-	    }, 0);
+	      }
+	    });
 	  },
 	  showSidebar: function showSidebar() {
 	    var self = this;
-	    if (this.props.isShow == true) {
+	    if (this.isShow == true) {
 
 	      $("p-site").removeClass("nav-open");
 	      $("p-site").addClass("nav-close");
-	      this.props.isShow = false;
+	      this.isShow = false;
 	    } else {
 	      $("p-site").addClass("nav-open");
 	      $("p-site").removeClass("nav-close");
 
-	      this.props.isShow = true;
+	      this.isShow = true;
 	    }
 	  },
 	  hideSidebar: function hideSidebar() {
@@ -5769,14 +5762,14 @@
 	  },
 
 	  render: function render() {
-	    return this.element(
+	    return Sophie.element(
 	      "p-header",
 	      null,
-	      this.element(
+	      Sophie.element(
 	        "div",
 	        { "class": "p-container" },
 	        this.children,
-	        this.element(NavBar, null)
+	        Sophie.element(NavBar, null)
 	      )
 	    );
 	  }
@@ -5819,19 +5812,20 @@
 	    "transform": "translate3d(-300px, 0px, 0px)",
 	    transition: "all 0.5s"
 	  },
+
 	  'p-site.nav-close': {
-	    "transform": "translate3d(0px, 0px, 0px)",
 	    transition: "all 0.5s"
 	  },
-	  'p-site p-header': {
+
+	  'p-site > p-header': {
 	    position: "fixed",
-	    top: 0,
+	    top: "0em",
 	    left: "100%",
 	    width: "300px!important",
 	    height: "100%!important"
-
 	  },
-	  'p-site p-header p-nav-page': {
+
+	  'p-site > p-header  p-nav-page': {
 	    position: "static",
 	    width: "100%",
 	    height: "auto"
@@ -5864,15 +5858,15 @@
 
 	var NavBar = Sophie.createClass("p-nav-bar", {
 	  render: function render() {
-	    return this.element(
+	    return Sophie.element(
 	      "p-nav-bar",
 	      null,
-	      this.element(
+	      Sophie.element(
 	        "button",
 	        { "class": "navbar-toggle", type: "button", "data-toggle": "collapse", "data-target": ".bs-navbar-collapse" },
-	        this.element("span", { "class": "icon-bar" }),
-	        this.element("span", { "class": "icon-bar" }),
-	        this.element("span", { "class": "icon-bar" })
+	        Sophie.element("span", { "class": "icon-bar" }),
+	        Sophie.element("span", { "class": "icon-bar" }),
+	        Sophie.element("span", { "class": "icon-bar" })
 	      )
 	    );
 	  }
@@ -5931,7 +5925,7 @@
 	    };
 	  },
 	  render: function render() {
-	    return this.element(
+	    return Sophie.element(
 	      "p-body",
 	      null,
 	      this.children
@@ -6004,10 +5998,10 @@
 	    },
 
 	    render: function render() {
-	        return this.element(
+	        return Sophie.element(
 	            "p-footer",
 	            null,
-	            this.element(
+	            Sophie.element(
 	                "div",
 	                { "class": "p-container-fluid" },
 	                " ",
@@ -6051,10 +6045,377 @@
 
 /***/ },
 /* 79 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var List = __webpack_require__(80);
+	var Pic = __webpack_require__(82);
+	var creater = {
+	  listImg: function listImg() {
+	    return Sophie.element(List, { "class": "p-list-img", defaultInnerVnodeName: "p-pic", "data-c-num": 2, "data-r-num": 2 });
+	  }
+	};
+
+	Sophie.createStyleSheet({
+	  "p-list.p-list-img .c-ceil >  p-pic": {
+	    height: "100%",
+	    display: "block",
+	    width: "auto",
+	    overflow: "hidden"
+
+	  }
+
+	});
+
+	module.exports = creater;
+
+/***/ },
+/* 80 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var Layout = __webpack_require__(81);
+
+	var padding = 5;
+	var List = Sophie.createClass("p-list", {
+
+	    render: function render() {
+	        var self = this;
+	        var style = "";
+	        if ($(document).width() <= 768 && self.parent.name == "p-page") {
+	            //可能已经被删除了
+	            if (self.nativeNode.parentNode) {
+	                style = "fontSize:" + this.props["data-c-num"] + "rem";
+	                self.isMobile = true;
+	            }
+	        } else {
+	            style = "";
+	            self.isMobile = false;
+	        }
+
+	        return Sophie.element(
+	            "p-list",
+	            { "class": this.props.class, "data-c-num": this.props["data-c-num"], "data-r-num": this.props["data-r-num"] },
+	            Sophie.element(
+	                "div",
+	                { style: style, "class": "ul" },
+	                this.renderChildren()
+	            )
+	        );
+	    },
+
+	    getDefaultProps: function getDefaultProps() {
+	        return {
+	            class: "",
+	            defaultInnerVnodeName: "",
+	            "data-c-num": 2,
+	            "data-r-num": 2,
+	            cellHeight: "5rem",
+	            cellWidth: "5rem"
+	        };
+	    },
+
+	    getDefaultChildren: function getDefaultChildren() {
+	        var result = [];
+	        for (var i = 0; i < 4; i++) {
+	            result.push(Sophie.element(Layout, null));
+	        }
+	        return result;
+	    },
+
+	    renderChildren: function renderChildren() {
+	        var Layout;
+	        if (this.props.defaultInnerVnodeName) {
+	            Layout = Sophie.registry[this.props.defaultInnerVnodeName];
+	        }
+
+	        var children = this.props.children;
+	        var result = [];
+	        var cellStyle = "height:" + this.props.cellHeight + "width:" + this.props.cellWidth;
+
+	        for (var i = 0; i < children.length; i++) {
+	            if (Layout) {
+	                var r = Sophie.element(
+	                    "div",
+	                    { "class": "c-list" },
+	                    Sophie.element(
+	                        "div",
+	                        { "class": "c-ceil", style: cellStyle },
+	                        Sophie.element(Layout, null)
+	                    )
+	                );
+	                result.push(r);
+	            } else {
+	                var r = Sophie.element(
+	                    "div",
+	                    { "class": "c-list" },
+	                    Sophie.element(
+	                        "div",
+	                        { "class": "c-ceil", style: cellStyle },
+	                        children[i]
+	                    )
+	                );
+	                result.push(r);
+	            }
+	        }
+
+	        return result;
+	    },
+
+	    componentWillMount: function componentWillMount() {},
+
+	    componentDidMount: function componentDidMount() {
+	        this.$ = $(this.nativeNode);
+
+	        var self = this;
+
+	        $(window).on("resize", function () {
+	            setTimeout(function () {
+	                self.forceUpdate();
+	            }, 10);
+	        });
+
+	        setTimeout(function () {
+	            this.showOrHideCeil();
+	        }, 0);
+	    },
+
+	    resize: function resize() {
+	        setTimeout(function () {
+	            this.setAllColumnWidth();
+	            this.setAllRowHeight();
+	            this.showOrHideCeil();
+	        }, 0);
+	    },
+
+	    setColumn: function setColumn(columm) {
+	        $(this.$).attr("data-c-num", columm);
+	        this.setAllColumnWidth();
+	        this.showOrHideCeil();
+	    },
+	    setRow: function setRow(row) {
+	        $(this.$).attr("data-r-num", row);
+	        this.setAllColumnWidth();
+	        this.setAllRowHeight();
+	        this.showOrHideCeil();
+	    },
+
+	    initRowColumn: function initRowColumn() {
+	        this.showOrHideCeil();
+	    },
+
+	    autoContainerHeight: function autoContainerHeight() {
+	        var h = $(this.$).find(".ul");
+	        var innerHeight = h.height();
+	        var outerHeight = $(this.$).height();
+	        if (outerHeight < innerHeight) {
+	            $(this.$).height(innerHeight);
+	        }
+	    },
+
+	    showOrHideCeil: function showOrHideCeil() {
+
+	        var cnum = parseInt($(this.$).attr("data-c-num"));
+	        var rnum = parseInt($(this.$).attr("data-r-num"));
+	        var allNum = cnum * rnum;
+	        var realNum = $(this.$).find(".c-list").length;
+
+	        if (allNum <= realNum) {
+	            for (var i = 0; i < realNum; i++) {
+	                if (i < allNum) {
+	                    $(this.$).find(".c-list").eq(i).show();
+	                } else {
+	                    $(this.$).find(".c-list").eq(i).hide();
+	                }
+	            }
+	        } else {
+	            $(this.$).find(".c-list").show();
+	        }
+	    },
+
+	    addOne: function addOne(el) {
+	        this.children.push(el.vnode);
+	        this._update();
+	    },
+
+	    addAuto: function addAuto() {
+	        var children = this.props.children[0];
+	        if (children && children.name) {
+	            this.addOneVnode(Sophie.createVnodeByTagName(children.name));
+	        } else {
+	            this.addOneEmpty();
+	        }
+
+	        this._update();
+	    },
+
+	    addOneVnode: function addOneVnode(elVnode) {
+	        this.children.push(elVnode);
+	        this._update();
+	    },
+
+	    addOneEmpty: function addOneEmpty() {
+	        this.addOneVnode(Sophie.createVnodeByTagName("p-layout"));
+	    },
+	    wrapOne: function wrapOne(el) {
+	        var li = $('<div class="c-list"><p-layout class="c-ceil"></p-layout></div>');
+	        li.find(".c-ceil").append(el);
+	        return li;
+	    },
+
+	    setAllColumnWidth: function setAllColumnWidth(width) {
+
+	        var width = width || $(this.$).width();
+
+	        width = width + padding * 2;
+	        var oNum = parseInt($(this.$).attr("data-c-num"));
+	        var columnWith = width / oNum;
+	        var self = this;
+
+	        $(".c-list", this.$).each(function (index, el) {
+	            self.setColumnWidth($(el), columnWith);
+	        });
+	    },
+	    setColumnWidth: function setColumnWidth(column, columnWith) {
+
+	        if (!columnWith) {
+	            var width = $(this.$).width();
+	            var oNum = parseInt($(this.$).attr("data-c-num"));
+	            var columnWith = width / oNum;
+	        }
+
+	        var currentFontSize = parseFloat($(this.$).css("fontSize"));
+
+	        var value = columnWith + "px";
+	        if (play.unit == "rem") {
+	            value = play.pxToRem(columnWith) + "rem";
+	        } else if (play.unit == "%") {
+	            value = play.pxToPresent(columnWith) + "%";
+	        } else if (play.unit == "em") {
+	            value = play.pxToEm(columnWith, currentFontSize) + "em";
+	        }
+
+	        this.props.cellWidth = value;
+	        $(column).css("width", value);
+	    },
+
+	    setAllRowHeight: function setAllRowHeight(height) {
+	        var height = height || $(this.$).height();
+	        var rowNum = parseInt($(this.$).attr("data-r-num"));
+	        var rowHeight = height / rowNum;
+	        var self = this;
+
+	        $(".c-list", this.$).each(function (index, el) {
+
+	            self.setRowHeight(el, rowHeight);
+	        });
+	    },
+
+	    setRowHeight: function setRowHeight(row, rowHeight) {
+	        if (!rowHeight) {
+	            var height = $(this.$).height();
+	            var currentFontSize = parseFloat($(this.$).css("fontSize"));
+	            var rowNum = parseInt($(this.$).attr("data-r-num"));
+	            var rowHeight = height / rowNum;
+	        }
+
+	        var currentFontSize = parseFloat($(this.$).css("fontSize"));
+	        var value = rowHeight + "px";
+	        if (play.unit == "rem") {
+	            value = play.pxToRem(rowHeight) + "rem";
+	        } else if (play.unit == "%") {
+	            value = play.pxToPresent(rowHeight) + "%";
+	        } else if (play.unit == "em") {
+	            value = play.pxToEm(rowHeight, currentFontSize) + "em";
+	        }
+
+	        this.props.cellHeight = value;
+
+	        $(row).css("height", value);
+	    }
+
+	});
+
+	Sophie.createStyleSheet({
+
+	    'p-list': {
+	        display: 'table',
+	        overflow: 'hidden',
+	        width: '10rem',
+	        height: '10rem',
+	        clear: 'both'
+	    },
+
+	    'p-list:before,  p-list:after': {
+	        display: 'table',
+	        lineHeight: '0',
+	        content: ''
+	    },
+
+	    'p-list > .ul': {
+	        display: 'block',
+	        overflow: 'hidden',
+	        marginRight: '-10px',
+	        marginLeft: '-5px',
+	        height: '100%'
+	    },
+
+	    'p-list > .ul .c-list': {
+	        width: '50%',
+	        float: 'left',
+	        listStyle: 'none',
+	        minHeight: '10px',
+	        height: '100%',
+	        overflow: 'hidden',
+	        boxSizing: 'border-box',
+	        padding: '0px 5px 10px 5px'
+	    },
+
+	    'p-list > .ul .c-list .c-ceil': {
+	        height: '100%',
+	        minHeight: '10px',
+	        display: 'block',
+	        width: 'auto',
+	        overflow: 'hidden'
+	    },
+
+	    'p-list  .c-ceil > p-layout-inner': {
+	        height: '100%',
+	        minHeight: '0px',
+	        display: 'block',
+	        width: 'auto',
+	        overflow: 'hidden'
+
+	    },
+
+	    'p-list > ul .c-list .c-ceil .placeholder': {
+	        display: 'none!important',
+	        position: 'absolute'
+	    }
+
+	});
+
+	Sophie.createStyleSheet({
+	    'p-page > .p-container-fluid > p-list': {
+	        height: 'auto!important',
+	        marginLeft: '0px!important',
+	        marginRight: '0px!important',
+	        width: '100%'
+	    }
+
+	}, "@media (max-width: 767px)");
+
+	module.exports = List;
+
+/***/ },
+/* 81 */
 /***/ function(module, exports) {
 
 	"use strict";
 
+	//可以作为容器，但不能被选择
 	var Layout = Sophie.createClass("p-layout-inner", {
 	  getDefaultProps: function getDefaultProps() {
 	    return {
@@ -6062,7 +6423,7 @@
 	    };
 	  },
 	  render: function render() {
-	    return this.element(
+	    return Sophie.element(
 	      "p-layout-inner",
 	      { style: this.props.style, "class": this.props.class },
 	      " ",
@@ -6099,12 +6460,308 @@
 	module.exports = Layout;
 
 /***/ },
-/* 80 */
+/* 82 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var Layout = __webpack_require__(79);
+	var _pPicA, _pPicCircleA, _pImgA;
+
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+	var Layout = __webpack_require__(81);
+	var PIC = Sophie.createClass("p-pic", {
+
+	    getDefaultProps: function getDefaultProps() {
+	        return {
+	            src: "http://dotlinkface.oss-cn-shanghai.aliyuncs.com/default.jpg",
+	            href: "http://dotlinkface.oss-cn-shanghai.aliyuncs.com/default.jpg"
+	        };
+	    },
+	    componentDidMount: function componentDidMount() {
+
+	        // var src = $(this.node).attr("src")||"http://img.tuku.cn/file_big/201502/ad45f0968eba4b92ba549cc7abf0e70a.jpg"
+	        // var href = $(this.node).attr("href")||"/editor/img/3.jpg"
+	        // this.setHref(href);
+	        // this.setSrc(src)
+	    },
+	    getDefaultChildren: function getDefaultChildren() {
+	        return Sophie.element(Layout, null);
+	    },
+
+	    render: function render() {
+
+	        var background = "background-image:url(" + this.props.src + ")";
+	        return Sophie.element(
+	            "p-pic",
+	            null,
+	            Sophie.element("a", { href: this.props.href, style: background }),
+	            this.props.children
+	        );
+	    },
+	    renderChildren: function renderChildren() {
+	        if (this.children.length == 0) {
+	            this.children.push(Sophie.element(Layout, { "class": "children" }));
+	        }
+	        return this.children;
+	    },
+
+	    setHref: function setHref(href) {
+	        // $(this.node).attr("href",href);
+	        // var a = $(this.node).find("a");
+	        // a.attr("href", href)
+
+	        this.attributes.href = href;
+	        this._update();
+	    },
+
+	    setSrc: function setSrc(src) {
+	        $(this.node).attr("src", src);
+	        var a = $(this.node).find("a");
+	        if (src) {
+	            a.css("background-image", "url(" + src + ")");
+	        }
+
+	        this.attributes.src = src;
+	        this._update();
+	    }
+	});
+
+	PIC.createStyleSheet({
+	    'p-pic': {
+	        display: 'block',
+	        width: '5em',
+	        height: '5em',
+	        overflow: 'hidden',
+	        position: 'relative'
+	    },
+
+	    'p-pic > div': {
+	        position: 'absolute',
+	        top: 0,
+	        left: 0,
+	        height: '100%',
+
+	        display: 'block',
+	        border: 0,
+	        width: '100%'
+
+	    },
+
+	    'p-pic  > a': (_pPicA = {
+	        position: 'absolute',
+	        top: 0,
+	        left: 0,
+	        height: '100%',
+
+	        display: 'block',
+	        border: 0,
+	        width: '100%',
+	        backgroundSize: 'cover',
+	        backgroundRepeat: 'no-repeat!important',
+	        backgroundPosition: 'center center',
+	        backgroundImage: 'url(http://img.tuku.cn/file_big/201502/ad45f0968eba4b92ba549cc7abf0e70a.jpg)'
+	    }, _defineProperty(_pPicA, "position", 'relative'), _defineProperty(_pPicA, "borderRadius", 'inherit'), _pPicA),
+
+	    'p-pic > .children,p-pic > p-layout-inner': {
+	        position: 'absolute',
+	        top: 0,
+	        left: 0,
+	        height: '100%',
+
+	        display: 'block',
+	        border: 0,
+	        width: '100%'
+	    },
+
+	    'p-pic  a img': {
+	        width: '100%'
+	    }
+
+	});
+
+	PIC.createStyleSheet({
+	    "p-pic": {}
+	}, "@media (max-width: 767px)");
+
+	Sophie.createClass("p-pic-circle", {
+
+	    componentDidMount: function componentDidMount() {
+
+	        var src = $(this.node).attr("src") || "http://img.tuku.cn/file_big/201502/ad45f0968eba4b92ba549cc7abf0e70a.jpg";
+	        var href = $(this.node).attr("href") || "/editor/img/3.jpg";
+	        this.setHref(href);
+	        this.setSrc(src);
+	    },
+
+	    render: function render() {
+	        return Sophie.element(
+	            "p-pic-circle",
+	            null,
+	            Sophie.element("a", { href: "/editor/img/4.jpg" }),
+	            Sophie.element(
+	                "div",
+	                { "class": "children" },
+	                this.children
+	            )
+	        );
+	    },
+
+	    setHref: function setHref(href) {
+	        $(this.node).attr("href", href);
+	        var a = $(this.node).find("a");
+	        a.attr("href", href);
+	    },
+
+	    setSrc: function setSrc(src) {
+	        $(this.node).attr("src", src);
+	        var a = $(this.node).find("a");
+	        if (src) {
+	            a.css("background-image", "url(" + src + ")");
+	        }
+	    }
+	});
+
+	Sophie.createStyleSheet({
+	    'p-pic-circle': {
+	        display: 'block',
+	        width: '5em',
+	        height: '5em',
+	        border: 0,
+	        overflow: 'hidden',
+	        position: 'relative',
+	        borderRadius: '50%'
+	    },
+
+	    'p-pic-circle > div': {
+	        position: 'absolute',
+	        top: 0,
+	        left: 0,
+	        height: '100%',
+
+	        display: 'block',
+	        border: 0,
+	        width: '100%'
+
+	    },
+
+	    'p-pic-circle  > a': (_pPicCircleA = {
+	        position: 'absolute',
+	        top: 0,
+	        left: 0,
+	        height: '100%',
+
+	        display: 'block',
+	        border: 0,
+	        width: '100%',
+	        backgroundSize: 'cover',
+	        backgroundRepeat: 'no-repeat!important',
+	        backgroundPosition: 'center center',
+	        backgroundImage: 'url(http://img.tuku.cn/file_big/201502/ad45f0968eba4b92ba549cc7abf0e70a.jpg)'
+	    }, _defineProperty(_pPicCircleA, "position", 'relative'), _defineProperty(_pPicCircleA, "borderRadius", 'inherit'), _pPicCircleA),
+
+	    'p-pic-circle .children': {
+	        position: 'absolute',
+	        top: 0,
+	        left: 0,
+	        height: '100%',
+
+	        display: 'block',
+	        border: 0,
+	        width: '100%'
+	    },
+
+	    'p-pic-circle  a img': {
+	        width: '100%'
+	    }
+
+	});
+
+	Sophie.createClass("p-img", {
+
+	    componentDidMount: function componentDidMount() {
+	        var src = $(this.node).attr("src") || "/editor/img/3.jpg";
+	        var href = $(this.node).attr("href") || "/editor/img/3.jpg";
+	        this.setHref(href);
+	        this.setSrc(src);
+	    },
+
+	    setHref: function setHref(href) {
+	        $(this.node).attr("href", href);
+	        var a = $(this.node).find("a");
+	        a.attr("href", href);
+	    },
+
+	    setSrc: function setSrc(src) {
+	        $(this.node).attr("src", src);
+	        var a = $(this.node).find("a");
+	        var img = $(this.node).find("a img");
+	        if (src) {
+	            img.prop("src", src);
+	        }
+	    },
+	    rener: function rener() {
+	        return Sophie.element(
+	            "div",
+	            null,
+	            Sophie.element("a", { href: "/editor/img/4.jpg" }),
+	            Sophie.element("children", null)
+	        );
+	    }
+	});
+
+	Sophie.createStyleSheet({
+	    'p-img': {
+	        display: 'block',
+	        width: '4em',
+	        height: 'auto!important',
+
+	        border: 0,
+	        overflow: 'hidden',
+	        position: 'relative'
+	    },
+
+	    'p-img > a': (_pImgA = {
+	        position: 'absolute',
+	        top: 0,
+	        left: 0,
+	        height: '100%',
+
+	        display: 'block',
+	        border: 0,
+
+	        width: '100%',
+	        backgroundSize: 'cover',
+	        backgroundRepeat: 'no-repeat!important',
+	        backgroundPosition: 'center center',
+	        backgroundImage: 'url(http://img.tuku.cn/file_big/201502/ad45f0968eba4b92ba549cc7abf0e70a.jpg)'
+	    }, _defineProperty(_pImgA, "position", 'relative'), _defineProperty(_pImgA, "borderRadius", 'inherit'), _pImgA),
+
+	    'p-img > children': {
+	        position: 'absolute',
+	        top: 0,
+	        left: 0,
+	        height: '100%',
+	        display: 'block',
+	        border: 0,
+	        width: '100%'
+	    },
+
+	    'p-img > a > img': {
+	        width: '100%'
+	    }
+
+	});
+
+	module.exports = PIC;
+
+/***/ },
+/* 83 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var Layout = __webpack_require__(81);
 	var LayoutTow = Sophie.createClass("p-layout-two", {
 
 	  getDefaultProps: function getDefaultProps() {
@@ -6117,7 +6774,7 @@
 	  componentWillMount: function componentWillMount() {},
 
 	  getDefaultChildren: function getDefaultChildren() {
-	    return [this.element(Layout, { "class": "c-row-1 p-layout-wrap" }), this.element(Layout, { "class": "c-row-2 p-layout-wrap" })];
+	    return [Sophie.element(Layout, { "class": "c-row-1 p-layout-wrap" }), Sophie.element(Layout, { "class": "c-row-2 p-layout-wrap" })];
 	  },
 
 	  componentDidInsert: function componentDidInsert() {
@@ -6175,7 +6832,7 @@
 	  },
 	  render: function render() {
 
-	    return this.element(
+	    return Sophie.element(
 	      "p-layout-two",
 	      null,
 	      this.renderItem()
@@ -6316,12 +6973,12 @@
 	module.exports = LayoutTow;
 
 /***/ },
-/* 81 */
+/* 84 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var Layout = __webpack_require__(79);
+	var Layout = __webpack_require__(81);
 	var LayoutTow = Sophie.createClass("p-layout-three", {
 
 	  getDefaultProps: function getDefaultProps() {
@@ -6382,7 +7039,7 @@
 	  },
 	  componentWillMount: function componentWillMount() {},
 	  render: function render() {
-	    return this.element(
+	    return Sophie.element(
 	      "p-layout-three",
 	      null,
 	      this.renderItem()
@@ -6390,7 +7047,7 @@
 	  },
 
 	  getDefaultChildren: function getDefaultChildren() {
-	    return [this.element(Layout, { style: "width:" + this.props.firstWidth, "class": "c-row-1 p-layout-wrap" }), this.element(Layout, { style: "width:" + this.props.secondWidth, "class": "c-row-2 p-layout-wrap" }), this.element(Layout, { style: "width:" + this.props.threeWidth, "class": "c-row-3 p-layout-wrap" })];
+	    return [Sophie.element(Layout, { style: "width:" + this.props.firstWidth, "class": "c-row-1 p-layout-wrap" }), Sophie.element(Layout, { style: "width:" + this.props.secondWidth, "class": "c-row-2 p-layout-wrap" }), Sophie.element(Layout, { style: "width:" + this.props.threeWidth, "class": "c-row-3 p-layout-wrap" })];
 	  },
 
 	  renderItem: function renderItem() {
@@ -6529,105 +7186,75 @@
 	module.exports = LayoutTow;
 
 /***/ },
-/* 82 */
+/* 85 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-	var Layout = __webpack_require__(79);
+	var Layout = __webpack_require__(81);
 
 	//响应式元素不能被嵌套
 	//@todo 实现这个机制，嵌套了也不会做响应
 	var LayoutTow = Sophie.createClass("p-layout-two-response", {
 
 	  getDefaultProps: function getDefaultProps() {
-	    return _defineProperty({
+	    return {
 	      height: 2, //pc端高度，em，
 	      width: 10, //pc端宽度，em
 	      // phoneHeight:4,//pc端高度，em，
 
 
-	      firstWidthPercent: "50", //第一列宽度,%
-	      firstFontSize: 1, //第一列字体大小
-	      firstHeight: null, //第一列高度，移动端使用
+	      widthPercent1: "50", //第一列宽度,%
+	      fontSize1: 1, //第一列字体大小
+	      height1: null, //第一列高度，移动端使用
 
-	      secondWidthPercent: "50", //第二列宽度,%
-	      secondFontSize: 1 }, "firstHeight", null);
+	      widthPercent2: "50", //第二列宽度,%
+	      fontSize2: 1, //第二列字体大小
+	      height2: null };
 	  },
 	  componentWillMount: function componentWillMount() {},
 
 	  componentDidMount: function componentDidMount() {
 	    var self = this;
+
+	    //销毁后事情不会移除
 	    $(window).on("resize", function () {
+	      if (!self.nativeNode.ownerDocument) {
+	        return;
+	      }
 	      setTimeout(function () {
 	        self._update();
-	        self.children[0]._update();
-	        self.children[1]._update();
+	        setTimeout(function () {
+	          self.props.children[0]._update();
+	          self.props.children[1]._update();
+	        }, 0);
 	      }, 0);
 	    });
 	  },
 
-	  //如果出行响应布局元素嵌套，那么当前元素的字体在小并不确定
-	  //方案：使用rem单位，这样可以避免父元素的影响
-	  componentAfterMount: function componentAfterMount() {
-	    var self = this;
-
-	    return;
-
-	    setTimeout(function () {
-
-	      self.autoContainerHeight();
-	      if ($(document).width() <= 767) {
-	        //可能已经被删除了
-
-
-	        if (self.nativeNode.parentNode) {
-
-	          self.mobileRender();
-	        }
-	      } else {
-	        if (self.nativeNode.parentNode) $(self).find("> .p-layout-wrap").css("fontSize", "");
-	        $(self.nativeNode).removeClass("viewport-mobile");
-	        self.isMobile = false;
-	      }
-
-	      $(window).on("resize", function () {
-
-	        setTimeout(function () {
-	          if ($(document).width() <= 767) {
-	            //可能已经被删除了
-	            if (self.nativeNode.parentNode) {
-	              self.mobileRender();
-	            }
-	          } else {
-	            if (self.nativeNode.parentNode) $(self.nativeNode).find("> .p-layout-wrap").css("fontSize", "");
-	            $(self.nativeNode).removeClass("viewport-mobile");
-	            self.isMobile = false;
-	          }
-	        }, 100);
-	      });
-	    }, 10);
-	  },
-
 	  render: function render() {
-	    return this.element(
+	    var className = "";
+
+	    if ($(document).width() <= 767) {
+	      className = "mobile";
+	    }
+
+	    return Sophie.element(
 	      "p-layout-two-response",
-	      null,
+	      { "class": className },
 	      this.renderItem()
 	    );
 	  },
 	  getDefaultChildren: function getDefaultChildren() {
-	    return [this.element(Layout, { "class": "c-row-1 p-layout-wrap" }), this.element(Layout, { "class": "c-row-2 p-layout-wrap" })];
+	    return [Sophie.element(Layout, { "class": "c-row-1 p-layout-wrap" }), Sophie.element(Layout, { "class": "c-row-2 p-layout-wrap" })];
 	  },
 
 	  renderItem: function renderItem() {
 
 	    if ($(document).width() <= 767) {
 
-	      var fontSize1 = this.getResponseFontSize(this.props.width * this.props.firstWidthPercent / 100);
-	      var fontSize2 = this.getResponseFontSize(this.props.width * this.props.secondWidthPercent / 100);
+	      var fontSize1 = this.getResponseFontSize(this.props.width, this.props.width * this.props.widthPercent1 / 100);
+	      var fontSize2 = this.getResponseFontSize(this.props.width, this.props.width * this.props.widthPercent2 / 100);
 
 	      if (!this.props.phoneHeight) {
 	        var height = this.props.height;
@@ -6635,12 +7262,12 @@
 	        var height = this.props.phoneHeight / (fontSize1 + fontSize2);
 	      }
 
-	      this.props.children[0].attributes.style = "width:" + this.props.width * this.props.firstWidthPercent / 100 + "em;" + "height:" + height + "em; " + "font-size:" + fontSize1 + "rem";
-	      this.props.children[1].attributes.style = "width:" + this.props.width * this.props.secondWidthPercent / 100 + "em;" + "height:" + height + "em; " + "font-size:" + fontSize2 + "rem";
+	      this.props.children[0].attributes.style = "width:" + this.props.width * this.props.widthPercent1 / 100 + "em;" + "height:" + height + "em; " + "font-size:" + fontSize1 + "rem";
+	      this.props.children[1].attributes.style = "width:" + this.props.width * this.props.widthPercent2 / 100 + "em;" + "height:" + height + "em; " + "font-size:" + fontSize2 + "rem";
 	    } else {
 
-	      this.props.children[0].attributes.style = "width:" + this.props.firstWidthPercent + "%";
-	      this.props.children[1].attributes.style = "width:" + this.props.secondWidthPercent + "%";
+	      this.props.children[0].attributes.style = "width:" + this.props.widthPercent1 + "%";
+	      this.props.children[1].attributes.style = "width:" + this.props.widthPercent2 + "%";
 	    }
 
 	    return this.props.children;
@@ -6648,7 +7275,7 @@
 
 	  //resize时需要设置宽度
 	  setItemWidth: function setItemWidth(firstWidth, secondWidth) {
-	    this.props.firstWidthPercent = firstWidth, this.props.secondWidthPercent = secondWidth;
+	    this.props.widthPercent1 = firstWidth, this.props.widthPercent2 = secondWidth;
 	  },
 
 	  //resize时需要设置高度
@@ -6657,91 +7284,39 @@
 	  resize: function resize(coord) {
 
 	    if ($(document).width() <= 767) {
-	      this.props.phoneHeight = coord.height / coord.fontSize;
-	      this.props.phoneWidth = coord.width / coord.fontSize;
+	      if (coord.height) {
+	        this.props.phoneHeight = coord.height / coord.fontSize;
+	      }
+	      if (coord.width) {
+	        this.props.phoneWidth = coord.width / coord.fontSize;
+	      }
 
 	      this._update();
 	      this.props.children[0]._update();
 	      this.props.children[1]._update();
 	    } else {
-	      this.props.height = coord.height / coord.fontSize;
-	      this.props.width = coord.width / coord.fontSize;
+	      if (coord.height) {
+	        this.props.height = coord.height / coord.fontSize;
+	      }
+	      if (coord.width) {
+	        this.props.width = coord.width / coord.fontSize;
+	      }
 	    }
 	  },
 
 	  //width为em
-	  getResponseFontSize: function getResponseFontSize(width) {
-	    var phoneDocWidth = 320;
-	    var phoneDocFontSize = 15;
-	    var phoneWidth = width * phoneDocFontSize;
+	  getResponseFontSize: function getResponseFontSize(parentWidth, width) {
+
+	    var parentFontSize = this.fontSize();
+	    var phoneWidth = width * parentFontSize;
 
 	    //单位为rem, rem为单元可保障fontSize的大小是可变的
-	    var phoneFontSize = phoneDocWidth / phoneWidth;
-
+	    var phoneFontSize = parentWidth * parentFontSize / phoneWidth;
 	    return phoneFontSize;
 	  },
-	  mobileRender: function mobileRender() {
-	    return;
-	    if (!this.isMobile) {
 
-	      if (this.parent.name == "p-page") {
-	        var winWidth = $(this.parent.nativeNode).width();
-	      } else {
-	        var winWidth = $(this.nativeNode).width();
-	      }
-
-	      var list1Width = $(this.nativeNode).find("> .c-row-1").width();
-	      var list2Width = $(this.nativeNode).find("> .c-row-2").width();
-
-	      var currentFontSize = parseFloat($(this.nativeNode).css("fontSize"));
-	      var fontSize1 = winWidth / list1Width * currentFontSize;
-	      var fontSize2 = winWidth / list2Width * currentFontSize;
-
-	      $(this.nativeNode).find("> .c-row-1").css("fontSize", fontSize1 + "px");
-	      $(this.nativeNode).find("> .c-row-2").css("fontSize", fontSize2 + "px");
-
-	      $(this.nativeNode).addClass("viewport-mobile");
-	      this.isMobile = true;
-	    }
-
-	    //设置ul的字体
-	  },
-	  setResponseFontSize: function setResponseFontSize() {
-	    var phoneFontSize = 15;
-	    var currentFontSize = parseFloat($(this.nativeNode).css("fontSize"));
-	  },
-	  setContainerHeight: function setContainerHeight(height, currentFontSize) {
-
-	    var fontSize1 = parseFloat($(this.nativeNode).find("> .c-row-1").css("fontSize"));
-	    var fontSize2 = parseFloat($(this.nativeNode).find("> .c-row-2").css("fontSize"));
-
-	    var height = height || $(this.nativeNode).height();
-
-	    if ($(this.nativeNode).hasClass("viewport-mobile")) {
-
-	      // value(em)* fontSize1+value(em)*fontSize2 = height(px)
-	      var value = height / (fontSize1 + fontSize2) + "em";
-	    } else {
-	      var value = play.pxToEm(height, currentFontSize) + "em";
-	    }
-	    $(this.nativeNode).find("> .p-layout-wrap").css("height", value);
-	  },
-
-	  autoContainerHeight: function autoContainerHeight() {
-	    var currentFontSize = parseFloat($(this.nativeNode).css("fontSize"));
-	    var fontSize1 = parseFloat($(this.nativeNode).find("> .c-row-1").css("fontSize"));
-	    var fontSize2 = parseFloat($(this.nativeNode).find("> .c-row-2").css("fontSize"));
-
-	    var height = height || $(this.nativeNode).height();
-
-	    if ($(this.nativeNode).hasClass("viewport-mobile")) {
-
-	      var value = height / (fontSize1 + fontSize2) + "em";
-	    } else {
-	      var value = play.pxToEm(height, currentFontSize) + "em";
-	    }
-
-	    $(this.nativeNode).find("> .p-layout-wrap").css("height", value);
+	  fontSize: function fontSize() {
+	    return parseFloat($(this.nativeNode).css("fontSize"));
 	  }
 
 	});
@@ -6784,12 +7359,6 @@
 
 	  },
 
-	  "p-page > .p-container-fluid > p-layout-two-response": {
-	    width: "100%!important",
-	    marginLeft: "0!important",
-	    marginRight: "0!important"
-	  },
-
 	  'p-layout-two-response > .p-layout-wrap': {
 	    display: "table",
 	    float: "none",
@@ -6801,12 +7370,12 @@
 	module.exports = LayoutTow;
 
 /***/ },
-/* 83 */
+/* 86 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var Layout = __webpack_require__(79);
+	var Layout = __webpack_require__(81);
 	var LayoutTow = Sophie.createClass("p-layout-two-noresponse", {
 
 	  getDefaultProps: function getDefaultProps() {
@@ -6826,14 +7395,14 @@
 	    var self = this;
 	  },
 	  render: function render() {
-	    return this.element(
+	    return Sophie.element(
 	      "p-layout-two-noresponse",
 	      null,
 	      this.renderItem()
 	    );
 	  },
 	  getDefaultChildren: function getDefaultChildren() {
-	    return [this.element(Layout, { style: "width:" + this.props.firstWidth, "class": "c-row-1 p-layout-wrap" }), this.element(Layout, { style: "width:" + this.props.secondWidth, "class": "c-row-2 p-layout-wrap" })];
+	    return [Sophie.element(Layout, { style: "width:" + this.props.firstWidth, "class": "c-row-1 p-layout-wrap" }), Sophie.element(Layout, { style: "width:" + this.props.secondWidth, "class": "c-row-2 p-layout-wrap" })];
 	  },
 	  renderItem: function renderItem() {
 
@@ -6878,156 +7447,139 @@
 	module.exports = LayoutTow;
 
 /***/ },
-/* 84 */
+/* 87 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var Layout = __webpack_require__(79);
+	var Layout = __webpack_require__(81);
 	var LayoutTow = Sophie.createClass("p-layout-three-response", {
 
 	  getDefaultProps: function getDefaultProps() {
 	    return {
-	      firstWidth: "33.3%",
-	      secondWidth: "33.3%",
-	      threeWidth: "33.3%",
-	      height: 100
-	    };
+
+	      height: 2, //pc端高度，em，
+	      width: 10, //pc端宽度，em
+
+
+	      widthPercent1: "33.3", //第一列宽度,%
+	      fontSize1: 1, //第一列字体大小
+	      height1: null, //第一列高度，移动端使用
+
+	      widthPercent2: "33.3", //第二列宽度,%
+	      fontSize2: 1, //第二列字体大小
+	      height2: null, //第二列高度，移动端使用
+
+	      widthPercent3: "33.3", //第三列宽度,%
+	      fontSize3: 1, //第三列字体大小
+	      height3: null };
 	  },
 	  componentWillMount: function componentWillMount() {},
 
-	  componentAfterMount: function componentAfterMount() {
+	  componentDidMount: function componentDidMount() {
 	    var self = this;
 
-	    setTimeout(function () {
-
-	      self.autoContainerHeight();
-	      if ($(document).width() <= 767) {
-	        //可能已经被删除了
-
-
-	        if (self.nativeNode.parentNode) {
-
-	          self.mobileRender();
-	        }
-	      } else {
-	        if (self.nativeNode.parentNode) $(self).find("> .p-layout-wrap").css("fontSize", "");
-	        $(self.nativeNode).removeClass("viewport-mobile");
-	        self.isMobile = false;
+	    //销毁后事情不会移除
+	    $(window).on("resize", function () {
+	      if (!self.nativeNode.ownerDocument) {
+	        return;
 	      }
-
-	      $(window).on("resize", function () {
-
+	      setTimeout(function () {
+	        self._update();
 	        setTimeout(function () {
-	          if ($(document).width() <= 767) {
-	            //可能已经被删除了
-	            if (self.nativeNode.parentNode) {
-	              self.mobileRender();
-	            }
-	          } else {
-	            if (self.nativeNode.parentNode) $(self.nativeNode).find("> .p-layout-wrap").css("fontSize", "");
-	            $(self.nativeNode).removeClass("viewport-mobile");
-	            self.isMobile = false;
-	          }
-	        }, 100);
-	      });
-	    }, 10);
+	          self.props.children[0]._update();
+	          self.props.children[1]._update();
+	          self.props.children[2]._update();
+	        }, 0);
+	      }, 0);
+	    });
 	  },
 
 	  render: function render() {
-	    return this.element(
-	      "p-layout-two-response",
-	      null,
+	    var className = "";
+
+	    if ($(document).width() <= 767) {
+	      className = "mobile";
+	    }
+
+	    return Sophie.element(
+	      "p-layout-three-response",
+	      { "class": className },
 	      this.renderItem()
 	    );
 	  },
 
 	  getDefaultChildren: function getDefaultChildren() {
-	    return [this.element(Layout, { "class": "c-row-1 p-layout-wrap" }), this.element(Layout, { "class": "c-row-2 p-layout-wrap" }), this.element(Layout, { "class": "c-row-3 p-layout-wrap" })];
+	    return [Sophie.element(Layout, { "class": "c-row-1 p-layout-wrap" }), Sophie.element(Layout, { "class": "c-row-2 p-layout-wrap" }), Sophie.element(Layout, { "class": "c-row-3 p-layout-wrap" })];
 	  },
 
 	  renderItem: function renderItem() {
 
-	    this.props.children[0].attributes.style = "width:" + this.props.firstWidth;
-	    this.props.children[1].attributes.style = "width:" + this.props.secondWidth;
-	    this.props.children[2].attributes.style = "width:" + this.props.threeWidth;
+	    if ($(document).width() <= 767) {
+
+	      var fontSize1 = this.getResponseFontSize(this.props.width, this.props.width * this.props.widthPercent1 / 100);
+	      var fontSize2 = this.getResponseFontSize(this.props.width, this.props.width * this.props.widthPercent2 / 100);
+	      var fontSize3 = this.getResponseFontSize(this.props.width, this.props.width * this.props.widthPercent3 / 100);
+
+	      if (!this.props.phoneHeight) {
+	        var height = this.props.height;
+	      } else {
+	        var height = this.props.phoneHeight / (fontSize1 + fontSize2 + fontSize3);
+	      }
+
+	      this.props.children[0].attributes.style = "width:" + this.props.width * this.props.widthPercent1 / 100 + "em;" + "height:" + height + "em; " + "font-size:" + fontSize1 + "rem";
+	      this.props.children[1].attributes.style = "width:" + this.props.width * this.props.widthPercent2 / 100 + "em;" + "height:" + height + "em; " + "font-size:" + fontSize2 + "rem";
+	      this.props.children[2].attributes.style = "width:" + this.props.width * this.props.widthPercent3 / 100 + "em;" + "height:" + height + "em; " + "font-size:" + fontSize3 + "rem";
+	    } else {
+
+	      this.props.children[0].attributes.style = "width:" + this.props.widthPercent1 + "%";
+	      this.props.children[1].attributes.style = "width:" + this.props.widthPercent2 + "%";
+	      this.props.children[2].attributes.style = "width:" + this.props.widthPercent3 + "%";
+	    }
+
 	    return this.props.children;
 	  },
 
-	  setItemWidth: function setItemWidth(firstWidth, secondWidth, threeWidth) {
-	    this.props.firstWidth = firstWidth, this.props.secondWidth = secondWidth;
-	    this.props.threeWidth = threeWidth;
-	  },
+	  //resize时需要设置高度
+	  setItemHeight: function setItemHeight(height, currentFontSize) {},
 
-	  setItemHeight: function setItemHeight(height, currentFontSize) {
-	    this.props.height = height;
-	    this.props.fontSize = currentFontSize;
-	    this.setContainerHeight(height, currentFontSize);
-	  },
-	  mobileRender: function mobileRender() {
+	  resize: function resize(coord) {
 
-	    if (!this.isMobile) {
-
-	      if (this.parent.name == "p-page") {
-	        var winWidth = $(this.parent.nativeNode).width();
-	      } else {
-	        var winWidth = $(this.nativeNode).width();
+	    if ($(document).width() <= 767) {
+	      if (coord.height) {
+	        this.props.phoneHeight = coord.height / coord.fontSize;
+	      }
+	      if (coord.width) {
+	        this.props.phoneWidth = coord.width / coord.fontSize;
 	      }
 
-	      var list1Width = $(this.nativeNode).find("> .c-row-1").width();
-	      var list2Width = $(this.nativeNode).find("> .c-row-2").width();
-	      var list3Width = $(this.nativeNode).find("> .c-row-3").width();
-
-	      var currentFontSize = parseFloat($(this.nativeNode).css("fontSize"));
-	      var fontSize1 = winWidth / list1Width * currentFontSize;
-	      var fontSize2 = winWidth / list2Width * currentFontSize;
-	      var fontSize3 = winWidth / list3Width * currentFontSize;
-	      console.log(fontSize1, currentFontSize, winWidth, list1Width);
-	      $(this.nativeNode).find("> .c-row-1").css("fontSize", fontSize1 + "px");
-	      $(this.nativeNode).find("> .c-row-2").css("fontSize", fontSize2 + "px");
-	      $(this.nativeNode).find("> .c-row-3").css("fontSize", fontSize3 + "px");
-
-	      $(this.nativeNode).addClass("viewport-mobile");
-	      this.isMobile = true;
-	    }
-
-	    //设置ul的字体
-	  },
-	  setContainerHeight: function setContainerHeight(height, currentFontSize) {
-
-	    var fontSize1 = parseFloat($(this.nativeNode).find("> .c-row-1").css("fontSize"));
-	    var fontSize2 = parseFloat($(this.nativeNode).find("> .c-row-2").css("fontSize"));
-	    var fontSize3 = parseFloat($(this.nativeNode).find("> .c-row-3").css("fontSize"));
-
-	    var height = height || $(this.nativeNode).height();
-
-	    if ($(this.nativeNode).hasClass("viewport-mobile")) {
-
-	      var value = height / (fontSize1 + fontSize2 + fontSize3) + "em";
+	      this._update();
+	      this.props.children[0]._update();
+	      this.props.children[1]._update();
+	      this.props.children[2]._update();
 	    } else {
-	      var value = play.pxToEm(height, currentFontSize) + "em";
+	      if (coord.height) {
+	        this.props.height = coord.height / coord.fontSize;
+	      }
+	      if (coord.width) {
+	        this.props.width = coord.width / coord.fontSize;
+	      }
 	    }
-
-	    console.log("autoContainerHeight", height, currentFontSize, value);
-	    $(this.nativeNode).find("> .p-layout-wrap").css("height", value);
 	  },
 
-	  autoContainerHeight: function autoContainerHeight() {
-	    var currentFontSize = parseFloat($(this.nativeNode).css("fontSize"));
-	    var fontSize1 = parseFloat($(this.nativeNode).find("> .c-row-1").css("fontSize"));
-	    var fontSize2 = parseFloat($(this.nativeNode).find("> .c-row-2").css("fontSize"));
-	    var fontSize3 = parseFloat($(this.nativeNode).find("> .c-row-3").css("fontSize"));
+	  //width为em
+	  getResponseFontSize: function getResponseFontSize(parentWidth, width) {
 
-	    var height = height || $(this.nativeNode).height();
+	    var parentFontSize = this.fontSize();
+	    var phoneWidth = width * parentFontSize;
 
-	    if ($(this.nativeNode).hasClass("viewport-mobile")) {
+	    //单位为rem, rem为单元可保障fontSize的大小是可变的
+	    var phoneFontSize = parentWidth * parentFontSize / phoneWidth;
+	    return phoneFontSize;
+	  },
 
-	      var value = height / (fontSize1 + fontSize2 + fontSize3) + "em";
-	    } else {
-	      var value = play.pxToEm(height, currentFontSize) + "em";
-	    }
-
-	    $(this.nativeNode).find("> .p-layout-wrap").css("height", value);
+	  fontSize: function fontSize() {
+	    return parseFloat($(this.nativeNode).css("fontSize"));
 	  }
 
 	});
@@ -7064,27 +7616,14 @@
 
 	Sophie.createStyleSheet({
 
-	  'p-layout-three-response.viewport-mobile': {
+	  'p-layout-three-response': {
 	    display: "block",
 	    height: "auto!important"
 
 	  },
 
-	  "p-page > .p-container-fluid > p-layout-three-response.viewport-mobile": {
-	    width: "100%!important",
-	    marginLeft: "0!important",
-	    marginRight: "0!important"
-	  },
-	  "p-layout-three-response": {
-	    display: "block"
-	  },
-
 	  'p-layout-three-response > .p-layout-wrap': {
-	    display: "block",
-	    overflowY: "hidden"
-	  },
-
-	  'p-layout-three-response.viewport-mobile > .p-layout-wrap': {
+	    overflowY: "hidden",
 	    display: "table",
 	    float: "none",
 	    width: "100%!important"
@@ -7095,12 +7634,12 @@
 	module.exports = LayoutTow;
 
 /***/ },
-/* 85 */
+/* 88 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var Layout = __webpack_require__(79);
+	var Layout = __webpack_require__(81);
 	var LayoutTow = Sophie.createClass("p-layout-three-noresponse", {
 
 	  getDefaultProps: function getDefaultProps() {
@@ -7121,14 +7660,14 @@
 	    var self = this;
 	  },
 	  render: function render() {
-	    return this.element(
+	    return Sophie.element(
 	      "p-layout-three-noresponse",
 	      null,
 	      this.renderItem()
 	    );
 	  },
 	  getDefaultChildren: function getDefaultChildren() {
-	    return [this.element(Layout, { style: "width:" + this.props.firstWidth, "class": "c-row-1 p-layout-wrap" }), this.element(Layout, { style: "width:" + this.props.secondWidth, "class": "c-row-2 p-layout-wrap" }), this.element(Layout, { style: "width:" + this.props.threeWidth, "class": "c-row-3 p-layout-wrap" })];
+	    return [Sophie.element(Layout, { style: "width:" + this.props.firstWidth, "class": "c-row-1 p-layout-wrap" }), Sophie.element(Layout, { style: "width:" + this.props.secondWidth, "class": "c-row-2 p-layout-wrap" }), Sophie.element(Layout, { style: "width:" + this.props.threeWidth, "class": "c-row-3 p-layout-wrap" })];
 	  },
 	  renderItem: function renderItem() {
 
@@ -7176,357 +7715,17 @@
 	module.exports = LayoutTow;
 
 /***/ },
-/* 86 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	var _pPicA, _pPicCircleA, _pImgA;
-
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-	var Layout = __webpack_require__(87);
-	var PIC = Sophie.createClass("p-pic", {
-
-	    getDefaultProps: function getDefaultProps() {
-	        return {
-	            src: "http://dotlinkface.oss-cn-shanghai.aliyuncs.com/default.jpg",
-	            href: "http://dotlinkface.oss-cn-shanghai.aliyuncs.com/default.jpg"
-	        };
-	    },
-	    componentDidMount: function componentDidMount() {
-
-	        // var src = $(this.node).attr("src")||"http://img.tuku.cn/file_big/201502/ad45f0968eba4b92ba549cc7abf0e70a.jpg"
-	        // var href = $(this.node).attr("href")||"/editor/img/3.jpg"
-	        // this.setHref(href);
-	        // this.setSrc(src)
-	    },
-
-	    render: function render() {
-
-	        var background = "background-image:url(" + this.props.src + ")";
-	        return this.element(
-	            "p-pic",
-	            null,
-	            this.element("a", { href: this.props.href, style: background }),
-	            this.element(
-	                "div",
-	                { "class": "children" },
-	                this.children
-	            )
-	        );
-	    },
-	    renderChildren: function renderChildren() {
-	        if (this.children.length == 0) {
-	            this.children.push(this.element(Layout, { "class": "children" }));
-	        }
-	        return this.children;
-	    },
-
-	    setHref: function setHref(href) {
-	        // $(this.node).attr("href",href);
-	        // var a = $(this.node).find("a");
-	        // a.attr("href", href)
-
-	        this.attributes.href = href;
-	        this._update();
-	    },
-
-	    setSrc: function setSrc(src) {
-	        $(this.node).attr("src", src);
-	        var a = $(this.node).find("a");
-	        if (src) {
-	            a.css("background-image", "url(" + src + ")");
-	        }
-
-	        this.attributes.src = src;
-	        this._update();
-	    }
-	});
-
-	PIC.createStyleSheet({
-	    'p-pic': {
-	        display: 'block',
-	        width: '5em',
-	        height: '5em',
-	        overflow: 'hidden',
-	        position: 'relative'
-	    },
-
-	    'p-pic > div': {
-	        position: 'absolute',
-	        top: 0,
-	        left: 0,
-	        height: '100%',
-
-	        display: 'block',
-	        border: 0,
-	        width: '100%'
-
-	    },
-
-	    'p-pic  > a': (_pPicA = {
-	        position: 'absolute',
-	        top: 0,
-	        left: 0,
-	        height: '100%',
-
-	        display: 'block',
-	        border: 0,
-	        width: '100%',
-	        backgroundSize: 'cover',
-	        backgroundRepeat: 'no-repeat!important',
-	        backgroundPosition: 'center center',
-	        backgroundImage: 'url(http://img.tuku.cn/file_big/201502/ad45f0968eba4b92ba549cc7abf0e70a.jpg)'
-	    }, _defineProperty(_pPicA, "position", 'relative'), _defineProperty(_pPicA, "borderRadius", 'inherit'), _pPicA),
-
-	    'p-pic > .children': {
-	        position: 'absolute',
-	        top: 0,
-	        left: 0,
-	        height: '100%',
-
-	        display: 'block',
-	        border: 0,
-	        width: '100%'
-	    },
-
-	    'p-pic  a img': {
-	        width: '100%'
-	    }
-
-	});
-
-	PIC.createStyleSheet({
-	    "p-pic": {}
-	}, "@media (max-width: 767px)");
-
-	Sophie.createClass("p-pic-circle", {
-
-	    componentDidMount: function componentDidMount() {
-
-	        var src = $(this.node).attr("src") || "http://img.tuku.cn/file_big/201502/ad45f0968eba4b92ba549cc7abf0e70a.jpg";
-	        var href = $(this.node).attr("href") || "/editor/img/3.jpg";
-	        this.setHref(href);
-	        this.setSrc(src);
-	    },
-
-	    render: function render() {
-	        return this.element(
-	            "p-pic-circle",
-	            null,
-	            this.element("a", { href: "/editor/img/4.jpg" }),
-	            this.element(
-	                "div",
-	                { "class": "children" },
-	                this.children
-	            )
-	        );
-	    },
-
-	    setHref: function setHref(href) {
-	        $(this.node).attr("href", href);
-	        var a = $(this.node).find("a");
-	        a.attr("href", href);
-	    },
-
-	    setSrc: function setSrc(src) {
-	        $(this.node).attr("src", src);
-	        var a = $(this.node).find("a");
-	        if (src) {
-	            a.css("background-image", "url(" + src + ")");
-	        }
-	    }
-	});
-
-	Sophie.createStyleSheet({
-	    'p-pic-circle': {
-	        display: 'block',
-	        width: '5em',
-	        height: '5em',
-	        border: 0,
-	        overflow: 'hidden',
-	        position: 'relative',
-	        borderRadius: '50%'
-	    },
-
-	    'p-pic-circle > div': {
-	        position: 'absolute',
-	        top: 0,
-	        left: 0,
-	        height: '100%',
-
-	        display: 'block',
-	        border: 0,
-	        width: '100%'
-
-	    },
-
-	    'p-pic-circle  > a': (_pPicCircleA = {
-	        position: 'absolute',
-	        top: 0,
-	        left: 0,
-	        height: '100%',
-
-	        display: 'block',
-	        border: 0,
-	        width: '100%',
-	        backgroundSize: 'cover',
-	        backgroundRepeat: 'no-repeat!important',
-	        backgroundPosition: 'center center',
-	        backgroundImage: 'url(http://img.tuku.cn/file_big/201502/ad45f0968eba4b92ba549cc7abf0e70a.jpg)'
-	    }, _defineProperty(_pPicCircleA, "position", 'relative'), _defineProperty(_pPicCircleA, "borderRadius", 'inherit'), _pPicCircleA),
-
-	    'p-pic-circle .children': {
-	        position: 'absolute',
-	        top: 0,
-	        left: 0,
-	        height: '100%',
-
-	        display: 'block',
-	        border: 0,
-	        width: '100%'
-	    },
-
-	    'p-pic-circle  a img': {
-	        width: '100%'
-	    }
-
-	});
-
-	Sophie.createClass("p-img", {
-
-	    componentDidMount: function componentDidMount() {
-	        var src = $(this.node).attr("src") || "/editor/img/3.jpg";
-	        var href = $(this.node).attr("href") || "/editor/img/3.jpg";
-	        this.setHref(href);
-	        this.setSrc(src);
-	    },
-
-	    setHref: function setHref(href) {
-	        $(this.node).attr("href", href);
-	        var a = $(this.node).find("a");
-	        a.attr("href", href);
-	    },
-
-	    setSrc: function setSrc(src) {
-	        $(this.node).attr("src", src);
-	        var a = $(this.node).find("a");
-	        var img = $(this.node).find("a img");
-	        if (src) {
-	            img.prop("src", src);
-	        }
-	    },
-	    rener: function rener() {
-	        return this.element(
-	            "div",
-	            null,
-	            this.element("a", { href: "/editor/img/4.jpg" }),
-	            this.element("children", null)
-	        );
-	    }
-	});
-
-	Sophie.createStyleSheet({
-	    'p-img': {
-	        display: 'block',
-	        width: '4em',
-	        height: 'auto!important',
-
-	        border: 0,
-	        overflow: 'hidden',
-	        position: 'relative'
-	    },
-
-	    'p-img > a': (_pImgA = {
-	        position: 'absolute',
-	        top: 0,
-	        left: 0,
-	        height: '100%',
-
-	        display: 'block',
-	        border: 0,
-
-	        width: '100%',
-	        backgroundSize: 'cover',
-	        backgroundRepeat: 'no-repeat!important',
-	        backgroundPosition: 'center center',
-	        backgroundImage: 'url(http://img.tuku.cn/file_big/201502/ad45f0968eba4b92ba549cc7abf0e70a.jpg)'
-	    }, _defineProperty(_pImgA, "position", 'relative'), _defineProperty(_pImgA, "borderRadius", 'inherit'), _pImgA),
-
-	    'p-img > children': {
-	        position: 'absolute',
-	        top: 0,
-	        left: 0,
-	        height: '100%',
-	        display: 'block',
-	        border: 0,
-	        width: '100%'
-	    },
-
-	    'p-img > a > img': {
-	        width: '100%'
-	    }
-
-	});
-
-	module.exports = PIC;
-
-/***/ },
-/* 87 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	var Layout = Sophie.createClass("p-layout", {
-	  getDefaultProps: function getDefaultProps() {
-	    return {
-	      style: ""
-	    };
-	  },
-	  render: function render() {
-	    return this.element(
-	      "p-layout",
-	      { style: this.props.style, "class": this.props.class },
-	      this.children
-	    );
-	  }
-	});
-
-	Sophie.createStyleSheet({
-	  "p-layout": {
-
-	    display: 'table',
-
-	    minHeight: '1em',
-	    height: '5em',
-
-	    width: '10rem'
-
-	  },
-
-	  "p-layout:before,p-layout:after": {
-	    display: 'table',
-	    lineHeight: 0,
-	    content: ""
-	  }
-
-	});
-
-	module.exports = Layout;
-
-/***/ },
-/* 88 */
+/* 89 */
 /***/ function(module, exports) {
 
 	"use strict";
 
 	var Logo = Sophie.createClass("p-logo", {
 	  render: function render() {
-	    return this.element(
+	    return Sophie.element(
 	      "p-logo",
 	      null,
-	      this.element("a", { href: "/" })
+	      Sophie.element("a", { href: "/" })
 	    );
 	  }
 
@@ -7576,101 +7775,207 @@
 	module.exports = Logo;
 
 /***/ },
-/* 89 */
-/***/ function(module, exports) {
+/* 90 */
+/***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
+	var utils = __webpack_require__(91);
 	var Grid = Sophie.createClass("p-grid", {
 
-	    render: function render() {
-	        return this.element(
-	            "p-grid",
-	            { "class": "grid-row" },
-	            this.children
-	        );
-	    }
+	  render: function render() {
+	    return Sophie.element(
+	      "p-grid",
+	      { "class": "grid-row" },
+	      this.children
+	    );
+	  },
+	  componentDidMount: function componentDidMount() {
+	    //p-grid下的元素的设置fontsize
+
+	    // if(el.parent().is("p-grid")&&el.parent().parent().parent().is("p-page")){
+	    //   if(play.mediaName !== "phone"){
+	    //     var phoneWidth =  coords.width/coords.fontSize;
+	    //     var fontSize =   this.getResponseFontSize(phoneWidth);
+	    //      if(!utils.hasMediaCSSRule(el, play.mediaQuery.phone)){
+	    //          play.dom._cssMedia(el, "font-size", fontSize+"rem",play.mediaQuery.phone);
+	    //           // play.dom._cssMedia(el, "z-index", 100,play.mediaQuery.phone);
+	    //           //  utils.createCSSRule(el,"font-size",fontSize+"rem", play.mediaQuery.phone)
+	    //           //     utils.createCSSRule(el,"z-index",100, play.mediaQuery.phone)
+	    //           //       utils.createCSSRule(el,"z-index",100, "all")
+	    //           //         utils.createCSSRule(el,"z-index",100, play.mediaQuery.pc)
+	    //      }
+	    //
+	    //   }
+	    // }
+	  }
+
+	});
+
+	var getFlexCSS = function getFlexCSS() {
+	  if (utils.supportFlex) {
+	    return utils.getFlexCSS();
+	  } else {
+	    return {
+	      display: "block"
+	    };
+	  }
+	};
+
+	var getFlexItemCSS = function getFlexItemCSS() {
+	  if (utils.supportFlex) {
+	    return utils.getFlexItemCSS();
+	  } else {
+	    return {
+	      'float': 'left'
+	    };
+	  }
+	};
+
+	Sophie.createStyleSheet({
+	  "p-grid": getFlexCSS(),
+
+	  '.grid-row': {
+
+	    'width': '100%!important',
+	    'margin-left': '0!important',
+	    'margin-right': '0!important',
+	    'height': 'auto!important',
+	    'min-height': 'auto!important'
+	  },
+
+	  '.p-layout:before,.p-layout:after': {
+	    'display': 'table',
+	    'line-height': '0',
+	    'content': '""'
+	  },
+
+	  '.grid-row:after': {
+	    'clear': 'both'
+	  },
+
+	  '.grid-row:after, .grid-row:before': {
+	    'display': 'table',
+	    'content': '""'
+	  },
+
+	  '.grid-row > * ': getFlexItemCSS(),
+
+	  '.grid-row.grid-row-column > * ': {
+
+	    'display': 'block',
+	    'float': 'none',
+	    'margin': '10px 0 0 0',
+	    'width': '100%'
+	  },
+
+	  '.grid-row.grid-row-column:first-child ': {
+	    'margin-top': '0'
+	  }
 
 	});
 
 	Sophie.createStyleSheet({
-	    "p-grid": {
-	        display: "block"
-	    },
+	  ".grid-row": getFlexCSS(),
+	  ".grid-row > *": getFlexItemCSS(),
 
-	    '.grid-row': {
+	  'p-page > .p-container-fluid > .grid-row ,p-page > .p-container > .grid-row.cloumn': {
+	    display: 'block!important'
+	  },
+	  'p-page > .p-container > .grid-row ,p-page > .p-container-fluid > .grid-row ,p-page > .p-container-fluid > .grid-row.cloumn,p-page > .p-container > .grid-row.cloumn': utils.getFlexColumnCSS(),
 
-	        'width': '100%!important',
-	        'margin-left': '0!important',
-	        'margin-right': '0!important',
-	        'height': 'auto!important',
-	        'min-height': 'auto!important'
-	    },
-
-	    '.p-layout:before,.p-layout:after': {
-	        'display': 'table',
-	        'line-height': '0',
-	        'content': '""'
-	    },
-
-	    '.grid-row:after': {
-	        'clear': 'both'
-	    },
-
-	    '.grid-row:after, .grid-row:before': {
-	        'display': 'table',
-	        'content': '""'
-	    },
-
-	    '.grid-row > * ': {
-	        'float': 'left'
-	    },
-
-	    '.grid-row.grid-row-column > * ': {
-
-	        'display': 'block',
-	        'float': 'none',
-	        'margin': '10px 0 0 0',
-	        'width': '100%'
-	    },
-
-	    '.grid-row.grid-row-column:first-child ': {
-	        'margin-top': '0'
-	    }
-
-	});
-
-	Sophie.createStyleSheet({
-	    'p-page > .p-container-fluid > .grid-row > *': {},
-
-	    'p-page > .p-container-fluid > .grid-row > *,p-page > .p-container > .grid-row > *': {
-	        marginTop: 10,
-	        float: 'none',
-	        marginLeft: 'auto!important',
-	        marginRight: 'auto!important'
-	    }
+	  'p-page > .p-container-fluid > .grid-row > *,p-page > .p-container > .grid-row.cloumn > *': {
+	    marginTop: 10,
+	    float: 'none',
+	    display: 'block'
+	  }
 
 	}, '@media (max-width: 767px)');
 
 	module.exports = Grid;
 
 /***/ },
-/* 90 */
+/* 91 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	module.exports = {
+	  supportFlex: function supportFlex() {
+	    var doc = document.body || document.documentElement;
+	    var style = doc.style;
+	    if (style.webkitFlexWrap == '' || style.msFlexWrap == '' || style.flexWrap == '') {
+	      return true;
+	    }
+	  },
+	  getFlexCSS: function getFlexCSS() {
+	    var doc = document.body || document.documentElement;
+	    var style = doc.style;
+	    if (style.flexWrap == '') {
+	      return {
+	        display: "flex",
+	        "align-items": "flex-start",
+	        "flex-flow": "row nowrap",
+	        "justify-content": "flex-start"
+	      };
+	    } else if (style.msFlexWrap == '') {
+	      return {
+	        display: "flex",
+	        "align-items": "flex-start",
+	        "flex-flow": "row nowrap",
+	        "justify-content": "flex-start"
+	      };
+	    }
+	  },
+	  getFlexColumnCSS: function getFlexColumnCSS() {
+	    var doc = document.body || document.documentElement;
+	    var style = doc.style;
+	    if (style.flexWrap == '') {
+	      return {
+	        display: "flex",
+	        "align-items": "flex-start",
+	        "flex-flow": "column nowrap",
+	        "justify-content": "flex-start"
+	      };
+	    } else if (style.msFlexWrap == '') {
+	      return {
+	        display: "flex",
+	        "align-items": "flex-start",
+	        "flex-flow": "column nowrap",
+	        "justify-content": "flex-start"
+	      };
+	    }
+	  },
+	  getFlexItemCSS: function getFlexItemCSS() {
+	    var doc = document.body || document.documentElement;
+	    var style = doc.style;
+	    if (style.flexWrap == '') {
+	      return {
+	        //运行时可变为可伸缩
+	        flex: "none"
+	      };
+	    }
+	  }
+
+	};
+
+/***/ },
+/* 92 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
 	var Page = __webpack_require__(73);
-	var A = __webpack_require__(91);
+	var A = __webpack_require__(93);
 	var NavBar = __webpack_require__(76);
 
 	var Nav = Sophie.createClass("p-nav-page", {
 
 	    render: function render() {
-	        return this.element(
+	        return Sophie.element(
 	            "p-nav-page",
 	            null,
-	            this.element(
+	            Sophie.element(
 	                "ul",
 	                { "class": "nav navbar-nav" },
 	                this.renderItem()
@@ -7681,10 +7986,10 @@
 	        var items = [];
 	        for (var i = 0; i < this.state.pageList.length; i++) {
 	            var data = this.state.pageList[i];
-	            items.push(this.element(
+	            items.push(Sophie.element(
 	                "li",
 	                { "data-id": data.id },
-	                this.element(
+	                Sophie.element(
 	                    A,
 	                    { "data-id": data.id },
 	                    data.title
@@ -7968,7 +8273,7 @@
 
 	    'p-nav-page': {
 	        position: 'fixed',
-	        left: '12.13em',
+	        left: '12.13px',
 	        top: '2.1em',
 	        width: '200px',
 	        height: "200px",
@@ -8009,7 +8314,7 @@
 	module.exports = Nav;
 
 /***/ },
-/* 91 */
+/* 93 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -8032,10 +8337,10 @@
 
 	    },
 	    render: function render() {
-	        return this.element(
+	        return Sophie.element(
 	            "p-a",
 	            { "data-id": this.props["data-id"] },
-	            this.element(
+	            Sophie.element(
 	                "a",
 	                { href: this.props.href, "class": "p-text-wrap" },
 	                this.children
@@ -8095,7 +8400,7 @@
 	module.exports = A;
 
 /***/ },
-/* 92 */
+/* 94 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -8104,11 +8409,11 @@
 
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-	var PageNav = __webpack_require__(90);
-	var LayoutGrid = __webpack_require__(83);
-	var Layout = __webpack_require__(87);
-	var Logo = __webpack_require__(88);
-	var Pic = __webpack_require__(86);
+	var PageNav = __webpack_require__(92);
+	var LayoutGrid = __webpack_require__(86);
+	var Layout = __webpack_require__(95);
+	var Logo = __webpack_require__(89);
+	var Pic = __webpack_require__(82);
 
 	var Nav = Sophie.createClass("p-nav-page-inline", {
 	  getDefaultProps: function getDefaultProps() {
@@ -8120,19 +8425,19 @@
 	    };
 	  },
 	  render: function render() {
-	    return this.element(
+	    return Sophie.element(
 	      "p-nav-page-inline",
 	      { "class": "p-layout-grid-line" },
-	      this.element(
+	      Sophie.element(
 	        "div",
 	        { "class": "c-row-1 p-layout-wrap", style: "width:" + this.props.firstWidth },
-	        this.element(Logo, { src: "https://img.alicdn.com/tps/i2/TB1bNE7LFXXXXaOXFXXwFSA1XXX-292-116.png_145x145.jpg" })
+	        Sophie.element(Logo, { src: "https://img.alicdn.com/tps/i2/TB1bNE7LFXXXXaOXFXXwFSA1XXX-292-116.png_145x145.jpg" })
 	      ),
-	      this.element("div", { "class": "c-row-2 p-layout-wrap", style: "width:" + this.props.secondWidth }),
-	      this.element(
+	      Sophie.element("div", { "class": "c-row-2 p-layout-wrap", style: "width:" + this.props.secondWidth }),
+	      Sophie.element(
 	        "div",
 	        { "class": "c-row-3 p-layout-wrap", style: "width:" + this.props.threeWidth },
-	        this.element(PageNav, null)
+	        Sophie.element(PageNav, null)
 	      )
 	    );
 	  },
@@ -8217,16 +8522,55 @@
 	module.exports = Nav;
 
 /***/ },
-/* 93 */
+/* 95 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	var Layout = Sophie.createClass("p-layout", {
+	  getDefaultProps: function getDefaultProps() {
+	    return {
+	      style: ""
+	    };
+	  },
+	  render: function render() {
+	    return Sophie.element(
+	      "p-layout",
+	      { style: this.props.style, "class": this.props.class },
+	      this.children
+	    );
+	  }
+	});
+
+	Sophie.createStyleSheet({
+	  "p-layout": {
+	    display: 'table',
+	    minHeight: '1em',
+	    height: '5em',
+	    width: '10rem'
+	  },
+
+	  "p-layout:before,p-layout:after": {
+	    display: 'table',
+	    lineHeight: 0,
+	    content: ""
+	  }
+
+	});
+
+	module.exports = Layout;
+
+/***/ },
+/* 96 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var PageNav = __webpack_require__(90);
-	var LayoutGrid = __webpack_require__(83);
-	var Layout = __webpack_require__(87);
-	var Logo = __webpack_require__(88);
-	var Pic = __webpack_require__(86);
+	var PageNav = __webpack_require__(92);
+	var LayoutGrid = __webpack_require__(86);
+	var Layout = __webpack_require__(95);
+	var Logo = __webpack_require__(89);
+	var Pic = __webpack_require__(82);
 	var NavBar = __webpack_require__(76);
 
 	var Nav = Sophie.createClass("p-nav-page-absolute", {
@@ -8235,12 +8579,12 @@
 	  },
 	  render: function render() {
 
-	    return this.element(
+	    return Sophie.element(
 	      "p-nav-page-absolute",
 	      null,
-	      this.element(Logo, { src: "https://img.alicdn.com/tps/i2/TB1bNE7LFXXXXaOXFXXwFSA1XXX-292-116.png_145x145.jpg" }),
-	      this.element(NavBar, null),
-	      this.element(PageNav, null)
+	      Sophie.element(Logo, { src: "https://img.alicdn.com/tps/i2/TB1bNE7LFXXXXaOXFXXwFSA1XXX-292-116.png_145x145.jpg" }),
+	      Sophie.element(NavBar, null),
+	      Sophie.element(PageNav, null)
 	    );
 	  },
 
@@ -8378,7 +8722,7 @@
 	module.exports = Nav;
 
 /***/ },
-/* 94 */
+/* 97 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -8387,44 +8731,128 @@
 
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-	var Text = Sophie.createClass("p-text", {
+	var placeholder = "双击输入内容...";
+	var defineText = {
+	    componentDidMount: function componentDidMount() {
+	        //粘贴
+	        var self = this;
+	        var target = $(".p-text-wrap", this.nativeNode);
+	        var el = $(this.nativeNode);
 
-	    componentDidMount: function componentDidMount() {},
+	        //元素删除之后事件会丢失, 所以加在#page，其它事件加在html上
+	        target.on("mousedown mouseup dbclick click keyup keydown", function (ev) {
+	            var target = $(ev.target);
+	            if (self.state.editing) {
+	                ev.stopPropagation();
+	            } else {
+	                ev.preventDefault();
+	            }
+	        });
+
+	        //元素删除之后事件会丢失, 所以加在#page，其它事件加在html上
+	        el.on("mousedown mouseup dbclick click keyup keydown", function (ev) {
+	            var target = $(ev.target);
+	            if (self.state.editing) {
+	                ev.stopPropagation();
+	            } else {
+	                ev.preventDefault();
+	            }
+	        });
+
+	        target.on("paste", function (ev) {
+	            var target = $(ev.target);
+	            if (!self.state.editing) return;
+
+	            if (ev.originalEvent.clipboardData) {
+	                var text = ev.originalEvent.clipboardData.getData("text/plain");
+	                ev.preventDefault();
+	                target.html(text);
+	                target.focus();
+	                // document.execCommand("insertHTML", false, text);
+	            }
+	        });
+
+	        target.on('keydown', function (ev) {
+	            var target = $(ev.target);
+
+	            if (target.closest("p-a").length || target.closest("p-h").length) {
+	                //阻止换行
+	                var keycode = ev.charCode || ev.keyCode;
+	                if (keycode == 13) {
+	                    ev.preventDefault(); //for firefox
+	                    return false;
+	                }
+	            }
+	        });
+
+	        target.on('keyup', function (ev) {
+
+	            var value = target.html();
+	            self.children = self.props.children = [{ type: "text", nodeValue: value }];
+	            $(document).trigger("textInputt");
+	        });
+	    },
+	    getInitialState: function getInitialState() {
+	        return {
+	            editing: false
+	        };
+	    },
 	    render: function render() {
-	        return this.element(
+	        var contenteditable = this.state.editing;
+	        return Sophie.element(
 	            "p-text",
 	            null,
-	            this.element(
+	            Sophie.element(
 	                "div",
-	                { "class": "p-text-wrap" },
-	                this.children
+	                { "class": "p-text-wrap", contenteditable: contenteditable },
+	                this.props.children
 	            )
 	        );
 	    },
 	    setFontSize: function setFontSize(fontSize) {
 	        $('.p-text-wrap', this.nativeNode).css("fontSize", fontSize);
+	    },
+	    toEdit: function toEdit(el) {
+	        var self = this;
+
+	        this.state.editing = true;
+	        var target = $('.p-text-wrap', this.nativeNode);
+	        target.attr("contenteditable", true);
+	        if ($.trim(target.text()) === placeholder) {
+	            target.html("");
+	        }
+
+	        $(target).focus();
+	    },
+
+	    cancelEdit: function cancelEdit(el) {
+	        var self = this;
+	        this.state.editing = false;
+	        var el = $('.p-text-wrap', this.nativeNode);
+	        el.attr("contenteditable", false);
+	        el.blur();
+	        if ($.trim(el.text()) === "") el.text(placeholder);
 	    }
 
-	});
+	};
 
-	Sophie.createClass("p-h", {
-	    componentDidMount: function componentDidMount() {},
+	var defineHeader = $.extend({}, defineText, {
 	    render: function render() {
-	        return this.element(
+	        var contenteditable = this.state.editing;
+	        return Sophie.element(
 	            "p-h",
 	            null,
-	            this.element(
+	            Sophie.element(
 	                "div",
 	                { "class": "p-text-wrap" },
-	                this.children
+	                this.props.children
 	            )
 	        );
-	    },
-	    setFontSize: function setFontSize(fontSize) {
-	        $('.p-text-wrap', this.nativeNode).css("fontSize", fontSize);
 	    }
-
 	});
+
+	var Text = Sophie.createClass("p-text", defineText);
+	var Header = Sophie.createClass("p-h", defineHeader);
 
 	Sophie.createStyleSheet({
 
@@ -8502,358 +8930,25 @@
 	module.exports = Text;
 
 /***/ },
-/* 95 */
+/* 98 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var Layout = __webpack_require__(79);
-
-	var padding = 5;
-	var List = Sophie.createClass("p-list", {
-
-	    render: function render() {
-	        return this.element(
-	            "p-list",
-	            { "data-c-num": this.props["data-c-num"], "data-r-num": this.props["data-r-num"] },
-	            this.element(
-	                "div",
-	                { "class": "ul" },
-	                this.renderChildren()
-	            )
-	        );
-	    },
-
-	    getDefaultProps: function getDefaultProps() {
-	        return {
-	            "data-c-num": 2,
-	            "data-r-num": 2,
-	            cellHeight: ""
-	        };
-	    },
-
-	    renderChildren: function renderChildren() {
-	        var children = this.children;
-
-	        var result = [];
-	        for (var i = 0; i < children.length; i++) {
-	            var r = this.element(
-	                "div",
-	                { "class": "c-list" },
-	                this.element(
-	                    "div",
-	                    { "class": "c-ceil" },
-	                    children[i]
-	                )
-	            );
-	            result.push(r);
-	        }
-
-	        return result;
-	    },
-
-	    componentWillMount: function componentWillMount() {
-	        if (this.children.length == 0) {
-
-	            for (var i = 0; i < 4; i++) {
-	                var vnode = this.element(Layout, { "class": "p-layout" });
-	                vnode.compontentContext = Sophie.firstVnode;
-
-	                this.children.push(vnode);
-	            }
-	        }
-	    },
-
-	    componentDidMount: function componentDidMount() {
-	        this.$ = $(this.nativeNode);
-
-	        var self = this;
-
-	        if ($(document).width() <= 768 && this.parent.name == "p-page") {
-	            //可能已经被删除了
-	            if (this.nativeNode.parentNode) {
-	                self.mobileRender();
-	                self.autoContainerHeight();
-	            }
-	        } else {
-	            if (this.nativeNode.parentNode) $(self).find("ul").css("fontSize", "");
-	            self.isMobile = false;
-	        }
-
-	        $(window).on("resize", function () {
-
-	            setTimeout(function () {
-	                if ($(document).width() <= 768) {
-	                    //可能已经被删除了
-	                    if (self.nativeNode.parentNode) {
-	                        self.mobileRender();
-	                        self.autoContainerHeight();
-	                    }
-	                } else {
-	                    if (self.nativeNode.parentNode) $(self.nativeNode).find(".ul").css("fontSize", "");
-	                    self.isMobile = false;
-	                }
-	            }, 100);
-	        });
-
-	        setTimeout(function () {
-	            self.initRowColumn();
-	        }, 0);
-	    },
-
-	    initRowColumn: function initRowColumn() {
-
-	        this.setAllColumnWidth();
-	        this.setAllRowHeight();
-	        this.showOrHideCeil();
-	    },
-
-	    autoContainerHeight: function autoContainerHeight() {
-	        var h = $(this.$).find(".ul");
-	        var innerHeight = h.height();
-	        var outerHeight = $(this.$).height();
-	        if (outerHeight < innerHeight) {
-	            $(this.$).height(innerHeight);
-	        }
-	    },
-
-	    showOrHideCeil: function showOrHideCeil() {
-
-	        var cnum = parseInt($(this.$).attr("data-c-num"));
-	        var rnum = parseInt($(this.$).attr("data-r-num"));
-	        var allNum = cnum * rnum;
-	        var realNum = $(this.$).find(".c-list").length;
-
-	        if (allNum <= realNum) {
-	            for (var i = 0; i < realNum; i++) {
-	                if (i < allNum) {
-	                    $(this.$).find(".c-list").eq(i).show();
-	                } else {
-	                    $(this.$).find(".c-list").eq(i).hide();
-	                }
-	            }
-	        } else {
-	            $(this.$).find(".c-list").show();
-	        }
-	    },
-
-	    addOne: function addOne(el) {
-	        this.children.push(el.vnode);
-	        this._update();
-	    },
-
-	    addOneVnode: function addOneVnode(elVnode) {
-	        this.children.push(elVnode);
-	        this._update();
-	    },
-
-	    addOneEmpty: function addOneEmpty() {
-	        var vnode = this.element(Layout, { "class": "p-layout" });
-	        vnode.compontentContext = $("app").get(0).vnode;
-
-	        this.children.push(vnode);
-
-	        this._update();
-	    },
-	    wrapOne: function wrapOne(el) {
-	        var li = $('<div class="c-list"><p-layout class="c-ceil"></p-layout></div>');
-	        li.find(".c-ceil").append(el);
-	        return li;
-	    },
-
-	    setColumn: function setColumn(columm) {
-	        $(this.$).attr("data-c-num", columm);
-	        this.setAllColumnWidth();
-	        this.showOrHideCeil();
-	    },
-	    setRow: function setRow(row) {
-	        $(this.$).attr("data-r-num", row);
-	        this.setAllColumnWidth();
-	        this.setAllRowHeight();
-	        this.showOrHideCeil();
-	    },
-
-	    setAllColumnWidth: function setAllColumnWidth(width) {
-
-	        var width = width || $(this.$).width();
-
-	        width = width + padding * 2;
-	        var oNum = parseInt($(this.$).attr("data-c-num"));
-	        var columnWith = width / oNum;
-	        var self = this;
-
-	        console.log(columnWith);
-	        $(".c-list", this.$).each(function (index, el) {
-	            self.setColumnWidth($(el), columnWith);
-	        });
-	    },
-	    setColumnWidth: function setColumnWidth(column, columnWith) {
-
-	        if (!columnWith) {
-	            var width = $(this.$).width();
-	            var oNum = parseInt($(this.$).attr("data-c-num"));
-	            var columnWith = width / oNum;
-	        }
-
-	        var currentFontSize = parseFloat($(this.$).css("fontSize"));
-
-	        var value = columnWith + "px";
-	        if (play.unit == "rem") {
-	            value = play.pxToRem(columnWith) + "rem";
-	        } else if (play.unit == "%") {
-	            value = play.pxToPresent(columnWith) + "%";
-	        } else if (play.unit == "em") {
-	            value = play.pxToEm(columnWith, currentFontSize) + "em";
-	        }
-
-	        this.attributes.height = value;
-	        $(column).css("width", value);
-	    },
-
-	    setAllRowHeight: function setAllRowHeight(height) {
-	        var height = height || $(this.$).height();
-	        var rowNum = parseInt($(this.$).attr("data-r-num"));
-	        var rowHeight = height / rowNum;
-	        var self = this;
-
-	        $(".c-list", this.$).each(function (index, el) {
-
-	            self.setRowHeight(el, rowHeight);
-	        });
-	    },
-
-	    setRowHeight: function setRowHeight(row, rowHeight) {
-	        if (!rowHeight) {
-	            var height = $(this.$).height();
-	            var currentFontSize = parseFloat($(this.$).css("fontSize"));
-	            var rowNum = parseInt($(this.$).attr("data-r-num"));
-	            var rowHeight = height / rowNum;
-	        }
-
-	        var currentFontSize = parseFloat($(this.$).css("fontSize"));
-	        var value = rowHeight + "px";
-	        if (play.unit == "rem") {
-	            value = play.pxToRem(rowHeight) + "rem";
-	        } else if (play.unit == "%") {
-	            value = play.pxToPresent(rowHeight) + "%";
-	        } else if (play.unit == "em") {
-	            value = play.pxToEm(rowHeight, currentFontSize) + "em";
-	        }
-
-	        this.attributes.height = value;
-
-	        $(row).css("height", value);
-	    },
-
-	    scaleByFontSize: function scaleByFontSize(el, width, targetWidth) {},
-	    mobileRender: function mobileRender() {
-
-	        if (!this.isMobile) {
-
-	            var winWidth = $(document).width();
-	            var oNum = parseInt($(this.nativeNode).attr("data-c-num"));
-	            var listWidth = $(this.nativeNode).find(".c-list").width();
-
-	            if (Math.abs(listWidth - winWidth) < 10 || oNum == 1) return;
-
-	            var currentFontSize = parseFloat($(this.nativeNode).css("fontSize"));
-	            var fontSize = winWidth / listWidth * currentFontSize;
-	            $(this.nativeNode).find(".ul").css("fontSize", fontSize + "px");
-	            this.isMobile = true;
-	        }
-
-	        //设置ul的字体
-	    }
-
-	});
-
-	Sophie.createStyleSheet({
-
-	    'p-list': {
-	        display: 'table',
-	        overflow: 'hidden',
-	        width: '10rem',
-	        height: '10rem',
-	        clear: 'both'
-	    },
-
-	    'p-list:before,  p-list:after': {
-	        display: 'table',
-	        lineHeight: '0',
-	        content: ''
-	    },
-
-	    'p-list > .ul': {
-	        display: 'block',
-	        overflow: 'hidden',
-	        marginRight: '-10px',
-	        marginLeft: '-5px',
-	        height: '100%'
-	    },
-
-	    'p-list > .ul .c-list': {
-	        width: '50%',
-	        float: 'left',
-	        listStyle: 'none',
-	        minHeight: '10px',
-	        height: '100%',
-	        overflow: 'hidden',
-	        boxSizing: 'border-box',
-	        padding: '0px 5px 10px 5px'
-	    },
-
-	    'p-list > .ul .c-list .c-ceil': {
-	        height: '100%',
-	        minHeight: '10px',
-	        display: 'block',
-	        width: 'auto',
-	        overflow: 'hidden'
-	    },
-
-	    'p-list  .c-ceil > .p-layout': {
-	        height: '100%',
-	        minHeight: '0px',
-	        display: 'block',
-	        width: 'auto',
-	        overflow: 'hidden'
-
-	    },
-
-	    'p-list > ul .c-list .c-ceil .placeholder': {
-	        display: 'none!important',
-	        position: 'absolute'
-	    }
-
-	});
-
-	Sophie.createStyleSheet({
-	    'p-page > .p-container-fluid > p-list': {
-	        height: 'auto!important',
-	        marginLeft: '0px!important',
-	        marginRight: '0px!important',
-	        width: '100%'
-	    }
-
-	}, "@media (max-width: 767px)");
-
-	module.exports = List;
-
-/***/ },
-/* 96 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	var List = __webpack_require__(95);
-	var Pic = __webpack_require__(86);
+	var List = __webpack_require__(80);
+	var Pic = __webpack_require__(82);
 
 	var ListImg = Sophie.createClass("p-list-img", {
 
 	  render: function render() {
-	    return this.element(
-	      List,
-	      { "data-c-num": this.props["data-c-num"], "data-r-num": this.props["data-r-num"] },
-	      this.children
+	    return Sophie.element(
+	      "p-list-img",
+	      { "class": "p-list-img" },
+	      Sophie.element(
+	        List,
+	        { "data-c-num": this.props["data-c-num"], "data-r-num": this.props["data-r-num"] },
+	        this.props.children
+	      )
 	    );
 	  },
 
@@ -8864,27 +8959,26 @@
 	    };
 	  },
 
-	  componentWillMount: function componentWillMount() {
-	    if (this.children.length == 0) {
-	      for (var i = 0; i < 4; i++) {
-	        var vnode = this.element(Pic, null);
-	        vnode.compontentContext = Sophie.firstVnode;
-	        this.children.push(vnode);
-	      }
+	  getDefaultChildren: function getDefaultChildren() {
+	    var result = [];
+	    for (var i = 0; i < 4; i++) {
+	      result.push(Sophie.element(Pic, null));
 	    }
+	    return result;
 	  },
-	  addOne: function addOne(el) {
 
-	    var vnode = this.element(Pic, null);
-	    vnode.compontentContext = $("app").get(0).vnode;
-	    this.children.push(vnode);
+	  componentWillMount: function componentWillMount() {},
+	  addOne: function addOne(el) {
+	    var children = this.props.children[0];
+	    if (children && children.name) {
+	      this.props.children.push(Sophie.createVnodeByTagName(children.name));
+	    }
+
 	    this._update();
 	  },
 	  addOneEmpty: function addOneEmpty() {
-	    var vnode = this.element(Pic, null);
-	    vnode.compontentContext = $("app").get(0).vnode;
-
-	    this.children.push(vnode);
+	    this.props.children.push(Sophie.createVnodeByTagName("p-pic"));
+	    this._update();
 
 	    this._update();
 	  }
@@ -8917,75 +9011,86 @@
 	module.exports = ListImg;
 
 /***/ },
-/* 97 */
+/* 99 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var Text = __webpack_require__(94);
-	var Pic = __webpack_require__(86);
+	var Text = __webpack_require__(97);
+	var Pic = __webpack_require__(82);
 
 	var Slide = Sophie.createClass("p-slide", {
+
+	    getDefaultChildren: function getDefaultChildren() {
+	        return [Sophie.element(
+	            'div',
+	            { 'class': 'item active' },
+	            Sophie.element(Pic, null),
+	            Sophie.element(
+	                Text,
+	                { 'class': 'carousel-caption' },
+	                '图片1'
+	            )
+	        ), Sophie.element(
+	            'div',
+	            { 'class': 'item' },
+	            Sophie.element(Pic, null),
+	            Sophie.element(
+	                Text,
+	                { 'class': 'carousel-caption' },
+	                '图片2'
+	            )
+	        ), Sophie.element(
+	            'div',
+	            { 'class': 'item ' },
+	            Sophie.element(Pic, null),
+	            Sophie.element(
+	                Text,
+	                { 'class': 'carousel-caption' },
+	                '图片3'
+	            )
+	        )];
+	    },
 	    render: function render() {
-	        return this.element(
+	        return Sophie.element(
 	            'p-slide',
 	            null,
-	            this.element(
+	            Sophie.element(
 	                'div',
 	                { 'class': 'carousel slide' },
-	                this.element(
+	                Sophie.element(
 	                    'ol',
 	                    { 'class': 'carousel-indicators' },
-	                    this.element('li', { 'data-target': '#carousel-example-generic', 'data-slide-to': '0', 'class': 'active' }),
-	                    this.element('li', { 'data-target': '#carousel-example-generic', 'data-slide-to': '1' }),
-	                    this.element('li', { 'data-target': '#carousel-example-generic', 'data-slide-to': '2' })
+	                    this.renderItemBar()
 	                ),
-	                this.element(
+	                Sophie.element(
 	                    'div',
 	                    { 'class': 'carousel-inner' },
-	                    this.element(
-	                        'div',
-	                        { 'class': 'item active' },
-	                        this.element(Pic, null),
-	                        this.element(
-	                            Text,
-	                            { 'class': 'carousel-caption' },
-	                            '图片1'
-	                        )
-	                    ),
-	                    this.element(
-	                        'div',
-	                        { 'class': 'item' },
-	                        this.element(Pic, null),
-	                        this.element(
-	                            Text,
-	                            { 'class': 'carousel-caption' },
-	                            '图片2'
-	                        )
-	                    ),
-	                    this.element(
-	                        'div',
-	                        { 'class': 'item ' },
-	                        this.element(Pic, null),
-	                        this.element(
-	                            Text,
-	                            { 'class': 'carousel-caption' },
-	                            '图片3'
-	                        )
-	                    )
+	                    this.props.children
 	                ),
-	                this.element(
+	                Sophie.element(
 	                    'a',
 	                    { 'class': 'left carousel-control', href: '.carousel', 'data-slide': 'prev' },
-	                    this.element('span', { 'class': 'icon-prev' })
+	                    Sophie.element('span', { 'class': 'icon-prev' })
 	                ),
-	                this.element(
+	                Sophie.element(
 	                    'a',
 	                    { 'class': 'right carousel-control', href: '.carousel', 'data-slide': 'next' },
-	                    this.element('span', { 'class': 'icon-next' })
+	                    Sophie.element('span', { 'class': 'icon-next' })
 	                )
 	            )
 	        );
+	    },
+	    renderItemBar: function renderItemBar() {
+	        var result = [];
+	        var l = this.props.children;
+	        var active = "";
+	        for (var i = 0; i < l; i++) {
+
+	            if (i == 0) active = "active";
+	            result.push(Sophie.element('li', { 'data-target': '#carousel-example-generic', 'data-slide-to': i, 'class': active }));
+	        }
+	        return result;
 	    },
 
 	    componentDidMount: function componentDidMount() {
@@ -8999,33 +9104,20 @@
 
 	            //  $('p-slide .carousel').carousel();
 	        }
-
-	        $(this.nativeNode).attr("data-unit-vm", true);
-
-	        this.resetHeight();
-
-	        var self = this;
-	        $(window).on("resize", function () {
-
-	            self.resetHeight();
-	        });
-	    },
-	    resetHeight: function resetHeight() {
-	        var p = $(this.nativeNode).attr("data-p");
-
-	        if (p) {
-
-	            var v = parseFloat(p);
-
-	            $(this.nativeNode).height($(this.nativeNode).width() * v);
-	        }
 	    },
 
 	    addOne: function addOne(picSrc, text) {
-	        var container = $(".carousel-inner", this.nativeNode);
-	        var item = $('<div class="item"><p-pic src="' + picSrc + '"></p-pic><p-text class="carousel-caption">"' + text + '"</p-text></div>');
-	        container.append(item);
-	        play.iframeDoc.Leaf.upgrade(item);
+	        var newChildren = Sophie.element(
+	            'div',
+	            { 'class': 'item' },
+	            Sophie.element(Pic, null),
+	            Sophie.element(
+	                Text,
+	                { 'class': 'carousel-caption' },
+	                '图片'
+	            )
+	        );
+	        this.append(newChildren);
 	    }
 
 	});

@@ -4802,12 +4802,15 @@ webpackJsonp([3,17],[
 /* 190 */,
 /* 191 */,
 /* 192 */,
-/* 193 */
+/* 193 */,
+/* 194 */,
+/* 195 */,
+/* 196 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var designer = __webpack_require__(194);
+	var designer = __webpack_require__(197);
 
 	module.exports = React.createClass({
 	  displayName: "exports",
@@ -4836,7 +4839,7 @@ webpackJsonp([3,17],[
 	});
 
 /***/ },
-/* 194 */
+/* 197 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4847,34 +4850,31 @@ webpackJsonp([3,17],[
 	// require('blueimp-file-upload')
 	window.__DEV__ = true;
 	__webpack_require__(2);
-	__webpack_require__(195);
-	__webpack_require__(197);
-	__webpack_require__(199);
-
+	__webpack_require__(198);
 	__webpack_require__(200);
-
 	__webpack_require__(202);
+
 	__webpack_require__(203);
 
 	__webpack_require__(205);
-
 	__webpack_require__(206);
-	__webpack_require__(208);
-	__webpack_require__(209);
-	__webpack_require__(210);
 
+	__webpack_require__(208);
+
+	__webpack_require__(209);
 	__webpack_require__(211);
 	__webpack_require__(212);
 	__webpack_require__(213);
+
 	__webpack_require__(214);
 	__webpack_require__(215);
 	__webpack_require__(216);
 	__webpack_require__(217);
 	__webpack_require__(218);
-
 	__webpack_require__(219);
 	__webpack_require__(220);
 	__webpack_require__(221);
+
 	__webpack_require__(222);
 	__webpack_require__(223);
 	__webpack_require__(224);
@@ -4885,14 +4885,18 @@ webpackJsonp([3,17],[
 	__webpack_require__(229);
 	__webpack_require__(230);
 	__webpack_require__(231);
+
 	__webpack_require__(232);
 	__webpack_require__(233);
 	__webpack_require__(234);
+	__webpack_require__(235);
+	__webpack_require__(236);
+	__webpack_require__(237);
 
-	module.exports = __webpack_require__(235);
+	module.exports = __webpack_require__(238);
 
 /***/ },
-/* 195 */
+/* 198 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module) {"use strict";
@@ -5042,7 +5046,7 @@ webpackJsonp([3,17],[
 
 	    // Expose has()
 	    // some AMD build optimizers, like r.js, check for specific condition patterns like the following:
-	    if ("function" == "function" && _typeof(__webpack_require__(196)) == "object" && __webpack_require__(196)) {
+	    if ("function" == "function" && _typeof(__webpack_require__(199)) == "object" && __webpack_require__(199)) {
 	        !(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
 	            return has;
 	        }.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -5224,7 +5228,7 @@ webpackJsonp([3,17],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(52)(module)))
 
 /***/ },
-/* 196 */
+/* 199 */
 /***/ function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {module.exports = __webpack_amd_options__;
@@ -5232,13 +5236,13 @@ webpackJsonp([3,17],[
 	/* WEBPACK VAR INJECTION */}.call(exports, {}))
 
 /***/ },
-/* 197 */
+/* 200 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(198);
+	var content = __webpack_require__(201);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(69)(content, {});
@@ -5258,7 +5262,7 @@ webpackJsonp([3,17],[
 	}
 
 /***/ },
-/* 198 */
+/* 201 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(68)();
@@ -5272,7 +5276,7 @@ webpackJsonp([3,17],[
 
 
 /***/ },
-/* 199 */
+/* 202 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -7279,13 +7283,13 @@ webpackJsonp([3,17],[
 	})(window, jQuery);
 
 /***/ },
-/* 200 */
+/* 203 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(201);
+	var content = __webpack_require__(204);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(69)(content, {});
@@ -7305,7 +7309,7 @@ webpackJsonp([3,17],[
 	}
 
 /***/ },
-/* 201 */
+/* 204 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(68)();
@@ -7313,13 +7317,13 @@ webpackJsonp([3,17],[
 
 
 	// module
-	exports.push([module.id, "html * {\n    /*防止margin叠加*/\n\n    /*改变盒模型*/\n    -webkit-box-sizing: border-box;\n    -moz-box-sizing: border-box;\n    box-sizing: border-box;\n}\n\n/*居中*/\n\nhtml, body {\n\n    margin: 0 !important;\n    padding: 0px;\n\n    font-size: 12px;\n    /*\n     -moz-user-select: none;\n     -webkit-user-select: none;\n     -ms-user-select: none;\n     */;\n    height: 100%;\n    overflow: hidden;\n\n}\n\nbody {\n\n}\n\nbody.preview tool-panel {\n    display: none!important;\n}\n\nbody.preview quick-bar {\n    display: none!important;\n}\nbody.preview .css-panel-open{\n    display: none!important;\n}\n\nbody.preview editor-view {\n    margin:0!important;\n    padding: 0!important;\n    width: 100%;\n}\n\n\n\n\n#header {\n\n\n    margin-bottom: 0;\n}\n\n#header .navbar-nav > li > a {\n    padding: 10px 10px;\n}\n\n#header .navbar-brand {\n    height: 20px;\n    padding: 10px 10px;\n}\n\n#container {\n\n}\n\nlabel {\n    display: inline-block;\n}\n\na {\n    color: inherit;\n}\n\n.btn-small {\n    height: 25px !important;\n    line-height: 10px !important;\n}\n\n.select-mask {\n    position: absolute;\n    top: 0;\n    left: 0;\n    z-index: 1000;\n    pointer-events: none;\n\n}\n\n.select-mask.select-el {\n\n}\n\n.select-mask.select-over {\n    opacity: 0.5;\n}\n\n.select-mask.select-over .side {\n\n}\n\n.select-mask > * {\n    position: absolute;\n\n}\n\n.select-el {\n    z-index: 1010;\n}\n\n.select-mask .more {\n    width: 12px;\n    height: 12px;\n    overflow: hidden;\n    font-size: 12px;\n    line-height: 12px;\n    background-color: #2ebdff;\n    pointer-events: auto;\n    color: #fff;\n    text-align: center;\n}\n\n\n.dragging  select-mask .handle{\n    display: none!important;\n}\n.dragging  select-mask .tag-name{\n    display: none;\n}\n\n.dragging  select-mask .tools-bar{\n    display: none;\n}\n.select-mask .show-width, .select-mask .show-height {\n    display: none;\n\n}\n\n.select-mask .show-width, .select-mask .show-width-inner {\n    height: 20px;\n\n    text-align: center;\n    line-height: 20px;\n\n}\n\n.select-mask .show-width span {\n    padding: 2px;\n    border-radius: 1px;\n    border: solid 1px #dcdcdc;\n    pointer-events: auto;\n    background-color: #fff;\n\n}\n\n.select-mask .show-height, .select-mask .show-height-inner {\n    height: 100%;\n\n    text-align: center;\n    line-height: 20px;\n    width: 20px;\n\n}\n\n.select-mask .show-height span {\n    padding: 2px;\n    border-radius: 1px;\n    border: solid 1px #dcdcdc;\n    pointer-events: auto;\n    height: 20px;\n    margin-top: -10px;\n    position: absolute;\n    top: 50%;\n    left: 0;\n    background-color: #fff;\n\n}\n\n.hover-mask .handle, .hover-mask .shortcutbar {\n    display: none !important;\n}\n\n.hover-mask .s-top, .hover-mask .s-bottom {\n\n    border-bottom: dashed 1px #2ebdff;\n    background: transparent;\n\n}\n\n.hover-mask .s-left, .hover-mask .s-right {\n\n    border-left: dashed 1px #2ebdff;\n    background: transparent;\n\n}\n\n/* s-move */\n.s-top, .s-bottom, .s-left, .s-right {\n\n    /* border: solid 1px #2ebdff;;*/\n\n    background-color: #2ebdff;\n\n}\n\n/* s-move */\n.h-top, .h-bottom, .h-left, .h-right {\n    position: absolute;\n    width: 12px;\n    height: 12px;\n    border: solid 1px #2ebdff;\n    cursor: move;\n    z-index: 1001;\n    background: #fff;\n    pointer-events: auto;\n    border-radius: 6px;\n}\n\n.h-top {\n    top: -6px;\n    left: 50%;\n    cursor: ns-resize;\n}\n\n.h-bottom {\n    bottom: -6px;\n    left: 50%;\n    cursor: ns-resize;\n}\n\n.h-left {\n    top: 50%;\n    left: -6px;\n    cursor: ew-resize;\n}\n\n.h-right {\n    top: 50%;\n    right: -6px;\n    cursor: ew-resize;\n}\n\n.select-mask .tag-name {\n    top: -20px;\n    height: 20px;\n    line-height: 20px;\n    left: 0;\n\n    width: 200px;\n\n    color: #fff;\n    white-space: nowrap;\n\n}\n.select-mask .tools-bar{\n    display: inline-block;\n    white-space: nowrap;\n}\n.hover-mask .tag-name {\n    display: none;\n}\n\n.select-mask .tag-name span {\n\n    pointer-events: auto;\n\n    padding: 0 5px;\n    background-color: rgba(0, 127, 255, 0.65);\n    color: #fff;\n\n}\n\n.select-mask.parent-bar .tag-name span {\n\n    background-color: rgba(0, 255, 161, 0.65);\n\n}\n\n/*  -----*/\n\n.parent-mask {\n    z-index: 1000;\n    position: absolute;\n    pointer-events: none;\n    /* background-color: rgba(74, 134, 232, 0.2);*/\n\n    border: #2ebdff solid 1px;\n    left:0;\n    top:0;\n\n}\n\n\n.context-mask {\n    z-index: 998;\n    position: absolute;\n    pointer-events: none;\n    /* background-color: rgba(74, 134, 232, 0.2);*/\n\n    outline: #ccc solid 6px;\n\n   /* box-shadow:  0 0 0 4px rgba(0, 127, 255, 0.65),  0 0 0 4px rgba(0, 127, 255, 0.65), 0 0 0 0px rgba(0, 127, 255, 0.65);*/\n    left:0;\n    top:0;\n\n}\n\n.context-mask .parent-tagname{\n    pointer-events:auto;\n    position: absolute;\n\n    background-color: #ccc ;\n    height: 20px;\n    line-height: 20px;\n    padding: 0 5px;\n    display: none;\n\n}\n\n\n.parent-bar {\n    z-index: 2000;\n}\n\n.parent-bar .side {\n    display: none !important;\n}\n\n.grid-mask .s-top, .grid-mask .s-bottom {\n\n    border-bottom: solid 1px #2ebdff;\n    background: transparent;\n\n}\n\n.grid-mask .s-left, .grid-mask .s-right {\n\n    border-left: solid 1px #2ebdff;\n    background: transparent;\n\n}\n\n\n\n.parent-bar .shortcutbar {\n    z-index: 100;\n}\n\n.parent-bar .tag-name{\n    left:-30px;\n}\n.editable.select-mask .handle {\n    display: none;\n}\n\n.editable.select-mask .side {\n\n}\n\n.align-y {\n    border-left: dashed 1px red;\n    z-index: 100000;\n    printer-event: none;\n    width: 0px;\n    position: absolute;\n    top: 0;\n    left: 0;\n}\n\n.align-x {\n    border-top: dashed 1px red;\n    z-index: 100000;\n    printer-event: none;\n    width: 0px;\n    position: absolute;\n    top: 0;\n    left: 0;\n}\n\n#select-img {\n    z-index: 2000;\n}\n\n\n\n#grid-bar-top,\n#grid-bar-left,\n#grid-bar-right,\n#grid-bar-bottom{\n    background-color:#98fb98;\n    position: absolute;\n    width: 0;\n    left:0;\n    top:0;\n    height:0;\n\n}\n\n#grid-bar-top,#grid-bar-bottom {\n    height: 4px;\n\n}\n#grid-bar-left ,#grid-bar-right{\n    width: 4px;\n\n}\n\n#position-helper{\n    border:dashed 1px #FF714B;\n    position: absolute;\n    top:0;\n    left:0;\n    width:0;\n    height:0;\n        pointer-events: none;\n}\n", ""]);
+	exports.push([module.id, "html * {\n    /*防止margin叠加*/\n\n    /*改变盒模型*/\n    -webkit-box-sizing: border-box;\n    -moz-box-sizing: border-box;\n    box-sizing: border-box;\n}\n\n/*居中*/\n\nhtml, body {\n\n    margin: 0 !important;\n    padding: 0px;\n\n    font-size: 12px;\n    /*\n     -moz-user-select: none;\n     -webkit-user-select: none;\n     -ms-user-select: none;\n     */;\n    height: 100%;\n    overflow: hidden;\n\n}\n\nbody {\n\n}\n\nbody.preview tool-panel {\n    display: none!important;\n}\n\nbody.preview quick-bar {\n    display: none!important;\n}\nbody.preview .css-panel-open{\n    display: none!important;\n}\n\nbody.preview editor-view {\n    margin:0!important;\n    padding: 0!important;\n    width: 100%;\n}\n\n\n\n\n#header {\n\n\n    margin-bottom: 0;\n}\n\n#header .navbar-nav > li > a {\n    padding: 10px 10px;\n}\n\n#header .navbar-brand {\n    height: 20px;\n    padding: 10px 10px;\n}\n\n#container {\n\n}\n\nlabel {\n    display: inline-block;\n}\n\na {\n    color: inherit;\n}\n\n.btn-small {\n    height: 25px !important;\n    line-height: 10px !important;\n}\n\n.select-mask {\n    position: absolute;\n    top: 0;\n    left: 0;\n    z-index: 1000;\n    pointer-events: none;\n\n}\n\n.select-mask.select-el {\n\n}\n\n.select-mask.select-over {\n    opacity: 0.5;\n}\n\n.select-mask.select-over .side {\n\n}\n\n.select-mask > * {\n    position: absolute;\n\n}\n\n.select-el {\n    z-index: 1010;\n}\n\n.select-mask .more {\n    width: 12px;\n    height: 12px;\n    overflow: hidden;\n    font-size: 12px;\n    line-height: 12px;\n    background-color: #2ebdff;\n    pointer-events: auto;\n    color: #fff;\n    text-align: center;\n}\n\n\n.select-mask .show-width, .select-mask .show-height {\n    display: none;\n\n}\n\n.select-mask .show-width, .select-mask .show-width-inner {\n    height: 20px;\n\n    text-align: center;\n    line-height: 20px;\n\n}\n\n.select-mask .show-width span {\n    padding: 2px;\n    border-radius: 1px;\n    border: solid 1px #dcdcdc;\n    pointer-events: auto;\n    background-color: #fff;\n\n}\n\n.select-mask .show-height, .select-mask .show-height-inner {\n    height: 100%;\n\n    text-align: center;\n    line-height: 20px;\n    width: 20px;\n\n}\n\n.select-mask .show-height span {\n    padding: 2px;\n    border-radius: 1px;\n    border: solid 1px #dcdcdc;\n    pointer-events: auto;\n    height: 20px;\n    margin-top: -10px;\n    position: absolute;\n    top: 50%;\n    left: 0;\n    background-color: #fff;\n\n}\n\n.hover-mask .handle, .hover-mask .shortcutbar {\n    display: none !important;\n}\n\n.hover-mask .s-top, .hover-mask .s-bottom {\n\n    border-bottom: dashed 1px #2ebdff;\n    background: transparent;\n\n}\n\n.hover-mask .s-left, .hover-mask .s-right {\n\n    border-left: dashed 1px #2ebdff;\n    background: transparent;\n\n}\n\n/* s-move */\n.s-top, .s-bottom, .s-left, .s-right {\n\n    /* border: solid 1px #2ebdff;;*/\n\n    background-color: #2ebdff;\n\n}\n\n/* s-move */\n.h-top, .h-bottom, .h-left, .h-right {\n    position: absolute;\n    width: 12px;\n    height: 12px;\n    border: solid 1px #2ebdff;\n    cursor: move;\n    z-index: 1001;\n    background: #fff;\n    pointer-events: auto;\n    border-radius: 6px;\n}\n\n.h-top {\n    top: -6px;\n    left: 50%;\n    cursor: ns-resize;\n}\n\n.h-bottom {\n    bottom: -6px;\n    left: 50%;\n    cursor: ns-resize;\n}\n\n.h-left {\n    top: 50%;\n    left: -6px;\n    cursor: ew-resize;\n}\n\n.h-right {\n    top: 50%;\n    right: -6px;\n    cursor: ew-resize;\n}\n\n.select-mask .tag-name {\n    top: -20px;\n    height: 20px;\n    line-height: 20px;\n    left: 0;\n\n    width: 200px;\n\n    color: #fff;\n    white-space: nowrap;\n\n}\n.select-mask .tools-bar{\n    display: inline-block;\n    white-space: nowrap;\n}\n.hover-mask .tag-name {\n    display: none;\n}\n\n.select-mask .tag-name span {\n\n    pointer-events: auto;\n\n    padding: 0 5px;\n    background-color: rgba(0, 127, 255, 0.65);\n    color: #fff;\n\n}\n\n.select-mask.parent-bar .tag-name span {\n\n    background-color: rgba(0, 255, 161, 0.65);\n\n}\n\n/*  -----*/\n\n.parent-mask {\n    z-index: 1000;\n    position: absolute;\n    pointer-events: none;\n    /* background-color: rgba(74, 134, 232, 0.2);*/\n\n    border: #2ebdff solid 1px;\n    left:0;\n    top:0;\n\n}\n\n\n.context-mask {\n    z-index: 998;\n    position: absolute;\n    pointer-events: none;\n    /* background-color: rgba(74, 134, 232, 0.2);*/\n\n    outline: #ccc solid 6px;\n\n   /* box-shadow:  0 0 0 4px rgba(0, 127, 255, 0.65),  0 0 0 4px rgba(0, 127, 255, 0.65), 0 0 0 0px rgba(0, 127, 255, 0.65);*/\n    left:0;\n    top:0;\n\n}\n\n.context-mask .parent-tagname{\n    pointer-events:auto;\n    position: absolute;\n\n    background-color: #ccc ;\n    height: 20px;\n    line-height: 20px;\n    padding: 0 5px;\n    display: none;\n\n}\n\n\n.parent-bar {\n    z-index: 2000;\n}\n\n.parent-bar .side {\n    display: none !important;\n}\n\n.grid-mask .s-top, .grid-mask .s-bottom {\n\n    border-bottom: solid 1px #2ebdff;\n    background: transparent;\n\n}\n\n.grid-mask .s-left, .grid-mask .s-right {\n\n    border-left: solid 1px #2ebdff;\n    background: transparent;\n\n}\n\n\n\n.parent-bar .shortcutbar {\n    z-index: 100;\n}\n\n.parent-bar .tag-name{\n    left:-30px;\n}\n.editable.select-mask .handle {\n    display: none;\n}\n\n.editable.select-mask .side {\n\n}\n\n.align-y {\n    border-left: solid 1px red;\n    z-index: 100000;\n    printer-event: none;\n    width: 0px;\n    position: absolute;\n    top: 0;\n    left: 0;\n}\n\n.align-x {\n    border-top: solid 1px red;\n    z-index: 100000;\n    printer-event: none;\n    width: 0px;\n    position: absolute;\n    top: 0;\n    left: 0;\n}\n\n#select-img {\n    z-index: 2000;\n}\n\n\n\n#grid-bar-top,\n#grid-bar-left,\n#grid-bar-right,\n#grid-bar-bottom{\n    background-color:#98fb98;\n    position: absolute;\n    width: 0;\n    left:0;\n    top:0;\n    height:0;\n\n}\n\n#grid-bar-top,#grid-bar-bottom {\n    height: 4px;\n\n}\n#grid-bar-left ,#grid-bar-right{\n    width: 4px;\n\n}\n\n#position-helper{\n    border:dashed 1px #FF714B;\n    position: absolute;\n    top:0;\n    left:0;\n    width:0;\n    height:0;\n        pointer-events: none;\n}\n", ""]);
 
 	// exports
 
 
 /***/ },
-/* 202 */
+/* 205 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -7424,7 +7428,7 @@ webpackJsonp([3,17],[
 	})(jQuery);
 
 /***/ },
-/* 203 */
+/* 206 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! =======================================================
@@ -7473,7 +7477,7 @@ webpackJsonp([3,17],[
 	(function (factory) {
 		if (true) {
 			try {
-				!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(204)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+				!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(207)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 			} catch (err) {
 				!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 			}
@@ -9048,7 +9052,7 @@ webpackJsonp([3,17],[
 	});
 
 /***/ },
-/* 204 */
+/* 207 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -9057,7 +9061,7 @@ webpackJsonp([3,17],[
 	module.exports = null;
 
 /***/ },
-/* 205 */
+/* 208 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -9110,544 +9114,516 @@ webpackJsonp([3,17],[
 	        return $(target).is("." + this.gridRowClassName);
 	    },
 
+	    isEditState: function isEditState(target) {
+	        return target.closest("[contenteditable='true']").length;
+	    },
+
 	    isLayout: function isLayout(el) {
 	        // return el.is("p-layout") || el.is("p-layout-m") || el.is("p-container") || el.is(".p-container-fluid")
-	        return el.is("p-layout");
+	        return el.is("p-layout") || el.is("p-layout-inner") || el.is(".p-container") || el.is(".p-container-fluid") || el.is("p-grid");
 	    },
-
-	    lock: function lock(el) {
-	        el.attr("data-lock", true);
-	        $(document).trigger("propChange");
+	    isGridColumn: function isGridColumn(point) {
+	        //p-grid是不能做parent，当他做parent的时候，说明行成了列布局
+	        if (point.parent.is("p-grid")) {
+	            return true;
+	        }
 	    },
-
-	    isVisibleVnode: function isVisibleVnode(vnode) {
-	        return Sophie.isBaseVnode(vnode);
+	    isColumnGrid: function isColumnGrid(el) {
+	        return el.is("p-grid") && el.parent().parent() == "p-page" && play.mediaName == "phone";
 	    },
+	    //grid 在移动端变成列
+	    isGridToColumn: function isGridToColumn(point) {
+	        var parent = point.parent;
+	        var upParent = parent.get(0).vnode.parent.nativeNode;
+	        return play.mediaName == "phone" && parent.is("p-page") && parent.hasClass("column") && upParent.is("p-grid");
+	    }
+	}, _defineProperty(_play, "isGridToColumn", function isGridToColumn(point) {
+	    var parent = point.parent;
+	    return play.mediaName == "phone" && parent.is("p-page");
+	}), _defineProperty(_play, "lock", function lock(el) {
+	    el.attr("data-lock", true);
+	    $(document).trigger("propChange");
+	}), _defineProperty(_play, "isVisibleVnode", function isVisibleVnode(vnode) {
+	    return Sophie.isBaseVnode(vnode);
+	}), _defineProperty(_play, "getVisibleCompontentContext", function getVisibleCompontentContext(vnode) {
 
-	    getVisibleCompontentContext: function getVisibleCompontentContext(vnode) {
+	    return Sophie.closestBaseParent(vnode);
+	}), _defineProperty(_play, "getUpVisibelCompontentContext", function getUpVisibelCompontentContext(vnode) {
+	    return Sophie.getBaseParent(vnode);
+	}), _defineProperty(_play, "getVnodeParent", function getVnodeParent(vnode) {
+	    return vnode.parent;
+	}), _defineProperty(_play, "getVnodeParentByEl", function getVnodeParentByEl(el) {
+	    var vnode = el.vnode;
+	    return this.getVnodeParent(vnode);
+	}), _defineProperty(_play, "unlock", function unlock(el) {
+	    el.removeAttr("data-lock");
+	    $(document).trigger("propChange");
+	}), _defineProperty(_play, "islock", function islock(el) {
+	    return el && $(el).attr("data-lock") === true;
+	}), _defineProperty(_play, "cmdActions", function cmdActions() {
 
-	        return Sophie.closestBaseParent(vnode);
-	    },
+	    $(document).delegate("a", "click", function (e) {
 
-	    getUpVisibelCompontentContext: function getUpVisibelCompontentContext(vnode) {
-	        return Sophie.getBaseParent(vnode);
-	    },
+	        var target = $(e.currentTarget);
 
-	    getVnodeParent: function getVnodeParent(vnode) {
-	        return vnode.parent;
-	    },
+	        if (target.attr("data-cmd")) {
+	            play.cmd = target.attr("data-cmd");
 
-	    getVnodeParentByEl: function getVnodeParentByEl(el) {
-	        var vnode = el.vnode;
-	        return this.getVnodeParent(vnode);
-	    },
+	            target.trigger("cmd", [play.cmd, target]);
+	        }
+	    });
+	}), _defineProperty(_play, "css", {
+	    borderColor: "#000",
+	    borderStyle: "solid",
+	    borderWidth: 0,
+	    color: "#5a5a5a",
+	    backgroundColor: "#fff"
 
-	    unlock: function unlock(el) {
-	        el.removeAttr("data-lock");
-	        $(document).trigger("propChange");
-	    },
+	}), _defineProperty(_play, "mediaQuery", {
 
-	    islock: function islock(el) {
-	        return el && $(el).attr("data-lock") === true;
-	    },
+	    "phone": "(max-width:767px)",
+	    "pad": "(max-width:991px) and (min-width:768px)",
+	    "pc": "(min-width:992px)"
 
-	    cmdActions: function cmdActions() {
+	}), _defineProperty(_play, "mediaQueryValue", {
+	    'phone': 767,
+	    'pad': [768, 991],
+	    pc: 992
 
-	        $(document).delegate("a", "click", function (e) {
+	}), _defineProperty(_play, "phoneFontSize", 22.5), _defineProperty(_play, "phoneWidth", 480), _defineProperty(_play, "mediaName", "pc"), _defineProperty(_play, "maxWidth", 1200), _defineProperty(_play, "mediaCSS", ["width", "min-width", "max-width", "margin-left", "margin-right", "margin-top", "margin-bottom", "height", "min-height", "max-height", "left", "top"]), _defineProperty(_play, "cmd", "select"), _defineProperty(_play, "createStepRun", function createStepRun(time) {
 
-	            var target = $(e.currentTarget);
+	    return {
 
-	            if (target.attr("data-cmd")) {
-	                play.cmd = target.attr("data-cmd");
+	        run: function run(fun, time) {
 
-	                target.trigger("cmd", [play.cmd, target]);
+	            if (this.__timer) {
+	                clearTimeout(this.__timer);
+	                this.__timer = null;
 	            }
-	        });
-	    },
 
-	    css: {
-	        borderColor: "#000",
-	        borderStyle: "solid",
-	        borderWidth: 0,
-	        color: "#5a5a5a",
-	        backgroundColor: "#fff"
+	            this.__timer = setTimeout(fun, time || 200);
+	        }
+	    };
+	}), _defineProperty(_play, "remInit", function remInit() {
+	    //设置rem
+	    // w:1280px  f:40px
+	    // w: 640px  f:20px
 
-	    },
+	    var self = this;
 
-	    mediaQuery: {
+	    self.basefontSize = 60;
 
-	        "phone": "(max-width:767px)",
-	        "pad": "(max-width:991px) and (min-width:768px)",
-	        "pc": "(min-width:992px)",
-	        "all": "all"
-	    },
+	    var initBaseRem = function initBaseRem() {
+	        var documentWidth = $("html").width();
+	        self.basefontSize = documentWidth / 1280 * 60;
+	        $(document.documentElement).css("font-size", self.basefontSize + "px");
+	    };
 
-	    mediaQueryValue: {
-	        'phone': 767,
-	        'pad': [768, 991],
-	        pc: 992
+	    initBaseRem();
 
-	    },
+	    var timer;
 
-	    maxWidth: 1200,
-
-	    //必须同时支持marginleft,margintop, 否则可能会有问题，比如两列布局被挤压时， 可能会影响另一设备的尺寸。
-	    mediaCSS: ["width", "min-width", "max-width", "margin-left", "margin-right", "margin-top", "margin-bottom", "height", "min-height", "max-height", "left", "top"],
-
-	    cmd: "select",
-	    createStepRun: function createStepRun(time) {
-
-	        return {
-
-	            run: function run(fun, time) {
-
-	                if (this.__timer) {
-	                    clearTimeout(this.__timer);
-	                    this.__timer = null;
-	                }
-
-	                this.__timer = setTimeout(fun, time || 200);
-	            }
-	        };
-	    },
-	    remInit: function remInit() {
-	        //设置rem
-	        // w:1280px  f:40px
-	        // w: 640px  f:20px
-
-	        var self = this;
-
-	        self.basefontSize = 60;
-
-	        var initBaseRem = function initBaseRem() {
-	            var documentWidth = $("html").width();
-	            self.basefontSize = documentWidth / 1280 * 60;
-	            $(document.documentElement).css("font-size", self.basefontSize + "px");
-	        };
-
+	    $(window).on("resize", function () {
+	        //不能加time， 会影响其它resize的计算
 	        initBaseRem();
+	    });
 
-	        var timer;
+	    self.pxToRem = function (px) {
+	        return px / self.basefontSize;
+	    };
 
-	        $(window).on("resize", function () {
-	            //不能加time， 会影响其它resize的计算
-	            initBaseRem();
-	        });
+	    self.pxToFontSize = function (px) {
+	        return px / self.basefontSize;
+	    };
+	}), _defineProperty(_play, "generateID", function generateID() {
+	    var selectorNum = parseInt($("body", play.iframeDoc).attr("data-selector-num")) || 0;
+	    selectorNum++;
+	    $("body", play.iframeDoc).attr("data-selector-num", selectorNum);
 
-	        self.pxToRem = function (px) {
-	            return px / self.basefontSize;
-	        };
+	    return Date.now();
+	}), _defineProperty(_play, "_idNum", 0), _defineProperty(_play, "getElementID", function getElementID(el) {
+	    if (el.prop("__element__id")) {
+	        return el.prop("__element__id");
+	    } else {
+	        var id = ++this._idNum;
+	        el.prop("__element__id", id);
+	        return id;
+	    }
+	}), _defineProperty(_play, "getID", function getID() {
+	    var selectorNum = parseInt($("body", play.iframeDoc).attr("data-selector-num"));
 
-	        self.pxToFontSize = function (px) {
-	            return px / self.basefontSize;
-	        };
-	    },
+	    if (!selectorNum) {
+	        selectorNum = 0;
+	        $("body", play.iframeDoc).attr("data-selector-num", 0);
+	    }
 
-	    generateID: function generateID() {
-	        var selectorNum = parseInt($("body", play.iframeDoc).attr("data-selector-num")) || 0;
-	        selectorNum++;
-	        $("body", play.iframeDoc).attr("data-selector-num", selectorNum);
+	    return selectorNum;
+	}), _defineProperty(_play, "getCommonStyleSheet", function getCommonStyleSheet() {
 
-	        return Date.now();
-	    },
-	    _idNum: 0,
-	    getElementID: function getElementID(el) {
-	        if (el.prop("__element__id")) {
-	            return el.prop("__element__id");
-	        } else {
-	            var id = ++this._idNum;
-	            el.prop("__element__id", id);
-	            return id;
-	        }
-	    },
-	    getID: function getID() {
-	        var selectorNum = parseInt($("body", play.iframeDoc).attr("data-selector-num"));
+	    if (this.commonSheet) return this.commonSheet;
+	    var style = $("#common-style", play.iframeDoc).get(0);
+	    this.commonSheet = style.sheet ? style.sheet : style.styleSheet;
 
-	        if (!selectorNum) {
-	            selectorNum = 0;
-	            $("body", play.iframeDoc).attr("data-selector-num", 0);
-	        }
+	    return this.commonSheet;
+	}), _defineProperty(_play, "getPageStyleSheet", function getPageStyleSheet() {
+	    if (this.mainSheet) return this.mainSheet;
+	    var style = $("#page-style", play.iframeDoc).get(0);
+	    this.mainSheet = style.sheet ? style.sheet : style.styleSheet;
+	    return this.mainSheet;
+	}), _defineProperty(_play, "getPageStyleText", function getPageStyleText() {
+	    var styleSheet = this.getPageStyleSheet();
+	    var cssRules = styleSheet.cssRules;
+	    var cssString = "";
+	    for (var i = 0; i < cssRules.length; i++) {
+	        cssString += cssRules[i].cssText + "\r\n";
+	    }
+	    return cssString;
+	}), _defineProperty(_play, "getPageData", function getPageData(iframeDoc) {
 
-	        return selectorNum;
-	    },
-	    getCommonStyleSheet: function getCommonStyleSheet() {
+	    this.clearAllCSS();
 
-	        if (this.commonSheet) return this.commonSheet;
-	        var style = $("#common-style", play.iframeDoc).get(0);
-	        this.commonSheet = style.sheet ? style.sheet : style.styleSheet;
+	    var iframeDoc = iframeDoc || play.iframeDoc;
 
-	        return this.commonSheet;
-	    },
-	    getPageStyleSheet: function getPageStyleSheet() {
-	        if (this.mainSheet) return this.mainSheet;
-	        var style = $("#page-style", play.iframeDoc).get(0);
-	        this.mainSheet = style.sheet ? style.sheet : style.styleSheet;
-	        return this.mainSheet;
-	    },
+	    var links = [];
 
-	    getPageStyleText: function getPageStyleText() {
-	        var styleSheet = this.getPageStyleSheet();
-	        var cssRules = styleSheet.cssRules;
-	        var cssString = "";
-	        for (var i = 0; i < cssRules.length; i++) {
-	            cssString += cssRules[i].cssText + "\r\n";
-	        }
-	        return cssString;
-	    },
+	    var isHave = function isHave(href) {
 
-	    getPageData: function getPageData(iframeDoc) {
-
-	        this.clearAllCSS();
-
-	        var iframeDoc = iframeDoc || play.iframeDoc;
-
-	        var links = [];
-
-	        var isHave = function isHave(href) {
-
-	            for (var i = 0; i < links.length; i++) {
-	                if ($.trim(links[i]) == $.trim(href)) {
-	                    return true;
-	                }
-	            }
-	        };
-	        var linkEls = $('link[rel="import"]', iframeDoc);
-	        linkEls.each(function (index, el) {
-	            var href = $(el).attr("href");
-	            if (!isHave(href) && $(el).attr("custom")) {
-	                links.push($(el).attr("href"));
-	            }
-	        });
-
-	        var html = play.iframeWin.Sophie.renderToJSON();
-	        return {
-
-	            "html": JSON.stringify(html),
-	            "pagecss": this.getPageStyleText(),
-	            "links": links.join(","),
-	            "selectornum": this.getID()
-	        };
-	    },
-	    getLeafEl: function getLeafEl(root, cloneRoot) {
-	        if (!cloneRoot) {
-	            cloneRoot = root.clone();
-	            cloneRoot.html("");
-	        }
-
-	        if (!root.length) {
-	            return $("");
-	        }
-
-	        //@todo is cumtomElement
-
-	        var contentElement = root.get(0).contentElement;
-	        if (!contentElement) {
-	            if (root.find("a.p-text-wrap")) {
-	                contentElement = root.find("a.p-text-wrap").get(0);
+	        for (var i = 0; i < links.length; i++) {
+	            if ($.trim(links[i]) == $.trim(href)) {
+	                return true;
 	            }
 	        }
-	        if (root.is("p-layout") || !play.iframeWin.Sophie.isSophie(root.get(0))) {
-	            contentElement = root.get(0);
+	    };
+	    var linkEls = $('link[rel="import"]', iframeDoc);
+	    linkEls.each(function (index, el) {
+	        var href = $(el).attr("href");
+	        if (!isHave(href) && $(el).attr("custom")) {
+	            links.push($(el).attr("href"));
 	        }
+	    });
 
-	        if (contentElement) {
+	    var html = play.iframeWin.Sophie.renderToJSON();
+	    return {
 
-	            var child = contentElement.childNodes;
-	            for (var i = 0; i < child.length; i++) {
-	                if (child[i].nodeType == 3 && $.trim(child[i].nodeValue) !== "") {
-	                    var clone = $(child[i]).clone();
-	                    cloneRoot.append(clone);
-	                } else if (child[i].nodeType == 1) {
-	                    var el = $(child[i]);
-	                    var clone = el.clone();
-	                    clone.html("");
-	                    cloneRoot.append(clone);
-	                    this.getLeafEl(el, clone);
-	                }
-	            }
+	        "html": JSON.stringify(html),
+	        "pagecss": this.getPageStyleText(),
+	        "links": links.join(","),
+	        "selectornum": this.getID()
+	    };
+	}), _defineProperty(_play, "getLeafEl", function getLeafEl(root, cloneRoot) {
+	    if (!cloneRoot) {
+	        cloneRoot = root.clone();
+	        cloneRoot.html("");
+	    }
+
+	    if (!root.length) {
+	        return $("");
+	    }
+
+	    //@todo is cumtomElement
+
+	    var contentElement = root.get(0).contentElement;
+	    if (!contentElement) {
+	        if (root.find("a.p-text-wrap")) {
+	            contentElement = root.find("a.p-text-wrap").get(0);
 	        }
+	    }
+	    if (root.is("p-layout") || !play.iframeWin.Sophie.isSophie(root.get(0))) {
+	        contentElement = root.get(0);
+	    }
 
-	        return cloneRoot;
-	    },
-	    getCloneEl: function getCloneEl(root, cloneRoot) {
-	        if (!cloneRoot) {
-	            cloneRoot = root.clone();
-	            cloneRoot.html("");
-	        }
+	    if (contentElement) {
 
-	        var child = root.get(0).childNodes;
-
+	        var child = contentElement.childNodes;
 	        for (var i = 0; i < child.length; i++) {
-
 	            if (child[i].nodeType == 3 && $.trim(child[i].nodeValue) !== "") {
 	                var clone = $(child[i]).clone();
 	                cloneRoot.append(clone);
 	            } else if (child[i].nodeType == 1) {
 	                var el = $(child[i]);
-
-	                if (root.is("p-site") || root.is("p-container-fluid") || root.is('p-layout') || root.is('.grid-row')) {
-
-	                    var clone = el.clone();
-	                    clone.html("");
-	                    cloneRoot.append(clone);
-	                    this.getCloneEl(el, clone);
-	                } else {
-
-	                    this.getCloneEl(el, cloneRoot);
-	                }
+	                var clone = el.clone();
+	                clone.html("");
+	                cloneRoot.append(clone);
+	                this.getLeafEl(el, clone);
 	            }
 	        }
+	    }
 
-	        return cloneRoot;
-	    },
+	    return cloneRoot;
+	}), _defineProperty(_play, "getCloneEl", function getCloneEl(root, cloneRoot) {
+	    if (!cloneRoot) {
+	        cloneRoot = root.clone();
+	        cloneRoot.html("");
+	    }
 
-	    getPageJSON: function getPageJSON() {
-	        var site = $("app", play.iframeDoc).get(0);
-	        var rootVnode = { name: "app", component: {}, children: undefined, type: "#thunk" };
-	        var treeData = { "app": { children: [] } };
+	    var child = root.get(0).childNodes;
 
-	        // app
-	        var outVnode = play.iframeWin.Sophie.firstVnode.options.rootVnode;
+	    for (var i = 0; i < child.length; i++) {
 
-	        var walk = function walk(vnode) {
+	        if (child[i].nodeType == 3 && $.trim(child[i].nodeValue) !== "") {
+	            var clone = $(child[i]).clone();
+	            cloneRoot.append(clone);
+	        } else if (child[i].nodeType == 1) {
+	            var el = $(child[i]);
 
-	            var currentData = {};
-	            var children = vnode.children;
+	            if (root.is("p-site") || root.is("p-container-fluid") || root.is('p-layout') || root.is('.grid-row')) {
 
-	            if (Sophie.isThunk(vnode)) {
-
-	                var component = vnode;
-	                children = vnode.children;
-
-	                currentData.type = "#thunk";
-	                // currentData.state = component.state
-	                var attributes = {};
-	                for (var p in component.attributes) {
-	                    if (p == "children") continue;
-	                    attributes[p] = component.attributes[p];
-	                }
-	                currentData.attributes = attributes;
-	                currentData.name = component.options.name;
-	            } else if (vnode.type == "#text") {
-	                currentData.type = vnode.type;
-	                currentData.nodeValue = vnode.nodeValue;
+	                var clone = el.clone();
+	                clone.html("");
+	                cloneRoot.append(clone);
+	                this.getCloneEl(el, clone);
 	            } else {
-	                currentData.type = vnode.type;
-	                var attributes = {};
-	                for (var p in vnode.attributes) {
-	                    if (p == "children") continue;
-	                    attributes[p] = vnode.attributes[p];
-	                }
-	                currentData.attributes = attributes;
+
+	                this.getCloneEl(el, cloneRoot);
 	            }
-	            currentData.children = [];
-	            if (children && children.length) {
-	                for (var i = 0; i < children.length; i++) {
-	                    if (children[i]) currentData.children.push(walk(children[i]));
-	                }
+	        }
+	    }
+
+	    return cloneRoot;
+	}), _defineProperty(_play, "getPageJSON", function getPageJSON() {
+	    var site = $("app", play.iframeDoc).get(0);
+	    var rootVnode = { name: "app", component: {}, children: undefined, type: "#thunk" };
+	    var treeData = { "app": { children: [] } };
+
+	    // app
+	    var outVnode = play.iframeWin.Sophie.firstVnode.options.rootVnode;
+
+	    var walk = function walk(vnode) {
+
+	        var currentData = {};
+	        var children = vnode.children;
+
+	        if (Sophie.isThunk(vnode)) {
+
+	            var component = vnode;
+	            children = vnode.children;
+
+	            currentData.type = "#thunk";
+	            // currentData.state = component.state
+	            var attributes = {};
+	            for (var p in component.attributes) {
+	                if (p == "children") continue;
+	                attributes[p] = component.attributes[p];
 	            }
-
-	            return currentData;
-	        };
-
-	        var data = walk(outVnode);
-
-	        return data;
-	    },
-
-	    // get data type of JSON frome the vnode
-	    getVnodeJSON: function getVnodeJSON(vnode) {
-
-	        // app
-	        var outVnode = vnode;
-
-	        var walk = function walk(vnode) {
-
-	            var currentData = {};
-	            var children = vnode.children;
-
-	            if (Sophie.isThunk(vnode)) {
-
-	                var component = vnode;
-	                children = vnode.children;
-
-	                currentData.type = "#thunk";
-	                // currentData.state = component.state
-	                currentData.attributes = component.attributes;
-	                currentData.options.name = component.name;
-	            } else if (vnode.type == "#text") {
-	                currentData.type = vnode.type;
-	                currentData.nodeValue = vnode.nodeValue;
-	            } else {
-	                currentData.type = vnode.type;
-	                currentData.attributes = vnode.attributes;
+	            currentData.attributes = attributes;
+	            currentData.name = component.options.name;
+	        } else if (vnode.type == "#text") {
+	            currentData.type = vnode.type;
+	            currentData.nodeValue = vnode.nodeValue;
+	        } else {
+	            currentData.type = vnode.type;
+	            var attributes = {};
+	            for (var p in vnode.attributes) {
+	                if (p == "children") continue;
+	                attributes[p] = vnode.attributes[p];
 	            }
-
-	            currentData.children = [];
-
-	            if (children && children.length) {
-	                for (var i = 0; i < children.length; i++) {
-	                    if (children[i]) currentData.children.push(walk(children[i]));
-	                }
-	            }
-
-	            return currentData;
-	        };
-
-	        var data = walk(outVnode);
-
-	        return data;
-	    },
-	    cloneFromVnodeJSON: function cloneFromVnodeJSON(vnodeData) {
-	        var firstVnode = play.iframeWin.Sophie.firstVnode.options.rootVnode;
-	        var create = function create(vnodeData) {
-
-	            if (vnodeData.attributes["key"] || vnodeData.attributes["id"]) {
-	                vnodeData.attributes["key"] = "el" + play.generateID();
-	                vnodeData.attributes["id"] = "el" + play.generateID();
-	            }
-
-	            var children = vnodeData.children;
-	            var result = [];
+	            currentData.attributes = attributes;
+	        }
+	        currentData.children = [];
+	        if (children && children.length) {
 	            for (var i = 0; i < children.length; i++) {
-	                result.push(create(children[i]));
+	                if (children[i]) currentData.children.push(walk(children[i]));
 	            }
+	        }
 
-	            if (vnodeData.type == "#thunk") {
-	                return firstVnode.element(play.iframeWin.Sophie.registry[vnodeData.name], vnodeData.attributes, result);
-	            } else if (vnodeData.type == "#text") {
-	                return {
-	                    type: '#text',
-	                    nodeValue: c.nodeValue
-	                };
+	        return currentData;
+	    };
+
+	    var data = walk(outVnode);
+
+	    return data;
+	}), _defineProperty(_play, "getVnodeJSON", function getVnodeJSON(vnode) {
+
+	    // app
+	    var outVnode = vnode;
+
+	    var walk = function walk(vnode) {
+
+	        var currentData = {};
+	        var children = vnode.children;
+
+	        if (Sophie.isThunk(vnode)) {
+
+	            var component = vnode;
+	            children = vnode.children;
+
+	            currentData.type = "thunk";
+	            // currentData.state = component.state
+	            currentData.attributes = component.attributes;
+	            currentData.name = component.name;
+	        } else if (vnode.type == "text") {
+	            currentData.type = vnode.type;
+	            currentData.nodeValue = vnode.nodeValue;
+	        } else {
+	            currentData.type = vnode.type;
+	            currentData.attributes = vnode.attributes;
+	        }
+
+	        currentData.children = [];
+
+	        if (children && children.length) {
+	            for (var i = 0; i < children.length; i++) {
+	                if (children[i]) currentData.children.push(walk(children[i]));
+	            }
+	        }
+
+	        return currentData;
+	    };
+
+	    var data = walk(outVnode);
+
+	    return data;
+	}), _defineProperty(_play, "cloneFromVnodeJSON", function cloneFromVnodeJSON(vnodeData) {
+	    var firstVnode = play.iframeWin.Sophie.firstVnode;
+
+	    var create = function create(vnodeData) {
+	        if (vnodeData.attributes["key"] || vnodeData.attributes["id"]) {
+	            vnodeData.attributes["id"] = "el-" + play.generateID();
+	        }
+
+	        var children = vnodeData.children;
+	        var result = [];
+	        for (var i = 0; i < children.length; i++) {
+	            result.push(create(children[i]));
+	        }
+
+	        if (vnodeData.type == "thunk") {
+	            var vnode = play.iframeWin.Sophie.element(play.iframeWin.Sophie.registry[vnodeData.name], vnodeData.attributes, result);
+	            vnode._owner = vnode.componentContext = firstVnode;
+
+	            if (vnode.props.children.length) {
+	                for (var i = 0; i < vnode.props.children.length; i++) {
+	                    var c = vnode.props.children[i];
+	                    c._owner = c.componentContext = firstVnode;
+	                }
 	            } else {
-	                return firstVnode.element(vnodeData.name, vnodeData.attributes, result);
+	                vnode.props.children._owner = vnode.props.children.componentContext = firstVnode;
 	            }
-	        };
 
-	        return create(vnodeData);
-	    },
+	            return vnode;
+	        } else if (vnodeData.type == "text") {
+	            return {
+	                type: 'text',
+	                nodeValue: c.nodeValue
+	            };
+	        } else {
+	            var vnode = play.iframeWin.Sophie.element(vnodeData.name, vnodeData.attributes, result);
 
-	    renderElFromeVnodeJSON: function renderElFromeVnodeJSON() {},
-	    //for test
-	    // 原则，
-	    getVnodeInsertPositon: function getVnodeInsertPositon() {},
-
-	    updateChildren: function updateChildren() {},
-
-	    createStyle: function createStyle(id, csstext) {
-	        var style = $(id);
-	        var css = 'h1 { background: red; }',
-	            head = document.head || document.getElementsByTagName('head')[0],
-	            style = document.createElement('style');
-	        style.type = 'text/css';
-	        head.appendChild(style);
-	    },
-
-	    renderData: function renderData(data, callback) {
-
-	        play.iframeWin.App.render(data);
-	        setTimeout(function () {
-	            callback && callback();
-	        }, 0);
-	    },
-
-	    bindStorage: function bindStorage() {
-	        //简单的本地存储
-	        var self = this;
-	        var key = window.location.search;
-	        if (localStorage) {
-	            var runner = play.createStepRun();
-
-	            $(document).on("addNewEl moveEl cssChange resizeEl removeEl  textInput propChange domChange", function () {
-	                runner.run(function () {
-	                    console.log("save");
-	                    var data = JSON.stringify(play.getPageData());
-	                    var selected = play.select.selectedEL;
-
-	                    var selector = "";
-	                    if (selected && selected.length) {
-	                        selector = play.utils.toSelector(selected);
-	                    }
-
-	                    play.history.push(data, selector);
-	                    // localStorage.setItem(key, data);
-	                }, 10);
-	            });
-
-	            // var data = JSON.stringify(play.getPageData())
-	            // play.history.push(data)
-
+	            vnode._owner = vnode.componentContext = firstVnode;
+	            return vnode;
 	        }
-	    },
+	    };
 
-	    getStorage: function getStorage() {
-	        var self = this;
+	    return create(vnodeData);
+	}), _defineProperty(_play, "renderElFromeVnodeJSON", function renderElFromeVnodeJSON() {}), _defineProperty(_play, "getVnodeInsertPositon", function getVnodeInsertPositon() {}), _defineProperty(_play, "updateChildren", function updateChildren() {}), _defineProperty(_play, "createStyle", function createStyle(id, csstext) {
+	    var style = $(id);
+	    var css = 'h1 { background: red; }',
+	        head = document.head || document.getElementsByTagName('head')[0],
+	        style = document.createElement('style');
+	    style.type = 'text/css';
+	    head.appendChild(style);
+	}), _defineProperty(_play, "renderData", function renderData(data, callback) {
 
-	        var key = window.siteID;
-	        if (localStorage) {
-	            var data = localStorage.getItem(key);
+	    play.iframeWin.App.render(data);
+	    setTimeout(function () {
+	        callback && callback();
+	        play.synIframeHeight();
+	    }, 0);
+	}), _defineProperty(_play, "bindStorage", function bindStorage() {
+	    //简单的本地存储
+	    var self = this;
+	    var key = window.location.search;
+	    if (localStorage) {
+	        var runner = play.createStepRun();
 
-	            if (data) {
-	                return JSON.parse(data);
-	            }
-	        }
-	    },
+	        $(document).on("addNewEl moveEl cssChange resizeEl removeEl  textInput propChange domChange store", function () {
+	            runner.run(function () {
 
-	    setStyleText: function setStyleText(cssString) {
-	        var style = $("#main-style", play.iframeDoc);
-	        style.text(cssString);
-	    },
+	                var data = JSON.stringify(play.getPageData());
+	                var selected = play.select.selectedEL;
 
-	    saveStyleSheet: function saveStyleSheet() {
-	        var style = $("#main-style", play.iframeDoc);
-	        var styleSheet = this.getStyleSheet();
-	        var cssRules = styleSheet.cssRules;
-	        var cssString = "";
-	        for (var i = 0; i < cssRules.length; i++) {
-	            cssString += cssRules[i].cssText + "\r\n";
-	        }
-	    },
+	                var selector = "";
+	                if (selected && selected.length) {
+	                    selector = play.utils.toSelector(selected);
+	                }
 
-	    clearAllCSS: function clearAllCSS() {
-	        var styleSheet = this.getPageStyleSheet();
-	        this.clearCSS(styleSheet);
-	        var styleSheet = this.getPageStyleSheet();
-	        this.clearCSS(styleSheet);
-	    },
-
-	    clearCSS: function clearCSS(styleSheet) {
-
-	        var cssRules = styleSheet.cssRules;
-	        //查找相同选择器的规则
-	        var cssRule;
-	        for (var j = 0; j < cssRules.length; j++) {
-	            var select = cssRules[j].selectorText;
-	            if (!$(select, play.iframeDoc).length) {
-
-	                // styleSheet.deleteRule(j);
-	            }
-	        }
-	    },
-
-	    beforeAddNewEl: function beforeAddNewEl(el, coord) {
-	        $(document).trigger("beforeAddNewEl", [$(el), coord]);
-	    },
-	    //@todo
-	    initDefaultEditProp: function initDefaultEditProp() {
-	        this.registerEditableProp("CHILDREN", {
-	            "parentable": true
+	                play.history.push(data, selector);
+	                // localStorage.setItem(key, data);
+	            }, 10);
 	        });
 
-	        this.registerEditableProp("P-LAYOUT-INNER", {
-	            "parentable": true,
-	            "selectable": false
-	        });
-	    },
+	        // var data = JSON.stringify(play.getPageData())
+	        // play.history.push(data)
 
-	    initEditProp: function initEditProp(el) {
+	    }
+	}), _defineProperty(_play, "getStorage", function getStorage() {
+	    var self = this;
 
-	        this.registerEditableProp(el.prop("tagName"), {
+	    var key = window.siteID;
+	    if (localStorage) {
+	        var data = localStorage.getItem(key);
+
+	        if (data) {
+	            return JSON.parse(data);
+	        }
+	    }
+	}), _defineProperty(_play, "setStyleText", function setStyleText(cssString) {
+	    var style = $("#main-style", play.iframeDoc);
+	    style.text(cssString);
+	}), _defineProperty(_play, "saveStyleSheet", function saveStyleSheet() {
+	    var style = $("#main-style", play.iframeDoc);
+	    var styleSheet = this.getStyleSheet();
+	    var cssRules = styleSheet.cssRules;
+	    var cssString = "";
+	    for (var i = 0; i < cssRules.length; i++) {
+	        cssString += cssRules[i].cssText + "\r\n";
+	    }
+	}), _defineProperty(_play, "clearAllCSS", function clearAllCSS() {
+	    var styleSheet = this.getPageStyleSheet();
+	    this.clearCSS(styleSheet);
+	    var styleSheet = this.getPageStyleSheet();
+	    this.clearCSS(styleSheet);
+	}), _defineProperty(_play, "clearCSS", function clearCSS(styleSheet) {
+
+	    var cssRules = styleSheet.cssRules;
+	    //查找相同选择器的规则
+	    var cssRule;
+	    for (var j = 0; j < cssRules.length; j++) {
+	        var select = cssRules[j].selectorText;
+	        if (!$(select, play.iframeDoc).length) {
+
+	            // styleSheet.deleteRule(j);
+	        }
+	    }
+	}), _defineProperty(_play, "beforeAddNewEl", function beforeAddNewEl(el, coord) {
+	    $(document).trigger("beforeAddNewEl", [$(el), coord]);
+	}), _defineProperty(_play, "initDefaultEditProp", function initDefaultEditProp() {
+	    this.registerEditableProp("CHILDREN", {
+	        "parentable": true
+	    });
+
+	    this.registerEditableProp("P-LAYOUT-INNER", {
+	        "parentable": true,
+	        "selectable": false
+	    });
+	}), _defineProperty(_play, "initEditProp", function initEditProp(el) {
+
+	    $(document).trigger("editableInit", [$(el)]);
+	    return;
+	}), _defineProperty(_play, "getVnodeParent", function getVnodeParent(vnode) {
+	    return vnode.parent;
+	}), _defineProperty(_play, "getDefaultEditProp", function getDefaultEditProp(el) {
+
+	    var baseConfig = {
+	        "selectable": false,
+	        "moveable": false,
+	        "resizeable": false,
+	        "removeable": false
+
+	    };
+
+	    if (play.isLayout(el.parent())) {
+	        baseConfig = {
 	            "selectable": true,
 	            "moveable": {
 	                treeModify: true
@@ -9655,20 +9631,13 @@ webpackJsonp([3,17],[
 	            "resizeable": true,
 	            "removeable": true
 
-	        });
-
-	        if (play.isLayout(el)) {
-	            this.registerEditableProp(el.prop("tagName"), {
-	                "parentable": true
-	            });
-	        }
-
-	        $(document).trigger("editableInit", [$(el)]);
-	        return;
+	        };
 	    }
 
-	}, _defineProperty(_play, "getVnodeParent", function getVnodeParent(vnode) {
-	    return vnode.parent;
+	    if (play.isLayout(el)) {
+	        baseConfig.parentable = true;
+	    }
+	    return baseConfig;
 	}), _defineProperty(_play, "initEditPropBind", function initEditPropBind() {
 	    var self = this;
 	    $(document).on("editableInit", function (ev, el) {
@@ -9751,6 +9720,10 @@ webpackJsonp([3,17],[
 
 	    var children = cfg.children;
 
+	    if (!children) {
+	        cfg.children = children = {};
+	    }
+
 	    var childProp = children[childSlector];
 
 	    if (!childProp) {
@@ -9810,11 +9783,21 @@ webpackJsonp([3,17],[
 	        cfg = this._editableProp[tagName] = {};
 	    }
 
-	    return cfg[propName];
+	    var defaultConfig = this.getDefaultEditProp(el);
+	    var newCfg = $.extend(defaultConfig, cfg);
+
+	    return newCfg[propName];
 	}), _defineProperty(_play, "getEditableProps", function getEditableProps(el) {
 	    var tagName = el.prop("tagName");
 	    tagName = tagName.toLowerCase();
-	    return this._editableProp[tagName] || {};
+	    var cfg = this._editableProp[tagName];
+	    if (!cfg) {
+	        cfg = this._editableProp[tagName] = {};
+	    }
+
+	    var defaultConfig = this.getDefaultEditProp(el);
+	    var newCfg = $.extend(defaultConfig, cfg);
+	    return newCfg;
 	}), _defineProperty(_play, "isParentable", function isParentable(el) {
 	    return this.getEditableProp(el, "parentable");
 	}), _defineProperty(_play, "isParentableVnode", function isParentableVnode(vnode) {
@@ -9830,35 +9813,6 @@ webpackJsonp([3,17],[
 	            this._walkRoot(el, callback);
 	        }
 	    }
-	}), _defineProperty(_play, "resetTemplateEditProp", function resetTemplateEditProp(el) {
-	    if (play.isLayout(el)) return;
-	    this._walkRoot($(el), function (target) {
-	        if (!play.isLayout(target)) {
-
-	            //标记模板元素，以进行选择
-	            target.prop("istemplate", true);
-	            target.prop("removeable", false);
-	            target.prop("selectable", false);
-
-	            target.prop("resizeable", false);
-	            target.prop("moveable", false);
-	            target.prop("parentable", false);
-	            //target.prop("editable", false)
-	            return true;
-	        } else {
-
-	            target.prop("istemplate", true);
-
-	            target.prop("removeable", false);
-	            target.prop("resizeable", false);
-	            target.prop("moveable", false);
-	            target.prop("selectable", false);
-	            target.prop("parentable", true);
-
-	            if (el.is("p-footer")) {}
-	            return false;
-	        }
-	    });
 	}), _defineProperty(_play, "save", function save() {
 
 	    var data = play.getPageData();
@@ -9875,7 +9829,14 @@ webpackJsonp([3,17],[
 	    }
 	}), _defineProperty(_play, "synIframeHeight", function synIframeHeight() {
 	    var h = $("body", play.iframeDoc).height();
-	    if (h < 800) h = 800;
+
+	    var currentHeight = $("#editor").height();
+
+	    // if(currentHeight< h&&currentHeight!<800){
+	    //   $(play.iframe).height(h);
+	    //   $("#editor").height(h)
+	    // }
+
 	    $(play.iframe).height(h);
 	    $("#editor").height(h);
 	}), _defineProperty(_play, "pxToPercent", function pxToPercent(value, parentCoord) {
@@ -9972,7 +9933,7 @@ webpackJsonp([3,17],[
 	});
 
 /***/ },
-/* 206 */
+/* 209 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -9990,7 +9951,7 @@ webpackJsonp([3,17],[
 	     *
 	     * (c) 2012 Jakub Jankiewicz
 	     */
-	    var Rangy = __webpack_require__(207);
+	    var Rangy = __webpack_require__(210);
 
 	    var mainSheet, commonSheet;
 	    var start = new Date().getTime();
@@ -10358,7 +10319,7 @@ webpackJsonp([3,17],[
 	                savedSel.select();
 	            }
 	        }
-	    }), _defineProperty(_utils, "initStyleSheet", function initStyleSheet() {}), _defineProperty(_utils, "getStyleSheet", function getStyleSheet(selector) {
+	    }), _defineProperty(_utils, "initStyleSheet", function initStyleSheet() {}), _defineProperty(_utils, "getStyleSheet", function getStyleSheet() {
 
 	        var style = $("#page-style", play.iframeDoc).get(0);
 	        if (!style) {
@@ -10434,11 +10395,11 @@ webpackJsonp([3,17],[
 	                return true;
 	            }
 	        }
-	    }), _defineProperty(_utils, "removeMediaCSSRule", function removeMediaCSSRule(selector, cssName) {
+	    }), _defineProperty(_utils, "_removeMediaCSSRule", function _removeMediaCSSRule(selector, cssName, mediaName) {
 
 	        var styleSheet = this.getStyleSheet(selector);
 	        if (typeof selector !== "string") {
-	            selector = this.toSelector(selector);
+	            selector = this.toSelector(selector, mediaName);
 	        }
 
 	        if (!selector) return;
@@ -10479,11 +10440,26 @@ webpackJsonp([3,17],[
 	                remove(cssRules[j]);
 	            }
 	        }
-	    }), _defineProperty(_utils, "getMediaCSSRule", function getMediaCSSRule(selector, cssName, mediaText, styleSheet) {
+	    }), _defineProperty(_utils, "removeMediaCSSRule", function removeMediaCSSRule(selector, cssName, mediaName) {
+
+	        for (var p in play.mediaQuery) {
+	            if (p !== play.mediaName) this._removeMediaCSSRule(selector, cssName, play.mediaQuery[p]);
+	        }
+	    }), _defineProperty(_utils, "getComputerCSSRule", function getComputerCSSRule(selector, cssName, mediaName) {
+	        var value = this.getCSSRule(selector, cssName, mediaName);
+	        if (!value) {
+	            value = this.getMediaCSSRule(selector, cssName, mediaName);
+	        }
+	        if (!value) {
+	            value = this.getMediaCSSRule(selector, cssName, "all");
+	        }
+
+	        return value;
+	    }), _defineProperty(_utils, "getCSSRule", function getCSSRule(selector, cssName, mediaName) {
 	        var styleSheet = styleSheet || this.getStyleSheet(selector);
 
 	        if (typeof selector !== "string") {
-	            selector = this.toSelector(selector);
+	            selector = this.toSelector(selector, mediaName);
 	        }
 
 	        if (!selector) return;
@@ -10495,7 +10471,26 @@ webpackJsonp([3,17],[
 	        var index;
 
 	        for (var j = 0; j < cssRules.length; j++) {
+	            if (cssRules[j].selectorText == selector && cssRules[j].style.getPropertyValue(cssName)) {
+	                return cssRules[j].style.getPropertyValue(cssName);
+	            }
+	        }
+	    }), _defineProperty(_utils, "getMediaCSSRule", function getMediaCSSRule(selector, cssName, mediaName) {
+	        var styleSheet = this.getStyleSheet(selector);
 
+	        if (typeof selector !== "string") {
+	            selector = this.toMediaSelector(selector, mediaName);
+	        }
+
+	        if (!selector) return;
+
+	        var cssRules = styleSheet.cssRules;
+
+	        //查找相同选择器的规则
+	        var cssRule;
+	        var index;
+
+	        for (var j = 0; j < cssRules.length; j++) {
 	            if (cssRules[j].selectorText == selector && cssRules[j].style.getPropertyValue(cssName)) {
 	                return cssRules[j].style.getPropertyValue(cssName);
 	            }
@@ -10568,10 +10563,26 @@ webpackJsonp([3,17],[
 
 	        var selector = this._toSelector(el);
 
-	        if (mediaName == play.mediaQuery.phone) {
+	        if (mediaName == "phone") {
+	            selector = "#media-phone #dotlinkface " + selector;
+	        } else if (mediaName == "pc") {
+	            selector = "#media-pc #dotlinkface " + selector;
+	        } else if (mediaName == "pad") {
+	            selector = "#media-pad #dotlinkface " + selector;
+	        }
+
+	        return selector;
+	    }), _defineProperty(_utils, "toMediaSelector", function toMediaSelector(el, mediaName) {
+	        var selector = this._toSelector(el);
+
+	        if (mediaName == "phone") {
 	            selector = "#media-phone " + selector;
-	        } else if (mediaName == play.mediaQuery.pc) {
+	        } else if (mediaName == "pc") {
 	            selector = "#media-pc " + selector;
+	        } else if (mediaName == "pad") {
+	            selector = "#media-pad " + selector;
+	        } else if (mediaName == "all") {
+	            selector = selector;
 	        }
 
 	        return selector;
@@ -10679,16 +10690,8 @@ webpackJsonp([3,17],[
 	                }
 	            }
 	        }
-	    }), _defineProperty(_utils, "createCSSRule", function createCSSRule(selector, cssName, cssValue, mediaText, selectPrefix) {
-
-	        var target = selector;
-	        var styleSheet = this.getStyleSheet(selector);
-
-	        if (typeof selector !== "string") {
-
-	            selector = this.toSelector(selector, mediaText);
-	        }
-
+	    }), _defineProperty(_utils, "createCSSRule", function createCSSRule(selector, cssName, cssValue, mediaName, selectPrefix) {
+	        var styleSheet = this.getStyleSheet();
 	        if (selectPrefix) {
 	            selector = selectPrefix + " " + selector;
 	        }
@@ -10707,13 +10710,6 @@ webpackJsonp([3,17],[
 	        if (play.cssStatus && !isPositionCSS(cssName) && play.cssStatus !== ".default") {
 	            selector = selector + play.cssStatus;
 	        }
-
-	        if ((cssName == "fontSize" || cssName == "font-size") && target.find('.p-text-wrap').length) {
-	            selector = selector + " .p-text-wrap";
-	        }
-
-	        //列信息
-	        if (!mediaText) mediaText = "all";
 
 	        var cssRules = styleSheet.cssRules;
 
@@ -10764,7 +10760,7 @@ webpackJsonp([3,17],[
 	})();
 
 /***/ },
-/* 207 */
+/* 210 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;"use strict";var _typeof=typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"?function(obj){return typeof obj;}:function(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol?"symbol":typeof obj;};/**
@@ -11101,7 +11097,7 @@ webpackJsonp([3,17],[
 	addListener(window,"load",loadHandler);}}return api;},undefined);
 
 /***/ },
-/* 208 */
+/* 211 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -11235,7 +11231,7 @@ webpackJsonp([3,17],[
 	})();
 
 /***/ },
-/* 209 */
+/* 212 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -11275,6 +11271,25 @@ webpackJsonp([3,17],[
 	            this._parentCache = {};
 	        },
 
+	        getCoordNoCache: function getCoordNoCache(el) {
+	            if (!el || el.length === 0) return;
+
+	            var c = {};
+	            var offset = this.offset(el);
+
+	            c.left = offset.left;
+	            c.top = offset.top;
+
+	            c.width = el.outerWidth();
+	            c.height = el.outerHeight();
+
+	            c.right = c.left + c.width;
+	            c.bottom = c.top + c.height;
+	            c.fontSize = parseFloat(el.css("fontSize"));
+
+	            return c;
+	        },
+
 	        cood: function cood(el, _cood) {
 	            if (!el || el.length === 0) return;
 	            var id = play.getElementID(el);
@@ -11286,6 +11301,12 @@ webpackJsonp([3,17],[
 	                    }
 	                }
 
+	                var vnode = el.get(0).vnode;
+
+	                // var coordName  = play.mediaName+"Coord";
+	                // if(vnode&&vnode.props&&vnode.props[coordName]){
+	                //   return vnode.props[coordName];
+	                // }
 	                var c = {};
 	                var offset = this.offset(el);
 
@@ -11316,221 +11337,336 @@ webpackJsonp([3,17],[
 	        },
 
 	        getMediaCoord: function getMediaCoord(el, mediaName) {
-	            var mediaText = play.mediaQuery[mediaName];
+	            if (el.is("p-page")) {
+	                if (mediaName == "phone") {
 
-	            if (play.utils.hasMediaCSSRule(el, mediaText)) {
-	                var height = play.utils.getMediaCSSRule(el, "height", mediaText);
-	                var width = play.utils.getMediaCSSRule(el, "height", mediaText);
-	                var top = play.utils.getMediaCSSRule(el, "margin-top", mediaText);
-	                var left = play.utils.getMediaCSSRule(el, "margin-left", mediaText);
-
-	                return {
-	                    height: height,
-	                    width: width,
-	                    top: top,
-	                    left: left
-	                };
+	                    return {
+	                        height: 800,
+	                        width: play.phoneWidth,
+	                        top: 0,
+	                        left: 0,
+	                        bottom: 800,
+	                        right: play.phoneWidth,
+	                        fontSize: play.phoneFontSize
+	                    };
+	                }
 	            }
-	        },
-	        size: function size(el, cood) {
-	            if (arguments.length == 1) {
-	                var offset = {};
-	                offset.width = el.outerWidth();
-	                offset.height = el.outerHeight();
-	                return offset;
-	            }
+	            var height = parseFloat(play.utils.getComputerCSSRule(el, "height", mediaName));
+	            var width = parseFloat(play.utils.getComputerCSSRule(el, "width", mediaName));
+	            var top = parseFloat(play.utils.getComputerCSSRule(el, "margin-top", mediaName));
+	            var left = parseFloat(play.utils.getComputerCSSRule(el, "margin-left", mediaName));
 
-	            el.outerWidth(cood.width);
-	            el.outerHeight(cood.height);
-	        },
+	            var result = {
+	                height: height ? height * play.phoneFontSize : 0,
+	                width: width ? width * play.phoneFontSize : 0,
+	                top: top ? top * play.phoneFontSize : 0,
+	                left: left ? left * play.phoneFontSize : 0,
+	                fontSize: play.phoneFontSize
+	            };
 
-	        pxToPercent: function pxToPercent(value, parentCoord) {
-	            return value / parentCoord.width * 100;
-	        },
+	            result.right = result.left + result.width;
+	            result.bottom = result.top + result.height;
 
-	        pxToEm: function pxToEm(value, fontSize) {
-	            return value / fontSize;
-	        },
+	            return result;
+	        }
+	    }, _defineProperty(_position, "getMediaCoord", function getMediaCoord(el, mediaName) {
+	        var vnode = el.get(0).vnode;
 
-	        elementFromPoint: function elementFromPoint(x, y) {
-
-	            //ie 11  msElementsFromPoint ？ http://blog.csdn.net/xiaofengxiaoling/article/details/8204230
-	            var el = play.iframeDoc.elementFromPoint(x, y);
-	            return $(el);
-	        },
-
-	        toIframePosition: function toIframePosition(x, y) {
-
-	            var doc = play.iframeDoc;
-
-	            var iframeOffsetX = x - play.iframe.offset().left + $(doc).scrollLeft();
-	            var iframeOffsetY = y - play.iframe.offset().top + $(doc).scrollTop();
+	        if (mediaName == "phone" && vnode.name == "p-page") {
 
 	            return {
-	                left: iframeOffsetX,
-
-	                top: iframeOffsetY
+	                height: 800,
+	                width: play.phoneWidth,
+	                top: 0,
+	                left: 0,
+	                bottom: 800,
+	                right: play.phoneWidth,
+	                fontSize: play.phoneFontSize
 	            };
-	        },
+	        }
 
-	        getNextPositionEl: function getNextPositionEl(el, ex) {
-	            if (!el) return;
-	            var next = el.next();
-	            while (next && next.length) {
+	        var coord = vnode.props[mediaName + "coord"];
+	        return coord;
+	        // if(coord){
+	        //   if(mediaName == "phone"){
+	        //
+	        //     return {
+	        //       height:800,
+	        //       width:play.phoneWidth,
+	        //       top:0,
+	        //       left:0,
+	        //       bottom:800,
+	        //       right:play.phoneWidth,
+	        //       fontSize:play.phoneFontSize
+	        //     };
+	        //   }
+	        // }
+	        // var height = parseFloat(play.utils.getComputerCSSRule(el, "height", mediaName))
+	        // var width = parseFloat(play.utils.getComputerCSSRule(el, "width", mediaName));
+	        // var top = parseFloat(play.utils.getComputerCSSRule(el, "margin-top", mediaName));
+	        // var left = parseFloat(play.utils.getComputerCSSRule(el, "margin-left", mediaName));
+	        //
+	        // var result= {
+	        //   height:height?height*play.phoneFontSize:0,
+	        //   width:width?width*play.phoneFontSize:0,
+	        //   top:top?top*play.phoneFontSize:0,
+	        //   left:left?left*play.phoneFontSize:0,
+	        //   fontSize:play.phoneFontSize
+	        // };
+	        //
+	        // result.right = result.left+result.width;
+	        // result.bottom = result.top+result.height;
 
-	                if (ex && next.is(ex)) {
-	                    next = next.next();
-	                    continue;
-	                }
 
-	                if (utils.isStatic(next)) {
-	                    break;
-	                } else {
-	                    next = next.next();
-	                }
+	        // return  result;
+	    }), _defineProperty(_position, "size", function size(el, cood) {
+	        if (arguments.length == 1) {
+	            var offset = {};
+	            offset.width = el.outerWidth();
+	            offset.height = el.outerHeight();
+	            return offset;
+	        }
+
+	        el.outerWidth(cood.width);
+	        el.outerHeight(cood.height);
+	    }), _defineProperty(_position, "pxToPercent", function pxToPercent(value, parentCoord) {
+	        return value / parentCoord.width * 100;
+	    }), _defineProperty(_position, "pxToEm", function pxToEm(value, fontSize) {
+	        return value / fontSize;
+	    }), _defineProperty(_position, "elementFromPoint", function elementFromPoint(x, y) {
+
+	        //ie 11  msElementsFromPoint ？ http://blog.csdn.net/xiaofengxiaoling/article/details/8204230
+	        var el = play.iframeDoc.elementFromPoint(x, y);
+	        return $(el);
+	    }), _defineProperty(_position, "toIframePosition", function toIframePosition(x, y) {
+
+	        var doc = play.iframeDoc;
+
+	        var iframeOffsetX = x - play.iframe.offset().left + $(doc).scrollLeft();
+	        var iframeOffsetY = y - play.iframe.offset().top + $(doc).scrollTop();
+
+	        return {
+	            left: iframeOffsetX,
+
+	            top: iframeOffsetY
+	        };
+	    }), _defineProperty(_position, "getNextPositionEl", function getNextPositionEl(el, ex) {
+	        if (!el) return;
+	        var next = el.next();
+	        while (next && next.length) {
+
+	            if (ex && next.is(ex)) {
+	                next = next.next();
+	                continue;
 	            }
-	            return next;
-	        },
-	        getNextPositionElFromStart: function getNextPositionElFromStart(el, ex) {
-	            if (!el) return;
-	            var next = el;
-	            while (next && next.length) {
 
-	                if (ex && next.is(ex)) {
-	                    next = next.next();
-	                    continue;
-	                }
-
-	                if (utils.isStatic(next)) {
-	                    break;
-	                } else {
-	                    next = next.next();
-	                }
-	            }
-	            return next;
-	        },
-
-	        recordPositionFromStart: function recordPositionFromStart(el) {
-
-	            var self = this;
-	            var next = this.getNextPositionElFromStart(el);
-	            if (next && next.length) {
-
-	                if (utils.isInline(next)) {
-	                    var all = play.grid.getAllInlineFromThisEl(el);
-	                    all.each(function (index, el) {
-
-	                        self.record($(el));
-	                    });
-
-	                    recordPositionEl = all;
-	                } else {
-
-	                    this.record(next);
-	                    recordPositionEl = next;
-	                }
-
-	                return recordPositionEl;
+	            if (utils.isStatic(next)) {
+	                break;
 	            } else {
-	                recordPositionEl = null;
+	                next = next.next();
 	            }
-	        },
-	        recordPosition: function recordPosition(el) {
-	            var self = this;
+	        }
+	        return next;
+	    }), _defineProperty(_position, "getNextPositionElFromStart", function getNextPositionElFromStart(el, ex) {
+	        if (!el) return;
+	        var next = el;
+	        while (next && next.length) {
 
-	            var next = this.getNextPositionEl(el);
-	            if (next && next.length) {
+	            if (ex && next.is(ex)) {
+	                next = next.next();
+	                continue;
+	            }
 
-	                if (utils.isInline(next)) {
-	                    var all = play.grid.getAllInlineFromThisEl(el);
-	                    all.each(function (index, el) {
-
-	                        self.record($(el));
-	                    });
-
-	                    recordPositionEl = all;
-	                } else {
-
-	                    this.record(next);
-	                    recordPositionEl = next;
-	                }
-
-	                return recordPositionEl;
+	            if (utils.isStatic(next)) {
+	                break;
 	            } else {
-	                recordPositionEl = null;
+	                next = next.next();
 	            }
-	        },
+	        }
+	        return next;
+	    }), _defineProperty(_position, "recordPositionFromStart", function recordPositionFromStart(el) {
 
-	        revertPosition: function revertPosition(el) {
-	            var self = this;
+	        var self = this;
+	        var next = this.getNextPositionElFromStart(el);
+	        if (next && next.length) {
 
-	            var target = el || recordPositionEl;
+	            if (utils.isInline(next)) {
+	                var all = play.grid.getAllInlineFromThisEl(el);
+	                all.each(function (index, el) {
 
-	            if (target) {
+	                    self.record($(el));
+	                });
 
-	                if (target.length == 1) {
-	                    this.revert(target);
-	                } else {
+	                recordPositionEl = all;
+	            } else {
 
-	                    target.each(function (index, el) {
+	                this.record(next);
+	                recordPositionEl = next;
+	            }
 
-	                        self.revert($(el));
-	                    });
+	            return recordPositionEl;
+	        } else {
+	            recordPositionEl = null;
+	        }
+	    }), _defineProperty(_position, "recordPosition", function recordPosition(el) {
+	        var self = this;
+
+	        var next = this.getNextPositionEl(el);
+	        if (next && next.length) {
+
+	            if (utils.isInline(next)) {
+	                var all = play.grid.getAllInlineFromThisEl(el);
+	                all.each(function (index, el) {
+
+	                    self.record($(el));
+	                });
+
+	                recordPositionEl = all;
+	            } else {
+
+	                this.record(next);
+	                recordPositionEl = next;
+	            }
+
+	            return recordPositionEl;
+	        } else {
+	            recordPositionEl = null;
+	        }
+	    }), _defineProperty(_position, "revertPosition", function revertPosition(el) {
+	        var self = this;
+
+	        var target = el || recordPositionEl;
+
+	        if (target) {
+
+	            if (target.length == 1) {
+	                this.revert(target);
+	            } else {
+
+	                target.each(function (index, el) {
+
+	                    self.revert($(el));
+	                });
+	            }
+	        }
+	    }), _defineProperty(_position, "record", function record(el) {
+	        var cood = position.cood(el);
+
+	        el.prop("__record", cood);
+	    }), _defineProperty(_position, "revert", function revert(el) {
+
+	        if (!play.noTreeChange) utils.removeMediaCSSRule(el);
+
+	        //    var point = play.grid.getCurrentInsertPointAndStartPosition(el);
+	        var coord = el.prop("__record");
+	        var currentPoint = play.grid.getCurrentInsertPoint(el);
+	        currentPoint.coord = coord;
+	        addRelativeCoord(currentPoint);
+	        currentPoint.ignore = { width: true, height: true };
+	        setNeedUpdate(currentPoint, "move");
+	        position.setPositionByPercent(el, {}, currentPoint);
+
+	        //同时更新记录
+
+	    }), _defineProperty(_position, "getPrevSibling", function getPrevSibling(point) {}), _defineProperty(_position, "getPositionParent", function getPositionParent(parent) {
+	        while (parent && parent.length) {
+
+	            if (!utils.isStatic(parent)) {
+	                return parent;
+	            } else {
+	                parent = parent.parent();
+	            }
+	        }
+	    }), _defineProperty(_position, "getPrevStaticEl", function getPrevStaticEl(start, target) {
+
+	        if (!start) return;
+	        var prev = start;
+	        while (prev.length) {
+
+	            if (utils.isStatic(prev) && !prev.is(target)) {
+	                break;
+	            } else {
+	                prev = prev.prev();
+	            }
+	        }
+	        return prev;
+	    }), _defineProperty(_position, "getInsertPointPositionByStatic", function getInsertPointPositionByStatic(el, point) {
+
+	        //absolute是相对定位父元素的； fixed是相对屏幕的。
+
+
+	        var isRow = point.type == "row" ? true : false;
+
+	        var prevSibling,
+	            parent = point.parent,
+	            children = parent.children(),
+	            l = children.length;
+
+	        var parentCood = position.cood(point.parent);
+
+	        //基于现在子的位置
+	        if (point.current) {
+	            prevSibling = this.getPrevStaticEl(point.current.prev(), el);
+	        } else if (point.point) {
+	            prevSibling = this.getPrevStaticEl(point.point.prev(), el);
+	        } else if (point.index == -1) {
+	            prevSibling = this.getPrevStaticEl(children.eq(l - 1), el);
+	        } else {
+	            prevSibling = this.getPrevStaticEl(children.eq(point.index - 1), el);
+	        }
+
+	        var result = {
+	            left: 0,
+	            top: 0
+
+	        };
+
+	        if (prevSibling && prevSibling.length) {
+
+	            var prevCoord = position.cood(prevSibling);
+	            if (isRow) {
+
+	                result.leftCoord = {
+
+	                    top: point.coord.top,
+	                    left: prevCoord.right,
+	                    height: point.coord.height
+	                };
+	            } else {
+	                result.left = point.coord.left;
+
+	                var bottom = position.cood(prevSibling).bottom;
+
+	                while (prevSibling.css("display") == "inline-block") {
+
+	                    var b = position.cood(prevSibling).bottom;
+	                    if (b > bottom) bottom = b;
+	                    prevSibling = prevSibling.prev();
 	                }
+
+	                result.top = bottom;
+	                result.width = point.coord.width;
 	            }
-	        },
+	        } else {
 
-	        //保存现在的位置，当元素的定位因其它原因发生改变时，以便恢复原来位置
-	        record: function record(el) {
-	            var cood = position.cood(el);
-
-	            el.prop("__record", cood);
-	        },
-	        //恢复原来的位置
-	        revert: function revert(el) {
-
-	            if (!play.noTreeChange) utils.removeMediaCSSRule(el);
-
-	            //    var point = play.grid.getCurrentInsertPointAndStartPosition(el);
-
-	            position.setPositionByPercent(el, el.prop("__record"));
-	            //同时更新记录
-
-	        },
-
-	        getPrevSibling: function getPrevSibling(point) {},
-	        getPositionParent: function getPositionParent(parent) {
-	            while (parent && parent.length) {
-
-	                if (!utils.isStatic(parent)) {
-	                    return parent;
-	                } else {
-	                    parent = parent.parent();
-	                }
-	            }
-	        },
-
-	        getPrevStaticEl: function getPrevStaticEl(start, target) {
-
-	            if (!start) return;
-	            var prev = start;
-	            while (prev.length) {
-
-	                if (utils.isStatic(prev) && !prev.is(target)) {
-	                    break;
-	                } else {
-	                    prev = prev.prev();
-	                }
-	            }
-	            return prev;
-	        },
-
-	        getInsertPointPositionByStatic: function getInsertPointPositionByStatic(el, point) {
-
-	            //absolute是相对定位父元素的； fixed是相对屏幕的。
+	            //parent
 
 
-	            var isRow = point.type == "row" ? true : false;
+	            result.top = parentCood.top;
+	            result.left = point.coord.left;
+	            result.width = point.coord.width;
+	        }
+
+	        return result;
+	    }), _defineProperty(_position, "getInsertPointPosition", function getInsertPointPosition(el, point) {
+
+	        //absolute是相对定位父元素的； fixed是相对屏幕的。
+
+	        var positionType = play.utils.isStatic(el) ? "static" : "absolute";
+
+	        var isRow = point.type == "row" ? true : false;
+
+	        if (!positionType || positionType == "static") {
 
 	            var prevSibling,
 	                parent = point.parent,
@@ -11558,17 +11694,12 @@ webpackJsonp([3,17],[
 
 	            if (prevSibling && prevSibling.length) {
 
-	                var prevCoord = position.cood(prevSibling);
 	                if (isRow) {
-
-	                    result.leftCoord = {
-
-	                        top: point.coord.top,
-	                        left: prevCoord.right,
-	                        height: point.coord.height
-	                    };
+	                    result.top = parentCood.top;
+	                    result.left = position.cood(prevSibling).right;
+	                    result.height = prevSibling.outerHeight();
 	                } else {
-	                    result.left = point.coord.left;
+	                    result.left = parentCood.left;
 
 	                    var bottom = position.cood(prevSibling).bottom;
 
@@ -11580,7 +11711,7 @@ webpackJsonp([3,17],[
 	                    }
 
 	                    result.top = bottom;
-	                    result.width = point.coord.width;
+	                    result.width = parentCood.width;
 	                }
 	            } else {
 
@@ -11588,746 +11719,396 @@ webpackJsonp([3,17],[
 
 
 	                result.top = parentCood.top;
-	                result.left = point.coord.left;
-	                result.width = point.coord.width;
+	                result.left = parentCood.left;
+	                result.width = parentCood.width;
 	            }
 
 	            return result;
-	        },
-
-	        getInsertPointPosition: function getInsertPointPosition(el, point) {
-
-	            //absolute是相对定位父元素的； fixed是相对屏幕的。
-
-	            var positionType = play.utils.isStatic(el) ? "static" : "absolute";
-
-	            var isRow = point.type == "row" ? true : false;
-
-	            if (!positionType || positionType == "static") {
-
-	                var prevSibling,
-	                    parent = point.parent,
-	                    children = parent.children(),
-	                    l = children.length;
-
-	                var parentCood = position.cood(point.parent);
-
-	                //基于现在子的位置
-	                if (point.current) {
-	                    prevSibling = this.getPrevStaticEl(point.current.prev(), el);
-	                } else if (point.point) {
-	                    prevSibling = this.getPrevStaticEl(point.point.prev(), el);
-	                } else if (point.index == -1) {
-	                    prevSibling = this.getPrevStaticEl(children.eq(l - 1), el);
-	                } else {
-	                    prevSibling = this.getPrevStaticEl(children.eq(point.index - 1), el);
-	                }
-
-	                var result = {
-	                    left: 0,
-	                    top: 0
-
-	                };
-
-	                if (prevSibling && prevSibling.length) {
-
-	                    if (isRow) {
-	                        result.top = parentCood.top;
-	                        result.left = position.cood(prevSibling).right;
-	                        result.height = prevSibling.outerHeight();
-	                    } else {
-	                        result.left = parentCood.left;
-
-	                        var bottom = position.cood(prevSibling).bottom;
-
-	                        while (prevSibling.css("display") == "inline-block") {
-
-	                            var b = position.cood(prevSibling).bottom;
-	                            if (b > bottom) bottom = b;
-	                            prevSibling = prevSibling.prev();
-	                        }
-
-	                        result.top = bottom;
-	                        result.width = parentCood.width;
-	                    }
-	                } else {
-
-	                    //parent
-
-
-	                    result.top = parentCood.top;
-	                    result.left = parentCood.left;
-	                    result.width = parentCood.width;
-	                }
-
-	                return result;
-	            } else if (positionType == "absolute") {
-
-	                var p;
-	                if (point.parent.css("position") == "relative" || point.parent.css("position") == "absolute") {
-	                    p = point.parent;
-	                } else {
-	                    p = this.getRelativeParent(point.parent);
-	                }
-
-	                var parentCoords = position.cood(p);
-
-	                return { left: parentCoords.left, top: parentCoords.top };
-	            }
-	        },
-
-	        coordsToCSS: function coordsToCSS(coords, startPosition) {
-	            return {
-	                left: coords.left - startPosition.left,
-	                top: coords.top - startPosition.top,
-	                width: coords.width,
-	                height: coords.height
-	            };
-	        },
-	        setPositionByPXInStyle: function setPositionByPXInStyle(el, coords) {
-
-	            var domPoint = play.grid.getStartPosition(el);
-	            var parentCoords = domPoint.parentCoord;
-	            var startPosition = domPoint.startPosition;
-
-	            var startPosition = domPoint.startPosition;
-
-	            var cssValue = this.coordsToCSS(coords, startPosition);
-
-	            var cacheCoords = {};
-
-	            var heightCSSName = el.prop("heightCSSName") || "height";
-
-	            var leftCSSName = "marginLeft",
-	                topCSSName = "marginTop";
-
-	            if (!utils.isStatic(el)) {
-	                leftCSSName = "left";
-	                topCSSName = "top";
-	            }
-
-	            // el.css(align.xName, marginLeft * 100 + "%")
-
-	            if (coords.left !== undefined) {
-
-	                el.css(leftCSSName, cssValue.left + "px");
-
-	                cacheCoords.left = coords.left;
-	            }
-	            if (coords.top !== undefined) {
-	                el.css(topCSSName, cssValue.top + "px");
-	                cacheCoords.top = coords.top;
-	            }
-
-	            if (coords.width !== undefined) {
-	                el.css("width", coords.width + "px");
-	                cacheCoords.width = coords.width;
-	            }
-
-	            if (coords.height !== undefined) {
-	                //  el.outerHeight(coordinates.height);
-
-	                if (heightCSSName !== "no") {
-	                    // el.css("height", coords.height + "px")
-	                    el.css(heightCSSName, coords.height + "px");
-	                }
-	                cacheCoords.height = coords.height;
-	            }
-	        },
-	        setPositionByPX: function setPositionByPX(el, coords, domPoint) {
-
-	            if (!domPoint) {
-	                domPoint = { parent: el.parent(), point: el };
-	            }
-
-	            var positionType = play.isStatic(el) ? "static" : "absolute";
-
-	            var startPosition = this.getInsertPointPosition(el, domPoint);
-
-	            var cssValue = this.coordsToCSS(coords, startPosition);
-
-	            var cacheCoords = el.prop("__coordinates") || {};
-
-	            var heightCSSName = el.prop("heightCSSName") || "height";
-
-	            var leftCSSName = "marginLeft",
-	                topCSSName = "marginTop";
-
-	            if (!utils.isStatic(el)) {
-	                leftCSSName = "left";
-	                topCSSName = "top";
-	            }
-
-	            // el.css(align.xName, marginLeft * 100 + "%")
-
-	            if (coords.left !== undefined) {
-	                play.dom.css(el, leftCSSName, cssValue.left + "px");
-
-	                cacheCoords.left = coords.left;
-	            }
-	            if (coords.top !== undefined) {
-	                play.dom.css(el, topCSSName, cssValue.top + "px");
-
-	                cacheCoords.top = coords.top;
-	            }
-
-	            if (coords.width !== undefined) {
-
-	                play.dom.css(el, "width", coords.width + "%");
-	                cacheCoords.width = coords.width;
-	            }
-
-	            if (coords.height !== undefined) {
-	                //  el.outerHeight(coordinates.height);
-
-	                var heightValue;
-	                if (play.unit == "vw") {
-	                    heightValue = coords.height / $(play.iframeWin).width() * 100 + 'vw';
-	                } else {
-	                    heightValue = coords.height + "px";
-	                }
-
-	                if (heightCSSName !== "no") {
-	                    play.dom.css(el, heightCSSName, coords.height + "px");
-	                }
-
-	                cacheCoords.height = coords.height;
-	            }
-
-	            el.prop("__coordinates", cacheCoords);
-	        },
-	        setPositionByEm: function setPositionByEm(el, coords, domPoint) {
-
-	            if (!domPoint) {
-
-	                domPoint = play.grid.getCurrentInsertPoint(el);
-	            }
-
-	            var positionType = play.utils.isStatic(el) ? "static" : "absolute";
-
-	            var startPosition = domPoint.startPosition;
-
-	            var cssValue = this.coordsToCSS(coords, startPosition);
-
-	            var parentCoords = position.cood(domPoint.parent);
-
-	            var cacheCoords = el.prop("__coordinates") || {};
-
-	            var heightCSSName = el.prop("heightCSSName") || "height";
-
-	            var leftCSSName = "marginLeft",
-	                topCSSName = "marginTop";
-
-	            if (!utils.isStatic(el)) {
-	                leftCSSName = "left";
-	                topCSSName = "top";
-	            }
-
-	            // el.css(align.xName, marginLeft * 100 + "%")
-
-	            if (coords.left !== undefined) {
-	                var leftValue;
-
-	                if (play.unit == "rem") {
-	                    leftValue = play.pxToEm(cssValue.left, el.css("fontSize")) + 'em';
-	                } else {
-	                    leftValue = coords.left + "px";
-	                }
-
-	                play.dom.css(el, leftCSSName, leftValue);
-
-	                cacheCoords.left = coords.left;
-	            }
-	            if (coords.top !== undefined) {
-
-	                var topValue;
-
-	                if (play.unit == "rem") {
-	                    topValue = play.pxToRem(cssValue.top) + 'rem';
-	                } else {
-	                    topValue = coords.left + "px";
-	                }
-
-	                play.dom.css(el, topCSSName, topValue);
-
-	                cacheCoords.top = coords.top;
-	            }
-
-	            if (coords.width !== undefined) {
-
-	                var widthValue;
-	                if (play.unit == "rem") {
-	                    widthValue = play.pxToRem(coords.width) + 'rem';
-	                } else {
-	                    widthValue = coords.height + "px";
-	                }
-
-	                play.dom.css(el, "width", widthValue);
-
-	                cacheCoords.width = coords.width;
-	            }
-
-	            if (coords.height !== undefined) {
-	                //  el.outerHeight(coordinates.height);
-
-	                var heightValue;
-	                if (play.unit == "rem") {
-	                    heightValue = play.pxToRem(coords.height) + 'rem';
-	                } else {
-	                    heightValue = coords.height + "px";
-	                }
-
-	                if (heightCSSName !== "no") {
-	                    play.dom.css(el, heightCSSName, heightValue);
-	                }
-
-	                cacheCoords.height = coords.height;
-	            }
-
-	            el.prop("__coordinates", cacheCoords);
-	        },
-
-	        setPositionByRem: function setPositionByRem(el, coords, domPoint) {
-
-	            if (!domPoint) {
-
-	                domPoint = play.grid.getCurrentInsertPoint(el);
-	            }
-
-	            var positionType = play.utils.isStatic(el) ? "static" : "absolute";
-
-	            var startPosition = domPoint.startPosition;
-
-	            var cssValue = this.coordsToCSS(coords, startPosition);
-
-	            var parentCoords = position.cood(domPoint.parent);
-
-	            var cacheCoords = el.prop("__coordinates") || {};
-
-	            var heightCSSName = el.prop("heightCSSName") || "height";
-
-	            var leftCSSName = "marginLeft",
-	                topCSSName = "marginTop";
-
-	            if (!utils.isStatic(el)) {
-	                leftCSSName = "left";
-	                topCSSName = "top";
-	            }
-
-	            // el.css(align.xName, marginLeft * 100 + "%")
-
-	            if (coords.left !== undefined) {
-	                var leftValue;
-
-	                if (play.unit == "rem") {
-	                    leftValue = play.pxToRem(cssValue.left) + 'rem';
-	                } else {
-	                    leftValue = coords.left + "px";
-	                }
-
-	                play.dom.css(el, leftCSSName, leftValue);
-
-	                cacheCoords.left = coords.left;
-	            }
-	            if (coords.top !== undefined) {
-
-	                var topValue;
-
-	                if (play.unit == "rem") {
-	                    topValue = play.pxToRem(cssValue.top) + 'rem';
-	                } else {
-	                    topValue = coords.left + "px";
-	                }
-
-	                play.dom.css(el, topCSSName, topValue);
-
-	                cacheCoords.top = coords.top;
-	            }
-
-	            if (coords.width !== undefined) {
-
-	                var widthValue;
-	                if (play.unit == "rem") {
-	                    widthValue = play.pxToRem(coords.width) + 'rem';
-	                } else {
-	                    widthValue = coords.height + "px";
-	                }
-
-	                play.dom.css(el, "width", widthValue);
-
-	                cacheCoords.width = coords.width;
-	            }
-
-	            if (coords.height !== undefined) {
-	                //  el.outerHeight(coordinates.height);
-
-	                var heightValue;
-	                if (play.unit == "rem") {
-	                    heightValue = play.pxToRem(coords.height) + 'rem';
-	                } else {
-	                    heightValue = coords.height + "px";
-	                }
-
-	                if (heightCSSName !== "no") {
-	                    play.dom.css(el, heightCSSName, heightValue);
-	                }
-
-	                cacheCoords.height = coords.height;
-	            }
-
-	            el.prop("__coordinates", cacheCoords);
-	        },
-
-	        //em宽度
-	        getResponseFontSize: function getResponseFontSize(width) {
-	            var phoneDocWidth = 320;
-	            var phoneDocFontSize = 15;
-	            var phoneWidth = width * phoneDocFontSize;
-
-	            //单位为rem, rem为单元可保障fontSize的大小是可变的
-	            var phoneFontSize = phoneDocWidth / phoneWidth;
-
-	            return phoneFontSize;
-	        },
-
-	        setPositionByPercent: function setPositionByPercent(el, coords) {
-
-	            var domPoint = play.grid.getStartPosition(el);
-	            var parentCoords = domPoint.parentCoord;
-	            var startPosition = domPoint.startPosition;
-
-	            if (!startPosition) {
-	                console.error("startPosition 不能为空");
-	                return;
-	            }
-
-	            if (!coords.fontSize) {
-	                console.error("fontSize 不能为空");
-	                return;
-	            }
-
-	            var cssValue = this.coordsToCSS(coords, startPosition);
-
-	            var cacheCoords = el.prop("__coordinates") || {};
-
-	            var editableProp = play.getEditableProp(el, "heightCSSName");
-	            var heightCSSName = editableProp || "height";
-
-	            var leftCSSName = "marginLeft",
-	                topCSSName = "marginTop";
-
-	            if (!utils.isStatic(el)) {
-	                leftCSSName = "left";
-	                topCSSName = "top";
-	            }
-
-	            // el.css(align.xName, marginLeft * 100 + "%")
-
-	            if (coords.left !== undefined) {
-	                var leftValue;
-	                if (play.unit == "rem") {
-	                    leftValue = play.pxTo(cssValue.left) + 'rem';
-	                } else if (play.unit == "%") {
-	                    leftValue = this.pxToPercent(cssValue.left, parentCoords) + "%";
-	                } else if (play.unit == 'em') {
-	                    leftValue = this.pxToEm(cssValue.left, coords.fontSize) + "em";
-	                } else {
-	                    leftValue = coords.left + "px";
-	                }
-
-	                play.dom.css(el, leftCSSName, leftValue);
-	                if (leftCSSName == "left") {
-	                    play.dom.css(el, "margin-left", 0);
-	                }
-
-	                cacheCoords.left = coords.left;
-	            }
-	            if (coords.top !== undefined) {
-	                var topValue;
-	                if (play.unit == "rem") {
-	                    topValue = play.pxToRem(cssValue.top) + 'rem';
-	                } else if (play.unit == "%") {
-	                    topValue = this.pxToPercent(cssValue.top, parentCoords) + "%";
-	                } else if (play.unit == 'em') {
-
-	                    topValue = this.pxToEm(cssValue.top, coords.fontSize) + "em";
-	                } else {
-	                    topValue = coords.left + "px";
-	                }
-
-	                play.dom.css(el, topCSSName, topValue);
-	                if (leftCSSName == "top") {
-	                    play.dom.css(el, "margin-top", 0);
-	                }
-
-	                cacheCoords.top = coords.top;
-	            }
-
-	            if (coords.width !== undefined) {
-
-	                var widthValue;
-	                if (play.unit == "rem") {
-	                    widthValue = play.pxToRem(coords.width) + 'rem';
-	                } else if (play.unit == "%") {
-	                    widthValue = this.pxToPercent(coords.width, parentCoords) + "%";
-	                } else if (play.unit == 'em') {
-	                    widthValue = this.pxToEm(cssValue.width, coords.fontSize) + "em";
-	                } else {
-	                    widthValue = coords.height + "px";
-	                }
-
-	                play.dom.css(el, "width", widthValue);
-
-	                //p-grid下的元素的设置fontsize
-
-	                if (el.parent().is("p-grid") && el.parent().parent().parent().is("p-page")) {
-	                    if (play.mediaName !== "phone") {
-	                        var phoneWidth = coords.width / coords.fontSize;
-	                        var fontSize = this.getResponseFontSize(phoneWidth);
-	                        if (!utils.hasMediaCSSRule(el, play.mediaQuery.phone)) {
-	                            play.dom._cssMedia(el, "font-size", fontSize + "rem", play.mediaQuery.phone);
-	                            // play.dom._cssMedia(el, "z-index", 100,play.mediaQuery.phone);
-	                            //  utils.createCSSRule(el,"font-size",fontSize+"rem", play.mediaQuery.phone)
-	                            //     utils.createCSSRule(el,"z-index",100, play.mediaQuery.phone)
-	                            //       utils.createCSSRule(el,"z-index",100, "all")
-	                            //         utils.createCSSRule(el,"z-index",100, play.mediaQuery.pc)
-	                        }
-	                    }
-	                }
-
-	                cacheCoords.width = coords.width;
-	            }
-
-	            if (coords.height !== undefined) {
-	                //  el.outerHeight(coordinates.height);
-
-	                var heightValue;
-	                if (play.unit == "rem") {
-	                    heightValue = play.pxToRem(coords.height) + 'rem';
-	                } else if (play.unit == "%") {
-	                    heightValue = this.pxToPercent(coords.height, parentCoords) + "%";
-	                } else if (play.unit == 'em') {
-	                    heightValue = this.pxToEm(cssValue.height, coords.fontSize) + "em";
-	                } else {
-	                    heightValue = coords.height + "px";
-	                }
-
-	                if (heightCSSName !== "no") {
-	                    play.dom.css(el, heightCSSName, heightValue);
-	                }
-
-	                cacheCoords.height = coords.height;
-	            }
-
-	            el.prop("__coordinates", cacheCoords);
-	        },
-
-	        setPositionByPercentInStyle: function setPositionByPercentInStyle(el, coords) {
-
-	            var domPoint = play.grid.getStartPosition(el);
-	            var parentCoords = domPoint.parentCoords;
-	            var startPosition = domPoint.startPosition;
-
-	            var cssValue = this.coordsToCSS(coords, startPosition);
-
-	            var cacheCoords = el.prop("__coordinates") || {};
-
-	            var heightCSSName = el.prop("heightCSSName") || "height";
-
-	            var leftCSSName = "marginLeft",
-	                topCSSName = "marginTop";
-
-	            if (!utils.isStatic(el)) {
-	                leftCSSName = "left";
-	                topCSSName = "top";
-	            }
-
-	            // el.css(align.xName, marginLeft * 100 + "%")
-
-	            if (coords.left !== undefined) {
-	                var leftValue;
-
-	                if (play.unit == "rem") {
-	                    leftValue = play.pxToRem(cssValue.left) + 'rem';
-	                } else {
-	                    leftValue = coords.left + "px";
-	                }
-
-	                $(el).css(leftCSSName, leftValue);
-
-	                cacheCoords.left = coords.left;
-	            }
-	            if (coords.top !== undefined) {
-
-	                var topValue;
-
-	                if (play.unit == "rem") {
-	                    topValue = play.pxToRem(cssValue.top) + 'rem';
-	                } else {
-	                    topValue = coords.left + "px";
-	                }
-
-	                $(el).css(topCSSName, topValue);
-
-	                cacheCoords.top = coords.top;
-	            }
-
-	            if (coords.width !== undefined) {
-
-	                var widthValue;
-	                if (play.unit == "rem") {
-	                    widthValue = play.pxToRem(coords.width) + 'rem';
-	                } else {
-	                    widthValue = coords.height + "px";
-	                }
-
-	                $(el).css("width", widthValue);
-
-	                cacheCoords.width = coords.width;
-	            }
-
-	            if (coords.height !== undefined) {
-	                //  el.outerHeight(coordinates.height);
-
-	                var heightValue;
-	                if (play.unit == "rem") {
-	                    heightValue = play.pxToRem(coords.height) + 'rem';
-	                } else {
-	                    heightValue = coords.height + "px";
-	                }
-
-	                if (heightCSSName !== "no") {
-	                    $(el).css(heightCSSName, heightValue);
-	                }
-
-	                cacheCoords.height = coords.height;
-	            }
-
-	            el.prop("__coordinates", cacheCoords);
-	        },
-
-	        getRelativeParent: function getRelativeParent(el) {
-
-	            var parent;
-	            while (el = el.parent()) {
-	                if (el.css("position") == "relative" || el.css("position") == "absolute") {
-	                    return el;
-	                }
-	                if (el.is("body")) {
-	                    return el;
-	                }
-	            }
-	        },
-
-	        //判断某个元素的中心点是不是在另一个元素的里面
-	        isIn: function isIn(parent, x, y) {
-
-	            if (x < ex && x > sx && y > sy && y < ey) {
-	                return true;
-	            } else return false;
-	        },
-	        isCenterIn: function isCenterIn(parent, tCood) {
-
-	            var pCood = position.cood($(parent));
-
-	            if (pCood.bottom > tCood.bottom && tCood.top < pCood.bottom) {
-	                return true;
-	            }
-	        },
-	        _isOverlap: function _isOverlap(coords) {
-	            var result;
-
-	            var selectedEl = play.select.selectedEL;
-
-	            var getTarget = function getTarget(target) {
-	                if (selectedEl) {}
-	            };
-
-	            var leftTopEl = this.elementFromPoint(coords.left, coords.top);
-
-	            var leftBottomEl = this.elementFromPoint(coords.left, coords.bottom);
-
-	            if (!leftTopEl.is(leftBottomEl)) {
-	                return true;
-	            }
-
-	            var rightTopEl = this.elementFromPoint(coords.right, coords.top);
-
-	            if (!leftTopEl.is(rightTopEl)) {
-	                return true;
-	            }
-
-	            var rightBottomEl = this.elementFromPoint(coords.right, coords.bottom);
-
-	            if (!leftTopEl.is(rightBottomEl)) {
-	                return true;
-	            }
-
-	            return false;
-	        },
-	        isOverlap: function isOverlap(coords, parent) {
-
-	            var children = parent.children();
-
-	            if (children.length == 0) return false;
-
-	            var result;
-	            var self = this;
-
-	            children.each(function (index, el) {
-	                el = $(el);
-
-	                if (el.is(play.select.selectedEL)) return;
-	                if (play.isGridRow(el)) {
-
-	                    if (self.isOverlap(coords, el)) {
-	                        result = true;
-
-	                        return false;
-	                    }
-
-	                    return;
-	                }
-	                var thisCoords = position.cood(el);
-
-	                var c1 = coords;
-	                var c2 = thisCoords;
-
-	                var isXOverlay = c1.left > c2.left && c1.left < c2.right || c1.right > c2.left && c1.right < c2.right || c2.left > c1.left && c2.left < c1.right || c2.right > c1.left && c2.right < c1.right;
-	                var isYOverlay = c1.top > c2.top && c1.top < c2.bottom || c1.bottom > c2.top && c1.bottom < c2.bottom || c2.top > c1.top && c2.top < c1.bottom || c2.bottom > c1.top && c2.bottom < c1.bottom;
-
-	                if (isXOverlay && isYOverlay) {
-	                    result = true;
-	                    return false;
-	                }
-	            });
-
-	            return result;
-	        },
-
-	        //判断 一个元素是不是完全被另一个元素包围
-	        isFullIn: function isFullIn(parent, cood) {
-	            if (parent.attr) {
-	                var coo = position.cood(parent);
-	                var sx = coo.left;
-	                var ex = coo.right;
-	                var sy = coo.top;
-	                var ey = coo.bottom;
+	        } else if (positionType == "absolute") {
+
+	            var p;
+	            if (point.parent.css("position") == "relative" || point.parent.css("position") == "absolute") {
+	                p = point.parent;
 	            } else {
-
-	                var sx = parent.left;
-	                var ex = parent.right;
-	                var sy = parent.top;
-	                var ey = parent.bottom;
+	                p = this.getRelativeParent(point.parent);
 	            }
 
-	            if (cood.left - sx >= -10 && cood.right <= ex && cood.top - sy >= -10 && cood.bottom <= ey) {
+	            var parentCoords = position.cood(p);
 
-	                return true;
-	            } else return false;
+	            return { left: parentCoords.left, top: parentCoords.top };
+	        }
+	    }), _defineProperty(_position, "coordsToCSS", function coordsToCSS(coords, startPosition) {
+	        return {
+	            left: coords.left - startPosition.left,
+	            top: coords.top - startPosition.top,
+	            width: coords.width,
+	            height: coords.height
+	        };
+	    }), _defineProperty(_position, "setPositionByPXInStyle", function setPositionByPXInStyle(el, coords) {}), _defineProperty(_position, "setPositionByPX", function setPositionByPX(el, coords, domPoint) {}), _defineProperty(_position, "setPositionByEm", function setPositionByEm(el, coords, domPoint) {}), _defineProperty(_position, "setPositionByRem", function setPositionByRem(el, coords, domPoint) {}), _defineProperty(_position, "getResponseFontSize", function getResponseFontSize(width) {
+	        var phoneDocWidth = 320;
+	        var phoneDocFontSize = 15;
+	        var phoneWidth = width * phoneDocFontSize;
+
+	        //单位为rem, rem为单元可保障fontSize的大小是可变的
+	        var phoneFontSize = phoneDocWidth / phoneWidth;
+
+	        return phoneFontSize;
+	    }), _defineProperty(_position, "ignore", function ignore(_ignore, coord) {
+	        var newCoord = {};
+	        for (var p in coord) {
+	            if (!_ignore[p]) {
+	                newCoord[p] = coord[p];
+	            }
+	        }
+	        return newCoord;
+	    }), _defineProperty(_position, "setPositionMediaByPercent", function setPositionMediaByPercent(el, coords, point) {}), _defineProperty(_position, "scaleSize", function scaleSize(el, oldCoord, basePoint, currentCoord) {
+	        var width = currentCoord.width;
+	        var height = currentCoord.height;
+	        var pWidth = oldCoord.width / width;
+	        var pHeight = oldCoord.height / height;
+	        var top = oldCoord.top;
+	        var left = oldCoord.left;
+	        if (oldCoord.width !== currentCoord.width) {
+	            var oLeftWidth = basePoint.left - oldCoord.left;
+	            var cLeftWidth = oLeftWidth / pWidth;
+	            left = basePoint.left - cLeftWidth;
 	        }
 
-	    }, _defineProperty(_position, "isFullIn", function isFullIn(parent, cood) {
+	        if (oldCoord.height !== currentCoord.height) {
+	            var oTopHeight = basePoint.top - oldCoord.top;
+	            var cTopHeight = oTopHeight / pHeight;
+	            top = basePoint.top - cTopHeight;
+	        }
+
+	        var coord = {
+	            left: left,
+	            top: top,
+	            width: width,
+	            height: height
+	        };
+
+	        el.css(coord);
+
+	        play.select.resize(coord);
+	    }), _defineProperty(_position, "setPositionByPercent", function setPositionByPercent(el, coords, point) {
+
+	        var relativeCoord = point.relativeCoord;
+
+	        if (!point) {
+	            point = { ignore: {} };
+	        }
+	        if (!relativeCoord) {
+	            console.error("relativeCoord 不能为空");
+	            return;
+	        }
+
+	        //插头之后的fontsize才是准确的
+
+	        if (play.isLayoutUpdate) {
+	            this._setPositionByPercent(el, this.ignore(point.ignore, relativeCoord), point.mediaName || play.mediaName || "pc", true);
+	        } else {
+	            this._setPositionByPercent(el, this.ignore(point.ignore, relativeCoord), point.mediaName || play.mediaName || "pc");
+	        }
+
+	        // for(var p in play.mediaQuery){
+	        //   if(p !== play.mediaName){
+	        //
+	        //       var mediaCoordName = p+"Coord";
+	        //       var coord = point[mediaCoordName]
+	        //       if(coord&&!utils.hasMediaCSSRule(el,p)){
+	        //         // debugger;
+	        //          coord = this.ignore(point.ignore, coord)
+	        //          delete coord.width
+	        //          delete coord.height;
+	        //
+	        //         //  play.grid.getMediaPoint(point,"phone")
+	        //           // this._setPositionByPercent(el, this.ignore(point.ignore, coord), startPosition, p)
+	        //       }
+	        //
+	        //
+	        //   }
+	        // }
+
+	    }), _defineProperty(_position, "_setPositionByPercent", function _setPositionByPercent(el, coords, mediaName, isMedia) {
+
+	        var cssValue = coords;
+	        var cssFunc = isMedia ? play.dom._createMediaCSS : play.dom._css;
+
+	        if (!cssValue) {
+	            console.error("cssValue 不能为空");
+	            return;
+	        }
+
+	        if (!coords.fontSize) {
+	            console.error("fontSize 不能为空");
+	            return;
+	        }
+
+	        if (isMedia && coords.containerFontSize) {
+	            cssFunc(el, "font-size", coords.containerFontSize + "em", mediaName);
+	        }
+
+	        var cacheCoords = el.prop("__coordinates") || {};
+
+	        var editableProp = play.getEditableProp(el, "heightCSSName");
+	        var heightCSSName = editableProp || "height";
+
+	        var leftCSSName = "marginLeft",
+	            topCSSName = "marginTop";
+
+	        if (!utils.isStatic(el)) {
+	            leftCSSName = "left";
+	            topCSSName = "top";
+	        }
+
+	        // el.css(align.xName, marginLeft * 100 + "%")
+
+	        if (coords.left !== undefined) {
+	            var leftValue;
+	            if (play.unit == "rem") {
+	                leftValue = play.pxTo(cssValue.left) + 'rem';
+	            } else if (play.unit == 'em') {
+	                leftValue = this.pxToEm(cssValue.left, coords.fontSize) + "em";
+	            } else {
+	                leftValue = coords.left + "px";
+	            }
+
+	            cssFunc(el, leftCSSName, leftValue, mediaName);
+	            if (leftCSSName == "left") {
+	                cssFunc(el, "margin-left", 0, mediaName);
+	            }
+
+	            cacheCoords.left = coords.left;
+	        }
+	        if (coords.top !== undefined) {
+	            var topValue;
+	            if (play.unit == "rem") {
+	                topValue = play.pxToRem(cssValue.top) + 'rem';
+	            } else if (play.unit == 'em') {
+
+	                topValue = this.pxToEm(cssValue.top, coords.fontSize) + "em";
+	            } else {
+	                topValue = coords.left + "px";
+	            }
+
+	            cssFunc(el, topCSSName, topValue, mediaName);
+	            if (leftCSSName == "top") {
+	                cssFunc(el, "margin-top", 0, mediaName);
+	            }
+
+	            cacheCoords.top = coords.top;
+	        }
+
+	        if (coords.width !== undefined) {
+
+	            var widthValue;
+	            if (play.unit == "rem") {
+	                widthValue = play.pxToRem(coords.width) + 'rem';
+	            } else if (play.unit == 'em') {
+	                widthValue = this.pxToEm(cssValue.width, coords.fontSize) + "em";
+	            } else {
+	                widthValue = coords.height + "px";
+	            }
+
+	            cssFunc(el, "width", widthValue, mediaName);
+
+	            cacheCoords.width = coords.width;
+	        }
+
+	        if (coords.height !== undefined) {
+	            //  el.outerHeight(coordinates.height);
+
+	            var heightValue;
+	            if (play.unit == "rem") {
+	                heightValue = play.pxToRem(coords.height) + 'rem';
+	            } else if (play.unit == 'em') {
+	                heightValue = this.pxToEm(cssValue.height, coords.fontSize) + "em";
+	            } else {
+	                heightValue = coords.height + "px";
+	            }
+
+	            if (heightCSSName !== "no") {
+	                cssFunc(el, heightCSSName, heightValue, mediaName);
+	            }
+
+	            cacheCoords.height = coords.height;
+	        }
+
+	        el.prop("__coordinates", cacheCoords);
+	    }), _defineProperty(_position, "setPositionByPercentInStyle", function setPositionByPercentInStyle(el, coords) {
+
+	        var domPoint = play.grid.getStartPosition(el);
+	        var parentCoords = domPoint.parentCoords;
+	        var startPosition = domPoint.startPosition;
+
+	        var cssValue = this.coordsToCSS(coords, startPosition);
+
+	        var cacheCoords = el.prop("__coordinates") || {};
+
+	        var heightCSSName = el.prop("heightCSSName") || "height";
+
+	        var leftCSSName = "marginLeft",
+	            topCSSName = "marginTop";
+
+	        if (!utils.isStatic(el)) {
+	            leftCSSName = "left";
+	            topCSSName = "top";
+	        }
+
+	        // el.css(align.xName, marginLeft * 100 + "%")
+
+	        if (coords.left !== undefined) {
+	            var leftValue;
+
+	            if (play.unit == "rem") {
+	                leftValue = play.pxToRem(cssValue.left) + 'rem';
+	            } else {
+	                leftValue = coords.left + "px";
+	            }
+
+	            $(el).css(leftCSSName, leftValue);
+
+	            cacheCoords.left = coords.left;
+	        }
+	        if (coords.top !== undefined) {
+
+	            var topValue;
+
+	            if (play.unit == "rem") {
+	                topValue = play.pxToRem(cssValue.top) + 'rem';
+	            } else {
+	                topValue = coords.left + "px";
+	            }
+
+	            $(el).css(topCSSName, topValue);
+
+	            cacheCoords.top = coords.top;
+	        }
+
+	        if (coords.width !== undefined) {
+
+	            var widthValue;
+	            if (play.unit == "rem") {
+	                widthValue = play.pxToRem(coords.width) + 'rem';
+	            } else {
+	                widthValue = coords.height + "px";
+	            }
+
+	            $(el).css("width", widthValue);
+
+	            cacheCoords.width = coords.width;
+	        }
+
+	        if (coords.height !== undefined) {
+	            //  el.outerHeight(coordinates.height);
+
+	            var heightValue;
+	            if (play.unit == "rem") {
+	                heightValue = play.pxToRem(coords.height) + 'rem';
+	            } else {
+	                heightValue = coords.height + "px";
+	            }
+
+	            if (heightCSSName !== "no") {
+	                $(el).css(heightCSSName, heightValue);
+	            }
+
+	            cacheCoords.height = coords.height;
+	        }
+
+	        el.prop("__coordinates", cacheCoords);
+	    }), _defineProperty(_position, "getRelativeParent", function getRelativeParent(el) {
+
+	        var parent;
+	        while (el = el.parent()) {
+	            if (el.css("position") == "relative" || el.css("position") == "absolute") {
+	                return el;
+	            }
+	            if (el.is("body")) {
+	                return el;
+	            }
+	        }
+	    }), _defineProperty(_position, "isIn", function isIn(parent, x, y) {
+
+	        if (x < ex && x > sx && y > sy && y < ey) {
+	            return true;
+	        } else return false;
+	    }), _defineProperty(_position, "isCenterIn", function isCenterIn(parent, tCood) {
+
+	        var pCood = position.cood($(parent));
+
+	        if (pCood.bottom > tCood.bottom && tCood.top < pCood.bottom) {
+	            return true;
+	        }
+	    }), _defineProperty(_position, "_isOverlap", function _isOverlap(coords) {
+	        var result;
+
+	        var selectedEl = play.select.selectedEL;
+
+	        var getTarget = function getTarget(target) {
+	            if (selectedEl) {}
+	        };
+
+	        var leftTopEl = this.elementFromPoint(coords.left, coords.top);
+
+	        var leftBottomEl = this.elementFromPoint(coords.left, coords.bottom);
+
+	        if (!leftTopEl.is(leftBottomEl)) {
+	            return true;
+	        }
+
+	        var rightTopEl = this.elementFromPoint(coords.right, coords.top);
+
+	        if (!leftTopEl.is(rightTopEl)) {
+	            return true;
+	        }
+
+	        var rightBottomEl = this.elementFromPoint(coords.right, coords.bottom);
+
+	        if (!leftTopEl.is(rightBottomEl)) {
+	            return true;
+	        }
+
+	        return false;
+	    }), _defineProperty(_position, "isOverlap", function isOverlap(coords, parent) {
+
+	        var children = parent.children();
+
+	        if (children.length == 0) return false;
+
+	        var result;
+	        var self = this;
+
+	        children.each(function (index, el) {
+	            el = $(el);
+
+	            if (el.is(play.select.selectedEL)) return;
+	            if (play.isGridRow(el)) {
+
+	                if (self.isOverlap(coords, el)) {
+	                    result = true;
+
+	                    return false;
+	                }
+
+	                return;
+	            }
+	            var thisCoords = position.cood(el);
+
+	            var c1 = coords;
+	            var c2 = thisCoords;
+
+	            var isXOverlay = c1.left > c2.left && c1.left < c2.right || c1.right > c2.left && c1.right < c2.right || c2.left > c1.left && c2.left < c1.right || c2.right > c1.left && c2.right < c1.right;
+	            var isYOverlay = c1.top > c2.top && c1.top < c2.bottom || c1.bottom > c2.top && c1.bottom < c2.bottom || c2.top > c1.top && c2.top < c1.bottom || c2.bottom > c1.top && c2.bottom < c1.bottom;
+
+	            if (isXOverlay && isYOverlay) {
+	                result = true;
+	                return false;
+	            }
+	        });
+
+	        return result;
+	    }), _defineProperty(_position, "isFullIn", function isFullIn(parent, cood) {
 	        if (parent.attr) {
 	            var coo = position.cood(parent);
 	            var sx = coo.left;
@@ -12342,7 +12123,26 @@ webpackJsonp([3,17],[
 	            var ey = parent.bottom;
 	        }
 
-	        if (cood.left >= sx && cood.right <= ex && cood.top >= sy && cood.bottom <= ey) {
+	        if (cood.left - sx >= -10 && cood.right <= ex && cood.top - sy >= -10 && cood.bottom <= ey) {
+
+	            return true;
+	        } else return false;
+	    }), _defineProperty(_position, "isFullIn", function isFullIn(parent, cood) {
+	        if (parent.attr) {
+	            var coo = position.cood(parent);
+	            var sx = coo.left;
+	            var ex = coo.right;
+	            var sy = coo.top;
+	            var ey = coo.bottom;
+	        } else {
+
+	            var sx = parent.left;
+	            var ex = parent.right;
+	            var sy = parent.top;
+	            var ey = parent.bottom;
+	        }
+
+	        if (cood.left - sx >= -1 && ex - cood.right >= -1 && cood.top - sy >= -1 && ey - cood.bottom >= -1) {
 
 	            return true;
 	        } else return false;
@@ -12443,6 +12243,10 @@ webpackJsonp([3,17],[
 
 	        var result;
 	        while (vnodeStartEl) {
+	            if (vnodeStartEl.name == "p-site") {
+	                break;
+	            }
+
 	            if (play.isParentableVnode(vnodeStartEl) && !$(vnodeStartEl.nativeNode).is(play.select.selectedEL)) {
 	                result = vnodeStartEl;
 	                break;
@@ -12945,6 +12749,8 @@ webpackJsonp([3,17],[
 	        return { top: top, left: left, right: right, bottom: bottom, width: right - left, height: bottom - top, fontSize: fontSize };
 	    }), _defineProperty(_position, "getAllCoodByCood", function getAllCoodByCood(coods) {
 
+	        if (coods.length == 0) return;
+
 	        var children = [];
 	        var bottoms = [];
 	        var rights = [];
@@ -12981,1402 +12787,1989 @@ webpackJsonp([3,17],[
 	})();
 
 /***/ },
-/* 210 */
+/* 213 */
 /***/ function(module, exports) {
 
 	"use strict";
 
-	(function () {
+	var utils = play.utils,
+	    position = play.position,
+	    rowClass = "grid-row",
+	    columnClass = "grid-column";
 
-	    var utils = play.utils,
-	        position = play.position,
-	        rowClass = "grid-row",
-	        columnClass = "grid-column";
+	var ROWEND = "row-end";
+	var ROWSTATR = "row-start";
 
-	    var ROWEND = "row-end";
-	    var ROWSTATR = "row-start";
+	var overDistance = 50;
 
-	    var overDistance = 50;
+	function isGridRow(el) {
+	  return el.hasClass(rowClass);
+	}
 
-	    function isGridRow(el) {
-	        return el.hasClass(rowClass);
+	//绝对定位的元素只找绝对定位的元素
+	var isRightEl = function isRightEl(el, ex, isStatic) {
+	  if (el && el.length && !el.is(ex) && el.get(0).vnode && utils.isStatic(el) == isStatic && el.is(':visible')) {
+	    return true;
+	  }
+	};
+
+	function isInSameRowByPoint(point, coord) {
+	  var tOffset = coord,
+	      tTop = tOffset.top,
+	      tBottom = coord.bottom;
+	  var isOverByY = point.top < tBottom && point.top > tTop;
+	  //todo  是否要判断X？ 对实现有影响
+	  return isOverByY;
+	}
+
+	function isInSameRowByCoord(tCoord, coord) {
+	  var bOffset = tCoord;
+	  var bTop = bOffset.top,
+	      bMiddle = bTop + bOffset.height / 2,
+	      bBottom = bOffset.bottom;
+
+	  var tOffset = coord;
+	  var tTop = tOffset.top,
+	      tMiddle = tTop + coord.height / 2,
+	      tBottom = coord.bottom;
+
+	  var isOutByX = bOffset.right < coord.left || bOffset.left > coord.right;
+
+	  var isOverByY = bMiddle < tBottom && bMiddle > tTop || tMiddle < bBottom && tMiddle > bTop;
+
+	  //todo  是否要判断X？ 对实现有影响
+	  return isOverByY;
+	}
+
+	function isBottomByCoord(coord, tCoord) {
+	  var bOffset = coord,
+	      bTop = bOffset.top,
+	      bMiddle = bTop + bOffset.height / 2,
+	      bBottom = bOffset.bottom;
+
+	  var tOffset = tCoord,
+	      tTop = tOffset.top,
+	      tMiddle = tTop + coord.height / 2,
+	      tBottom = coord.bottom;
+
+	  var l1 = coord.top > tCoord.bottom;
+	  var l2 = bMiddle > tCoord.bottom;
+	  return l1 || l2;
+	}
+
+	function getAllRowElsByPoint(els, point) {
+	  var result = [];
+	  for (var i = 0; i < els.length; i++) {
+	    if ($(els[i]).is("p-grid")) {
+	      if (play.select.selectedEL && play.select.selectedEL.parent().is($(els[i]))) {
+	        var tCoord = getGridRowCoord($(els[i]), play.select.selectedEL);
+	      } else {
+	        var tCoord = position.cood($(els[i]));
+	      }
+	    } else {
+	      var tCoord = position.cood($(els[i]));
 	    }
 
-	    function isInSameRowByCoord(tCoord, coord) {
-	        var bOffset = tCoord,
-	            bTop = bOffset.top,
-	            bMiddle = bTop + bOffset.height / 2,
-	            bBottom = bOffset.bottom;
+	    if (isInSameRowByPoint(point, tCoord)) {
+	      result.push(els[i]);
+	    }
+	  }
 
-	        var tOffset = coord,
-	            tTop = tOffset.top,
-	            tMiddle = tTop + coord.height / 2,
-	            tBottom = coord.bottom;
-	        var isOutByX = bOffset.right < coord.left || bOffset.left > coord.right;
-	        var isOverByY = bMiddle < tBottom && bMiddle > tTop && tMiddle < bBottom && tMiddle > bTop && Math.abs(bTop - tTop) < overDistance;
-	        //todo  是否要判断X？ 对实现有影响
-	        return isOverByY;
+	  return result;
+	}
+
+	function getAllRowElsByCoord(els, coord) {
+	  var result = [];
+	  for (var i = 0; i < els.length; i++) {
+	    if ($(els[i]).is("p-grid")) {
+	      if (play.select.selectedEL && play.select.selectedEL.parent().is($(els[i]))) {
+	        var tCoord = getGridRowCoord($(els[i]), play.select.selectedEL);
+	      } else {
+	        var tCoord = position.cood($(els[i]));
+	      }
+	    } else {
+	      var tCoord = position.cood($(els[i]));
 	    }
 
-	    function isInSameRowByPoint(point, coord) {
-
-	        var tOffset = coord,
-	            tTop = tOffset.top,
-	            tBottom = coord.bottom;
-
-	        var isOverByY = point.top < tBottom && point.top > tTop;
-	        //todo  是否要判断X？ 对实现有影响
-	        return isOverByY;
+	    if (isInSameRowByCoord(coord, tCoord)) {
+	      result.push(els[i]);
 	    }
+	  }
 
-	    function isInSameRowByCoordAll(els, coord) {
-	        var result = true;
-	        for (var i = 0; i < els.length; i++) {
-	            var tCoord = position.cood(els[i]);
-	            if (!isInSameRowByCoord(tCoord, coord)) {
-	                result = false;
-	            }
-	        }
-	        return result;
+	  return result;
+	}
+
+	function getGridChildren(gridEl) {
+	  var children = gridEl.get(0).vnode.props.children;
+	  var result = [];
+	  for (var i = 0; i < children.length; i++) {
+	    var el = $(children[i].nativeNode);
+	    if (isRightEl(el, undefined, true)) {
+	      result.push(el);
 	    }
+	  }
+	  return result;
+	}
 
-	    function getAllRowElsByPoint(els, point) {
-	        var result = [];
-	        for (var i = 0; i < els.length; i++) {
-	            var tCoord = position.cood($(els[i]));
-	            if (isInSameRowByPoint(point, tCoord)) {
-	                result.push(els[i]);
-	            }
-	        }
-
-	        return result;
+	function getGridRowCoord(gridEl, except) {
+	  var children = gridEl.get(0).vnode.props.children;
+	  if (!children.length) children = [children];
+	  var coords = [];
+	  for (var i = 0; i < children.length; i++) {
+	    var el = $(children[i].nativeNode);
+	    if (!el.is(except)) {
+	      coords.push(position.cood(el));
 	    }
+	  }
 
-	    var getNextExcept = function getNextExcept(el, ex, isStatic) {
-	        if (el && el.length) {
-	            var next = el.next();
-	            if (next && next.length) {
-	                if (isRightEl(next, ex, isStatic)) {
-	                    return next;
-	                } else {
-	                    return getNextExcept(next, ex);
-	                }
-	            }
+	  return position.getAllCoodByCood(coords);
+	}
+
+	function getChildrenCoord(el) {
+
+	  var children = $(el).get(0).vnode.props.children;
+	  var coords = [];
+
+	  if (!$.isArray(children)) children = [children];
+	  for (var i = 0; i < children.length; i++) {
+	    if (children[i].name == "p-layout-inner") {
+	      var innerCoord = getChildrenCoord($(children[i].nativeNode));
+	      if (innerCoord) {
+	        coords.push(innerCoord);
+	      }
+	    } else {
+	      var el = $(children[i].nativeNode);
+	      coords.push(position.cood(el));
+	    }
+	  }
+	  if (coords.length) {
+	    return position.getAllCoodByCood(coords);
+	  }
+	}
+
+	function getCoord(el) {
+	  if (el.is("p-grid")) {
+	    return getGridRowCoord(el, play.select.selectedEL);
+	  } else {
+	    return position.cood(el);
+	  }
+	}
+
+	//通过子元素获取，可以避免考虑.p-container
+	var getNextExcept = function getNextExcept(el, ex, isStatic) {
+
+	  if (el && el.length) {
+	    var next = el.next();
+	    if (next && next.length) {
+	      if (isRightEl(next, ex, isStatic)) {
+	        return next;
+	      } else {
+	        return getNextExcept(next, ex, isStatic);
+	      }
+	    } else if (el.parent().is(".p-container") || el.parent().is(".p-container-fluid")) {
+	      var next = el.parent().next();
+	      if (next && next.length) {
+	        if (next.is(".p-container") || next.is(".p-container-fluid")) {
+	          next = next.children().eq(0);
+	          if (isRightEl(next, ex, isStatic)) {
+	            return next;
+	          } else {
+	            return getNextExcept(next, ex, isStatic);
+	          }
 	        }
-	    };
+	      }
+	    }
+	  }
+	};
 
-	    //
-	    var getPrevExcept = function getPrevExcept(el, ex, isStatic) {
-	        if (el && el.length) {
-	            var prev = el.prev();
-	            if (prev && prev.length) {
+	//
+	var getPrevExcept = function getPrevExcept(el, ex, isStatic) {
+	  if (el && el.length) {
+	    var prev = el.prev();
+	    if (prev && prev.length) {
 
-	                if (isRightEl(prev, ex, isStatic)) {
-	                    return prev;
-	                } else {
-	                    return getPrevExcept(prev, ex);
-	                }
-	            }
+	      if (isRightEl(prev, ex, isStatic)) {
+	        return prev;
+	      } else {
+	        return getPrevExcept(prev, ex, isStatic);
+	      }
+	    } else if (el.parent().is(".p-container") || el.parent().is(".p-container-fluid")) {
+	      var prev = el.parent().prev();
+	      if (prev && prev.length) {
+	        if (prev.is(".p-container") || prev.is(".p-container-fluid")) {
+	          prev = prev.children().eq(0);
+	          if (isRightEl(prev, ex, isStatic)) {
+	            return prev;
+	          } else {
+	            return getPrevExcept(prev, ex, isStatic);
+	          }
 	        }
-	    };
+	      }
+	    }
+	  }
+	};
 
-	    var getNextIndexExcept = function getNextIndexExcept(els, currentIndex, except, isStatic) {
-	        var l = els.length;
-	        for (var i = currentIndex + 1; i < l; i++) {
-	            var next = $(els[i]);
-	            if (isRightEl(next, except, isStatic)) {
-	                break;
-	            } else {
-	                continue;
-	            }
+	var getNextIndexExcept = function getNextIndexExcept(els, currentIndex, except, isStatic) {
+	  var l = els.length;
+	  for (var i = currentIndex + 1; i < l; i++) {
+	    var next = $(els[i]);
+	    if (isRightEl(next, except, isStatic)) {
+	      break;
+	    } else {
+	      continue;
+	    }
+	  }
+	  return i;
+	};
+
+	var getPrevIndexExcept = function getPrevIndexExcept(els, currentIndex, except, isStatic) {
+
+	  for (var i = currentIndex - 1; i >= 0; i--) {
+	    var pre = $(els[i]);
+	    if (isRightEl(pre, except, isStatic)) {
+	      break;
+	    } else {
+	      continue;
+	    }
+	  }
+	  return i;
+	};
+
+	//得到插入点
+	function getDOMPointByCoord(els, parentCoord, coord, target, parent, point, isStatic) {
+
+	  // coord.fontSize = parentCoord.fontSize;
+	  var result = { type: "column", ignore: {}, parentCoord: parentCoord, coord: coord, el: target, parent: parent, isStatic: isStatic };
+	  var currentObject, currentCoord, prevObject, prevCoord, nextObject, nextCoord;
+	  var index = -1;
+	  var rowStartIndex;
+
+	  var rows = getAllRowElsByCoord(els, coord);
+	  //只可能有一个元素同行
+	  if (rows.length > 0) {
+	    //同行
+	    if ($(rows[0]).is("p-grid")) {
+
+	      var gridEls = [];
+	      var c = $(rows[0]).children();
+	      for (var i = 0; i < c.length; i++) {
+	        if (isRightEl($(c[i]), target, isStatic)) {
+	          gridEls.push(c[i]);
 	        }
-	        return i;
-	    };
-	    var getPrevIndexExcept = function getPrevIndexExcept(els, currentIndex, except, isStatic) {
+	      }
 
-	        for (var i = currentIndex - 1; i >= 0; i--) {
-	            var pre = $(els[i]);
-	            if (isRightEl(pre, except, isStatic)) {
-	                break;
-	            } else {
-	                continue;
-	            }
-	        }
-	        return i;
-	    };
+	      //若果父元素是p-grid，并且不是在移动的，根元素下。因为移动根元素下不能形成栅格
+	      //@todo 移动元素不能形成p-grid
+	      if (play.mediaName == "phone" && parent.is("p-page")) {
+	        // parent = $(rows[0]);
+	        // parentCoord = position.cood(parent);
+	        // result.parent = parent
+	        // result.parentCoord = parentCoord
+	        els = gridEls;
+	        index = -1;
+	      } else {
 
-	    //绝对定位的元素只找绝对定位的元素
-	    var isRightEl = function isRightEl(el, ex, isStatic) {
+	        var currentGridCoord = position.getAllCood(gridEls);
 
-	        if (el && el.length && !el.is(ex) && el.get(0).vnode && utils.isStatic(el) == isStatic && el.is(':visible')) {
-	            return true;
-	        }
-	    };
+	        if (gridEls.length == 0 || isInSameRowByCoord(coord, currentGridCoord)) {
+	          result.type = "row";
+	          result.rows = els = gridEls;
+	          index = -1;
 
-	    //得到插入点
-	    function getDOMPointByCoord(els, parentCoord, coord, target, parent, point, isStatic) {
-
-	        var children = els;
-	        coord.fontSize = parentCoord.fontSize;
-	        var result = { type: "column", parentCoord: parentCoord, coord: coord, el: target, parent: parent };
-	        var currentObject, currentCoord, prevObject, prevCoord, nextObject, nextCoord;
-	        var index = -1;
-	        var rowStartIndex;
-	        var l = els.length;
-
-	        if (parent.is("p-grid") && !(play.mediaName == "phone" && parent.parent().parent().is("p-page"))) {
-
-	            // if(isInSameRowByCoordAll(els, coord)){
-	            result.type = "row";
-
-	            var parentt = play.getVnodeParentByEl(parent.get(0));
-	            result.parent = $(parentt.nativeNode);
-	            result.parentCoord = position.cood(result.parent);
-
-	            //p-grid下可能只有一个target，被排除后为空
-	            if (els.length) {
-	                result.currentGridCoord = position.getAllCood(els);
-	                result.currentMinGridCoord = position.getAllMinCood(els);
-	                result.gridCoord = position.getAllCoodByCood([result.currentGridCoord, coord]);
-	            } else {
-	                result.currentGridCoord = parentCoord;
-	                result.currentMinGridCoord = parentCoord;
-	                result.gridCoord = parentCoord;
-	            }
-
-	            result.gridCoord.left = result.parentCoord.left;
-	            result.gridCoord.right = result.parentCoord.right;
-	            result.gridCoord.width = result.parentCoord.width;
-	            result.gridCoord.fontSize = result.parentCoord.fontSize;
-	            result.grid = parent;
-	            result.rows = els;
-
-	            var n = getNextExcept(parent, parent, true);
-	            if (n) {
-	                result.next = n;
-	                result.nextCoord = position.cood(n);
-	            }
-
-	            var p = getPrevExcept(parent, parent, true);
-	            if (p) {
-	                result.prev = p;
-	                result.prevCoord = position.cood(p);
-	            }
-	        }
-
-	        var rows = getAllRowElsByPoint(els, point);
-	        if (rows.length > 0) {
-	            //同行
-	            result.type = "row";
-	            els = result.rows = rows;
-	            index = -1;
-	            result.currentGridCoord = position.getAllCood(els);
+	          //p-grid下可能只有一个target，被排除后为空
+	          if (els.length) {
+	            result.currentGridCoord = currentGridCoord;
 	            result.currentMinGridCoord = position.getAllMinCood(els);
 	            result.gridCoord = position.getAllCoodByCood([result.currentGridCoord, coord]);
+	          } else {
+	            result.currentGridCoord = parentCoord;
+	            result.currentMinGridCoord = parentCoord;
+	            result.gridCoord = parentCoord;
+	          }
 
-	            result.gridCoord.left = parentCoord.left;
-	            result.gridCoord.right = parentCoord.right;
-	            result.gridCoord.width = parentCoord.width;
-	            result.gridCoord.fontSize = parentCoord.fontSize;
-	            // result.parentCoord = gridCoord;
-	            var n = getNextExcept(rows[rows.length - 1], target, isStatic);
-	            if (n) {
-	                result.next = n;
-	                result.nextCoord = position.cood(n);
-	            }
+	          result.gridCoord.left = result.parentCoord.left;
+	          result.gridCoord.right = result.parentCoord.right;
+	          result.gridCoord.width = result.parentCoord.width;
+	          result.gridCoord.fontSize = result.parentCoord.fontSize;
+	          result.grid = $(rows[0]);
 
-	            var p = getPrevExcept(rows[0], target, isStatic);
-	            if (p) {
-	                result.prev = p;
-	                result.prevCoord = position.cood(p);
-	            }
+	          result.rowsCoord = [];
+
+	          for (var r = 0; r < els.length; r++) {
+
+	            result.rowsCoord.push(position.cood($(els[r])));
+	          }
+
+	          var n = getNextExcept($(rows[0]), $(rows[0]), true);
+	          if (n) {
+	            result.next = n;
+	            result.nextCoord = position.cood(n);
+	          }
+
+	          var p = getPrevExcept($(rows[0]), $(rows[0]), true);
+	          if (p) {
+	            result.prev = p;
+	            result.prevCoord = position.cood(p);
+	          }
 	        }
+	      }
+	    } else {
 
-	        while (true) {
+	      result.type = "row";
+	      els = result.rows = rows;
 
-	            prevObject = currentObject;
-	            prevCoord = currentCoord;
-	            index = getNextIndexExcept(els, index, target, isStatic);
-	            if (index >= els.length) break;
-	            currentObject = $(els[index]);
-	            currentCoord = position.cood(currentObject);
+	      result.rowsCoord = [];
 
-	            var nextIndex = getNextIndexExcept(els, index, target, isStatic);
-	            if (nextIndex < els.length) {
-	                nextObject = $(els[index]);
-	                nextCoord = position.cood(nextObject);
-	            } else {
-	                nextObject = undefined;
-	                nextCoord = undefined;
-	            }
+	      for (var r = 0; r < rows.length; r++) {
+	        result.rowsCoord.push(position.cood($(rows[r])));
+	      }
 
-	            if (result.type == "column") {
+	      index = -1;
+	      result.currentGridCoord = position.getAllCood(els);
+	      result.currentMinGridCoord = position.getAllMinCood(els);
+	      result.gridCoord = position.getAllCoodByCood([result.currentGridCoord, coord]);
 
-	                //寻找最后一个小于他的元素
-	                if (point.top < currentCoord.top) {
-	                    result.next = currentObject;
-	                    result.index = index;
-	                    result.nextCoord = currentCoord;
-	                    break;
-	                }
-	            } else if (result.type == "row") {
-	                if (point.left < currentCoord.left) {
-	                    result.index = index;
-	                    result.rowNext = currentObject;
-	                    result.rowNextCoord = currentCoord;
-	                    break;
-	                }
-	            }
-	        }
+	      result.gridCoord.left = parentCoord.left;
+	      result.gridCoord.right = parentCoord.right;
+	      result.gridCoord.width = parentCoord.width;
+	      result.gridCoord.fontSize = parentCoord.fontSize;
+	      // result.parentCoord = gridCoord;
+	      var n = getNextExcept(rows[rows.length - 1], target, isStatic);
+	      if (n) {
+	        result.next = n;
+	        result.nextCoord = position.cood(n);
+	      }
 
-	        // while end
+	      var p = getPrevExcept(rows[0], target, isStatic);
+	      if (p) {
+	        result.prev = p;
+	        result.prevCoord = position.cood(p);
+	      }
+	    }
+	  }
+
+	  while (true) {
+
+	    prevObject = currentObject;
+	    prevCoord = currentCoord;
+	    index = getNextIndexExcept(els, index, target, isStatic);
+	    if (index >= els.length) break;
+	    currentObject = $(els[index]);
+	    currentCoord = getCoord(currentObject);
+
+	    var nextIndex = getNextIndexExcept(els, index, target, isStatic);
+	    if (nextIndex < els.length) {
+	      nextObject = $(els[index]);
+	      nextCoord = getCoord(nextObject);
+	    } else {
+	      nextObject = undefined;
+	      nextCoord = undefined;
+	    }
+
+	    if (result.type == "column") {
+
+	      //寻找最后一个小于他的元素
+	      if (isBottomByCoord(currentCoord, coord)) {
+
+	        result.next = currentObject;
 	        result.index = index;
-	        if (result.type == "column") {
-	            var prevIndex = result.index - 1;
-	            if (prevIndex >= 0) {
-	                result.prev = $(els[prevIndex]);
-	                result.prevCoord = position.cood(result.prev);
-	            }
-	        } else {
+	        result.nextCoord = currentCoord;
+	        break;
+	      }
+	    } else if (result.type == "row") {
+	      if (point.left < currentCoord.left) {
+	        result.index = index;
+	        result.rowNext = currentObject;
+	        result.rowNextCoord = currentCoord;
+	        break;
+	      }
+	    }
+	  }
 
-	            var prevIndex = result.index - 1;
-	            if (prevIndex >= 0) {
-	                result.rowPrev = $(els[prevIndex]);
-	                result.rowPrevCoord = position.cood(result.rowPrev);
-	            }
-	        }
+	  // while end
+	  result.index = index;
+	  if (result.type == "column") {
+	    var prevIndex = result.index - 1;
+	    if (prevIndex >= 0) {
 
-	        addStartPosition(result);
-	        addSpaceCoord(result);
-	        return result;
+	      result.prev = $(els[prevIndex]);
+
+	      result.prevCoord = getCoord(result.prev);
+	    }
+	  } else {
+
+	    var prevIndex = result.index - 1;
+	    if (prevIndex >= 0) {
+	      result.rowPrev = $(els[prevIndex]);
+	      result.rowPrevCoord = position.cood(result.rowPrev);
+	    }
+	  }
+
+	  //
+	  if (result.next && result.next.is("p-grid")) {
+	    if (play.isColumnGrid(result.next)) {
+	      result.next = getGridChildren(result.next)[0];
+	      result.nextCoord = position.cood(result.next);
+	    } else {
+	      var girdCoord = getGridRowCoord(result.next, play.select.selectedEL);
+
+	      result.nextCoord.top = girdCoord.top;
+	      result.nextCoord.bottom = girdCoord.bottom;
+
+	      result.gridNext = getGridChildren(result.next);
+	      result.gridNextCoord = [];
+	      for (var i = 0; i < result.gridNext.length; i++) {
+	        result.gridNextCoord.push(position.cood($(result.gridNext[i])));
+	      }
+	    }
+	  }
+
+	  domPointToVnodePoint(result);
+	  addChilrenCoord(result);
+	  addStartPosition(result);
+	  addSpaceCoord(result);
+
+	  return result;
+	}
+
+	function addChilrenCoord(point) {
+	  var childrenCoord = getChildrenCoord(point.el);
+	  if (!point.childrenCoord && childrenCoord) {
+	    point.childrenCoord = {
+	      marginLeft: childrenCoord.left - point.coord.left,
+	      marginTop: childrenCoord.top - point.coord.top,
+	      width: childrenCoord.width,
+	      height: childrenCoord.height
+	    };
+	  }
+	}
+
+	function computerStartPosition(point) {
+	  var result = point;
+	  var startPosition = {};
+	  var endPosition = {};
+
+	  // p-page 底部不受限制
+	  var parentCoord = point.parentCoord;
+	  if (point.parent.is("p-page")) {
+	    parentCoord = $.extend({}, parentCoord);
+	    parentCoord.height = 100000;
+	    parentCoord.bottom = 100000;
+	  }
+
+	  if (!point.isStatic) {
+	    var relativeParent = position.getRelativeParent(point.el);
+	    var parentCoord = position.cood(relativeParent);
+	    if (point.parent.is("p-page")) {
+	      parentCoord = $.extend({}, parentCoord);
+	      parentCoord.height = 100000;
+	      parentCoord.bottom = 100000;
 	    }
 
-	    function addStartPosition(point) {
+	    startPosition = {
+	      left: parentCoord.left,
+	      top: parentCoord.top
+	    };
 
-	        var result = point;
+	    endPosition = {
+	      top: parentCoord.bottom,
+	      left: parentCoord.right
+	    };
+	  } else {
 
-	        if (point.type == "column") {
+	    if (point.type == "column") {
 
-	            //列没有prev元素
-	            if (result.prev && result.prev.length) {
-	                result.startPosition = {
-	                    left: result.parentCoord.left,
-	                    top: result.prevCoord.bottom
-	                };
-	            } else {
-	                result.startPosition = {
-	                    left: result.parentCoord.left,
-	                    top: result.parentCoord.top
-	                };
-	            }
-
-	            if (result.next && result.next.length) {
-	                result.endPosition = {
-	                    top: result.nextCoord.top,
-	                    left: result.parentCoord.left
-	                };
-	            } else {
-	                result.endPosition = {
-	                    top: result.parentCoord.bottom,
-	                    left: result.parentCoord.left
-	                };
-	            }
-	        } else if (point.type == "row") {
-
-	            if (result.rowPrev && result.rowPrev.length) {
-	                result.startPosition = {
-	                    left: result.rowPrevCoord.right,
-	                    top: result.gridCoord.top
-	                };
-	            } else {
-	                result.startPosition = {
-	                    left: result.gridCoord.left,
-	                    top: result.gridCoord.top
-	                };
-	            }
-
-	            if (result.rowNext && result.rowNext.length) {
-	                result.endPosition = {
-	                    top: result.gridCoord.top,
-	                    left: result.rowNextCoord.left
-
-	                };
-	            } else {
-	                result.endPosition = {
-	                    top: result.gridCoord.top,
-	                    left: result.gridCoord.right
-	                };
-	            }
-	        }
-
-	        return result;
-	    }
-
-	    function addSpaceCoord(point) {
-	        var result = point;
-	        var spaceCoord;
-
-	        if (point.type == "column") {
-
-	            spaceCoord = {
-	                left: result.parentCoord.left,
-	                right: result.parentCoord.right,
-	                top: result.startPosition.top,
-	                bottom: result.endPosition.top
-	            };
-
-	            result.spaceCoord = spaceCoord;
-	        } else if (point.type == "row") {
-
-	            spaceCoord = {
-	                left: result.startPosition.left,
-	                right: result.endPosition.left
-	            };
-
-	            if (result.prev && result.prev.length) {
-	                spaceCoord.top = Math.max(result.prevCoord.bottom, result.currentMinGridCoord.top - overDistance);
-	            } else {
-	                spaceCoord.top = Math.max(result.parentCoord.top, result.currentMinGridCoord.top - overDistance);
-	            }
-
-	            if (result.next && result.next.length) {
-	                spaceCoord.bottom = Math.max(result.nextCoord.top, result.currentMinGridCoord.top + overDistance + result.currentMinGridCoord.height);
-	            } else {
-	                spaceCoord.bottom = Math.min(result.parentCoord.bottom, result.currentMinGridCoord.top + overDistance + result.currentMinGridCoord.height);
-	            }
-
-	            result.spaceCoord = spaceCoord;
-	        }
-
-	        return result;
-	    }
-
-	    function updatePoint(point, coord) {
-
-	        var result = $.extend({}, point);
-	        result.coord = coord;
-	        if (result.type == "column") {} else if (result.type == "row") {
-
-	            var rows = result.rows;
-	            result.currentGridCoord = position.getAllCood(rows);
-	            result.currentMinGridCoord = position.getAllMinCood(rows);
-	            result.gridCoord = position.getAllCoodByCood([result.currentGridCoord, coord]);
-
-	            result.gridCoord.left = result.parentCoord.left;
-	            result.gridCoord.right = result.parentCoord.right;
-	            result.gridCoord.width = result.parentCoord.width;
-	            result.gridCoord.fontSize = result.parentCoord.fontSize;
-	        }
-
-	        addStartPosition(result);
-	        addSpaceCoord(result);
-	        return result;
-	    }
-
-	    function getDOMPoint(parent, coord, target, point, isStatic) {
-	        var els = [];
-	        var parentVnode = parent.get(0).vnode;
-
-	        //如果parent是header，他的coord是部分页面
-	        var parentCoord = position.cood(parent);
-	        // if(parent.is("p-header")){
-	        //   parentCoord = position.cood($("body", play.iframeDoc));
-	        // }
-
-	        //使用domparent,支持内部元素得到point
-	        var c;
-	        if (!target.get(0).vnode.parent || play.isVisibleVnode(target.get(0).vnode)) {
-	            c = parentVnode.children;
-	            for (var i = 0; i < c.length; i++) {
-	                if (isRightEl($(c[i].nativeNode), target, isStatic)) {
-	                    els.push($(c[i].nativeNode));
-	                }
-	            }
-	        } else {
-	            var domParent = target.parent();
-	            c = domParent.children();
-	            for (var i = 0; i < c.length; i++) {
-	                if (isRightEl($(c[i]), target, isStatic)) {
-	                    els.push($(c[i]));
-	                }
-	            }
-	        }
-
-	        var result = getDOMPointByCoord(els, parentCoord, coord, target, parent, point, isStatic);
-
-	        return result;
-	    }
-
-	    // tips: 绝对定位的元素只找绝对定位的元素相关
-	    var getCurrentInsertPoint = function getCurrentInsertPoint(el) {
-	        var els = [];
-	        var parentVnode = play.getVnodeParentByEl(el.get(0));
-
-	        var parent = $(parentVnode.nativeNode);
-	        var isStatic = utils.isStatic(el);
-
-	        //使用domparent,支持内部元素得到point
-	        var c;
-	        if (!el.get(0).vnode.parent || play.isVisibleVnode(el.get(0).vnode)) {
-	            c = parentVnode.children;
-	            for (var i = 0; i < c.length; i++) {
-	                if (isRightEl($(c[i].nativeNode), el, isStatic)) {
-	                    els.push($(c[i].nativeNode));
-	                }
-	            }
-	        } else {
-	            var domParent = el.parent();
-	            c = domParent.children();
-	            for (var i = 0; i < c.length; i++) {
-	                if (isRightEl($(c[i]), el, isStatic)) {
-	                    els.push($(c[i]));
-	                }
-	            }
-	        }
-
-	        var coord = position.cood(el);
-	        var parentCoord = position.cood(parent);
-
-	        var point = {
-	            left: coord.left + coord.width / 2,
-	            top: coord.top + coord.height / 2
+	      //列没有prev元素
+	      if (result.prev && result.prev.length) {
+	        startPosition = {
+	          left: parentCoord.left,
+	          top: result.prevCoord.bottom
 	        };
+	      } else {
+	        startPosition = {
+	          left: parentCoord.left,
+	          top: parentCoord.top
+	        };
+	      }
 
-	        var result = getDOMPointByCoord(els, parentCoord, coord, el, parent, point, isStatic);
+	      if (result.next && result.next.length) {
+	        endPosition = {
+	          top: result.nextCoord.top,
+	          left: parentCoord.left
+	        };
+	      } else {
+	        endPosition = {
+	          top: parentCoord.bottom,
+	          left: parentCoord.left
+	        };
+	      }
+	    } else if (point.type == "row") {
 
-	        return result;
+	      if (result.rowPrev && result.rowPrev.length) {
+	        startPosition = {
+	          left: result.rowPrevCoord.right,
+	          top: result.gridCoord.top
+	        };
+	      } else {
+	        startPosition = {
+	          left: result.gridCoord.left,
+	          top: result.gridCoord.top
+	        };
+	      }
+
+	      if (result.rowNext && result.rowNext.length) {
+	        endPosition = {
+	          top: result.gridCoord.top,
+	          left: result.rowNextCoord.left
+
+	        };
+	      } else {
+	        endPosition = {
+	          top: result.gridCoord.top,
+	          left: result.gridCoord.right
+	        };
+	      }
+	    }
+	  }
+
+	  return {
+	    startPosition: startPosition,
+	    endPosition: endPosition
+	  };
+	}
+
+	function addStartPosition(point) {
+	  var startPosition = computerStartPosition(point);
+	  point.startPosition = startPosition.startPosition;
+	  point.endPosition = startPosition.endPosition;
+	  return point;
+	}
+
+	function getSpaceCoord(point) {
+	  var result = point;
+	  var spaceCoord;
+
+	  if (point.type == "column") {
+
+	    spaceCoord = {
+	      left: result.parentCoord.left,
+	      right: result.parentCoord.right,
+	      top: result.startPosition.top,
+	      bottom: result.endPosition.top
+	    };
+	  } else if (point.type == "row") {
+
+	    spaceCoord = {
+	      left: result.startPosition.left,
+	      right: result.endPosition.left
 	    };
 
-	    var getStartPosition = function getStartPosition(el) {
+	    if (result.prev && result.prev.length) {
+	      spaceCoord.top = result.prevCoord.bottom;
+	    } else {
+	      spaceCoord.top = result.parentCoord.top;
+	    }
 
-	        var parent = el.parent();
-	        var coord = position.cood(el);
-	        var parentCoord = position.cood(parent);
-	        var isStatic = utils.isStatic(el);
+	    if (result.next && result.next.length) {
+	      spaceCoord.bottom = result.nextCoord.top;
+	    } else {
+	      spaceCoord.bottom = result.parentCoord.bottom;
+	    }
 
-	        var point;
-	        if (isStatic) {
+	    // if(result.prev&&result.prev.length){
+	    //     spaceCoord.top =  Math.max(result.prevCoord.bottom, result.currentMinGridCoord.top-overDistance);
+	    // }
+	    // else {
+	    //     spaceCoord.top =  Math.max(result.parentCoord.top,result.currentMinGridCoord.top-overDistance);
+	    // }
+	    //
+	    // if(result.next&&result.next.length){
+	    //     spaceCoord.bottom =  Math.max(result.nextCoord.top,result.currentMinGridCoord.top+overDistance+result.currentMinGridCoord.height);
+	    // }
+	    // else {
+	    //     spaceCoord.bottom =  Math.min(result.parentCoord.bottom, result.currentMinGridCoord.top+overDistance+result.currentMinGridCoord.height);
+	    // }
 
-	            var prev = getPrevExcept(el, el, isStatic);
-	            var prevCoord = position.cood(prev);
-	            var next = getNextExcept(el, el, isStatic);
-	            var nextCoord = position.cood(next);
+	  }
 
-	            if (isGridRow(parent) && !(play.mediaName == "phone" && parent.parent().parent().is("p-page"))) {
-	                var grid = parent;
-	                var gridCoord = parentCoord;
+	  spaceCoord.width = spaceCoord.right - spaceCoord.left;
+	  spaceCoord.height = spaceCoord.bottom - spaceCoord.top;
 
-	                point = {
-	                    parent: parent,
-	                    parentCoord: parentCoord,
-	                    coord: coord,
-	                    type: "row",
-	                    grid: grid,
-	                    gridCoord: gridCoord,
-	                    el: el,
+	  return spaceCoord;
+	}
 
-	                    rowPrev: prev,
-	                    rowPrevCoord: prevCoord,
-	                    rowNext: next,
-	                    rowNextCoord: nextCoord
+	function addSpaceCoord(point) {
+	  point.spaceCoord = getSpaceCoord(point);
 
-	                };
+	  return point;
+	}
 
-	                return addStartPosition(point, coord);
-	            } else {
+	function updatePoint(point, coord, parentCoord) {
 
-	                point = {
-	                    parent: parent,
-	                    type: "column",
-	                    parentCoord: parentCoord,
-	                    el: el,
-	                    coord: coord,
-	                    prev: prev,
-	                    prevCoord: prevCoord,
-	                    next: next,
-	                    nextCoord: nextCoord
-	                };
+	  var result = $.extend({}, point);
+	  result.coord = coord;
 
-	                return addStartPosition(point, coord);
-	            }
+	  if (parentCoord) {
+	    result.parentCoord = parentCoord;
+	  }
+
+	  if (result.type == "column") {} else if (result.type == "row") {
+	    var rows = result.rows;
+	    result.currentGridCoord = position.getAllCood(rows);
+	    result.currentMinGridCoord = position.getAllMinCood(rows);
+	    result.gridCoord = position.getAllCoodByCood([result.currentGridCoord, coord]);
+
+	    result.gridCoord.left = result.parentCoord.left;
+	    result.gridCoord.right = result.parentCoord.right;
+	    result.gridCoord.width = result.parentCoord.width;
+	    result.gridCoord.fontSize = result.parentCoord.fontSize;
+	  }
+
+	  addStartPosition(result);
+	  addSpaceCoord(result);
+
+	  return result;
+	}
+
+	function getDOMPoint(parent, coord, target, point, isStatic) {
+	  var els = [];
+	  var parentVnode = parent.get(0).vnode;
+
+	  //如果parent是header，他的coord是部分页面
+	  var parentCoord = position.cood(parent);
+	  // if(parent.is("p-header")){
+	  //   parentCoord = position.cood($("body", play.iframeDoc));
+	  // }
+
+	  //使用domparent,支持组件内部元素得到point
+	  var c;
+	  if (!target.get(0).vnode.parent || play.isVisibleVnode(target.get(0).vnode)) {
+	    c = parentVnode.children;
+	    for (var i = 0; i < c.length; i++) {
+	      if (isRightEl($(c[i].nativeNode), target, isStatic)) {
+	        els.push($(c[i].nativeNode));
+	      }
+	    }
+	  } else {
+	    var domParent = target.parent();
+	    c = domParent.children();
+	    for (var i = 0; i < c.length; i++) {
+	      if (isRightEl($(c[i]), target, isStatic)) {
+	        els.push($(c[i]));
+	      }
+	    }
+	  }
+
+	  var result = getDOMPointByCoord(els, parentCoord, coord, target, parent, point, isStatic);
+
+	  return result;
+	}
+
+	// tips: 绝对定位的元素只找绝对定位的元素相关
+	var getCurrentInsertPoint = function getCurrentInsertPoint(el) {
+	  var els = [];
+	  var parentVnode = play.getVnodeParentByEl(el.get(0));
+
+	  if (parentVnode.name == "p-grid") {
+	    parentVnode = play.getVnodeParentByEl(parentVnode.nativeNode);
+	  }
+
+	  var parent = $(parentVnode.nativeNode);
+	  var isStatic = utils.isStatic(el);
+
+	  //使用domparent,支持内部元素得到point
+	  var c;
+	  if (!el.get(0).vnode.parent || play.isVisibleVnode(el.get(0).vnode)) {
+	    c = parentVnode.children;
+	    for (var i = 0; i < c.length; i++) {
+	      if (isRightEl($(c[i].nativeNode), el, isStatic)) {
+	        els.push($(c[i].nativeNode));
+	      }
+	    }
+	  } else {
+	    var domParent = el.parent();
+	    c = domParent.children();
+	    for (var i = 0; i < c.length; i++) {
+	      if (isRightEl($(c[i]), el, isStatic)) {
+	        els.push($(c[i]));
+	      }
+	    }
+	  }
+
+	  var coord = position.cood(el);
+	  var parentCoord = position.cood(parent);
+
+	  var point = {
+	    left: coord.left + coord.width / 2,
+	    top: coord.top + coord.height / 2
+	  };
+
+	  var result = getDOMPointByCoord(els, parentCoord, coord, el, parent, point, isStatic);
+
+	  return result;
+	};
+
+	var getStartPosition = function getStartPosition(el, mediaName) {
+
+	  mediaName = mediaName ? mediaName : "pc";
+
+	  var parent = el.parent();
+	  var coord = position.cood(el);
+	  var parentCoord = position.cood(parent);
+	  var isStatic = utils.isStatic(el);
+
+	  var point;
+	  if (isStatic) {
+
+	    var prev = getPrevExcept(el, el, isStatic);
+	    var prevCoord = position.cood(prev);
+	    var next = getNextExcept(el, el, isStatic);
+	    var nextCoord = position.cood(next);
+
+	    if (isGridRow(parent) && !(play.mediaName == "phone" && parent.parent().parent().is("p-page"))) {
+	      var grid = parent;
+	      var gridCoord = parentCoord;
+
+	      point = {
+	        parent: parent,
+	        parentCoord: parentCoord,
+	        coord: coord,
+	        type: "row",
+	        grid: grid,
+	        gridCoord: gridCoord,
+	        el: el,
+	        isStatic: isStatic,
+
+	        rowPrev: prev,
+	        rowPrevCoord: prevCoord,
+	        rowNext: next,
+	        rowNextCoord: nextCoord
+
+	      };
+
+	      return addStartPosition(point, coord);
+	    } else {
+
+	      point = {
+	        parent: parent,
+	        type: "column",
+	        parentCoord: parentCoord,
+	        el: el,
+	        coord: coord,
+	        prev: prev,
+	        prevCoord: prevCoord,
+	        next: next,
+	        nextCoord: nextCoord,
+	        isStatic: isStatic
+	      };
+
+	      return addStartPosition(point, coord);
+	    }
+	  } else {
+	    var relativeParent = parent;
+
+	    var isRelative = function isRelative(el) {
+	      return el.css("position") == "relative" || el.css("position") == "absolute" || el.css("position") == "fixed";
+	    };
+	    while (!isRelative(relativeParent)) {
+	      relativeParent = relativeParent.parent();
+	      if (relativeParent.is("body")) {
+	        break;
+	      }
+	    }
+
+	    var relativeParentCoord = position.cood(relativeParent);
+
+	    point = {
+	      parent: parent,
+	      relativeParent: relativeParent,
+	      relativeParentCoord: relativeParentCoord,
+	      type: "column",
+	      parentCoord: parentCoord,
+	      isStatic: isStatic,
+	      el: el,
+	      coord: coord,
+	      startPosition: {
+	        left: relativeParentCoord.left,
+	        top: relativeParentCoord.top
+	      }
+
+	    };
+
+	    return point;
+	  }
+	};
+
+	var isAvailablePoint = function isAvailablePoint(point, isAbsolute, isResize) {
+	  if (!play.supportRowLayout && point.type == "row" && !isAbsolute) {
+	    return false;
+	  }
+
+	  //
+
+	  //暂时不支持行
+	  // if(point.type=="row"&&!point.parent.is("p-header")){
+	  //   return false;
+	  // }
+
+	  //移动端在第一层布局页面不支持row
+	  // if(point.type=="row"&&play.mediaName == "phone"&&point.parent.is("p-page")){
+	  //   return false;
+	  // }
+
+
+	  var coord = point.coord;
+	  var space = point.spaceCoord;
+
+	  var sWidth = space.right - space.left;
+	  var sHeight = space.bottom - space.top;
+
+	  var isBig = function isBig(big, small) {
+	    if (big - small > 1) {
+	      return true;
+	    }
+	  };
+
+	  if (isResize) {
+
+	    if (coord.top < space.top || isBig(coord.bottom, space.bottom) || coord.left < space.left || coord.right > space.right) {
+	      return false;
+	    }
+	  }
+
+	  if (point.type == "column") {
+	    if (sHeight < coord.height || sWidth < coord.width) {
+	      return false;
+	    }
+	  } else if (point.type == 'row') {
+	    if (sHeight < coord.height) {
+	      return false;
+	    }
+	    if (sWidth < coord.width) {
+	      return false;
+	    }
+	  }
+	  return true;
+
+	  // if(sWidth>=point.coord.width||sHeight>=point.coord.height){
+	  //
+	  //     return true;
+	  // }
+	  // else {
+	  //     return false;
+	  // }
+	  //
+	  // if(point.type == "column"){
+	  //     var bottom = point.endPosition.top
+	  //     var top = point.startPosition.top
+	  //
+	  //     if(point.coord.height < (bottom-top)){
+	  //         return true;
+	  //     }
+	  // } else {
+	  //
+	  //     if(point.type == "row"){
+	  //         var right = point.endPosition.left
+	  //         var left = point.startPosition.left
+	  //
+	  //         if(point.coord.width < (right-left)){
+	  //
+	  //             return true
+	  //         }
+	  //     }
+	  // }
+	};
+
+	// type move;reize;
+	var computerAvailableCoord = function computerAvailableCoord(coord, spaceCoord, resizeDir) {
+	  var space = spaceCoord;
+	  var availableCoord = $.extend({}, coord);
+	  var width = coord.width > space.width ? space.width : coord.width;
+	  var height = coord.height > space.height ? space.height : coord.height;
+
+	  if (resizeDir && spaceCoord.childrenCoord) {
+
+	    var childrenCoord = spaceCoord.childrenCoord;
+	    var minWidth = childrenCoord.marginLeft + childrenCoord.width;
+
+	    var minHeight = childrenCoord.marginTop + childrenCoord.height;
+	    if (width < minWidth) {
+	      availableCoord.return = true;
+	      if (resizeDir == "left") {
+	        availableCoord.right = coord.right;
+	        availableCoord.left = coord.right - minWidth;
+	        availableCoord.width = minWidth;
+	      } else if (resizeDir == "right") {
+	        availableCoord.left = coord.left;
+	        availableCoord.right = coord.left + minWidth;
+	        availableCoord.width = minWidth;
+	      }
+	    }
+
+	    if (height < minHeight) {
+	      availableCoord.return = true;
+	      if (resizeDir == "top") {
+	        availableCoord.bottom = coord.bottom;
+	        availableCoord.top = coord.bottom - minHeight;
+	        availableCoord.height = minHeight;
+	      } else if (resizeDir == "bottom") {
+	        availableCoord.top = coord.top;
+	        availableCoord.bottom = coord.top + minHeight;
+	        availableCoord.height = minHeight;
+	      }
+	    }
+	  }
+
+	  if (coord.top < space.top) {
+	    availableCoord.return = true;
+	    if (resizeDir) {
+	      availableCoord.top = space.top;
+	      availableCoord.height = coord.bottom - space.top;
+	    } else {
+	      availableCoord.top = space.top;
+	      availableCoord.bottom = space.top + height;
+	      availableCoord.height = height;
+	    }
+	  }
+
+	  if (coord.bottom > space.bottom) {
+	    availableCoord.return = true;
+	    if (resizeDir) {
+	      availableCoord.bottom = space.bottom;
+	      availableCoord.height = space.bottom - coord.top;
+	    } else {
+	      availableCoord.bottom = space.bottom;
+	      availableCoord.top = space.bottom - height;
+	      availableCoord.height = height;
+	    }
+	  }
+
+	  if (coord.left < space.left) {
+
+	    availableCoord.return = true;
+	    if (resizeDir) {
+	      availableCoord.left = space.left;
+	      availableCoord.width = coord.right - space.left;
+	    } else {
+
+	      availableCoord.left = space.left;
+	      availableCoord.right = space.left + width;
+	      availableCoord.width = width;
+	    }
+	  }
+	  if (coord.right > space.right) {
+	    availableCoord.return = true;
+	    if (resizeDir) {
+	      availableCoord.right = space.right;
+	      availableCoord.width = space.right - coord.left;
+	    } else {
+	      availableCoord.right = space.right;
+	      availableCoord.left = space.right - width;
+	      availableCoord.width = width;
+	    }
+	  }
+	  if (availableCoord.return) {
+	    return availableCoord;
+	  }
+	};
+
+	var computerRelativeAvailableCoord = function computerRelativeAvailableCoord(coord, spaceCoord, isResize) {
+	  var space = spaceCoord;
+
+	  var availableCoord = $.extend({}, coord);
+
+	  var width = coord.width > space.width ? space.width : coord.width;
+	  var height = coord.height > space.height ? space.height : coord.height;
+
+	  if (coord.top < space.top) {
+	    availableCoord.return = true;
+	    if (isResize) {
+	      availableCoord.top = space.top;
+	      availableCoord.height = coord.bottom - space.top;
+	    } else {
+	      availableCoord.top = space.top;
+	      availableCoord.bottom = space.top + height;
+	      availableCoord.height = height;
+	    }
+	  }
+
+	  if (coord.bottom > space.bottom) {
+	    availableCoord.return = true;
+	    if (isResize) {
+	      availableCoord.bottom = space.bottom;
+	      availableCoord.height = space.bottom - coord.top;
+	    } else {
+	      availableCoord.bottom = space.bottom;
+	      availableCoord.top = space.bottom - height;
+	      availableCoord.height = height;
+	    }
+	  }
+
+	  if (coord.left < space.left) {
+
+	    availableCoord.return = true;
+	    if (isResize) {
+	      availableCoord.left = space.left;
+	      availableCoord.width = coord.right - space.left;
+	    } else {
+
+	      availableCoord.left = space.left;
+	      availableCoord.right = space.left + width;
+	      availableCoord.width = width;
+	    }
+	  }
+	  if (coord.right > space.right) {
+	    availableCoord.return = true;
+	    if (isResize) {
+	      availableCoord.right = space.right;
+	      availableCoord.width = space.right - coord.left;
+	    } else {
+	      availableCoord.right = space.right;
+	      availableCoord.left = space.right - width;
+	      availableCoord.width = width;
+	    }
+	  }
+	  if (availableCoord.return) {
+	    return availableCoord;
+	  }
+	};
+
+	var getAvailablePoint = function getAvailablePoint(point, isAbsolute, resizeDir) {
+	  var coord = point.coord;
+	  var space = point.spaceCoord;
+	  if (isAbsolute) {
+	    return point;
+	  }
+
+	  point.spaceCoord.childrenCoord = point.childrenCoord;
+
+	  point.availableCoord = computerAvailableCoord(coord, point.spaceCoord, resizeDir);
+
+	  return point;
+	};
+
+	function domPointToVnodePoint(domPoint) {
+	  domPoint.elVnode = domPoint.el.get(0).vnode;
+	  domPoint.parentVnode = domPoint.parent.get(0).vnode;
+
+	  if (domPoint.type == "column") {
+	    if (domPoint.prev && domPoint.prev.length) {
+	      domPoint.prevVnode = domPoint.prev.get(0).vnode;
+	    }
+	    if (domPoint.next) {
+	      domPoint.nextVnode = domPoint.next.get(0).vnode;
+	    }
+	  } else if (domPoint.type == "row") {
+
+	    if (domPoint.prev) {
+	      domPoint.prevVnode = domPoint.prev.get(0).vnode;
+	    }
+	    if (domPoint.next) {
+	      domPoint.nextVnode = domPoint.next.get(0).vnode;
+	    }
+
+	    if (domPoint.rowPrev) {
+	      domPoint.rowPrevVnode = domPoint.rowPrev.get(0).vnode;
+	    }
+	    if (domPoint.rowNext) {
+	      domPoint.rowNextVnode = domPoint.rowNext.get(0).vnode;
+	    }
+
+	    if (domPoint.grid) {
+	      domPoint.gridVnode = domPoint.grid.get(0).vnode;
+	    }
+	  }
+	}
+
+	function addMediaCoordToPoint(point) {
+	  return;
+	}
+
+	//构建栅格时保持位置信息
+
+
+	var __nextEl, __rowNextEl;
+	var __positions = {};
+
+	var beforeModifyDOMTree = function beforeModifyDOMTree(point) {
+	  addMediaCoordToPoint(point);
+	};
+	var afterModifyDOMTree = function afterModifyDOMTree() {
+
+	  var self = this;
+
+	  if (__rowNextEl) {
+	    position.setPositionByPercent(__rowNextEl, __rowNextEl.prop("__record"));
+	  }
+	  if (__nextEl) {
+	    position.setPositionByPercent(__nextEl, __nextEl.prop("__record"));
+	  }
+	};
+
+	var removeAfterModifyDOMTree = function removeAfterModifyDOMTree(point) {
+
+	  var self = this;
+	  // gridModifyDOMTree(point, true);
+	  if (point.rowNext) {
+	    var currentPoint = getCurrentInsertPoint(point.rowNext);
+	    currentPoint.coord = point.rowNextCoord;
+	    addRelativeCoord(currentPoint);
+	    currentPoint.ignore = { top: true, width: true, height: true };
+	    setNeedUpdate(currentPoint, "move");
+	    position.setPositionByPercent(point.rowNext, { left: point.rowNextCoord.left, fontSize: point.rowNextCoord.fontSize }, currentPoint);
+	  }
+
+	  if (point.gridNext) {
+	    for (var i = 0; i < point.gridNext.length; i++) {
+	      var currentPoint = getCurrentInsertPoint($(point.gridNext[i]));
+	      currentPoint.coord = point.gridNextCoord[i];
+	      addRelativeCoord(currentPoint);
+	      currentPoint.ignore = { left: true, width: true, height: true };
+	      setNeedUpdate(currentPoint, "move");
+	      position.setPositionByPercent($(point.gridNext[i]), { top: point.nextCoord.top, fontSize: point.nextCoord.fontSize }, currentPoint);
+	    }
+	  } else if (point.next) {
+	    var currentPoint = getCurrentInsertPoint(point.next);
+	    currentPoint.coord = point.nextCoord;
+	    addRelativeCoord(currentPoint);
+	    currentPoint.ignore = { left: true, width: true, height: true };
+	    setNeedUpdate(currentPoint, "move");
+	    position.setPositionByPercent(point.next, { top: point.nextCoord.top, fontSize: point.nextCoord.fontSize }, currentPoint);
+	  }
+	};
+
+	var gridModifyDOMTree = function gridModifyDOMTree(point, isOldPoint) {
+	  if (point.type == "row") {
+
+	    var currentPoint = getCurrentInsertPoint(point.grid);
+	    currentPoint.coord = isOldPoint ? point.currentGridCoord : point.gridCoord;
+	    addRelativeCoord(currentPoint);
+	    currentPoint.ignore = { width: true, height: true };
+	    setNeedUpdate(currentPoint, "resize");
+	    position.setPositionByPercent(point.grid, {}, currentPoint);
+
+	    for (var i = 0; i < point.rows.length; i++) {
+	      var el = $(point.rows[i]);
+	      if (el.length) {
+
+	        var currentPoint = getCurrentInsertPoint(el);
+	        currentPoint.coord = point.rowsCoord[i];
+	        addRelativeCoord(currentPoint);
+	        currentPoint.ignore = { width: true, height: true };
+	        setNeedUpdate(currentPoint, "move");
+	        position.setPositionByPercent(el, {}, currentPoint);
+	      }
+	    }
+	  }
+	};
+
+	var insertAfterModifyDOMTree = function insertAfterModifyDOMTree(point, isOldPoint) {
+
+	  var self = this;
+
+	  // gridModifyDOMTree(point, isOldPoint)
+
+	  if (point.rowNext) {
+	    var currentPoint = getCurrentInsertPoint(point.rowNext);
+	    currentPoint.coord = point.rowNextCoord;
+	    addRelativeCoord(currentPoint);
+	    currentPoint.ignore = { width: true, height: true };
+	    setNeedUpdate(currentPoint, "move");
+	    position.setPositionByPercent(point.rowNext, { left: point.rowNextCoord.left, fontSize: point.rowNextCoord.fontSize }, currentPoint);
+	  }
+	  if (point.gridNext) {
+	    for (var i = 0; i < point.gridNext.length; i++) {
+	      var currentPoint = getCurrentInsertPoint($(point.gridNext[i]));
+	      currentPoint.coord = point.gridNextCoord[i];
+	      addRelativeCoord(currentPoint);
+	      currentPoint.ignore = { left: true, width: true, height: true };
+	      setNeedUpdate(currentPoint, "move");
+	      position.setPositionByPercent($(point.gridNext[i]), { top: point.nextCoord.top, fontSize: point.nextCoord.fontSize }, currentPoint);
+	    }
+	  } else if (point.next) {
+	    var currentPoint = getCurrentInsertPoint(point.next);
+	    currentPoint.coord = point.nextCoord;
+	    addRelativeCoord(currentPoint);
+	    currentPoint.ignore = { left: true, width: true, height: true };
+	    setNeedUpdate(currentPoint, "move");
+	    position.setPositionByPercent(point.next, { top: point.nextCoord.top, fontSize: point.nextCoord.fontSize }, currentPoint);
+	  }
+	};
+
+	var clearMediaCoord = function clearMediaCoord(point) {
+	  if (point.rowNext) {
+	    utils.removeMediaCSSRule(point.rowNext);
+	  }
+	  if (point.next) {
+	    utils.removeMediaCSSRule(point.next);
+	  }
+	};
+
+	var positionHelper;
+
+	function showPositionHelper(coord) {
+	  if (!positionHelper) {
+	    positionHelper = $("#position-helper");
+	  }
+	  if (positionHelper.is(":hidden")) {
+
+	    positionHelper.show();
+	  }
+	  positionHelper.css({
+	    left: coord.left + "px",
+	    top: coord.top + "px",
+	    width: coord.width + "px",
+	    height: coord.height + "px"
+	  });
+	}
+
+	function hidePositionHelper() {
+	  if (!positionHelper) {
+	    positionHelper = $("#position-helper");
+	  }
+	  positionHelper.hide();
+	}
+
+	function resetRow(point) {
+
+	  if (point.grid) {
+	    var next = point.next;
+	    if (next) {
+	      position.record(next);
+	    }
+
+	    var children = point.rows;
+
+	    $(children).each(function (i, c) {
+	      position.record($(c));
+	    });
+
+	    //delete cood.width
+	    delete point.gridCoord.width;
+	    delete point.gridCoord.left;
+	    delete point.gridCoord.height;
+	    position.setPositionByPercent(point.grid, point.gridCoord, point);
+
+	    $(children).each(function (i, c) {
+	      position.revert($(c));
+	    });
+
+	    if (next) {
+	      position.revert(next);
+	    }
+	  }
+	}
+
+	//pc,phone元素的位置不可不定，在pc上形成栅格，在无线上不一定能形成。解决方案，就近原则，如果一端能形成栅格。另一端也形成栅格，忽略不同端定位的差异性
+	//自动形成的栅格在PC和无线响应式展式不同，导致同时操作出现矛盾。方案：1自动创建显示布局， 2. 编辑阶段不做响应，线上做响应
+	function _createRowVnode(point) {}
+
+	function createRowVnode(point) {
+	  if (!point.grid) {
+
+	    var children = point.rows;
+	    var prev = point.prev;
+
+	    var childrenVnodes = [];
+	    for (var i = 0; i < children.length; i++) {
+	      childrenVnodes[i] = $(children[i]).get(0).vnode;
+	    }
+
+	    // 不使用自定义标签p-grid, 不希望被选择
+	    var id = "grid-" + play.utils.generateID();
+	    var rowElVnode = play.iframeWin.Sophie.createVnodeByTagName("p-grid", { id: id });
+
+	    play.vnode.insertBefore(rowElVnode, $(children[0]).get(0).vnode, point.parent.get(0).vnode);
+	    for (var i = 0; i < childrenVnodes.length; i++) {
+	      play.vnode.remove(childrenVnodes[i], point.parent.get(0).vnode);
+	      // //children,本身有parent，在换到新位置之后，没有更新。手动更新
+	      // childrenVnodes[i].parent = rowElVnode;
+	    }
+
+	    for (var i = 0; i < childrenVnodes.length; i++) {
+	      play.vnode.append(childrenVnodes[i], rowElVnode);
+	      // //children,本身有parent，在换到新位置之后，没有更新。手动更新
+	      // childrenVnodes[i].parent = rowElVnode;
+	    }
+	    point.grid = $(rowElVnode.nativeNode);
+	    point.gridVnode = rowElVnode;
+
+	    play.vnode.update(point.parentVnode);
+
+	    play.iframeWin.Sophie.mountElement(rowElVnode);
+
+	    point.grid = $(rowElVnode.nativeNode);
+	    point.gridVnode = rowElVnode;
+	    insertElVnode(point.el, point);
+
+	    return rowElVnode.nativeNode;
+	  }
+	}
+
+	var revert = function revert(el, coord) {
+	  var currentPoint = getCurrentInsertPoint(el);
+	  currentPoint.coord = coord;
+	  addRelativeCoord(currentPoint);
+	  currentPoint.ignore = { width: true, height: true };
+	  setNeedUpdate(currentPoint, "move");
+	  position.setPositionByPercent(el, {}, currentPoint);
+	};
+
+	var clearRow = function clearRow(point) {
+
+	  if (point.grid) {
+	    var grid = point.grid;
+	    var parentVnode = point.parent.get(0).vnode;
+
+	    var rows = grid.children();
+
+	    //处理row元素
+	    if (rows && rows.length <= 1) {
+
+	      // position.record(rows);
+	      // rows.insertBefore(grid);
+	      var coord = position.cood($(rows.get(0)));
+	      parentVnode.insertBefore(rows.get(0).vnode, grid.get(0).vnode);
+	      parentVnode.remove(grid.get(0).vnode);
+	      // // grid.remove();
+	      revert($(rows.get(0)), coord);
+	      if (point.next) {
+	        revert(next, point.nextCoord);
+	      }
+	    }
+	  }
+	};
+
+	var createInsertPoint = function createInsertPoint(point, oldPoint) {
+	  //如果是行
+	  if (point.type == "row") {
+	    if (point.grid) {
+	      insertElVnode(point.el, point);
+	    } else {
+	      point.createGrid = true;
+	      createRowVnode(point);
+	    }
+	  }
+	  //列
+	  else {
+	      insertElVnode(point.el, point);
+	    }
+
+	  return point;
+	};
+
+	function insertElVnode(el, point) {
+
+	  // addMediaCoordToPoint(point)
+
+	  var parent = point.parent;
+	  var coord = point.coord;
+	  //如果oldPoint存在就先恢复原有结点位置
+
+
+	  if (point.type == "row") {
+	    var gridVnode = point.grid.get(0).vnode;
+	    if (point.rowNext) {
+	      gridVnode.insertBefore(el.get(0).vnode, point.rowNext.get(0).vnode);
+	    } else {
+	      gridVnode.append(el.get(0).vnode);
+	    }
+	  } else {
+	    var prev = point.domPrev || point.prev;
+	    var next = point.domNext || point.next;
+	    if (next) {
+	      point.parentVnode.insertBefore(el.get(0).vnode, next.get(0).vnode);
+	    } else {
+	      point.parentVnode.append(el.get(0).vnode);
+	    }
+	  }
+	}
+
+	function insertElVnodeAbsolute(el, point) {
+
+	  var parent = point.parent;
+	  var coord = point.coord;
+	  if (point.type == "row") {
+	    var gridVnode = point.parentVnode;
+
+	    if (point.rowNext) {
+	      gridVnode.insertBefore(el.get(0).vnode, point.rowNext.get(0).vnode);
+	    } else {
+	      gridVnode.append(el.get(0).vnode);
+	    }
+
+	    addRelativeCoord(point);
+	    position.setPositionByPercent(el, coord, point);
+	  } else {
+	    var prev = point.domPrev || point.prev;
+	    var next = point.domNext || point.next;
+
+	    if (next) {
+	      point.parentVnode.insertBefore(el.get(0).vnode, next.get(0).vnode);
+	    } else {
+	      point.parentVnode.append(el.get(0).vnode);
+	    }
+	    addRelativeCoord(point);
+	    position.setPositionByPercent(el, coord, point);
+	  }
+	}
+
+	function insertElVnodeAbsoluteNoTreeChange(el, point) {
+
+	  position.setPositionByPercent(el, point.coord, point);
+	}
+
+	function removeEl(el, point) {
+	  el.remove();
+	  afterModifyDOMTree();
+	}
+
+	function getGridElMediaCoord(point) {
+	  var newPoint = {};
+	  for (var p in point) {
+	    newPoint[p] = point[p];
+	  }
+	}
+
+	var getRelativeCoord = function getRelativeCoord(point) {
+	  var domPoint = getStartPosition(point.el);
+	  var startPosition = domPoint.startPosition;
+	  var endPosition = domPoint.endPosition;
+	  point.coord.fontSize = domPoint.coord.fontSize;
+	  var left = point.coord.left - startPosition.left;
+	  var top = point.coord.top - startPosition.top;
+
+	  var relativeCoord = {
+	    left: point.coord.left - startPosition.left,
+	    top: point.coord.top - startPosition.top,
+	    width: point.coord.width,
+	    height: point.coord.height,
+	    fontSize: point.coord.fontSize
+	  };
+
+	  relativeCoord.bottom = relativeCoord.top + relativeCoord.height;
+	  relativeCoord.right = relativeCoord.left + relativeCoord.width;
+
+	  return relativeCoord;
+	};
+
+	var addRelativeCoord = function addRelativeCoord(point) {
+	  point.relativeCoord = getRelativeCoord(point);
+	};
+
+	var computerMediaCoordFromCoord = function computerMediaCoordFromCoord(point, mediaName) {
+	  var coord = point.relativeCoord;
+
+	  var pcCoord = point.coord;
+	  var target = point.el;
+	  var newCoord = {};
+	  var mediaWidth = play[mediaName + "Width"];
+	  if (point.parentVnode.name == "p-page" && (play.mediaName == "pc" || play.mediaName == "all")) {
+	    if (point.type == "column") {
+	      if (target.get(0).vnode.props.fullWidth) {
+	        var f = play.phoneWidth / coord.width * coord.fontSize;
+
+	        newCoord.fontSize = f; //px
+	        newCoord.containerFontSize = newCoord.fontSize / play.phoneFontSize; //rem
+
+	        newCoord.left = 0;
+	        newCoord.width = mediaWidth;
+	        newCoord.height = coord.height / coord.fontSize * newCoord.fontSize;
+	        //top 不随之扩大
+	        newCoord.top = coord.top / pcCoord.fontSize * play.phoneFontSize;
+	        newCoord.right = newCoord.left + newCoord.width;
+	        newCoord.bottom = newCoord.top + newCoord.height;
+	      } else if (pcCoord.width >= mediaWidth - 20) {
+	        var mWidth = mediaWidth - 20;
+
+	        // var mediaWidth = coord.width/coord.fontSize*play.phoneFontSize
+	        // play.phoneWidth/mediaWidth  = f / play.phoneFontSize
+
+	        // play.phoneWidth/coord.width/play.phoneFontSize*coord.fontSize  = f / play.phoneFontSize
+
+	        var f = play.phoneWidth / coord.width * coord.fontSize;
+
+	        newCoord.fontSize = f; //px
+	        newCoord.containerFontSize = newCoord.fontSize / play.phoneFontSize; //rem
+
+	        newCoord.left = 10;
+	        newCoord.width = mWidth;
+	        newCoord.height = coord.height / coord.fontSize * newCoord.fontSize;
+	        //top 不随之扩大
+	        newCoord.top = coord.top / pcCoord.fontSize * play.phoneFontSize;
+	        newCoord.right = newCoord.left + newCoord.width;
+	        newCoord.bottom = newCoord.top + newCoord.height;
+	      } else {
+
+	        //宽度不变
+
+	        newCoord = $.extend({}, coord);
+
+	        // var mediaWidth = newCoord.width/newCoord.fontSize*play.phoneFontSize
+	        // newCoord.width/mediaWidth  = f / play.phoneFontSize
+	        // newCoord.width/newCoord.width/play.phoneFontSize*newCoord.fontSize  = f / play.phoneFontSize
+
+	        var f = newCoord.fontSize;
+	        newCoord.fontSize = f;
+	        newCoord.containerFontSize = newCoord.fontSize / play.phoneFontSize; //rem
+
+	        var centerDis = $(play.iframeDoc).width() / 2 - coord.left - coord.width / 2;
+
+	        var mediaCenterDis = centerDis / coord.fontSize * play.phoneFontSize;
+	        var left = play.phoneWidth / 2 - (mediaCenterDis + newCoord.width / 2);
+	        left = left > 0 ? left : 0;
+
+	        left = left > play.phoneWidth - newCoord.width ? play.phoneWidth - newCoord.width : left;
+
+	        newCoord.left = left;
+	        newCoord.top = coord.top / coord.fontSize * play.phoneFontSize;
+	        newCoord.right = newCoord.left + newCoord.width;
+	        newCoord.bottom = newCoord.top + newCoord.height;
+	      }
+	    } else {
+
+	      newCoord = {};
+	      newCoord.left = 10;
+	      newCoord.width = play.phoneWidth - 20;
+	      newCoord.height = coord.height * (newCoord.width / coord.width);
+
+	      newCoord.fontSize = play.phoneWidth / coord.width * coord.fontSize; //px
+	      newCoord.containerFontSize = newCoord.fontSize / play.phoneFontSize; //rem
+
+	      //如果是第在一个子元素
+	      if (point.el.index() == 0) {
+	        newCoord.top = coord.top / pcCoord.fontSize * play.phoneFontSize;
+	      } else {
+	        newCoord.top = 10;
+	      }
+
+	      newCoord.right = newCoord.left + newCoord.width;
+	      newCoord.bottom = newCoord.top + newCoord.height;
+	    }
+	  } else {
+
+	    if (play.isGridToColumn(point)) {
+	      // var mediaWidth = coord.width/coord.fontSize*play.phoneFontSize
+	      // play.phoneWidth/mediaWidth  = f / play.phoneFontSize
+
+	      // play.phoneWidth/coord.width/play.phoneFontSize*coord.fontSize  = f / play.phoneFontSize
+
+	      var f = play.phoneWidth / coord.width * coord.fontSize;
+
+	      newCoord.fontSize = f; //px
+	      newCoord.containerFontSize = newCoord.fontSize / play.phoneFontSize; //rem
+
+	      newCoord.left = 0;
+	      newCoord.width = play.phoneWidth;
+	      newCoord.height = coord.height / coord.fontSize * newCoord.fontSize;
+	      newCoord.top = coord.top / pcCoord.fontSize * play.phoneFontSize;
+	      newCoord.right = newCoord.left + newCoord.width;
+	      newCoord.bottom = newCoord.top + newCoord.height;
+	    } else {
+	      var newCoord = {};
+	      var currentFontSize = coord.fontSize;
+	      for (var p in coord) {
+	        if (p !== "fontSize") {
+	          newCoord[p] = coord[p] / currentFontSize * play.phoneFontSize;
+	        }
+	      }
+	      newCoord.fontSize = play.phoneFontSize;
+	    }
+	  }
+
+	  return newCoord;
+	};
+
+	var setCoordProps = function setCoordProps(point) {
+	  var vnode = point.el.get(0).vnode;
+	  if (!vnode) {
+	    return;
+	  }
+	  var mediaName = point.mediaName || play.mediaName || "pc";
+	  vnode.props[mediaName + "Coord"] = point.coord;
+	};
+
+	var setNeedUpdate = function setNeedUpdate(point, type) {
+
+	  var vnode = point.el.get(0).vnode;
+	  if (!vnode) {
+	    return;
+	  }
+
+	  if (play.mediaName !== "pc") return;
+
+	  if (point.createGrid) {
+	    var children = point.rows;
+	    for (var i = 0; i < children.length; i++) {
+	      var el = children[i];
+	      var currentPoint = getCurrentInsertPoint($(el));
+
+	      addRelativeCoord(currentPoint);
+	      currentPoint.ignore = {};
+	      setNeedUpdate(currentPoint, "resize");
+	    }
+	  }
+
+	  for (var p in play.mediaQuery) {
+	    if (p !== play.mediaName && p == "phone") {
+
+	      var coord = computerMediaCoordFromCoord(point, p);
+
+	      if (!vnode.props._update) {
+	        vnode.props._update = {};
+	      }
+	      if (!vnode.props._update[p]) {
+	        vnode.props._update[p] = {};
+	      }
+	      vnode.props._update[p][type] = coord;
+
+	      play.LayoutUpdate.add(point.el.attr("id"), type);
+	    }
+	  }
+	};
+
+	function setPosition(point, oldPoint) {
+	  var prevPoint = oldPoint;
+	  var nextPoint = point;
+
+	  if (oldPoint) {
+	    if (point.type == "row" && oldPoint.type == "row" && point.grid.is(point.grid)) {
+	      if (point.coord.left < oldPoint.coord.left) {
+	        prevPoint = point;
+	        nextPoint = oldPoint;
+	      } else {
+	        prevPoint = oldPoint;
+	        nextPoint = point;
+	      }
+	    } else {
+	      if (point.coord.top < oldPoint.coord.top) {
+	        prevPoint = point;
+	        nextPoint = oldPoint;
+	      } else {
+	        prevPoint = oldPoint;
+	        nextPoint = point;
+	      }
+	    }
+	  }
+
+	  if (prevPoint) {
+	    if (prevPoint == point) {
+	      addRelativeCoord(point);
+	      position.setPositionByPercent(point.el, point.coord, point);
+	    }
+	    if (!play.isLayoutUpdate) {
+	      insertAfterModifyDOMTree(prevPoint, true);
+	    }
+	  }
+
+	  //gridModifyDOMTree(point);
+
+	  if (nextPoint == point) {
+	    addRelativeCoord(point);
+	    position.setPositionByPercent(point.el, point.coord, point);
+	  }
+	  if (!play.isLayoutUpdate) {
+	    insertAfterModifyDOMTree(nextPoint);
+	  }
+	}
+	function setPositionAbsolute(point, oldPoint) {
+	  position.setPositionByPercent(point.el, point.coord, point);
+	}
+
+	var defaultExports = {
+
+	  _addNewEl: function _addNewEl(el, currentPoint) {
+	    setCoordProps(currentPoint);
+	    //绝对定位
+	    if (!utils.isStatic(el)) {
+	      insertElVnodeAbsolute(el, currentPoint);
+	    } else {
+	      this.removeSimple(el);
+	      currentPoint = this.createInsertPoint(currentPoint);
+
+	      setPosition(currentPoint);
+	      // clearMediaCoord(currentPoint)
+	    }
+	    $(document).trigger("addNewEl", [el, currentPoint.coord]);
+	  },
+	  addNewEl: function addNewEl(el, currentPoint) {
+	    domPointToVnodePoint(currentPoint);
+	    this._addNewEl(el, currentPoint);
+	    setNeedUpdate(currentPoint, "resize");
+	    // this._addNewEl(el, mediaPoint);
+	  },
+
+	  _moveEl: function _moveEl(el, currentPoint, oldPoint) {
+	    setCoordProps(currentPoint);
+	    if (!oldPoint) oldPoint = currentPoint;
+
+	    var cood = currentPoint.coord;
+	    var parent = currentPoint.parent;
+	    // currentPoint.ignore = {
+	    //   width:1,
+	    //   height:1
+	    // }
+	    //结构无变化
+	    if (!this.isTreeChange(oldPoint, currentPoint)) {
+	      //绝对定位
+
+	      if (!utils.isStatic(el)) {
+	        // delete currentPoint.coord.width
+	        // delete currentPoint.coord.height
+	        // insertElVnodeAbsoluteNoTreeChange(el,  currentPoint);
+	        addRelativeCoord(currentPoint);
+	        position.setPositionByPercent(el, currentPoint.coord, currentPoint);
+	        // position.setPosition(el, {left: cood.left, top: cood.top}, el.parent());
+	        return;
+	      } else {
+	        // this.removeSimple(el);
+
+	        setPosition(currentPoint);
+	        // moveElVnode(el,currentPoint,oldPoint)
+	        // insertElVnode(el, currentPoint);
+	      }
+	    } else {
+
+	      if (!utils.isStatic(el)) {
+	        //  play.utils.removeMediaCSSRule(el);
+	        // oldPoint.parentVnode.remove(currentPoint.elVnode)
+	        // delete currentPoint.coord.width
+	        // delete currentPoint.coord.height
+	        insertElVnodeAbsolute(el, currentPoint);
+	        // position.setPosition(el, {left: cood.left, top: cood.top}, el.parent());
+	        return;
+	      } else {
+
+	        play.utils.removeMediaCSSRule(el);
+	        // currentPoint.elVnode.parent.remove(currentPoint.elVnode)
+	        //如果是行的话，行元素才是真正的父元素
+	        if (oldPoint.type == "row" && oldPoint.grid) {
+	          oldPoint.gridVnode.remove(currentPoint.elVnode);
 	        } else {
-	            var relativeParent = parent;
-
-	            var isRelative = function isRelative(el) {
-	                return el.css("position") == "relative" || el.css("position") == "absolute" || el.css("position") == "fixed";
-	            };
-	            while (!isRelative(relativeParent)) {
-	                relativeParent = relativeParent.parent();
-	                if (relativeParent.is("body")) {
-	                    break;
-	                }
-	            }
-
-	            var relativeParentCoord = position.cood(relativeParent);
-
-	            point = {
-	                parent: parent,
-	                relativeParent: relativeParent,
-	                relativeParentCoord: relativeParentCoord,
-	                type: "column",
-	                parentCoord: parentCoord,
-	                el: el,
-	                coord: coord,
-	                startPosition: {
-	                    left: relativeParentCoord.left,
-	                    top: relativeParentCoord.top
-	                }
-
-	            };
-
-	            return point;
+	          oldPoint.parentVnode.remove(currentPoint.elVnode);
 	        }
+
+	        clearMediaCoord(currentPoint);
+	        currentPoint = this.createInsertPoint(currentPoint, oldPoint);
+
+	        setPosition(currentPoint, oldPoint);
+	      }
+	    }
+
+	    if (oldPoint) {
+	      clearRow(oldPoint);
+	    }
+	  },
+
+	  //在改变DOM的时候移动元素
+	  insertMoveEl: function insertMoveEl(el, currentPoint, oldPoint, isUpdate) {
+	    domPointToVnodePoint(currentPoint);
+	    if (oldPoint) domPointToVnodePoint(oldPoint);
+
+	    this._moveEl(el, currentPoint, oldPoint);
+
+	    if (!isUpdate) {
+	      setNeedUpdate(currentPoint, "move");
+	    }
+
+	    $(document).trigger("moveEl", [el, currentPoint.coord, oldPoint.parent]);
+	    // var mediaPoint = getMediaPoint(currentPoint,"phone");
+	    // debugger;
+	    // this._moveEl(el, mediaPoint, mediaPoint);
+	  },
+
+	  _resize: function _resize(el, currentPoint, oldPoint) {
+	    setCoordProps(currentPoint);
+
+	    var cood = currentPoint.coord;
+	    var parent = currentPoint.parent;
+
+	    //结构无变化
+	    //结构无变化
+
+	    // if(currentPoint.coord.width<play.maxWidth){
+	    //   play.alignEl.noWidthFullSceen(currentPoint)
+	    // }
+
+	    if (!this.isTreeChange(oldPoint, currentPoint)) {
+
+	      //绝对定位
+
+	      if (!utils.isStatic(el)) {
+
+	        // insertElVnodeAbsoluteNoTreeChange(el,  currentPoint);
+	        addRelativeCoord(currentPoint);
+	        position.setPositionByPercent(el, currentPoint.coord, currentPoint);
+	        // position.setPosition(el, {left: cood.left, top: cood.top}, el.parent());
+	        return;
+	      } else {
+	        // this.removeSimple(el);
+
+	        // currentPoint = this.createInsertPoint(currentPoint, oldPoint);
+
+	        setPosition(currentPoint);
+	        // moveElVnode(el,currentPoint,oldPoint)
+	        // insertElVnode(el, currentPoint);
+	      }
+	    } else {
+
+	      if (!utils.isStatic(el)) {
+	        //  play.utils.removeMediaCSSRule(el);
+	        // oldPoint.parentVnode.remove(currentPoint.elVnode)
+	        addRelativeCoord(currentPoint);
+	        insertElVnodeAbsolute(el, currentPoint);
+	        // position.setPosition(el, {left: cood.left, top: cood.top}, el.parent());
+	        return;
+	      } else {
+	        play.utils.removeMediaCSSRule(el);
+	        if (oldPoint.type == "row" && oldPoint.grid) {
+	          oldPoint.gridVnode.remove(currentPoint.elVnode);
+	        } else {
+	          oldPoint.parentVnode.remove(currentPoint.elVnode);
+	        }
+	        // oldPoint.parentVnode.remove(currentPoint.elVnode)
+	        // currentPoint.elVnode.parent.remove(currentPoint.elVnode)
+
+
+	        currentPoint = this.createInsertPoint(currentPoint, oldPoint);
+
+	        clearMediaCoord(currentPoint);
+
+	        setPosition(el, currentPoint, oldPoint);
+	      }
+	    }
+	    if (currentPoint.coord.width) {
+
+	      // if(Math.abs(currentPoint.coord.width-currentPoint.parentCoord.width)>2){
+	      //
+	      // }
+	      // else{
+	      //   play.alignEl.widthAuto(el)
+	      // }
+
+
+	    }
+	    clearRow(oldPoint);
+	    play.alignEl.noWidthFullSceen(currentPoint);
+	    return;
+	  },
+
+	  resize: function resize(el, currentPoint, oldPoint, isUpdate) {
+	    if (!oldPoint) oldPoint = currentPoint;
+	    domPointToVnodePoint(currentPoint);
+	    domPointToVnodePoint(oldPoint);
+	    this._resize(el, currentPoint, oldPoint);
+	    if (!isUpdate) {
+	      setNeedUpdate(currentPoint, "resize");
+	    }
+	    // var mediaPoint = getMediaPoint(currentPoint,"phone");
+	    // this.resize(el, mediaPoint, mediaPoint);
+	    //    $(document).trigger("resizeEl",[currentPoint.el,currentPoint.coord,oldPoint,currentPoint.dir]);
+	  },
+
+	  removeSimple: function removeSimple(el) {
+
+	    el.remove();
+	  },
+
+	  remove: function remove(el) {
+
+	    var point = getCurrentInsertPoint(el);
+	    if (!utils.isStatic(el)) {
+
+	      point.parent.get(0).vnode.remove(el.get(0).vnode);
+
+	      return;
+	    }
+
+	    if (play.isGridToColumn(point)) {
+	      alert("移动端下不能删除，请PC端删除");
+	      return;
+	    }
+
+	    var parent = el.parent();
+
+	    //脱离行
+
+
+	    beforeModifyDOMTree(point);
+	    if (point.type == "column") {
+
+	      // el.remove()
+	      play.vnode.remove(el.get(0).vnode, point.parent.get(0).vnode);
+	      play.vnode.update(point.parent.get(0).vnode);
+
+	      removeAfterModifyDOMTree(point);
+	    } else {
+
+	      //处理row元素
+
+	      play.vnode.remove(el.get(0).vnode, point.grid.get(0).vnode);
+	      play.vnode.update(point.grid.get(0).vnode);
+
+	      clearRow(point);
+	      removeAfterModifyDOMTree(point);
+	    }
+
+	    $(document).trigger("removeEl", [point.el, point.coord, point.parent]);
+	  },
+
+	  isTreeChange: function isTreeChange(oldPoint, currentPoint) {
+
+	    if (oldPoint.type !== currentPoint.type) {
+	      return true;
+	    }
+	    if (!currentPoint.parent) return true;
+	    var isTheSame = function isTheSame(c, p) {
+	      if (c === undefined && p === undefined) return true;
+	      if (c && c.is(p)) return true;
 	    };
-
-	    var isAvailablePoint = function isAvailablePoint(point, isAbsolute) {
-
-	        if (!play.supportRowLayout && point.type == "row") {
-	            return false;
-	        }
-
-	        if (isAbsolute) {
-	            return true;
-	        }
-
-	        //
-
-	        //暂时不支持行
-	        // if(point.type=="row"&&!point.parent.is("p-header")){
-	        //   return false;
-	        // }
-
-	        //移动端在第一层布局页面不支持row
-	        if (point.type == "row" && play.mediaName == "phone" && point.parent.is("p-page")) {
-	            return false;
-	        }
-
-	        var coord = point.coord;
-	        var space = point.spaceCoord;
-
-	        var sWidth = space.right - space.left;
-	        var sHeight = space.bottom - space.top;
-	        if (point.type == "column") {
-	            if (sHeight < coord.height) {
-	                return false;
-	            }
-	        } else if (point.type == 'row') {
-	            if (sHeight < coord.height) {
-	                return false;
-	            }
-	            if (sWidth < coord.width) {
-	                return false;
-	            }
-	        }
+	    if (oldPoint.type == "column") {
+	      if (isTheSame(currentPoint.parent, oldPoint.parent) && isTheSame(oldPoint.prev, currentPoint.prev)) {
+	        return false;
+	      } else {
 	        return true;
+	      }
+	    } else if (oldPoint.type == "row") {
 
-	        // if(sWidth>=point.coord.width||sHeight>=point.coord.height){
-	        //
-	        //     return true;
-	        // }
-	        // else {
-	        //     return false;
-	        // }
-	        //
-	        // if(point.type == "column"){
-	        //     var bottom = point.endPosition.top
-	        //     var top = point.startPosition.top
-	        //
-	        //     if(point.coord.height < (bottom-top)){
-	        //         return true;
-	        //     }
-	        // } else {
-	        //
-	        //     if(point.type == "row"){
-	        //         var right = point.endPosition.left
-	        //         var left = point.startPosition.left
-	        //
-	        //         if(point.coord.width < (right-left)){
-	        //
-	        //             return true
-	        //         }
-	        //     }
-	        // }
-	    };
-
-	    var getAvailablePoint = function getAvailablePoint(point, isAbsolute) {
-	        var coord = point.coord;
-	        var space = point.spaceCoord;
-
-	        if (isAbsolute) {
-	            return point;
-	        }
-
-	        if (point.type == "column") {
-	            if (coord.top < space.top) {
-	                if (!point.availableCoord) {
-	                    point.availableCoord = $.extend({}, coord);
-	                }
-	                point.availableCoord.top = space.top;
-	            }
-
-	            if (coord.bottom > space.bottom) {
-	                if (!point.availableCoord) {
-	                    point.availableCoord = $.extend({}, coord);
-	                }
-	                point.availableCoord.top = space.bottom - coord.height;
-	            }
-	            if (coord.left < space.left) {
-	                if (!point.availableCoord) {
-	                    point.availableCoord = $.extend({}, coord);
-	                }
-	                point.availableCoord.left = space.left;
-	            }
-	            if (coord.right > space.right) {
-	                if (!point.availableCoord) {
-	                    point.availableCoord = $.extend({}, coord);
-	                }
-	                point.availableCoord.left = space.right - coord.width;
-	            }
-	        } else {
-	            if (coord.top < space.top) {
-	                if (!point.availableCoord) {
-	                    point.availableCoord = $.extend({}, coord);
-	                }
-
-	                point.availableCoord.top = space.top;
-	            }
-
-	            if (coord.bottom > space.bottom) {
-	                if (!point.availableCoord) {
-	                    point.availableCoord = $.extend({}, coord);
-	                }
-	                point.availableCoord.top = space.bottom - coord.height;
-	            }
-
-	            if (coord.left < space.left) {
-	                if (!point.availableCoord) {
-	                    point.availableCoord = $.extend({}, coord);
-	                }
-	                point.availableCoord.left = space.left;
-	            }
-
-	            if (coord.right > space.right) {
-	                if (!point.availableCoord) {
-	                    point.availableCoord = $.extend({}, coord);
-	                }
-	                point.availableCoord.left = space.right - coord.width;
-	            }
-	        }
-
-	        return point;
-	    };
-
-	    function domPointToVnodePoint(domPoint) {
-	        domPoint.elVnode = domPoint.el.get(0).vnode;
-	        domPoint.parentVnode = domPoint.parent.get(0).vnode;
-
-	        if (domPoint.type == "column") {
-	            if (domPoint.prev && domPoint.prev.length) {
-	                domPoint.prevVnode = domPoint.prev.get(0).vnode;
-	            }
-	            if (domPoint.next) {
-	                domPoint.nextVnode = domPoint.next.get(0).vnode;
-	            }
-	        } else if (domPoint.type == "row") {
-
-	            if (domPoint.prev) {
-	                domPoint.prevVnode = domPoint.prev.get(0).vnode;
-	            }
-	            if (domPoint.next) {
-	                domPoint.nextVnode = domPoint.next.get(0).vnode;
-	            }
-
-	            if (domPoint.rowPrev) {
-	                domPoint.rowPrevVnode = domPoint.rowPrev.get(0).vnode;
-	            }
-	            if (domPoint.rowNext) {
-	                domPoint.rowNextVnode = domPoint.rowNext.get(0).vnode;
-	            }
-
-	            if (domPoint.grid) {
-	                domPoint.gridVnode = domPoint.grid.get(0).vnode;
-	            }
-	        }
+	      if (isTheSame(currentPoint.grid, oldPoint.grid) && isTheSame(oldPoint.rowPrev, currentPoint.rowPrev)) {
+	        return false;
+	      } else {
+	        return true;
+	      }
 	    }
-
-	    function addMediaCoordToPoint(point) {
-
-	        if (play.mediaName == "pc") {
-	            point.phoneCoord = play.position.getMediaCoord(point.el, "phone");
-	        } else if (play.mediaName == "phone") {
-	            point.phoneCoord = play.position.getMediaCoord(point.el, "pc");
-	        }
-
-	        if (point.next && $(point.next).length) {
-	            point.nextMediaCoord = {
-	                pc: play.position.getMediaCoord(point.next, "pc") || play.position.getMediaCoord(point.next, "all"),
-	                phone: play.position.getMediaCoord(point.next, "phone")
-	            };
-	        }
-
-	        if (point.rowNext && $(point.rowNext).get(0)) {
-	            point.rowNextMediaCoord = {
-	                pc: play.position.getMediaCoord(point.rowNext, "pc") || play.position.getMediaCoord(point.rowNext, "all"),
-	                phone: play.position.getMediaCoord(point.rowNext, "phone")
-	            };
-	        }
-	    }
-
-	    //构建栅格时保持位置信息
-	    function cachePosition(el) {
-	        var position = {
-	            pc: play.position.getMediaCoord(point.next, "pc") || play.position.getMediaCoord(point.next, "all"),
-	            phone: play.position.getMediaCoord(point.next, "phone")
-
-	        };
-	        $(el).prop("__cachePosition", position);
-	    }
-
-	    function resetPosition(el) {
-	        //pc
-	        if (__positions.pc) {
-	            var marginTop = parseFloat(__positions.pc.top) + coord.height / coord.fontSize + coord.top / coord.fontSize;
-	            var marginLeft = parseFloat(__positions.pc.top) + coord.width / coord.fontSize + coord.left / coord.fontSize;
-	            play.utils.createCSSRule(point.next, "margin-top", marginTop + "em", play.mediaQuery.pc);
-	            // play.utils.createCSSRule(point.next, "margin-left", marginLeft+"em", play.mediaQuery.pc);
-	        }
-
-	        if (__positions.phone) {
-	            var marginTop = parseFloat(__positions.phone.top) + coord.height / coord.fontSize + coord.top / coord.fontSize;
-	            var marginLeft = parseFloat(__positions.phone.top) + coord.width / coord.fontSize + coord.left / coord.fontSize;
-	            play.utils.createCSSRule(point.next, "margin-top", marginTop + "em", play.mediaQuery.phone);
-	            // play.utils.createCSSRule(point.next, "margin-left", marginLeft+"em", play.mediaQuery.phone);
-	        }
-	    }
-
-	    var __nextEl, __rowNextEl;
-	    var __positions = {};
-
-	    var beforeModifyDOMTree = function beforeModifyDOMTree(point) {
-	        addMediaCoordToPoint(point);
-	    };
-	    var afterModifyDOMTree = function afterModifyDOMTree() {
-
-	        var self = this;
-
-	        if (__rowNextEl) {
-	            position.setPositionByPercent(__rowNextEl, __rowNextEl.prop("__record"));
-	        }
-	        if (__nextEl) {
-	            position.setPositionByPercent(__nextEl, __nextEl.prop("__record"));
-	        }
-	    };
-
-	    var dragRemoveAfterModifyDOMTree = function dragRemoveAfterModifyDOMTree(point) {
-
-	        var self = this;
-
-	        if (point.rowNext) {
-	            position.setPositionByPercent(point.rowNext, point.rowNextCoord);
-	        }
-	        if (point.next) {
-	            position.setPositionByPercent(point.next, point.nextCoord);
-	        }
-	    };
-	    var removeAfterModifyDOMTree = function removeAfterModifyDOMTree(point) {
-
-	        var self = this;
-
-	        if (point.rowNext) {
-	            position.setPositionByPercent(point.rowNext, { left: point.rowNextCoord.left, fontSize: point.rowNextCoord.fontSize });
-	        }
-	        if (point.next) {
-	            position.setPositionByPercent(point.next, { top: point.nextCoord.top, fontSize: point.nextCoord.fontSize });
-	        }
-	    };
-
-	    var insertAfterModifyDOMTree = function insertAfterModifyDOMTree(point) {
-
-	        var self = this;
-	        if (point.rowNext) {
-	            position.setPositionByPercent(point.rowNext, { left: point.rowNextCoord.left, fontSize: point.rowNextCoord.fontSize });
-	        }
-	        if (point.next) {
-	            position.setPositionByPercent(point.next, { top: point.nextCoord.top, fontSize: point.nextCoord.fontSize });
-	        }
-	    };
-
-	    var clearMediaCoord = function clearMediaCoord(point) {
-	        if (point.rowNext) {
-	            utils.removeMediaCSSRule(point.rowNext);
-	        }
-	        if (point.next) {
-	            utils.removeMediaCSSRule(point.next);
-	        }
-	    };
-
-	    var positionHelper;
-
-	    function showPositionHelper(coord) {
-	        if (!positionHelper) {
-	            positionHelper = $("#position-helper");
-	        }
-	        if (positionHelper.is(":hidden")) {
-	            positionHelper.show();
-	        }
-	        positionHelper.css({
-	            left: coord.left + "px",
-	            top: coord.top + "px",
-	            width: coord.width + "px",
-	            height: coord.height + "px"
-	        });
-	    }
-
-	    function hidePositionHelper() {
-	        if (!positionHelper) {
-	            positionHelper = $("#position-helper");
-	        }
-	        positionHelper.hide();
-	    }
-
-	    function resetRow(point) {
-
-	        if (point.grid) {
-	            var next = point.next;
-	            if (next) {
-	                position.record(next);
-	            }
-
-	            var children = point.rows;
-
-	            $(children).each(function (i, c) {
-	                position.record($(c));
-	            });
-
-	            //delete cood.width
-	            delete point.gridCoord.width;
-	            delete point.gridCoord.left;
-	            delete point.gridCoord.height;
-	            position.setPositionByPercent(point.grid, point.gridCoord);
-
-	            $(children).each(function (i, c) {
-	                position.revert($(c));
-	            });
-
-	            if (next) {
-	                position.revert(next);
-	            }
-	        }
-	    }
-
-	    //pc,phone元素的位置不可不定，在pc上形成栅格，在无线上不一定能形成。解决方案，就近原则，如果一端能形成栅格。另一端也形成栅格，忽略不同端定位的差异性
-	    //自动形成的栅格在PC和无线响应式展式不同，导致同时操作出现矛盾。方案：1自动创建显示布局， 2. 编辑阶段不做响应，线上做响应
-	    function createRowVnode(point) {
-	        if (!point.grid) {
-	            var next = point.next;
-	            if (next) {
-	                position.record(next);
-	            }
-	            var children = point.rows;
-	            var prev = point.prev;
-
-	            var childrenVnodes = [];
-	            for (var i = 0; i < children.length; i++) {
-	                position.record($(children[i]));
-	                childrenVnodes[i] = $(children[i]).get(0).vnode;
-	            }
-
-	            // 不使用自定义标签p-grid, 不希望被选择
-	            var id = "grid-" + play.utils.generateID();
-	            var rowElVnode = play.iframeWin.Sophie.createVnodeByTagName("p-grid", { id: id });
-
-	            /*
-	             rowEl.prop("heightCSSName", "min-height");
-	             rowEl.prop("selectable",true);
-	             rowEl.prop("moveable",true)
-	             rowEl.prop("resizeable",true)
-	             //风险太大，问题很多
-	             rowEl.prop("parentable", true)
-	             */
-
-	            play.vnode.insertBefore(rowElVnode, $(children[0]).get(0).vnode, point.parent.get(0).vnode);
-	            for (var i = 0; i < childrenVnodes.length; i++) {
-	                play.vnode.remove(childrenVnodes[i], point.parent.get(0).vnode);
-	                // //children,本身有parent，在换到新位置之后，没有更新。手动更新
-	                // childrenVnodes[i].parent = rowElVnode;
-	            }
-	            play.vnode.update(point.parent.get(0).vnode);
-
-	            for (var i = 0; i < childrenVnodes.length; i++) {
-	                play.vnode.append(childrenVnodes[i], rowElVnode);
-	                // //children,本身有parent，在换到新位置之后，没有更新。手动更新
-	                // childrenVnodes[i].parent = rowElVnode;
-	            }
-	            play.vnode.update(rowElVnode);
-
-	            delete point.gridCoord.width;
-	            delete point.gridCoord.left;
-	            delete point.gridCoord.height;
-
-	            play.iframeWin.Sophie.mountElement(rowElVnode);
-	            position.setPositionByPercent($(rowElVnode.nativeNode), point.gridCoord);
-
-	            for (var i = 0; i < children.length; i++) {
-	                position.revert($(children[i]));
-	            }
-
-	            point.grid = $(rowElVnode.nativeNode);
-	            point.gridVnode = rowElVnode;
-
-	            if (next) {
-	                position.revert(next);
-	            }
-
-	            point.parent = $(rowElVnode.nativeNode);
-	            point.parentVnode = rowElVnode;
-	            point.parentCoord = point.gridCoord;
-
-	            return rowElVnode.nativeNode;
-	        }
-	    }
-
-	    var clearRow = function clearRow(point) {
-	        if (point.grid) {
-	            var grid = point.grid;
-	            var parentVnode = play.getVnodeParentByEl(grid.get(0));
-	            var currentPoint = getCurrentInsertPoint(grid);
-	            var rows = grid.children();
-
-	            //处理row元素
-	            if (rows && rows.length <= 1) {
-	                var next = currentPoint.next;
-	                if (next) {
-	                    position.record(next);
-	                }
-	                position.record(rows);
-	                // rows.insertBefore(grid);
-	                parentVnode.insertBefore(rows.get(0).vnode, grid.get(0).vnode);
-	                parentVnode.remove(grid.get(0).vnode);
-	                // grid.remove();
-	                position.revert(rows);
-	                if (next) {
-	                    position.revert(next);
-	                }
-	            }
-	        }
-	    };
-
-	    var createInsertPoint = function createInsertPoint(point, oldPoint) {
-	        //如果是行
-	        if (point.type == "row") {
-	            if (point.grid) {
-	                resetRow(point);
-	            } else {
-	                createRowVnode(point);
-	            }
-	        }
-	        //列
-	        else {
-
-	                // if (point.column) {
-	                //     resetColumn(point);
-	                // }
-	                // else {
-	                //     createColumnVnode(point)
-	                // }
-
-	                //脱离行
-	            }
-	        return point;
-	    };
-
-	    //已经存在在文档中的元素，只需要修改位置，不不需要修改大小
-	    function insertEl(el, point) {
-
-	        var parent = point.parent;
-	        var coord = point.coord;
-
-	        if (point.type == "row") {
-	            if (!point.rowPrev) {
-	                position.setPositionByPercent(el, coord, point);
-	                if (point.rowNext) {
-	                    el.insertBefore(point.rowNext);
-	                } else {
-	                    point.grid.append(el);
-	                }
-	            } else {
-	                position.setPositionByPercent(el, coord, point);
-	                el.insertAfter(point.rowPrev);
-	            }
-	        } else {
-	            var prev = point.domPrev || point.prev;
-	            var next = point.domNext || point.next;
-	            if (!prev) {
-	                position.setPositionByPercent(el, coord, point);
-	                if (next) {
-	                    el.insertBefore(next);
-	                } else {
-	                    point.parent.append(el);
-	                }
-	            } else {
-	                position.setPositionByPercent(el, coord, point);
-	                el.insertAfter(prev);
-	            }
-	        }
-
-	        afterModifyDOMTree();
-	    }
-
-	    function insertElVnode(el, point, oldPoint) {
-
-	        // addMediaCoordToPoint(point)
-
-	        var parent = point.parent;
-	        var coord = point.coord;
-	        if (point.type == "row") {
-	            var gridVnode = point.grid.get(0).vnode;
-
-	            if (point.rowNext) {
-	                gridVnode.insertBefore(el.get(0).vnode, point.rowNext.get(0).vnode);
-	            } else {
-	                gridVnode.append(el.get(0).vnode);
-	            }
-
-	            position.setPositionByPercent(el, coord, point);
-	        } else {
-	            var prev = point.domPrev || point.prev;
-	            var next = point.domNext || point.next;
-
-	            if (next) {
-	                point.parentVnode.insertBefore(el.get(0).vnode, next.get(0).vnode);
-	            } else {
-	                point.parentVnode.append(el.get(0).vnode);
-	            }
-	            position.setPositionByPercent(el, coord, point);
-	        }
-
-	        insertAfterModifyDOMTree(point);
-	        if (oldPoint) insertAfterModifyDOMTree(oldPoint);
-	    }
-
-	    function insertElVnodeAbsolute(el, point) {
-
-	        var parent = point.parent;
-	        var coord = point.coord;
-	        if (point.type == "row") {
-	            var gridVnode = point.parentVnode;
-
-	            if (point.rowNext) {
-	                gridVnode.insertBefore(el.get(0).vnode, point.rowNext.get(0).vnode);
-	            } else {
-	                gridVnode.append(el.get(0).vnode);
-	            }
-
-	            position.setPositionByPercent(el, coord, point);
-	        } else {
-	            var prev = point.domPrev || point.prev;
-	            var next = point.domNext || point.next;
-
-	            if (next) {
-	                point.parentVnode.insertBefore(el.get(0).vnode, next.get(0).vnode);
-	            } else {
-	                point.parentVnode.append(el.get(0).vnode);
-	            }
-	            position.setPositionByPercent(el, coord, point);
-	        }
-
-	        // insertAfterModifyDOMTree(point);
-	        // if(oldPoint)insertAfterModifyDOMTree(oldPoint);
-
-	        // position.setPositionByPercent(el, point.coord, point)
-	        // point.parentVnode.append(el.get(0).vnode);
-	    }
-
-	    function insertElVnodeNoTreeChange(el, point, oldPoint) {
-	        // addMediaCoordToPoint(point)
-	        var parent = point.parent;
-	        var coord = point.coord;
-	        position.setPositionByPercent(el, coord, point);
-	        insertAfterModifyDOMTree(point);
-	    }
-
-	    function moveElVnode(el, point, oldPoint) {
-	        // addMediaCoordToPoint(point)
-	        var parent = point.parent;
-	        var coord = point.coord;
-	        position.setPositionByPercent(el, coord, point);
-	        insertAfterModifyDOMTree(point);
-	    }
-
-	    function insertElVnodeAbsoluteNoTreeChange(el, point) {
-
-	        position.setPositionByPercent(el, point.coord, point);
-	    }
-
-	    function removeEl(el, point) {
-	        el.remove();
-	        afterModifyDOMTree();
-	    }
-
-	    var exports = {
-
-	        addNewEl: function addNewEl(el, currentPoint) {
-	            domPointToVnodePoint(currentPoint);
-
-	            //绝对定位
-	            if (!utils.isStatic(el)) {
-	                insertElVnodeAbsolute(el, currentPoint);
-	            } else {
-
-	                this.removeSimple(el);
-	                currentPoint = this.createInsertPoint(currentPoint);
-
-	                insertElVnode(el, currentPoint);
-	                // clearMediaCoord(currentPoint)
-	            }
-
-	            $(document).trigger("addNewEl", [el, currentPoint.coord]);
-	        },
-
-	        //在改变DOM的时候移动元素
-	        insertMoveEl: function insertMoveEl(el, currentPoint, oldPoint) {
-	            domPointToVnodePoint(currentPoint);
-	            domPointToVnodePoint(oldPoint);
-
-	            var cood = currentPoint.coord;
-	            var parent = currentPoint.parent;
-
-	            //结构无变化
-	            if (!this.isTreeChange(oldPoint, currentPoint)) {
-
-	                //绝对定位
-	                if (!utils.isStatic(el)) {
-	                    delete currentPoint.coord.width;
-	                    delete currentPoint.coord.height;
-	                    // insertElVnodeAbsoluteNoTreeChange(el,  currentPoint);
-	                    position.setPositionByPercent(el, currentPoint.coord, currentPoint);
-	                    // position.setPosition(el, {left: cood.left, top: cood.top}, el.parent());
-	                    return;
-	                } else {
-	                    // this.removeSimple(el);
-
-	                    currentPoint = this.createInsertPoint(currentPoint, oldPoint);
-	                    delete currentPoint.coord.width;
-	                    delete currentPoint.coord.height;
-
-	                    moveElVnode(el, currentPoint, oldPoint);
-	                    // insertElVnode(el, currentPoint);
-	                }
-	            } else {
-
-	                if (!utils.isStatic(el)) {
-	                    //  play.utils.removeMediaCSSRule(el);
-	                    // oldPoint.parentVnode.remove(currentPoint.elVnode)
-	                    delete currentPoint.coord.width;
-	                    delete currentPoint.coord.height;
-	                    insertElVnodeAbsolute(el, currentPoint);
-	                    // position.setPosition(el, {left: cood.left, top: cood.top}, el.parent());
-	                    return;
-	                } else {
-	                    play.utils.removeMediaCSSRule(el);
-	                    oldPoint.parentVnode.remove(currentPoint.elVnode);
-
-	                    currentPoint = this.createInsertPoint(currentPoint, oldPoint);
-	                    clearMediaCoord(currentPoint);
-	                    delete currentPoint.coord.width;
-	                    delete currentPoint.coord.height;
-	                    insertElVnode(el, currentPoint, oldPoint);
-	                }
-	            }
-	            clearRow(oldPoint);
-	        },
-
-	        resize: function resize(el, cood, parent) {
-
-	            if (!utils.isStatic(el)) {
-	                position.setPositionByPercent(el, cood);
-	                return;
-	            }
-
-	            var point = this.getInsertPoint(cood, parent, el);
-	            var currentPoint = this.getCurrentInsertPoint(el);
-
-	            //结构无变化
-	            if (!this.isTreeChange(currentPoint, point)) {
-
-	                play.noTreeChange = true;
-	                this.createInsertPoint(point, el, cood);
-	                position.recordPosition(el);
-
-	                position.setPositionByPercent(el, cood, point);
-
-	                position.revertPosition();
-	                play.noTreeChange = false;
-	            } else {
-
-	                var oldParent = el.parent();
-	                this.removeSimple(el);
-	                play.utils.removeMediaCSSRule(el);
-
-	                point = this.createInsertPoint(point, el, cood);
-	                insertEl(el, cood, point);
-
-	                var self = this;
-	            }
-	        },
-
-	        removeSimple: function removeSimple(el) {
-
-	            el.remove();
-	        },
-
-	        remove: function remove(el) {
-
-	            var point = getCurrentInsertPoint(el);
-	            if (!utils.isStatic(el)) {
-
-	                point.parent.get(0).vnode.remove(el.get(0).vnode);
-
-	                return;
-	            }
-
-	            var parent = el.parent();
-
-	            //脱离行
-
-
-	            beforeModifyDOMTree(point);
-	            if (point.type == "column") {
-
-	                // el.remove()
-	                play.vnode.remove(el.get(0).vnode, point.parent.get(0).vnode);
-	                play.vnode.update(point.parent.get(0).vnode);
-
-	                removeAfterModifyDOMTree(point);
-	            } else {
-
-	                //处理row元素
-
-	                play.vnode.remove(el.get(0).vnode, point.grid.get(0).vnode);
-	                play.vnode.update(point.grid.get(0).vnode);
-
-	                removeAfterModifyDOMTree(point);
-	                clearRow(point);
-	            }
-	        },
-
-	        isTreeChange: function isTreeChange(oldPoint, currentPoint) {
-
-	            if (oldPoint.type !== currentPoint.type) {
-	                return true;
-	            }
-	            if (!currentPoint.parent) return true;
-	            var isTheSame = function isTheSame(c, p) {
-	                if (c === undefined && p === undefined) return true;
-	                if (c && c.is(p)) return true;
-	            };
-	            if (oldPoint.type == "column") {
-	                if (isTheSame(currentPoint.parent, oldPoint.parent) && isTheSame(oldPoint.prev, currentPoint.prev)) {
-	                    return false;
-	                } else {
-	                    return true;
-	                }
-	            } else if (oldPoint.type == "row") {
-
-	                if (isTheSame(currentPoint.grid, oldPoint.grid) && isTheSame(oldPoint.rowPrev, currentPoint.rowPrev)) {
-	                    return false;
-	                } else {
-	                    return true;
-	                }
-	            }
-	        },
-
-	        //mousePoint, 当前鼠标的位置
-	        getInsertPoint: function getInsertPoint(cood, parent, el, mousePoint, isStatic) {
-	            var doc = play.iframeDoc;
-	            var p = getDOMPoint(parent, cood, el, mousePoint, isStatic);
-	            return p;
-	        },
-
-	        _createNewColumn: function _createNewColumn(point) {
-
-	            var children = point.columns.columns;
-
-	            for (var i = 0; i < children.length; i++) {
-	                position.record($(children[i]));
-
-	                play.utils.removeMediaCSSRule($(children[i]));
-	                $(children[i]).remove();
-	                play.dom._css($(children[i]), "display", "block");
-	            }
-
-	            var columnEl = $('<div class="grid-column" id="random-"' + play.utils.generateID() + '  style="display: inline-block"></div>');
-	            columnEl.attr("id", "el-" + play.utils.generateID());
-	            columnEl.prop("heightCSSName", "min-height");
-	            insertEl(columnEl, point.coord, point);
-	            for (var i = 0; i < children.length; i++) {
-	                columnEl.append($(children[i]));
-	                position.setPositionByPercent($(children[i]), $(children[i]).prop("__record"));
-	            }
-	            return columnEl;
-	        },
-
-	        _clearColumns: function _clearColumns(column) {
-
-	            if (column.hasClass(columnClass)) {
-	                var cc = [];
-	                var children = column.children();
-	                children.each(function (index, el) {
-
-	                    cc.push(el);
-	                });
-
-	                if (cc.length == 0) {
-	                    position.recordPosition(column);
-	                    column.remove();
-	                    play.utils.removeCSSRule(column);
-	                    position.revertPosition(column);
-	                }
-
-	                if (cc.length == 1) {
-
-	                    var next = this.getNextPositionEl(column);
-
-	                    position.record($(cc[0]));
-	                    $(cc[i]).insertBefore(column);
-	                    play.utils.removeMediaCSSRule($(cc[0]));
-
-	                    column.remove();
-
-	                    play.utils.removeCSSRule(column);
-
-	                    position.revert($(cc[0]));
-
-	                    if (next.length) position.revert(next);
-	                }
-	            }
-	        },
-
-	        getCurrentInsertPoint: getCurrentInsertPoint,
-	        createInsertPoint: createInsertPoint,
-	        getAvailablePoint: getAvailablePoint,
-	        isAvailablePoint: isAvailablePoint,
-	        showPositionHelper: showPositionHelper,
-	        hidePositionHelper: hidePositionHelper,
-	        beforeModifyDOMTree: beforeModifyDOMTree,
-	        afterModifyDOMTree: afterModifyDOMTree,
-	        removeAfterModifyDOMTree: removeAfterModifyDOMTree,
-	        insertAfterModifyDOMTree: insertAfterModifyDOMTree,
-	        updatePoint: updatePoint,
-	        getStartPosition: getStartPosition
-
-	    };
-
-	    play.grid = exports;
-	})();
+	  },
+
+	  //mousePoint, 当前鼠标的位置
+	  getInsertPoint: function getInsertPoint(cood, parent, el, mousePoint, isStatic) {
+	    var doc = play.iframeDoc;
+	    var p = getDOMPoint(parent, cood, el, mousePoint, isStatic);
+	    return p;
+	  },
+
+	  getCurrentInsertPoint: getCurrentInsertPoint,
+	  createInsertPoint: createInsertPoint,
+	  computerAvailableCoord: computerAvailableCoord,
+	  getAvailablePoint: getAvailablePoint,
+	  isAvailablePoint: isAvailablePoint,
+	  showPositionHelper: showPositionHelper,
+	  hidePositionHelper: hidePositionHelper,
+	  beforeModifyDOMTree: beforeModifyDOMTree,
+	  afterModifyDOMTree: afterModifyDOMTree,
+	  removeAfterModifyDOMTree: removeAfterModifyDOMTree,
+	  insertAfterModifyDOMTree: insertAfterModifyDOMTree,
+	  updatePoint: updatePoint,
+	  getStartPosition: getStartPosition,
+	  move: exports.insertMoveEl
+
+	};
+
+	defaultExports.move = defaultExports.insertMoveEl;
+
+	play.grid = defaultExports;
 
 /***/ },
-/* 211 */
+/* 214 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -14597,7 +14990,7 @@ webpackJsonp([3,17],[
 
 	                    var resizeable = play.select.getCurrentElEditableProp("resizeable");
 	                    var moveable = play.select.getCurrentElEditableProp("moveable");
-	                    console.log(resizeable);
+
 	                    mask.selectCood(cood, play.islock(target) ? false : resizeable, play.islock(target) ? false : moveable);
 	                }
 
@@ -14613,7 +15006,7 @@ webpackJsonp([3,17],[
 	})();
 
 /***/ },
-/* 212 */
+/* 215 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -15241,7 +15634,9 @@ webpackJsonp([3,17],[
 	            return;
 	        }
 
-	        var contextArray = [target];
+	        if (!target.get(0).vnode) {
+	            return;
+	        }
 
 	        var componentContext = play.getVisibleCompontentContext(target.get(0).vnode);
 	        var upContext = $(componentContext.nativeNode);
@@ -15254,6 +15649,7 @@ webpackJsonp([3,17],[
 	            if (!upContext || upContext.length == 0) {
 	                return oldContext;
 	            }
+
 	            if (upContext.is("app")) {
 	                return;
 	            }
@@ -15270,7 +15666,18 @@ webpackJsonp([3,17],[
 	                break;
 	            }
 
-	            if (!select.isSelectable(upContext)) {
+	            if (!play.isLayout(parent)) {
+	                oldContext = upContext;
+	                upContext = select.getSelectableEl(parent);
+
+	                var componentContext = play.getVisibleCompontentContext(upContext.get(0).vnode);
+	                upContext = $(componentContext.nativeNode);
+	                var parentComponentContext = play.getUpVisibelCompontentContext(componentContext);
+	                parent = $(parentComponentContext.nativeNode);
+	                continue;
+	            }
+
+	            if (!play.isLayout(parent) || !select.isSelectable(upContext)) {
 	                oldContext = upContext;
 
 	                upContext = select.getSelectableEl(upContext);
@@ -15295,249 +15702,70 @@ webpackJsonp([3,17],[
 	            // }
 	        }
 	        return upContext;
-	    }), _defineProperty(_selectWithGroup, "getSelectedElAndContextVnode", function getSelectedElAndContextVnode(target) {
+	    }), _defineProperty(_selectWithGroup, "getSelectedElAndContextVnode", function getSelectedElAndContextVnode(context, target) {
 
 	        if (!target) {
 	            this.currentContext = null;
 	            return;
 	        }
 
-	        var useContext = select.selectedEL;
+	        var useContext = context;
 	        var selectedEl, selectedContext;
 
-	        if (!useContext || useContext.length == 0) {
-	            selectedEl = selectedContext = this.getTopContextVnode(target);
+	        selectedEl = this.getSelectableChild(target, useContext);
+	        if (!selectedEl || useContext.is(selectedEl)) {
+	            return {
+	                el: useContext,
+	                context: useContext
+	            };
+	        } else {
 	            return {
 	                el: selectedEl,
-	                context: selectedContext
+	                context: useContext
 	            };
 	        }
-
-	        if (this.currentContext && !this.currentContext.is(useContext)) {
-
-	            if (target.closest(useContext).length) {
-
-	                selectedEl = this.getSelectableChild(target, useContext);
-	                if (!selectedEl || useContext.is(selectedEl)) {
-	                    return {
-	                        el: useContext,
-	                        context: this.currentContext
-	                    };
-	                } else {
-	                    return {
-	                        el: selectedEl,
-	                        context: useContext
-	                    };
-	                }
-	                console.log(selectedEl);
-	            } else if (target.closest(this.currentContext).length) {
-	                selectedEl = this.getSelectableChild(target, this.currentContext);
-
-	                if (!selectedEl || this.currentContext.is(selectedEl)) {
-	                    return {
-	                        el: this.currentContext,
-	                        context: this.currentContext
-	                    };
-	                } else {
-	                    return {
-	                        el: selectedEl,
-	                        context: this.currentContext
-	                    };
-	                }
-	            } else {
-	                selectedEl = selectedContext = this.getTopContextVnode(target);
-	                return {
-	                    el: selectedEl,
-	                    context: selectedContext
-	                };
-	            }
-	        }
-
-	        //this.currentContext不存在
-	        else {
-
-	                //在元素里面
-	                if (target.closest(useContext).length) {
-
-	                    var currentContext = this.getCurrentContextVnode(target);
-
-	                    if (currentContext.is(useContext)) {
-	                        selectedEl = this.getSelectableChild(target, useContext);
-	                        if (!selectedEl || useContext.is(selectedEl)) {
-	                            return {
-	                                el: useContext,
-	                                context: useContext
-	                            };
-	                        } else {
-	                            return {
-	                                el: selectedEl,
-	                                context: useContext
-	                            };
-	                        }
-	                    } else {
-	                        return {
-	                            el: currentContext,
-	                            context: currentContext
-	                        };
-	                    }
-	                }
-	                //不在元素里面
-	                else {
-	                        selectedEl = this.getTopContextVnode(target);
-	                        return {
-	                            el: selectedEl,
-	                            context: selectedContext
-	                        };
-	                    }
-	            }
-
-	        // var topContext = this.getTopContextVnode(target);
-	        var currentContext = this.getCurrentContextVnode(target);
-
-	        var topContext = currentContext;
-	        if (topContext.closest(useContext).length && !topContext.is(useContext)) {
-	            selectedEl = topContext;
-	            selectedContext = topContext;
-	        } else if (topContext.is(useContext)) {
-	            selectedEl = this.getSelectableChild(target, topContext);
-	            if (selectedEl.is(topContext)) {
-	                selectedContext = topContext;
-	            } else {
-	                selectedContext = topContext;
-	            }
-	        } else if (this.currentContext && topContext.closest(this.currentContext).length && !topContext.is(this.currentContext)) {
-	            selectedEl = this.getSelectableChild(target, topContext);
-	            if (selectedEl.is(topContext)) {
-	                selectedContext = topContext;
-	            } else {
-	                selectedContext = topContext;
-	            }
-	        } else if (this.currentContext && topContext.is(this.currentContext)) {
-	            selectedEl = this.getSelectableChild(target, this.currentContext);
-	            if (selectedEl.is(this.currentContext)) {
-	                selectedContext = this.currentContext;
-	            } else {
-	                selectedContext = this.currentContext;
-	            }
-	        } else {
-	            selectedEl = topContext;
-	            selectedContext = topContext;
-	        }
-
-	        return {
-	            el: selectedEl,
-	            context: selectedContext
-	        };
-	    }), _defineProperty(_selectWithGroup, "getSelectedElAndContext", function getSelectedElAndContext(target) {
-	        if (!target) {
-	            this.currentContext = null;
-	            return;
-	        }
-
-	        var useContext = select.selectedEL;
-	        var selectedEl, selectedContext;
-
-	        if (!useContext || useContext.length == 0) {
-	            selectedEl = selectedContext = this.getTopContext(target);
-	            return {
-	                el: selectedEl,
-	                context: selectedContext
-	            };
-	        }
-
-	        if (target.closest(useContext).length) {
-	            useContext = useContext;
-	            parentContext = parentContext;
-	        } else if (target.closest(parentContext).length) {
-	            useContext = parentContext;
-	            parentContext = parentContext;
-	        } else {
-	            useContext = undefined;
-	        }
-
-	        if (!useContext) {
-	            selectedEl = selectedContext = this.getTopContext(target);
-	            return {
-	                el: selectedEl,
-	                context: selectedContext
-	            };
-	        }
-
-	        var topContext = this.getTopContext(target);
-
-	        if (topContext.closest(useContext).length && !topContext.is(useContext)) {
-	            selectedEl = topContext;
-	            selectedContext = topContext;
-	        } else {
-
-	            selectedEl = this.getSelectableChild(target, useContext);
-	            if (selectedEl.is(useContext)) {
-	                selectedContext = parentContext;
-	            } else {
-	                selectedContext = useContext;
-	            }
-	        }
-
-	        return {
-	            el: selectedEl,
-	            context: selectedContext
-	        };
 	    }), _defineProperty(_selectWithGroup, "selectEl", function selectEl(target) {
 	        var data = this.getSelectedElAndContext(target);
 
 	        if (data.el.is(data.context)) {
 	            //选择 子元素
 	            //选择上下文为当前元素。当前元素也成为上下文
-	            selectWithGroup.hideContextMask();
-	            selectWithGroup.currentContext = data.el;
+	            selectWithGroup.unSelectContext();
 	            select.selectEl(data.el);
 	        } else {
 	            selectWithGroup.selectContext(data.context);
 	            select.selectEl(data.el);
 	        }
-	    }), _defineProperty(_selectWithGroup, "selectVnode", function selectVnode(target) {
-
-	        var data = this.getSelectedElAndContextVnode(target);
-
+	    }), _defineProperty(_selectWithGroup, "selectInnerVnode", function selectInnerVnode(context, target) {
+	        var data = this.getSelectedElAndContextVnode(context, target);
 	        if (!data.context || data.el.is(data.context)) {
 	            //选择 子元素
 	            //选择上下文为当前元素。当前元素也成为上下文
-	            selectWithGroup.hideContextMask();
-	            selectWithGroup.currentContext = data.el;
+	            selectWithGroup.unSelectContext();
 	            play.select.selectEl(data.el);
 	        } else {
 	            selectWithGroup.selectContext(data.context);
 	            play.select.selectEl(data.el);
+	        }
+	    }), _defineProperty(_selectWithGroup, "selectVnode", function selectVnode(target) {
+	        var target = this.getCurrentContextVnode(target);
+	        if (target) {
+	            play.select.selectEl(target);
+	            selectWithGroup.hideContextMask();
 	        }
 	    }), _defineProperty(_selectWithGroup, "getSelectableParent", function getSelectableParent() {
 	        var selectEl = play.select.selectedEL;
-	        var selectElVnode = selectEl.get(0).vnode;
-	        var parentVnode = selectElVnode.parent;
+	        var target = this.getCurrentContextVnode(selectEl.parent());
 
-	        if (!parentVnode) {
-	            return undefined;
-	        }
-	        var parent = parentVnode.nativeNode;
-
-	        if (parent.closest("p-site").length) {
-	            var data = this.getSelectedElAndContextVnode(parent);
-	            return data.el;
-	        } else {
-	            return undefined;
+	        if (target) {
+	            return target;
 	        }
 	    }), _defineProperty(_selectWithGroup, "selectParentVnode", function selectParentVnode() {
-	        var select = play.select.selectedEL;
-	        var data = this.getSelectedElAndContextVnode(select.parent());
-
-	        if (data.el.is(data.context)) {
-	            //选择 子元素
-	            //选择上下文为当前元素。当前元素也成为上下文
+	        var selectEl = play.select.selectedEL;
+	        var target = this.getCurrentContextVnode(selectEl.parent());
+	        if (target) {
+	            play.select.selectEl(target);
 	            selectWithGroup.hideContextMask();
-	            selectWithGroup.currentContext = data.el;
-	            play.select.selectEl(data.el);
-	        } else {
-	            selectWithGroup.selectContext(data.context);
-	            play.select.selectEl(data.el);
 	        }
 	    }), _selectWithGroup);
 
@@ -15697,113 +15925,51 @@ webpackJsonp([3,17],[
 	        //选择元素
 
 	        $(iframeDoc).on("click", function (e) {
-
 	            //预览
 	            if ($("body").hasClass("preview")) return;
-
 	            //todo 当拖动时，鼠标被其它元素当住可阻止出发 click;
 	            //如果是拖动事件就忽略
-	            if (play._clickType === "drag") {
+
+	            //编辑不起作用
+	            if ($(e.target).closest("[contenteditable='true']").length) {
 	                return;
 	            }
 
+	            if (play._clickType === "drag") {
+	                return;
+	            }
 	            var old = select.selectedEL;
 	            var el = $(e.target);
-
-	            return selectWithGroup.selectVnode(el);
-
-	            var topContext = selectWithGroup.getTopContext(el);
-
-	            if (topContext && topContext.length) {
-	                if (!selectWithGroup.currentContext) {
-	                    selectWithGroup.hideContextMask();
-	                    selectWithGroup.currentContext = topContext;
-	                    select.selectEl(topContext);
-	                } else if (topContext.is(selectWithGroup.currentContext) && !topContext.is(el)) {
-	                    //选择 子元素
-
-	                    selectWithGroup.selectContext(topContext);
-	                    var target = selectWithGroup.getSelectableChild(el, topContext);
-	                    select.selectEl(target, topContext);
-	                } else {
-	                    //选择上下文为当前元素。当前元素也成为上下文
-	                    selectWithGroup.hideContextMask();
-	                    selectWithGroup.currentContext = topContext;
-	                    select.selectEl(topContext);
-	                }
+	            if (selectWithGroup.currentContext) {
+	                selectWithGroup.selectInnerVnode(selectWithGroup.currentContext, el);
 	            } else {
-	                select.selectEL(el);
-	                selectWithGroup.unSelectContext();
+	                selectWithGroup.selectVnode(el);
 	            }
-	            select.cancelHoverEL();
 	        });
 
 	        //直接选择子元素
+	        //选择元素
+	        $(iframeDoc).on("dblclick", function (e) {
+	            //预览
+	            if ($("body").hasClass("preview")) return;
+	            //todo 当拖动时，鼠标被其它元素当住可阻止出发 click;
+	            //如果是拖动事件就忽略
+	            //编辑不起作用
+	            if ($(e.target).closest("[contenteditable='true']").length) {
+	                return;
+	            }
+	            if (play._clickType === "drag") {
+	                return;
+	            }
+	            var old = select.selectedEL;
+	            var el = $(e.target);
+	            if (old && el.closest(old).length) {
+	                selectWithGroup.selectInnerVnode(old, el);
+	            } else {
+	                selectWithGroup.selectVnode(el);
+	            }
+	        });
 
-	        // $(iframeDoc).on("click", function (e) {
-	        //
-	        //     debugger;
-	        //     //预览
-	        //     if ($("body").hasClass("preview"))return
-	        //
-	        //
-	        //     //todo 当拖动时，鼠标被其它元素当住可阻止出发 click;
-	        //     //如果是拖动事件就忽略
-	        //     if (play._clickType === "drag") {
-	        //         return;
-	        //     }
-	        //     var old = select.selectedEL;
-	        //     var el = select.getSelectableEl($(e.target), true);
-	        //     if (!el) {
-	        //         return  $(document).trigger("unSelectEl", [old]);
-	        //     }
-	        //
-	        //
-	        //     if (el.is("p-container") || el.is("p-container-fluid") || el.is("#header") || el.is("#footer") || el.is("#body")) {
-	        //         select.cancelHoverEL();
-	        //         selectWithGroup.unSelectContext();
-	        //         select.selectEL(el);
-	        //         return;
-	        //     }
-	        //
-	        //     //避免频繁选择这些不常用到的元素
-	        //     if (el.is("body") || el.is("#body") || el.is("#header") || el.is("#footer")) {
-	        //         el = null;
-	        //         select.cancelSelectEL();
-	        //         selectWithGroup.unSelectContext();
-	        //         $(document).trigger("noSelect");
-	        //         return;
-	        //     }
-	        //
-	        //     //选择最顶元素
-	        //     var topContext = selectWithGroup.getTopContext(el);
-	        //     if (topContext && topContext.length) {
-	        //         if (!selectWithGroup.currentContext) {
-	        //             selectWithGroup.hideContextMask();
-	        //             selectWithGroup.currentContext = topContext;
-	        //             select.selectEl(topContext)
-	        //         }
-	        //         else if (topContext.is(selectWithGroup.currentContext) && !topContext.is(el)) {
-	        //             //选择 子元素
-	        //             selectWithGroup.selectContext(topContext)
-	        //             select.selectEl(el);
-	        //         }
-	        //         else {
-	        //             //选择上下文为当前元素。当前元素也成为上下文
-	        //             selectWithGroup.hideContextMask();
-	        //             selectWithGroup.currentContext = topContext
-	        //             select.selectEl(topContext)
-	        //         }
-	        //     }
-	        //     else {
-	        //         select.selectEL(el)
-	        //         selectWithGroup.unSelectContext();
-	        //
-	        //     }
-	        //     select.cancelHoverEL();
-	        // });
-	        //
-	        //
 	        var selectMast = $("select-mask");
 	        selectMast.on("mouseup", function (e) {
 
@@ -15874,51 +16040,6 @@ webpackJsonp([3,17],[
 	            select.cancelHoverEL();
 	        });
 
-	        //选择元素
-	        $(iframeDoc).on("dblclick", function (e) {
-
-	            return;
-	            //预览
-	            if ($("body").hasClass("preview")) return;
-
-	            //todo 当拖动时，鼠标被其它元素当住可阻止出发 click;
-	            //如果是拖动事件就忽略
-
-	            if (play._clickType === "drag") {
-
-	                return;
-	            }
-	            var old = select.selectedEL;
-
-	            var el = select.getSelectableEl($(e.target), true);
-
-	            if (!el) return $(document).trigger("noSelect");
-
-	            //避免频繁选择这些不常用到的元素
-	            if (el.is("body") || el.is("#body") || el.is("#header") || el.is("#footer")) {
-	                el = null;
-	                $(document).trigger("noSelect");
-	            }
-
-	            $(el).removeProp("__coordinates");
-
-	            if (el && el.length && e.shiftKey) {
-
-	                if (!old.filter(el).length) {
-	                    //避免重复
-	                    select.addEl(el);
-	                }
-	            } else if (el && el.length) {
-
-	                select.selectEL(el);
-	            } else {
-	                select.cancelSelectEL();
-	                $(document).trigger("unSelectEl", [old]);
-	            }
-
-	            select.cancelHoverEL();
-	        });
-
 	        $(iframeDoc).on("mouseover", function (ev) {
 
 	            return;
@@ -15970,9 +16091,19 @@ webpackJsonp([3,17],[
 	        });
 
 	        $([iframeDoc, iframeDoc.body]).on("scroll", function () {
-
 	            select.reflow();
 	        });
+
+	        $("body", iframeDoc).get(0).addEventListener("webkitTransitionEnd", function () {
+	            console.log("webkitTransitionEnd");
+	            select.reflow();
+	        });
+
+	        // $("p-site",iframeDoc).on("webkitTransitionEnd", function(){ //动画结束时事件
+	        //     console.log("webkitTransitionEnd")
+	        //       select.reflow();
+	        // });
+
 
 	        //取消选择
 	        select.cancelSelectEL();
@@ -16042,7 +16173,7 @@ webpackJsonp([3,17],[
 	})();
 
 /***/ },
-/* 213 */
+/* 216 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -16186,7 +16317,7 @@ webpackJsonp([3,17],[
 	})();
 
 /***/ },
-/* 214 */
+/* 217 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -16287,6 +16418,13 @@ webpackJsonp([3,17],[
 	        var data = play.getVnodeJSON(vnode);
 
 	        var cloneVnode = play.cloneFromVnodeJSON(data);
+
+	        var selectorNum = Date.now();
+	        var id = 'el-' + selectorNum;
+
+	        cloneVnode.key = id;
+	        cloneVnode.attributes.id = id;
+	        cloneVnode.attributes.key = id;
 
 	        var el = $(play.iframeWin.Sophie.createElementByVnode(cloneVnode));
 
@@ -16430,7 +16568,11 @@ webpackJsonp([3,17],[
 
 	        var id = 'el-' + selectorNum;
 
-	        var vnode = play.iframeWin.Sophie.createVnodeByTagName(tagName);
+	        if (play.iframeWin.App.creater[tagName]) {
+	            var vnode = play.iframeWin.Sophie.createVnodeByFun(play.iframeWin.App.creater[tagName]);
+	        } else {
+	            var vnode = play.iframeWin.Sophie.createVnodeByTagName(tagName);
+	        }
 
 	        vnode.key = id;
 	        vnode.attributes.id = id;
@@ -16498,10 +16640,7 @@ webpackJsonp([3,17],[
 
 	        var parent = target.parent();
 	        //在手机状态下，根元素下的p-grid,是不可以当parent的
-	        if (play.mediaName == "phone" && parent.is("p-grid") && parent.parent().parent().is("p-page")) {
-	            alert("移动端下不能删除，请PC端删除");
-	            return;
-	        }
+
 
 	        var removeable = play.select.getCurrentElEditableProp("removeable");
 
@@ -16642,19 +16781,47 @@ webpackJsonp([3,17],[
 	        if (play.islock(target)) return;
 
 	        target = $(target, play.iframeDoc);
-
 	        selectStyle(target);
 	        var cssName = name.replace(/([A-Z])/g, "-$1").toLowerCase();
 	        //响应式支持
 	        utils.createCSSRule(target, cssName, value, media);
 	    };
-	    var _css = function _css(target, name, value, media) {
 
+	    var _createMediaCSS = function _createMediaCSS(target, cssName, value, mediaName) {
 	        if (play.islock(target)) return;
-
 	        target = $(target, play.iframeDoc);
 
-	        selectStyle(target);
+	        var selector = utils.toMediaSelector(target, mediaName);
+	        if ((cssName == "fontSize" || cssName == "font-size") && target.find('> .p-text-wrap').length) {
+	            selector = selector + " .p-text-wrap";
+	        }
+
+	        _createCSS(selector, cssName, value, mediaName);
+	    };
+
+	    var _css = function _css(target, cssName, value, mediaName) {
+
+	        if (play.islock(target)) return;
+	        target = $(target, play.iframeDoc);
+	        var selector = utils.toSelector(target, mediaName);
+	        if ((cssName == "fontSize" || cssName == "font-size") && target.find('> .p-text-wrap').length) {
+	            selector = selector + " .p-text-wrap";
+	        }
+
+	        _createCSS(selector, cssName, value, mediaName);
+	    };
+	    var css = function css(target, name, value) {
+
+	        _css(target, name, value, play.mediaName);
+	        var oldValue = target.css(name);
+
+	        // utils.saveStyleSheet()
+	        // target.css(name, value);
+
+	        $(document).trigger("cssChange", [target, name, value]);
+	    };
+
+	    var _createCSS = function _createCSS(selector, name, value, media) {
 	        var cssName = name.replace(/([A-Z])/g, "-$1").toLowerCase();
 	        //响应式支持
 	        var media = media || play.media || "all";
@@ -16678,41 +16845,22 @@ webpackJsonp([3,17],[
 	                    break;
 	                }
 	            }
-
 	            return result;
 	        };
 
 	        if (!isMediaCSS(cssName)) {
-
-	            utils.createCSSRule(target, cssName, value, "all");
+	            utils.createCSSRule(selector, cssName, value, "all");
 	        } else {
-
 	            //@todo 确定 all的真实尺寸
-
-
 	            if (media == "all") {
-	                media = play.mediaQuery.pc;
 
-	                utils.createCSSRule(target, cssName, value, "all");
-	                utils.createCSSRule(target, cssName, value, media);
+	                utils.createCSSRule(selector, cssName, value, media);
 	            } else {
 
-	                utils.createCSSRule(target, cssName, value, "all");
-	                utils.createCSSRule(target, cssName, value, media);
+	                utils.createCSSRule(selector, cssName, value, media);
 	            }
-
 	            return;
 	        }
-	    };
-	    var css = function css(target, name, value) {
-
-	        _css(target, name, value);
-	        var oldValue = target.css(name);
-
-	        // utils.saveStyleSheet()
-	        // target.css(name, value);
-
-	        $(document).trigger("cssChange", [target, name, value]);
 	    };
 
 	    var style = function style(target, name, value) {
@@ -16756,7 +16904,7 @@ webpackJsonp([3,17],[
 	        _resizeEl: resize,
 	        css: css,
 	        _css: _css,
-	        _cssMedia: _cssMedia,
+	        _createMediaCSS: _createMediaCSS,
 	        style: style,
 	        prop: prop,
 	        _prop: _prop,
@@ -16765,7 +16913,7 @@ webpackJsonp([3,17],[
 	})();
 
 /***/ },
-/* 215 */
+/* 218 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -16835,7 +16983,7 @@ webpackJsonp([3,17],[
 	})();
 
 /***/ },
-/* 216 */
+/* 219 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -17177,532 +17325,219 @@ webpackJsonp([3,17],[
 	})();
 
 /***/ },
-/* 217 */
+/* 220 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+/***/ },
+/* 221 */
 /***/ function(module, exports) {
 
 	"use strict";
 
 	(function () {
 
-	    var utils = play.utils,
-	        select = play.select,
-	        position = play.position,
-	        dom = play.dom;
+	  var utils = play.utils,
+	      select = play.select,
+	      position = play.position,
+	      grid = play.grid,
+	      dom = play.dom;
 
-	    function filter() {
+	  var getParent = play.dom.layoutParent;
 
-	        var outerEl = [];
-	        var innerEl = [];
+	  var center = function center(target) {
 
-	        select.selectedEL.filter(function (index) {
-	            var el = select.selectedEL.eq(index);
-	            var result = false;
-	            select.selectedEL.each(function (index, parent) {
+	    var parent = getParent(target);
+	    var point = play.grid.getCurrentInsertPoint(target);
 
-	                if ($(parent).find(el).length) {
+	    //row 内不居中, @todo 需要在UI上给提示
+	    var point = play.grid.getCurrentInsertPoint(target);
+	    var spaceCoord = point.spaceCoord;
+	    point.coord.left = spaceCoord.right - spaceCoord.width / 2 - point.coord.width / 2;
+	    point.coord.right = point.coord.left + point.coord.width;
+	    play.grid.move(target, point, point);
+	    select.reflow();
+	    return;
 
-	                    result = true;
-	                }
-	            });
+	    if (point.type == "row") {
+	      //row 内不居中, @todo 需要在UI上给提示
+	      var point = play.grid.getCurrentInsertPoint(target);
+	      var spaceCoord = point.spaceCoord;
+	      point.coord.left = spaceCoord.right - spaceCoord.width / 2 - point.coord.width / 2;
+	      point.coord.right = point.coord.left + point.coord.width;
+	      play.grid.move(target, point, point);
+	      select.reflow();
+	    } else {
+	      play.dom.css(target, "margin-left", "auto");
+	      play.dom.css(target, "margin-right", "auto");
+	      select.reflow();
+	    }
+	  };
 
-	            if (result) {
-	                innerEl.push(el);
-	            } else {
-	                outerEl.push(el);
-	            }
-	        });
+	  var left = function left(target) {
 
-	        innerEl = $(innerEl);
-	        outerEl = $(outerEl);
+	    var point = play.grid.getCurrentInsertPoint(target);
 
-	        return { innerEl: innerEl, outerEl: outerEl };
+	    var spaceCoord = point.spaceCoord;
+	    point.coord.left = spaceCoord.left;
+	    point.coord.right = point.coord.left + point.coord.width;
+	    play.grid.move(target, point, point);
+	    select.reflow();
+	  };
+	  var right = function right(target) {
+
+	    var point = play.grid.getCurrentInsertPoint(target);
+
+	    var spaceCoord = point.spaceCoord;
+	    point.coord.right = spaceCoord.right;
+	    point.coord.left = point.coord.right - point.coord.width;
+	    play.grid.move(target, point, point);
+	    select.reflow();
+	  };
+
+	  var top = function top(target) {
+	    var point = play.grid.getCurrentInsertPoint(target);
+
+	    var spaceCoord = point.spaceCoord;
+	    point.coord.top = spaceCoord.top;
+	    point.coord.bottom = point.coord.top + point.coord.height;
+	    debugger;
+	    var currentPoint = grid.getInsertPoint(point.coord, point.parent, target, { left: point.coord.left, top: point.coord.top }, true);
+
+	    var isok = grid.isAvailablePoint(currentPoint, false);
+	    if (isok) {
+	      play.grid.move(target, currentPoint, point);
+	      select.reflow();
+	    } else {
+	      return;
 	    }
 
-	    var left = function left() {
+	    var availablePoint = grid.getAvailablePoint(point, false, false);
+	    if (availablePoint.availableCoord) {
+	      point.coord = availablePoint.availableCoord;
+	      point = grid.updatePoint(point, point.coord);
+	    }
+	  };
 
-	        utils.XSort(select.selectedEL);
+	  var bottom = function bottom(target) {
+	    var point = play.grid.getCurrentInsertPoint(target);
 
-	        var base = select.selectedEL.eq(0);
-	        var baseCood = position.cood(base);
+	    var spaceCoord = point.spaceCoord;
+	    point.coord.bottom = spaceCoord.bottom;
+	    point.coord.top = point.coord.bottom - point.coord.height;
 
-	        var result = filter();
-	        select.selectedEL.each(function (index, el) {
+	    var currentPoint = grid.getInsertPoint(point.coord, point.parent, target, { left: point.coord.left, top: point.coord.top }, true);
 
-	            el = $(el);
+	    play.grid.move(target, currentPoint, point);
 
-	            var oCood = position.cood(el);
+	    select.reflow();
+	  };
 
-	            var cood = {
-	                left: baseCood.left,
-	                top: oCood.top,
-	                width: oCood.width,
-	                height: oCood.height
+	  /**
+	   * margin:0 auto;
+	   * 居中元素不形式行。
+	   *
+	   */
 
-	            };
-	            el.get(0)._elCood = cood;
-	        });
+	  var middle = function middle() {
 
-	        result.outerEl.each(function (index, el) {
-	            el = $(el);
-	            if (el.is(base)) return;
+	    var point = play.grid.getCurrentInsertPoint(target);
 
-	            position.cood(el, el.get(0)._elCood);
-	        });
+	    var spaceCoord = point.spaceCoord;
+	    point.coord.top = spaceCoord.bottom - spaceCoord.height / 2 - point.coord.height / 2;
+	    point.coord.bottom = point.coord.top + point.coord.height;
+	    play.grid.move(target, point, point);
 
-	        result.innerEl.each(function (index, el) {
-	            el = $(el);
+	    select.reflow();
+	  };
 
-	            position.cood(el, el.get(0)._elCood, { treeModify: false });
-	        });
+	  var widthfullSceen = function widthfullSceen(target) {
 
-	        select.reflow();
-	    };
+	    var point = play.grid.getCurrentInsertPoint(target);
 
-	    var center = function center() {
-	        var baseCood = position.getAllCood(select.selectedEL);
-	        var result = filter();
+	    if (target.parent(".grid-row").length) {
+	      alert("行元素无法全屏");
+	      return;
+	    }
 
-	        var c = baseCood.left + baseCood.width / 2;
+	    if (point.parentVnode.name == "p-page") {
 
-	        select.selectedEL.each(function (index, el) {
+	      target.get(0).vnode.props.fullWidth = true;
+	      point.coord.left = point.spaceCoord.left;
+	      point.coord.right = point.spaceCoord.right;
+	      point.coord.width = point.spaceCoord.width;
+	      play.grid.resize(target, point, point);
 
-	            el = $(el);
+	      var domParent = target.parent();
+	      play.dom.css(target, "width", "100%");
+	      domParent.removeClass("p-container");
+	      domParent.addClass("p-container-fluid");
 
-	            var oCood = position.cood(el);
+	      select.reflow();
+	    }
+	  };
 
-	            var cood = {
-	                left: c - oCood.width / 2,
-	                top: oCood.top,
-	                width: oCood.width,
-	                height: oCood.height
+	  var noWidthFullSceen = function noWidthFullSceen(point) {
+	    if (!point.el.get(0).vnode.props.fullWidth) return;
+	    if (point.coord.width == point.spaceCoord.width && point.coord.left == point.spaceCoord.left) return;
 
-	            };
-	            el.get(0)._elCood = cood;
-	        });
-	        result.outerEl.each(function (index, el) {
-	            el = $(el);
+	    var domParent = point.el.parent();
 
-	            position.cood(el, el.get(0)._elCood);
-	        });
+	    if (point.parentVnode.name == "p-page") {
+	      point.el.get(0).vnode.props.fullWidth = false;
+	      domParent.removeClass("p-container-fluid");
+	      domParent.addClass("p-container");
+	      play.dom.css(point.el, "margin-right", "initial");
+	    }
+	  };
 
-	        result.innerEl.each(function (index, el) {
-	            el = $(el);
+	  var widthAuto = function widthAuto(target) {
 
-	            position.cood(el, el.get(0)._elCood, { treeModify: false });
-	        });
-	        select.reflow();
-	    };
+	    var point = play.grid.getCurrentInsertPoint(target);
 
-	    var right = function right() {
+	    point.coord.left = point.spaceCoord.left;
+	    point.coord.right = point.spaceCoord.right;
+	    point.coord.width = point.coord.right - point.coord.left;
 
-	        var baseCood = position.getAllCood(select.selectedEL);
+	    play.grid.resize(target, point, point);
 
-	        var r = baseCood.right;
+	    select.reflow();
+	  };
 
-	        var result = filter();
-	        select.selectedEL.each(function (index, el) {
+	  var noWidthAuto = function noWidthAuto(target) {};
 
-	            el = $(el);
+	  var heightAuto = function heightAuto(target) {
 
-	            var oCood = position.cood(el);
+	    var point = play.grid.getCurrentInsertPoint(target);
+	    point.dir = "top";
+	    //page的高度是无限的
+	    var height = point.spaceCoord.height > 600 ? 600 : point.spaceCoord.height;
 
-	            var cood = {
-	                left: r - oCood.width,
-	                top: oCood.top,
-	                width: oCood.width,
-	                height: oCood.height
-
-	            };
-	            el.get(0)._elCood = cood;
-	        });
-
-	        result.outerEl.each(function (index, el) {
-	            el = $(el);
-
-	            position.cood(el, el.get(0)._elCood);
-	        });
-
-	        result.innerEl.each(function (index, el) {
-	            el = $(el);
-
-	            position.cood(el, el.get(0)._elCood, { treeModify: false });
-	        });
-
-	        select.reflow();
-	    };
-	    var top = function top(target) {
-
-	        utils.YSort(select.selectedEL);
-	        var base = select.selectedEL.eq(0);
-	        var baseCood = position.cood(base);
-
-	        var result = filter();
-	        select.selectedEL.each(function (index, el) {
-
-	            el = $(el);
-
-	            var oCood = position.cood(el);
-
-	            var cood = {
-	                left: oCood.left,
-	                top: baseCood.top,
-	                width: oCood.width,
-	                height: oCood.height
-
-	            };
-	            el.get(0)._elCood = cood;
-	        });
-
-	        result.outerEl.each(function (index, el) {
-	            el = $(el);
-	            if (el.is(base)) return;
-
-	            position.cood(el, el.get(0)._elCood);
-	        });
-
-	        result.innerEl.each(function (index, el) {
-	            el = $(el);
-
-	            position.cood(el, el.get(0)._elCood, { treeModify: false });
-	        });
-
-	        select.reflow();
-	    };
-	    var middle = function middle() {
-	        var baseCood = position.getAllCood(select.selectedEL);
-	        var result = filter();
-
-	        var m = baseCood.top + baseCood.height / 2;
-
-	        select.selectedEL.each(function (index, el) {
-
-	            el = $(el);
-
-	            var oCood = position.cood(el);
-
-	            var cood = {
-	                left: oCood.left,
-	                top: m - oCood.height / 2,
-	                width: oCood.width,
-	                height: oCood.height
-
-	            };
-	            el.get(0)._elCood = cood;
-	        });
-	        result.outerEl.each(function (index, el) {
-	            el = $(el);
-
-	            position.cood(el, el.get(0)._elCood);
-	        });
-
-	        result.innerEl.each(function (index, el) {
-	            el = $(el);
-
-	            position.cood(el, el.get(0)._elCood, { treeModify: false });
-	        });
-	        select.reflow();
-	    };
-
-	    var bottom = function bottom(target) {
-
-	        var baseCood = position.getAllCood(select.selectedEL);
-
-	        var b = baseCood.bottom;
-
-	        var result = filter();
-	        select.selectedEL.each(function (index, el) {
-
-	            el = $(el);
-
-	            var oCood = position.cood(el);
-
-	            var cood = {
-	                left: oCood.left,
-	                top: b - oCood.height,
-	                width: oCood.width,
-	                height: oCood.height
-
-	            };
-	            el.get(0)._elCood = cood;
-	        });
-
-	        result.outerEl.each(function (index, el) {
-	            el = $(el);
-
-	            position.cood(el, el.get(0)._elCood);
-	        });
-
-	        result.innerEl.each(function (index, el) {
-	            el = $(el);
-
-	            position.cood(el, el.get(0)._elCood, { treeModify: false });
-	        });
-
-	        select.reflow();
-	    };
-
-	    play.align = {
-
-	        left: left,
-	        center: center,
-	        right: right,
-	        top: top,
-	        bottom: bottom
-
-	    };
+	    point.coord.top = point.spaceCoord.top;
+	    point.coord.bottom = point.coord.top + height;
+	    point.coord.height = height;
+
+	    play.grid.resize(target, point, point);
+
+	    select.reflow();
+	  };
+
+	  play.alignEl = {
+	    center: center,
+	    left: left,
+	    top: top,
+	    right: right,
+	    widthAuto: widthAuto,
+	    noWidthAuto: noWidthAuto,
+	    heightAuto: heightAuto,
+	    widthfullSceen: widthfullSceen,
+	    noWidthFullSceen: noWidthFullSceen
+	  };
 	})();
 
 /***/ },
-/* 218 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	(function () {
-
-	    var utils = play.utils,
-	        select = play.select,
-	        position = play.position,
-	        dom = play.dom;
-
-	    var getParent = play.dom.layoutParent;
-
-	    var center = function center(target) {
-
-	        var parent = getParent(target);
-
-	        var pCood = position.cood(parent);
-	        var cCood = position.cood(target);
-
-	        var left = pCood.left + pCood.width / 2 - cCood.width / 2;
-
-	        cCood.left = left;
-
-	        if (play.isGridRow(parent)) {
-	            //row 内不居中, @todo 需要在UI上给提示
-
-
-	            dom.moveEl(target, cCood, parent);
-	        } else {
-
-	            play.dom.css(target, "margin-left", "auto");
-	            play.dom.css(target, "margin-right", "auto");
-	            select.reflow();
-	        }
-	    };
-
-	    var left = function left(target) {
-
-	        var parent = target.parent();
-
-	        var selectableParent = getParent(target);
-
-	        var targetCood = position.cood(target);
-
-	        if (play.isGridRow(parent)) {
-
-	            if (parent.children().eq(0).is(target)) {
-	                var cood = position.cood(parent);
-	                targetCood.left = cood.left;
-	                dom.moveEl(target, targetCood);
-	            } else {
-	                play.dom.css(target, "margin-left", "0");
-	                play.dom.css(target, "margin-right", "auto");
-	            }
-	        } else {
-	            play.dom.css(target, "margin-left", "0");
-	            play.dom.css(target, "margin-right", "auto");
-	        }
-
-	        select.reflow();
-	    };
-	    var right = function right(target) {
-
-	        var parent = target.parent();
-
-	        var selectableParent = getParent(target);
-
-	        var targetCood = position.cood(target);
-	        if (play.isGridRow(parent)) {
-	            if (parent.children().eq(parent.children().length - 1).is(target)) {
-	                var cood = position.cood(parent);
-	                targetCood.right = cood.right;
-	                targetCood.left = targetCood.right - targetCood.width;
-	                dom.moveEl(target, targetCood);
-	            } else {
-	                var next = target.next();
-	                var nextCood = position.cood(next);
-	                targetCood.right = nextCood.left;
-	                targetCood.left = targetCood.right - targetCood.width;
-	                dom.moveEl(target, targetCood);
-	            }
-	        } else {
-
-	            play.dom.css(target, "margin-left", "auto");
-	            play.dom.css(target, "margin-right", "0");
-	        }
-
-	        select.reflow();
-	    };
-
-	    var top = function top(target) {
-	        var parent = getParent(target);
-
-	        var cood = play.position.cood(target);
-
-	        cood.top = play.position.cood(parent).top;
-
-	        play.dom.css(target, "margin-top", "0");
-	        // play.dom.moveEl(target, cood);
-	        select.reflow();
-	    };
-
-	    var bottom = function bottom(target) {
-	        var parent = getParent(target);
-
-	        var pCood = position.cood(parent);
-	        var cCood = position.cood(target);
-
-	        cCood.top = pCood.bottom - cCood.height;
-
-	        var options = target.prop("moveable");
-
-	        if (!options.treeModify) {
-	            var next = target.next();
-	            if (next.length) position.record(next);
-	            position.offset(target, cood);
-	            if (next.length) position.revert(next);
-	        } else {
-	            dom._removeEl(target);
-	            dom._addNewEl(target, cCood);
-	        }
-	        select.reflow();
-	    };
-
-	    /**
-	     * margin:0 auto;
-	     * 居中元素不形式行。
-	     *
-	     */
-
-	    var middle = function middle() {
-
-	        var parent = getParent(target);
-
-	        var pCood = position.cood(parent);
-	        var cCood = position.cood(target);
-
-	        cCood.top = pCood.top + pCood.height / 2 - cCood.height / 2;
-
-	        var options = target.prop("moveable");
-
-	        if (!options.treeModify) {
-	            var next = target.next();
-	            if (next.length) position.record(next);
-	            position.offset(target, cood);
-	            if (next.length) position.revert(next);
-	        } else {
-	            dom._removeEl(target);
-	            dom._addNewEl(target, cCood);
-	        }
-	        select.reflow();
-	    };
-
-	    var widthAuto = function widthAuto(target) {
-	        var parent = getParent(target);
-	        var pCood = position.cood(parent);
-	        var cCood = position.cood(target);
-
-	        cCood.width = pCood.width;
-	        cCood.left = pCood.left;
-
-	        if (target.parent(".grid-row").length) {
-
-	            //row 内不居中, @todo 需要在UI上给提示
-	            alert("影响元素定位，不能支持些操作");
-	            return;
-
-	            var row = target.parent(".grid-row");
-
-	            var options = target.prop("moveable");
-
-	            if (!options.treeModify) {
-	                var next = target.next();
-	                if (next.length) position.record(next);
-	                position.offset(target, cood);
-	                if (next.length) position.revert(next);
-	            }
-	        } else {
-
-	            var targetVnode = target.get(0).vnode;
-	            var name = targetVnode.parent.name;
-
-	            if (name == "p-page" || name == "p-header" || name == "p-footer") {
-	                play.dom.css(target, "width", "100%");
-	                play.dom.css(target, "margin-left", "auto");
-	                play.dom.css(target, "margin-right", "auto");
-	                targetVnode.props.fullWidth = true;
-	                var domParent = target.parent();
-
-	                domParent.removeClass("p-container");
-	                domParent.addClass("p-container-fluid");
-	            } else {
-	                play.dom.css(target, "width", "100%");
-	                play.dom.css(target, "margin-left", "auto");
-	                play.dom.css(target, "margin-right", "auto");
-	                targetVnode.props.fullWidth = true;
-	            }
-
-	            // position.setPosition(target, cCood, target.parent())
-	        }
-
-	        select.reflow();
-	    };
-
-	    var noWidthAuto = function noWidthAuto(target) {
-
-	        var targetVnode = target.get(0).vnode;
-	        var name = targetVnode.parent.name;
-	        if (name == "p-page" || name == "p-header" || name == "p-footer") {
-
-	            targetVnode.props.fullWidth = false;
-	            var domParent = target.parent();
-
-	            domParent.removeClass("p-container-fluid");
-	            domParent.addClass("p-container");
-	        } else {}
-	    };
-
-	    var heightAuto = function heightAuto(target) {
-
-	        var parent = getParent(target);
-	        var pCood = position.cood(parent);
-	        var cCood = position.cood(target);
-
-	        cCood.height = pCood.height;
-	        cCood.top = pCood.top;
-
-	        var next = target.next();
-	        if (next.length) position.record(next);
-	        position.cood(target, cCood);
-	        if (next.length) position.revert(next);
-
-	        select.reflow();
-	    };
-
-	    play.alignEl = {
-	        center: center,
-	        left: left,
-	        top: top,
-	        right: right,
-	        widthAuto: widthAuto,
-	        noWidthAuto: noWidthAuto,
-	        heightAuto: heightAuto
-	    };
-	})();
-
-/***/ },
-/* 219 */
+/* 222 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -17939,6 +17774,7 @@ webpackJsonp([3,17],[
 
 	                target = $(ev.target);
 	                //编辑不起作用
+
 	                if (target.closest("[contenteditable='true']").length) {
 	                    return;
 	                }
@@ -17967,6 +17803,11 @@ webpackJsonp([3,17],[
 
 	                    clearTimeout(timer);
 	                    timer = null;
+	                }
+
+	                //编辑不起作用
+	                if (target.closest("[contenteditable='true']").length) {
+	                    return;
 	                }
 
 	                timer = setTimeout(function () {
@@ -18004,7 +17845,11 @@ webpackJsonp([3,17],[
 	                    return;
 	                }
 
-	                status = 0;
+	                status = 0; //编辑不起作用
+	                if (target.closest("[contenteditable='true']").length) {
+	                    return;
+	                }
+
 	                ev.stopPropagation();
 	                ev.preventDefault();
 	                ev.stopImmediatePropagation();
@@ -18054,8 +17899,8 @@ webpackJsonp([3,17],[
 	})();
 
 /***/ },
-/* 220 */
-/***/ function(module, exports) {
+/* 223 */
+/***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
@@ -18071,19 +17916,28 @@ webpackJsonp([3,17],[
 	        align = play.alignAuto,
 	        history = play.history;
 
-	    var helper, el, state, oldCood, parent, newEl;
+	    var helper, el, state, oldCoord, newCoord, parent, newEl;
 
 	    var width;
 	    var height;
 	    var point;
 	    var editableProps = {};
 	    var isStatic;
+	    var target;
 
 	    var start = function start(startX, startY, target) {
 
 	        target = target.closest("[data-tagname]");
 	        var tagName = target.attr("data-tagname");
 	        if (!tagName) return;
+
+	        if (tagName == "p-nav-page" || tagName == "p-logo") {
+	            if ($(tagName, play.iframeDoc).length) {
+	                alert("不能重复添加");
+	                return;
+	            }
+	        }
+
 	        var url = target.attr("data-url");
 	        var is = target.attr("data-is");
 
@@ -18104,6 +17958,7 @@ webpackJsonp([3,17],[
 	            isStatic = utils.isStatic(el);
 	            width = $(el).width();
 	            height = $(el).height();
+	            oldCoord = position.cood(el);
 	            newEl.css("margin", "0px");
 	            newEl.css("pointer-events", "none");
 	            newEl.css("position", "fixed");
@@ -18121,10 +17976,12 @@ webpackJsonp([3,17],[
 
 	        // oldCood = position.toCoord(endX - 20, endY - 1, endX + 1, endY + 1);
 
-	        oldCood = position.toCoord(endX - width / 2, endY - height / 2, endX + width / 2, endY + height / 2);
-	        newEl.css("top", oldCood.top + "px");
-	        newEl.css("left", oldCood.left + "px");
-	        play.select.move(oldCood);
+	        newCoord = position.toCoord(endX - width / 2, endY - height / 2, endX + width / 2, endY + height / 2);
+	        newCoord.fontSize = oldCoord.fontSize;
+	        newEl.css("top", newCoord.top + "px");
+	        newEl.css("left", newCoord.left + "px");
+	        play.select.move(newCoord);
+	        var mousePosition = { left: endX, top: endY };
 
 	        if (editableProps.parentContainer) {
 	            parent = $(editableProps.parentContainer, play.iframeDoc);
@@ -18138,10 +17995,10 @@ webpackJsonp([3,17],[
 	            var parentVnode = parent.get(0).vnode;
 	            select.selectParentEL(parent);
 	            newEl.css("opacity", 1);
-	            point = grid.getInsertPoint(oldCood, parent, newEl, { left: endX, top: endY }, isStatic);
+	            point = grid.getInsertPoint(newCoord, parent, newEl, mousePosition, isStatic);
 
 	            //在手机状态下，根元素下的p-grid,是不可以当parent的
-	            if (parent.is("p-grid") && parent.parent().parent().is("p-page")) {
+	            if (play.isGridToColumn(point)) {
 
 	                parent = null;
 	                point = null;
@@ -18152,7 +18009,7 @@ webpackJsonp([3,17],[
 	                return;
 	            }
 
-	            if (!grid.isAvailablePoint(point)) {
+	            if (false) {
 
 	                parent = null;
 	                point = null;
@@ -18165,6 +18022,9 @@ webpackJsonp([3,17],[
 	                play.select.selectedEL.css("opacity", 1);
 	                point = grid.getAvailablePoint(point);
 	                if (point.availableCoord) {
+
+	                    position.scaleSize(newEl, point.coord, mousePosition, point.availableCoord);
+
 	                    point.coord = point.availableCoord;
 	                    grid.showPositionHelper(point.coord);
 	                    point = grid.updatePoint(point, point.coord);
@@ -18382,7 +18242,7 @@ webpackJsonp([3,17],[
 	})();
 
 /***/ },
-/* 221 */
+/* 224 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -18494,7 +18354,7 @@ webpackJsonp([3,17],[
 	})();
 
 /***/ },
-/* 222 */
+/* 225 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -18565,10 +18425,12 @@ webpackJsonp([3,17],[
 	})();
 
 /***/ },
-/* 223 */
+/* 226 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
+
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
 	//不影响其它元素位置的resize
 	(function () {
@@ -18585,7 +18447,7 @@ webpackJsonp([3,17],[
 	        history = play.history;
 
 	    //resize
-
+	    var dir;
 
 	    var top, newCoords, sx, ex, sy, ey, target, resizeable, oCoord, helper, parent;
 
@@ -18602,18 +18464,34 @@ webpackJsonp([3,17],[
 	    var placeHolderDiv;
 	    var isStatic;
 	    var targetVnode;
+	    var editableProps;
+	    var point;
 
 	    var startDrag = function startDrag(startX, startY, starget) {
+
 	        resizeable = select.getCurrentElEditableProp("resizeable");
 	        if (!resizeable) return;
 	        status = "resize-free";
 	        target = select.selectedEL;
 	        targetVnode = target.get(0).vnode;
 
-	        var parentVnode = play.getVnodeParentByEl(select.selectedEL.get(0));
-	        parent = $(parentVnode.nativeNode);
+	        editableProps = select.getCurrentElEditableProps();
+
 	        containCood = position.cood(resizeable.containment || parent);
 	        oldPoint = grid.getCurrentInsertPoint(target);
+
+	        parent = oldPoint.parent;
+
+	        //phone下不移动位置,p-grid下不能移动位置
+	        if (play.isGridToColumn(oldPoint)) {
+	            if ((typeof resizeable === "undefined" ? "undefined" : _typeof(resizeable)) == "object") {
+	                resizeable.noTreeChange = true;
+	            } else {
+	                resizeable = {
+	                    noTreeChange: true
+	                };
+	            }
+	        }
 
 	        oCoord = oldPoint.coord;
 
@@ -18623,6 +18501,7 @@ webpackJsonp([3,17],[
 	        ex = oCoord.right;
 	        ey = oCoord.bottom;
 	        // position.recordPosition(target);
+	        isStatic = utils.isStatic(target);
 
 	        rightContainment = null;
 	        if (parent.is("p-grid")) {
@@ -18675,20 +18554,19 @@ webpackJsonp([3,17],[
 	    var ondrag = function ondrag(startX, startY, endX, endY, starget) {
 	        if (!status) return;
 
-	        var dir;
 	        var sp = oldPoint.spaceCoord;
 	        if ($(starget).hasClass("s-top") && resizeable.y !== false && resizeable.top !== false) {
 	            sy = endY;
-	            if (sy > ey) sy = ey;
-	            sy = sy < sp.top ? sp.top : sy;
+	            // if (sy > ey)sy = ey;
+	            // sy = sy < sp.top ? sp.top : sy;
 
 	            dir = "top";
 	        }
 
 	        if ($(starget).hasClass("s-left")) {
 	            sx = endX;
-	            if (sx > ex) sx = ex;
-	            sx = sx < sp.left ? sp.left : sx;
+	            // if (sx > ex)sx = ex;
+	            // sx= sx < sp.left ? sp.left : sx;
 	            if ($(target).attr("data-align-x") == "center" || $(target).is("p-container")) {
 	                var dis = oCoord.left - sx;
 	                ex = oCoord.right + dis;
@@ -18699,8 +18577,8 @@ webpackJsonp([3,17],[
 
 	        if ($(starget).hasClass("s-right")) {
 	            ex = endX;
-	            if (ex < sx) ex = sx;
-	            ex = ex > sp.right ? sp.right : ex;
+	            // if (ex < sx)ex = sx;
+	            // ex= ex > sp.right ? sp.right : ex;
 
 	            if ($(target).attr("data-align-x") == "center" || $(target).is("p-container")) {
 	                var dis = ex - oCoord.right;
@@ -18711,7 +18589,7 @@ webpackJsonp([3,17],[
 
 	        if ($(starget).hasClass("s-bottom")) {
 	            ey = endY;
-	            if (ey < sy) ey = sy;
+	            // if (ey < sy)ey = sy;
 	            dir = "bottom";
 	            if (!resizeable.isRelativeMove) {
 	                ey = ey > sp.bottom ? sp.bottom : ey;
@@ -18719,44 +18597,14 @@ webpackJsonp([3,17],[
 	        }
 
 	        newCoords = position.toCoord(sx, sy, ex, ey);
-	        newCoords.fontSize = oldPoint.coord.fontSize;
 
-	        oldPoint = grid.updatePoint(oldPoint, newCoords);
+	        newCoords.fontSize = oCoord.fontSize;
+	        var center = {
+	            x: newCoords.left + newCoords.width / 2,
+	            y: newCoords.top + newCoords.height / 2
+	        };
 
-	        if (play.isSnap && !resizeable.isRelativeMove) {
-	            var coord = play.snap.run(oldPoint, false, dir);
-	            if (coord) {
-	                newCoords = coord;
-	                oldPoint = grid.updatePoint(oldPoint, newCoords);
-	            } else {
-	                play.snap.hide();
-	            }
-	        }
-
-	        //高度自适应
-	        if (!resizeable.isRelativeMove) {
-	            if ($(starget).hasClass("s-left") || $(starget).hasClass("s-right")) {
-	                newCoords.height = select.selectedEL.outerHeight();
-	            }
-	        }
-
-	        //约束比例
-	        if (resizeable.constrain) {
-	            if (oCoord.width !== newCoords.width) {
-	                var height = newCoords.width * (oCoord.height / oCoord.width);
-	                newCoords.height = height;
-	            } else if (oCoord.height !== newCoords.height) {
-	                var width = newCoords.height * (oCoord.width / oCoord.height);
-	                newCoords.width = width;
-	            }
-	        }
-
-	        //高度自动适应的情况
-	        /*
-	          */
-	        //position.setPositionByPXInStyle(target,newCoords,oldPoint)
-
-
+	        play.select.resize(newCoords);
 	        target.css({
 	            top: newCoords.top + "px",
 	            left: newCoords.left + "px",
@@ -18764,7 +18612,99 @@ webpackJsonp([3,17],[
 	            height: newCoords.height + "px"
 	        });
 
-	        play.select.resize(newCoords);
+	        if (!resizeable.noTreeChange && play.isVisibleVnode(targetVnode)) {
+	            //先隐藏覆盖层，不然IE8下不支持
+	            //正好在覆盖层的边缘，所以没有问题?
+	            if (editableProps.parentContainer) {
+	                parent = $(editableProps.parentContainer, play.iframeDoc);
+	            } else {
+	                parent = position.getFullInParentNearby({ left: center.x, top: center.y });
+	            }
+
+	            if (parent && parent.length) {
+	                point = grid.getInsertPoint(newCoords, parent, target, { left: center.x, top: center.y }, isStatic);
+	            } else {
+	                point = grid.updatePoint(oldPoint, newCoords);
+	            }
+	        } else {
+	            point = grid.updatePoint(oldPoint, newCoords);
+	        }
+
+	        if (point) {
+	            point.dir = dir;
+	            point.isResize = true;
+	            select.selectParentEL(parent);
+	            point.childrenCoord = oldPoint.childrenCoord;
+	            //得到插入点
+	            //point = grid.getInsertPoint(newCoords, parent, select.selectedEL)
+
+	            if (false) {
+
+	                parent = null;
+	                point = null;
+	                target.css("opacity", 0.5);
+	                select.hideGridBar();
+	                grid.hidePositionHelper();
+	                play.snap.hide();
+	                return;
+	            } else {
+	                play.select.selectedEL.css("opacity", 1);
+	                target.css({
+	                    top: point.coord.top + "px",
+	                    left: point.coord.left + "px",
+	                    width: point.coord.width + "px",
+	                    height: point.coord.height + "px"
+	                });
+
+	                point = grid.getAvailablePoint(point, !isStatic, dir);
+
+	                if (point.availableCoord) {
+
+	                    // position.scaleSize(target,  point.coord, mousePosition, point.availableCoord);
+	                    point.coord = point.availableCoord;
+	                    grid.showPositionHelper(point.coord);
+	                    point = grid.updatePoint(point, point.coord);
+	                    // play.select.selectedEL.css("opacity", 0.5)
+	                    target.css({
+	                        top: point.coord.top + "px",
+	                        left: point.coord.left + "px",
+	                        width: point.coord.width + "px",
+	                        height: point.coord.height + "px"
+	                    });
+
+	                    play.select.resize(point.coord);
+	                } else {
+
+	                    play.select.selectedEL.css("opacity", 1);
+	                    grid.hidePositionHelper();
+	                    if (play.isSnap) {
+	                        var coord = play.snap.run(point, true);
+	                        if (coord) {
+	                            point = grid.updatePoint(point, coord);
+	                        } else {
+	                            point = grid.updatePoint(point, point.coord);
+	                            play.snap.hide();
+	                        }
+	                        target.css({
+	                            top: point.coord.top + "px",
+	                            left: point.coord.left + "px",
+	                            width: point.coord.width + "px",
+	                            height: point.coord.height + "px"
+	                        });
+
+	                        play.select.resize(point.coord);
+	                    }
+	                }
+
+	                // select.showGridBar(point)
+	            }
+	        } else {
+	            parent = null;
+	            point = null;
+	            select.hideGridBar();
+	            grid.hidePositionHelper();
+	            select.unSelectParentEL();
+	        }
 
 	        $(document).trigger("doResizing", [target, newCoords, dir]);
 	    };
@@ -18779,7 +18719,6 @@ webpackJsonp([3,17],[
 	        utils.removeCSS(target);
 	        target.removeClass("p-absolute");
 
-	        helper.hide();
 	        align.stop();
 
 	        select.cancelHoverEL();
@@ -18788,18 +18727,21 @@ webpackJsonp([3,17],[
 	        play.select.selectMask.removeClass("select-over");
 	        if (placeHolderDiv) placeHolderDiv.remove();
 
-	        if ($(starget).hasClass("s-top") || $(starget).hasClass("s-bottom")) {
+	        if (point) {
+	            if ($(starget).hasClass("s-top") || $(starget).hasClass("s-bottom")) {
 
-	            delete newCoords.left;
-	            delete newCoords.width;
+	                point.ignore.left = 1;
+	                point.ignore.width = 1;
+	            }
+
+	            if ($(starget).hasClass("s-left") || $(starget).hasClass("s-right")) {
+
+	                point.ignore.top = 1;
+	                point.ignore.height = 1;
+	            }
 	        }
 
-	        if ($(starget).hasClass("s-left") || $(starget).hasClass("s-right")) {
-	            delete newCoords.top;
-	            delete newCoords.height;
-	        }
-
-	        if (true) {
+	        if (false) {
 	            position.setPositionByPercent(target, newCoords, oldPoint);
 
 	            if (newCoords.width) {
@@ -18814,16 +18756,18 @@ webpackJsonp([3,17],[
 	            select.reflow();
 	        } else {
 
-	            if (oldPoint) {
-	                grid.insertMoveEl($(target), oldPoint, oldPoint);
+	            if (point) {
+	                point.dir = dir;
+	                point.isResize = true;
+	                grid.resize($(target), point, oldPoint);
 	                // dom.moveEl($(target), newCoords, parent);
 	                select.reflow();
-	                $(document).trigger("resizeEl", [target, newCoords, oldPoint]);
 	            } else {
-	                grid.insertMoveEl($(target), oldPoint, oldPoint);
+	                oldPoint.dir = dir;
+	                grid.resize($(target), oldPoint, oldPoint);
 	                position.revertPosition();
 	                select.reflow();
-	                $(document).trigger("resizeEl", [target, newCoords, oldPoint]);
+	                $(document).trigger("resizeEl", [target, newCoords, oldPoint, dir]);
 	            }
 	        }
 
@@ -18838,9 +18782,6 @@ webpackJsonp([3,17],[
 	    };
 
 	    $(document).on("iframeload", function () {
-
-	        helper = drag.createHelper();
-	        helper.css("cursor", "resize");
 
 	        drag.ondrag($("select-mask .side"), startDrag, ondrag, endDrag, play.iframeDoc);
 	    });
@@ -19079,7 +19020,7 @@ webpackJsonp([3,17],[
 	})();
 
 /***/ },
-/* 224 */
+/* 227 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -19222,8 +19163,8 @@ webpackJsonp([3,17],[
 	})();
 
 /***/ },
-/* 225 */
-/***/ function(module, exports) {
+/* 228 */
+/***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
@@ -19263,7 +19204,6 @@ webpackJsonp([3,17],[
 	        if (play.islock(select.selectedEL)) return false;
 
 	        moveable = select.getCurrentElEditableProp("moveable");
-
 	        editableProps = select.getCurrentElEditableProps();
 	        if (!moveable) return;
 
@@ -19278,7 +19218,7 @@ webpackJsonp([3,17],[
 	        oldPoint = grid.getCurrentInsertPoint(target);
 	        oCoord = oldPoint.coord;
 	        //phone下不移动位置,p-grid下不能移动位置
-	        if (play.media == play.mediaQuery.phone && oldParent.is("p-grid")) {
+	        if (play.isGridToColumn(oldPoint)) {
 	            moveable.noTreeChange = true;
 	        }
 
@@ -19354,6 +19294,7 @@ webpackJsonp([3,17],[
 
 	    var ondrag = function ondrag(startX, startY, endX, endY, starget) {
 	        if (play.cmd != "move") return;
+
 	        newCoords = {
 	            left: oCoord.left + (endX - startX),
 	            top: oCoord.top + (endY - startY),
@@ -19361,16 +19302,20 @@ webpackJsonp([3,17],[
 	            height: oCoord.height,
 	            fontSize: oCoord.fontSize
 	        };
+
 	        newCoords.right = newCoords.left + newCoords.width;
 	        newCoords.bottom = newCoords.top + newCoords.height;
 	        //修复chrome残影
 	        // target.show();//影响性能
 	        target.css({
 	            top: newCoords.top + "px",
-	            left: newCoords.left + "px"
+	            left: newCoords.left + "px",
+	            width: newCoords.width + "px",
+	            height: newCoords.height + "px"
 	        });
 
-	        play.select.move(newCoords);
+	        play.select.resize(newCoords);
+	        var mousePosition = { left: endX, top: endY };
 
 	        if (!moveable.noTreeChange && play.isVisibleVnode(targetVnode)) {
 	            //先隐藏覆盖层，不然IE8下不支持
@@ -19378,28 +19323,27 @@ webpackJsonp([3,17],[
 	            if (editableProps.parentContainer) {
 	                parent = $(editableProps.parentContainer, play.iframeDoc);
 	            } else {
-	                parent = position.getFullInParentNearby({ left: endX, top: endY });
+	                parent = position.getFullInParentNearby(mousePosition);
 	            }
-
 	            if (parent && parent.length) {
-
 	                point = grid.getInsertPoint(newCoords, parent, target, { left: endX, top: endY }, isStatic);
 	            } else {
 	                parent = oldParent;
-	                point = grid.updatePoint(oldPoint, newCoords);
+	                oldPoint = point = grid.updatePoint(oldPoint, newCoords);
 	            }
 	        } else {
 
 	            parent = oldParent;
-	            point = grid.updatePoint(oldPoint, newCoords);
+
+	            oldPoint = point = grid.updatePoint(oldPoint, newCoords);
 	        }
 
 	        if (parent && parent.length) {
 	            select.selectParentEL(parent);
-
 	            //得到插入点
 	            //point = grid.getInsertPoint(newCoords, parent, select.selectedEL)
-	            if (!grid.isAvailablePoint(point, !isStatic)) {
+	            if (false) {
+
 	                parent = null;
 	                point = null;
 	                target.css("opacity", 0.5);
@@ -19409,13 +19353,26 @@ webpackJsonp([3,17],[
 	                return;
 	            } else {
 	                play.select.selectedEL.css("opacity", 1);
-	                point = grid.getAvailablePoint(point, !isStatic);
+
+	                point = grid.getAvailablePoint(point, !isStatic, false);
 
 	                if (point.availableCoord) {
+
+	                    position.scaleSize(target, point.coord, mousePosition, point.availableCoord);
 	                    point.coord = point.availableCoord;
+
 	                    grid.showPositionHelper(point.coord);
 	                    point = grid.updatePoint(point, point.coord);
-	                    // play.select.selectedEL.css("opacity", 0.5)
+	                    // //  play.select.selectedEL.css("opacity", 0.5)
+	                    //  target.css({
+	                    //      top: point.coord.top + "px",
+	                    //      left: point.coord.left + "px",
+	                    //      width:point.coord.width + "px",
+	                    //      height:point.coord.height + "px"
+	                    //  });
+	                    //  //
+	                    //  //
+	                    //  play.select.resize(point.coord);
 	                } else {
 	                    target.css("opacity", 1);
 	                    grid.hidePositionHelper();
@@ -19448,6 +19405,8 @@ webpackJsonp([3,17],[
 	            grid.hidePositionHelper();
 	            select.unSelectParentEL();
 	        }
+
+	        $(document).trigger("doMoving", [target, newCoords]);
 	    };
 
 	    var endDrag = function endDrag(startX, startY, endX, endY, starget, endTarget) {
@@ -19474,10 +19433,12 @@ webpackJsonp([3,17],[
 
 	            grid.insertMoveEl($(target), point, oldPoint);
 	            // dom.moveEl($(target), newCoords, parent);
+
 	            select.selectEL(target);
 	            select.reflow();
 	        } else {
 	            grid.insertMoveEl($(target), oldPoint, oldPoint);
+	            $(document).trigger("moveEl", [target, point.coord, oldPoint.parent]);
 	            position.revertPosition();
 	            select.selectEL(target);
 	            select.reflow();
@@ -19492,6 +19453,186 @@ webpackJsonp([3,17],[
 	        drag.ondrag(play.iframeDoc, startDrag, ondrag, endDrag, play.iframeDoc);
 	        var selectMask = $("select-mask");
 	        drag.ondrag(selectMask, startDrag, ondrag, endDrag, play.iframeDoc);
+	    });
+	})();
+
+	//影响下方位置的移动
+
+	(function () {
+
+	    var utils = play.utils,
+	        position = play.position,
+	        grid = play.grid,
+	        select = play.select,
+	        dom = play.dom,
+	        drag = play.drag,
+	        align = play.alignAuto,
+	        history = play.history;
+	    //move
+
+
+	    var left, helper, target, parent, point, moveable, oCoord, newCoords, target;
+
+	    var oldParent, oldPoint;
+
+	    var centerX = function centerX(x) {
+	        return x - target.width() / 2;
+	    };
+	    var centerY = function centerY(y) {
+	        return y - target.height() / 2;
+	    };
+
+	    var isStatic = false;
+
+	    var rightContainment;
+
+	    var editableProps = {};
+
+	    var startDrag = function startDrag(startX, startY, starget) {
+
+	        if (play.cmd != "select" || starget.closest("[contenteditable='true']").length !== 0) return;
+	        if (!starget.closest(select.selectedEL).length && !starget.closest("select-mask").length) return;
+	        if (play.islock(select.selectedEL)) return false;
+
+	        moveable = select.getCurrentElEditableProp("moveable");
+
+	        editableProps = select.getCurrentElEditableProps();
+	        if (!moveable) return;
+
+	        target = moveable && moveable.target || select.selectedEL;
+	        oCoord = position.cood(target);
+	        oldParent = select.selectedEL.parent();
+	        oldPoint = grid.getCurrentInsertPoint(target);
+
+	        if (oldPoint.type == "row") return;
+
+	        play.cmd = "move";
+
+	        target.css({
+	            width: oCoord.width + "px",
+	            height: oCoord.height + "px"
+
+	        });
+
+	        $("body", play.iframeDoc).addClass("moving");
+	    };
+
+	    //得到约束的容器
+	    var getContainerParent = function getContainerParent(el) {
+	        var parent = el.parent();
+	        if (parent.is(".p-container") || parent.is(".p-container-fluid")) {
+	            parent = getContainerParent(parent);
+	        } else if (parent.is("p-grid") && play.mediaName == "phone" && parent.parent().parent().is("p-page")) {
+	            parent = getContainerParent(parent);
+	        }
+	        return parent;
+	    };
+
+	    var ondrag = function ondrag(startX, startY, endX, endY, starget) {
+	        if (play.cmd != "move") return;
+
+	        newCoords = {
+	            left: oCoord.left,
+	            top: oCoord.top + (endY - startY),
+	            width: oCoord.width,
+	            height: oCoord.height
+	        };
+
+	        newCoords.right = newCoords.left + newCoords.width;
+	        newCoords.bottom = newCoords.top + newCoords.height;
+
+	        if (true) {
+
+	            var containCood = position.cood(getContainerParent(target));
+
+	            if (newCoords.left < containCood.left) {
+	                newCoords.left = containCood.left;
+	            }
+	            if (newCoords.right > containCood.right) {
+	                newCoords.left = containCood.right - newCoords.width;
+	            }
+	            if (newCoords.top < containCood.top) {
+	                newCoords.top = containCood.top;
+	            }
+	            if (newCoords.bottom > containCood.bottom) {
+	                newCoords.top = containCood.bottom - newCoords.height;
+	            }
+	        }
+	        if (rightContainment) {
+	            newCoords.left = newCoords.left > rightContainment ? rightContainment : newCoords.left;
+	        }
+
+	        parent = target.parent();
+
+	        var sp = oldPoint.startPosition;
+	        newCoords.top = newCoords.top < sp.top ? sp.top : newCoords.top;
+	        newCoords.left = newCoords.left < sp.left ? sp.left : newCoords.left;
+
+	        oldPoint = grid.updatePoint(oldPoint, newCoords);
+
+	        // var coord = play.snap.run(oldPoint, true)
+	        // if (coord) {
+	        //    newCoords = coord;
+	        //     oldPoint = grid.updatePoint(oldPoint, newCoords)
+	        // }
+	        // else {
+	        //     play.snap.hide();
+	        // }
+
+
+	        //总长度不能大于grid-row 的长度；
+
+	        var cssValues = position.coordsToCSS(newCoords, oldPoint.startPosition);
+
+	        target.css({
+	            "margin-top": cssValues.top + "px",
+	            "margin-left": cssValues.left + "px"
+	        });
+
+	        select.reflow();
+
+	        // maybe 同步更新父元素的高度
+
+	    };
+
+	    var endDrag = function endDrag(startX, startY, endX, endY, starget, endTarget) {
+
+	        if (play.cmd != "move") return;
+
+	        align.stop();
+	        select.move();
+	        select.cancelHoverEL();
+	        select.unSelectParentEL();
+
+	        select.hideGridBar();
+	        grid.hidePositionHelper();
+
+	        play.select.selectMask.removeClass("select-over");
+
+	        utils.removeCSS(target);
+	        target.removeClass("p-absolute");
+
+	        var cssValues = position.coordsToCSS(newCoords, oldPoint.startPosition);
+
+	        cssValues.top = cssValues.top < 0 ? 0 : cssValues.top;
+	        cssValues.left = cssValues.left < 0 ? 0 : cssValues.left;
+
+	        dom._css(target, "marginTop", play.pxToRem(cssValues.top) + "rem");
+	        // dom._css(target, "marginLeft", play.pxToRem(cssValues.left) + "rem")
+
+	        select.reflow();
+
+	        play.cmd = "select";
+
+	        $("body", play.iframeDoc).removeClass("moving");
+	    };
+
+	    $(document).on("iframeload", function () {
+
+	        //helper.css("cursor", "move");
+
+	        var moveHandle = $("select-mask .move-down-handle");
+	        drag.ondrag(moveHandle, startDrag, ondrag, endDrag, play.iframeDoc);
 	    });
 	})();
 
@@ -19524,13 +19665,21 @@ webpackJsonp([3,17],[
 
 	    var rightContainment;
 
+	    var editableProps = {};
+
 	    var startDrag = function startDrag(startX, startY, starget) {
-	        if (play.cmd != "select") return;
+
+	        if (play.cmd != "select" || starget.closest("[contenteditable='true']").length !== 0) return;
+	        if (!starget.closest(select.selectedEL).length && !starget.closest("select-mask").length) return;
 	        if (play.islock(select.selectedEL)) return false;
-	        moveable = select.selectedEL.prop("moveable");
+
+	        moveable = select.getCurrentElEditableProp("moveable");
+
+	        editableProps = select.getCurrentElEditableProps();
 	        if (!moveable) return;
 
 	        play.cmd = "move";
+
 	        target = moveable && moveable.target || select.selectedEL;
 	        oCoord = position.cood(target);
 	        oldParent = select.selectedEL.parent();
@@ -19554,8 +19703,18 @@ webpackJsonp([3,17],[
 
 	        $("body", play.iframeDoc).addClass("moving");
 	    };
-	    var ondrag = function ondrag(startX, startY, endX, endY, starget) {
 
+	    var getContainerParent = function getContainerParent(el) {
+	        var parent = el.parent();
+	        if (parent.is(".p-container") || parent.is(".p-container-fluid")) {
+
+	            parent = getContainerParent(parent);
+	        } else if (parent.is("p-grid") && !(play.mediaName == "phone" && parent.parent().parent().is("p-page"))) {
+	            parent = getContainerParent(parent);
+	        }
+	        return parent;
+	    };
+	    var ondrag = function ondrag(startX, startY, endX, endY, starget) {
 	        if (play.cmd != "move") return;
 
 	        newCoords = {
@@ -19570,7 +19729,7 @@ webpackJsonp([3,17],[
 
 	        if (true) {
 
-	            var containCood = position.cood(target.parent());
+	            var containCood = position.cood(getContainerParent(target));
 
 	            if (newCoords.left < containCood.left) {
 	                newCoords.left = containCood.left;
@@ -19628,7 +19787,7 @@ webpackJsonp([3,17],[
 	        select.move();
 	        select.cancelHoverEL();
 	        select.unSelectParentEL();
-	        helper.hide();
+
 	        select.hideGridBar();
 	        grid.hidePositionHelper();
 
@@ -19653,7 +19812,7 @@ webpackJsonp([3,17],[
 	    };
 
 	    $(document).on("iframeload", function () {
-	        helper = drag.createHelper();
+
 	        //helper.css("cursor", "move");
 
 	        var moveHandle = $("select-mask .move-handle");
@@ -19806,7 +19965,7 @@ webpackJsonp([3,17],[
 	})();
 
 /***/ },
-/* 226 */
+/* 229 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -19896,7 +20055,7 @@ webpackJsonp([3,17],[
 	})();
 
 /***/ },
-/* 227 */
+/* 230 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -19962,7 +20121,7 @@ webpackJsonp([3,17],[
 	})();
 
 /***/ },
-/* 228 */
+/* 231 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -19985,89 +20144,7 @@ webpackJsonp([3,17],[
 	})();
 
 /***/ },
-/* 229 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	(function () {
-
-	    var html = '' + '<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id="select-img" > ' + '<div class="modal-dialog">              ' + '   <div class="modal-content">             ' + '       <div class="modal-header">             ' + '           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> ' + '           <h4 class="modal-title">我的图片</h4>  ' + '       </div>                                           ' + '       <div class="modal-body">                            ' + '<div  class="row" style="overflow: hidden"><div class="col-lg-2" ><img class="img-thumbnail" src="http://img.tuku.cn/file_big/201502/ad45f0968eba4b92ba549cc7abf0e70a.jpg"></div></div>' + '       </div>                                                    ' + '<div><input id="fileupload" type="file" name="files[]" data-url="/json/piclist" multiple ></div>' + '       <div class="modal-footer"> ' + '<button type="button" class="btn btn-primary upload">上传</button> ' + '<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> ' + '                     ' + '       </div>                                                                ' + '   </div><!-- /.modal-content -->                                               ' + '</div><!-- /.modal-dialog -->                                                      ' + '</div>' + '';
-
-	    var h = $(html);
-
-	    Sophie.ready(function () {
-
-	        h.appendTo($("body"));
-	        $("#select-img").modal({
-	            show: false,
-	            keyboard: true
-
-	        });
-	        //@todo
-	        if (!$('#fileupload').fileupload) {
-	            return;
-	        }
-	        $('#fileupload').fileupload({
-	            dataType: 'json',
-	            done: function done(e, data) {
-	                $.each(data.result.files, function (index, file) {
-	                    addImg("/uploads/" + file.name);
-	                });
-	            }
-	        });
-	    });
-
-	    var addImg = function addImg(src) {
-	        $("#select-img").find(".row").append('<div class="col-lg-2" ><img class="img-thumbnail" src="' + src + '"></div>');
-	    };
-
-	    var init = function init() {
-
-	        // $.getJSON(play.uploadUrl, function (data) {
-	        //
-	        //     if (data) {
-	        //         for (var p in data) {
-	        //
-	        //             addImg("/uploads/" + p);
-	        //         }
-	        //     }
-	        // })
-
-
-	    };
-	    var initState = false;
-
-	    var show = function show() {
-	        $("#select-img").modal("show");
-	        if (!initState) {
-	            init();
-	            initState = true;
-	        }
-	    };
-
-	    $(h).on("click", "img", function (e) {
-	        $("#select-img").modal("hide");
-
-	        play.selectImg.onSelect && play.selectImg.onSelect(e.target.src);
-
-	        $(e.target).trigger("selectImg", e.target.src);
-	    });
-	    $("#select-img").on("click", ".upload", function (e) {
-
-	        play.utils.upload(function (result) {
-
-	            addImg(result[0].url);
-	        });
-	    });
-
-	    play.selectImg = {
-	        show: show
-	    };
-	})();
-
-/***/ },
-/* 230 */
+/* 232 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -20105,7 +20182,7 @@ webpackJsonp([3,17],[
 	})();
 
 /***/ },
-/* 231 */
+/* 233 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -20202,7 +20279,7 @@ webpackJsonp([3,17],[
 	})();
 
 /***/ },
-/* 232 */
+/* 234 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -20216,7 +20293,7 @@ webpackJsonp([3,17],[
 	})();
 
 /***/ },
-/* 233 */
+/* 235 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -20228,7 +20305,7 @@ webpackJsonp([3,17],[
 	        position = play.position,
 	        dom = play.dom;
 
-	    var Slider = __webpack_require__(203);
+	    var Slider = __webpack_require__(206);
 
 	    var CSSSyn = {
 	        contexts: [],
@@ -20638,11 +20715,15 @@ webpackJsonp([3,17],[
 
 	                var target = $(ev.target);
 
-	                var el = play.select.selectedEL;
-	                if (!el) return;
-	                var dir = target.attr("value");
+	                var dir = target.attr("data-dir");
+	                var parent = target.parents(".border-dir");
+	                var allDir = parent.children();
+	                allDir.removeClass("active");
 	                if (dir) {
 	                    selectDir(dir);
+	                    target.addClass("active");
+	                    var el = play.select.selectedEL;
+	                    if (!el) return;
 	                    showData(el, dir);
 	                }
 	            });
@@ -20780,7 +20861,7 @@ webpackJsonp([3,17],[
 	})();
 
 /***/ },
-/* 234 */
+/* 236 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20791,7 +20872,7 @@ webpackJsonp([3,17],[
 	(function ($) {
 	    'use strict';
 
-	    var Rangy = __webpack_require__(207);
+	    var Rangy = __webpack_require__(210);
 	    var readFileIntoDataUrl = function readFileIntoDataUrl(fileInfo) {
 	        var loader = $.Deferred(),
 	            fReader = new FileReader();
@@ -21023,18 +21104,158 @@ webpackJsonp([3,17],[
 	})(window.jQuery);
 
 /***/ },
-/* 235 */
+/* 237 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	var data = [];
+	play.LayoutUpdate = {
+	  add: function add(id, type) {
+
+	    for (var i = 0; i < data.length; i++) {
+	      if (data[i].id == id && data[i].type == type) {
+	        data.splice(i, 1);
+	        break;
+	      }
+	    }
+	    data.push({ id: id, type: type });
+	  },
+	  remove: function remove() {},
+	  walk: function walk(rootVnode, callback) {
+
+	    if (rootVnode && rootVnode.type == "thunk") {
+	      callback && callback(rootVnode);
+	    }
+
+	    var children = rootVnode.children || rootVnode.props.children;
+
+	    if (children && children.length) {
+	      for (var i = 0; i < children.length; i++) {
+	        this.walk(children[i], callback);
+	      }
+	    }
+	  },
+	  render: function render() {
+	    if (play.mediaName == "pc" || play.mediaName == "all") {
+	      return;
+	    }
+	    for (var i = 0; i < data.length; i++) {
+	      var id = data[i].id;
+	      var type = data[i].type;
+	      var el = $("#" + id, play.iframeDoc);
+	      if (el.length) {
+	        var vnode = el.get(0).vnode;
+	        if (vnode) {
+	          this._render(vnode, type);
+	        }
+	      }
+	    }
+	    data = [];
+	  },
+	  scale: function scale(el, width) {
+	    var oldWidth = el.width();
+	    var currentFontSize = parseInt(el.css("fontSize"));
+
+	    var fontSize = width / oldWidth * currentFontSize;
+	    el.css("fontSize", fontSize + "px");
+	  },
+	  _renderGrid: function _renderGrid(currentPoint) {
+	    var el = currentPoint.el;
+	    if (play.isGridToColumn(currentPoint)) {
+
+	      gridChildrenEl = $(gridChildrenEl);
+	      var width = gridChildrenEl.width();
+
+	      if (winWidth - width < 1) {
+	        return;
+	      } else {
+
+	        self.scale(gridChildrenEl, winWidth - 20);
+	      }
+	    } else {
+	      var width = el.width();
+
+	      if (winWidth - width < 1) {
+	        return;
+	      } else {
+
+	        self.scale(el, winWidth - 20);
+	      }
+	    }
+	  },
+	  _render: function _render(node, type) {
+
+	    play.isLayoutUpdate = true;
+	    var mediaName = play.mediaName;
+
+	    if (node.props && node.props._update) {
+	      if (node.props._update && node.props._update[mediaName] && node.props._update[mediaName][type]) {
+	        var el = $(node.nativeNode);
+	        var coord = node.props._update[mediaName][type];
+	        var point = play.grid.getCurrentInsertPoint(el);
+	        var relativeSpaceCoord = {
+	          left: 0,
+	          top: 0,
+	          width: point.spaceCoord.width,
+	          height: point.parentCoord.height || point.spaceCoord.height,
+	          right: point.spaceCoord.width,
+	          bottom: point.parentCoord.height || point.spaceCoord.height,
+	          childrenCoord: point.childrenCoord
+	        };
+	        console.log("----update------");
+	        console.log(coord);
+	        var isResize = type == "resize" ? true : false;
+
+	        var availableCoord = play.grid.computerAvailableCoord(coord, relativeSpaceCoord) || coord;
+
+	        console.log(availableCoord);
+	        play.position.setPositionByPercent(el, availableCoord, { relativeCoord: availableCoord, ignore: {} });
+
+	        // point.coord = availableCoord||coord;
+	        // delete node.props._update[mediaName][type];
+	        // if(type == "resize"){
+	        //   play.grid.resize(el, point, point,true);
+	        // }
+	        // else if(type == "move"){
+	        //   play.grid.move(el, point, point,true);
+	        // }
+	        // debugger
+	        //
+
+	      }
+	    }
+
+	    play.isLayoutUpdate = false;
+	  }
+
+	};
+
+	$(document).on("pageResize", function () {
+	  setTimeout(function () {
+	    play.LayoutUpdate.render();
+	    setTimeout(function () {
+	      $(document).trigger("render");
+	      play.select.reflow();
+	      $(document).trigger("store");
+	    }, 0);
+	  }, 10);
+	});
+
+/***/ },
+/* 238 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var Layout = __webpack_require__(236);
+	var Layout = __webpack_require__(239);
 
-	var ToolPanel = __webpack_require__(237);
-	var QuickBar = __webpack_require__(258);
-	var EditorView = __webpack_require__(259);
-	var PageManagerModal = __webpack_require__(255);
-	var HistoryModal = __webpack_require__(261);
+	var ToolPanel = __webpack_require__(240);
+	var QuickBar = __webpack_require__(262);
+	var EditorView = __webpack_require__(263);
+	var PageManagerModal = __webpack_require__(259);
+	var HistoryModal = __webpack_require__(265);
+	var ImageView = __webpack_require__(266);
 
 	Sophie.createStyleSheet({
 	  'app': {
@@ -21046,14 +21267,15 @@ webpackJsonp([3,17],[
 
 	var App = Sophie.createClass("app", {
 	  render: function render() {
-	    return this.element(
+	    return Sophie.element(
 	      'app',
 	      { 'class': 'app' },
-	      this.element(QuickBar, null),
-	      this.element(ToolPanel, { 'class': 'open' }),
-	      this.element(EditorView, null),
-	      this.element(PageManagerModal, null),
-	      this.element(HistoryModal, null)
+	      Sophie.element(QuickBar, null),
+	      Sophie.element(ToolPanel, { 'class': 'open' }),
+	      Sophie.element(EditorView, null),
+	      Sophie.element(PageManagerModal, null),
+	      Sophie.element(HistoryModal, null),
+	      Sophie.element(ImageView, null)
 	    );
 	  },
 	  componentDidMount: function componentDidMount() {
@@ -21074,13 +21296,13 @@ webpackJsonp([3,17],[
 	module.exports = designer;
 
 /***/ },
-/* 236 */
+/* 239 */
 /***/ function(module, exports) {
 
 	"use strict";
 
 /***/ },
-/* 237 */
+/* 240 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21093,11 +21315,11 @@ webpackJsonp([3,17],[
 	// <link rel="import" href="/editor/colorpicker.html">
 
 
-	var SetStyleView = __webpack_require__(238);
-	var PageManagerView = __webpack_require__(254);
-	var ColorPicker = __webpack_require__(256);
+	var SetStyleView = __webpack_require__(241);
+	var PageManagerView = __webpack_require__(258);
+	var ColorPicker = __webpack_require__(260);
 
-	var WidgetPanel = __webpack_require__(257);
+	var WidgetPanel = __webpack_require__(261);
 
 	var ToolPanel = Sophie.createClass("tool-panel", {
 	    componentDidMount: function componentDidMount() {
@@ -21106,54 +21328,54 @@ webpackJsonp([3,17],[
 	    },
 
 	    render: function render() {
-	        return this.element(
+	        return Sophie.element(
 	            'tool-panel',
 	            { 'class': 'open' },
-	            this.element(
+	            Sophie.element(
 	                'div',
 	                { 'class': 'css-panel' },
-	                this.element(
+	                Sophie.element(
 	                    'div',
 	                    { 'class': 'css-panel-wrap' },
-	                    this.element(
+	                    Sophie.element(
 	                        'div',
 	                        { 'class': 'css-panel-header' },
-	                        this.element(
+	                        Sophie.element(
 	                            'span',
 	                            null,
 	                            '页面'
 	                        )
 	                    ),
-	                    this.element(
+	                    Sophie.element(
 	                        'div',
 	                        { 'class': 'tab-content' },
-	                        this.element(
+	                        Sophie.element(
 	                            'a',
 	                            { 'class': 'css-panel-close' },
-	                            this.element('i', { 'class': 'fa fa-caret-left' })
+	                            Sophie.element('i', { 'class': 'fa fa-caret-left' })
 	                        ),
-	                        this.element(
+	                        Sophie.element(
 	                            'div',
 	                            { 'class': 'tab-pane active', id: 'pages' },
-	                            this.element(PageManagerView, null)
+	                            Sophie.element(PageManagerView, null)
 	                        ),
-	                        this.element(
+	                        Sophie.element(
 	                            'div',
 	                            { 'class': 'tab-pane ', id: 'widget' },
-	                            this.element(WidgetPanel, null)
+	                            Sophie.element(WidgetPanel, null)
 	                        ),
-	                        this.element(
+	                        Sophie.element(
 	                            'div',
 	                            { 'class': 'tab-pane', id: 'profile' },
-	                            this.element(SetStyleView, null)
+	                            Sophie.element(SetStyleView, null)
 	                        ),
-	                        this.element('div', { 'class': 'tab-pane', id: 'messages' }),
-	                        this.element('div', { 'class': 'tab-pane', id: 'color' }),
-	                        this.element('div', { 'class': 'tab-pane', id: 'settings' }),
-	                        this.element(
+	                        Sophie.element('div', { 'class': 'tab-pane', id: 'messages' }),
+	                        Sophie.element('div', { 'class': 'tab-pane', id: 'color' }),
+	                        Sophie.element('div', { 'class': 'tab-pane', id: 'settings' }),
+	                        Sophie.element(
 	                            'div',
 	                            { 'class': 'tab-pane', id: 'colorpicker' },
-	                            this.element(ColorPicker, null)
+	                            Sophie.element(ColorPicker, null)
 	                        )
 	                    )
 	                )
@@ -21326,7 +21548,7 @@ webpackJsonp([3,17],[
 	module.exports = ToolPanel;
 
 /***/ },
-/* 238 */
+/* 241 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21337,23 +21559,24 @@ webpackJsonp([3,17],[
 
 	// <link rel="import" href="../site/compontents/p-container-set.html">
 	// <link rel="import" href="../site/compontents/p-list-set.html">
-	var ListSet = __webpack_require__(239);
-	var LayoutTwoSet = __webpack_require__(240);
+	var ListSet = __webpack_require__(242);
+	var LayoutTwoSet = __webpack_require__(243);
 
 	// <link rel="import" href="./font-set.html">
-	var TextSet = __webpack_require__(241);
+	var TextSet = __webpack_require__(244);
 	// <link rel="import" href="./img-set.html">
-	var ImgSet = __webpack_require__(243);
+	var ImgSet = __webpack_require__(246);
 	// <link rel="import" href="./layout-set.html">
 	//
 	// <link rel="import" href="../site/compontents/p-nav-page-set.html">
 
-	var NavPageSet = __webpack_require__(244);
-	var NavPageLineSet = __webpack_require__(245);
-	var NavPageAbsoluteSet = __webpack_require__(246);
-	var LogoSet = __webpack_require__(247);
+	var NavPageSet = __webpack_require__(247);
+	var NavPageLineSet = __webpack_require__(248);
+	var NavPageAbsoluteSet = __webpack_require__(249);
+	var LogoSet = __webpack_require__(250);
 
-	var GridSet = __webpack_require__(248);
+	var GridSet = __webpack_require__(251);
+	var SlideSet = __webpack_require__(252);
 	//
 	// <link rel="import" href="./p-nav-h-set.html">
 	//
@@ -21366,10 +21589,11 @@ webpackJsonp([3,17],[
 	//
 	// <link rel="import" href="../site/compontents/p-masonry-set.html">
 
-	var AlignPanel = __webpack_require__(249);
+	var AlignPanel = __webpack_require__(253);
 
-	var LayoutSet = __webpack_require__(250);
-	var Slider = __webpack_require__(203);
+	var LayoutSet = __webpack_require__(254);
+
+	var Slider = __webpack_require__(206);
 
 	var targetColorInput;
 
@@ -21565,44 +21789,45 @@ webpackJsonp([3,17],[
 	    },
 
 	    render: function render() {
-	        return this.element(
+	        return Sophie.element(
 	            'panel-css',
 	            null,
-	            this.element(AlignPanel, null),
-	            this.element(
+	            Sophie.element(AlignPanel, null),
+	            Sophie.element(
 	                'div',
 	                { id: 'css-status', 'class': 'btn-group btn-group-justified', role: 'group', 'aria-label': 'Justified button group' },
-	                this.element(
+	                Sophie.element(
 	                    'a',
 	                    { href: '#', 'class': 'btn btn-default active', role: 'button', 'data-css-status': 'default' },
 	                    '默认样式'
 	                ),
-	                this.element(
+	                Sophie.element(
 	                    'a',
 	                    { href: '#', 'class': 'btn btn-default', role: 'button', 'data-css-status': 'hover' },
 	                    '悬停样式'
 	                )
 	            ),
-	            this.element(
+	            Sophie.element(
 	                'div',
 	                { 'class': 'collapse-panel', id: 'set-panel' },
-	                this.element('p-container-set', { style: 'display: none' }),
-	                this.element('p-grid-set', { style: 'display: none' }),
-	                this.element('p-slide-set', { style: 'display: none' }),
-	                this.element('p-nav-page-set', { style: 'display: none' }),
-	                this.element(NavPageAbsoluteSet, null),
-	                this.element(NavPageLineSet, null),
-	                this.element(NavPageSet, { style: 'display: none' }),
-	                this.element('p-tabs-set', { style: 'display: none' }),
-	                this.element(TextSet, { style: 'display: none', 'class': 'font-set' }),
-	                this.element(ImgSet, { style: 'display: none', 'class': 'img-set' }),
-	                this.element('align', { 'class': 'align-set' }),
-	                this.element(LayoutSet, null),
-	                this.element(LayoutTwoSet, null),
-	                this.element(LogoSet, null),
-	                this.element(GridSet, null),
-	                this.element(ListSet, { style: 'display: none' }),
-	                this.element('p-masonry-set', { style: 'display: none' })
+	                Sophie.element('p-container-set', { style: 'display: none' }),
+	                Sophie.element('p-grid-set', { style: 'display: none' }),
+	                Sophie.element('p-slide-set', { style: 'display: none' }),
+	                Sophie.element('p-nav-page-set', { style: 'display: none' }),
+	                Sophie.element(NavPageAbsoluteSet, null),
+	                Sophie.element(NavPageLineSet, null),
+	                Sophie.element(NavPageSet, { style: 'display: none' }),
+	                Sophie.element('p-tabs-set', { style: 'display: none' }),
+	                Sophie.element(TextSet, { style: 'display: none', 'class': 'font-set' }),
+	                Sophie.element(ImgSet, { style: 'display: none', 'class': 'img-set' }),
+	                Sophie.element('align', { 'class': 'align-set' }),
+	                Sophie.element(LayoutSet, null),
+	                Sophie.element(SlideSet, null),
+	                Sophie.element(LayoutTwoSet, null),
+	                Sophie.element(LogoSet, null),
+	                Sophie.element(GridSet, null),
+	                Sophie.element(ListSet, { style: 'display: none' }),
+	                Sophie.element('p-masonry-set', { style: 'display: none' })
 	            )
 	        );
 	    }
@@ -21843,16 +22068,24 @@ webpackJsonp([3,17],[
 	    display: ' block',
 	    borderRadius: ' 2px',
 	    marginTop: ' 5px'
-	}), _defineProperty(_Sophie$createStyleSh, '.border- .border-size', {
+	}), _defineProperty(_Sophie$createStyleSh, '.border .border-dir .border-dir-all.active', {
+
+	    borderColor: "#00c4cc",
+	    backgroundColor: "transparent"
+	}), _defineProperty(_Sophie$createStyleSh, '.border .border-dir .active', {
+
+	    backgroundColor: '#00c4cc'
+
+	}), _defineProperty(_Sophie$createStyleSh, '.border .border-size', {
 	    marginTop: ' 5px'
 
-	}), _defineProperty(_Sophie$createStyleSh, '.border- .border-size input', {
+	}), _defineProperty(_Sophie$createStyleSh, '.border .border-size input', {
 	    borderTopLeftRadius: ' 2px',
 	    borderBottomLeftRadius: ' 2px',
 	    width: ' 75px',
 	    float: ' left'
 
-	}), _defineProperty(_Sophie$createStyleSh, '.border- .border-size .btn-group', {
+	}), _defineProperty(_Sophie$createStyleSh, '.border .border-size .btn-group', {
 	    marginLeft: ' 5px'
 
 	}), _defineProperty(_Sophie$createStyleSh, '.border .border-size .btn-group button', {
@@ -21993,10 +22226,10 @@ webpackJsonp([3,17],[
 	    backgroundColor: ' #fff'
 	}), _defineProperty(_Sophie$createStyleSh, '.border-dir .border-dir-all', {
 	    position: ' absolute',
-	    left: ' 15px',
-	    top: ' 15px',
-	    height: ' 20px',
-	    width: ' 20px',
+	    left: ' 12px',
+	    top: ' 12px',
+	    height: ' 26px',
+	    width: ' 26px',
 	    border: ' solid 5px #fff'
 
 	}), _defineProperty(_Sophie$createStyleSh, '.border-other', {
@@ -22034,7 +22267,8 @@ webpackJsonp([3,17],[
 	    margin: ' 0',
 	    padding: ' 0',
 	    width: ' 20px',
-	    display: ' inline-block'
+	    display: ' inline-block',
+	    verticalAlign: "middle"
 
 	}), _defineProperty(_Sophie$createStyleSh, '.border .border-color a', {
 	    boxShadow: ' rgba(255, 255, 255, 0.2) 0px 0px 0px 3px inset',
@@ -22050,6 +22284,12 @@ webpackJsonp([3,17],[
 
 	}), _defineProperty(_Sophie$createStyleSh, '#css-status', {
 	    marginBottom: ' 10px'
+	}), _defineProperty(_Sophie$createStyleSh, '#css-status .btn', {
+	    boxShadow: "inset 0 0px 0px rgba(0,0,0,.125)",
+	    border: "0"
+	}), _defineProperty(_Sophie$createStyleSh, '#css-status .btn.active', {
+	    "backgroundColor": "#00c4cc",
+	    color: "#fff"
 	}), _defineProperty(_Sophie$createStyleSh, 'panel-css .viewport-align', {
 	    width: ' auto',
 	    marginTop: ' 10px',
@@ -22059,105 +22299,105 @@ webpackJsonp([3,17],[
 	module.exports = CSSPanel;
 
 /***/ },
-/* 239 */
+/* 242 */
 /***/ function(module, exports) {
 
 	"use strict";
 
 	var ListSet = Sophie.createClass("p-list-set", {
 	    render: function render() {
-	        return this.element(
+	        return Sophie.element(
 	            "div",
 	            { style: "display: none", "class": "shortcutbar-list-cmd" },
-	            this.element(
+	            Sophie.element(
 	                "div",
 	                { "class": "btn-group dropdown" },
-	                this.element(
+	                Sophie.element(
 	                    "a",
 	                    { "class": "btn  dropdown-toggle p-list-col", "data-toggle": "dropdown",
 	                        title: "列" },
 	                    "列 ",
-	                    this.element("b", { "class": "caret" })
+	                    Sophie.element("b", { "class": "caret" })
 	                ),
-	                this.element(
+	                Sophie.element(
 	                    "ul",
 	                    { "class": "dropdown-menu" },
-	                    this.element(
+	                    Sophie.element(
 	                        "li",
 	                        null,
-	                        this.element(
+	                        Sophie.element(
 	                            "a",
 	                            { value: "1" },
 	                            "1"
 	                        )
 	                    ),
-	                    this.element(
+	                    Sophie.element(
 	                        "li",
 	                        null,
-	                        this.element(
+	                        Sophie.element(
 	                            "a",
 	                            { value: "1" },
 	                            "2"
 	                        )
 	                    ),
-	                    this.element(
+	                    Sophie.element(
 	                        "li",
 	                        null,
-	                        this.element(
+	                        Sophie.element(
 	                            "a",
 	                            { value: "" },
 	                            "3"
 	                        )
 	                    ),
-	                    this.element(
+	                    Sophie.element(
 	                        "li",
 	                        null,
-	                        this.element(
+	                        Sophie.element(
 	                            "a",
 	                            { "data-edit": "fontSize 1" },
 	                            "4"
 	                        )
 	                    ),
-	                    this.element(
+	                    Sophie.element(
 	                        "li",
 	                        null,
-	                        this.element(
+	                        Sophie.element(
 	                            "a",
 	                            { "data-edit": "fontSize 1" },
 	                            "5"
 	                        )
 	                    ),
-	                    this.element(
+	                    Sophie.element(
 	                        "li",
 	                        null,
-	                        this.element(
+	                        Sophie.element(
 	                            "a",
 	                            { "data-edit": "fontSize 1" },
 	                            "6"
 	                        )
 	                    ),
-	                    this.element(
+	                    Sophie.element(
 	                        "li",
 	                        null,
-	                        this.element(
+	                        Sophie.element(
 	                            "a",
 	                            { "data-edit": "fontSize 1" },
 	                            "7"
 	                        )
 	                    ),
-	                    this.element(
+	                    Sophie.element(
 	                        "li",
 	                        null,
-	                        this.element(
+	                        Sophie.element(
 	                            "a",
 	                            { "data-edit": "fontSize 1" },
 	                            "8"
 	                        )
 	                    ),
-	                    this.element(
+	                    Sophie.element(
 	                        "li",
 	                        null,
-	                        this.element(
+	                        Sophie.element(
 	                            "a",
 	                            { "data-edit": "fontSize 1" },
 	                            "9"
@@ -22165,59 +22405,59 @@ webpackJsonp([3,17],[
 	                    )
 	                )
 	            ),
-	            this.element(
+	            Sophie.element(
 	                "div",
 	                { "class": "btn-group dropdown" },
-	                this.element(
+	                Sophie.element(
 	                    "a",
 	                    { "class": "p-list-row btn dropdown-toggle",
 	                        "data-toggle": "dropdown", title: "行" },
 	                    "行 ",
-	                    this.element("b", { "class": "caret" })
+	                    Sophie.element("b", { "class": "caret" })
 	                ),
-	                this.element(
+	                Sophie.element(
 	                    "ul",
 	                    { "class": "dropdown-menu" },
-	                    this.element(
+	                    Sophie.element(
 	                        "li",
 	                        null,
-	                        this.element(
+	                        Sophie.element(
 	                            "a",
 	                            { "data-edit": "fontSize 5", value: "12px" },
 	                            "1"
 	                        )
 	                    ),
-	                    this.element(
+	                    Sophie.element(
 	                        "li",
 	                        null,
-	                        this.element(
+	                        Sophie.element(
 	                            "a",
 	                            { "data-edit": "fontSize 3" },
 	                            "2"
 	                        )
 	                    ),
-	                    this.element(
+	                    Sophie.element(
 	                        "li",
 	                        null,
-	                        this.element(
+	                        Sophie.element(
 	                            "a",
 	                            { "data-edit": "fontSize 1" },
 	                            "3"
 	                        )
 	                    ),
-	                    this.element(
+	                    Sophie.element(
 	                        "li",
 	                        null,
-	                        this.element(
+	                        Sophie.element(
 	                            "a",
 	                            { "data-edit": "fontSize 1" },
 	                            "4"
 	                        )
 	                    ),
-	                    this.element(
+	                    Sophie.element(
 	                        "li",
 	                        null,
-	                        this.element(
+	                        Sophie.element(
 	                            "a",
 	                            { "data-edit": "fontSize 1" },
 	                            "5"
@@ -22225,7 +22465,7 @@ webpackJsonp([3,17],[
 	                    )
 	                )
 	            ),
-	            this.element("a", { "class": "btn fa fa-plus add-list" })
+	            Sophie.element("a", { "class": "btn fa fa-plus add-list" })
 	        );
 	    },
 	    isWrapList: function isWrapList(el) {
@@ -22312,12 +22552,20 @@ webpackJsonp([3,17],[
 	                resizeable: false,
 	                moveable: false
 	            });
+
+	            play.registerChildEditableProp($(el).prop("tagName"), ".c-ceil > p-pic", {
+	                parentable: false,
+	                selectable: true,
+	                removeable: false,
+	                resizeable: false,
+	                moveable: false
+	            });
 	        }, 0);
 	    },
 
 	    initShortcutbar: function initShortcutbar() {
 	        var self = this;
-	        self.shortcutbar = $(".shortcutbar-list-cmd", self);
+	        self.shortcutbar = $(self.nativeNode);
 	        Sophie.on("ready", function () {
 	            self.shortcutbar.appendTo("#mask-tools-bar");
 	            play.CSSSyn.addContext(self.shortcutbar);
@@ -22332,14 +22580,14 @@ webpackJsonp([3,17],[
 	            if (target.is(".p-list-col")) {
 	                var parent = target.parent(".shortcutbar-list-cmd");
 	                var colEl = $(".p-list-col", self.shortcutbar);
-	                self.getListEl(list).get(0).setColumn(colEl.attr("value"));
+	                self.getListEl(list).get(0).vnode.setColumn(colEl.attr("value"));
 	                $(document).trigger("domChange");
 	            }
 
 	            if (target.is(".p-list-row")) {
 	                var parent = target.parent(".shortcutbar-list-cmd");
 	                var rowEl = $(".p-list-row", self.shortcutbar);
-	                self.getListEl(list).get(0).setRow(rowEl.attr("value"));
+	                self.getListEl(list).get(0).vnode.setRow(rowEl.attr("value"));
 	                $(document).trigger("domChange");
 	            }
 	        });
@@ -22348,7 +22596,7 @@ webpackJsonp([3,17],[
 	            var el = play.select.selectedEL;
 	            var list = el;
 
-	            el.get(0).addOne();
+	            el.get(0).vnode.addAuto();
 	            $(document).trigger("domChange");
 	        });
 
@@ -22373,7 +22621,7 @@ webpackJsonp([3,17],[
 	module.exports = ListSet;
 
 /***/ },
-/* 240 */
+/* 243 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -22384,7 +22632,7 @@ webpackJsonp([3,17],[
 
 	        var host = this;
 	        var isLayout = function isLayout(el) {
-	            return el.is("p-layout-two") || el.is("p-layout-three") || el.is("p-layout-two-response");
+	            return el.is("p-layout-two") || el.is("p-layout-three") || el.is("p-layout-two-response") || el.is("p-layout-three-response");
 	        };
 
 	        $(document).on("beforeAddNewEl", function (ev, el) {
@@ -22452,7 +22700,6 @@ webpackJsonp([3,17],[
 
 	            if (isLayout(el)) {
 	                var vnode = el.get(0).vnode;
-
 	                vnode.resize(coord);
 	            }
 	        });
@@ -22466,22 +22713,6 @@ webpackJsonp([3,17],[
 	        });
 	    },
 
-	    createCol: function createCol(row, num) {
-
-	        if (num == 0) return;
-
-	        for (var i = 1; i <= num; i++) {
-	            var col = $('<div class="c-col-' + i + '"></div>');
-
-	            col.prop("showName", "第" + i + "列");
-	            var selector = $("#selector-value").val() + " > " + ".c-col-" + i;
-	            var width = 100 / num + "%";
-	            row.append(col);
-	            play.dom._css(selector, "width", width);
-	            this.editableInit(row);
-	        }
-	    },
-
 	    initCSS: function initCSS(el) {
 
 	        if (el.height() == 0) {
@@ -22489,25 +22720,16 @@ webpackJsonp([3,17],[
 	        }
 	    },
 	    render: function render() {
-	        return this.element("div", null);
+	        return Sophie.element("div", null);
 	    },
-	    editableInit: function editableInit(el) {
-
-	        play.registerChildEditableProp($(el).prop("tagName"), "p-layout", {
-	            parentable: true,
-	            selectable: false,
-	            removeable: false,
-	            resizeable: false,
-	            moveable: false
-	        });
-	    }
+	    editableInit: function editableInit(el) {}
 
 	});
 
 	module.exports = LayoutTwoSet;
 
 /***/ },
-/* 241 */
+/* 244 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -22516,9 +22738,13 @@ webpackJsonp([3,17],[
 
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-	var IconList = __webpack_require__(242);
+	var IconList = __webpack_require__(245);
 
-	var Rangy = __webpack_require__(207);
+	var Rangy = __webpack_require__(210);
+
+	//var  summernote = require("../../summernote");
+
+
 	var oldHeight;
 
 	var _placeholder = "双击输入内容...";
@@ -22579,101 +22805,10 @@ webpackJsonp([3,17],[
 
 	        $(document).on("iframeload", function () {
 	            //粘贴
-	            $(play.iframeDoc).on("paste", function (ev) {
-	                var target = $(ev.target);
-	                if (play.cmd == "select" && play.select.selectedEL && play.select.selectedEL.prop("editable") == true && target.closest(play.select.selectedEL).length && play.select.selectedEL.attr("contenteditable")) {
 
-	                    if (ev.originalEvent.clipboardData) {
-	                        var text = ev.originalEvent.clipboardData.getData("text/plain");
-	                        ev.preventDefault();
-	                        target.html(text);
-	                        target.focus();
-	                        // document.execCommand("insertHTML", false, text);
-	                    }
-	                }
-	            });
 
-	            $("body", play.iframeDoc).on("keydown", function (ev) {
-
-	                var target = $(ev.target);
-	                if (play.select.selectedEL.prop("editable") && play.select.selectedEL.prop("_editing")) {
-	                    play.select.reflow();
-	                }
-
-	                if (host.isText(target)) {
-	                    if ($.trim(target.text()) === "双击输入内容...") {
-	                        target.text("");
-	                    }
-	                }
-	            });
-
-	            //元素删除之后事件会丢失, 所以加在#page，其它事件加在html上
-	            $("body", play.iframeDoc).on("mousedown mouseup dbclick click keyup keydown", function (ev) {
-	                var target = $(ev.target);
-
-	                if (target.closest("[contenteditable='true']").length) {
-
-	                    play.select.reflow();
-	                    ev.stopPropagation();
-	                }
-	            });
-
-	            //保存数据
-	            $("body", play.iframeDoc).on("keyup", function (ev) {
-
-	                var target = $(ev.target);
-
-	                if (host.isText(play.select.selectedEL)) {
-
-	                    var vnode = play.select.selectedEL.get(0).vnode;
-
-	                    var value = play.select.selectedEL.find(".p-text-wrap").html();
-	                    vnode.children = [{ type: "#text", nodeValue: value }];
-	                }
-	            });
-
-	            //阻止选择
-	            //去掉mousemove，影响性能
-	            $("body", play.iframeDoc).on("mousedown  mouseup dbclick click", function (ev) {
-
-	                var target = $(ev.target);
-
-	                if (target.closest("[contenteditable='true']").length && !target.closest("p-text").length) {
-
-	                    ev.preventDefault();
-	                    ev.stopPropagation();
-	                }
-	            });
-
-	            $("body", play.iframeDoc).on('keydown', function (ev) {
-	                var target = $(ev.target);
-	                if (target.closest("p-a").length || target.closest("p-h").length) {
-	                    if (target.closest("[contenteditable='true']").length) {
-	                        //阻止换行
-	                        var keycode = ev.charCode || ev.keyCode;
-	                        if (keycode == 13) {
-	                            ev.preventDefault(); //for firefox
-	                            return false;
-	                        }
-	                    }
-	                }
-	            });
-
-	            $("body", play.iframeDoc).on("keyup", function (ev) {
-
-	                var target = $(ev.target);
-	                if (play.select.selectedEL && host.isText(play.select.selectedEL) && target.closest(play.select.selectedEL).length) {
-
-	                    if (target.closest("p-h").length || target.closest("p-text-s").length) return;
-
-	                    setTimeout(function () {
-
-	                        // host.autogrow(play.select.selectedEL)
-	                        host.reflow(play.select.selectedEL);
-
-	                        $(document).trigger("textInput", [play.select.selectedEL]);
-	                    }, 0);
-	                }
+	            play.iframeWin.$(play.iframeDoc).on("textInputt", function (ev, target) {
+	                $(document).trigger("textInput", [target]);
 	            });
 
 	            $(document).on("cssChange", function (ev, el, cssName) {
@@ -22734,48 +22869,16 @@ webpackJsonp([3,17],[
 	        var self = this;
 	        var target = el || play.select.selectedEL;
 
-	        if (target.find(".p-text-wrap").length) {
-	            target = target.find(".p-text-wrap");
-	        }
-
-	        if ($.trim(target.text()) === _placeholder) {
-	            target.html("");
-	        }
-
-	        $(target).attr("contenteditable", "true");
-
-	        //  $(target).css("height", $(target).height())
-
-	        if (!target.prop("__prevent")) {
-
-	            target.prop("__prevent", true);
-	        }
-
-	        $(target).focus();
-	        $("select-mask").addClass("editable");
-
-	        self.shortcutbar.addClass("editable");
-
-	        $(this).prop("_editing", true);
-	        this._editing = true;
+	        target.get(0).vnode.toEdit();
+	        self._editing = true;
 	    },
 
 	    cancelEdit: function cancelEdit(el) {
 	        var self = this;
 	        var el = el || play.select.selectedEL;
 
-	        if (el.find(".p-text-wrap").length) {
-	            el = el.find(".p-text-wrap");
-	        }
-	        el.blur();
-	        el.removeAttr("contenteditable");
-	        if ($.trim(el.text()) === "") el.text("双击输入内容...");
-
-	        $("select-mask").removeClass("editable");
-	        self.shortcutbar.removeClass("editable");
-	        this._editing = false;
-
-	        $(this).prop("_editing", false);
+	        el.get(0).vnode.cancelEdit();
+	        self._editing = false;
 	    },
 
 	    editor: function editor() {
@@ -22784,9 +22887,11 @@ webpackJsonp([3,17],[
 
 	        $(document).on("unSelectEl", function (ev, el) {
 
-	            if (play.select.getCurrentElEditableProp("editable") || el.prop("editable")) {
-	                self.cancelEdit(el);
-	                // $(".shortcutbar-font-cmd", self.shortcutbar).hide();
+	            if (el && el.length) {
+	                if (play.getEditableProp(el, "editable") && !el.is(play.select.selectedEL)) {
+	                    self.cancelEdit(el);
+	                    // $(".shortcutbar-font-cmd", self.shortcutbar).hide();
+	                }
 	            }
 	        });
 
@@ -22907,12 +23012,10 @@ webpackJsonp([3,17],[
 
 	        Sophie.on("ready", function () {
 	            self.shortcutbar.appendTo("#mask-tools-bar");
-
 	            Rangy.init();
-
 	            play.CSSSyn.addContext(self.shortcutbar);
 
-	            play.wysiwyg(self.shortcutbar);
+	            // play.wysiwyg(self.shortcutbar)
 	        });
 
 	        $(".shortcutbar-font-edit", self.shortcutbar).click(function () {
@@ -23065,124 +23168,124 @@ webpackJsonp([3,17],[
 	    },
 
 	    render: function render() {
-	        var _this$element, _this$element2;
+	        var _Sophie$element, _Sophie$element2;
 
-	        return this.element(
+	        return Sophie.element(
 	            "div",
 	            { style: "display:none" },
-	            this.element(
+	            Sophie.element(
 	                "h3",
 	                { "class": "collapse-header", "data-toggle": "collapse", "data-target": "#font-panel" },
 	                "字体"
 	            ),
-	            this.element(
+	            Sophie.element(
 	                "div",
 	                { "class": "collapse-body collapse", id: "font-panel" },
-	                this.element(
+	                Sophie.element(
 	                    "div",
 	                    { "class": "collapse-body-panel" },
-	                    this.element(
+	                    Sophie.element(
 	                        "div",
 	                        { "class": "btn-group more font-family" },
-	                        this.element(
+	                        Sophie.element(
 	                            "button",
 	                            { "class": "btn btn-lg dropdown-toggle", type: "button", "data-toggle": "dropdown" },
-	                            this.element(
+	                            Sophie.element(
 	                                "span",
 	                                { "data-cssname": "fontFamily" },
 	                                "Arial"
 	                            ),
 	                            " ",
-	                            this.element("span", { "class": "caret" })
+	                            Sophie.element("span", { "class": "caret" })
 	                        ),
-	                        this.element(
+	                        Sophie.element(
 	                            "ul",
 	                            { "class": "dropdown-menu", role: "menu" },
-	                            this.element(
+	                            Sophie.element(
 	                                "li",
 	                                { value: "arial", style: "font-family: Arial;" },
-	                                this.element(
+	                                Sophie.element(
 	                                    "a",
 	                                    { href: "#" },
 	                                    "Arial"
 	                                )
 	                            ),
-	                            this.element(
+	                            Sophie.element(
 	                                "li",
 	                                { value: "'arial black'", style: "font-family: 'arial black';" },
-	                                this.element(
+	                                Sophie.element(
 	                                    "a",
 	                                    { href: "#" },
 	                                    "Arial Black"
 	                                )
 	                            ),
-	                            this.element(
+	                            Sophie.element(
 	                                "li",
 	                                { value: "'comic sans ms'", style: "font-family: 'comic sans ms';" },
-	                                this.element(
+	                                Sophie.element(
 	                                    "a",
 	                                    { href: "#" },
 	                                    "Comic Sans MS"
 	                                )
 	                            ),
-	                            this.element(
+	                            Sophie.element(
 	                                "li",
 	                                { value: "'courier new'", style: "font-family: 'courier new';" },
-	                                this.element(
+	                                Sophie.element(
 	                                    "a",
 	                                    { href: "#" },
 	                                    "Courier New"
 	                                )
 	                            ),
-	                            this.element(
+	                            Sophie.element(
 	                                "li",
 	                                { value: "georgia", style: "font-family: georgia;" },
-	                                this.element(
+	                                Sophie.element(
 	                                    "a",
 	                                    { href: "#" },
 	                                    "Georgia"
 	                                )
 	                            ),
-	                            this.element(
+	                            Sophie.element(
 	                                "li",
 	                                { value: "helvetica", style: "font-family: helvetica;" },
-	                                this.element(
+	                                Sophie.element(
 	                                    "a",
 	                                    { href: "#" },
 	                                    "Helvetica"
 	                                )
 	                            ),
-	                            this.element(
+	                            Sophie.element(
 	                                "li",
 	                                { value: "impact", style: "font-family: impact;" },
-	                                this.element(
+	                                Sophie.element(
 	                                    "a",
 	                                    { href: "#" },
 	                                    "Impact"
 	                                )
 	                            ),
-	                            this.element(
+	                            Sophie.element(
 	                                "li",
 	                                { value: "'times new roman'", style: "font-family: 'times new roman';" },
-	                                this.element(
+	                                Sophie.element(
 	                                    "a",
 	                                    { href: "#" },
 	                                    "Times New Roman"
 	                                )
 	                            ),
-	                            this.element(
+	                            Sophie.element(
 	                                "li",
 	                                { value: "'trebuchet ms'", style: "font-family: 'trebuchet ms';" },
-	                                this.element(
+	                                Sophie.element(
 	                                    "a",
 	                                    { href: "#" },
 	                                    "Trebuchet MS"
 	                                )
 	                            ),
-	                            this.element(
+	                            Sophie.element(
 	                                "li",
 	                                { value: "verdana", style: "font-family: verdana;" },
-	                                this.element(
+	                                Sophie.element(
 	                                    "a",
 	                                    { href: "#" },
 	                                    "Verdana"
@@ -23190,77 +23293,77 @@ webpackJsonp([3,17],[
 	                            )
 	                        )
 	                    ),
-	                    this.element(
+	                    Sophie.element(
 	                        "div",
 	                        { "class": "from-group more font-align " },
-	                        this.element("input", (_this$element = { "class": "font-size", "data-cssunit": "px" }, _defineProperty(_this$element, "class", "form-control"), _defineProperty(_this$element, "data-cssname", "fontSize"), _defineProperty(_this$element, "type", "text"), _this$element)),
-	                        this.element(
+	                        Sophie.element("input", (_Sophie$element = { "class": "font-size", "data-cssunit": "px" }, _defineProperty(_Sophie$element, "class", "form-control"), _defineProperty(_Sophie$element, "data-cssname", "fontSize"), _defineProperty(_Sophie$element, "type", "text"), _Sophie$element)),
+	                        Sophie.element(
 	                            "a",
 	                            { value: "left", "data-cssname": "textAlign", "class": "" },
-	                            this.element("i", { "class": "glyphicon glyphicon-align-left" })
+	                            Sophie.element("i", { "class": "glyphicon glyphicon-align-left" })
 	                        ),
-	                        this.element(
+	                        Sophie.element(
 	                            "a",
 	                            { value: "center", "data-cssname": "textAlign", "class": "" },
-	                            this.element("i", { "class": "glyphicon glyphicon-align-center" })
+	                            Sophie.element("i", { "class": "glyphicon glyphicon-align-center" })
 	                        ),
-	                        this.element(
+	                        Sophie.element(
 	                            "a",
 	                            { value: "right", "data-cssname": "textAlign", "class": "" },
-	                            this.element("i", { "class": "glyphicon glyphicon-align-right" })
+	                            Sophie.element("i", { "class": "glyphicon glyphicon-align-right" })
 	                        )
 	                    ),
-	                    this.element(
+	                    Sophie.element(
 	                        "div",
 	                        { "class": "font-group more font-style" },
-	                        this.element(
+	                        Sophie.element(
 	                            "div",
 	                            { "class": "btn-group font-weight" },
-	                            this.element(
+	                            Sophie.element(
 	                                "button",
 	                                { "class": "btn  btn-lg dropdown-toggle", type: "button", "data-toggle": "dropdown" },
-	                                this.element(
+	                                Sophie.element(
 	                                    "span",
 	                                    { "data-cssname": "fontWeight" },
 	                                    "Normal"
 	                                ),
 	                                " ",
-	                                this.element("span", { "class": "caret" })
+	                                Sophie.element("span", { "class": "caret" })
 	                            ),
-	                            this.element(
+	                            Sophie.element(
 	                                "ul",
 	                                { "class": "dropdown-menu", role: "menu" },
-	                                this.element(
+	                                Sophie.element(
 	                                    "li",
 	                                    { value: "arial" },
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "a",
 	                                        { href: "#" },
 	                                        "Normal"
 	                                    )
 	                                ),
-	                                this.element(
+	                                Sophie.element(
 	                                    "li",
 	                                    { value: "'arial black'" },
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "a",
 	                                        { href: "#" },
 	                                        "Bold"
 	                                    )
 	                                ),
-	                                this.element(
+	                                Sophie.element(
 	                                    "li",
 	                                    { value: "'comic sans ms'" },
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "a",
 	                                        { href: "#" },
 	                                        "Bolder"
 	                                    )
 	                                ),
-	                                this.element(
+	                                Sophie.element(
 	                                    "li",
 	                                    { value: "'comic sans ms'" },
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "a",
 	                                        { href: "#" },
 	                                        "Lighter"
@@ -23268,248 +23371,248 @@ webpackJsonp([3,17],[
 	                                )
 	                            )
 	                        ),
-	                        this.element(
+	                        Sophie.element(
 	                            "a",
 	                            { style: "display: none", value: "bold", mselect: "true", "reset-value": "normal", "data-cssname": "fontWeight",
 	                                "class": "a font-weight-bold" },
-	                            this.element("i", { "class": "fa fa-bold" })
+	                            Sophie.element("i", { "class": "fa fa-bold" })
 	                        ),
-	                        this.element(
+	                        Sophie.element(
 	                            "a",
 	                            { value: "italic", mselect: "true", "data-cssname": "fontStyle", "reset-value": "normal", "class": "a" },
-	                            this.element("i", { "class": "fa fa-italic" })
+	                            Sophie.element("i", { "class": "fa fa-italic" })
 	                        ),
-	                        this.element(
+	                        Sophie.element(
 	                            "a",
 	                            { value: "underline", mselect: "true", "data-cssname": "textDecoration", "reset-value": "none", "class": "a" },
-	                            this.element("i", { "class": "fa fa-underline" })
+	                            Sophie.element("i", { "class": "fa fa-underline" })
 	                        )
 	                    ),
-	                    this.element(
+	                    Sophie.element(
 	                        "div",
 	                        { "class": "from-group more font-color" },
-	                        this.element(
+	                        Sophie.element(
 	                            "label",
 	                            null,
 	                            "颜色"
 	                        ),
-	                        this.element(
+	                        Sophie.element(
 	                            "div",
 	                            { "class": "color-wrap" },
-	                            this.element("a", { "data-cssname": "color", "class": "color btn btn-small minicolors ", value: "#7745ff" })
+	                            Sophie.element("a", { "data-cssname": "color", "class": "color btn btn-small minicolors ", value: "#7745ff" })
 	                        )
 	                    ),
-	                    this.element(
+	                    Sophie.element(
 	                        "div",
 	                        { "class": "from-group  more font-lineheight" },
-	                        this.element(
+	                        Sophie.element(
 	                            "label",
 	                            null,
 	                            "行高"
 	                        ),
-	                        this.element("input", (_this$element2 = { "class": "" }, _defineProperty(_this$element2, "class", "form-control"), _defineProperty(_this$element2, "data-cssname", "lineHeight"), _defineProperty(_this$element2, "type", "text"), _this$element2))
+	                        Sophie.element("input", (_Sophie$element2 = { "class": "" }, _defineProperty(_Sophie$element2, "class", "form-control"), _defineProperty(_Sophie$element2, "data-cssname", "lineHeight"), _defineProperty(_Sophie$element2, "type", "text"), _Sophie$element2))
 	                    ),
-	                    this.element(
+	                    Sophie.element(
 	                        "div",
 	                        { "class": "from-group more font-link", style: "display: none" },
-	                        this.element(
+	                        Sophie.element(
 	                            "label",
 	                            null,
 	                            "超链接"
 	                        ),
-	                        this.element(
+	                        Sophie.element(
 	                            "div",
 	                            null,
-	                            this.element(
+	                            Sophie.element(
 	                                "a",
 	                                { "class": "a cmd-show-creade-link" },
-	                                this.element("i", { "class": "fa fa-link" })
+	                                Sophie.element("i", { "class": "fa fa-link" })
 	                            ),
-	                            this.element(
+	                            Sophie.element(
 	                                "a",
 	                                { "class": "a cmd-unlink" },
-	                                this.element("i", { "class": "fa fa-unlink" })
+	                                Sophie.element("i", { "class": "fa fa-unlink" })
 	                            )
 	                        )
 	                    ),
-	                    this.element(
+	                    Sophie.element(
 	                        "div",
 	                        { "class": "shortcutbar-font", style: "display: none" },
-	                        this.element(
+	                        Sophie.element(
 	                            "div",
 	                            { "class": "shortcutbar-font-cmd", "data-role": "editor-toolbar" },
-	                            this.element(
+	                            Sophie.element(
 	                                "div",
 	                                { "class": "btn-group handle" },
-	                                this.element(
+	                                Sophie.element(
 	                                    "a",
 	                                    { "class": "btn shortcutbar-font-edit " },
-	                                    this.element("i", { "class": "fa fa-pencil" })
+	                                    Sophie.element("i", { "class": "fa fa-pencil" })
 	                                )
 	                            ),
-	                            this.element(
+	                            Sophie.element(
 	                                "a",
 	                                { title: "设置地址", "class": "btn   set-a-href" },
-	                                this.element("i", { "class": "fa fa-link" })
+	                                Sophie.element("i", { "class": "fa fa-link" })
 	                            ),
-	                            this.element(
+	                            Sophie.element(
 	                                "a",
 	                                { style: "display:none", title: "设置icon", "class": "btn   set-icon" },
-	                                this.element("i", { "class": "glyphicon glyphicon-glass" })
+	                                Sophie.element("i", { "class": "glyphicon glyphicon-glass" })
 	                            ),
-	                            this.element(
+	                            Sophie.element(
 	                                "div",
 	                                { "class": "btn-group more" },
-	                                this.element(
+	                                Sophie.element(
 	                                    "a",
 	                                    { "class": "btn  minicolors", "data-edit": "foreColor", "data-cssname": "color",
 	                                        title: "Bold (Ctrl/Cmd+B)" },
-	                                    this.element("i", { "class": "fa fa-text" })
+	                                    Sophie.element("i", { "class": "fa fa-text" })
 	                                )
 	                            ),
-	                            this.element(
+	                            Sophie.element(
 	                                "div",
 	                                { "class": "btn-group more dropdown" },
-	                                this.element(
+	                                Sophie.element(
 	                                    "a",
 	                                    { "class": "btn  dropdown-toggle", "data-cssname": "fontFamily", "data-toggle": "dropdown",
 	                                        "aria-haspopup": "true", role: "button", "aria-expanded": "false", title: "Font" },
-	                                    this.element("i", { "class": "fa fa-font" }),
-	                                    this.element("b", { "class": "caret" })
+	                                    Sophie.element("i", { "class": "fa fa-font" }),
+	                                    Sophie.element("b", { "class": "caret" })
 	                                ),
-	                                this.element(
+	                                Sophie.element(
 	                                    "ul",
 	                                    { "class": "dropdown-menu" },
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "li",
 	                                        null,
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { href: "#", "data-edit": "fontName Serif", style: "font-family:'Serif'" },
 	                                            "Serif"
 	                                        )
 	                                    ),
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "li",
 	                                        null,
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { href: "#", "data-edit": "fontName Sans", style: "font-family:'Sans'" },
 	                                            "Sans"
 	                                        )
 	                                    ),
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "li",
 	                                        null,
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { "data-edit": "fontName Arial", style: "font-family:'Arial'" },
 	                                            "Arial"
 	                                        )
 	                                    ),
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "li",
 	                                        null,
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { "data-edit": "fontName Arial Black", style: "font-family:'Arial Black'" },
 	                                            "Arial Black"
 	                                        )
 	                                    ),
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "li",
 	                                        null,
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { "data-edit": "fontName Courier", style: "font-family:'Courier'" },
 	                                            "Courier"
 	                                        )
 	                                    ),
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "li",
 	                                        null,
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { "data-edit": "fontName Courier New", style: "font-family:'Courier New'" },
 	                                            "Courier New"
 	                                        )
 	                                    ),
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "li",
 	                                        null,
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { "data-edit": "fontName Comic Sans MS", style: "font-family:'Comic Sans MS'" },
 	                                            "Comic Sans MS"
 	                                        )
 	                                    ),
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "li",
 	                                        null,
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { "data-edit": "fontName Helvetica", style: "font-family:'Helvetica'" },
 	                                            "Helvetica"
 	                                        )
 	                                    ),
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "li",
 	                                        null,
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { "data-edit": "fontName Impact", style: "font-family:'Impact'" },
 	                                            "Impact"
 	                                        )
 	                                    ),
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "li",
 	                                        null,
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { "data-edit": "fontName Lucida Grande", style: "font-family:'Lucida Grande'" },
 	                                            "Lucida Grande"
 	                                        )
 	                                    ),
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "li",
 	                                        null,
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { "data-edit": "fontName Lucida Sans", style: "font-family:'Lucida Sans'" },
 	                                            "Lucida Sans"
 	                                        )
 	                                    ),
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "li",
 	                                        null,
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { "data-edit": "fontName Tahoma", style: "font-family:'Tahoma'" },
 	                                            "Tahoma"
 	                                        )
 	                                    ),
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "li",
 	                                        null,
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { "data-edit": "fontName Times", style: "font-family:'Times'" },
 	                                            "Times"
 	                                        )
 	                                    ),
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "li",
 	                                        null,
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { "data-edit": "fontName Times New Roman", style: "font-family:'Times New Roman'" },
 	                                            "Times New Roman"
 	                                        )
 	                                    ),
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "li",
 	                                        null,
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { "data-edit": "fontName Verdana", style: "font-family:'Verdana'" },
 	                                            "Verdana"
@@ -23517,91 +23620,91 @@ webpackJsonp([3,17],[
 	                                    )
 	                                )
 	                            ),
-	                            this.element(
+	                            Sophie.element(
 	                                "div",
 	                                { "class": "btn-group more dropdown" },
-	                                this.element(
+	                                Sophie.element(
 	                                    "a",
 	                                    { "data-cssname": "fontSize", "data-cssunit": "px", "class": "btn  dropdown-toggle", "data-toggle": "dropdown",
 	                                        title: "Font Size" },
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "span",
 	                                        null,
 	                                        "4"
 	                                    ),
 	                                    " ",
-	                                    this.element("b", { "class": "caret" })
+	                                    Sophie.element("b", { "class": "caret" })
 	                                ),
-	                                this.element(
+	                                Sophie.element(
 	                                    "ul",
 	                                    { "class": "dropdown-menu" },
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "li",
 	                                        null,
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { "data-edit": "fontSize 12", value: "12px" },
 	                                            "12"
 	                                        )
 	                                    ),
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "li",
 	                                        null,
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { "data-edit": "fontSize 13" },
 	                                            "13"
 	                                        )
 	                                    ),
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "li",
 	                                        null,
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { "data-edit": "fontSize 14" },
 	                                            "14"
 	                                        )
 	                                    ),
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "li",
 	                                        null,
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { "data-edit": "fontSize 16" },
 	                                            "16"
 	                                        )
 	                                    ),
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "li",
 	                                        null,
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { "data-edit": "fontSize 18" },
 	                                            "18"
 	                                        )
 	                                    ),
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "li",
 	                                        null,
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { "data-edit": "fontSize 20" },
 	                                            "20"
 	                                        )
 	                                    ),
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "li",
 	                                        null,
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { "data-edit": "fontSize 24" },
 	                                            "24"
 	                                        )
 	                                    ),
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "li",
 	                                        null,
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { "data-edit": "fontSize 30" },
 	                                            "30"
@@ -23609,141 +23712,141 @@ webpackJsonp([3,17],[
 	                                    )
 	                                )
 	                            ),
-	                            this.element(
+	                            Sophie.element(
 	                                "div",
 	                                { "class": "btn-group more" },
-	                                this.element(
+	                                Sophie.element(
 	                                    "a",
 	                                    { "class": "btn ", "data-cssname": "fontWeight", "reset-value": "normal", "data-cssvalue": "bold",
 	                                        "data-edit": "bold", title: "Bold (Ctrl/Cmd+B)" },
-	                                    this.element("i", { "class": "fa fa-bold" })
+	                                    Sophie.element("i", { "class": "fa fa-bold" })
 	                                ),
-	                                this.element(
+	                                Sophie.element(
 	                                    "a",
 	                                    { "class": "btn ", "data-cssname": "fontStyle", "reset-value": "normal", "data-cssvalue": "italic",
 	                                        "data-edit": "italic", title: "Italic (Ctrl/Cmd+I)" },
-	                                    this.element("i", { "class": "fa fa-italic" })
+	                                    Sophie.element("i", { "class": "fa fa-italic" })
 	                                ),
-	                                this.element(
+	                                Sophie.element(
 	                                    "a",
 	                                    { "class": "btn ", "data-cssname": "textDecoration", "reset-value": "none", "data-cssvalue": "underline",
 	                                        "data-edit": "underline", title: "Underline (Ctrl/Cmd+U)" },
-	                                    this.element("i", {
+	                                    Sophie.element("i", {
 	                                        "class": "fa fa-underline" })
 	                                )
 	                            ),
-	                            this.element(
+	                            Sophie.element(
 	                                "div",
 	                                { "class": "btn-group more" },
-	                                this.element(
+	                                Sophie.element(
 	                                    "a",
 	                                    { "class": "btn ", "data-cssname": "textAlign", "data-cssvalue": "left", "data-edit": "justifyleft",
 	                                        title: "Align Left (Ctrl/Cmd+L)" },
-	                                    this.element("i", { "class": "fa fa-align-left" })
+	                                    Sophie.element("i", { "class": "fa fa-align-left" })
 	                                ),
-	                                this.element(
+	                                Sophie.element(
 	                                    "a",
 	                                    { "class": "btn ", "data-cssname": "textAlign", "data-cssvalue": "center", "data-edit": "justifycenter",
 	                                        title: "Center (Ctrl/Cmd+E)" },
-	                                    this.element("i", { "class": "fa fa-align-center" })
+	                                    Sophie.element("i", { "class": "fa fa-align-center" })
 	                                ),
-	                                this.element(
+	                                Sophie.element(
 	                                    "a",
 	                                    { "class": "btn ", "data-cssname": "textAlign", "data-cssvalue": "right", "data-edit": "justifyright",
 	                                        title: "Align Right (Ctrl/Cmd+R)" },
-	                                    this.element("i", {
+	                                    Sophie.element("i", {
 	                                        "class": "fa fa-align-right" })
 	                                )
 	                            ),
-	                            this.element(
+	                            Sophie.element(
 	                                "div",
 	                                { "class": "btn-group  more edit" },
-	                                this.element(
+	                                Sophie.element(
 	                                    "a",
 	                                    { "class": "", "data-edit": "insertunorderedlist", title: "Bullet list" },
-	                                    this.element("i", {
+	                                    Sophie.element("i", {
 	                                        "class": "fa fa-list-ul" })
 	                                ),
-	                                this.element(
+	                                Sophie.element(
 	                                    "a",
 	                                    { "class": "", "data-edit": "insertorderedlist", title: "Number list" },
-	                                    this.element("i", {
+	                                    Sophie.element("i", {
 	                                        "class": "fa fa-list-ol" })
 	                                ),
-	                                this.element(
+	                                Sophie.element(
 	                                    "a",
 	                                    { "class": "", "data-edit": "outdent", title: "Reduce indent (Shift+Tab)" },
-	                                    this.element("i", {
+	                                    Sophie.element("i", {
 	                                        "class": "fa fa-outdent" })
 	                                ),
-	                                this.element(
+	                                Sophie.element(
 	                                    "a",
 	                                    { "class": "", "data-edit": "indent", title: "Indent (Tab)" },
-	                                    this.element("i", { "class": "fa fa-indent" })
+	                                    Sophie.element("i", { "class": "fa fa-indent" })
 	                                )
 	                            ),
-	                            this.element(
+	                            Sophie.element(
 	                                "div",
 	                                { "class": "btn-group more edit" },
-	                                this.element(
+	                                Sophie.element(
 	                                    "a",
 	                                    { "class": "btn dropdown-toggle", "data-toggle": "dropdown", title: "Hyperlink" },
-	                                    this.element("i", {
+	                                    Sophie.element("i", {
 	                                        "class": "fa fa-link" })
 	                                ),
-	                                this.element(
+	                                Sophie.element(
 	                                    "div",
 	                                    { "class": "dropdown-menu input-append" },
-	                                    this.element("input", { "class": "span2", placeholder: "URL", type: "text", "data-edit": "createLink" }),
-	                                    this.element(
+	                                    Sophie.element("input", { "class": "span2", placeholder: "URL", type: "text", "data-edit": "createLink" }),
+	                                    Sophie.element(
 	                                        "button",
 	                                        { "class": "btn", type: "button" },
 	                                        "Add"
 	                                    )
 	                                ),
-	                                this.element(
+	                                Sophie.element(
 	                                    "a",
 	                                    { "class": "", "data-edit": "unlink", title: "Remove Hyperlink" },
-	                                    this.element("i", { "class": "fa fa-unlink" })
+	                                    Sophie.element("i", { "class": "fa fa-unlink" })
 	                                )
 	                            )
 	                        )
 	                    )
 	                )
 	            ),
-	            this.element(
+	            Sophie.element(
 	                "div",
 	                { "class": "modal fade", id: "set-a-href", tabindex: "-1", role: "dialog", "aria-labelledby": "myModalLabel",
 	                    "aria-hidden": "true" },
-	                this.element(
+	                Sophie.element(
 	                    "div",
 	                    { "class": "modal-dialog" },
-	                    this.element(
+	                    Sophie.element(
 	                        "div",
 	                        { "class": "modal-content" },
-	                        this.element(
+	                        Sophie.element(
 	                            "div",
 	                            { "class": "modal-header" },
-	                            this.element(
+	                            Sophie.element(
 	                                "button",
 	                                { type: "button", "class": "close", "data-dismiss": "modal", "aria-hidden": "true" },
 	                                "×"
 	                            ),
-	                            this.element(
+	                            Sophie.element(
 	                                "h4",
 	                                { "class": "modal-title", id: "" },
 	                                "设置链接"
 	                            )
 	                        ),
-	                        this.element(
+	                        Sophie.element(
 	                            "div",
 	                            { "class": "modal-body" },
-	                            this.element("input", { type: "text", "class": "form-control", id: "set-a-href-value", placeholder: "http://" })
+	                            Sophie.element("input", { type: "text", "class": "form-control", id: "set-a-href-value", placeholder: "http://" })
 	                        ),
-	                        this.element(
+	                        Sophie.element(
 	                            "div",
 	                            { "class": "modal-footer" },
-	                            this.element(
+	                            Sophie.element(
 	                                "button",
 	                                { type: "button", "class": "cmd-createlink btn btn-primary" },
 	                                "确定"
@@ -23752,39 +23855,39 @@ webpackJsonp([3,17],[
 	                    )
 	                )
 	            ),
-	            this.element(
+	            Sophie.element(
 	                "div",
 	                { "class": "modal fade", id: "set-icon", tabindex: "-1", role: "dialog", "aria-labelledby": "myModalLabel",
 	                    "aria-hidden": "true" },
-	                this.element(
+	                Sophie.element(
 	                    "div",
 	                    { "class": "modal-dialog" },
-	                    this.element(
+	                    Sophie.element(
 	                        "div",
 	                        { "class": "modal-content" },
-	                        this.element(
+	                        Sophie.element(
 	                            "div",
 	                            { "class": "modal-header" },
-	                            this.element(
+	                            Sophie.element(
 	                                "button",
 	                                { type: "button", "class": "close", "data-dismiss": "modal", "aria-hidden": "true" },
 	                                "×"
 	                            ),
-	                            this.element(
+	                            Sophie.element(
 	                                "h4",
 	                                { "class": "modal-title" },
 	                                "设置icon"
 	                            )
 	                        ),
-	                        this.element(
+	                        Sophie.element(
 	                            "div",
 	                            { "class": "modal-body" },
-	                            this.element(IconList, null)
+	                            Sophie.element(IconList, null)
 	                        ),
-	                        this.element(
+	                        Sophie.element(
 	                            "div",
 	                            { "class": "modal-footer" },
-	                            this.element(
+	                            Sophie.element(
 	                                "button",
 	                                { type: "button", "class": "cmd-createlink btn btn-primary" },
 	                                "确定"
@@ -23950,13 +24053,13 @@ webpackJsonp([3,17],[
 	module.exports = TextSet;
 
 /***/ },
-/* 242 */
+/* 245 */
 /***/ function(module, exports) {
 
-	"use strict";var IconList=Sophie.createClass("icon-list",{render:function render(){return this.element("icon-list",null,this.element("div",{id:"icons"},this.element("section",{id:"new"},this.element("h2",{"class":"page-header"},"66 New Icons in 4.4"),this.element("div",{"class":"row fontawesome-icon-list"},this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/500px"},this.element("i",{"class":""}),"不显示")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/500px"},this.element("i",{"class":"fa fa-500px"})," 500px")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/amazon"},this.element("i",{"class":"fa fa-amazon"})," amazon")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/balance-scale"},this.element("i",{"class":"fa fa-balance-scale"}),"balance-scale")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/battery-empty"},this.element("i",{"class":"fa fa-battery-0"}),"battery-0 ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/battery-quarter"},this.element("i",{"class":"fa fa-battery-1"}),"battery-1 ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/battery-half"},this.element("i",{"class":"fa fa-battery-2"})," battery-2",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/battery-three-quarters"},this.element("i",{"class":"fa fa-battery-3"}),"battery-3 ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/battery-full"},this.element("i",{"class":"fa fa-battery-4"})," battery-4",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/battery-empty"},this.element("i",{"class":"fa fa-battery-empty"}),"battery-empty")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/battery-full"},this.element("i",{"class":"fa fa-battery-full"}),"battery-full")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/battery-half"},this.element("i",{"class":"fa fa-battery-half"}),"battery-half")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/battery-quarter"},this.element("i",{"class":"fa fa-battery-quarter"}),"battery-quarter")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/battery-three-quarters"},this.element("i",{"class":"fa fa-battery-three-quarters"})," battery-three-quarters")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/black-tie"},this.element("i",{"class":"fa fa-black-tie"}),"black-tie")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/calendar-check-o"},this.element("i",{"class":"fa fa-calendar-check-o"})," calendar-check-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/calendar-minus-o"},this.element("i",{"class":"fa fa-calendar-minus-o"})," calendar-minus-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/calendar-plus-o"},this.element("i",{"class":"fa fa-calendar-plus-o"}),"calendar-plus-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/calendar-times-o"},this.element("i",{"class":"fa fa-calendar-times-o"})," calendar-times-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/cc-diners-club"},this.element("i",{"class":"fa fa-cc-diners-club"}),"cc-diners-club")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/cc-jcb"},this.element("i",{"class":"fa fa-cc-jcb"})," cc-jcb")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/chrome"},this.element("i",{"class":"fa fa-chrome"})," chrome")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/clone"},this.element("i",{"class":"fa fa-clone"})," clone")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/commenting"},this.element("i",{"class":"fa fa-commenting"})," commenting")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/commenting-o"},this.element("i",{"class":"fa fa-commenting-o"}),"commenting-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/contao"},this.element("i",{"class":"fa fa-contao"})," contao")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/creative-commons"},this.element("i",{"class":"fa fa-creative-commons"})," creative-commons")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/expeditedssl"},this.element("i",{"class":"fa fa-expeditedssl"}),"expeditedssl")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/firefox"},this.element("i",{"class":"fa fa-firefox"})," firefox")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/fonticons"},this.element("i",{"class":"fa fa-fonticons"}),"fonticons")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/genderless"},this.element("i",{"class":"fa fa-genderless"})," genderless")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/get-pocket"},this.element("i",{"class":"fa fa-get-pocket"})," get-pocket")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/gg"},this.element("i",{"class":"fa fa-gg"})," gg")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/gg-circle"},this.element("i",{"class":"fa fa-gg-circle"}),"gg-circle")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hand-rock-o"},this.element("i",{"class":"fa fa-hand-grab-o"}),"hand-grab-o ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hand-lizard-o"},this.element("i",{"class":"fa fa-hand-lizard-o"}),"hand-lizard-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hand-paper-o"},this.element("i",{"class":"fa fa-hand-paper-o"}),"hand-paper-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hand-peace-o"},this.element("i",{"class":"fa fa-hand-peace-o"}),"hand-peace-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hand-pointer-o"},this.element("i",{"class":"fa fa-hand-pointer-o"}),"hand-pointer-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hand-rock-o"},this.element("i",{"class":"fa fa-hand-rock-o"}),"hand-rock-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hand-scissors-o"},this.element("i",{"class":"fa fa-hand-scissors-o"}),"hand-scissors-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hand-spock-o"},this.element("i",{"class":"fa fa-hand-spock-o"}),"hand-spock-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hand-paper-o"},this.element("i",{"class":"fa fa-hand-stop-o"}),"hand-stop-o ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hourglass"},this.element("i",{"class":"fa fa-hourglass"}),"hourglass")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hourglass-start"},this.element("i",{"class":"fa fa-hourglass-1"}),"hourglass-1 ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hourglass-half"},this.element("i",{"class":"fa fa-hourglass-2"}),"hourglass-2 ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hourglass-end"},this.element("i",{"class":"fa fa-hourglass-3"}),"hourglass-3 ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hourglass-end"},this.element("i",{"class":"fa fa-hourglass-end"}),"hourglass-end")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hourglass-half"},this.element("i",{"class":"fa fa-hourglass-half"}),"hourglass-half")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hourglass-o"},this.element("i",{"class":"fa fa-hourglass-o"}),"hourglass-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hourglass-start"},this.element("i",{"class":"fa fa-hourglass-start"}),"hourglass-start")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/houzz"},this.element("i",{"class":"fa fa-houzz"})," houzz")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/i-cursor"},this.element("i",{"class":"fa fa-i-cursor"})," i-cursor")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/industry"},this.element("i",{"class":"fa fa-industry"})," industry")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/internet-explorer"},this.element("i",{"class":"fa fa-internet-explorer"})," internet-explorer")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/map"},this.element("i",{"class":"fa fa-map"})," map")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/map-o"},this.element("i",{"class":"fa fa-map-o"})," map-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/map-pin"},this.element("i",{"class":"fa fa-map-pin"})," map-pin")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/map-signs"},this.element("i",{"class":"fa fa-map-signs"}),"map-signs")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/mouse-pointer"},this.element("i",{"class":"fa fa-mouse-pointer"}),"mouse-pointer")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/object-group"},this.element("i",{"class":"fa fa-object-group"}),"object-group")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/object-ungroup"},this.element("i",{"class":"fa fa-object-ungroup"}),"object-ungroup")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/odnoklassniki"},this.element("i",{"class":"fa fa-odnoklassniki"}),"odnoklassniki")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/odnoklassniki-square"},this.element("i",{"class":"fa fa-odnoklassniki-square"})," odnoklassniki-square")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/opencart"},this.element("i",{"class":"fa fa-opencart"})," opencart")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/opera"},this.element("i",{"class":"fa fa-opera"})," opera")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/optin-monster"},this.element("i",{"class":"fa fa-optin-monster"}),"optin-monster")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/registered"},this.element("i",{"class":"fa fa-registered"})," registered")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/safari"},this.element("i",{"class":"fa fa-safari"})," safari")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/sticky-note"},this.element("i",{"class":"fa fa-sticky-note"}),"sticky-note")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/sticky-note-o"},this.element("i",{"class":"fa fa-sticky-note-o"}),"sticky-note-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/television"},this.element("i",{"class":"fa fa-television"})," television")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/trademark"},this.element("i",{"class":"fa fa-trademark"}),"trademark")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/tripadvisor"},this.element("i",{"class":"fa fa-tripadvisor"}),"tripadvisor")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/television"},this.element("i",{"class":"fa fa-tv"})," tv ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/vimeo"},this.element("i",{"class":"fa fa-vimeo"})," vimeo")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/wikipedia-w"},this.element("i",{"class":"fa fa-wikipedia-w"}),"wikipedia-w")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/y-combinator"},this.element("i",{"class":"fa fa-y-combinator"}),"y-combinator")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/y-combinator"},this.element("i",{"class":"fa fa-yc"})," yc ",this.element("span",{"class":"text-muted"},"(alias)"))))),this.element("section",{id:"web-application"},this.element("h2",{"class":"page-header"},"Web Application Icons"),this.element("div",{"class":"row fontawesome-icon-list"},this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/adjust"},this.element("i",{"class":"fa fa-adjust"})," adjust")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/anchor"},this.element("i",{"class":"fa fa-anchor"})," anchor")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/archive"},this.element("i",{"class":"fa fa-archive"})," archive")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/area-chart"},this.element("i",{"class":"fa fa-area-chart"})," area-chart")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/arrows"},this.element("i",{"class":"fa fa-arrows"})," arrows")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/arrows-h"},this.element("i",{"class":"fa fa-arrows-h"})," arrows-h")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/arrows-v"},this.element("i",{"class":"fa fa-arrows-v"})," arrows-v")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/asterisk"},this.element("i",{"class":"fa fa-asterisk"})," asterisk")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/at"},this.element("i",{"class":"fa fa-at"})," at")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/car"},this.element("i",{"class":"fa fa-automobile"})," automobile ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/balance-scale"},this.element("i",{"class":"fa fa-balance-scale"}),"balance-scale")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/ban"},this.element("i",{"class":"fa fa-ban"})," ban")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/university"},this.element("i",{"class":"fa fa-bank"})," bank ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/bar-chart"},this.element("i",{"class":"fa fa-bar-chart"})," bar-chart")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/bar-chart"},this.element("i",{"class":"fa fa-bar-chart-o"})," bar-chart-o ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/barcode"},this.element("i",{"class":"fa fa-barcode"})," barcode")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/bars"},this.element("i",{"class":"fa fa-bars"})," bars")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/battery-empty"},this.element("i",{"class":"fa fa-battery-0"})," battery-0 ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/battery-quarter"},this.element("i",{"class":"fa fa-battery-1"})," battery-1",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/battery-half"},this.element("i",{"class":"fa fa-battery-2"})," battery-2 ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/battery-three-quarters"},this.element("i",{"class":"fa fa-battery-3"}),"battery-3 ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/battery-full"},this.element("i",{"class":"fa fa-battery-4"})," battery-4 ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/battery-empty"},this.element("i",{"class":"fa fa-battery-empty"}),"battery-empty")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/battery-full"},this.element("i",{"class":"fa fa-battery-full"}),"battery-full")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/battery-half"},this.element("i",{"class":"fa fa-battery-half"}),"battery-half")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/battery-quarter"},this.element("i",{"class":"fa fa-battery-quarter"}),"battery-quarter")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/battery-three-quarters"},this.element("i",{"class":"fa fa-battery-three-quarters"})," battery-three-quarters")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/bed"},this.element("i",{"class":"fa fa-bed"})," bed")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/beer"},this.element("i",{"class":"fa fa-beer"})," beer")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/bell"},this.element("i",{"class":"fa fa-bell"})," bell")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/bell-o"},this.element("i",{"class":"fa fa-bell-o"})," bell-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/bell-slash"},this.element("i",{"class":"fa fa-bell-slash"})," bell-slash")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/bell-slash-o"},this.element("i",{"class":"fa fa-bell-slash-o"}),"bell-slash-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/bicycle"},this.element("i",{"class":"fa fa-bicycle"})," bicycle")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/binoculars"},this.element("i",{"class":"fa fa-binoculars"})," binoculars")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/birthday-cake"},this.element("i",{"class":"fa fa-birthday-cake"}),"birthday-cake")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/bolt"},this.element("i",{"class":"fa fa-bolt"})," bolt")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/bomb"},this.element("i",{"class":"fa fa-bomb"})," bomb")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/book"},this.element("i",{"class":"fa fa-book"})," book")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/bookmark"},this.element("i",{"class":"fa fa-bookmark"})," bookmark")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/bookmark-o"},this.element("i",{"class":"fa fa-bookmark-o"})," bookmark-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/briefcase"},this.element("i",{"class":"fa fa-briefcase"})," briefcase")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/bug"},this.element("i",{"class":"fa fa-bug"})," bug")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/building"},this.element("i",{"class":"fa fa-building"})," building")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/building-o"},this.element("i",{"class":"fa fa-building-o"})," building-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/bullhorn"},this.element("i",{"class":"fa fa-bullhorn"})," bullhorn")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/bullseye"},this.element("i",{"class":"fa fa-bullseye"})," bullseye")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/bus"},this.element("i",{"class":"fa fa-bus"})," bus")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/taxi"},this.element("i",{"class":"fa fa-cab"})," cab ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/calculator"},this.element("i",{"class":"fa fa-calculator"})," calculator")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/calendar"},this.element("i",{"class":"fa fa-calendar"})," calendar")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/calendar-check-o"},this.element("i",{"class":"fa fa-calendar-check-o"}),"calendar-check-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/calendar-minus-o"},this.element("i",{"class":"fa fa-calendar-minus-o"}),"calendar-minus-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/calendar-o"},this.element("i",{"class":"fa fa-calendar-o"})," calendar-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/calendar-plus-o"},this.element("i",{"class":"fa fa-calendar-plus-o"}),"calendar-plus-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/calendar-times-o"},this.element("i",{"class":"fa fa-calendar-times-o"}),"calendar-times-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/camera"},this.element("i",{"class":"fa fa-camera"})," camera")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/camera-retro"},this.element("i",{"class":"fa fa-camera-retro"}),"camera-retro")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/car"},this.element("i",{"class":"fa fa-car"})," car")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/caret-square-o-down"},this.element("i",{"class":"fa fa-caret-square-o-down"}),"caret-square-o-down")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/caret-square-o-left"},this.element("i",{"class":"fa fa-caret-square-o-left"}),"caret-square-o-left")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/caret-square-o-right"},this.element("i",{"class":"fa fa-caret-square-o-right"})," caret-square-o-right")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/caret-square-o-up"},this.element("i",{"class":"fa fa-caret-square-o-up"}),"caret-square-o-up")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/cart-arrow-down"},this.element("i",{"class":"fa fa-cart-arrow-down"}),"cart-arrow-down")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/cart-plus"},this.element("i",{"class":"fa fa-cart-plus"})," cart-plus")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/cc"},this.element("i",{"class":"fa fa-cc"})," cc")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/certificate"},this.element("i",{"class":"fa fa-certificate"})," certificate")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/check"},this.element("i",{"class":"fa fa-check"})," check")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/check-circle"},this.element("i",{"class":"fa fa-check-circle"}),"check-circle")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/check-circle-o"},this.element("i",{"class":"fa fa-check-circle-o"}),"check-circle-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/check-square"},this.element("i",{"class":"fa fa-check-square"}),"check-square")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/check-square-o"},this.element("i",{"class":"fa fa-check-square-o"}),"check-square-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/child"},this.element("i",{"class":"fa fa-child"})," child")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/circle"},this.element("i",{"class":"fa fa-circle"})," circle")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/circle-o"},this.element("i",{"class":"fa fa-circle-o"})," circle-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/circle-o-notch"},this.element("i",{"class":"fa fa-circle-o-notch"}),"circle-o-notch")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/circle-thin"},this.element("i",{"class":"fa fa-circle-thin"})," circle-thin")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/clock-o"},this.element("i",{"class":"fa fa-clock-o"})," clock-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/clone"},this.element("i",{"class":"fa fa-clone"})," clone")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/times"},this.element("i",{"class":"fa fa-close"})," close ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/cloud"},this.element("i",{"class":"fa fa-cloud"})," cloud")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/cloud-download"},this.element("i",{"class":"fa fa-cloud-download"}),"cloud-download")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/cloud-upload"},this.element("i",{"class":"fa fa-cloud-upload"}),"cloud-upload")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/code"},this.element("i",{"class":"fa fa-code"})," code")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/code-fork"},this.element("i",{"class":"fa fa-code-fork"})," code-fork")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/coffee"},this.element("i",{"class":"fa fa-coffee"})," coffee")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/cog"},this.element("i",{"class":"fa fa-cog"})," cog")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/cogs"},this.element("i",{"class":"fa fa-cogs"})," cogs")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/comment"},this.element("i",{"class":"fa fa-comment"})," comment")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/comment-o"},this.element("i",{"class":"fa fa-comment-o"})," comment-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/commenting"},this.element("i",{"class":"fa fa-commenting"})," commenting")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/commenting-o"},this.element("i",{"class":"fa fa-commenting-o"}),"commenting-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/comments"},this.element("i",{"class":"fa fa-comments"})," comments")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/comments-o"},this.element("i",{"class":"fa fa-comments-o"})," comments-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/compass"},this.element("i",{"class":"fa fa-compass"})," compass")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/copyright"},this.element("i",{"class":"fa fa-copyright"})," copyright")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/creative-commons"},this.element("i",{"class":"fa fa-creative-commons"}),"creative-commons")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/credit-card"},this.element("i",{"class":"fa fa-credit-card"})," credit-card")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/crop"},this.element("i",{"class":"fa fa-crop"})," crop")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/crosshairs"},this.element("i",{"class":"fa fa-crosshairs"})," crosshairs")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/cube"},this.element("i",{"class":"fa fa-cube"})," cube")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/cubes"},this.element("i",{"class":"fa fa-cubes"})," cubes")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/cutlery"},this.element("i",{"class":"fa fa-cutlery"})," cutlery")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/tachometer"},this.element("i",{"class":"fa fa-dashboard"})," dashboard ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/database"},this.element("i",{"class":"fa fa-database"})," database")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/desktop"},this.element("i",{"class":"fa fa-desktop"})," desktop")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/diamond"},this.element("i",{"class":"fa fa-diamond"})," diamond")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/dot-circle-o"},this.element("i",{"class":"fa fa-dot-circle-o"}),"dot-circle-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/download"},this.element("i",{"class":"fa fa-download"})," download")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/pencil-square-o"},this.element("i",{"class":"fa fa-edit"})," edit ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/ellipsis-h"},this.element("i",{"class":"fa fa-ellipsis-h"})," ellipsis-h")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/ellipsis-v"},this.element("i",{"class":"fa fa-ellipsis-v"})," ellipsis-v")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/envelope"},this.element("i",{"class":"fa fa-envelope"})," envelope")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/envelope-o"},this.element("i",{"class":"fa fa-envelope-o"})," envelope-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/envelope-square"},this.element("i",{"class":"fa fa-envelope-square"}),"envelope-square")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/eraser"},this.element("i",{"class":"fa fa-eraser"})," eraser")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/exchange"},this.element("i",{"class":"fa fa-exchange"})," exchange")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/exclamation"},this.element("i",{"class":"fa fa-exclamation"})," exclamation")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/exclamation-circle"},this.element("i",{"class":"fa fa-exclamation-circle"}),"exclamation-circle")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/exclamation-triangle"},this.element("i",{"class":"fa fa-exclamation-triangle"})," exclamation-triangle")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/external-link"},this.element("i",{"class":"fa fa-external-link"}),"external-link")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/external-link-square"},this.element("i",{"class":"fa fa-external-link-square"})," external-link-square")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/eye"},this.element("i",{"class":"fa fa-eye"})," eye")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/eye-slash"},this.element("i",{"class":"fa fa-eye-slash"})," eye-slash")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/eyedropper"},this.element("i",{"class":"fa fa-eyedropper"})," eyedropper")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/fax"},this.element("i",{"class":"fa fa-fax"})," fax")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/rss"},this.element("i",{"class":"fa fa-feed"})," feed ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/female"},this.element("i",{"class":"fa fa-female"})," female")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/fighter-jet"},this.element("i",{"class":"fa fa-fighter-jet"})," fighter-jet")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/file-archive-o"},this.element("i",{"class":"fa fa-file-archive-o"}),"file-archive-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/file-audio-o"},this.element("i",{"class":"fa fa-file-audio-o"}),"file-audio-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/file-code-o"},this.element("i",{"class":"fa fa-file-code-o"})," file-code-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/file-excel-o"},this.element("i",{"class":"fa fa-file-excel-o"}),"file-excel-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/file-image-o"},this.element("i",{"class":"fa fa-file-image-o"}),"file-image-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/file-video-o"},this.element("i",{"class":"fa fa-file-movie-o"})," file-movie-o",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/file-pdf-o"},this.element("i",{"class":"fa fa-file-pdf-o"})," file-pdf-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/file-image-o"},this.element("i",{"class":"fa fa-file-photo-o"})," file-photo-o",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/file-image-o"},this.element("i",{"class":"fa fa-file-picture-o"}),"file-picture-o ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/file-powerpoint-o"},this.element("i",{"class":"fa fa-file-powerpoint-o"}),"file-powerpoint-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/file-audio-o"},this.element("i",{"class":"fa fa-file-sound-o"})," file-sound-o",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/file-video-o"},this.element("i",{"class":"fa fa-file-video-o"}),"file-video-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/file-word-o"},this.element("i",{"class":"fa fa-file-word-o"})," file-word-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/file-archive-o"},this.element("i",{"class":"fa fa-file-zip-o"})," file-zip-o",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/film"},this.element("i",{"class":"fa fa-film"})," film")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/filter"},this.element("i",{"class":"fa fa-filter"})," filter")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/fire"},this.element("i",{"class":"fa fa-fire"})," fire")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/fire-extinguisher"},this.element("i",{"class":"fa fa-fire-extinguisher"}),"fire-extinguisher")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/flag"},this.element("i",{"class":"fa fa-flag"})," flag")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/flag-checkered"},this.element("i",{"class":"fa fa-flag-checkered"}),"flag-checkered")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/flag-o"},this.element("i",{"class":"fa fa-flag-o"})," flag-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/bolt"},this.element("i",{"class":"fa fa-flash"})," flash ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/flask"},this.element("i",{"class":"fa fa-flask"})," flask")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/folder"},this.element("i",{"class":"fa fa-folder"})," folder")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/folder-o"},this.element("i",{"class":"fa fa-folder-o"})," folder-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/folder-open"},this.element("i",{"class":"fa fa-folder-open"})," folder-open")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/folder-open-o"},this.element("i",{"class":"fa fa-folder-open-o"}),"folder-open-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/frown-o"},this.element("i",{"class":"fa fa-frown-o"})," frown-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/futbol-o"},this.element("i",{"class":"fa fa-futbol-o"})," futbol-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/gamepad"},this.element("i",{"class":"fa fa-gamepad"})," gamepad")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/gavel"},this.element("i",{"class":"fa fa-gavel"})," gavel")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/cog"},this.element("i",{"class":"fa fa-gear"})," gear ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/cogs"},this.element("i",{"class":"fa fa-gears"})," gears ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/gift"},this.element("i",{"class":"fa fa-gift"})," gift")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/glass"},this.element("i",{"class":"fa fa-glass"})," glass")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/globe"},this.element("i",{"class":"fa fa-globe"})," globe")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/graduation-cap"},this.element("i",{"class":"fa fa-graduation-cap"}),"graduation-cap")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/users"},this.element("i",{"class":"fa fa-group"})," group ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hand-rock-o"},this.element("i",{"class":"fa fa-hand-grab-o"})," hand-grab-o",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hand-lizard-o"},this.element("i",{"class":"fa fa-hand-lizard-o"}),"hand-lizard-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hand-paper-o"},this.element("i",{"class":"fa fa-hand-paper-o"}),"hand-paper-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hand-peace-o"},this.element("i",{"class":"fa fa-hand-peace-o"}),"hand-peace-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hand-pointer-o"},this.element("i",{"class":"fa fa-hand-pointer-o"}),"hand-pointer-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hand-rock-o"},this.element("i",{"class":"fa fa-hand-rock-o"})," hand-rock-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hand-scissors-o"},this.element("i",{"class":"fa fa-hand-scissors-o"}),"hand-scissors-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hand-spock-o"},this.element("i",{"class":"fa fa-hand-spock-o"}),"hand-spock-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hand-paper-o"},this.element("i",{"class":"fa fa-hand-stop-o"})," hand-stop-o",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hdd-o"},this.element("i",{"class":"fa fa-hdd-o"})," hdd-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/headphones"},this.element("i",{"class":"fa fa-headphones"})," headphones")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/heart"},this.element("i",{"class":"fa fa-heart"})," heart")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/heart-o"},this.element("i",{"class":"fa fa-heart-o"})," heart-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/heartbeat"},this.element("i",{"class":"fa fa-heartbeat"})," heartbeat")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/history"},this.element("i",{"class":"fa fa-history"})," history")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/home"},this.element("i",{"class":"fa fa-home"})," home")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/bed"},this.element("i",{"class":"fa fa-hotel"})," hotel ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hourglass"},this.element("i",{"class":"fa fa-hourglass"})," hourglass")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hourglass-start"},this.element("i",{"class":"fa fa-hourglass-1"})," hourglass-1",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hourglass-half"},this.element("i",{"class":"fa fa-hourglass-2"})," hourglass-2",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hourglass-end"},this.element("i",{"class":"fa fa-hourglass-3"})," hourglass-3",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hourglass-end"},this.element("i",{"class":"fa fa-hourglass-end"}),"hourglass-end")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hourglass-half"},this.element("i",{"class":"fa fa-hourglass-half"}),"hourglass-half")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hourglass-o"},this.element("i",{"class":"fa fa-hourglass-o"})," hourglass-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hourglass-start"},this.element("i",{"class":"fa fa-hourglass-start"}),"hourglass-start")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/i-cursor"},this.element("i",{"class":"fa fa-i-cursor"})," i-cursor")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/picture-o"},this.element("i",{"class":"fa fa-image"})," image ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/inbox"},this.element("i",{"class":"fa fa-inbox"})," inbox")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/industry"},this.element("i",{"class":"fa fa-industry"})," industry")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/info"},this.element("i",{"class":"fa fa-info"})," info")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/info-circle"},this.element("i",{"class":"fa fa-info-circle"})," info-circle")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/university"},this.element("i",{"class":"fa fa-institution"})," institution ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/key"},this.element("i",{"class":"fa fa-key"})," key")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/keyboard-o"},this.element("i",{"class":"fa fa-keyboard-o"})," keyboard-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/language"},this.element("i",{"class":"fa fa-language"})," language")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/laptop"},this.element("i",{"class":"fa fa-laptop"})," laptop")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/leaf"},this.element("i",{"class":"fa fa-leaf"})," leaf")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/gavel"},this.element("i",{"class":"fa fa-legal"})," legal ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/lemon-o"},this.element("i",{"class":"fa fa-lemon-o"})," lemon-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/level-down"},this.element("i",{"class":"fa fa-level-down"})," level-down")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/level-up"},this.element("i",{"class":"fa fa-level-up"})," level-up")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/life-ring"},this.element("i",{"class":"fa fa-life-bouy"})," life-bouy ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/life-ring"},this.element("i",{"class":"fa fa-life-buoy"})," life-buoy ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/life-ring"},this.element("i",{"class":"fa fa-life-ring"})," life-ring")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/life-ring"},this.element("i",{"class":"fa fa-life-saver"})," life-saver ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/lightbulb-o"},this.element("i",{"class":"fa fa-lightbulb-o"})," lightbulb-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/line-chart"},this.element("i",{"class":"fa fa-line-chart"})," line-chart")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/location-arrow"},this.element("i",{"class":"fa fa-location-arrow"}),"location-arrow")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/lock"},this.element("i",{"class":"fa fa-lock"})," lock")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/magic"},this.element("i",{"class":"fa fa-magic"})," magic")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/magnet"},this.element("i",{"class":"fa fa-magnet"})," magnet")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/share"},this.element("i",{"class":"fa fa-mail-forward"})," mail-forward ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/reply"},this.element("i",{"class":"fa fa-mail-reply"})," mail-reply ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/reply-all"},this.element("i",{"class":"fa fa-mail-reply-all"})," mail-reply-all",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/male"},this.element("i",{"class":"fa fa-male"})," male")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/map"},this.element("i",{"class":"fa fa-map"})," map")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/map-marker"},this.element("i",{"class":"fa fa-map-marker"})," map-marker")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/map-o"},this.element("i",{"class":"fa fa-map-o"})," map-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/map-pin"},this.element("i",{"class":"fa fa-map-pin"})," map-pin")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/map-signs"},this.element("i",{"class":"fa fa-map-signs"})," map-signs")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/meh-o"},this.element("i",{"class":"fa fa-meh-o"})," meh-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/microphone"},this.element("i",{"class":"fa fa-microphone"})," microphone")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/microphone-slash"},this.element("i",{"class":"fa fa-microphone-slash"}),"microphone-slash")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/minus"},this.element("i",{"class":"fa fa-minus"})," minus")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/minus-circle"},this.element("i",{"class":"fa fa-minus-circle"}),"minus-circle")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/minus-square"},this.element("i",{"class":"fa fa-minus-square"}),"minus-square")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/minus-square-o"},this.element("i",{"class":"fa fa-minus-square-o"}),"minus-square-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/mobile"},this.element("i",{"class":"fa fa-mobile"})," mobile")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/mobile"},this.element("i",{"class":"fa fa-mobile-phone"})," mobile-phone ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/money"},this.element("i",{"class":"fa fa-money"})," money")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/moon-o"},this.element("i",{"class":"fa fa-moon-o"})," moon-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/graduation-cap"},this.element("i",{"class":"fa fa-mortar-board"})," mortar-board",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/motorcycle"},this.element("i",{"class":"fa fa-motorcycle"})," motorcycle")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/mouse-pointer"},this.element("i",{"class":"fa fa-mouse-pointer"}),"mouse-pointer")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/music"},this.element("i",{"class":"fa fa-music"})," music")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/bars"},this.element("i",{"class":"fa fa-navicon"})," navicon ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/newspaper-o"},this.element("i",{"class":"fa fa-newspaper-o"})," newspaper-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/object-group"},this.element("i",{"class":"fa fa-object-group"}),"object-group")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/object-ungroup"},this.element("i",{"class":"fa fa-object-ungroup"}),"object-ungroup")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/paint-brush"},this.element("i",{"class":"fa fa-paint-brush"})," paint-brush")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/paper-plane"},this.element("i",{"class":"fa fa-paper-plane"})," paper-plane")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/paper-plane-o"},this.element("i",{"class":"fa fa-paper-plane-o"}),"paper-plane-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/paw"},this.element("i",{"class":"fa fa-paw"})," paw")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/pencil"},this.element("i",{"class":"fa fa-pencil"})," pencil")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/pencil-square"},this.element("i",{"class":"fa fa-pencil-square"}),"pencil-square")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/pencil-square-o"},this.element("i",{"class":"fa fa-pencil-square-o"}),"pencil-square-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/phone"},this.element("i",{"class":"fa fa-phone"})," phone")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/phone-square"},this.element("i",{"class":"fa fa-phone-square"}),"phone-square")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/picture-o"},this.element("i",{"class":"fa fa-photo"})," photo ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/picture-o"},this.element("i",{"class":"fa fa-picture-o"})," picture-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/pie-chart"},this.element("i",{"class":"fa fa-pie-chart"})," pie-chart")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/plane"},this.element("i",{"class":"fa fa-plane"})," plane")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/plug"},this.element("i",{"class":"fa fa-plug"})," plug")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/plus"},this.element("i",{"class":"fa fa-plus"})," plus")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/plus-circle"},this.element("i",{"class":"fa fa-plus-circle"})," plus-circle")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/plus-square"},this.element("i",{"class":"fa fa-plus-square"})," plus-square")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/plus-square-o"},this.element("i",{"class":"fa fa-plus-square-o"}),"plus-square-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/power-off"},this.element("i",{"class":"fa fa-power-off"})," power-off")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/print"},this.element("i",{"class":"fa fa-print"})," print")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/puzzle-piece"},this.element("i",{"class":"fa fa-puzzle-piece"}),"puzzle-piece")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/qrcode"},this.element("i",{"class":"fa fa-qrcode"})," qrcode")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/question"},this.element("i",{"class":"fa fa-question"})," question")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/question-circle"},this.element("i",{"class":"fa fa-question-circle"}),"question-circle")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/quote-left"},this.element("i",{"class":"fa fa-quote-left"})," quote-left")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/quote-right"},this.element("i",{"class":"fa fa-quote-right"})," quote-right")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/random"},this.element("i",{"class":"fa fa-random"})," random")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/recycle"},this.element("i",{"class":"fa fa-recycle"})," recycle")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/refresh"},this.element("i",{"class":"fa fa-refresh"})," refresh")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/registered"},this.element("i",{"class":"fa fa-registered"})," registered")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/times"},this.element("i",{"class":"fa fa-remove"})," remove ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/bars"},this.element("i",{"class":"fa fa-reorder"})," reorder ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/reply"},this.element("i",{"class":"fa fa-reply"})," reply")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/reply-all"},this.element("i",{"class":"fa fa-reply-all"})," reply-all")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/retweet"},this.element("i",{"class":"fa fa-retweet"})," retweet")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/road"},this.element("i",{"class":"fa fa-road"})," road")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/rocket"},this.element("i",{"class":"fa fa-rocket"})," rocket")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/rss"},this.element("i",{"class":"fa fa-rss"})," rss")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/rss-square"},this.element("i",{"class":"fa fa-rss-square"})," rss-square")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/search"},this.element("i",{"class":"fa fa-search"})," search")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/search-minus"},this.element("i",{"class":"fa fa-search-minus"}),"search-minus")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/search-plus"},this.element("i",{"class":"fa fa-search-plus"})," search-plus")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/paper-plane"},this.element("i",{"class":"fa fa-send"})," send ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/paper-plane-o"},this.element("i",{"class":"fa fa-send-o"})," send-o ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/server"},this.element("i",{"class":"fa fa-server"})," server")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/share"},this.element("i",{"class":"fa fa-share"})," share")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/share-alt"},this.element("i",{"class":"fa fa-share-alt"})," share-alt")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/share-alt-square"},this.element("i",{"class":"fa fa-share-alt-square"}),"share-alt-square")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/share-square"},this.element("i",{"class":"fa fa-share-square"}),"share-square")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/share-square-o"},this.element("i",{"class":"fa fa-share-square-o"}),"share-square-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/shield"},this.element("i",{"class":"fa fa-shield"})," shield")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/ship"},this.element("i",{"class":"fa fa-ship"})," ship")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/shopping-cart"},this.element("i",{"class":"fa fa-shopping-cart"}),"shopping-cart")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/sign-in"},this.element("i",{"class":"fa fa-sign-in"})," sign-in")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/sign-out"},this.element("i",{"class":"fa fa-sign-out"})," sign-out")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/signal"},this.element("i",{"class":"fa fa-signal"})," signal")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/sitemap"},this.element("i",{"class":"fa fa-sitemap"})," sitemap")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/sliders"},this.element("i",{"class":"fa fa-sliders"})," sliders")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/smile-o"},this.element("i",{"class":"fa fa-smile-o"})," smile-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/futbol-o"},this.element("i",{"class":"fa fa-soccer-ball-o"})," soccer-ball-o",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/sort"},this.element("i",{"class":"fa fa-sort"})," sort")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/sort-alpha-asc"},this.element("i",{"class":"fa fa-sort-alpha-asc"}),"sort-alpha-asc")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/sort-alpha-desc"},this.element("i",{"class":"fa fa-sort-alpha-desc"}),"sort-alpha-desc")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/sort-amount-asc"},this.element("i",{"class":"fa fa-sort-amount-asc"}),"sort-amount-asc")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/sort-amount-desc"},this.element("i",{"class":"fa fa-sort-amount-desc"}),"sort-amount-desc")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/sort-asc"},this.element("i",{"class":"fa fa-sort-asc"})," sort-asc")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/sort-desc"},this.element("i",{"class":"fa fa-sort-desc"})," sort-desc")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/sort-desc"},this.element("i",{"class":"fa fa-sort-down"})," sort-down ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/sort-numeric-asc"},this.element("i",{"class":"fa fa-sort-numeric-asc"}),"sort-numeric-asc")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/sort-numeric-desc"},this.element("i",{"class":"fa fa-sort-numeric-desc"}),"sort-numeric-desc")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/sort-asc"},this.element("i",{"class":"fa fa-sort-up"})," sort-up ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/space-shuttle"},this.element("i",{"class":"fa fa-space-shuttle"}),"space-shuttle")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/spinner"},this.element("i",{"class":"fa fa-spinner"})," spinner")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/spoon"},this.element("i",{"class":"fa fa-spoon"})," spoon")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/square"},this.element("i",{"class":"fa fa-square"})," square")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/square-o"},this.element("i",{"class":"fa fa-square-o"})," square-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/star"},this.element("i",{"class":"fa fa-star"})," star")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/star-half"},this.element("i",{"class":"fa fa-star-half"})," star-half")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/star-half-o"},this.element("i",{"class":"fa fa-star-half-empty"}),"star-half-empty ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/star-half-o"},this.element("i",{"class":"fa fa-star-half-full"}),"star-half-full ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/star-half-o"},this.element("i",{"class":"fa fa-star-half-o"})," star-half-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/star-o"},this.element("i",{"class":"fa fa-star-o"})," star-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/sticky-note"},this.element("i",{"class":"fa fa-sticky-note"})," sticky-note")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/sticky-note-o"},this.element("i",{"class":"fa fa-sticky-note-o"}),"sticky-note-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/street-view"},this.element("i",{"class":"fa fa-street-view"})," street-view")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/suitcase"},this.element("i",{"class":"fa fa-suitcase"})," suitcase")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/sun-o"},this.element("i",{"class":"fa fa-sun-o"})," sun-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/life-ring"},this.element("i",{"class":"fa fa-support"})," support ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/tablet"},this.element("i",{"class":"fa fa-tablet"})," tablet")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/tachometer"},this.element("i",{"class":"fa fa-tachometer"})," tachometer")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/tag"},this.element("i",{"class":"fa fa-tag"})," tag")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/tags"},this.element("i",{"class":"fa fa-tags"})," tags")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/tasks"},this.element("i",{"class":"fa fa-tasks"})," tasks")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/taxi"},this.element("i",{"class":"fa fa-taxi"})," taxi")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/television"},this.element("i",{"class":"fa fa-television"})," television")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/terminal"},this.element("i",{"class":"fa fa-terminal"})," terminal")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/thumb-tack"},this.element("i",{"class":"fa fa-thumb-tack"})," thumb-tack")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/thumbs-down"},this.element("i",{"class":"fa fa-thumbs-down"})," thumbs-down")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/thumbs-o-down"},this.element("i",{"class":"fa fa-thumbs-o-down"}),"thumbs-o-down")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/thumbs-o-up"},this.element("i",{"class":"fa fa-thumbs-o-up"})," thumbs-o-up")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/thumbs-up"},this.element("i",{"class":"fa fa-thumbs-up"})," thumbs-up")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/ticket"},this.element("i",{"class":"fa fa-ticket"})," ticket")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/times"},this.element("i",{"class":"fa fa-times"})," times")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/times-circle"},this.element("i",{"class":"fa fa-times-circle"}),"times-circle")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/times-circle-o"},this.element("i",{"class":"fa fa-times-circle-o"}),"times-circle-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/tint"},this.element("i",{"class":"fa fa-tint"})," tint")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/caret-square-o-down"},this.element("i",{"class":"fa fa-toggle-down"}),"toggle-down ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/caret-square-o-left"},this.element("i",{"class":"fa fa-toggle-left"}),"toggle-left ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/toggle-off"},this.element("i",{"class":"fa fa-toggle-off"})," toggle-off")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/toggle-on"},this.element("i",{"class":"fa fa-toggle-on"})," toggle-on")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/caret-square-o-right"},this.element("i",{"class":"fa fa-toggle-right"}),"toggle-right ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/caret-square-o-up"},this.element("i",{"class":"fa fa-toggle-up"})," toggle-up",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/trademark"},this.element("i",{"class":"fa fa-trademark"})," trademark")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/trash"},this.element("i",{"class":"fa fa-trash"})," trash")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/trash-o"},this.element("i",{"class":"fa fa-trash-o"})," trash-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/tree"},this.element("i",{"class":"fa fa-tree"})," tree")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/trophy"},this.element("i",{"class":"fa fa-trophy"})," trophy")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/truck"},this.element("i",{"class":"fa fa-truck"})," truck")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/tty"},this.element("i",{"class":"fa fa-tty"})," tty")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/television"},this.element("i",{"class":"fa fa-tv"})," tv ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/umbrella"},this.element("i",{"class":"fa fa-umbrella"})," umbrella")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/university"},this.element("i",{"class":"fa fa-university"})," university")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/unlock"},this.element("i",{"class":"fa fa-unlock"})," unlock")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/unlock-alt"},this.element("i",{"class":"fa fa-unlock-alt"})," unlock-alt")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/sort"},this.element("i",{"class":"fa fa-unsorted"})," unsorted ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/upload"},this.element("i",{"class":"fa fa-upload"})," upload")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/user"},this.element("i",{"class":"fa fa-user"})," user")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/user-plus"},this.element("i",{"class":"fa fa-user-plus"})," user-plus")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/user-secret"},this.element("i",{"class":"fa fa-user-secret"})," user-secret")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/user-times"},this.element("i",{"class":"fa fa-user-times"})," user-times")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/users"},this.element("i",{"class":"fa fa-users"})," users")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/video-camera"},this.element("i",{"class":"fa fa-video-camera"}),"video-camera")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/volume-down"},this.element("i",{"class":"fa fa-volume-down"})," volume-down")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/volume-off"},this.element("i",{"class":"fa fa-volume-off"})," volume-off")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/volume-up"},this.element("i",{"class":"fa fa-volume-up"})," volume-up")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/exclamation-triangle"},this.element("i",{"class":"fa fa-warning"})," warning",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/wheelchair"},this.element("i",{"class":"fa fa-wheelchair"})," wheelchair")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/wifi"},this.element("i",{"class":"fa fa-wifi"})," wifi")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/wrench"},this.element("i",{"class":"fa fa-wrench"})," wrench")))),this.element("section",{id:"hand"},this.element("h2",{"class":"page-header"},"Hand Icons"),this.element("div",{"class":"row fontawesome-icon-list"},this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hand-rock-o"},this.element("i",{"class":"fa fa-hand-grab-o"}),"hand-grab-o ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hand-lizard-o"},this.element("i",{"class":"fa fa-hand-lizard-o"}),"hand-lizard-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hand-o-down"},this.element("i",{"class":"fa fa-hand-o-down"}),"hand-o-down")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hand-o-left"},this.element("i",{"class":"fa fa-hand-o-left"}),"hand-o-left")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hand-o-right"},this.element("i",{"class":"fa fa-hand-o-right"}),"hand-o-right")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hand-o-up"},this.element("i",{"class":"fa fa-hand-o-up"}),"hand-o-up")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hand-paper-o"},this.element("i",{"class":"fa fa-hand-paper-o"}),"hand-paper-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hand-peace-o"},this.element("i",{"class":"fa fa-hand-peace-o"}),"hand-peace-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hand-pointer-o"},this.element("i",{"class":"fa fa-hand-pointer-o"}),"hand-pointer-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hand-rock-o"},this.element("i",{"class":"fa fa-hand-rock-o"}),"hand-rock-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hand-scissors-o"},this.element("i",{"class":"fa fa-hand-scissors-o"}),"hand-scissors-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hand-spock-o"},this.element("i",{"class":"fa fa-hand-spock-o"}),"hand-spock-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hand-paper-o"},this.element("i",{"class":"fa fa-hand-stop-o"}),"hand-stop-o ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/thumbs-down"},this.element("i",{"class":"fa fa-thumbs-down"}),"thumbs-down")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/thumbs-o-down"},this.element("i",{"class":"fa fa-thumbs-o-down"}),"thumbs-o-down")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/thumbs-o-up"},this.element("i",{"class":"fa fa-thumbs-o-up"}),"thumbs-o-up")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/thumbs-up"},this.element("i",{"class":"fa fa-thumbs-up"}),"thumbs-up")))),this.element("section",{id:"transportation"},this.element("h2",{"class":"page-header"},"Transportation Icons"),this.element("div",{"class":"row fontawesome-icon-list"},this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/ambulance"},this.element("i",{"class":"fa fa-ambulance"}),"ambulance")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/car"},this.element("i",{"class":"fa fa-automobile"})," automobile ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/bicycle"},this.element("i",{"class":"fa fa-bicycle"})," bicycle")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/bus"},this.element("i",{"class":"fa fa-bus"})," bus")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/taxi"},this.element("i",{"class":"fa fa-cab"})," cab ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/car"},this.element("i",{"class":"fa fa-car"})," car")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/fighter-jet"},this.element("i",{"class":"fa fa-fighter-jet"}),"fighter-jet")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/motorcycle"},this.element("i",{"class":"fa fa-motorcycle"})," motorcycle")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/plane"},this.element("i",{"class":"fa fa-plane"})," plane")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/rocket"},this.element("i",{"class":"fa fa-rocket"})," rocket")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/ship"},this.element("i",{"class":"fa fa-ship"})," ship")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/space-shuttle"},this.element("i",{"class":"fa fa-space-shuttle"}),"space-shuttle")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/subway"},this.element("i",{"class":"fa fa-subway"})," subway")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/taxi"},this.element("i",{"class":"fa fa-taxi"})," taxi")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/train"},this.element("i",{"class":"fa fa-train"})," train")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/truck"},this.element("i",{"class":"fa fa-truck"})," truck")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/wheelchair"},this.element("i",{"class":"fa fa-wheelchair"})," wheelchair")))),this.element("section",{id:"gender"},this.element("h2",{"class":"page-header"},"Gender Icons"),this.element("div",{"class":"row fontawesome-icon-list"},this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/genderless"},this.element("i",{"class":"fa fa-genderless"})," genderless")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/transgender"},this.element("i",{"class":"fa fa-intersex"})," intersex",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/mars"},this.element("i",{"class":"fa fa-mars"})," mars")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/mars-double"},this.element("i",{"class":"fa fa-mars-double"}),"mars-double")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/mars-stroke"},this.element("i",{"class":"fa fa-mars-stroke"}),"mars-stroke")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/mars-stroke-h"},this.element("i",{"class":"fa fa-mars-stroke-h"}),"mars-stroke-h")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/mars-stroke-v"},this.element("i",{"class":"fa fa-mars-stroke-v"}),"mars-stroke-v")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/mercury"},this.element("i",{"class":"fa fa-mercury"})," mercury")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/neuter"},this.element("i",{"class":"fa fa-neuter"})," neuter")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/transgender"},this.element("i",{"class":"fa fa-transgender"}),"transgender")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/transgender-alt"},this.element("i",{"class":"fa fa-transgender-alt"}),"transgender-alt")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/venus"},this.element("i",{"class":"fa fa-venus"})," venus")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/venus-double"},this.element("i",{"class":"fa fa-venus-double"}),"venus-double")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/venus-mars"},this.element("i",{"class":"fa fa-venus-mars"})," venus-mars")))),this.element("section",{id:"file-type"},this.element("h2",{"class":"page-header"},"File Type Icons"),this.element("div",{"class":"row fontawesome-icon-list"},this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/file"},this.element("i",{"class":"fa fa-file"})," file")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/file-archive-o"},this.element("i",{"class":"fa fa-file-archive-o"}),"file-archive-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/file-audio-o"},this.element("i",{"class":"fa fa-file-audio-o"}),"file-audio-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/file-code-o"},this.element("i",{"class":"fa fa-file-code-o"}),"file-code-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/file-excel-o"},this.element("i",{"class":"fa fa-file-excel-o"}),"file-excel-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/file-image-o"},this.element("i",{"class":"fa fa-file-image-o"}),"file-image-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/file-video-o"},this.element("i",{"class":"fa fa-file-movie-o"}),"file-movie-o ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/file-o"},this.element("i",{"class":"fa fa-file-o"})," file-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/file-pdf-o"},this.element("i",{"class":"fa fa-file-pdf-o"})," file-pdf-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/file-image-o"},this.element("i",{"class":"fa fa-file-photo-o"}),"file-photo-o ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/file-image-o"},this.element("i",{"class":"fa fa-file-picture-o"}),"file-picture-o ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/file-powerpoint-o"},this.element("i",{"class":"fa fa-file-powerpoint-o"})," file-powerpoint-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/file-audio-o"},this.element("i",{"class":"fa fa-file-sound-o"}),"file-sound-o ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/file-text"},this.element("i",{"class":"fa fa-file-text"}),"file-text")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/file-text-o"},this.element("i",{"class":"fa fa-file-text-o"}),"file-text-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/file-video-o"},this.element("i",{"class":"fa fa-file-video-o"}),"file-video-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/file-word-o"},this.element("i",{"class":"fa fa-file-word-o"}),"file-word-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/file-archive-o"},this.element("i",{"class":"fa fa-file-zip-o"}),"file-zip-o ",this.element("span",{"class":"text-muted"},"(alias)"))))),this.element("section",{id:"spinner"},this.element("h2",{"class":"page-header"},"Spinner Icons"),this.element("div",{"class":"alert alert-success"},this.element("ul",{"class":"fa-ul"},this.element("li",null,this.element("i",{"class":"fa fa-info-circle fa-lg fa-li"}),"These icons work great with the ",this.element("code",null,"fa-spin")," class. Check out the",this.element("a",{href:"../examples/#animated","class":"alert-link"},"spinning icons example"),"."))),this.element("div",{"class":"row fontawesome-icon-list"},this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/circle-o-notch"},this.element("i",{"class":"fa fa-circle-o-notch"}),"circle-o-notch")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/cog"},this.element("i",{"class":"fa fa-cog"})," cog")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/cog"},this.element("i",{"class":"fa fa-gear"})," gear ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/refresh"},this.element("i",{"class":"fa fa-refresh"})," refresh")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/spinner"},this.element("i",{"class":"fa fa-spinner"})," spinner")))),this.element("section",{id:"form-control"},this.element("h2",{"class":"page-header"},"Form Control Icons"),this.element("div",{"class":"row fontawesome-icon-list"},this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/check-square"},this.element("i",{"class":"fa fa-check-square"}),"check-square")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/check-square-o"},this.element("i",{"class":"fa fa-check-square-o"}),"check-square-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/circle"},this.element("i",{"class":"fa fa-circle"})," circle")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/circle-o"},this.element("i",{"class":"fa fa-circle-o"})," circle-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/dot-circle-o"},this.element("i",{"class":"fa fa-dot-circle-o"}),"dot-circle-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/minus-square"},this.element("i",{"class":"fa fa-minus-square"}),"minus-square")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/minus-square-o"},this.element("i",{"class":"fa fa-minus-square-o"}),"minus-square-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/plus-square"},this.element("i",{"class":"fa fa-plus-square"}),"plus-square")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/plus-square-o"},this.element("i",{"class":"fa fa-plus-square-o"}),"plus-square-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/square"},this.element("i",{"class":"fa fa-square"})," square")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/square-o"},this.element("i",{"class":"fa fa-square-o"})," square-o")))),this.element("section",{id:"payment"},this.element("h2",{"class":"page-header"},"Payment Icons"),this.element("div",{"class":"row fontawesome-icon-list"},this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/cc-amex"},this.element("i",{"class":"fa fa-cc-amex"})," cc-amex")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/cc-diners-club"},this.element("i",{"class":"fa fa-cc-diners-club"}),"cc-diners-club")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/cc-discover"},this.element("i",{"class":"fa fa-cc-discover"}),"cc-discover")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/cc-jcb"},this.element("i",{"class":"fa fa-cc-jcb"})," cc-jcb")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/cc-mastercard"},this.element("i",{"class":"fa fa-cc-mastercard"}),"cc-mastercard")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/cc-paypal"},this.element("i",{"class":"fa fa-cc-paypal"}),"cc-paypal")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/cc-stripe"},this.element("i",{"class":"fa fa-cc-stripe"}),"cc-stripe")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/cc-visa"},this.element("i",{"class":"fa fa-cc-visa"})," cc-visa")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/credit-card"},this.element("i",{"class":"fa fa-credit-card"}),"credit-card")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/google-wallet"},this.element("i",{"class":"fa fa-google-wallet"}),"google-wallet")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/paypal"},this.element("i",{"class":"fa fa-paypal"})," paypal")))),this.element("section",{id:"chart"},this.element("h2",{"class":"page-header"},"Chart Icons"),this.element("div",{"class":"row fontawesome-icon-list"},this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/area-chart"},this.element("i",{"class":"fa fa-area-chart"})," area-chart")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/bar-chart"},this.element("i",{"class":"fa fa-bar-chart"}),"bar-chart")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/bar-chart"},this.element("i",{"class":"fa fa-bar-chart-o"}),"bar-chart-o ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/line-chart"},this.element("i",{"class":"fa fa-line-chart"})," line-chart")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/pie-chart"},this.element("i",{"class":"fa fa-pie-chart"}),"pie-chart")))),this.element("section",{id:"currency"},this.element("h2",{"class":"page-header"},"Currency Icons"),this.element("div",{"class":"row fontawesome-icon-list"},this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/btc"},this.element("i",{"class":"fa fa-bitcoin"})," bitcoin ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/btc"},this.element("i",{"class":"fa fa-btc"})," btc")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/jpy"},this.element("i",{"class":"fa fa-cny"})," cny ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/usd"},this.element("i",{"class":"fa fa-dollar"})," dollar ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/eur"},this.element("i",{"class":"fa fa-eur"})," eur")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/eur"},this.element("i",{"class":"fa fa-euro"})," euro ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/gbp"},this.element("i",{"class":"fa fa-gbp"})," gbp")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/gg"},this.element("i",{"class":"fa fa-gg"})," gg")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/gg-circle"},this.element("i",{"class":"fa fa-gg-circle"}),"gg-circle")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/ils"},this.element("i",{"class":"fa fa-ils"})," ils")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/inr"},this.element("i",{"class":"fa fa-inr"})," inr")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/jpy"},this.element("i",{"class":"fa fa-jpy"})," jpy")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/krw"},this.element("i",{"class":"fa fa-krw"})," krw")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/money"},this.element("i",{"class":"fa fa-money"})," money")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/jpy"},this.element("i",{"class":"fa fa-rmb"})," rmb ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/rub"},this.element("i",{"class":"fa fa-rouble"})," rouble ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/rub"},this.element("i",{"class":"fa fa-rub"})," rub")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/rub"},this.element("i",{"class":"fa fa-ruble"})," ruble ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/inr"},this.element("i",{"class":"fa fa-rupee"})," rupee ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/ils"},this.element("i",{"class":"fa fa-shekel"})," shekel ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/ils"},this.element("i",{"class":"fa fa-sheqel"})," sheqel ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/try"},this.element("i",{"class":"fa fa-try"})," try")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/try"},this.element("i",{"class":"fa fa-turkish-lira"})," turkish-lira",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/usd"},this.element("i",{"class":"fa fa-usd"})," usd")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/krw"},this.element("i",{"class":"fa fa-won"})," won ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/jpy"},this.element("i",{"class":"fa fa-yen"})," yen ",this.element("span",{"class":"text-muted"},"(alias)"))))),this.element("section",{id:"text-editor"},this.element("h2",{"class":"page-header"},"Text Editor Icons"),this.element("div",{"class":"row fontawesome-icon-list"},this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/align-center"},this.element("i",{"class":"fa fa-align-center"}),"align-center")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/align-justify"},this.element("i",{"class":"fa fa-align-justify"}),"align-justify")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/align-left"},this.element("i",{"class":"fa fa-align-left"})," align-left")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/align-right"},this.element("i",{"class":"fa fa-align-right"}),"align-right")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/bold"},this.element("i",{"class":"fa fa-bold"})," bold")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/link"},this.element("i",{"class":"fa fa-chain"})," chain ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/chain-broken"},this.element("i",{"class":"fa fa-chain-broken"}),"chain-broken")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/clipboard"},this.element("i",{"class":"fa fa-clipboard"}),"clipboard")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/columns"},this.element("i",{"class":"fa fa-columns"})," columns")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/files-o"},this.element("i",{"class":"fa fa-copy"})," copy ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/scissors"},this.element("i",{"class":"fa fa-cut"})," cut ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/outdent"},this.element("i",{"class":"fa fa-dedent"})," dedent ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/eraser"},this.element("i",{"class":"fa fa-eraser"})," eraser")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/file"},this.element("i",{"class":"fa fa-file"})," file")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/file-o"},this.element("i",{"class":"fa fa-file-o"})," file-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/file-text"},this.element("i",{"class":"fa fa-file-text"}),"file-text")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/file-text-o"},this.element("i",{"class":"fa fa-file-text-o"}),"file-text-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/files-o"},this.element("i",{"class":"fa fa-files-o"})," files-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/floppy-o"},this.element("i",{"class":"fa fa-floppy-o"})," floppy-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/font"},this.element("i",{"class":"fa fa-font"})," font")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/header"},this.element("i",{"class":"fa fa-header"})," header")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/indent"},this.element("i",{"class":"fa fa-indent"})," indent")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/italic"},this.element("i",{"class":"fa fa-italic"})," italic")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/link"},this.element("i",{"class":"fa fa-link"})," link")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/list"},this.element("i",{"class":"fa fa-list"})," list")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/list-alt"},this.element("i",{"class":"fa fa-list-alt"})," list-alt")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/list-ol"},this.element("i",{"class":"fa fa-list-ol"})," list-ol")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/list-ul"},this.element("i",{"class":"fa fa-list-ul"})," list-ul")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/outdent"},this.element("i",{"class":"fa fa-outdent"})," outdent")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/paperclip"},this.element("i",{"class":"fa fa-paperclip"}),"paperclip")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/paragraph"},this.element("i",{"class":"fa fa-paragraph"}),"paragraph")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/clipboard"},this.element("i",{"class":"fa fa-paste"})," paste ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/repeat"},this.element("i",{"class":"fa fa-repeat"})," repeat")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/undo"},this.element("i",{"class":"fa fa-rotate-left"})," rotate-left",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/repeat"},this.element("i",{"class":"fa fa-rotate-right"})," rotate-right",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/floppy-o"},this.element("i",{"class":"fa fa-save"})," save ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/scissors"},this.element("i",{"class":"fa fa-scissors"})," scissors")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/strikethrough"},this.element("i",{"class":"fa fa-strikethrough"}),"strikethrough")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/subscript"},this.element("i",{"class":"fa fa-subscript"}),"subscript")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/superscript"},this.element("i",{"class":"fa fa-superscript"}),"superscript")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/table"},this.element("i",{"class":"fa fa-table"})," table")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/text-height"},this.element("i",{"class":"fa fa-text-height"}),"text-height")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/text-width"},this.element("i",{"class":"fa fa-text-width"})," text-width")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/th"},this.element("i",{"class":"fa fa-th"})," th")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/th-large"},this.element("i",{"class":"fa fa-th-large"})," th-large")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/th-list"},this.element("i",{"class":"fa fa-th-list"})," th-list")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/underline"},this.element("i",{"class":"fa fa-underline"}),"underline")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/undo"},this.element("i",{"class":"fa fa-undo"})," undo")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/chain-broken"},this.element("i",{"class":"fa fa-unlink"})," unlink ",this.element("span",{"class":"text-muted"},"(alias)"))))),this.element("section",{id:"directional"},this.element("h2",{"class":"page-header"},"Directional Icons"),this.element("div",{"class":"row fontawesome-icon-list"},this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/angle-double-down"},this.element("i",{"class":"fa fa-angle-double-down"})," angle-double-down")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/angle-double-left"},this.element("i",{"class":"fa fa-angle-double-left"})," angle-double-left")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/angle-double-right"},this.element("i",{"class":"fa fa-angle-double-right"})," angle-double-right")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/angle-double-up"},this.element("i",{"class":"fa fa-angle-double-up"}),"angle-double-up")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/angle-down"},this.element("i",{"class":"fa fa-angle-down"})," angle-down")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/angle-left"},this.element("i",{"class":"fa fa-angle-left"})," angle-left")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/angle-right"},this.element("i",{"class":"fa fa-angle-right"}),"angle-right")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/angle-up"},this.element("i",{"class":"fa fa-angle-up"})," angle-up")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/arrow-circle-down"},this.element("i",{"class":"fa fa-arrow-circle-down"})," arrow-circle-down")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/arrow-circle-left"},this.element("i",{"class":"fa fa-arrow-circle-left"})," arrow-circle-left")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/arrow-circle-o-down"},this.element("i",{"class":"fa fa-arrow-circle-o-down"})," arrow-circle-o-down")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/arrow-circle-o-left"},this.element("i",{"class":"fa fa-arrow-circle-o-left"})," arrow-circle-o-left")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/arrow-circle-o-right"},this.element("i",{"class":"fa fa-arrow-circle-o-right"})," arrow-circle-o-right")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/arrow-circle-o-up"},this.element("i",{"class":"fa fa-arrow-circle-o-up"})," arrow-circle-o-up")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/arrow-circle-right"},this.element("i",{"class":"fa fa-arrow-circle-right"})," arrow-circle-right")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/arrow-circle-up"},this.element("i",{"class":"fa fa-arrow-circle-up"}),"arrow-circle-up")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/arrow-down"},this.element("i",{"class":"fa fa-arrow-down"})," arrow-down")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/arrow-left"},this.element("i",{"class":"fa fa-arrow-left"})," arrow-left")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/arrow-right"},this.element("i",{"class":"fa fa-arrow-right"}),"arrow-right")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/arrow-up"},this.element("i",{"class":"fa fa-arrow-up"})," arrow-up")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/arrows"},this.element("i",{"class":"fa fa-arrows"})," arrows")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/arrows-alt"},this.element("i",{"class":"fa fa-arrows-alt"})," arrows-alt")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/arrows-h"},this.element("i",{"class":"fa fa-arrows-h"})," arrows-h")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/arrows-v"},this.element("i",{"class":"fa fa-arrows-v"})," arrows-v")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/caret-down"},this.element("i",{"class":"fa fa-caret-down"})," caret-down")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/caret-left"},this.element("i",{"class":"fa fa-caret-left"})," caret-left")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/caret-right"},this.element("i",{"class":"fa fa-caret-right"}),"caret-right")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/caret-square-o-down"},this.element("i",{"class":"fa fa-caret-square-o-down"})," caret-square-o-down")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/caret-square-o-left"},this.element("i",{"class":"fa fa-caret-square-o-left"})," caret-square-o-left")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/caret-square-o-right"},this.element("i",{"class":"fa fa-caret-square-o-right"})," caret-square-o-right")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/caret-square-o-up"},this.element("i",{"class":"fa fa-caret-square-o-up"})," caret-square-o-up")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/caret-up"},this.element("i",{"class":"fa fa-caret-up"})," caret-up")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/chevron-circle-down"},this.element("i",{"class":"fa fa-chevron-circle-down"})," chevron-circle-down")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/chevron-circle-left"},this.element("i",{"class":"fa fa-chevron-circle-left"})," chevron-circle-left")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/chevron-circle-right"},this.element("i",{"class":"fa fa-chevron-circle-right"})," chevron-circle-right")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/chevron-circle-up"},this.element("i",{"class":"fa fa-chevron-circle-up"})," chevron-circle-up")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/chevron-down"},this.element("i",{"class":"fa fa-chevron-down"}),"chevron-down")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/chevron-left"},this.element("i",{"class":"fa fa-chevron-left"}),"chevron-left")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/chevron-right"},this.element("i",{"class":"fa fa-chevron-right"}),"chevron-right")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/chevron-up"},this.element("i",{"class":"fa fa-chevron-up"})," chevron-up")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/exchange"},this.element("i",{"class":"fa fa-exchange"})," exchange")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hand-o-down"},this.element("i",{"class":"fa fa-hand-o-down"}),"hand-o-down")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hand-o-left"},this.element("i",{"class":"fa fa-hand-o-left"}),"hand-o-left")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hand-o-right"},this.element("i",{"class":"fa fa-hand-o-right"}),"hand-o-right")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hand-o-up"},this.element("i",{"class":"fa fa-hand-o-up"}),"hand-o-up")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/long-arrow-down"},this.element("i",{"class":"fa fa-long-arrow-down"}),"long-arrow-down")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/long-arrow-left"},this.element("i",{"class":"fa fa-long-arrow-left"}),"long-arrow-left")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/long-arrow-right"},this.element("i",{"class":"fa fa-long-arrow-right"})," long-arrow-right")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/long-arrow-up"},this.element("i",{"class":"fa fa-long-arrow-up"}),"long-arrow-up")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/caret-square-o-down"},this.element("i",{"class":"fa fa-toggle-down"}),"toggle-down ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/caret-square-o-left"},this.element("i",{"class":"fa fa-toggle-left"}),"toggle-left ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/caret-square-o-right"},this.element("i",{"class":"fa fa-toggle-right"})," toggle-right ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/caret-square-o-up"},this.element("i",{"class":"fa fa-toggle-up"}),"toggle-up ",this.element("span",{"class":"text-muted"},"(alias)"))))),this.element("section",{id:"video-player"},this.element("h2",{"class":"page-header"},"Video Player Icons"),this.element("div",{"class":"row fontawesome-icon-list"},this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/arrows-alt"},this.element("i",{"class":"fa fa-arrows-alt"})," arrows-alt")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/backward"},this.element("i",{"class":"fa fa-backward"})," backward")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/compress"},this.element("i",{"class":"fa fa-compress"})," compress")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/eject"},this.element("i",{"class":"fa fa-eject"})," eject")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/expand"},this.element("i",{"class":"fa fa-expand"})," expand")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/fast-backward"},this.element("i",{"class":"fa fa-fast-backward"}),"fast-backward")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/fast-forward"},this.element("i",{"class":"fa fa-fast-forward"}),"fast-forward")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/forward"},this.element("i",{"class":"fa fa-forward"})," forward")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/pause"},this.element("i",{"class":"fa fa-pause"})," pause")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/play"},this.element("i",{"class":"fa fa-play"})," play")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/play-circle"},this.element("i",{"class":"fa fa-play-circle"}),"play-circle")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/play-circle-o"},this.element("i",{"class":"fa fa-play-circle-o"}),"play-circle-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/random"},this.element("i",{"class":"fa fa-random"})," random")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/step-backward"},this.element("i",{"class":"fa fa-step-backward"}),"step-backward")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/step-forward"},this.element("i",{"class":"fa fa-step-forward"}),"step-forward")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/stop"},this.element("i",{"class":"fa fa-stop"})," stop")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/youtube-play"},this.element("i",{"class":"fa fa-youtube-play"}),"youtube-play")))),this.element("section",{id:"brand"},this.element("h2",{"class":"page-header"},"Brand Icons"),this.element("div",{"class":"alert alert-warning"},this.element("h4",null,this.element("i",{"class":"fa fa-warning"})," Warning!"),"Apparently, Adblock Plus can remove Font Awesome brand icons with their \"Remove SocialMedia Buttons\" setting. We will not use hacks to force them to display. Please",this.element("a",{href:"https://adblockplus.org/en/bugs","class":"alert-link"},"report an issue with Adblock Plus")," if you believethis to be an error. To work around this, you ll need to modify the social icon class names."),this.element("div",{"class":"row fontawesome-icon-list margin-bottom-lg"},this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/500px"},this.element("i",{"class":"fa fa-500px"})," 500px")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/adn"},this.element("i",{"class":"fa fa-adn"})," adn")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/amazon"},this.element("i",{"class":"fa fa-amazon"})," amazon")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/android"},this.element("i",{"class":"fa fa-android"})," android")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/angellist"},this.element("i",{"class":"fa fa-angellist"})," angellist")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/apple"},this.element("i",{"class":"fa fa-apple"})," apple")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/behance"},this.element("i",{"class":"fa fa-behance"})," behance")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/behance-square"},this.element("i",{"class":"fa fa-behance-square"}),"behance-square")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/bitbucket"},this.element("i",{"class":"fa fa-bitbucket"})," bitbucket")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/bitbucket-square"},this.element("i",{"class":"fa fa-bitbucket-square"}),"bitbucket-square")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/btc"},this.element("i",{"class":"fa fa-bitcoin"})," bitcoin ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/black-tie"},this.element("i",{"class":"fa fa-black-tie"})," black-tie")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/btc"},this.element("i",{"class":"fa fa-btc"})," btc")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/buysellads"},this.element("i",{"class":"fa fa-buysellads"})," buysellads")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/cc-amex"},this.element("i",{"class":"fa fa-cc-amex"})," cc-amex")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/cc-diners-club"},this.element("i",{"class":"fa fa-cc-diners-club"}),"cc-diners-club")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/cc-discover"},this.element("i",{"class":"fa fa-cc-discover"})," cc-discover")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/cc-jcb"},this.element("i",{"class":"fa fa-cc-jcb"})," cc-jcb")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/cc-mastercard"},this.element("i",{"class":"fa fa-cc-mastercard"}),"cc-mastercard")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/cc-paypal"},this.element("i",{"class":"fa fa-cc-paypal"})," cc-paypal")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/cc-stripe"},this.element("i",{"class":"fa fa-cc-stripe"})," cc-stripe")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/cc-visa"},this.element("i",{"class":"fa fa-cc-visa"})," cc-visa")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/chrome"},this.element("i",{"class":"fa fa-chrome"})," chrome")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/codepen"},this.element("i",{"class":"fa fa-codepen"})," codepen")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/connectdevelop"},this.element("i",{"class":"fa fa-connectdevelop"}),"connectdevelop")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/contao"},this.element("i",{"class":"fa fa-contao"})," contao")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/css3"},this.element("i",{"class":"fa fa-css3"})," css3")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/dashcube"},this.element("i",{"class":"fa fa-dashcube"})," dashcube")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/delicious"},this.element("i",{"class":"fa fa-delicious"})," delicious")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/deviantart"},this.element("i",{"class":"fa fa-deviantart"})," deviantart")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/digg"},this.element("i",{"class":"fa fa-digg"})," digg")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/dribbble"},this.element("i",{"class":"fa fa-dribbble"})," dribbble")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/dropbox"},this.element("i",{"class":"fa fa-dropbox"})," dropbox")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/drupal"},this.element("i",{"class":"fa fa-drupal"})," drupal")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/empire"},this.element("i",{"class":"fa fa-empire"})," empire")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/expeditedssl"},this.element("i",{"class":"fa fa-expeditedssl"}),"expeditedssl")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/facebook"},this.element("i",{"class":"fa fa-facebook"})," facebook")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/facebook"},this.element("i",{"class":"fa fa-facebook-f"})," facebook-f ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/facebook-official"},this.element("i",{"class":"fa fa-facebook-official"}),"facebook-official")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/facebook-square"},this.element("i",{"class":"fa fa-facebook-square"}),"facebook-square")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/firefox"},this.element("i",{"class":"fa fa-firefox"})," firefox")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/flickr"},this.element("i",{"class":"fa fa-flickr"})," flickr")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/fonticons"},this.element("i",{"class":"fa fa-fonticons"})," fonticons")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/forumbee"},this.element("i",{"class":"fa fa-forumbee"})," forumbee")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/foursquare"},this.element("i",{"class":"fa fa-foursquare"})," foursquare")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/empire"},this.element("i",{"class":"fa fa-ge"})," ge ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/get-pocket"},this.element("i",{"class":"fa fa-get-pocket"})," get-pocket")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/gg"},this.element("i",{"class":"fa fa-gg"})," gg")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/gg-circle"},this.element("i",{"class":"fa fa-gg-circle"})," gg-circle")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/git"},this.element("i",{"class":"fa fa-git"})," git")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/git-square"},this.element("i",{"class":"fa fa-git-square"})," git-square")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/github"},this.element("i",{"class":"fa fa-github"})," github")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/github-alt"},this.element("i",{"class":"fa fa-github-alt"})," github-alt")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/github-square"},this.element("i",{"class":"fa fa-github-square"}),"github-square")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/gratipay"},this.element("i",{"class":"fa fa-gittip"})," gittip ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/google"},this.element("i",{"class":"fa fa-google"})," google")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/google-plus"},this.element("i",{"class":"fa fa-google-plus"})," google-plus")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/google-plus-square"},this.element("i",{"class":"fa fa-google-plus-square"}),"google-plus-square")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/google-wallet"},this.element("i",{"class":"fa fa-google-wallet"}),"google-wallet")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/gratipay"},this.element("i",{"class":"fa fa-gratipay"})," gratipay")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hacker-news"},this.element("i",{"class":"fa fa-hacker-news"})," hacker-news")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/houzz"},this.element("i",{"class":"fa fa-houzz"})," houzz")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/html5"},this.element("i",{"class":"fa fa-html5"})," html5")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/instagram"},this.element("i",{"class":"fa fa-instagram"})," instagram")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/internet-explorer"},this.element("i",{"class":"fa fa-internet-explorer"}),"internet-explorer")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/ioxhost"},this.element("i",{"class":"fa fa-ioxhost"})," ioxhost")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/joomla"},this.element("i",{"class":"fa fa-joomla"})," joomla")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/jsfiddle"},this.element("i",{"class":"fa fa-jsfiddle"})," jsfiddle")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/lastfm"},this.element("i",{"class":"fa fa-lastfm"})," lastfm")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/lastfm-square"},this.element("i",{"class":"fa fa-lastfm-square"}),"lastfm-square")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/leanpub"},this.element("i",{"class":"fa fa-leanpub"})," leanpub")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/linkedin"},this.element("i",{"class":"fa fa-linkedin"})," linkedin")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/linkedin-square"},this.element("i",{"class":"fa fa-linkedin-square"}),"linkedin-square")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/linux"},this.element("i",{"class":"fa fa-linux"})," linux")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/maxcdn"},this.element("i",{"class":"fa fa-maxcdn"})," maxcdn")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/meanpath"},this.element("i",{"class":"fa fa-meanpath"})," meanpath")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/medium"},this.element("i",{"class":"fa fa-medium"})," medium")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/odnoklassniki"},this.element("i",{"class":"fa fa-odnoklassniki"}),"odnoklassniki")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/odnoklassniki-square"},this.element("i",{"class":"fa fa-odnoklassniki-square"})," odnoklassniki-square")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/opencart"},this.element("i",{"class":"fa fa-opencart"})," opencart")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/openid"},this.element("i",{"class":"fa fa-openid"})," openid")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/opera"},this.element("i",{"class":"fa fa-opera"})," opera")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/optin-monster"},this.element("i",{"class":"fa fa-optin-monster"}),"optin-monster")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/pagelines"},this.element("i",{"class":"fa fa-pagelines"})," pagelines")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/paypal"},this.element("i",{"class":"fa fa-paypal"})," paypal")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/pied-piper"},this.element("i",{"class":"fa fa-pied-piper"})," pied-piper")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/pied-piper-alt"},this.element("i",{"class":"fa fa-pied-piper-alt"}),"pied-piper-alt")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/pinterest"},this.element("i",{"class":"fa fa-pinterest"})," pinterest")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/pinterest-p"},this.element("i",{"class":"fa fa-pinterest-p"})," pinterest-p")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/pinterest-square"},this.element("i",{"class":"fa fa-pinterest-square"}),"pinterest-square")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/qq"},this.element("i",{"class":"fa fa-qq"})," qq")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/rebel"},this.element("i",{"class":"fa fa-ra"})," ra ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/rebel"},this.element("i",{"class":"fa fa-rebel"})," rebel")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/reddit"},this.element("i",{"class":"fa fa-reddit"})," reddit")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/reddit-square"},this.element("i",{"class":"fa fa-reddit-square"}),"reddit-square")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/renren"},this.element("i",{"class":"fa fa-renren"})," renren")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/safari"},this.element("i",{"class":"fa fa-safari"})," safari")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/sellsy"},this.element("i",{"class":"fa fa-sellsy"})," sellsy")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/share-alt"},this.element("i",{"class":"fa fa-share-alt"})," share-alt")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/share-alt-square"},this.element("i",{"class":"fa fa-share-alt-square"}),"share-alt-square")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/shirtsinbulk"},this.element("i",{"class":"fa fa-shirtsinbulk"}),"shirtsinbulk")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/simplybuilt"},this.element("i",{"class":"fa fa-simplybuilt"})," simplybuilt")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/skyatlas"},this.element("i",{"class":"fa fa-skyatlas"})," skyatlas")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/skype"},this.element("i",{"class":"fa fa-skype"})," skype")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/slack"},this.element("i",{"class":"fa fa-slack"})," slack")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/slideshare"},this.element("i",{"class":"fa fa-slideshare"})," slideshare")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/soundcloud"},this.element("i",{"class":"fa fa-soundcloud"})," soundcloud")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/spotify"},this.element("i",{"class":"fa fa-spotify"})," spotify")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/stack-exchange"},this.element("i",{"class":"fa fa-stack-exchange"}),"stack-exchange")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/stack-overflow"},this.element("i",{"class":"fa fa-stack-overflow"}),"stack-overflow")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/steam"},this.element("i",{"class":"fa fa-steam"})," steam")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/steam-square"},this.element("i",{"class":"fa fa-steam-square"}),"steam-square")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/stumbleupon"},this.element("i",{"class":"fa fa-stumbleupon"})," stumbleupon")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/stumbleupon-circle"},this.element("i",{"class":"fa fa-stumbleupon-circle"}),"stumbleupon-circle")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/tencent-weibo"},this.element("i",{"class":"fa fa-tencent-weibo"}),"tencent-weibo")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/trello"},this.element("i",{"class":"fa fa-trello"})," trello")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/tripadvisor"},this.element("i",{"class":"fa fa-tripadvisor"})," tripadvisor")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/tumblr"},this.element("i",{"class":"fa fa-tumblr"})," tumblr")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/tumblr-square"},this.element("i",{"class":"fa fa-tumblr-square"}),"tumblr-square")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/twitch"},this.element("i",{"class":"fa fa-twitch"})," twitch")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/twitter"},this.element("i",{"class":"fa fa-twitter"})," twitter")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/twitter-square"},this.element("i",{"class":"fa fa-twitter-square"}),"twitter-square")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/viacoin"},this.element("i",{"class":"fa fa-viacoin"})," viacoin")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/vimeo"},this.element("i",{"class":"fa fa-vimeo"})," vimeo")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/vimeo-square"},this.element("i",{"class":"fa fa-vimeo-square"}),"vimeo-square")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/vine"},this.element("i",{"class":"fa fa-vine"})," vine")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/vk"},this.element("i",{"class":"fa fa-vk"})," vk")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/weixin"},this.element("i",{"class":"fa fa-wechat"})," wechat ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/weibo"},this.element("i",{"class":"fa fa-weibo"})," weibo")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/weixin"},this.element("i",{"class":"fa fa-weixin"})," weixin")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/whatsapp"},this.element("i",{"class":"fa fa-whatsapp"})," whatsapp")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/wikipedia-w"},this.element("i",{"class":"fa fa-wikipedia-w"})," wikipedia-w")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/windows"},this.element("i",{"class":"fa fa-windows"})," windows")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/wordpress"},this.element("i",{"class":"fa fa-wordpress"})," wordpress")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/xing"},this.element("i",{"class":"fa fa-xing"})," xing")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/xing-square"},this.element("i",{"class":"fa fa-xing-square"})," xing-square")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/y-combinator"},this.element("i",{"class":"fa fa-y-combinator"}),"y-combinator")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hacker-news"},this.element("i",{"class":"fa fa-y-combinator-square"}),"y-combinator-square ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/yahoo"},this.element("i",{"class":"fa fa-yahoo"})," yahoo")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/y-combinator"},this.element("i",{"class":"fa fa-yc"})," yc ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hacker-news"},this.element("i",{"class":"fa fa-yc-square"})," yc-square ",this.element("span",{"class":"text-muted"},"(alias)"))),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/yelp"},this.element("i",{"class":"fa fa-yelp"})," yelp")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/youtube"},this.element("i",{"class":"fa fa-youtube"})," youtube")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/youtube-play"},this.element("i",{"class":"fa fa-youtube-play"}),"youtube-play")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/youtube-square"},this.element("i",{"class":"fa fa-youtube-square"}),"youtube-square"))),this.element("div",{"class":"alert alert-success"},this.element("ul",{"class":"margin-bottom-none padding-left-lg"},this.element("li",null,"All brand icons are trademarks of their respective owners."),this.element("li",null,"The use of these trademarks does not indicate endorsement of the trademark holder by Font Awesome, nor vice versa.")))),this.element("section",{id:"medical"},this.element("h2",{"class":"page-header"},"Medical Icons"),this.element("div",{"class":"row fontawesome-icon-list"},this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/ambulance"},this.element("i",{"class":"fa fa-ambulance"}),"ambulance")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/h-square"},this.element("i",{"class":"fa fa-h-square"})," h-square")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/heart"},this.element("i",{"class":"fa fa-heart"})," heart")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/heart-o"},this.element("i",{"class":"fa fa-heart-o"})," heart-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/heartbeat"},this.element("i",{"class":"fa fa-heartbeat"}),"heartbeat")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/hospital-o"},this.element("i",{"class":"fa fa-hospital-o"})," hospital-o")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/medkit"},this.element("i",{"class":"fa fa-medkit"})," medkit")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/plus-square"},this.element("i",{"class":"fa fa-plus-square"}),"plus-square")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/stethoscope"},this.element("i",{"class":"fa fa-stethoscope"}),"stethoscope")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/user-md"},this.element("i",{"class":"fa fa-user-md"})," user-md")),this.element("div",{"class":"fa-hover col-md-3 col-sm-4"},this.element("a",{href:"../icon/wheelchair"},this.element("i",{"class":"fa fa-wheelchair"})," wheelchair"))))));}});Sophie.createStyleSheet({'.fontawesome-icon-list .fa-hover a':{'overflow':'hidden','textOverflow':'ellipsis','white-space':'nowrap','display':'block','color':'#222222','lineHeight':'32px','height':'32px','paddingLeft':'10px','borderRadius':'4px'}});module.exports=IconList;
+	"use strict";var IconList=Sophie.createClass("icon-list",{render:function render(){return Sophie.element("icon-list",null,Sophie.element("div",{id:"icons"},Sophie.element("section",{id:"new"},Sophie.element("h2",{"class":"page-header"},"66 New Icons in 4.4"),Sophie.element("div",{"class":"row fontawesome-icon-list"},Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/500px"},Sophie.element("i",{"class":""}),"不显示")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/500px"},Sophie.element("i",{"class":"fa fa-500px"})," 500px")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/amazon"},Sophie.element("i",{"class":"fa fa-amazon"})," amazon")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/balance-scale"},Sophie.element("i",{"class":"fa fa-balance-scale"}),"balance-scale")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/battery-empty"},Sophie.element("i",{"class":"fa fa-battery-0"}),"battery-0 ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/battery-quarter"},Sophie.element("i",{"class":"fa fa-battery-1"}),"battery-1 ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/battery-half"},Sophie.element("i",{"class":"fa fa-battery-2"})," battery-2",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/battery-three-quarters"},Sophie.element("i",{"class":"fa fa-battery-3"}),"battery-3 ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/battery-full"},Sophie.element("i",{"class":"fa fa-battery-4"})," battery-4",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/battery-empty"},Sophie.element("i",{"class":"fa fa-battery-empty"}),"battery-empty")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/battery-full"},Sophie.element("i",{"class":"fa fa-battery-full"}),"battery-full")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/battery-half"},Sophie.element("i",{"class":"fa fa-battery-half"}),"battery-half")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/battery-quarter"},Sophie.element("i",{"class":"fa fa-battery-quarter"}),"battery-quarter")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/battery-three-quarters"},Sophie.element("i",{"class":"fa fa-battery-three-quarters"})," battery-three-quarters")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/black-tie"},Sophie.element("i",{"class":"fa fa-black-tie"}),"black-tie")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/calendar-check-o"},Sophie.element("i",{"class":"fa fa-calendar-check-o"})," calendar-check-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/calendar-minus-o"},Sophie.element("i",{"class":"fa fa-calendar-minus-o"})," calendar-minus-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/calendar-plus-o"},Sophie.element("i",{"class":"fa fa-calendar-plus-o"}),"calendar-plus-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/calendar-times-o"},Sophie.element("i",{"class":"fa fa-calendar-times-o"})," calendar-times-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cc-diners-club"},Sophie.element("i",{"class":"fa fa-cc-diners-club"}),"cc-diners-club")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cc-jcb"},Sophie.element("i",{"class":"fa fa-cc-jcb"})," cc-jcb")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/chrome"},Sophie.element("i",{"class":"fa fa-chrome"})," chrome")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/clone"},Sophie.element("i",{"class":"fa fa-clone"})," clone")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/commenting"},Sophie.element("i",{"class":"fa fa-commenting"})," commenting")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/commenting-o"},Sophie.element("i",{"class":"fa fa-commenting-o"}),"commenting-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/contao"},Sophie.element("i",{"class":"fa fa-contao"})," contao")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/creative-commons"},Sophie.element("i",{"class":"fa fa-creative-commons"})," creative-commons")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/expeditedssl"},Sophie.element("i",{"class":"fa fa-expeditedssl"}),"expeditedssl")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/firefox"},Sophie.element("i",{"class":"fa fa-firefox"})," firefox")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/fonticons"},Sophie.element("i",{"class":"fa fa-fonticons"}),"fonticons")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/genderless"},Sophie.element("i",{"class":"fa fa-genderless"})," genderless")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/get-pocket"},Sophie.element("i",{"class":"fa fa-get-pocket"})," get-pocket")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/gg"},Sophie.element("i",{"class":"fa fa-gg"})," gg")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/gg-circle"},Sophie.element("i",{"class":"fa fa-gg-circle"}),"gg-circle")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-rock-o"},Sophie.element("i",{"class":"fa fa-hand-grab-o"}),"hand-grab-o ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-lizard-o"},Sophie.element("i",{"class":"fa fa-hand-lizard-o"}),"hand-lizard-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-paper-o"},Sophie.element("i",{"class":"fa fa-hand-paper-o"}),"hand-paper-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-peace-o"},Sophie.element("i",{"class":"fa fa-hand-peace-o"}),"hand-peace-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-pointer-o"},Sophie.element("i",{"class":"fa fa-hand-pointer-o"}),"hand-pointer-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-rock-o"},Sophie.element("i",{"class":"fa fa-hand-rock-o"}),"hand-rock-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-scissors-o"},Sophie.element("i",{"class":"fa fa-hand-scissors-o"}),"hand-scissors-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-spock-o"},Sophie.element("i",{"class":"fa fa-hand-spock-o"}),"hand-spock-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-paper-o"},Sophie.element("i",{"class":"fa fa-hand-stop-o"}),"hand-stop-o ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hourglass"},Sophie.element("i",{"class":"fa fa-hourglass"}),"hourglass")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hourglass-start"},Sophie.element("i",{"class":"fa fa-hourglass-1"}),"hourglass-1 ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hourglass-half"},Sophie.element("i",{"class":"fa fa-hourglass-2"}),"hourglass-2 ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hourglass-end"},Sophie.element("i",{"class":"fa fa-hourglass-3"}),"hourglass-3 ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hourglass-end"},Sophie.element("i",{"class":"fa fa-hourglass-end"}),"hourglass-end")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hourglass-half"},Sophie.element("i",{"class":"fa fa-hourglass-half"}),"hourglass-half")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hourglass-o"},Sophie.element("i",{"class":"fa fa-hourglass-o"}),"hourglass-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hourglass-start"},Sophie.element("i",{"class":"fa fa-hourglass-start"}),"hourglass-start")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/houzz"},Sophie.element("i",{"class":"fa fa-houzz"})," houzz")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/i-cursor"},Sophie.element("i",{"class":"fa fa-i-cursor"})," i-cursor")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/industry"},Sophie.element("i",{"class":"fa fa-industry"})," industry")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/internet-explorer"},Sophie.element("i",{"class":"fa fa-internet-explorer"})," internet-explorer")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/map"},Sophie.element("i",{"class":"fa fa-map"})," map")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/map-o"},Sophie.element("i",{"class":"fa fa-map-o"})," map-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/map-pin"},Sophie.element("i",{"class":"fa fa-map-pin"})," map-pin")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/map-signs"},Sophie.element("i",{"class":"fa fa-map-signs"}),"map-signs")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/mouse-pointer"},Sophie.element("i",{"class":"fa fa-mouse-pointer"}),"mouse-pointer")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/object-group"},Sophie.element("i",{"class":"fa fa-object-group"}),"object-group")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/object-ungroup"},Sophie.element("i",{"class":"fa fa-object-ungroup"}),"object-ungroup")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/odnoklassniki"},Sophie.element("i",{"class":"fa fa-odnoklassniki"}),"odnoklassniki")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/odnoklassniki-square"},Sophie.element("i",{"class":"fa fa-odnoklassniki-square"})," odnoklassniki-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/opencart"},Sophie.element("i",{"class":"fa fa-opencart"})," opencart")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/opera"},Sophie.element("i",{"class":"fa fa-opera"})," opera")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/optin-monster"},Sophie.element("i",{"class":"fa fa-optin-monster"}),"optin-monster")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/registered"},Sophie.element("i",{"class":"fa fa-registered"})," registered")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/safari"},Sophie.element("i",{"class":"fa fa-safari"})," safari")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/sticky-note"},Sophie.element("i",{"class":"fa fa-sticky-note"}),"sticky-note")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/sticky-note-o"},Sophie.element("i",{"class":"fa fa-sticky-note-o"}),"sticky-note-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/television"},Sophie.element("i",{"class":"fa fa-television"})," television")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/trademark"},Sophie.element("i",{"class":"fa fa-trademark"}),"trademark")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/tripadvisor"},Sophie.element("i",{"class":"fa fa-tripadvisor"}),"tripadvisor")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/television"},Sophie.element("i",{"class":"fa fa-tv"})," tv ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/vimeo"},Sophie.element("i",{"class":"fa fa-vimeo"})," vimeo")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/wikipedia-w"},Sophie.element("i",{"class":"fa fa-wikipedia-w"}),"wikipedia-w")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/y-combinator"},Sophie.element("i",{"class":"fa fa-y-combinator"}),"y-combinator")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/y-combinator"},Sophie.element("i",{"class":"fa fa-yc"})," yc ",Sophie.element("span",{"class":"text-muted"},"(alias)"))))),Sophie.element("section",{id:"web-application"},Sophie.element("h2",{"class":"page-header"},"Web Application Icons"),Sophie.element("div",{"class":"row fontawesome-icon-list"},Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/adjust"},Sophie.element("i",{"class":"fa fa-adjust"})," adjust")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/anchor"},Sophie.element("i",{"class":"fa fa-anchor"})," anchor")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/archive"},Sophie.element("i",{"class":"fa fa-archive"})," archive")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/area-chart"},Sophie.element("i",{"class":"fa fa-area-chart"})," area-chart")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/arrows"},Sophie.element("i",{"class":"fa fa-arrows"})," arrows")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/arrows-h"},Sophie.element("i",{"class":"fa fa-arrows-h"})," arrows-h")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/arrows-v"},Sophie.element("i",{"class":"fa fa-arrows-v"})," arrows-v")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/asterisk"},Sophie.element("i",{"class":"fa fa-asterisk"})," asterisk")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/at"},Sophie.element("i",{"class":"fa fa-at"})," at")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/car"},Sophie.element("i",{"class":"fa fa-automobile"})," automobile ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/balance-scale"},Sophie.element("i",{"class":"fa fa-balance-scale"}),"balance-scale")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/ban"},Sophie.element("i",{"class":"fa fa-ban"})," ban")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/university"},Sophie.element("i",{"class":"fa fa-bank"})," bank ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bar-chart"},Sophie.element("i",{"class":"fa fa-bar-chart"})," bar-chart")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bar-chart"},Sophie.element("i",{"class":"fa fa-bar-chart-o"})," bar-chart-o ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/barcode"},Sophie.element("i",{"class":"fa fa-barcode"})," barcode")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bars"},Sophie.element("i",{"class":"fa fa-bars"})," bars")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/battery-empty"},Sophie.element("i",{"class":"fa fa-battery-0"})," battery-0 ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/battery-quarter"},Sophie.element("i",{"class":"fa fa-battery-1"})," battery-1",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/battery-half"},Sophie.element("i",{"class":"fa fa-battery-2"})," battery-2 ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/battery-three-quarters"},Sophie.element("i",{"class":"fa fa-battery-3"}),"battery-3 ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/battery-full"},Sophie.element("i",{"class":"fa fa-battery-4"})," battery-4 ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/battery-empty"},Sophie.element("i",{"class":"fa fa-battery-empty"}),"battery-empty")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/battery-full"},Sophie.element("i",{"class":"fa fa-battery-full"}),"battery-full")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/battery-half"},Sophie.element("i",{"class":"fa fa-battery-half"}),"battery-half")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/battery-quarter"},Sophie.element("i",{"class":"fa fa-battery-quarter"}),"battery-quarter")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/battery-three-quarters"},Sophie.element("i",{"class":"fa fa-battery-three-quarters"})," battery-three-quarters")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bed"},Sophie.element("i",{"class":"fa fa-bed"})," bed")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/beer"},Sophie.element("i",{"class":"fa fa-beer"})," beer")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bell"},Sophie.element("i",{"class":"fa fa-bell"})," bell")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bell-o"},Sophie.element("i",{"class":"fa fa-bell-o"})," bell-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bell-slash"},Sophie.element("i",{"class":"fa fa-bell-slash"})," bell-slash")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bell-slash-o"},Sophie.element("i",{"class":"fa fa-bell-slash-o"}),"bell-slash-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bicycle"},Sophie.element("i",{"class":"fa fa-bicycle"})," bicycle")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/binoculars"},Sophie.element("i",{"class":"fa fa-binoculars"})," binoculars")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/birthday-cake"},Sophie.element("i",{"class":"fa fa-birthday-cake"}),"birthday-cake")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bolt"},Sophie.element("i",{"class":"fa fa-bolt"})," bolt")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bomb"},Sophie.element("i",{"class":"fa fa-bomb"})," bomb")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/book"},Sophie.element("i",{"class":"fa fa-book"})," book")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bookmark"},Sophie.element("i",{"class":"fa fa-bookmark"})," bookmark")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bookmark-o"},Sophie.element("i",{"class":"fa fa-bookmark-o"})," bookmark-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/briefcase"},Sophie.element("i",{"class":"fa fa-briefcase"})," briefcase")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bug"},Sophie.element("i",{"class":"fa fa-bug"})," bug")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/building"},Sophie.element("i",{"class":"fa fa-building"})," building")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/building-o"},Sophie.element("i",{"class":"fa fa-building-o"})," building-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bullhorn"},Sophie.element("i",{"class":"fa fa-bullhorn"})," bullhorn")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bullseye"},Sophie.element("i",{"class":"fa fa-bullseye"})," bullseye")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bus"},Sophie.element("i",{"class":"fa fa-bus"})," bus")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/taxi"},Sophie.element("i",{"class":"fa fa-cab"})," cab ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/calculator"},Sophie.element("i",{"class":"fa fa-calculator"})," calculator")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/calendar"},Sophie.element("i",{"class":"fa fa-calendar"})," calendar")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/calendar-check-o"},Sophie.element("i",{"class":"fa fa-calendar-check-o"}),"calendar-check-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/calendar-minus-o"},Sophie.element("i",{"class":"fa fa-calendar-minus-o"}),"calendar-minus-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/calendar-o"},Sophie.element("i",{"class":"fa fa-calendar-o"})," calendar-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/calendar-plus-o"},Sophie.element("i",{"class":"fa fa-calendar-plus-o"}),"calendar-plus-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/calendar-times-o"},Sophie.element("i",{"class":"fa fa-calendar-times-o"}),"calendar-times-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/camera"},Sophie.element("i",{"class":"fa fa-camera"})," camera")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/camera-retro"},Sophie.element("i",{"class":"fa fa-camera-retro"}),"camera-retro")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/car"},Sophie.element("i",{"class":"fa fa-car"})," car")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/caret-square-o-down"},Sophie.element("i",{"class":"fa fa-caret-square-o-down"}),"caret-square-o-down")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/caret-square-o-left"},Sophie.element("i",{"class":"fa fa-caret-square-o-left"}),"caret-square-o-left")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/caret-square-o-right"},Sophie.element("i",{"class":"fa fa-caret-square-o-right"})," caret-square-o-right")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/caret-square-o-up"},Sophie.element("i",{"class":"fa fa-caret-square-o-up"}),"caret-square-o-up")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cart-arrow-down"},Sophie.element("i",{"class":"fa fa-cart-arrow-down"}),"cart-arrow-down")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cart-plus"},Sophie.element("i",{"class":"fa fa-cart-plus"})," cart-plus")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cc"},Sophie.element("i",{"class":"fa fa-cc"})," cc")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/certificate"},Sophie.element("i",{"class":"fa fa-certificate"})," certificate")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/check"},Sophie.element("i",{"class":"fa fa-check"})," check")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/check-circle"},Sophie.element("i",{"class":"fa fa-check-circle"}),"check-circle")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/check-circle-o"},Sophie.element("i",{"class":"fa fa-check-circle-o"}),"check-circle-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/check-square"},Sophie.element("i",{"class":"fa fa-check-square"}),"check-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/check-square-o"},Sophie.element("i",{"class":"fa fa-check-square-o"}),"check-square-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/child"},Sophie.element("i",{"class":"fa fa-child"})," child")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/circle"},Sophie.element("i",{"class":"fa fa-circle"})," circle")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/circle-o"},Sophie.element("i",{"class":"fa fa-circle-o"})," circle-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/circle-o-notch"},Sophie.element("i",{"class":"fa fa-circle-o-notch"}),"circle-o-notch")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/circle-thin"},Sophie.element("i",{"class":"fa fa-circle-thin"})," circle-thin")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/clock-o"},Sophie.element("i",{"class":"fa fa-clock-o"})," clock-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/clone"},Sophie.element("i",{"class":"fa fa-clone"})," clone")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/times"},Sophie.element("i",{"class":"fa fa-close"})," close ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cloud"},Sophie.element("i",{"class":"fa fa-cloud"})," cloud")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cloud-download"},Sophie.element("i",{"class":"fa fa-cloud-download"}),"cloud-download")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cloud-upload"},Sophie.element("i",{"class":"fa fa-cloud-upload"}),"cloud-upload")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/code"},Sophie.element("i",{"class":"fa fa-code"})," code")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/code-fork"},Sophie.element("i",{"class":"fa fa-code-fork"})," code-fork")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/coffee"},Sophie.element("i",{"class":"fa fa-coffee"})," coffee")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cog"},Sophie.element("i",{"class":"fa fa-cog"})," cog")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cogs"},Sophie.element("i",{"class":"fa fa-cogs"})," cogs")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/comment"},Sophie.element("i",{"class":"fa fa-comment"})," comment")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/comment-o"},Sophie.element("i",{"class":"fa fa-comment-o"})," comment-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/commenting"},Sophie.element("i",{"class":"fa fa-commenting"})," commenting")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/commenting-o"},Sophie.element("i",{"class":"fa fa-commenting-o"}),"commenting-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/comments"},Sophie.element("i",{"class":"fa fa-comments"})," comments")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/comments-o"},Sophie.element("i",{"class":"fa fa-comments-o"})," comments-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/compass"},Sophie.element("i",{"class":"fa fa-compass"})," compass")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/copyright"},Sophie.element("i",{"class":"fa fa-copyright"})," copyright")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/creative-commons"},Sophie.element("i",{"class":"fa fa-creative-commons"}),"creative-commons")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/credit-card"},Sophie.element("i",{"class":"fa fa-credit-card"})," credit-card")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/crop"},Sophie.element("i",{"class":"fa fa-crop"})," crop")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/crosshairs"},Sophie.element("i",{"class":"fa fa-crosshairs"})," crosshairs")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cube"},Sophie.element("i",{"class":"fa fa-cube"})," cube")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cubes"},Sophie.element("i",{"class":"fa fa-cubes"})," cubes")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cutlery"},Sophie.element("i",{"class":"fa fa-cutlery"})," cutlery")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/tachometer"},Sophie.element("i",{"class":"fa fa-dashboard"})," dashboard ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/database"},Sophie.element("i",{"class":"fa fa-database"})," database")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/desktop"},Sophie.element("i",{"class":"fa fa-desktop"})," desktop")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/diamond"},Sophie.element("i",{"class":"fa fa-diamond"})," diamond")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/dot-circle-o"},Sophie.element("i",{"class":"fa fa-dot-circle-o"}),"dot-circle-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/download"},Sophie.element("i",{"class":"fa fa-download"})," download")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/pencil-square-o"},Sophie.element("i",{"class":"fa fa-edit"})," edit ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/ellipsis-h"},Sophie.element("i",{"class":"fa fa-ellipsis-h"})," ellipsis-h")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/ellipsis-v"},Sophie.element("i",{"class":"fa fa-ellipsis-v"})," ellipsis-v")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/envelope"},Sophie.element("i",{"class":"fa fa-envelope"})," envelope")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/envelope-o"},Sophie.element("i",{"class":"fa fa-envelope-o"})," envelope-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/envelope-square"},Sophie.element("i",{"class":"fa fa-envelope-square"}),"envelope-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/eraser"},Sophie.element("i",{"class":"fa fa-eraser"})," eraser")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/exchange"},Sophie.element("i",{"class":"fa fa-exchange"})," exchange")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/exclamation"},Sophie.element("i",{"class":"fa fa-exclamation"})," exclamation")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/exclamation-circle"},Sophie.element("i",{"class":"fa fa-exclamation-circle"}),"exclamation-circle")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/exclamation-triangle"},Sophie.element("i",{"class":"fa fa-exclamation-triangle"})," exclamation-triangle")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/external-link"},Sophie.element("i",{"class":"fa fa-external-link"}),"external-link")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/external-link-square"},Sophie.element("i",{"class":"fa fa-external-link-square"})," external-link-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/eye"},Sophie.element("i",{"class":"fa fa-eye"})," eye")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/eye-slash"},Sophie.element("i",{"class":"fa fa-eye-slash"})," eye-slash")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/eyedropper"},Sophie.element("i",{"class":"fa fa-eyedropper"})," eyedropper")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/fax"},Sophie.element("i",{"class":"fa fa-fax"})," fax")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/rss"},Sophie.element("i",{"class":"fa fa-feed"})," feed ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/female"},Sophie.element("i",{"class":"fa fa-female"})," female")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/fighter-jet"},Sophie.element("i",{"class":"fa fa-fighter-jet"})," fighter-jet")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-archive-o"},Sophie.element("i",{"class":"fa fa-file-archive-o"}),"file-archive-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-audio-o"},Sophie.element("i",{"class":"fa fa-file-audio-o"}),"file-audio-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-code-o"},Sophie.element("i",{"class":"fa fa-file-code-o"})," file-code-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-excel-o"},Sophie.element("i",{"class":"fa fa-file-excel-o"}),"file-excel-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-image-o"},Sophie.element("i",{"class":"fa fa-file-image-o"}),"file-image-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-video-o"},Sophie.element("i",{"class":"fa fa-file-movie-o"})," file-movie-o",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-pdf-o"},Sophie.element("i",{"class":"fa fa-file-pdf-o"})," file-pdf-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-image-o"},Sophie.element("i",{"class":"fa fa-file-photo-o"})," file-photo-o",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-image-o"},Sophie.element("i",{"class":"fa fa-file-picture-o"}),"file-picture-o ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-powerpoint-o"},Sophie.element("i",{"class":"fa fa-file-powerpoint-o"}),"file-powerpoint-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-audio-o"},Sophie.element("i",{"class":"fa fa-file-sound-o"})," file-sound-o",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-video-o"},Sophie.element("i",{"class":"fa fa-file-video-o"}),"file-video-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-word-o"},Sophie.element("i",{"class":"fa fa-file-word-o"})," file-word-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-archive-o"},Sophie.element("i",{"class":"fa fa-file-zip-o"})," file-zip-o",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/film"},Sophie.element("i",{"class":"fa fa-film"})," film")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/filter"},Sophie.element("i",{"class":"fa fa-filter"})," filter")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/fire"},Sophie.element("i",{"class":"fa fa-fire"})," fire")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/fire-extinguisher"},Sophie.element("i",{"class":"fa fa-fire-extinguisher"}),"fire-extinguisher")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/flag"},Sophie.element("i",{"class":"fa fa-flag"})," flag")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/flag-checkered"},Sophie.element("i",{"class":"fa fa-flag-checkered"}),"flag-checkered")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/flag-o"},Sophie.element("i",{"class":"fa fa-flag-o"})," flag-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bolt"},Sophie.element("i",{"class":"fa fa-flash"})," flash ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/flask"},Sophie.element("i",{"class":"fa fa-flask"})," flask")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/folder"},Sophie.element("i",{"class":"fa fa-folder"})," folder")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/folder-o"},Sophie.element("i",{"class":"fa fa-folder-o"})," folder-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/folder-open"},Sophie.element("i",{"class":"fa fa-folder-open"})," folder-open")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/folder-open-o"},Sophie.element("i",{"class":"fa fa-folder-open-o"}),"folder-open-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/frown-o"},Sophie.element("i",{"class":"fa fa-frown-o"})," frown-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/futbol-o"},Sophie.element("i",{"class":"fa fa-futbol-o"})," futbol-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/gamepad"},Sophie.element("i",{"class":"fa fa-gamepad"})," gamepad")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/gavel"},Sophie.element("i",{"class":"fa fa-gavel"})," gavel")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cog"},Sophie.element("i",{"class":"fa fa-gear"})," gear ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cogs"},Sophie.element("i",{"class":"fa fa-gears"})," gears ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/gift"},Sophie.element("i",{"class":"fa fa-gift"})," gift")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/glass"},Sophie.element("i",{"class":"fa fa-glass"})," glass")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/globe"},Sophie.element("i",{"class":"fa fa-globe"})," globe")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/graduation-cap"},Sophie.element("i",{"class":"fa fa-graduation-cap"}),"graduation-cap")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/users"},Sophie.element("i",{"class":"fa fa-group"})," group ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-rock-o"},Sophie.element("i",{"class":"fa fa-hand-grab-o"})," hand-grab-o",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-lizard-o"},Sophie.element("i",{"class":"fa fa-hand-lizard-o"}),"hand-lizard-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-paper-o"},Sophie.element("i",{"class":"fa fa-hand-paper-o"}),"hand-paper-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-peace-o"},Sophie.element("i",{"class":"fa fa-hand-peace-o"}),"hand-peace-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-pointer-o"},Sophie.element("i",{"class":"fa fa-hand-pointer-o"}),"hand-pointer-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-rock-o"},Sophie.element("i",{"class":"fa fa-hand-rock-o"})," hand-rock-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-scissors-o"},Sophie.element("i",{"class":"fa fa-hand-scissors-o"}),"hand-scissors-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-spock-o"},Sophie.element("i",{"class":"fa fa-hand-spock-o"}),"hand-spock-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-paper-o"},Sophie.element("i",{"class":"fa fa-hand-stop-o"})," hand-stop-o",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hdd-o"},Sophie.element("i",{"class":"fa fa-hdd-o"})," hdd-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/headphones"},Sophie.element("i",{"class":"fa fa-headphones"})," headphones")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/heart"},Sophie.element("i",{"class":"fa fa-heart"})," heart")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/heart-o"},Sophie.element("i",{"class":"fa fa-heart-o"})," heart-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/heartbeat"},Sophie.element("i",{"class":"fa fa-heartbeat"})," heartbeat")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/history"},Sophie.element("i",{"class":"fa fa-history"})," history")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/home"},Sophie.element("i",{"class":"fa fa-home"})," home")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bed"},Sophie.element("i",{"class":"fa fa-hotel"})," hotel ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hourglass"},Sophie.element("i",{"class":"fa fa-hourglass"})," hourglass")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hourglass-start"},Sophie.element("i",{"class":"fa fa-hourglass-1"})," hourglass-1",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hourglass-half"},Sophie.element("i",{"class":"fa fa-hourglass-2"})," hourglass-2",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hourglass-end"},Sophie.element("i",{"class":"fa fa-hourglass-3"})," hourglass-3",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hourglass-end"},Sophie.element("i",{"class":"fa fa-hourglass-end"}),"hourglass-end")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hourglass-half"},Sophie.element("i",{"class":"fa fa-hourglass-half"}),"hourglass-half")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hourglass-o"},Sophie.element("i",{"class":"fa fa-hourglass-o"})," hourglass-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hourglass-start"},Sophie.element("i",{"class":"fa fa-hourglass-start"}),"hourglass-start")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/i-cursor"},Sophie.element("i",{"class":"fa fa-i-cursor"})," i-cursor")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/picture-o"},Sophie.element("i",{"class":"fa fa-image"})," image ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/inbox"},Sophie.element("i",{"class":"fa fa-inbox"})," inbox")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/industry"},Sophie.element("i",{"class":"fa fa-industry"})," industry")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/info"},Sophie.element("i",{"class":"fa fa-info"})," info")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/info-circle"},Sophie.element("i",{"class":"fa fa-info-circle"})," info-circle")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/university"},Sophie.element("i",{"class":"fa fa-institution"})," institution ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/key"},Sophie.element("i",{"class":"fa fa-key"})," key")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/keyboard-o"},Sophie.element("i",{"class":"fa fa-keyboard-o"})," keyboard-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/language"},Sophie.element("i",{"class":"fa fa-language"})," language")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/laptop"},Sophie.element("i",{"class":"fa fa-laptop"})," laptop")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/leaf"},Sophie.element("i",{"class":"fa fa-leaf"})," leaf")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/gavel"},Sophie.element("i",{"class":"fa fa-legal"})," legal ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/lemon-o"},Sophie.element("i",{"class":"fa fa-lemon-o"})," lemon-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/level-down"},Sophie.element("i",{"class":"fa fa-level-down"})," level-down")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/level-up"},Sophie.element("i",{"class":"fa fa-level-up"})," level-up")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/life-ring"},Sophie.element("i",{"class":"fa fa-life-bouy"})," life-bouy ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/life-ring"},Sophie.element("i",{"class":"fa fa-life-buoy"})," life-buoy ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/life-ring"},Sophie.element("i",{"class":"fa fa-life-ring"})," life-ring")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/life-ring"},Sophie.element("i",{"class":"fa fa-life-saver"})," life-saver ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/lightbulb-o"},Sophie.element("i",{"class":"fa fa-lightbulb-o"})," lightbulb-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/line-chart"},Sophie.element("i",{"class":"fa fa-line-chart"})," line-chart")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/location-arrow"},Sophie.element("i",{"class":"fa fa-location-arrow"}),"location-arrow")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/lock"},Sophie.element("i",{"class":"fa fa-lock"})," lock")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/magic"},Sophie.element("i",{"class":"fa fa-magic"})," magic")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/magnet"},Sophie.element("i",{"class":"fa fa-magnet"})," magnet")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/share"},Sophie.element("i",{"class":"fa fa-mail-forward"})," mail-forward ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/reply"},Sophie.element("i",{"class":"fa fa-mail-reply"})," mail-reply ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/reply-all"},Sophie.element("i",{"class":"fa fa-mail-reply-all"})," mail-reply-all",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/male"},Sophie.element("i",{"class":"fa fa-male"})," male")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/map"},Sophie.element("i",{"class":"fa fa-map"})," map")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/map-marker"},Sophie.element("i",{"class":"fa fa-map-marker"})," map-marker")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/map-o"},Sophie.element("i",{"class":"fa fa-map-o"})," map-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/map-pin"},Sophie.element("i",{"class":"fa fa-map-pin"})," map-pin")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/map-signs"},Sophie.element("i",{"class":"fa fa-map-signs"})," map-signs")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/meh-o"},Sophie.element("i",{"class":"fa fa-meh-o"})," meh-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/microphone"},Sophie.element("i",{"class":"fa fa-microphone"})," microphone")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/microphone-slash"},Sophie.element("i",{"class":"fa fa-microphone-slash"}),"microphone-slash")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/minus"},Sophie.element("i",{"class":"fa fa-minus"})," minus")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/minus-circle"},Sophie.element("i",{"class":"fa fa-minus-circle"}),"minus-circle")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/minus-square"},Sophie.element("i",{"class":"fa fa-minus-square"}),"minus-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/minus-square-o"},Sophie.element("i",{"class":"fa fa-minus-square-o"}),"minus-square-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/mobile"},Sophie.element("i",{"class":"fa fa-mobile"})," mobile")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/mobile"},Sophie.element("i",{"class":"fa fa-mobile-phone"})," mobile-phone ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/money"},Sophie.element("i",{"class":"fa fa-money"})," money")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/moon-o"},Sophie.element("i",{"class":"fa fa-moon-o"})," moon-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/graduation-cap"},Sophie.element("i",{"class":"fa fa-mortar-board"})," mortar-board",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/motorcycle"},Sophie.element("i",{"class":"fa fa-motorcycle"})," motorcycle")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/mouse-pointer"},Sophie.element("i",{"class":"fa fa-mouse-pointer"}),"mouse-pointer")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/music"},Sophie.element("i",{"class":"fa fa-music"})," music")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bars"},Sophie.element("i",{"class":"fa fa-navicon"})," navicon ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/newspaper-o"},Sophie.element("i",{"class":"fa fa-newspaper-o"})," newspaper-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/object-group"},Sophie.element("i",{"class":"fa fa-object-group"}),"object-group")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/object-ungroup"},Sophie.element("i",{"class":"fa fa-object-ungroup"}),"object-ungroup")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/paint-brush"},Sophie.element("i",{"class":"fa fa-paint-brush"})," paint-brush")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/paper-plane"},Sophie.element("i",{"class":"fa fa-paper-plane"})," paper-plane")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/paper-plane-o"},Sophie.element("i",{"class":"fa fa-paper-plane-o"}),"paper-plane-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/paw"},Sophie.element("i",{"class":"fa fa-paw"})," paw")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/pencil"},Sophie.element("i",{"class":"fa fa-pencil"})," pencil")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/pencil-square"},Sophie.element("i",{"class":"fa fa-pencil-square"}),"pencil-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/pencil-square-o"},Sophie.element("i",{"class":"fa fa-pencil-square-o"}),"pencil-square-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/phone"},Sophie.element("i",{"class":"fa fa-phone"})," phone")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/phone-square"},Sophie.element("i",{"class":"fa fa-phone-square"}),"phone-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/picture-o"},Sophie.element("i",{"class":"fa fa-photo"})," photo ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/picture-o"},Sophie.element("i",{"class":"fa fa-picture-o"})," picture-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/pie-chart"},Sophie.element("i",{"class":"fa fa-pie-chart"})," pie-chart")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/plane"},Sophie.element("i",{"class":"fa fa-plane"})," plane")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/plug"},Sophie.element("i",{"class":"fa fa-plug"})," plug")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/plus"},Sophie.element("i",{"class":"fa fa-plus"})," plus")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/plus-circle"},Sophie.element("i",{"class":"fa fa-plus-circle"})," plus-circle")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/plus-square"},Sophie.element("i",{"class":"fa fa-plus-square"})," plus-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/plus-square-o"},Sophie.element("i",{"class":"fa fa-plus-square-o"}),"plus-square-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/power-off"},Sophie.element("i",{"class":"fa fa-power-off"})," power-off")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/print"},Sophie.element("i",{"class":"fa fa-print"})," print")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/puzzle-piece"},Sophie.element("i",{"class":"fa fa-puzzle-piece"}),"puzzle-piece")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/qrcode"},Sophie.element("i",{"class":"fa fa-qrcode"})," qrcode")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/question"},Sophie.element("i",{"class":"fa fa-question"})," question")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/question-circle"},Sophie.element("i",{"class":"fa fa-question-circle"}),"question-circle")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/quote-left"},Sophie.element("i",{"class":"fa fa-quote-left"})," quote-left")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/quote-right"},Sophie.element("i",{"class":"fa fa-quote-right"})," quote-right")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/random"},Sophie.element("i",{"class":"fa fa-random"})," random")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/recycle"},Sophie.element("i",{"class":"fa fa-recycle"})," recycle")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/refresh"},Sophie.element("i",{"class":"fa fa-refresh"})," refresh")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/registered"},Sophie.element("i",{"class":"fa fa-registered"})," registered")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/times"},Sophie.element("i",{"class":"fa fa-remove"})," remove ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bars"},Sophie.element("i",{"class":"fa fa-reorder"})," reorder ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/reply"},Sophie.element("i",{"class":"fa fa-reply"})," reply")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/reply-all"},Sophie.element("i",{"class":"fa fa-reply-all"})," reply-all")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/retweet"},Sophie.element("i",{"class":"fa fa-retweet"})," retweet")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/road"},Sophie.element("i",{"class":"fa fa-road"})," road")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/rocket"},Sophie.element("i",{"class":"fa fa-rocket"})," rocket")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/rss"},Sophie.element("i",{"class":"fa fa-rss"})," rss")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/rss-square"},Sophie.element("i",{"class":"fa fa-rss-square"})," rss-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/search"},Sophie.element("i",{"class":"fa fa-search"})," search")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/search-minus"},Sophie.element("i",{"class":"fa fa-search-minus"}),"search-minus")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/search-plus"},Sophie.element("i",{"class":"fa fa-search-plus"})," search-plus")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/paper-plane"},Sophie.element("i",{"class":"fa fa-send"})," send ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/paper-plane-o"},Sophie.element("i",{"class":"fa fa-send-o"})," send-o ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/server"},Sophie.element("i",{"class":"fa fa-server"})," server")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/share"},Sophie.element("i",{"class":"fa fa-share"})," share")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/share-alt"},Sophie.element("i",{"class":"fa fa-share-alt"})," share-alt")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/share-alt-square"},Sophie.element("i",{"class":"fa fa-share-alt-square"}),"share-alt-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/share-square"},Sophie.element("i",{"class":"fa fa-share-square"}),"share-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/share-square-o"},Sophie.element("i",{"class":"fa fa-share-square-o"}),"share-square-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/shield"},Sophie.element("i",{"class":"fa fa-shield"})," shield")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/ship"},Sophie.element("i",{"class":"fa fa-ship"})," ship")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/shopping-cart"},Sophie.element("i",{"class":"fa fa-shopping-cart"}),"shopping-cart")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/sign-in"},Sophie.element("i",{"class":"fa fa-sign-in"})," sign-in")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/sign-out"},Sophie.element("i",{"class":"fa fa-sign-out"})," sign-out")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/signal"},Sophie.element("i",{"class":"fa fa-signal"})," signal")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/sitemap"},Sophie.element("i",{"class":"fa fa-sitemap"})," sitemap")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/sliders"},Sophie.element("i",{"class":"fa fa-sliders"})," sliders")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/smile-o"},Sophie.element("i",{"class":"fa fa-smile-o"})," smile-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/futbol-o"},Sophie.element("i",{"class":"fa fa-soccer-ball-o"})," soccer-ball-o",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/sort"},Sophie.element("i",{"class":"fa fa-sort"})," sort")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/sort-alpha-asc"},Sophie.element("i",{"class":"fa fa-sort-alpha-asc"}),"sort-alpha-asc")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/sort-alpha-desc"},Sophie.element("i",{"class":"fa fa-sort-alpha-desc"}),"sort-alpha-desc")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/sort-amount-asc"},Sophie.element("i",{"class":"fa fa-sort-amount-asc"}),"sort-amount-asc")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/sort-amount-desc"},Sophie.element("i",{"class":"fa fa-sort-amount-desc"}),"sort-amount-desc")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/sort-asc"},Sophie.element("i",{"class":"fa fa-sort-asc"})," sort-asc")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/sort-desc"},Sophie.element("i",{"class":"fa fa-sort-desc"})," sort-desc")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/sort-desc"},Sophie.element("i",{"class":"fa fa-sort-down"})," sort-down ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/sort-numeric-asc"},Sophie.element("i",{"class":"fa fa-sort-numeric-asc"}),"sort-numeric-asc")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/sort-numeric-desc"},Sophie.element("i",{"class":"fa fa-sort-numeric-desc"}),"sort-numeric-desc")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/sort-asc"},Sophie.element("i",{"class":"fa fa-sort-up"})," sort-up ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/space-shuttle"},Sophie.element("i",{"class":"fa fa-space-shuttle"}),"space-shuttle")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/spinner"},Sophie.element("i",{"class":"fa fa-spinner"})," spinner")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/spoon"},Sophie.element("i",{"class":"fa fa-spoon"})," spoon")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/square"},Sophie.element("i",{"class":"fa fa-square"})," square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/square-o"},Sophie.element("i",{"class":"fa fa-square-o"})," square-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/star"},Sophie.element("i",{"class":"fa fa-star"})," star")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/star-half"},Sophie.element("i",{"class":"fa fa-star-half"})," star-half")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/star-half-o"},Sophie.element("i",{"class":"fa fa-star-half-empty"}),"star-half-empty ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/star-half-o"},Sophie.element("i",{"class":"fa fa-star-half-full"}),"star-half-full ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/star-half-o"},Sophie.element("i",{"class":"fa fa-star-half-o"})," star-half-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/star-o"},Sophie.element("i",{"class":"fa fa-star-o"})," star-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/sticky-note"},Sophie.element("i",{"class":"fa fa-sticky-note"})," sticky-note")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/sticky-note-o"},Sophie.element("i",{"class":"fa fa-sticky-note-o"}),"sticky-note-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/street-view"},Sophie.element("i",{"class":"fa fa-street-view"})," street-view")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/suitcase"},Sophie.element("i",{"class":"fa fa-suitcase"})," suitcase")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/sun-o"},Sophie.element("i",{"class":"fa fa-sun-o"})," sun-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/life-ring"},Sophie.element("i",{"class":"fa fa-support"})," support ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/tablet"},Sophie.element("i",{"class":"fa fa-tablet"})," tablet")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/tachometer"},Sophie.element("i",{"class":"fa fa-tachometer"})," tachometer")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/tag"},Sophie.element("i",{"class":"fa fa-tag"})," tag")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/tags"},Sophie.element("i",{"class":"fa fa-tags"})," tags")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/tasks"},Sophie.element("i",{"class":"fa fa-tasks"})," tasks")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/taxi"},Sophie.element("i",{"class":"fa fa-taxi"})," taxi")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/television"},Sophie.element("i",{"class":"fa fa-television"})," television")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/terminal"},Sophie.element("i",{"class":"fa fa-terminal"})," terminal")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/thumb-tack"},Sophie.element("i",{"class":"fa fa-thumb-tack"})," thumb-tack")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/thumbs-down"},Sophie.element("i",{"class":"fa fa-thumbs-down"})," thumbs-down")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/thumbs-o-down"},Sophie.element("i",{"class":"fa fa-thumbs-o-down"}),"thumbs-o-down")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/thumbs-o-up"},Sophie.element("i",{"class":"fa fa-thumbs-o-up"})," thumbs-o-up")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/thumbs-up"},Sophie.element("i",{"class":"fa fa-thumbs-up"})," thumbs-up")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/ticket"},Sophie.element("i",{"class":"fa fa-ticket"})," ticket")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/times"},Sophie.element("i",{"class":"fa fa-times"})," times")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/times-circle"},Sophie.element("i",{"class":"fa fa-times-circle"}),"times-circle")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/times-circle-o"},Sophie.element("i",{"class":"fa fa-times-circle-o"}),"times-circle-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/tint"},Sophie.element("i",{"class":"fa fa-tint"})," tint")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/caret-square-o-down"},Sophie.element("i",{"class":"fa fa-toggle-down"}),"toggle-down ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/caret-square-o-left"},Sophie.element("i",{"class":"fa fa-toggle-left"}),"toggle-left ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/toggle-off"},Sophie.element("i",{"class":"fa fa-toggle-off"})," toggle-off")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/toggle-on"},Sophie.element("i",{"class":"fa fa-toggle-on"})," toggle-on")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/caret-square-o-right"},Sophie.element("i",{"class":"fa fa-toggle-right"}),"toggle-right ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/caret-square-o-up"},Sophie.element("i",{"class":"fa fa-toggle-up"})," toggle-up",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/trademark"},Sophie.element("i",{"class":"fa fa-trademark"})," trademark")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/trash"},Sophie.element("i",{"class":"fa fa-trash"})," trash")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/trash-o"},Sophie.element("i",{"class":"fa fa-trash-o"})," trash-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/tree"},Sophie.element("i",{"class":"fa fa-tree"})," tree")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/trophy"},Sophie.element("i",{"class":"fa fa-trophy"})," trophy")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/truck"},Sophie.element("i",{"class":"fa fa-truck"})," truck")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/tty"},Sophie.element("i",{"class":"fa fa-tty"})," tty")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/television"},Sophie.element("i",{"class":"fa fa-tv"})," tv ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/umbrella"},Sophie.element("i",{"class":"fa fa-umbrella"})," umbrella")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/university"},Sophie.element("i",{"class":"fa fa-university"})," university")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/unlock"},Sophie.element("i",{"class":"fa fa-unlock"})," unlock")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/unlock-alt"},Sophie.element("i",{"class":"fa fa-unlock-alt"})," unlock-alt")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/sort"},Sophie.element("i",{"class":"fa fa-unsorted"})," unsorted ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/upload"},Sophie.element("i",{"class":"fa fa-upload"})," upload")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/user"},Sophie.element("i",{"class":"fa fa-user"})," user")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/user-plus"},Sophie.element("i",{"class":"fa fa-user-plus"})," user-plus")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/user-secret"},Sophie.element("i",{"class":"fa fa-user-secret"})," user-secret")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/user-times"},Sophie.element("i",{"class":"fa fa-user-times"})," user-times")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/users"},Sophie.element("i",{"class":"fa fa-users"})," users")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/video-camera"},Sophie.element("i",{"class":"fa fa-video-camera"}),"video-camera")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/volume-down"},Sophie.element("i",{"class":"fa fa-volume-down"})," volume-down")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/volume-off"},Sophie.element("i",{"class":"fa fa-volume-off"})," volume-off")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/volume-up"},Sophie.element("i",{"class":"fa fa-volume-up"})," volume-up")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/exclamation-triangle"},Sophie.element("i",{"class":"fa fa-warning"})," warning",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/wheelchair"},Sophie.element("i",{"class":"fa fa-wheelchair"})," wheelchair")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/wifi"},Sophie.element("i",{"class":"fa fa-wifi"})," wifi")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/wrench"},Sophie.element("i",{"class":"fa fa-wrench"})," wrench")))),Sophie.element("section",{id:"hand"},Sophie.element("h2",{"class":"page-header"},"Hand Icons"),Sophie.element("div",{"class":"row fontawesome-icon-list"},Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-rock-o"},Sophie.element("i",{"class":"fa fa-hand-grab-o"}),"hand-grab-o ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-lizard-o"},Sophie.element("i",{"class":"fa fa-hand-lizard-o"}),"hand-lizard-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-o-down"},Sophie.element("i",{"class":"fa fa-hand-o-down"}),"hand-o-down")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-o-left"},Sophie.element("i",{"class":"fa fa-hand-o-left"}),"hand-o-left")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-o-right"},Sophie.element("i",{"class":"fa fa-hand-o-right"}),"hand-o-right")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-o-up"},Sophie.element("i",{"class":"fa fa-hand-o-up"}),"hand-o-up")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-paper-o"},Sophie.element("i",{"class":"fa fa-hand-paper-o"}),"hand-paper-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-peace-o"},Sophie.element("i",{"class":"fa fa-hand-peace-o"}),"hand-peace-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-pointer-o"},Sophie.element("i",{"class":"fa fa-hand-pointer-o"}),"hand-pointer-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-rock-o"},Sophie.element("i",{"class":"fa fa-hand-rock-o"}),"hand-rock-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-scissors-o"},Sophie.element("i",{"class":"fa fa-hand-scissors-o"}),"hand-scissors-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-spock-o"},Sophie.element("i",{"class":"fa fa-hand-spock-o"}),"hand-spock-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-paper-o"},Sophie.element("i",{"class":"fa fa-hand-stop-o"}),"hand-stop-o ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/thumbs-down"},Sophie.element("i",{"class":"fa fa-thumbs-down"}),"thumbs-down")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/thumbs-o-down"},Sophie.element("i",{"class":"fa fa-thumbs-o-down"}),"thumbs-o-down")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/thumbs-o-up"},Sophie.element("i",{"class":"fa fa-thumbs-o-up"}),"thumbs-o-up")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/thumbs-up"},Sophie.element("i",{"class":"fa fa-thumbs-up"}),"thumbs-up")))),Sophie.element("section",{id:"transportation"},Sophie.element("h2",{"class":"page-header"},"Transportation Icons"),Sophie.element("div",{"class":"row fontawesome-icon-list"},Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/ambulance"},Sophie.element("i",{"class":"fa fa-ambulance"}),"ambulance")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/car"},Sophie.element("i",{"class":"fa fa-automobile"})," automobile ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bicycle"},Sophie.element("i",{"class":"fa fa-bicycle"})," bicycle")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bus"},Sophie.element("i",{"class":"fa fa-bus"})," bus")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/taxi"},Sophie.element("i",{"class":"fa fa-cab"})," cab ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/car"},Sophie.element("i",{"class":"fa fa-car"})," car")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/fighter-jet"},Sophie.element("i",{"class":"fa fa-fighter-jet"}),"fighter-jet")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/motorcycle"},Sophie.element("i",{"class":"fa fa-motorcycle"})," motorcycle")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/plane"},Sophie.element("i",{"class":"fa fa-plane"})," plane")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/rocket"},Sophie.element("i",{"class":"fa fa-rocket"})," rocket")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/ship"},Sophie.element("i",{"class":"fa fa-ship"})," ship")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/space-shuttle"},Sophie.element("i",{"class":"fa fa-space-shuttle"}),"space-shuttle")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/subway"},Sophie.element("i",{"class":"fa fa-subway"})," subway")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/taxi"},Sophie.element("i",{"class":"fa fa-taxi"})," taxi")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/train"},Sophie.element("i",{"class":"fa fa-train"})," train")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/truck"},Sophie.element("i",{"class":"fa fa-truck"})," truck")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/wheelchair"},Sophie.element("i",{"class":"fa fa-wheelchair"})," wheelchair")))),Sophie.element("section",{id:"gender"},Sophie.element("h2",{"class":"page-header"},"Gender Icons"),Sophie.element("div",{"class":"row fontawesome-icon-list"},Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/genderless"},Sophie.element("i",{"class":"fa fa-genderless"})," genderless")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/transgender"},Sophie.element("i",{"class":"fa fa-intersex"})," intersex",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/mars"},Sophie.element("i",{"class":"fa fa-mars"})," mars")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/mars-double"},Sophie.element("i",{"class":"fa fa-mars-double"}),"mars-double")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/mars-stroke"},Sophie.element("i",{"class":"fa fa-mars-stroke"}),"mars-stroke")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/mars-stroke-h"},Sophie.element("i",{"class":"fa fa-mars-stroke-h"}),"mars-stroke-h")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/mars-stroke-v"},Sophie.element("i",{"class":"fa fa-mars-stroke-v"}),"mars-stroke-v")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/mercury"},Sophie.element("i",{"class":"fa fa-mercury"})," mercury")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/neuter"},Sophie.element("i",{"class":"fa fa-neuter"})," neuter")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/transgender"},Sophie.element("i",{"class":"fa fa-transgender"}),"transgender")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/transgender-alt"},Sophie.element("i",{"class":"fa fa-transgender-alt"}),"transgender-alt")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/venus"},Sophie.element("i",{"class":"fa fa-venus"})," venus")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/venus-double"},Sophie.element("i",{"class":"fa fa-venus-double"}),"venus-double")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/venus-mars"},Sophie.element("i",{"class":"fa fa-venus-mars"})," venus-mars")))),Sophie.element("section",{id:"file-type"},Sophie.element("h2",{"class":"page-header"},"File Type Icons"),Sophie.element("div",{"class":"row fontawesome-icon-list"},Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file"},Sophie.element("i",{"class":"fa fa-file"})," file")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-archive-o"},Sophie.element("i",{"class":"fa fa-file-archive-o"}),"file-archive-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-audio-o"},Sophie.element("i",{"class":"fa fa-file-audio-o"}),"file-audio-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-code-o"},Sophie.element("i",{"class":"fa fa-file-code-o"}),"file-code-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-excel-o"},Sophie.element("i",{"class":"fa fa-file-excel-o"}),"file-excel-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-image-o"},Sophie.element("i",{"class":"fa fa-file-image-o"}),"file-image-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-video-o"},Sophie.element("i",{"class":"fa fa-file-movie-o"}),"file-movie-o ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-o"},Sophie.element("i",{"class":"fa fa-file-o"})," file-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-pdf-o"},Sophie.element("i",{"class":"fa fa-file-pdf-o"})," file-pdf-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-image-o"},Sophie.element("i",{"class":"fa fa-file-photo-o"}),"file-photo-o ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-image-o"},Sophie.element("i",{"class":"fa fa-file-picture-o"}),"file-picture-o ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-powerpoint-o"},Sophie.element("i",{"class":"fa fa-file-powerpoint-o"})," file-powerpoint-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-audio-o"},Sophie.element("i",{"class":"fa fa-file-sound-o"}),"file-sound-o ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-text"},Sophie.element("i",{"class":"fa fa-file-text"}),"file-text")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-text-o"},Sophie.element("i",{"class":"fa fa-file-text-o"}),"file-text-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-video-o"},Sophie.element("i",{"class":"fa fa-file-video-o"}),"file-video-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-word-o"},Sophie.element("i",{"class":"fa fa-file-word-o"}),"file-word-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-archive-o"},Sophie.element("i",{"class":"fa fa-file-zip-o"}),"file-zip-o ",Sophie.element("span",{"class":"text-muted"},"(alias)"))))),Sophie.element("section",{id:"spinner"},Sophie.element("h2",{"class":"page-header"},"Spinner Icons"),Sophie.element("div",{"class":"alert alert-success"},Sophie.element("ul",{"class":"fa-ul"},Sophie.element("li",null,Sophie.element("i",{"class":"fa fa-info-circle fa-lg fa-li"}),"These icons work great with the ",Sophie.element("code",null,"fa-spin")," class. Check out the",Sophie.element("a",{href:"../examples/#animated","class":"alert-link"},"spinning icons example"),"."))),Sophie.element("div",{"class":"row fontawesome-icon-list"},Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/circle-o-notch"},Sophie.element("i",{"class":"fa fa-circle-o-notch"}),"circle-o-notch")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cog"},Sophie.element("i",{"class":"fa fa-cog"})," cog")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cog"},Sophie.element("i",{"class":"fa fa-gear"})," gear ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/refresh"},Sophie.element("i",{"class":"fa fa-refresh"})," refresh")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/spinner"},Sophie.element("i",{"class":"fa fa-spinner"})," spinner")))),Sophie.element("section",{id:"form-control"},Sophie.element("h2",{"class":"page-header"},"Form Control Icons"),Sophie.element("div",{"class":"row fontawesome-icon-list"},Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/check-square"},Sophie.element("i",{"class":"fa fa-check-square"}),"check-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/check-square-o"},Sophie.element("i",{"class":"fa fa-check-square-o"}),"check-square-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/circle"},Sophie.element("i",{"class":"fa fa-circle"})," circle")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/circle-o"},Sophie.element("i",{"class":"fa fa-circle-o"})," circle-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/dot-circle-o"},Sophie.element("i",{"class":"fa fa-dot-circle-o"}),"dot-circle-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/minus-square"},Sophie.element("i",{"class":"fa fa-minus-square"}),"minus-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/minus-square-o"},Sophie.element("i",{"class":"fa fa-minus-square-o"}),"minus-square-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/plus-square"},Sophie.element("i",{"class":"fa fa-plus-square"}),"plus-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/plus-square-o"},Sophie.element("i",{"class":"fa fa-plus-square-o"}),"plus-square-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/square"},Sophie.element("i",{"class":"fa fa-square"})," square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/square-o"},Sophie.element("i",{"class":"fa fa-square-o"})," square-o")))),Sophie.element("section",{id:"payment"},Sophie.element("h2",{"class":"page-header"},"Payment Icons"),Sophie.element("div",{"class":"row fontawesome-icon-list"},Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cc-amex"},Sophie.element("i",{"class":"fa fa-cc-amex"})," cc-amex")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cc-diners-club"},Sophie.element("i",{"class":"fa fa-cc-diners-club"}),"cc-diners-club")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cc-discover"},Sophie.element("i",{"class":"fa fa-cc-discover"}),"cc-discover")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cc-jcb"},Sophie.element("i",{"class":"fa fa-cc-jcb"})," cc-jcb")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cc-mastercard"},Sophie.element("i",{"class":"fa fa-cc-mastercard"}),"cc-mastercard")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cc-paypal"},Sophie.element("i",{"class":"fa fa-cc-paypal"}),"cc-paypal")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cc-stripe"},Sophie.element("i",{"class":"fa fa-cc-stripe"}),"cc-stripe")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cc-visa"},Sophie.element("i",{"class":"fa fa-cc-visa"})," cc-visa")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/credit-card"},Sophie.element("i",{"class":"fa fa-credit-card"}),"credit-card")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/google-wallet"},Sophie.element("i",{"class":"fa fa-google-wallet"}),"google-wallet")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/paypal"},Sophie.element("i",{"class":"fa fa-paypal"})," paypal")))),Sophie.element("section",{id:"chart"},Sophie.element("h2",{"class":"page-header"},"Chart Icons"),Sophie.element("div",{"class":"row fontawesome-icon-list"},Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/area-chart"},Sophie.element("i",{"class":"fa fa-area-chart"})," area-chart")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bar-chart"},Sophie.element("i",{"class":"fa fa-bar-chart"}),"bar-chart")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bar-chart"},Sophie.element("i",{"class":"fa fa-bar-chart-o"}),"bar-chart-o ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/line-chart"},Sophie.element("i",{"class":"fa fa-line-chart"})," line-chart")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/pie-chart"},Sophie.element("i",{"class":"fa fa-pie-chart"}),"pie-chart")))),Sophie.element("section",{id:"currency"},Sophie.element("h2",{"class":"page-header"},"Currency Icons"),Sophie.element("div",{"class":"row fontawesome-icon-list"},Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/btc"},Sophie.element("i",{"class":"fa fa-bitcoin"})," bitcoin ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/btc"},Sophie.element("i",{"class":"fa fa-btc"})," btc")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/jpy"},Sophie.element("i",{"class":"fa fa-cny"})," cny ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/usd"},Sophie.element("i",{"class":"fa fa-dollar"})," dollar ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/eur"},Sophie.element("i",{"class":"fa fa-eur"})," eur")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/eur"},Sophie.element("i",{"class":"fa fa-euro"})," euro ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/gbp"},Sophie.element("i",{"class":"fa fa-gbp"})," gbp")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/gg"},Sophie.element("i",{"class":"fa fa-gg"})," gg")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/gg-circle"},Sophie.element("i",{"class":"fa fa-gg-circle"}),"gg-circle")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/ils"},Sophie.element("i",{"class":"fa fa-ils"})," ils")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/inr"},Sophie.element("i",{"class":"fa fa-inr"})," inr")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/jpy"},Sophie.element("i",{"class":"fa fa-jpy"})," jpy")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/krw"},Sophie.element("i",{"class":"fa fa-krw"})," krw")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/money"},Sophie.element("i",{"class":"fa fa-money"})," money")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/jpy"},Sophie.element("i",{"class":"fa fa-rmb"})," rmb ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/rub"},Sophie.element("i",{"class":"fa fa-rouble"})," rouble ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/rub"},Sophie.element("i",{"class":"fa fa-rub"})," rub")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/rub"},Sophie.element("i",{"class":"fa fa-ruble"})," ruble ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/inr"},Sophie.element("i",{"class":"fa fa-rupee"})," rupee ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/ils"},Sophie.element("i",{"class":"fa fa-shekel"})," shekel ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/ils"},Sophie.element("i",{"class":"fa fa-sheqel"})," sheqel ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/try"},Sophie.element("i",{"class":"fa fa-try"})," try")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/try"},Sophie.element("i",{"class":"fa fa-turkish-lira"})," turkish-lira",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/usd"},Sophie.element("i",{"class":"fa fa-usd"})," usd")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/krw"},Sophie.element("i",{"class":"fa fa-won"})," won ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/jpy"},Sophie.element("i",{"class":"fa fa-yen"})," yen ",Sophie.element("span",{"class":"text-muted"},"(alias)"))))),Sophie.element("section",{id:"text-editor"},Sophie.element("h2",{"class":"page-header"},"Text Editor Icons"),Sophie.element("div",{"class":"row fontawesome-icon-list"},Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/align-center"},Sophie.element("i",{"class":"fa fa-align-center"}),"align-center")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/align-justify"},Sophie.element("i",{"class":"fa fa-align-justify"}),"align-justify")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/align-left"},Sophie.element("i",{"class":"fa fa-align-left"})," align-left")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/align-right"},Sophie.element("i",{"class":"fa fa-align-right"}),"align-right")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bold"},Sophie.element("i",{"class":"fa fa-bold"})," bold")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/link"},Sophie.element("i",{"class":"fa fa-chain"})," chain ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/chain-broken"},Sophie.element("i",{"class":"fa fa-chain-broken"}),"chain-broken")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/clipboard"},Sophie.element("i",{"class":"fa fa-clipboard"}),"clipboard")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/columns"},Sophie.element("i",{"class":"fa fa-columns"})," columns")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/files-o"},Sophie.element("i",{"class":"fa fa-copy"})," copy ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/scissors"},Sophie.element("i",{"class":"fa fa-cut"})," cut ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/outdent"},Sophie.element("i",{"class":"fa fa-dedent"})," dedent ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/eraser"},Sophie.element("i",{"class":"fa fa-eraser"})," eraser")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file"},Sophie.element("i",{"class":"fa fa-file"})," file")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-o"},Sophie.element("i",{"class":"fa fa-file-o"})," file-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-text"},Sophie.element("i",{"class":"fa fa-file-text"}),"file-text")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-text-o"},Sophie.element("i",{"class":"fa fa-file-text-o"}),"file-text-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/files-o"},Sophie.element("i",{"class":"fa fa-files-o"})," files-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/floppy-o"},Sophie.element("i",{"class":"fa fa-floppy-o"})," floppy-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/font"},Sophie.element("i",{"class":"fa fa-font"})," font")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/header"},Sophie.element("i",{"class":"fa fa-header"})," header")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/indent"},Sophie.element("i",{"class":"fa fa-indent"})," indent")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/italic"},Sophie.element("i",{"class":"fa fa-italic"})," italic")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/link"},Sophie.element("i",{"class":"fa fa-link"})," link")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/list"},Sophie.element("i",{"class":"fa fa-list"})," list")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/list-alt"},Sophie.element("i",{"class":"fa fa-list-alt"})," list-alt")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/list-ol"},Sophie.element("i",{"class":"fa fa-list-ol"})," list-ol")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/list-ul"},Sophie.element("i",{"class":"fa fa-list-ul"})," list-ul")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/outdent"},Sophie.element("i",{"class":"fa fa-outdent"})," outdent")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/paperclip"},Sophie.element("i",{"class":"fa fa-paperclip"}),"paperclip")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/paragraph"},Sophie.element("i",{"class":"fa fa-paragraph"}),"paragraph")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/clipboard"},Sophie.element("i",{"class":"fa fa-paste"})," paste ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/repeat"},Sophie.element("i",{"class":"fa fa-repeat"})," repeat")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/undo"},Sophie.element("i",{"class":"fa fa-rotate-left"})," rotate-left",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/repeat"},Sophie.element("i",{"class":"fa fa-rotate-right"})," rotate-right",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/floppy-o"},Sophie.element("i",{"class":"fa fa-save"})," save ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/scissors"},Sophie.element("i",{"class":"fa fa-scissors"})," scissors")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/strikethrough"},Sophie.element("i",{"class":"fa fa-strikethrough"}),"strikethrough")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/subscript"},Sophie.element("i",{"class":"fa fa-subscript"}),"subscript")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/superscript"},Sophie.element("i",{"class":"fa fa-superscript"}),"superscript")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/table"},Sophie.element("i",{"class":"fa fa-table"})," table")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/text-height"},Sophie.element("i",{"class":"fa fa-text-height"}),"text-height")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/text-width"},Sophie.element("i",{"class":"fa fa-text-width"})," text-width")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/th"},Sophie.element("i",{"class":"fa fa-th"})," th")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/th-large"},Sophie.element("i",{"class":"fa fa-th-large"})," th-large")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/th-list"},Sophie.element("i",{"class":"fa fa-th-list"})," th-list")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/underline"},Sophie.element("i",{"class":"fa fa-underline"}),"underline")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/undo"},Sophie.element("i",{"class":"fa fa-undo"})," undo")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/chain-broken"},Sophie.element("i",{"class":"fa fa-unlink"})," unlink ",Sophie.element("span",{"class":"text-muted"},"(alias)"))))),Sophie.element("section",{id:"directional"},Sophie.element("h2",{"class":"page-header"},"Directional Icons"),Sophie.element("div",{"class":"row fontawesome-icon-list"},Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/angle-double-down"},Sophie.element("i",{"class":"fa fa-angle-double-down"})," angle-double-down")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/angle-double-left"},Sophie.element("i",{"class":"fa fa-angle-double-left"})," angle-double-left")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/angle-double-right"},Sophie.element("i",{"class":"fa fa-angle-double-right"})," angle-double-right")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/angle-double-up"},Sophie.element("i",{"class":"fa fa-angle-double-up"}),"angle-double-up")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/angle-down"},Sophie.element("i",{"class":"fa fa-angle-down"})," angle-down")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/angle-left"},Sophie.element("i",{"class":"fa fa-angle-left"})," angle-left")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/angle-right"},Sophie.element("i",{"class":"fa fa-angle-right"}),"angle-right")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/angle-up"},Sophie.element("i",{"class":"fa fa-angle-up"})," angle-up")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/arrow-circle-down"},Sophie.element("i",{"class":"fa fa-arrow-circle-down"})," arrow-circle-down")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/arrow-circle-left"},Sophie.element("i",{"class":"fa fa-arrow-circle-left"})," arrow-circle-left")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/arrow-circle-o-down"},Sophie.element("i",{"class":"fa fa-arrow-circle-o-down"})," arrow-circle-o-down")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/arrow-circle-o-left"},Sophie.element("i",{"class":"fa fa-arrow-circle-o-left"})," arrow-circle-o-left")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/arrow-circle-o-right"},Sophie.element("i",{"class":"fa fa-arrow-circle-o-right"})," arrow-circle-o-right")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/arrow-circle-o-up"},Sophie.element("i",{"class":"fa fa-arrow-circle-o-up"})," arrow-circle-o-up")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/arrow-circle-right"},Sophie.element("i",{"class":"fa fa-arrow-circle-right"})," arrow-circle-right")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/arrow-circle-up"},Sophie.element("i",{"class":"fa fa-arrow-circle-up"}),"arrow-circle-up")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/arrow-down"},Sophie.element("i",{"class":"fa fa-arrow-down"})," arrow-down")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/arrow-left"},Sophie.element("i",{"class":"fa fa-arrow-left"})," arrow-left")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/arrow-right"},Sophie.element("i",{"class":"fa fa-arrow-right"}),"arrow-right")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/arrow-up"},Sophie.element("i",{"class":"fa fa-arrow-up"})," arrow-up")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/arrows"},Sophie.element("i",{"class":"fa fa-arrows"})," arrows")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/arrows-alt"},Sophie.element("i",{"class":"fa fa-arrows-alt"})," arrows-alt")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/arrows-h"},Sophie.element("i",{"class":"fa fa-arrows-h"})," arrows-h")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/arrows-v"},Sophie.element("i",{"class":"fa fa-arrows-v"})," arrows-v")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/caret-down"},Sophie.element("i",{"class":"fa fa-caret-down"})," caret-down")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/caret-left"},Sophie.element("i",{"class":"fa fa-caret-left"})," caret-left")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/caret-right"},Sophie.element("i",{"class":"fa fa-caret-right"}),"caret-right")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/caret-square-o-down"},Sophie.element("i",{"class":"fa fa-caret-square-o-down"})," caret-square-o-down")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/caret-square-o-left"},Sophie.element("i",{"class":"fa fa-caret-square-o-left"})," caret-square-o-left")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/caret-square-o-right"},Sophie.element("i",{"class":"fa fa-caret-square-o-right"})," caret-square-o-right")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/caret-square-o-up"},Sophie.element("i",{"class":"fa fa-caret-square-o-up"})," caret-square-o-up")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/caret-up"},Sophie.element("i",{"class":"fa fa-caret-up"})," caret-up")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/chevron-circle-down"},Sophie.element("i",{"class":"fa fa-chevron-circle-down"})," chevron-circle-down")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/chevron-circle-left"},Sophie.element("i",{"class":"fa fa-chevron-circle-left"})," chevron-circle-left")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/chevron-circle-right"},Sophie.element("i",{"class":"fa fa-chevron-circle-right"})," chevron-circle-right")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/chevron-circle-up"},Sophie.element("i",{"class":"fa fa-chevron-circle-up"})," chevron-circle-up")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/chevron-down"},Sophie.element("i",{"class":"fa fa-chevron-down"}),"chevron-down")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/chevron-left"},Sophie.element("i",{"class":"fa fa-chevron-left"}),"chevron-left")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/chevron-right"},Sophie.element("i",{"class":"fa fa-chevron-right"}),"chevron-right")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/chevron-up"},Sophie.element("i",{"class":"fa fa-chevron-up"})," chevron-up")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/exchange"},Sophie.element("i",{"class":"fa fa-exchange"})," exchange")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-o-down"},Sophie.element("i",{"class":"fa fa-hand-o-down"}),"hand-o-down")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-o-left"},Sophie.element("i",{"class":"fa fa-hand-o-left"}),"hand-o-left")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-o-right"},Sophie.element("i",{"class":"fa fa-hand-o-right"}),"hand-o-right")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-o-up"},Sophie.element("i",{"class":"fa fa-hand-o-up"}),"hand-o-up")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/long-arrow-down"},Sophie.element("i",{"class":"fa fa-long-arrow-down"}),"long-arrow-down")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/long-arrow-left"},Sophie.element("i",{"class":"fa fa-long-arrow-left"}),"long-arrow-left")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/long-arrow-right"},Sophie.element("i",{"class":"fa fa-long-arrow-right"})," long-arrow-right")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/long-arrow-up"},Sophie.element("i",{"class":"fa fa-long-arrow-up"}),"long-arrow-up")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/caret-square-o-down"},Sophie.element("i",{"class":"fa fa-toggle-down"}),"toggle-down ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/caret-square-o-left"},Sophie.element("i",{"class":"fa fa-toggle-left"}),"toggle-left ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/caret-square-o-right"},Sophie.element("i",{"class":"fa fa-toggle-right"})," toggle-right ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/caret-square-o-up"},Sophie.element("i",{"class":"fa fa-toggle-up"}),"toggle-up ",Sophie.element("span",{"class":"text-muted"},"(alias)"))))),Sophie.element("section",{id:"video-player"},Sophie.element("h2",{"class":"page-header"},"Video Player Icons"),Sophie.element("div",{"class":"row fontawesome-icon-list"},Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/arrows-alt"},Sophie.element("i",{"class":"fa fa-arrows-alt"})," arrows-alt")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/backward"},Sophie.element("i",{"class":"fa fa-backward"})," backward")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/compress"},Sophie.element("i",{"class":"fa fa-compress"})," compress")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/eject"},Sophie.element("i",{"class":"fa fa-eject"})," eject")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/expand"},Sophie.element("i",{"class":"fa fa-expand"})," expand")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/fast-backward"},Sophie.element("i",{"class":"fa fa-fast-backward"}),"fast-backward")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/fast-forward"},Sophie.element("i",{"class":"fa fa-fast-forward"}),"fast-forward")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/forward"},Sophie.element("i",{"class":"fa fa-forward"})," forward")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/pause"},Sophie.element("i",{"class":"fa fa-pause"})," pause")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/play"},Sophie.element("i",{"class":"fa fa-play"})," play")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/play-circle"},Sophie.element("i",{"class":"fa fa-play-circle"}),"play-circle")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/play-circle-o"},Sophie.element("i",{"class":"fa fa-play-circle-o"}),"play-circle-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/random"},Sophie.element("i",{"class":"fa fa-random"})," random")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/step-backward"},Sophie.element("i",{"class":"fa fa-step-backward"}),"step-backward")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/step-forward"},Sophie.element("i",{"class":"fa fa-step-forward"}),"step-forward")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/stop"},Sophie.element("i",{"class":"fa fa-stop"})," stop")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/youtube-play"},Sophie.element("i",{"class":"fa fa-youtube-play"}),"youtube-play")))),Sophie.element("section",{id:"brand"},Sophie.element("h2",{"class":"page-header"},"Brand Icons"),Sophie.element("div",{"class":"alert alert-warning"},Sophie.element("h4",null,Sophie.element("i",{"class":"fa fa-warning"})," Warning!"),"Apparently, Adblock Plus can remove Font Awesome brand icons with their \"Remove SocialMedia Buttons\" setting. We will not use hacks to force them to display. Please",Sophie.element("a",{href:"https://adblockplus.org/en/bugs","class":"alert-link"},"report an issue with Adblock Plus")," if you believethis to be an error. To work around this, you ll need to modify the social icon class names."),Sophie.element("div",{"class":"row fontawesome-icon-list margin-bottom-lg"},Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/500px"},Sophie.element("i",{"class":"fa fa-500px"})," 500px")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/adn"},Sophie.element("i",{"class":"fa fa-adn"})," adn")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/amazon"},Sophie.element("i",{"class":"fa fa-amazon"})," amazon")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/android"},Sophie.element("i",{"class":"fa fa-android"})," android")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/angellist"},Sophie.element("i",{"class":"fa fa-angellist"})," angellist")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/apple"},Sophie.element("i",{"class":"fa fa-apple"})," apple")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/behance"},Sophie.element("i",{"class":"fa fa-behance"})," behance")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/behance-square"},Sophie.element("i",{"class":"fa fa-behance-square"}),"behance-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bitbucket"},Sophie.element("i",{"class":"fa fa-bitbucket"})," bitbucket")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bitbucket-square"},Sophie.element("i",{"class":"fa fa-bitbucket-square"}),"bitbucket-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/btc"},Sophie.element("i",{"class":"fa fa-bitcoin"})," bitcoin ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/black-tie"},Sophie.element("i",{"class":"fa fa-black-tie"})," black-tie")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/btc"},Sophie.element("i",{"class":"fa fa-btc"})," btc")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/buysellads"},Sophie.element("i",{"class":"fa fa-buysellads"})," buysellads")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cc-amex"},Sophie.element("i",{"class":"fa fa-cc-amex"})," cc-amex")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cc-diners-club"},Sophie.element("i",{"class":"fa fa-cc-diners-club"}),"cc-diners-club")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cc-discover"},Sophie.element("i",{"class":"fa fa-cc-discover"})," cc-discover")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cc-jcb"},Sophie.element("i",{"class":"fa fa-cc-jcb"})," cc-jcb")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cc-mastercard"},Sophie.element("i",{"class":"fa fa-cc-mastercard"}),"cc-mastercard")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cc-paypal"},Sophie.element("i",{"class":"fa fa-cc-paypal"})," cc-paypal")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cc-stripe"},Sophie.element("i",{"class":"fa fa-cc-stripe"})," cc-stripe")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cc-visa"},Sophie.element("i",{"class":"fa fa-cc-visa"})," cc-visa")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/chrome"},Sophie.element("i",{"class":"fa fa-chrome"})," chrome")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/codepen"},Sophie.element("i",{"class":"fa fa-codepen"})," codepen")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/connectdevelop"},Sophie.element("i",{"class":"fa fa-connectdevelop"}),"connectdevelop")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/contao"},Sophie.element("i",{"class":"fa fa-contao"})," contao")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/css3"},Sophie.element("i",{"class":"fa fa-css3"})," css3")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/dashcube"},Sophie.element("i",{"class":"fa fa-dashcube"})," dashcube")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/delicious"},Sophie.element("i",{"class":"fa fa-delicious"})," delicious")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/deviantart"},Sophie.element("i",{"class":"fa fa-deviantart"})," deviantart")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/digg"},Sophie.element("i",{"class":"fa fa-digg"})," digg")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/dribbble"},Sophie.element("i",{"class":"fa fa-dribbble"})," dribbble")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/dropbox"},Sophie.element("i",{"class":"fa fa-dropbox"})," dropbox")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/drupal"},Sophie.element("i",{"class":"fa fa-drupal"})," drupal")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/empire"},Sophie.element("i",{"class":"fa fa-empire"})," empire")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/expeditedssl"},Sophie.element("i",{"class":"fa fa-expeditedssl"}),"expeditedssl")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/facebook"},Sophie.element("i",{"class":"fa fa-facebook"})," facebook")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/facebook"},Sophie.element("i",{"class":"fa fa-facebook-f"})," facebook-f ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/facebook-official"},Sophie.element("i",{"class":"fa fa-facebook-official"}),"facebook-official")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/facebook-square"},Sophie.element("i",{"class":"fa fa-facebook-square"}),"facebook-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/firefox"},Sophie.element("i",{"class":"fa fa-firefox"})," firefox")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/flickr"},Sophie.element("i",{"class":"fa fa-flickr"})," flickr")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/fonticons"},Sophie.element("i",{"class":"fa fa-fonticons"})," fonticons")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/forumbee"},Sophie.element("i",{"class":"fa fa-forumbee"})," forumbee")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/foursquare"},Sophie.element("i",{"class":"fa fa-foursquare"})," foursquare")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/empire"},Sophie.element("i",{"class":"fa fa-ge"})," ge ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/get-pocket"},Sophie.element("i",{"class":"fa fa-get-pocket"})," get-pocket")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/gg"},Sophie.element("i",{"class":"fa fa-gg"})," gg")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/gg-circle"},Sophie.element("i",{"class":"fa fa-gg-circle"})," gg-circle")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/git"},Sophie.element("i",{"class":"fa fa-git"})," git")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/git-square"},Sophie.element("i",{"class":"fa fa-git-square"})," git-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/github"},Sophie.element("i",{"class":"fa fa-github"})," github")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/github-alt"},Sophie.element("i",{"class":"fa fa-github-alt"})," github-alt")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/github-square"},Sophie.element("i",{"class":"fa fa-github-square"}),"github-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/gratipay"},Sophie.element("i",{"class":"fa fa-gittip"})," gittip ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/google"},Sophie.element("i",{"class":"fa fa-google"})," google")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/google-plus"},Sophie.element("i",{"class":"fa fa-google-plus"})," google-plus")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/google-plus-square"},Sophie.element("i",{"class":"fa fa-google-plus-square"}),"google-plus-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/google-wallet"},Sophie.element("i",{"class":"fa fa-google-wallet"}),"google-wallet")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/gratipay"},Sophie.element("i",{"class":"fa fa-gratipay"})," gratipay")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hacker-news"},Sophie.element("i",{"class":"fa fa-hacker-news"})," hacker-news")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/houzz"},Sophie.element("i",{"class":"fa fa-houzz"})," houzz")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/html5"},Sophie.element("i",{"class":"fa fa-html5"})," html5")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/instagram"},Sophie.element("i",{"class":"fa fa-instagram"})," instagram")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/internet-explorer"},Sophie.element("i",{"class":"fa fa-internet-explorer"}),"internet-explorer")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/ioxhost"},Sophie.element("i",{"class":"fa fa-ioxhost"})," ioxhost")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/joomla"},Sophie.element("i",{"class":"fa fa-joomla"})," joomla")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/jsfiddle"},Sophie.element("i",{"class":"fa fa-jsfiddle"})," jsfiddle")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/lastfm"},Sophie.element("i",{"class":"fa fa-lastfm"})," lastfm")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/lastfm-square"},Sophie.element("i",{"class":"fa fa-lastfm-square"}),"lastfm-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/leanpub"},Sophie.element("i",{"class":"fa fa-leanpub"})," leanpub")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/linkedin"},Sophie.element("i",{"class":"fa fa-linkedin"})," linkedin")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/linkedin-square"},Sophie.element("i",{"class":"fa fa-linkedin-square"}),"linkedin-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/linux"},Sophie.element("i",{"class":"fa fa-linux"})," linux")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/maxcdn"},Sophie.element("i",{"class":"fa fa-maxcdn"})," maxcdn")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/meanpath"},Sophie.element("i",{"class":"fa fa-meanpath"})," meanpath")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/medium"},Sophie.element("i",{"class":"fa fa-medium"})," medium")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/odnoklassniki"},Sophie.element("i",{"class":"fa fa-odnoklassniki"}),"odnoklassniki")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/odnoklassniki-square"},Sophie.element("i",{"class":"fa fa-odnoklassniki-square"})," odnoklassniki-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/opencart"},Sophie.element("i",{"class":"fa fa-opencart"})," opencart")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/openid"},Sophie.element("i",{"class":"fa fa-openid"})," openid")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/opera"},Sophie.element("i",{"class":"fa fa-opera"})," opera")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/optin-monster"},Sophie.element("i",{"class":"fa fa-optin-monster"}),"optin-monster")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/pagelines"},Sophie.element("i",{"class":"fa fa-pagelines"})," pagelines")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/paypal"},Sophie.element("i",{"class":"fa fa-paypal"})," paypal")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/pied-piper"},Sophie.element("i",{"class":"fa fa-pied-piper"})," pied-piper")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/pied-piper-alt"},Sophie.element("i",{"class":"fa fa-pied-piper-alt"}),"pied-piper-alt")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/pinterest"},Sophie.element("i",{"class":"fa fa-pinterest"})," pinterest")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/pinterest-p"},Sophie.element("i",{"class":"fa fa-pinterest-p"})," pinterest-p")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/pinterest-square"},Sophie.element("i",{"class":"fa fa-pinterest-square"}),"pinterest-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/qq"},Sophie.element("i",{"class":"fa fa-qq"})," qq")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/rebel"},Sophie.element("i",{"class":"fa fa-ra"})," ra ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/rebel"},Sophie.element("i",{"class":"fa fa-rebel"})," rebel")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/reddit"},Sophie.element("i",{"class":"fa fa-reddit"})," reddit")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/reddit-square"},Sophie.element("i",{"class":"fa fa-reddit-square"}),"reddit-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/renren"},Sophie.element("i",{"class":"fa fa-renren"})," renren")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/safari"},Sophie.element("i",{"class":"fa fa-safari"})," safari")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/sellsy"},Sophie.element("i",{"class":"fa fa-sellsy"})," sellsy")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/share-alt"},Sophie.element("i",{"class":"fa fa-share-alt"})," share-alt")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/share-alt-square"},Sophie.element("i",{"class":"fa fa-share-alt-square"}),"share-alt-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/shirtsinbulk"},Sophie.element("i",{"class":"fa fa-shirtsinbulk"}),"shirtsinbulk")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/simplybuilt"},Sophie.element("i",{"class":"fa fa-simplybuilt"})," simplybuilt")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/skyatlas"},Sophie.element("i",{"class":"fa fa-skyatlas"})," skyatlas")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/skype"},Sophie.element("i",{"class":"fa fa-skype"})," skype")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/slack"},Sophie.element("i",{"class":"fa fa-slack"})," slack")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/slideshare"},Sophie.element("i",{"class":"fa fa-slideshare"})," slideshare")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/soundcloud"},Sophie.element("i",{"class":"fa fa-soundcloud"})," soundcloud")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/spotify"},Sophie.element("i",{"class":"fa fa-spotify"})," spotify")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/stack-exchange"},Sophie.element("i",{"class":"fa fa-stack-exchange"}),"stack-exchange")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/stack-overflow"},Sophie.element("i",{"class":"fa fa-stack-overflow"}),"stack-overflow")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/steam"},Sophie.element("i",{"class":"fa fa-steam"})," steam")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/steam-square"},Sophie.element("i",{"class":"fa fa-steam-square"}),"steam-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/stumbleupon"},Sophie.element("i",{"class":"fa fa-stumbleupon"})," stumbleupon")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/stumbleupon-circle"},Sophie.element("i",{"class":"fa fa-stumbleupon-circle"}),"stumbleupon-circle")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/tencent-weibo"},Sophie.element("i",{"class":"fa fa-tencent-weibo"}),"tencent-weibo")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/trello"},Sophie.element("i",{"class":"fa fa-trello"})," trello")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/tripadvisor"},Sophie.element("i",{"class":"fa fa-tripadvisor"})," tripadvisor")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/tumblr"},Sophie.element("i",{"class":"fa fa-tumblr"})," tumblr")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/tumblr-square"},Sophie.element("i",{"class":"fa fa-tumblr-square"}),"tumblr-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/twitch"},Sophie.element("i",{"class":"fa fa-twitch"})," twitch")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/twitter"},Sophie.element("i",{"class":"fa fa-twitter"})," twitter")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/twitter-square"},Sophie.element("i",{"class":"fa fa-twitter-square"}),"twitter-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/viacoin"},Sophie.element("i",{"class":"fa fa-viacoin"})," viacoin")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/vimeo"},Sophie.element("i",{"class":"fa fa-vimeo"})," vimeo")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/vimeo-square"},Sophie.element("i",{"class":"fa fa-vimeo-square"}),"vimeo-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/vine"},Sophie.element("i",{"class":"fa fa-vine"})," vine")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/vk"},Sophie.element("i",{"class":"fa fa-vk"})," vk")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/weixin"},Sophie.element("i",{"class":"fa fa-wechat"})," wechat ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/weibo"},Sophie.element("i",{"class":"fa fa-weibo"})," weibo")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/weixin"},Sophie.element("i",{"class":"fa fa-weixin"})," weixin")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/whatsapp"},Sophie.element("i",{"class":"fa fa-whatsapp"})," whatsapp")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/wikipedia-w"},Sophie.element("i",{"class":"fa fa-wikipedia-w"})," wikipedia-w")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/windows"},Sophie.element("i",{"class":"fa fa-windows"})," windows")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/wordpress"},Sophie.element("i",{"class":"fa fa-wordpress"})," wordpress")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/xing"},Sophie.element("i",{"class":"fa fa-xing"})," xing")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/xing-square"},Sophie.element("i",{"class":"fa fa-xing-square"})," xing-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/y-combinator"},Sophie.element("i",{"class":"fa fa-y-combinator"}),"y-combinator")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hacker-news"},Sophie.element("i",{"class":"fa fa-y-combinator-square"}),"y-combinator-square ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/yahoo"},Sophie.element("i",{"class":"fa fa-yahoo"})," yahoo")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/y-combinator"},Sophie.element("i",{"class":"fa fa-yc"})," yc ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hacker-news"},Sophie.element("i",{"class":"fa fa-yc-square"})," yc-square ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/yelp"},Sophie.element("i",{"class":"fa fa-yelp"})," yelp")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/youtube"},Sophie.element("i",{"class":"fa fa-youtube"})," youtube")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/youtube-play"},Sophie.element("i",{"class":"fa fa-youtube-play"}),"youtube-play")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/youtube-square"},Sophie.element("i",{"class":"fa fa-youtube-square"}),"youtube-square"))),Sophie.element("div",{"class":"alert alert-success"},Sophie.element("ul",{"class":"margin-bottom-none padding-left-lg"},Sophie.element("li",null,"All brand icons are trademarks of their respective owners."),Sophie.element("li",null,"The use of these trademarks does not indicate endorsement of the trademark holder by Font Awesome, nor vice versa.")))),Sophie.element("section",{id:"medical"},Sophie.element("h2",{"class":"page-header"},"Medical Icons"),Sophie.element("div",{"class":"row fontawesome-icon-list"},Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/ambulance"},Sophie.element("i",{"class":"fa fa-ambulance"}),"ambulance")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/h-square"},Sophie.element("i",{"class":"fa fa-h-square"})," h-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/heart"},Sophie.element("i",{"class":"fa fa-heart"})," heart")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/heart-o"},Sophie.element("i",{"class":"fa fa-heart-o"})," heart-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/heartbeat"},Sophie.element("i",{"class":"fa fa-heartbeat"}),"heartbeat")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hospital-o"},Sophie.element("i",{"class":"fa fa-hospital-o"})," hospital-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/medkit"},Sophie.element("i",{"class":"fa fa-medkit"})," medkit")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/plus-square"},Sophie.element("i",{"class":"fa fa-plus-square"}),"plus-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/stethoscope"},Sophie.element("i",{"class":"fa fa-stethoscope"}),"stethoscope")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/user-md"},Sophie.element("i",{"class":"fa fa-user-md"})," user-md")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/wheelchair"},Sophie.element("i",{"class":"fa fa-wheelchair"})," wheelchair"))))));}});Sophie.createStyleSheet({'.fontawesome-icon-list .fa-hover a':{'overflow':'hidden','textOverflow':'ellipsis','white-space':'nowrap','display':'block','color':'#222222','lineHeight':'32px','height':'32px','paddingLeft':'10px','borderRadius':'4px'}});module.exports=IconList;
 
 /***/ },
-/* 243 */
+/* 246 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -23964,96 +24067,96 @@ webpackJsonp([3,17],[
 	var ImgSet = Sophie.createClass("img-set", {
 
 	    render: function render() {
-	        return this.element(
+	        return Sophie.element(
 	            "img-set",
 	            { "class": "img-set", style: "display:none" },
-	            this.element(
+	            Sophie.element(
 	                "h3",
 	                { "class": "collapse-header", "data-toggle": "collapse", "data-target": "#img-panel" },
 	                "图片"
 	            ),
-	            this.element(
+	            Sophie.element(
 	                "div",
 	                { "class": "collapse-body collapse", id: "img-panel" },
-	                this.element(
+	                Sophie.element(
 	                    "div",
 	                    { "class": "collapse-body-panel" },
-	                    this.element(
+	                    Sophie.element(
 	                        "div",
 	                        { "class": "form-group background" },
-	                        this.element(
+	                        Sophie.element(
 	                            "label",
 	                            null,
 	                            "上传"
 	                        ),
-	                        this.element("input", { type: "text", "class": "form-control set-img-input", "data-cssname": "src" }),
-	                        this.element(
+	                        Sophie.element("input", { type: "text", "class": "form-control set-img-input", "data-cssname": "src" }),
+	                        Sophie.element(
 	                            "a",
 	                            { "class": "set-img btn btn-small" },
-	                            this.element(
+	                            Sophie.element(
 	                                "i",
 	                                { "class": "fa fa-picture-o" },
 	                                "上传图片"
 	                            )
 	                        )
 	                    ),
-	                    this.element(
+	                    Sophie.element(
 	                        "div",
 	                        { "class": "form-group background" },
-	                        this.element(
+	                        Sophie.element(
 	                            "label",
 	                            null,
 	                            "超连接"
 	                        ),
-	                        this.element(
+	                        Sophie.element(
 	                            "div",
 	                            { "class": "input-group" },
-	                            this.element("input", { type: "text", "class": "form-control set-a-input" }),
-	                            this.element(
+	                            Sophie.element("input", { type: "text", "class": "form-control set-a-input" }),
+	                            Sophie.element(
 	                                "div",
 	                                { "class": "input-group-btn" },
-	                                this.element(
+	                                Sophie.element(
 	                                    "button",
 	                                    { type: "button", "class": "btn btn-default dropdown-toggle", style: "padding: 2px 5px",
 	                                        "data-toggle": "dropdown" },
 	                                    "选择",
-	                                    this.element("span", { "class": "caret" })
+	                                    Sophie.element("span", { "class": "caret" })
 	                                ),
-	                                this.element(
+	                                Sophie.element(
 	                                    "ul",
 	                                    { "class": "dropdown-menu pull-right" },
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "li",
 	                                        null,
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { href: "#" },
 	                                            "Action"
 	                                        )
 	                                    ),
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "li",
 	                                        null,
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { href: "#" },
 	                                            "Another action"
 	                                        )
 	                                    ),
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "li",
 	                                        null,
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { href: "#" },
 	                                            "Something else here"
 	                                        )
 	                                    ),
-	                                    this.element("li", { "class": "divider" }),
-	                                    this.element(
+	                                    Sophie.element("li", { "class": "divider" }),
+	                                    Sophie.element(
 	                                        "li",
 	                                        null,
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { href: "#" },
 	                                            "Separated link"
@@ -24063,46 +24166,46 @@ webpackJsonp([3,17],[
 	                            )
 	                        )
 	                    ),
-	                    this.element(
+	                    Sophie.element(
 	                        "div",
 	                        { style: "display: none", "class": "form-group background" },
-	                        this.element(
+	                        Sophie.element(
 	                            "label",
 	                            null,
 	                            "缩放"
 	                        ),
-	                        this.element(
+	                        Sophie.element(
 	                            "div",
 	                            null,
-	                            this.element(
+	                            Sophie.element(
 	                                "a",
 	                                { "class": "a cmd-show-creade-link" },
-	                                this.element("i", { "class": "fa fa-link" })
+	                                Sophie.element("i", { "class": "fa fa-link" })
 	                            ),
-	                            this.element(
+	                            Sophie.element(
 	                                "a",
 	                                { "class": "a" },
-	                                this.element("i", { "class": "fa fa-unlink" })
+	                                Sophie.element("i", { "class": "fa fa-unlink" })
 	                            )
 	                        )
 	                    ),
-	                    this.element(
+	                    Sophie.element(
 	                        "div",
 	                        { "class": "form-group background" },
-	                        this.element(
+	                        Sophie.element(
 	                            "label",
 	                            null,
 	                            "大小"
 	                        ),
-	                        this.element(
+	                        Sophie.element(
 	                            "div",
 	                            { "class": "input-group" },
-	                            this.element(
+	                            Sophie.element(
 	                                "a",
 	                                { "class": "repeat-set", href: "#", "data-cssname": "backgroundSize", mselect: "true", value: "cover" },
 	                                "cover"
 	                            ),
-	                            this.element(
+	                            Sophie.element(
 	                                "a",
 	                                { href: "#", "class": "repeat-set", "data-cssname": "backgroundSize", mselect: "true",
 	                                    value: "contain" },
@@ -24112,63 +24215,63 @@ webpackJsonp([3,17],[
 	                    )
 	                )
 	            ),
-	            this.element(
+	            Sophie.element(
 	                "div",
 	                { "class": "shortcutbar-img", style: "display: none" },
-	                this.element(
+	                Sophie.element(
 	                    "a",
 	                    { title: "设置图片", "class": "btn  set-src" },
-	                    this.element("i", { "class": "fa fa-picture-o" })
+	                    Sophie.element("i", { "class": "fa fa-picture-o" })
 	                ),
-	                this.element(
+	                Sophie.element(
 	                    "a",
 	                    { title: "设置地址", "class": "btn  set-href" },
-	                    this.element("i", { "class": "fa fa-link" })
+	                    Sophie.element("i", { "class": "fa fa-link" })
 	                ),
-	                this.element(
+	                Sophie.element(
 	                    "a",
 	                    { title: "设置显示方式", "class": "btn set-size" },
-	                    this.element("i", { "class": "fa fa-expand" })
+	                    Sophie.element("i", { "class": "fa fa-expand" })
 	                ),
-	                this.element(
+	                Sophie.element(
 	                    "a",
 	                    { style: "display:none", title: "裁剪图片", "class": "btn  set-crop" },
-	                    this.element("i", { "class": "fa fa-crop" })
+	                    Sophie.element("i", { "class": "fa fa-crop" })
 	                )
 	            ),
-	            this.element(
+	            Sophie.element(
 	                "div",
 	                { "class": "modal fade", id: "set-img-href", tabindex: "-1", role: "dialog", "aria-labelledby": "myModalLabel",
 	                    "aria-hidden": "true" },
-	                this.element(
+	                Sophie.element(
 	                    "div",
 	                    { "class": "modal-dialog" },
-	                    this.element(
+	                    Sophie.element(
 	                        "div",
 	                        { "class": "modal-content" },
-	                        this.element(
+	                        Sophie.element(
 	                            "div",
 	                            { "class": "modal-header" },
-	                            this.element(
+	                            Sophie.element(
 	                                "button",
 	                                { type: "button", "class": "close", "data-dismiss": "modal", "aria-hidden": "true" },
 	                                "×"
 	                            ),
-	                            this.element(
+	                            Sophie.element(
 	                                "h4",
 	                                { "class": "modal-title", id: "" },
 	                                "设置图片链接"
 	                            )
 	                        ),
-	                        this.element(
+	                        Sophie.element(
 	                            "div",
 	                            { "class": "modal-body" },
-	                            this.element("input", { type: "text", "class": "form-control", id: "set-img-href-value", placeholder: "http://" })
+	                            Sophie.element("input", { type: "text", "class": "form-control", id: "set-img-href-value", placeholder: "http://" })
 	                        ),
-	                        this.element(
+	                        Sophie.element(
 	                            "div",
 	                            { "class": "modal-footer" },
-	                            this.element(
+	                            Sophie.element(
 	                                "button",
 	                                { type: "button", "class": "cmd-createlink btn btn-primary" },
 	                                "确定"
@@ -24478,35 +24581,35 @@ webpackJsonp([3,17],[
 
 	function command(ev) {
 
-	    parent.play.selectImg.show();
-	    parent.play.selectImg.onSelect = function (src) {
+	    $("#select-img-view").get(0).vnode.show();
+
+	    $(document).on("selectImg", function (ev, src) {
 
 	        setSrc(src);
-
 	        $(".set-img-input").val(src);
-	    };
+	    });
 	}
 
 	module.exports = ImgSet;
 
 /***/ },
-/* 244 */
+/* 247 */
 /***/ function(module, exports) {
 
 	"use strict";
 
 	var NavPageSet = Sophie.createClass("p-nav-page-set", {
 	    render: function render() {
-	        return this.element(
+	        return Sophie.element(
 	            "div",
 	            { "class": "shortcutbar-nav-page", style: "display: none" },
-	            this.element(
+	            Sophie.element(
 	                "div",
 	                { "class": "btn-group" },
-	                this.element(
+	                Sophie.element(
 	                    "a",
 	                    { "class": "btn add-nav" },
-	                    this.element("i", { "class": "fa fa-plus" })
+	                    Sophie.element("i", { "class": "fa fa-plus" })
 	                )
 	            )
 	        );
@@ -24761,7 +24864,7 @@ webpackJsonp([3,17],[
 	module.exports = NavPageSet;
 
 /***/ },
-/* 245 */
+/* 248 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -24845,7 +24948,7 @@ webpackJsonp([3,17],[
 	        }
 	    },
 	    render: function render() {
-	        return this.element("div", null);
+	        return Sophie.element("div", null);
 	    },
 	    editableInit: function editableInit(el) {
 
@@ -24884,7 +24987,7 @@ webpackJsonp([3,17],[
 	module.exports = LayoutTwoSet;
 
 /***/ },
-/* 246 */
+/* 249 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -24968,7 +25071,7 @@ webpackJsonp([3,17],[
 	        }
 	    },
 	    render: function render() {
-	        return this.element("div", null);
+	        return Sophie.element("div", null);
 	    },
 	    editableInit: function editableInit(el) {
 
@@ -25006,14 +25109,14 @@ webpackJsonp([3,17],[
 	module.exports = LayoutTwoSet;
 
 /***/ },
-/* 247 */
+/* 250 */
 /***/ function(module, exports) {
 
 	"use strict";
 
 	var LogoSet = Sophie.createClass("p-logo-set", {
 	  render: function render() {
-	    return this.element("div", null);
+	    return Sophie.element("div", null);
 	  },
 	  componentDidMount: function componentDidMount() {
 	    var host = this;
@@ -25049,14 +25152,14 @@ webpackJsonp([3,17],[
 	module.exports = LogoSet;
 
 /***/ },
-/* 248 */
+/* 251 */
 /***/ function(module, exports) {
 
 	"use strict";
 
 	var PGridSet = Sophie.createClass("p-grid-set", {
 	  render: function render() {
-	    return this.element("div", null);
+	    return Sophie.element("div", null);
 	  },
 	  componentDidMount: function componentDidMount() {
 
@@ -25081,7 +25184,7 @@ webpackJsonp([3,17],[
 	  editableInit: function editableInit() {
 	    play.registerEditableProp("p-grid", {
 	      "heightCSSName": "min-height",
-	      "parentable": true
+	      "parentable": false
 	    });
 
 	    //
@@ -25095,21 +25198,76 @@ webpackJsonp([3,17],[
 	module.exports = PGridSet;
 
 /***/ },
-/* 249 */
+/* 252 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	var ListSet = Sophie.createClass("p-slide-set", {
+	  render: function render() {
+	    return Sophie.element("div", null);
+	  },
+
+	  componentDidMount: function componentDidMount() {
+	    var self = this;
+	    $(document).on("editableInit", function (ev, el) {
+	      if (el.is("p-slide")) {
+	        self.initEdit(el);
+	      }
+	    });
+	  },
+
+	  initEdit: function initEdit(el) {
+	    setTimeout(function () {
+	      el.prop("showName", "跑马灯");
+
+	      play.registerChildEditableProp($(el).prop("tagName"), "p-pic", {
+	        parentable: false,
+	        selectable: true,
+	        removeable: false,
+	        resizeable: false,
+	        moveable: false
+	      });
+
+	      play.registerChildEditableProp($(el).prop("tagName"), "p-text", {
+	        parentable: false,
+	        selectable: true,
+	        removeable: false,
+	        resizeable: false,
+	        moveable: false
+	      });
+	    }, 0);
+	  }
+
+	});
+
+	Sophie.createStyleSheet({
+	  '#mask-tools-bar .shortcutbar-list-cmd': {
+	    "pointer-events": "auto"
+	  }
+
+	});
+
+	module.exports = ListSet;
+
+/***/ },
+/* 253 */
 /***/ function(module, exports) {
 
 	"use strict";
 
 	var AlignPanel = Sophie.createClass({
 	  render: function render() {
-	    return this.element(
+	    return Sophie.element(
 	      "div",
 	      { "class": "viewport-align" },
-	      this.element("a", { "class": "fa  fa-arrow-left", "data-name": "居左定位", title: "居左定位" }),
-	      this.element("a", { "class": "fa fa-align-center", "data-name": "居中定位", title: "居中定位" }),
-	      this.element("a", { "class": "fa  fa-arrow-right", "data-name": "居右定位", title: "居右定位" }),
-	      this.element("a", { "class": "fa  fa-arrow-up", "data-name": "居上定位", title: "居上定位" }),
-	      this.element("a", { "class": "fa fa-arrows-h fa-1", "data-name": "widthAuto%", title: "宽度100%" })
+	      Sophie.element("a", { "class": "fa  fa-arrow-left", "data-name": "居左定位", title: "居左定位" }),
+	      Sophie.element("a", { "class": "fa fa-align-center", "data-name": "居中定位", title: "居中定位" }),
+	      Sophie.element("a", { "class": "fa  fa-arrow-right", "data-name": "居右定位", title: "居右定位" }),
+	      Sophie.element("a", { "class": "fa  fa-arrow-up", "data-name": "居上定位", title: "居上定位" }),
+	      Sophie.element("a", { "class": "fa fa-arrows-v fa-1", "data-name": "widthAuto%", title: "宽度100%" }),
+	      Sophie.element("a", { "class": "fa fa-arrows-h fa-1", "data-name": "widthAuto%", title: "宽度100%" }),
+	      Sophie.element("a", { "class": "fa fa-arrows fa-1", "data-name": "widthfullSceen", title: "宽度100%" })
 	    );
 	  },
 
@@ -25135,6 +25293,11 @@ webpackJsonp([3,17],[
 	      //  play.select.selectedEL.attr("data-align-y", "top")
 	      play.alignEl.top(play.select.selectedEL);
 	    };
+	    var fullSceen = function fullSceen() {
+	      //  play.select.selectedEL.attr("data-align-y", "top")
+
+	      play.alignEl.widthfullSceen(play.select.selectedEL);
+	    };
 
 	    $(".fa-arrow-left", node).click(function () {
 	      left();
@@ -25151,105 +25314,111 @@ webpackJsonp([3,17],[
 	    $(".fa-arrows-h", node).click(function () {
 	      widthAuto();
 	    });
+	    $(".fa-arrows", node).click(function () {
+	      fullSceen();
+	    });
+	    $(".fa-arrows-v", node).click(function () {
+	      play.alignEl.heightAuto(play.select.selectedEL);
+	    });
 	  }
 	});
 
 	module.exports = AlignPanel;
 
 /***/ },
-/* 250 */
+/* 254 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var StyleBg = __webpack_require__(251);
-	var Slider = __webpack_require__(203);
-	__webpack_require__(252);
+	var StyleBg = __webpack_require__(255);
+	var Slider = __webpack_require__(206);
+	__webpack_require__(256);
 
 	var LayoutSet = Sophie.createClass("layout-set", {
 	    render: function render() {
-	        return this.element(
+	        return Sophie.element(
 	            "layout-set",
 	            null,
-	            this.element(
+	            Sophie.element(
 	                "h3",
 	                { "class": "collapse-header", "data-toggle": "collapse", "data-target": "#layout-panel" },
 	                "基本"
 	            ),
-	            this.element(
+	            Sophie.element(
 	                "div",
 	                { "class": "collapse-body collapse in", id: "layout-panel" },
-	                this.element(
+	                Sophie.element(
 	                    "div",
 	                    { "class": "collapse-body-panel" },
-	                    this.element(
+	                    Sophie.element(
 	                        "div",
 	                        { "class": "form-group size" },
-	                        this.element(
+	                        Sophie.element(
 	                            "label",
 	                            null,
 	                            "宽度"
 	                        ),
-	                        this.element(
+	                        Sophie.element(
 	                            "div",
 	                            { "class": "column-2" },
-	                            this.element(
+	                            Sophie.element(
 	                                "div",
 	                                { "class": "column" },
-	                                this.element(
+	                                Sophie.element(
 	                                    "div",
 	                                    { "class": "input-group" },
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "span",
 	                                        { "class": "input-group-btn" },
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "button",
 	                                            { "class": "btn btn-default max-btn", type: "button" },
 	                                            "max"
 	                                        )
 	                                    ),
-	                                    this.element("input", { type: "text", "data-cssunit": "px", "data-cssname": "maxWidth", "class": "form-control max-input" })
+	                                    Sophie.element("input", { type: "text", "data-cssunit": "px", "data-cssname": "maxWidth", "class": "form-control max-input" })
 	                                )
 	                            ),
-	                            this.element(
+	                            Sophie.element(
 	                                "div",
 	                                { "class": "column" },
-	                                this.element(
+	                                Sophie.element(
 	                                    "div",
 	                                    { "class": "input-group" },
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "span",
 	                                        { "class": "input-group-btn" },
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "button",
 	                                            { "class": "btn btn-default min-btn", type: "button" },
 	                                            "min"
 	                                        )
 	                                    ),
-	                                    this.element("input", { type: "text", "data-cssunit": "px", "data-cssname": "minWidth", "class": "form-control min-input" })
+	                                    Sophie.element("input", { type: "text", "data-cssunit": "px", "data-cssname": "minWidth", "class": "form-control min-input" })
 	                                )
 	                            )
 	                        ),
-	                        this.element(
+	                        Sophie.element(
 	                            "div",
 	                            { "class": "input-c2", style: "display: none" },
-	                            this.element(
+	                            Sophie.element(
 	                                "div",
 	                                { "class": "input-vlabel" },
-	                                this.element("input", { "class": "form-control", type: "text", "data-cssunit": "px",
+	                                Sophie.element("input", { "class": "form-control", type: "text", "data-cssunit": "px",
 	                                    "data-cssname": "maxWidth" }),
-	                                this.element(
+	                                Sophie.element(
 	                                    "span",
 	                                    null,
 	                                    "最大宽度"
 	                                )
 	                            ),
-	                            this.element(
+	                            Sophie.element(
 	                                "div",
 	                                { "class": "input-vlabel" },
-	                                this.element("input", { "class": "form-control", type: "text", "data-cssunit": "px",
+	                                Sophie.element("input", { "class": "form-control", type: "text", "data-cssunit": "px",
 	                                    "data-cssname": "minWidth" }),
-	                                this.element(
+	                                Sophie.element(
 	                                    "span",
 	                                    null,
 	                                    "最小宽度"
@@ -25257,89 +25426,89 @@ webpackJsonp([3,17],[
 	                            )
 	                        )
 	                    ),
-	                    this.element(
+	                    Sophie.element(
 	                        "div",
 	                        { "class": "form-group background" },
-	                        this.element(
+	                        Sophie.element(
 	                            "label",
 	                            null,
 	                            "背景"
 	                        ),
-	                        this.element(
+	                        Sophie.element(
 	                            "div",
 	                            null,
-	                            this.element(
+	                            Sophie.element(
 	                                "div",
 	                                { "class": "background-color" },
-	                                this.element("a", { "data-cssname": "backgroundColor", "class": "btn btn-small minicolors", value: "#7745ff" })
+	                                Sophie.element("a", { "data-cssname": "backgroundColor", "class": "btn btn-small minicolors", value: "#7745ff" })
 	                            ),
-	                            this.element(
+	                            Sophie.element(
 	                                "a",
 	                                { "class": "background-image btn btn-small" },
-	                                this.element(
+	                                Sophie.element(
 	                                    "i",
 	                                    { "class": "fa fa-picture-o" },
 	                                    "背景图"
 	                                )
 	                            ),
-	                            this.element(StyleBg, null)
+	                            Sophie.element(StyleBg, null)
 	                        )
 	                    ),
-	                    this.element(
+	                    Sophie.element(
 	                        "div",
 	                        { "class": "form-group border" },
-	                        this.element(
+	                        Sophie.element(
 	                            "label",
 	                            { "class": "border-header" },
 	                            "边框"
 	                        ),
-	                        this.element(
+	                        Sophie.element(
 	                            "div",
 	                            { "class": "border-content" },
-	                            this.element(
+	                            Sophie.element(
 	                                "div",
 	                                { "class": "border-dir" },
-	                                this.element("div", { value: "all", "class": "border-dir-all" }),
-	                                this.element("div", { value: "Left", "class": "border-dir-left" }),
-	                                this.element("div", { value: "Right", "class": "border-dir-right" }),
-	                                this.element("div", { value: "Bottom", "class": "border-dir-bottom" }),
-	                                this.element("div", { value: "Top", "class": "border-dir-top" })
+	                                Sophie.element("div", { "data-dir": "all", "class": "border-dir-all active" }),
+	                                Sophie.element("div", { "data-dir": "Left", "class": "border-dir-left" }),
+	                                Sophie.element("div", { "data-dir": "Right", "class": "border-dir-right" }),
+	                                Sophie.element("div", { "data-dir": "Bottom", "class": "border-dir-bottom" }),
+	                                Sophie.element("div", { "data-dir": "Top", "class": "border-dir-top" })
 	                            ),
-	                            this.element(
+	                            Sophie.element(
 	                                "div",
 	                                { "class": "border-other" },
-	                                this.element(
+	                                Sophie.element(
 	                                    "div",
 	                                    null,
-	                                    this.element("input", { "class": "border-width", "data-cssunit": "px", "data-cssname": "borderWidth", type: "text", value: "0" }),
-	                                    this.element(
+	                                    Sophie.element("input", { "class": "border-width", "data-cssunit": "px", "data-cssname": "borderWidth", type: "text", value: "0" }),
+	                                    Sophie.element(
 	                                        "div",
 	                                        { "class": "border-color" },
-	                                        this.element("a", { "data-cssname": "borderColor", "class": "btn btn-small minicolors", value: "#7745ff" })
+	                                        Sophie.element("a", { "data-cssname": "borderColor", "class": "btn btn-small minicolors", value: "#7745ff" })
 	                                    )
 	                                ),
-	                                this.element(
+	                                Sophie.element(
 	                                    "div",
 	                                    { "class": "border-style" },
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "a",
 	                                        { "data-cssname": "borderStyle", value: "solid", "class": "border-style-solid",
 	                                            href: "#" },
 	                                        "solid"
 	                                    ),
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "a",
 	                                        { "data-cssname": "borderStyle", value: "dashed", "class": "border-style-dashed",
 	                                            href: "#" },
 	                                        "dashed"
 	                                    ),
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "a",
 	                                        { "data-cssname": "borderStyle", value: "dotted", "class": "border-style-dotted",
 	                                            href: "#" },
 	                                        "dotted"
 	                                    ),
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "a",
 	                                        { "data-cssname": "borderStyle", value: "double", "class": "border-style-double",
 	                                            href: "#" },
@@ -25349,36 +25518,36 @@ webpackJsonp([3,17],[
 	                            )
 	                        )
 	                    ),
-	                    this.element(
+	                    Sophie.element(
 	                        "div",
 	                        { "class": "form-group border-radius" },
-	                        this.element(
+	                        Sophie.element(
 	                            "label",
 	                            null,
 	                            "圆角"
 	                        ),
-	                        this.element(
+	                        Sophie.element(
 	                            "div",
 	                            null,
-	                            this.element("input", { "data-cssname": "borderRadius", "class": "textbox all", type: "text", placeholder: "N/A", value: "0" }),
-	                            this.element("input", { "data-cssname": "borderLeftRadius", "class": "textbox", type: "text", value: "0" }),
-	                            this.element("input", { "data-cssname": "borderTopRadius", "class": "textbox", type: "text", value: "0" }),
-	                            this.element("input", { "data-cssname": "borderRightRadius", "class": "textbox", type: "text", value: "0" }),
-	                            this.element("input", { "data-cssname": "borderBottomRadius", "class": "textbox", type: "text", value: "0" })
+	                            Sophie.element("input", { "data-cssname": "borderRadius", "class": "textbox all", type: "text", placeholder: "N/A", value: "0" }),
+	                            Sophie.element("input", { "data-cssname": "borderLeftRadius", "class": "textbox", type: "text", value: "0" }),
+	                            Sophie.element("input", { "data-cssname": "borderTopRadius", "class": "textbox", type: "text", value: "0" }),
+	                            Sophie.element("input", { "data-cssname": "borderRightRadius", "class": "textbox", type: "text", value: "0" }),
+	                            Sophie.element("input", { "data-cssname": "borderBottomRadius", "class": "textbox", type: "text", value: "0" })
 	                        )
 	                    ),
-	                    this.element(
+	                    Sophie.element(
 	                        "div",
 	                        { "class": "form-group opcity " },
-	                        this.element(
+	                        Sophie.element(
 	                            "label",
 	                            null,
 	                            "透明度"
 	                        ),
-	                        this.element(
+	                        Sophie.element(
 	                            "div",
 	                            { "class": "input-num" },
-	                            this.element("input", { "class": "slide", "data-cssname": "opacity", id: "opacity-slider",
+	                            Sophie.element("input", { "class": "slide", "data-cssname": "opacity", id: "opacity-slider",
 	                                type: "text",
 	                                name: "opacity",
 
@@ -25478,6 +25647,7 @@ webpackJsonp([3,17],[
 	        });
 
 	        $(document).on("cssChange", function (ev, el, cssName) {
+	            if (!el) return;
 
 	            if (el.is("p-layout") && (cssName.indexOf("border") !== -1 || cssName.indexOf("background")) !== -1) {
 	                el.removeClass("empty");
@@ -25530,124 +25700,124 @@ webpackJsonp([3,17],[
 	module.exports = LayoutSet;
 
 /***/ },
-/* 251 */
+/* 255 */
 /***/ function(module, exports) {
 
 	"use strict";
 
 	var BG = Sophie.createClass("Style-bg", {
 	    render: function render() {
-	        return this.element(
+	        return Sophie.element(
 	            "div",
 	            { "class": "modal fade", id: "style-bd-modal", tabindex: "-1", role: "dialog", "aria-labelledby": "myModalLabel",
 	                "aria-hidden": "true" },
-	            this.element(
+	            Sophie.element(
 	                "div",
 	                { "class": "modal-dialog" },
-	                this.element(
+	                Sophie.element(
 	                    "div",
 	                    { "class": "modal-content" },
-	                    this.element(
+	                    Sophie.element(
 	                        "div",
 	                        { "class": "modal-header" },
-	                        this.element(
+	                        Sophie.element(
 	                            "button",
 	                            { type: "button", "class": "close", "data-dismiss": "modal", "aria-hidden": "true" },
 	                            "×"
 	                        ),
-	                        this.element(
+	                        Sophie.element(
 	                            "h4",
 	                            { "class": "modal-title", id: "" },
 	                            "设置背景"
 	                        )
 	                    ),
-	                    this.element(
+	                    Sophie.element(
 	                        "div",
 	                        { "class": "modal-body" },
-	                        this.element(
+	                        Sophie.element(
 	                            "div",
 	                            { "class": "row" },
-	                            this.element(
+	                            Sophie.element(
 	                                "div",
 	                                { "class": "col-md-6" },
-	                                this.element("div", { "data-cssname": "backgroundImage", "class": "style-bd-preivew" })
+	                                Sophie.element("div", { "data-cssname": "backgroundImage", "class": "style-bd-preivew" })
 	                            ),
-	                            this.element(
+	                            Sophie.element(
 	                                "div",
 	                                { "class": "col-md-6" },
-	                                this.element(
+	                                Sophie.element(
 	                                    "div",
 	                                    { "class": "style-bd-set row" },
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "div",
 	                                        { "class": "col-sm-3" },
 	                                        "位置"
 	                                    ),
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "div",
 	                                        { "class": "col-sm-8" },
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "div",
 	                                            { "class": "style-bd-position" },
-	                                            this.element("a", { "data-cssname": "backgroundPosition", value: "0% 50%",
+	                                            Sophie.element("a", { "data-cssname": "backgroundPosition", value: "0% 50%",
 	                                                "class": "style-bd-position-top" }),
-	                                            this.element("a", { "data-cssname": "backgroundPosition", value: "0% 100%",
+	                                            Sophie.element("a", { "data-cssname": "backgroundPosition", value: "0% 100%",
 	                                                "class": "style-bd-position-top-right" }),
-	                                            this.element("a", { "data-cssname": "backgroundPosition", value: "50% 100%",
+	                                            Sophie.element("a", { "data-cssname": "backgroundPosition", value: "50% 100%",
 	                                                "class": "style-bd-position-right" }),
-	                                            this.element("a", { "data-cssname": "backgroundPosition", value: "100% 100%",
+	                                            Sophie.element("a", { "data-cssname": "backgroundPosition", value: "100% 100%",
 	                                                "class": "style-bd-position-right-bottom" }),
-	                                            this.element("a", { "data-cssname": "backgroundPosition", value: "100% 50%",
+	                                            Sophie.element("a", { "data-cssname": "backgroundPosition", value: "100% 50%",
 	                                                "class": "style-bd-position-bottom" }),
-	                                            this.element("a", { "data-cssname": "backgroundPosition", value: "100% 0%",
+	                                            Sophie.element("a", { "data-cssname": "backgroundPosition", value: "100% 0%",
 	                                                "class": "style-bd-position-bottom-left" }),
-	                                            this.element("a", { "data-cssname": "backgroundPosition", value: "50% 0%",
+	                                            Sophie.element("a", { "data-cssname": "backgroundPosition", value: "50% 0%",
 	                                                "class": "style-bd-position-left" }),
-	                                            this.element("a", { "data-cssname": "backgroundPosition", value: "0% 0%",
+	                                            Sophie.element("a", { "data-cssname": "backgroundPosition", value: "0% 0%",
 	                                                "class": "style-bd-position-left-top" })
 	                                        )
 	                                    )
 	                                ),
-	                                this.element(
+	                                Sophie.element(
 	                                    "div",
 	                                    { "class": "row" },
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "div",
 	                                        { "class": "col-sm-3" },
 	                                        "重复"
 	                                    ),
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "div",
 	                                        { "class": "col-sm-8" },
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { "class": "repeat-set", href: "#", "data-cssname": "backgroundRepeatX", mselect: "true", "reset-value": "no-repeat", value: "repeat" },
 	                                            "repeat-x"
 	                                        ),
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { href: "#", "class": "repeat-set", "data-cssname": "backgroundRepeatY", mselect: "true", "reset-value": "no-repeat", value: "repeat" },
 	                                            "repeat-y"
 	                                        )
 	                                    )
 	                                ),
-	                                this.element(
+	                                Sophie.element(
 	                                    "div",
 	                                    { "class": "row" },
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "div",
 	                                        { "class": "col-sm-3" },
 	                                        "大小"
 	                                    ),
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "div",
 	                                        { "class": "col-sm-8" },
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { "class": "repeat-set", href: "#", "data-cssname": "backgroundSize", mselect: "true", value: "cover" },
 	                                            "cover"
 	                                        ),
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { href: "#", "class": "repeat-set", "data-cssname": "backgroundSize", mselect: "true", value: "contain" },
 	                                            "contain"
@@ -25657,15 +25827,15 @@ webpackJsonp([3,17],[
 	                            )
 	                        )
 	                    ),
-	                    this.element(
+	                    Sophie.element(
 	                        "div",
 	                        { "class": "modal-footer" },
-	                        this.element(
+	                        Sophie.element(
 	                            "button",
 	                            { type: "button", "class": "btn btn-default", "data-dismiss": "modal" },
 	                            "取消"
 	                        ),
-	                        this.element(
+	                        Sophie.element(
 	                            "button",
 	                            { type: "button", "class": "cmd-createlink btn btn-primary", "data-dismiss": "modal" },
 	                            "确定"
@@ -25815,13 +25985,13 @@ webpackJsonp([3,17],[
 	module.exports = BG;
 
 /***/ },
-/* 252 */
+/* 256 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(253);
+	var content = __webpack_require__(257);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(69)(content, {});
@@ -25841,7 +26011,7 @@ webpackJsonp([3,17],[
 	}
 
 /***/ },
-/* 253 */
+/* 257 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(68)();
@@ -25855,12 +26025,12 @@ webpackJsonp([3,17],[
 
 
 /***/ },
-/* 254 */
+/* 258 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var PageManagerModal = __webpack_require__(255);
+	var PageManagerModal = __webpack_require__(259);
 	var PangeManagerView = Sophie.createClass("pages", {
 
 	  getInitialState: function getInitialState() {
@@ -25901,16 +26071,16 @@ webpackJsonp([3,17],[
 	      for (var i = 0; i < this.state.pageList.length; i++) {
 
 	        var pageData = this.state.pageList[i];
-	        var target = this.element(
+	        var target = Sophie.element(
 	          "a",
 	          { "class": "list-group-item", "data-id": pageData.id },
-	          this.element("span", { "data-id": pageData.id, "class": "badge fa fa-remove delete-page" }),
-	          this.element(
+	          Sophie.element("span", { "data-id": pageData.id, "class": "badge fa fa-remove delete-page" }),
+	          Sophie.element(
 	            "span",
 	            { "data-id": pageData.id, "class": "badge fa fa-cog set-page" },
 	            " "
 	          ),
-	          this.element(
+	          Sophie.element(
 	            "span",
 	            { "class": "page-title", "data-id": pageData.id,
 	              href: "/design/template//page/{{page.id}}" },
@@ -26081,16 +26251,16 @@ webpackJsonp([3,17],[
 
 	    for (var i = 0; i < this.pageList.length; i++) {
 	      var page = this.pageList[i];
-	      var target = this.element(
+	      var target = Sophie.element(
 	        "a",
 	        { "class": "list-group-item", "data-id": "{page.id}" },
-	        this.element("span", { "data-id": page.id, "class": "badge fa fa-remove delete-page" }),
-	        this.element(
+	        Sophie.element("span", { "data-id": page.id, "class": "badge fa fa-remove delete-page" }),
+	        Sophie.element(
 	          "span",
 	          { "data-id": "{page.id}", "class": "badge fa fa-cog" },
 	          " "
 	        ),
-	        this.element(
+	        Sophie.element(
 	          "span",
 	          { "data-id": "{page.id}",
 	            href: "/design/template//page/{{page.id}}" },
@@ -26102,31 +26272,31 @@ webpackJsonp([3,17],[
 	    return list;
 	  },
 	  render: function render() {
-	    return this.element(
+	    return Sophie.element(
 	      "pages",
 	      null,
-	      this.element(
+	      Sophie.element(
 	        "div",
 	        { "class": "title" },
-	        this.element(
+	        Sophie.element(
 	          "span",
 	          null,
 	          "编辑页面"
 	        ),
 	        " ",
-	        this.element(
+	        Sophie.element(
 	          "a",
 	          { id: "add-page-btn", "class": "fa fa-add" },
 	          "+"
 	        )
 	      ),
-	      this.element("div", { "class": "borderline" }),
-	      this.element(
+	      Sophie.element("div", { "class": "borderline" }),
+	      Sophie.element(
 	        "div",
 	        { "class": "list-group" },
 	        this.renderPageList()
 	      ),
-	      this.element("div", null)
+	      Sophie.element("div", null)
 	    );
 	  }
 
@@ -26194,66 +26364,66 @@ webpackJsonp([3,17],[
 	module.exports = PangeManagerView;
 
 /***/ },
-/* 255 */
+/* 259 */
 /***/ function(module, exports) {
 
 	"use strict";
 
 	var PageManagerModal = Sophie.createClass({
 	    render: function render() {
-	        return this.element(
+	        return Sophie.element(
 	            "div",
 	            null,
-	            this.element(
+	            Sophie.element(
 	                "div",
 	                { "class": "modal fade", id: "add-site-page", tabindex: "-1", role: "dialog", "aria-labelledby": "myModalLabel",
 	                    "aria-hidden": "true" },
-	                this.element(
+	                Sophie.element(
 	                    "div",
 	                    { "class": "modal-dialog" },
-	                    this.element(
+	                    Sophie.element(
 	                        "div",
 	                        { "class": "modal-content" },
-	                        this.element(
+	                        Sophie.element(
 	                            "div",
 	                            { "class": "modal-header" },
-	                            this.element(
+	                            Sophie.element(
 	                                "button",
 	                                { type: "button", "class": "close", "data-dismiss": "modal", "aria-hidden": "true" },
 	                                "×"
 	                            ),
-	                            this.element(
+	                            Sophie.element(
 	                                "h4",
 	                                { "class": "modal-title", id: "" },
 	                                "添加页面"
 	                            )
 	                        ),
-	                        this.element(
+	                        Sophie.element(
 	                            "div",
 	                            { "class": "modal-body" },
-	                            this.element(
+	                            Sophie.element(
 	                                "form",
 	                                { "class": "form-horizontal", role: "form" },
-	                                this.element(
+	                                Sophie.element(
 	                                    "div",
 	                                    { "class": "form-group" },
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "label",
 	                                        { "for": "set-page-title", "class": "col-sm-2 control-label" },
 	                                        "标题"
 	                                    ),
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "div",
 	                                        { "class": "col-sm-10" },
-	                                        this.element("input", { type: "text", "class": "form-control", id: "set-page-title", placeholder: "页面标题" })
+	                                        Sophie.element("input", { type: "text", "class": "form-control", id: "set-page-title", placeholder: "页面标题" })
 	                                    )
 	                                )
 	                            )
 	                        ),
-	                        this.element(
+	                        Sophie.element(
 	                            "div",
 	                            { "class": "modal-footer" },
-	                            this.element(
+	                            Sophie.element(
 	                                "button",
 	                                { type: "button", "class": "cmd-add-page btn btn-primary" },
 	                                "确定"
@@ -26262,56 +26432,56 @@ webpackJsonp([3,17],[
 	                    )
 	                )
 	            ),
-	            this.element(
+	            Sophie.element(
 	                "div",
 	                { "class": "modal fade", id: "set-site-page", tabindex: "-1", role: "dialog", "aria-labelledby": "myModalLabel",
 	                    "aria-hidden": "true" },
-	                this.element(
+	                Sophie.element(
 	                    "div",
 	                    { "class": "modal-dialog" },
-	                    this.element(
+	                    Sophie.element(
 	                        "div",
 	                        { "class": "modal-content" },
-	                        this.element(
+	                        Sophie.element(
 	                            "div",
 	                            { "class": "modal-header" },
-	                            this.element(
+	                            Sophie.element(
 	                                "button",
 	                                { type: "button", "class": "close", "data-dismiss": "modal", "aria-hidden": "true" },
 	                                "×"
 	                            ),
-	                            this.element(
+	                            Sophie.element(
 	                                "h4",
 	                                { "class": "modal-title" },
 	                                "设置页面"
 	                            )
 	                        ),
-	                        this.element(
+	                        Sophie.element(
 	                            "div",
 	                            { "class": "modal-body" },
-	                            this.element(
+	                            Sophie.element(
 	                                "form",
 	                                { "class": "form-horizontal", role: "form" },
-	                                this.element(
+	                                Sophie.element(
 	                                    "div",
 	                                    { "class": "form-group" },
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "label",
 	                                        { "for": "set-page-title", "class": "col-sm-2 control-label" },
 	                                        "标题"
 	                                    ),
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "div",
 	                                        { "class": "col-sm-10" },
-	                                        this.element("input", { type: "text", "class": "form-control", id: "change-page-title", placeholder: "页面标题" })
+	                                        Sophie.element("input", { type: "text", "class": "form-control", id: "change-page-title", placeholder: "页面标题" })
 	                                    )
 	                                )
 	                            )
 	                        ),
-	                        this.element(
+	                        Sophie.element(
 	                            "div",
 	                            { "class": "modal-footer" },
-	                            this.element(
+	                            Sophie.element(
 	                                "button",
 	                                { type: "button", "class": "cmd-change-page btn btn-primary" },
 	                                "确定"
@@ -26328,7 +26498,7 @@ webpackJsonp([3,17],[
 	module.exports = PageManagerModal;
 
 /***/ },
-/* 256 */
+/* 260 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -26382,10 +26552,10 @@ webpackJsonp([3,17],[
 	    },
 
 	    render: function render() {
-	        return this.element(
+	        return Sophie.element(
 	            "colorpicker",
 	            null,
-	            this.element("input", { id: "picker" })
+	            Sophie.element("input", { id: "picker" })
 	        );
 	    }
 
@@ -26448,7 +26618,7 @@ webpackJsonp([3,17],[
 	module.exports = ColorPicker;
 
 /***/ },
-/* 257 */
+/* 261 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -26457,152 +26627,134 @@ webpackJsonp([3,17],[
 
 	    render: function render() {
 
-	        return this.element(
+	        return Sophie.element(
 	            "widget-panel",
 	            null,
-	            this.element(
+	            Sophie.element(
 	                "ul",
 	                { "class": "nav nav-tabs", role: "tablist" },
-	                this.element(
+	                Sophie.element(
 	                    "li",
 	                    { role: "presentation", "class": "active" },
-	                    this.element(
+	                    Sophie.element(
 	                        "a",
 	                        { href: "#widget-panel-section", "aria-controls": "home", role: "tab", "data-toggle": "tab" },
 	                        "模块"
 	                    )
 	                ),
-	                this.element(
+	                Sophie.element(
 	                    "li",
 	                    { role: "presentation" },
-	                    this.element(
+	                    Sophie.element(
 	                        "a",
 	                        { href: "#widget-panel-base", "aria-controls": "profile", role: "tab", "data-toggle": "tab" },
 	                        "元素"
 	                    )
 	                )
 	            ),
-	            this.element(
+	            Sophie.element(
 	                "div",
 	                { "class": "tab-content" },
-	                this.element(
+	                Sophie.element(
 	                    "div",
 	                    { role: "tabpanel", "class": "tab-pane active", id: "widget-panel-section" },
-	                    this.element(
+	                    Sophie.element(
 	                        "div",
 	                        { "class": "panel-group" },
-	                        this.element(
+	                        Sophie.element(
 	                            "div",
 	                            { "class": "panel panel-default" },
-	                            this.element(
+	                            Sophie.element(
 	                                "div",
 	                                { "class": "panel-heading" },
-	                                this.element(
+	                                Sophie.element(
 	                                    "h4",
 	                                    { "class": "panel-title" },
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "a",
 	                                        { "data-toggle": "collapse", "data-parent": "#accordion1", href: "#collapseOne-232" },
 	                                        "页头"
 	                                    )
 	                                )
 	                            ),
-	                            this.element(
+	                            Sophie.element(
 	                                "div",
 	                                { id: "collapseOne-232", "class": "panel-collapse collapse" },
-	                                this.element(
+	                                Sophie.element(
 	                                    "div",
 	                                    { "class": "panel-body" },
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "div",
 	                                        { "class": "" },
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { title: "导航", href: "#", "data-tagname": "p-logo", "data-cmd": "draw", "data-url": "/editor/compontents/p-nav-page.html", "class": "" },
-	                                            this.element(
+	                                            Sophie.element(
 	                                                "span",
 	                                                null,
 	                                                "logo"
 	                                            )
 	                                        ),
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { title: "导航", href: "#", "data-tagname": "p-nav-page", "data-cmd": "draw", "data-url": "/editor/compontents/p-nav-page.html", "class": "" },
-	                                            this.element(
+	                                            Sophie.element(
 	                                                "span",
 	                                                null,
 	                                                "导航"
-	                                            )
-	                                        ),
-	                                        this.element(
-	                                            "a",
-	                                            { title: "导航", href: "#", "data-tagname": "p-nav-page-absolute", "data-cmd": "draw", "data-url": "/editor/compontents/p-nav-page.html", "class": "" },
-	                                            this.element(
-	                                                "span",
-	                                                null,
-	                                                "一体导航"
-	                                            )
-	                                        ),
-	                                        this.element(
-	                                            "a",
-	                                            { style: "display:none", title: "响应滚动导航", href: "#", "data-tagname": "p-nav-page-scroll", "data-cmd": "draw", "data-url": "/site/compontents/p-nav-page-scroll.html", "class": "" },
-	                                            this.element(
-	                                                "span",
-	                                                null,
-	                                                "响应滚动导航"
 	                                            )
 	                                        )
 	                                    )
 	                                )
 	                            )
 	                        ),
-	                        this.element(
+	                        Sophie.element(
 	                            "div",
 	                            { "class": "panel panel-default" },
-	                            this.element(
+	                            Sophie.element(
 	                                "div",
 	                                { "class": "panel-heading" },
-	                                this.element(
+	                                Sophie.element(
 	                                    "h4",
 	                                    { "class": "panel-title" },
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "a",
 	                                        { "data-toggle": "collapse", "data-parent": "#accordion1", href: "#collapseOne-27" },
 	                                        "相册"
 	                                    )
 	                                )
 	                            ),
-	                            this.element(
+	                            Sophie.element(
 	                                "div",
 	                                { id: "collapseOne-27", "class": "panel-collapse collapse" },
-	                                this.element(
+	                                Sophie.element(
 	                                    "div",
 	                                    { "class": "panel-body" },
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "div",
 	                                        { "class": "" },
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
-	                                            { title: "img", href: "#", "data-tagname": "p-list-img", "data-url": "/editor/compontents/p-list-img.html", "data-cmd": "draw", "class": "" },
-	                                            this.element(
+	                                            { title: "img", href: "#", "data-tagname": "listImg", "data-url": "/editor/compontents/p-list-img.html", "data-cmd": "draw", "class": "" },
+	                                            Sophie.element(
 	                                                "span",
 	                                                null,
 	                                                "图片列表"
 	                                            )
 	                                        ),
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { title: "瀑布流", href: "#", "data-tagname": "p-masonry", "data-url": "/editor/compontents/p-masonry.html", "data-cmd": "draw", "class": "" },
-	                                            this.element(
+	                                            Sophie.element(
 	                                                "span",
 	                                                null,
 	                                                "瀑布流"
 	                                            )
 	                                        ),
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { title: "横向列表", href: "#", "data-tagname": "p-scroll-h", "data-url": "/editor/compontents/p-scroll-h.html", "data-cmd": "draw", "class": "" },
-	                                            this.element(
+	                                            Sophie.element(
 	                                                "span",
 	                                                null,
 	                                                "横向列表"
@@ -26612,41 +26764,41 @@ webpackJsonp([3,17],[
 	                                )
 	                            )
 	                        ),
-	                        this.element(
+	                        Sophie.element(
 	                            "div",
 	                            { "class": "panel panel-default" },
-	                            this.element(
+	                            Sophie.element(
 	                                "div",
 	                                { "class": "panel-heading" },
-	                                this.element(
+	                                Sophie.element(
 	                                    "h4",
 	                                    { "class": "panel-title" },
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "a",
 	                                        { "data-toggle": "collapse", "data-parent": "#accordion1", href: "#collapseTwo" },
 	                                        "组件"
 	                                    )
 	                                )
 	                            ),
-	                            this.element(
+	                            Sophie.element(
 	                                "div",
 	                                { id: "collapseTwo", "class": "panel-collapse collapse" },
-	                                this.element(
+	                                Sophie.element(
 	                                    "div",
 	                                    { "class": "panel-body" },
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "a",
 	                                        { title: "导航", href: "#", "data-tagname": "p-nav-h", "data-cmd": "draw", "data-url": "/editor/p-nav-h.html", "class": "" },
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "span",
 	                                            null,
 	                                            "导航"
 	                                        )
 	                                    ),
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "a",
 	                                        { title: "幻灯片", href: "#", "data-tagname": "p-slide", "data-cmd": "draw", "data-url": "/editor/p-slide.html", "class": "" },
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "span",
 	                                            null,
 	                                            "slide"
@@ -26655,19 +26807,19 @@ webpackJsonp([3,17],[
 	                                )
 	                            )
 	                        ),
-	                        this.element(
+	                        Sophie.element(
 	                            "div",
 	                            { "class": "panel panel-default" },
-	                            this.element(
+	                            Sophie.element(
 	                                "div",
 	                                { "class": "panel-heading" },
-	                                this.element(
+	                                Sophie.element(
 	                                    "h4",
 	                                    { "class": "panel-title" },
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "a",
 	                                        { "data-toggle": "collapse", "data-parent": "#accordion1", href: "#collapseThree" },
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "span",
 	                                            null,
 	                                            "文章"
@@ -26675,18 +26827,18 @@ webpackJsonp([3,17],[
 	                                    )
 	                                )
 	                            ),
-	                            this.element(
+	                            Sophie.element(
 	                                "div",
 	                                { id: "collapseThree", "class": "panel-collapse collapse" },
-	                                this.element(
+	                                Sophie.element(
 	                                    "div",
 	                                    { "class": "panel-body" },
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "a",
 	                                        { title: "文字", "data-cmd": "draw", "data-tagname": "p-post-list",
 	                                            "data-url": "/editor/compontents/post-list.html", href: "#cmd_draw_text",
 	                                            "class": "fa fa-font" },
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "span",
 	                                            null,
 	                                            "文章"
@@ -26695,29 +26847,29 @@ webpackJsonp([3,17],[
 	                                )
 	                            )
 	                        ),
-	                        this.element(
+	                        Sophie.element(
 	                            "div",
 	                            { style: "display: none", "class": "panel panel-default" },
-	                            this.element(
+	                            Sophie.element(
 	                                "div",
 	                                { "class": "panel-heading" },
-	                                this.element(
+	                                Sophie.element(
 	                                    "h4",
 	                                    { "class": "panel-title" },
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "a",
 	                                        { "data-toggle": "collapse", "data-parent": "#accordion1", href: "#collapseOne-21" },
 	                                        "图标"
 	                                    )
 	                                )
 	                            ),
-	                            this.element(
+	                            Sophie.element(
 	                                "div",
 	                                { id: "collapseOne-21", "class": "panel-collapse collapse" },
-	                                this.element(
+	                                Sophie.element(
 	                                    "div",
 	                                    { "class": "panel-body" },
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "div",
 	                                        { "class": "" },
 	                                        "尽情期待"
@@ -26727,25 +26879,25 @@ webpackJsonp([3,17],[
 	                        )
 	                    )
 	                ),
-	                this.element(
+	                Sophie.element(
 	                    "div",
 	                    { role: "tabpanel", "class": "tab-pane", id: "widget-panel-base" },
-	                    this.element(
+	                    Sophie.element(
 	                        "div",
 	                        { "class": "panel-group", id: "accordion1" },
-	                        this.element(
+	                        Sophie.element(
 	                            "div",
 	                            { "class": "panel panel-default" },
-	                            this.element(
+	                            Sophie.element(
 	                                "div",
 	                                { "class": "panel-heading" },
-	                                this.element(
+	                                Sophie.element(
 	                                    "h4",
 	                                    { "class": "panel-title" },
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "a",
 	                                        { "data-toggle": "collapse", "data-parent": "#accordion1", href: "#collapseOne-1" },
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "span",
 	                                            null,
 	                                            "图片"
@@ -26753,32 +26905,32 @@ webpackJsonp([3,17],[
 	                                    )
 	                                )
 	                            ),
-	                            this.element(
+	                            Sophie.element(
 	                                "div",
 	                                { id: "collapseOne-1", "class": "panel-collapse collapse in" },
-	                                this.element(
+	                                Sophie.element(
 	                                    "div",
 	                                    { "class": "panel-body" },
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "div",
 	                                        { "class": "" },
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { title: "图片", "data-cmd": "draw", "data-tagname": "p-pic", "data-url": "/editor/p-pic.html", "data-html": "", href: "#"
 	                                            },
-	                                            this.element("span", { "class": "fa fa-picture-o" }),
-	                                            this.element(
+	                                            Sophie.element("span", { "class": "fa fa-picture-o" }),
+	                                            Sophie.element(
 	                                                "span",
 	                                                null,
 	                                                "照片"
 	                                            )
 	                                        ),
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { title: "图片", "data-cmd": "draw", "data-tagname": "p-pic-circle", "data-url": "/editor/p-pic.html", "data-html": "", href: "#"
 	                                            },
-	                                            this.element("span", { "class": "fa fa-picture-o" }),
-	                                            this.element(
+	                                            Sophie.element("span", { "class": "fa fa-picture-o" }),
+	                                            Sophie.element(
 	                                                "span",
 	                                                null,
 	                                                "头像"
@@ -26788,70 +26940,70 @@ webpackJsonp([3,17],[
 	                                )
 	                            )
 	                        ),
-	                        this.element(
+	                        Sophie.element(
 	                            "div",
 	                            { "class": "panel panel-default" },
-	                            this.element(
+	                            Sophie.element(
 	                                "div",
 	                                { "class": "panel-heading" },
-	                                this.element(
+	                                Sophie.element(
 	                                    "h4",
 	                                    { "class": "panel-title" },
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "a",
 	                                        { "data-toggle": "collapse", "data-parent": "#accordion1", href: "#collapseOne-2" },
 	                                        "文字"
 	                                    )
 	                                )
 	                            ),
-	                            this.element(
+	                            Sophie.element(
 	                                "div",
 	                                { id: "collapseOne-2", "class": "panel-collapse collapse" },
-	                                this.element(
+	                                Sophie.element(
 	                                    "div",
 	                                    { "class": "panel-body" },
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "div",
 	                                        { "class": "" },
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { title: "标题", "data-cmd": "draw", "data-tagname": "p-h", "data-url": "/editor/p-text.html", href: "#cmd_draw_text"
 	                                            },
-	                                            this.element("span", { "class": "fa fa-font" }),
-	                                            this.element(
+	                                            Sophie.element("span", { "class": "fa fa-font" }),
+	                                            Sophie.element(
 	                                                "span",
 	                                                null,
-	                                                "标题"
+	                                                "文字"
 	                                            )
 	                                        ),
-	                                        this.element(
-	                                            "a",
-	                                            { title: "连接", "data-cmd": "draw", "data-tagname": "p-a", "data-url": "/editor/p-a.html", href: "#cmd_draw_text"
-	                                            },
-	                                            this.element("span", { "class": "fa fa-font" }),
-	                                            this.element(
-	                                                "span",
-	                                                null,
-	                                                "连接"
-	                                            )
-	                                        ),
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { title: "文字", "data-cmd": "draw", "data-tagname": "p-text", "data-url": "/editor/p-text.html", href: "#cmd_draw_text"
 	                                            },
-	                                            this.element("span", { "class": "fa fa-font" }),
-	                                            this.element(
+	                                            Sophie.element("span", { "class": "fa fa-font" }),
+	                                            Sophie.element(
 	                                                "span",
 	                                                null,
 	                                                "段落"
 	                                            )
 	                                        ),
-	                                        this.element(
+	                                        Sophie.element(
+	                                            "a",
+	                                            { title: "连接", "data-cmd": "draw", "data-tagname": "p-a", "data-url": "/editor/p-a.html", href: "#cmd_draw_text"
+	                                            },
+	                                            Sophie.element("span", { "class": "fa fa-font" }),
+	                                            Sophie.element(
+	                                                "span",
+	                                                null,
+	                                                "连接"
+	                                            )
+	                                        ),
+	                                        Sophie.element(
 	                                            "a",
 	                                            { style: "display: none", title: "文字-icon", "data-cmd": "draw", "data-tagname": "p-text-icon", "data-url": "/editor/compontents/p-text-icon.html", href: "#cmd_draw_text"
 	                                            },
-	                                            this.element("span", { "class": "fa fa-font" }),
-	                                            this.element(
+	                                            Sophie.element("span", { "class": "fa fa-font" }),
+	                                            Sophie.element(
 	                                                "span",
 	                                                null,
 	                                                "图标"
@@ -26861,124 +27013,124 @@ webpackJsonp([3,17],[
 	                                )
 	                            )
 	                        ),
-	                        this.element(
+	                        Sophie.element(
 	                            "div",
 	                            { "class": "panel panel-default" },
-	                            this.element(
+	                            Sophie.element(
 	                                "div",
 	                                { "class": "panel-heading" },
-	                                this.element(
+	                                Sophie.element(
 	                                    "h4",
 	                                    { "class": "panel-title" },
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "a",
 	                                        { "data-toggle": "collapse", "data-parent": "#accordion1", href: "#collapseOne-3" },
 	                                        "布局"
 	                                    )
 	                                )
 	                            ),
-	                            this.element(
+	                            Sophie.element(
 	                                "div",
 	                                { id: "collapseOne-3", "class": "panel-collapse collapse" },
-	                                this.element(
+	                                Sophie.element(
 	                                    "div",
 	                                    { "class": "panel-body" },
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "div",
 	                                        { "class": "" },
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { title: "布局", href: "#", "data-tagname": "p-layout", "data-url": "/editor/p-layout.html", "data-cmd": "draw"
 	                                            },
-	                                            this.element("span", { "class": "fa fa-dropbox" }),
-	                                            this.element(
+	                                            Sophie.element("span", { "class": "fa fa-dropbox" }),
+	                                            Sophie.element(
 	                                                "span",
 	                                                null,
 	                                                "布局"
 	                                            )
 	                                        ),
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { title: "布局", style: "display:none", href: "#", "data-tagname": "p-layout-two", "data-url": "/editor/p-layout.html", "data-cmd": "draw"
 	                                            },
-	                                            this.element("span", { "class": "fa fa-dropbox" }),
-	                                            this.element(
+	                                            Sophie.element("span", { "class": "fa fa-dropbox" }),
+	                                            Sophie.element(
 	                                                "span",
 	                                                null,
 	                                                "两列"
 	                                            )
 	                                        ),
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { title: "布局", style: "display:none", href: "#", "data-tagname": "p-layout-three", "data-url": "/editor/p-layout.html", "data-cmd": "draw"
 	                                            },
-	                                            this.element("span", { "class": "fa fa-dropbox" }),
-	                                            this.element(
+	                                            Sophie.element("span", { "class": "fa fa-dropbox" }),
+	                                            Sophie.element(
 	                                                "span",
 	                                                null,
 	                                                "三列"
 	                                            )
 	                                        ),
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { title: "布局", href: "#", "data-tagname": "p-layout-two-noresponse", "data-url": "/editor/p-layout.html", "data-cmd": "draw"
 	                                            },
-	                                            this.element("span", { "class": "fa fa-dropbox" }),
-	                                            this.element(
+	                                            Sophie.element("span", { "class": "fa fa-dropbox" }),
+	                                            Sophie.element(
 	                                                "span",
 	                                                null,
 	                                                "两列"
 	                                            )
 	                                        ),
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { title: "布局", href: "#", "data-tagname": "p-layout-two-response", "data-url": "/editor/p-layout.html", "data-cmd": "draw"
 	                                            },
-	                                            this.element("span", { "class": "fa fa-dropbox" }),
-	                                            this.element(
+	                                            Sophie.element("span", { "class": "fa fa-dropbox" }),
+	                                            Sophie.element(
 	                                                "span",
 	                                                null,
 	                                                "响应两列"
 	                                            )
 	                                        ),
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { title: "布局", href: "#", "data-tagname": "p-layout-three-noresponse", "data-url": "/editor/p-layout.html", "data-cmd": "draw"
 	                                            },
-	                                            this.element("span", { "class": "fa fa-dropbox" }),
-	                                            this.element(
+	                                            Sophie.element("span", { "class": "fa fa-dropbox" }),
+	                                            Sophie.element(
 	                                                "span",
 	                                                null,
 	                                                "三列"
 	                                            )
 	                                        ),
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { title: "布局", href: "#", "data-tagname": "p-layout-three-response", "data-url": "/editor/p-layout.html", "data-cmd": "draw"
 	                                            },
-	                                            this.element("span", { "class": "fa fa-dropbox" }),
-	                                            this.element(
+	                                            Sophie.element("span", { "class": "fa fa-dropbox" }),
+	                                            Sophie.element(
 	                                                "span",
 	                                                null,
 	                                                "响应三列"
 	                                            )
 	                                        ),
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
-	                                            { title: "列表", href: "#", "data-tagname": "p-list", "data-url": "/editor/compontents/p-list.html", "data-cmd": "draw"
+	                                            { style: "display:none", title: "列表", href: "#", "data-tagname": "p-list", "data-url": "/editor/compontents/p-list.html", "data-cmd": "draw"
 	                                            },
-	                                            this.element("span", { "class": "glyphicon glyphicon-th-list" }),
-	                                            this.element(
+	                                            Sophie.element("span", { "class": "glyphicon glyphicon-th-list" }),
+	                                            Sophie.element(
 	                                                "span",
 	                                                null,
-	                                                "列表"
+	                                                "表格"
 	                                            )
 	                                        ),
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { style: "display:none", title: "tab", href: "#", "data-tagname": "p-tabs", "data-cmd": "draw", "data-url": "/editor/compontents/p-tabs.html" },
-	                                            this.element("span", { "class": "fa fa-columns" }),
-	                                            this.element(
+	                                            Sophie.element("span", { "class": "fa fa-columns" }),
+	                                            Sophie.element(
 	                                                "span",
 	                                                null,
 	                                                "tabs"
@@ -27063,7 +27215,7 @@ webpackJsonp([3,17],[
 	module.exports = WidgetPanel;
 
 /***/ },
-/* 258 */
+/* 262 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -27104,156 +27256,156 @@ webpackJsonp([3,17],[
 	    },
 
 	    render: function render() {
-	        return this.element(
+	        return Sophie.element(
 	            "quick-bar",
 	            { "class": "quickbar" },
-	            this.element(
+	            Sophie.element(
 	                "div",
 	                { "class": "logo" },
-	                this.element("a", { target: "_blank", href: "/", "class": "fa fa-bank" })
+	                Sophie.element("a", { target: "_blank", href: "/", "class": "fa fa-bank" })
 	            ),
-	            this.element(
+	            Sophie.element(
 	                "ul",
 	                { "class": "nav nav-tabs", id: "tabs" },
-	                this.element(
+	                Sophie.element(
 	                    "li",
 	                    { "class": "active" },
-	                    this.element(
+	                    Sophie.element(
 	                        "a",
 	                        { href: "#pages", title: "页面", "class": "", "data-toggle": "tab" },
-	                        this.element("i", { "class": "fa fa-file-code-o" })
+	                        Sophie.element("i", { "class": "fa fa-file-code-o" })
 	                    )
 	                ),
-	                this.element(
+	                Sophie.element(
 	                    "li",
 	                    null,
-	                    this.element(
+	                    Sophie.element(
 	                        "a",
 	                        { href: "#widget", title: "添加", "class": "active", "data-toggle": "tab" },
-	                        this.element("i", { "class": "fa fa-plus" })
+	                        Sophie.element("i", { "class": "fa fa-plus" })
 	                    )
 	                ),
-	                this.element(
+	                Sophie.element(
 	                    "li",
 	                    null,
-	                    this.element(
+	                    Sophie.element(
 	                        "a",
 	                        { href: "#profile", title: "样式", "class": "style-set", "data-toggle": "tab" },
-	                        this.element("i", { "class": "fa fa-paint-brush" })
+	                        Sophie.element("i", { "class": "fa fa-paint-brush" })
 	                    )
 	                ),
-	                this.element(
+	                Sophie.element(
 	                    "li",
 	                    null,
-	                    this.element(
+	                    Sophie.element(
 	                        "a",
 	                        { href: "#settings", style: "display: none", "data-toggle": "tab" },
 	                        "设置"
 	                    )
 	                ),
-	                this.element(
+	                Sophie.element(
 	                    "li",
 	                    null,
-	                    this.element(
+	                    Sophie.element(
 	                        "a",
 	                        { href: "#colorpicker", style: "display: none", "class": "colorpicker", "data-toggle": "tab" },
 	                        "color"
 	                    )
 	                )
 	            ),
-	            this.element("ul", { "class": "viewport-set" }),
-	            this.element(
+	            Sophie.element("ul", { "class": "viewport-set" }),
+	            Sophie.element(
 	                "ul",
 	                { "class": "action-pane" },
-	                this.element(
+	                Sophie.element(
 	                    "li",
 	                    null,
 	                    " ",
-	                    this.element(
+	                    Sophie.element(
 	                        "a",
 	                        { "data-target": ".viewport-pac-show", title: "桌面", "class": "viewport-all" },
-	                        this.element("span", { "class": "iconfont icon-pc" })
+	                        Sophie.element("span", { "class": "iconfont icon-pc" })
 	                    )
 	                ),
-	                this.element(
+	                Sophie.element(
 	                    "li",
 	                    { style: "margin-bottom: 30px" },
-	                    this.element(
+	                    Sophie.element(
 	                        "a",
 	                        { "data-target": ".viewport-mobile-show", title: "手机", "class": "viewport-mobile" },
-	                        this.element("span", { "class": "iconfont icon-mobile" })
+	                        Sophie.element("span", { "class": "iconfont icon-mobile" })
 	                    )
 	                ),
-	                this.element(
+	                Sophie.element(
 	                    "li",
 	                    null,
-	                    this.element(
+	                    Sophie.element(
 	                        "a",
 	                        { "class": "cmd-undo", href: "#" },
-	                        this.element("i", { "class": "fa fa-reply" })
+	                        Sophie.element("i", { "class": "fa fa-reply" })
 	                    )
 	                ),
-	                this.element(
+	                Sophie.element(
 	                    "li",
 	                    null,
-	                    this.element(
+	                    Sophie.element(
 	                        "a",
 	                        { "class": "cmd-redo", href: "#" },
-	                        this.element("i", { "class": "fa  fa-share" })
+	                        Sophie.element("i", { "class": "fa  fa-share" })
 	                    )
 	                ),
-	                this.element(
+	                Sophie.element(
 	                    "li",
 	                    null,
-	                    this.element(
+	                    Sophie.element(
 	                        "a",
 	                        { "class": "cmd-unlock", href: "#" },
-	                        this.element("i", { "class": "fa fa-unlock" })
+	                        Sophie.element("i", { "class": "fa fa-unlock" })
 	                    )
 	                ),
-	                this.element(
+	                Sophie.element(
 	                    "li",
 	                    { style: "display: none" },
-	                    this.element(
+	                    Sophie.element(
 	                        "a",
 	                        { "class": "cmd-level-up", href: "#" },
-	                        this.element("i", { "class": "fa fa-level-up" })
+	                        Sophie.element("i", { "class": "fa fa-level-up" })
 	                    )
 	                ),
-	                this.element(
+	                Sophie.element(
 	                    "li",
 	                    null,
-	                    this.element(
+	                    Sophie.element(
 	                        "a",
 	                        { "class": "cmd-delete", href: "#" },
-	                        this.element("i", { "class": "glyphicon glyphicon-remove" })
+	                        Sophie.element("i", { "class": "glyphicon glyphicon-remove" })
 	                    )
 	                ),
-	                this.element(
+	                Sophie.element(
 	                    "li",
 	                    null,
-	                    this.element(
+	                    Sophie.element(
 	                        "a",
 	                        { "class": "cmd-preview", href: "#" },
-	                        this.element("i", { "class": "fa fa-binoculars" })
+	                        Sophie.element("i", { "class": "fa fa-binoculars" })
 	                    )
 	                ),
-	                this.element(
+	                Sophie.element(
 	                    "li",
 	                    null,
-	                    this.element(
+	                    Sophie.element(
 	                        "a",
 	                        { "class": "cmd-capture", href: "#" },
-	                        this.element("i", { "class": "fa fa-binoculars" })
+	                        Sophie.element("i", { "class": "fa fa-binoculars" })
 	                    )
 	                ),
-	                this.element(
+	                Sophie.element(
 	                    "li",
 	                    null,
-	                    this.element(
+	                    Sophie.element(
 	                        "a",
 	                        { "class": "", href: "#", "data-cmd": "cmd-save" },
-	                        this.element("i", { "class": "fa fa-floppy-o" })
+	                        Sophie.element("i", { "class": "fa fa-floppy-o" })
 	                    )
 	                )
 	            )
@@ -27600,7 +27752,7 @@ webpackJsonp([3,17],[
 	module.exports = QuickBar;
 
 /***/ },
-/* 259 */
+/* 263 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -27615,7 +27767,7 @@ webpackJsonp([3,17],[
 
 	// require("./css/editor-view.css");
 
-	var SelectMask = __webpack_require__(260);
+	var SelectMask = __webpack_require__(264);
 
 	var EditorView = Sophie.createClass("editor-view", {
 	    componentDidMount: function componentDidMount() {
@@ -27634,92 +27786,92 @@ webpackJsonp([3,17],[
 
 	    render: function render() {
 
-	        return this.element(
+	        return Sophie.element(
 	            "editor-view",
 	            { id: "editor-continer" },
-	            this.element(
+	            Sophie.element(
 	                "div",
 	                { id: "editor-bar" },
-	                this.element("a", { href: "#", "class": "editor-bar-close fa fa-caret-up" }),
-	                this.element("a", { href: "#", "class": "editor-bar-open fa fa-caret-down" }),
-	                this.element(
+	                Sophie.element("a", { href: "#", "class": "editor-bar-close fa fa-caret-up" }),
+	                Sophie.element("a", { href: "#", "class": "editor-bar-open fa fa-caret-down" }),
+	                Sophie.element(
 	                    "div",
 	                    { "class": "editor-bar-content" },
-	                    this.element(
+	                    Sophie.element(
 	                        "div",
 	                        { "class": "viewport-align" },
-	                        this.element("a", { "class": "oi  oi-collapse-left", "data-name": "居左定位", title: "居左定位" }),
-	                        this.element("a", { "class": "oi  oi-collapse-right", "data-name": "居右定位", title: "居右定位" }),
-	                        this.element("a", { "class": "oi  oi-collapse-up", "data-name": "居上定位", title: "居上定位" }),
-	                        this.element("a", { "class": "fa fa-arrows-h fa-1", "data-name": "widthAuto%", title: "宽度100%" })
+	                        Sophie.element("a", { "class": "oi  oi-collapse-left", "data-name": "居左定位", title: "居左定位" }),
+	                        Sophie.element("a", { "class": "oi  oi-collapse-right", "data-name": "居右定位", title: "居右定位" }),
+	                        Sophie.element("a", { "class": "oi  oi-collapse-up", "data-name": "居上定位", title: "居上定位" }),
+	                        Sophie.element("a", { "class": "fa fa-arrows-h fa-1", "data-name": "widthAuto%", title: "宽度100%" })
 	                    ),
-	                    this.element(
+	                    Sophie.element(
 	                        "div",
 	                        { "class": "viewport-setter" },
-	                        this.element(
+	                        Sophie.element(
 	                            "a",
 	                            { "data-target": ".viewport-all-show", title: "全屏", "class": "viewport-all" },
-	                            this.element("img", { width: "16px", src: "/images/full.gif" })
+	                            Sophie.element("img", { width: "16px", src: "/images/full.gif" })
 	                        ),
-	                        this.element(
+	                        Sophie.element(
 	                            "a",
 	                            { "data-target": ".viewport-pac-show", title: "桌面", "class": "viewport-pac" },
-	                            this.element("span", {
+	                            Sophie.element("span", {
 	                                "class": "oi oi-monitor" })
 	                        ),
-	                        this.element(
+	                        Sophie.element(
 	                            "a",
 	                            { "data-target": ".viewport-pad-show", title: "平板", "class": "viewport-pad" },
-	                            this.element("span", {
+	                            Sophie.element("span", {
 	                                "class": "oi oi-tablet" })
 	                        ),
-	                        this.element(
+	                        Sophie.element(
 	                            "a",
 	                            { "data-target": ".viewport-mobile-show", title: "手机", "class": "viewport-mobile" },
-	                            this.element("span", {
+	                            Sophie.element("span", {
 	                                "class": "oi oi-phone" })
 	                        )
 	                    )
 	                ),
-	                this.element(
+	                Sophie.element(
 	                    "div",
 	                    { "class": "resize-viewport-set", style: "display: none" },
-	                    this.element(
+	                    Sophie.element(
 	                        "div",
 	                        { "class": "viewport-all-show viewport-set" },
-	                        this.element(
+	                        Sophie.element(
 	                            "div",
 	                            { "class": "viewport-pac-show viewport-set" },
-	                            this.element(
+	                            Sophie.element(
 	                                "div",
 	                                { "class": "viewport-pad-show viewport-set" },
-	                                this.element(
+	                                Sophie.element(
 	                                    "div",
 	                                    { "class": "viewport-mobile-show viewport-set" },
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "div",
 	                                        { "class": "viewport-set-btn" },
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { "data-target": ".viewport-all-show", "class": "viewport-all" },
 	                                            "all"
 	                                        ),
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { "data-target": ".viewport-pac-show", "class": "viewport-pac" },
-	                                            this.element("span", {
+	                                            Sophie.element("span", {
 	                                                "class": "oi oi-monitor" })
 	                                        ),
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { "data-target": ".viewport-pad-show", "class": "viewport-pad" },
-	                                            this.element("span", {
+	                                            Sophie.element("span", {
 	                                                "class": "oi oi-tablet" })
 	                                        ),
-	                                        this.element(
+	                                        Sophie.element(
 	                                            "a",
 	                                            { "data-target": ".viewport-mobile-show", "class": "viewport-mobile" },
-	                                            this.element("span", {
+	                                            Sophie.element("span", {
 	                                                "class": "oi oi-phone" })
 	                                        )
 	                                    )
@@ -27728,26 +27880,26 @@ webpackJsonp([3,17],[
 	                        )
 	                    )
 	                ),
-	                this.element(
+	                Sophie.element(
 	                    "div",
 	                    { "class": "editor-bar-scroll", style: "display: none" },
-	                    this.element(
+	                    Sophie.element(
 	                        "div",
 	                        { "class": "editor-bar-content" },
-	                        this.element(
+	                        Sophie.element(
 	                            "div",
 	                            { id: "max-width" },
-	                            this.element(
+	                            Sophie.element(
 	                                "div",
 	                                { id: "current-width" },
-	                                this.element("div", { id: "min-width" }),
-	                                this.element(
+	                                Sophie.element("div", { id: "min-width" }),
+	                                Sophie.element(
 	                                    "div",
 	                                    { id: "current-width-bar-right" },
 	                                    "width"
 	                                )
 	                            ),
-	                            this.element(
+	                            Sophie.element(
 	                                "div",
 	                                { id: "max-width-bar-right" },
 	                                "max"
@@ -27756,33 +27908,30 @@ webpackJsonp([3,17],[
 	                    )
 	                )
 	            ),
-	            this.element(
+	            Sophie.element(
 	                "div",
 	                { id: "editor-scroll" },
-	                this.element(
+	                Sophie.element(
 	                    "div",
-	                    { id: "editor-margin" },
-	                    this.element(
+	                    { id: "editor" },
+	                    Sophie.element(
+	                        "div",
+	                        { id: "tools" },
+	                        Sophie.element("input", { id: "img-upload", type: "file", name: "files[]", "data-url": "/upload", multiple: true })
+	                    ),
+	                    Sophie.element(SelectMask, { ref: "selectMask" }),
+	                    Sophie.element("div", { id: "position-helper" })
+	                ),
+	                Sophie.element(
+	                    "div",
+	                    { id: "editor-margin", style: "display:none" },
+	                    Sophie.element(
 	                        "div",
 	                        { id: "editor-margin-header" },
-	                        this.element("div", { "class": "right-bg" })
+	                        Sophie.element("div", { "class": "right-bg" })
 	                    ),
-	                    this.element(
-	                        "div",
-	                        { id: "editor-margin-center" },
-	                        this.element(
-	                            "div",
-	                            { id: "editor" },
-	                            this.element(
-	                                "div",
-	                                { id: "tools" },
-	                                this.element("input", { id: "img-upload", type: "file", name: "files[]", "data-url": "/upload", multiple: true })
-	                            ),
-	                            this.element(SelectMask, { ref: "selectMask" }),
-	                            this.element("div", { id: "position-helper" })
-	                        )
-	                    ),
-	                    this.element("div", { id: "editor-margin-footer" })
+	                    Sophie.element("div", { id: "editor-margin-center" }),
+	                    Sophie.element("div", { id: "editor-margin-footer" })
 	                )
 	            )
 	        );
@@ -27937,16 +28086,16 @@ webpackJsonp([3,17],[
 	        //设置viewport
 	        var self = this;
 	        play.media = play.mediaQuery.all;
-	        play.mediaName = "all";
+	        play.mediaName = "pc";
 
 	        $(".quickbar").delegate(".viewport-pac", "click", function (ev) {
 	            ev.stopPropagation();
 	            ev.preventDefault();
 
 	            self.setViewportWdith(1024);
-	            $("#editor-margin").addClass("preview-pc");
-	            $("#editor-margin").removeClass("preview-phone");
-	            $("#editor-margin").removeClass("preview-pad");
+	            $("#editor").addClass("preview-pc");
+	            $("#editor").removeClass("preview-phone");
+	            $("#editor").removeClass("preview-pad");
 	            play.media = play.mediaQuery.pc;
 	            play.mediaName = "pc";
 	            self.viewportCenter();
@@ -27958,9 +28107,9 @@ webpackJsonp([3,17],[
 	            ev.preventDefault();
 
 	            self.setViewportWdith(768);
-	            $("#editor-margin").removeClass("preview-phone");
-	            $("#editor-margin").removeClass("preview-pc");
-	            $("#editor-margin").addClass("preview-pad");
+	            $("#editor").removeClass("preview-phone");
+	            $("#editor").removeClass("preview-pc");
+	            $("#editor").addClass("preview-pad");
 	            play.media = play.mediaQuery.pad;
 	            play.mediaName = "pad";
 	            self.viewportCenter();
@@ -27975,10 +28124,10 @@ webpackJsonp([3,17],[
 
 	            self.setViewportWdith(480);
 
-	            $("#editor-margin").removeClass("preview-pad");
-	            $("#editor-margin").removeClass("preview-pc");
+	            $("#editor").removeClass("preview-pad");
+	            $("#editor").removeClass("preview-pc");
 
-	            $("#editor-margin").addClass("preview-phone");
+	            $("#editor").addClass("preview-phone");
 	            play.media = play.mediaQuery.phone;
 	            play.mediaName = "phone";
 	            self.viewportCenter();
@@ -27991,11 +28140,11 @@ webpackJsonp([3,17],[
 	            ev.preventDefault();
 
 	            self.setViewportWdith("100%");
-	            $("#editor-margin").removeClass("preview-phone");
-	            $("#editor-margin").removeClass("preview-pad");
-	            $("#editor-margin").removeClass("preview-pc");
+	            $("#editor").removeClass("preview-phone");
+	            $("#editor").removeClass("preview-pad");
+	            $("#editor").removeClass("preview-pc");
 	            play.media = play.mediaQuery.all;
-	            play.mediaName = "all";
+	            play.mediaName = "pc";
 	            self.viewportCenter();
 
 	            $(document).trigger("pageResize", [play.iframeDoc]);
@@ -28124,6 +28273,7 @@ webpackJsonp([3,17],[
 	                }
 	            });
 	            setTimeout(function () {
+
 	                self.initHeightSet();
 	            }, 1000);
 	        });
@@ -28133,10 +28283,7 @@ webpackJsonp([3,17],[
 	    },
 
 	    synIframeHeight: function synIframeHeight() {
-	        var h = $("body", play.iframeDoc).height();
-	        if (h < 800) h = 800;
-	        $(play.iframe).height(h);
-	        $("#editor").height(h);
+	        play.synIframeHeight();
 	    },
 
 	    initHeightSet: function initHeightSet() {
@@ -28144,21 +28291,14 @@ webpackJsonp([3,17],[
 	        var utils = play.utils,
 	            position = play.position;
 
-	        var synIframeHeight = function synIframeHeight() {
-	            var h = $("body", play.iframeDoc).height();
-	            if (h < 800) h = 800;
-	            $(play.iframe).height(h);
-
-	            $("#editor").height(h);
-	        };
-
-	        synIframeHeight();
+	        play.synIframeHeight();
 
 	        //initRulers();
 	        var runner = play.createStepRun();
-	        $(document).on("addNewEl moveEl cssChange resizeEl removeEl  textInput propChange domChange", function () {
+	        $(document).on("addNewEl moveEl cssChange resizeEl removeEl  textInput propChange domChange render", function () {
+	            console.log("synIframeHeight");
 	            runner.run(function () {
-	                synIframeHeight();
+	                play.synIframeHeight();
 	            }, 10);
 	        });
 	    },
@@ -28222,6 +28362,9 @@ webpackJsonp([3,17],[
 	        height: '100%',
 	        overflow: 'hidden',
 	        position: 'relative'
+	    },
+	    '#editor-margin-center': {
+	        height: '100%'
 	    },
 
 	    '#editor-margin.preview-pc #editor-margin-center': {
@@ -28288,7 +28431,7 @@ webpackJsonp([3,17],[
 	    }, _defineProperty(_editorScroll, "overflow", 'auto'), _defineProperty(_editorScroll, "transition", 'padding 0.5s ease'), _editorScroll),
 
 	    '#editor-margin': {
-
+	        height: '100%',
 	        boxSizing: 'content-box'
 
 	    },
@@ -28301,11 +28444,14 @@ webpackJsonp([3,17],[
 	        background: '#fff',
 	        height: '1000px',
 	        margin: 'auto'
+	        // outline: "solid 1px gray",
+	        // marginTop: "1px"
 
 	    },
 
-	    '#editor-margin.preview-phone #editor': {
-	        boxShadow: '0px 2px 6px 2px #888888'
+	    '#editor.preview-phone': {
+	        boxShadow: '0px 2px 6px 2px #888888',
+	        marginTop: "6px"
 	    },
 
 	    '#editor-bar': {
@@ -28760,7 +28906,7 @@ webpackJsonp([3,17],[
 	module.exports = EditorView;
 
 /***/ },
-/* 260 */
+/* 264 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -28776,83 +28922,84 @@ webpackJsonp([3,17],[
 	        this._create();
 	    },
 	    render: function render() {
-	        return this.element(
+	        return Sophie.element(
 	            "select-mask",
 	            { "class": "wrap" },
-	            this.element("div", { "class": "s-top side" }),
-	            this.element("div", { "class": "s-left side" }),
-	            this.element("div", { "class": "s-right side" }),
-	            this.element("div", { "class": "s-bottom side" }),
-	            this.element("div", { "class": "h-top handle" }),
-	            this.element("div", { "class": "h-bottom handle" }),
-	            this.element("div", { "class": "h-left handle" }),
-	            this.element("div", { "class": "h-right handle" }),
-	            this.element("a", { href: "#", "class": "move-handle fa fa-arrows" }),
-	            this.element(
+	            Sophie.element("div", { "class": "s-top side" }),
+	            Sophie.element("div", { "class": "s-left side" }),
+	            Sophie.element("div", { "class": "s-right side" }),
+	            Sophie.element("div", { "class": "s-bottom side" }),
+	            Sophie.element("div", { "class": "h-top handle" }),
+	            Sophie.element("div", { "class": "h-bottom handle" }),
+	            Sophie.element("div", { "class": "h-left handle" }),
+	            Sophie.element("div", { "class": "h-right handle" }),
+	            Sophie.element("a", { href: "#", "class": "move-handle fa fa-arrows" }),
+	            Sophie.element("a", { href: "#", "class": "move-down-handle glyphicon glyphicon-arrow-down" }),
+	            Sophie.element(
 	                "div",
 	                { "class": "shortcutbar" },
-	                this.element(
+	                Sophie.element(
 	                    "div",
 	                    { "class": "show-name" },
-	                    this.element(
+	                    Sophie.element(
 	                        "a",
 	                        { href: "#", "class": "parent-tagname" },
-	                        this.element("span", null)
+	                        Sophie.element("span", null)
 	                    ),
-	                    this.element("span", { "class": "fa fa-angle-right" }),
-	                    this.element(
+	                    Sophie.element("span", { "class": "fa fa-angle-right" }),
+	                    Sophie.element(
 	                        "a",
 	                        { href: "#", "class": "current-tagname" },
-	                        this.element("span", null)
+	                        Sophie.element("span", null)
 	                    )
 	                ),
-	                this.element("div", { "class": "tools-bar", id: "mask-tools-bar" })
+	                Sophie.element("div", { "class": "tools-bar", id: "mask-tools-bar" })
 	            ),
-	            this.element(
+	            Sophie.element(
 	                "a",
 	                { href: "#", "class": "more" },
-	                this.element("i", { "class": "fa fa-plus-square-o" })
+	                Sophie.element("i", { "class": "fa fa-plus-square-o" })
 	            ),
-	            this.element(
+	            Sophie.element(
 	                "div",
 	                { "class": "show-width" },
-	                this.element(
+	                Sophie.element(
 	                    "div",
 	                    { "class": "show-width-inner" },
-	                    this.element(
+	                    Sophie.element(
 	                        "div",
 	                        { "class": "input-group" },
-	                        this.element("input", _defineProperty({ type: "text", "class": "form-control" }, "class", "value")),
-	                        this.element(
+	                        Sophie.element("input", _defineProperty({ type: "text", "class": "form-control" }, "class", "value")),
+	                        Sophie.element(
 	                            "div",
 	                            { "class": "input-group-btn" },
-	                            this.element(
+	                            Sophie.element(
 	                                "button",
 	                                { type: "button", "class": "btn btn-default dropdown-toggle", "data-toggle": "dropdown",
 	                                    "aria-expanded": "false" },
-	                                this.element(
+	                                Sophie.element(
 	                                    "a",
 	                                    { href: "#" },
 	                                    "弹性"
 	                                ),
-	                                this.element("span", { "class": "caret" })
+	                                Sophie.element("span", { "class": "caret" })
 	                            ),
-	                            this.element(
+	                            Sophie.element(
 	                                "ul",
 	                                { "class": "dropdown-menu dropdown-menu-right", role: "menu" },
-	                                this.element(
+	                                Sophie.element(
 	                                    "li",
 	                                    null,
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "a",
 	                                        { "class": "flex", href: "#" },
 	                                        "弹性"
 	                                    )
 	                                ),
-	                                this.element(
+	                                Sophie.element(
 	                                    "li",
 	                                    null,
-	                                    this.element(
+	                                    Sophie.element(
 	                                        "a",
 	                                        { "class": "solid", href: "#" },
 	                                        "固定"
@@ -28863,24 +29010,24 @@ webpackJsonp([3,17],[
 	                    )
 	                )
 	            ),
-	            this.element(
+	            Sophie.element(
 	                "div",
 	                { "class": "show-height" },
-	                this.element(
+	                Sophie.element(
 	                    "div",
 	                    { "class": "show-height-inner" },
-	                    this.element("input", _defineProperty({ type: "text", "class": "form-control" }, "class", "value"))
+	                    Sophie.element("input", _defineProperty({ type: "text", "class": "form-control" }, "class", "value"))
 	                )
 	            ),
-	            this.element(
+	            Sophie.element(
 	                "div",
 	                { "class": "grid-line grid-line-one" },
-	                this.element("div", { "class": "grid-handle fa fa-arrows-h fa-1" })
+	                Sophie.element("div", { "class": "grid-handle fa fa-arrows-h fa-1" })
 	            ),
-	            this.element(
+	            Sophie.element(
 	                "div",
 	                { "class": "grid-line grid-line-two" },
-	                this.element("div", { "class": "grid-handle fa fa-arrows-h fa-1" })
+	                Sophie.element("div", { "class": "grid-handle fa fa-arrows-h fa-1" })
 	            )
 	        );
 	    },
@@ -29032,6 +29179,12 @@ webpackJsonp([3,17],[
 	                $(this.node.node).removeClass("movable");
 	            }
 
+	            if (play.islock(target) || !removeable || !play.utils.isStatic(target) || target.parent().is("p-grid") && play.mediaName != "phone") {
+	                $(".move-down-handle", this.node).hide();
+	            } else {
+	                $(".move-down-handle", this.node).show();
+	            }
+
 	            this.selectCood(cood, play.islock(target) ? false : resizeable, play.islock(target) ? false : removeable);
 	        }
 
@@ -29040,6 +29193,7 @@ webpackJsonp([3,17],[
 	        var parentEl = play.selectWithGroup.getSelectableParent();
 
 	        if (parentEl) {
+
 	            $(".parent-tagname", this.shortcutbar).html(parentEl.prop("showName") || parentEl.prop("tagName"));
 	        }
 
@@ -29057,12 +29211,11 @@ webpackJsonp([3,17],[
 
 	        var el = el || play.select.selectedEL;
 
-	        if (!el.is(".p-layout-grid-line") && !el.is("p-layout-two") && !el.is("p-layout-three") && !el.is("p-layout-two-response") && !el.is("p-layout-two-noresponse") && !el.is("p-layout-three-response") && !el.is("p-layout-three-noresponse")) {
+	        if (!el.is(".p-layout-grid-line") && !el.is("p-layout-two") && !el.is("p-layout-three") && !el.is("p-layout-two-response") && !el.is("p-layout-two-noresponse") && !el.is("p-layout-three-response") && !el.is("p-layout-three-noresponse") || el.hasClass("mobile")) {
 	            $(".grid-line", this.nativeNode).hide();
 	            return;
 	        }
 
-	        console.log("showGrid");
 	        var pCoord = play.position.offset(el);
 	        var children = el.children();
 	        var l = children.length;
@@ -29447,7 +29600,7 @@ webpackJsonp([3,17],[
 	        cursor: 'move',
 	        zIndex: '1001',
 	        background: '#fff',
-	        pointerEvents: 'none',
+	        pointerEvents: 'none!important',
 	        borderRadius: '6px'
 
 	    },
@@ -29582,6 +29735,26 @@ webpackJsonp([3,17],[
 	        display: 'none!important'
 	    },
 
+	    'select-mask .move-down-handle': {
+	        position: 'absolute',
+
+	        height: '24px',
+	        width: '24px',
+	        fontSize: '12px',
+	        lineHeight: '30px',
+	        overflow: 'hidden',
+	        pointerEvents: 'auto',
+	        textAlign: 'center',
+	        color: '#fff',
+	        bottom: '-25px',
+	        "marginLeft": "-12px",
+	        top: "auto",
+	        left: "50%",
+	        backgroundColor: '#2ebdff',
+	        textDecoration: 'none'
+
+	    },
+
 	    'select-mask .parent-tagname': {
 	        display: 'none'
 	    },
@@ -29614,6 +29787,20 @@ webpackJsonp([3,17],[
 
 	    '.select-mask.parent-bar': {
 	        display: "none!important"
+	    },
+
+	    '.dragging  select-mask .handle': {
+	        display: "none!important"
+	    },
+	    '.dragging  select-mask .move-down-handle': {
+	        display: "none!important"
+	    },
+	    '.dragging  select-mask .tag-name': {
+	        display: "none"
+	    },
+
+	    '.dragging  select-mask .tools-bar': {
+	        display: "none"
 	    }
 
 	});
@@ -29621,7 +29808,7 @@ webpackJsonp([3,17],[
 	module.exports = SelectMask;
 
 /***/ },
-/* 261 */
+/* 265 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -29654,47 +29841,47 @@ webpackJsonp([3,17],[
 	    },
 
 	    render: function render() {
-	        return this.element(
+	        return Sophie.element(
 	            "div",
 	            { "class": "modal fade", id: "user-history", tabindex: "-1", role: "dialog" },
-	            this.element(
+	            Sophie.element(
 	                "div",
 	                { "class": "modal-dialog" },
-	                this.element(
+	                Sophie.element(
 	                    "div",
 	                    { "class": "modal-content" },
-	                    this.element(
+	                    Sophie.element(
 	                        "div",
 	                        { "class": "modal-header" },
-	                        this.element(
+	                        Sophie.element(
 	                            "button",
 	                            { type: "button", "class": "close", "data-dismiss": "modal", "aria-hidden": "true" },
 	                            "×"
 	                        ),
-	                        this.element(
+	                        Sophie.element(
 	                            "h4",
 	                            { "class": "modal-title", id: "" },
 	                            "提示"
 	                        )
 	                    ),
-	                    this.element(
+	                    Sophie.element(
 	                        "div",
 	                        { "class": "modal-body" },
-	                        this.element(
+	                        Sophie.element(
 	                            "h6",
 	                            { style: "margin:50px 0" },
 	                            "本地有最新的编辑记，是否使用？"
 	                        )
 	                    ),
-	                    this.element(
+	                    Sophie.element(
 	                        "div",
 	                        { "class": "modal-footer" },
-	                        this.element(
+	                        Sophie.element(
 	                            "button",
 	                            { type: "button", "class": "cmd-confirm btn btn-primary" },
 	                            "确定"
 	                        ),
-	                        this.element(
+	                        Sophie.element(
 	                            "button",
 	                            { type: "button", "class": "cmd-cancel btn btn-primary" },
 	                            "取消"
@@ -29708,6 +29895,155 @@ webpackJsonp([3,17],[
 	});
 
 	module.exports = PageManagerModal;
+
+/***/ },
+/* 266 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	var ImagePanel = Sophie.createClass({
+	    getInitialState: function getInitialState() {
+	        return {
+	            initState: false
+	        };
+	    },
+	    componentDidMount: function componentDidMount() {
+	        var h = this.nativeNode;
+
+	        Sophie.ready(function () {
+
+	            $("#select-img-view").modal({
+	                show: false,
+	                keyboard: true
+
+	            });
+	            //@todo
+	            if (!$('#fileupload').fileupload) {
+	                return;
+	            }
+
+	            $('#fileupload').fileupload({
+	                dataType: 'json',
+	                done: function done(e, data) {
+	                    $.each(data.result.files, function (index, file) {
+	                        addImg("/uploads/" + file.name);
+	                    });
+	                }
+	            });
+	        });
+
+	        var addImg = function addImg(src) {
+	            $("#select-img-view").find(".row").append('<div class="col-lg-2" ><img class="img-thumbnail" src="' + src + '"></div>');
+	        };
+
+	        $(h).on("click", "img", function (e) {
+	            $("#select-img-view").modal("hide");
+
+	            $(e.target).trigger("selectImg", e.target.src);
+	        });
+
+	        $("#select-img-view").on("click", ".upload", function (e) {
+	            play.utils.upload(function (result) {
+	                addImg(result[0].url);
+	            });
+	        });
+	    },
+	    show: function show() {
+
+	        $("#select-img-view").modal("show");
+	        var init = function init() {
+
+	            // $.getJSON(play.uploadUrl, function (data) {
+	            //
+	            //     if (data) {
+	            //         for (var p in data) {
+	            //
+	            //             addImg("/uploads/" + p);
+	            //         }
+	            //     }
+	            // })
+
+
+	        };
+
+	        if (!this.state.initState) {
+	            init();
+	            this.state.initState = true;
+	        }
+	    },
+	    hide: function hide() {
+	        $("#select-img-view").modal("hide");
+	    },
+	    render: function render() {
+	        return Sophie.element(
+	            'div',
+	            { 'class': 'modal fade', tabindex: '-1', role: 'dialog', 'aria-labelledby': 'myModalLabel', 'aria-hidden': 'true', id: 'select-img-view' },
+	            Sophie.element(
+	                'div',
+	                { 'class': 'modal-dialog' },
+	                Sophie.element(
+	                    'div',
+	                    { 'class': 'modal-content' },
+	                    Sophie.element(
+	                        'div',
+	                        { 'class': 'modal-header' },
+	                        Sophie.element(
+	                            'button',
+	                            { type: 'button', 'class': 'close', 'data-dismiss': 'modal', 'aria-hidden': 'true' },
+	                            '×'
+	                        ),
+	                        Sophie.element(
+	                            'h4',
+	                            { 'class': 'modal-title' },
+	                            '我的图片'
+	                        )
+	                    ),
+	                    Sophie.element(
+	                        'div',
+	                        { 'class': 'modal-body' },
+	                        Sophie.element(
+	                            'div',
+	                            { 'class': 'row', style: 'overflow: hidden' },
+	                            Sophie.element(
+	                                'div',
+	                                { 'class': 'col-lg-2' },
+	                                Sophie.element('img', { 'class': 'img-thumbnail', src: 'http://img.tuku.cn/file_big/201502/ad45f0968eba4b92ba549cc7abf0e70a.jpg' })
+	                            ),
+	                            Sophie.element(
+	                                'div',
+	                                { 'class': 'col-lg-2' },
+	                                Sophie.element('img', { 'class': 'img-thumbnail', src: '/images/header.jpg' })
+	                            )
+	                        )
+	                    ),
+	                    Sophie.element(
+	                        'div',
+	                        null,
+	                        Sophie.element('input', { id: 'fileupload', type: 'file', name: 'files[]', 'data-url': '/json/piclist' })
+	                    ),
+	                    Sophie.element(
+	                        'div',
+	                        { 'class': 'modal-footer' },
+	                        Sophie.element(
+	                            'button',
+	                            { type: 'button', 'class': 'btn btn-primary upload' },
+	                            '上传'
+	                        ),
+	                        Sophie.element(
+	                            'button',
+	                            { type: 'button', 'class': 'btn btn-default', 'data-dismiss': 'modal' },
+	                            '关闭'
+	                        )
+	                    )
+	                )
+	            )
+	        );
+	    }
+
+	});
+
+	module.exports = ImagePanel;
 
 /***/ }
 ]);
