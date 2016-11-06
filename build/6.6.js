@@ -865,7 +865,7 @@ webpackJsonp([6,17],{
 	          ),
 	          React.createElement(
 	            'form',
-	            { action: '/user/signup', method: 'POST' },
+	            { action: '/json/user/signup', method: 'POST' },
 	            React.createElement(
 	              'div',
 	              { className: 'type' },

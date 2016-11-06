@@ -15,7 +15,7 @@ module.exports =   React.createClass({
 
             <div className="signup">
               <div className="form-signin-heading">注册</div>
-                <form action="/user/signup" method="POST">
+                <form action="/json/user/signup" method="POST">
 
                     <div className="type">用第三方账号注册</div>
                     <div className="third-logo">
