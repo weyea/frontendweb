@@ -3,7 +3,7 @@
 
 var login = {
   isLogin:function(){
-    return $.cookie("isLogin")
+    return $.cookie("islogin")
   },
   getUser:function(){
     var username =  $.cookie("username");

@@ -42,7 +42,7 @@ webpackJsonp([2,17],{
 
 	var login = {
 		isLogin: function isLogin() {
-			return $.cookie("isLogin");
+			return $.cookie("islogin");
 		},
 		getUser: function getUser() {
 			var username = $.cookie("username");
