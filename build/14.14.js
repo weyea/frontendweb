@@ -282,7 +282,7 @@ webpackJsonp([14,17],{
 
 /***/ },
 
-/***/ 270:
+/***/ 262:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -293,7 +293,7 @@ webpackJsonp([14,17],{
 
 	var _reactRouter = __webpack_require__(100);
 
-	var login = __webpack_require__(271);
+	var login = __webpack_require__(263);
 	exports.default = React.createClass({
 	  displayName: "Header",
 
@@ -371,17 +371,18 @@ webpackJsonp([14,17],{
 	      )
 	    };
 	    var active = this.props.active || "home";
+	    var i = 0;
 	    for (var p in items) {
 	      if (p == active) {
 	        result.push(React.createElement(
 	          "li",
-	          { className: "active" },
+	          { key: i++, className: "active" },
 	          items[p]
 	        ));
 	      } else {
 	        result.push(React.createElement(
 	          "li",
-	          null,
+	          { key: i++ },
 	          items[p]
 	        ));
 	      }
@@ -421,7 +422,7 @@ webpackJsonp([14,17],{
 	          React.createElement(
 	            "a",
 	            { className: "navbar-brand", href: "/" },
-	            "点线面"
+	            React.createElement("img", { src: window.rootPath + "img/logo1x.png" })
 	          )
 	        ),
 	        React.createElement(
@@ -441,18 +442,18 @@ webpackJsonp([14,17],{
 
 /***/ },
 
-/***/ 309:
+/***/ 301:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var _Header = __webpack_require__(270);
+	var _Header = __webpack_require__(262);
 
 	var _Header2 = _interopRequireDefault(_Header);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	__webpack_require__(310);
+	__webpack_require__(302);
 
 
 	module.exports = React.createClass({
@@ -485,13 +486,13 @@ webpackJsonp([14,17],{
 
 /***/ },
 
-/***/ 310:
+/***/ 302:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(311);
+	var content = __webpack_require__(303);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(69)(content, {});
@@ -512,7 +513,7 @@ webpackJsonp([14,17],{
 
 /***/ },
 
-/***/ 311:
+/***/ 303:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(68)();

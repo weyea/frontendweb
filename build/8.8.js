@@ -1,6 +1,6 @@
 webpackJsonp([8,17],{
 
-/***/ 270:
+/***/ 262:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -11,7 +11,7 @@ webpackJsonp([8,17],{
 
 	var _reactRouter = __webpack_require__(100);
 
-	var login = __webpack_require__(271);
+	var login = __webpack_require__(263);
 	exports.default = React.createClass({
 	  displayName: "Header",
 
@@ -89,17 +89,18 @@ webpackJsonp([8,17],{
 	      )
 	    };
 	    var active = this.props.active || "home";
+	    var i = 0;
 	    for (var p in items) {
 	      if (p == active) {
 	        result.push(React.createElement(
 	          "li",
-	          { className: "active" },
+	          { key: i++, className: "active" },
 	          items[p]
 	        ));
 	      } else {
 	        result.push(React.createElement(
 	          "li",
-	          null,
+	          { key: i++ },
 	          items[p]
 	        ));
 	      }
@@ -139,7 +140,7 @@ webpackJsonp([8,17],{
 	          React.createElement(
 	            "a",
 	            { className: "navbar-brand", href: "/" },
-	            "点线面"
+	            React.createElement("img", { src: window.rootPath + "img/logo1x.png" })
 	          )
 	        ),
 	        React.createElement(
@@ -159,7 +160,7 @@ webpackJsonp([8,17],{
 
 /***/ },
 
-/***/ 272:
+/***/ 264:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -542,16 +543,16 @@ webpackJsonp([8,17],{
 
 /***/ },
 
-/***/ 285:
+/***/ 277:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _Header = __webpack_require__(270);
+	var _Header = __webpack_require__(262);
 
 	var _Header2 = _interopRequireDefault(_Header);
 
-	var _Footer = __webpack_require__(272);
+	var _Footer = __webpack_require__(264);
 
 	var _Footer2 = _interopRequireDefault(_Footer);
 
