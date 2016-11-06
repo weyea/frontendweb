@@ -36,12 +36,13 @@ export default  React.createClass({
       "tru":<Link className="tru" to="/template/market">新手指南</Link>
     }
       var active = this.props.active ||"home"
+      var i = 0;
       for(var p in items){
         if(p == active){
-            result.push(<li className="active">{items[p]}</li>)
+            result.push(<li key={i++} className="active">{items[p]}</li>)
         }
         else{
-          result.push(<li >{items[p]}</li>)
+          result.push(<li key = {i++} >{items[p]}</li>)
         }
       }
       return result;
@@ -69,7 +70,7 @@ export default  React.createClass({
                       <span className="icon-bar"></span>
                       <span className="icon-bar"></span>
                   </button>
-                  <a className="navbar-brand" href="/">点线面</a>
+                  <a className="navbar-brand" href="/"><img src={window.rootPath +"img/logo1x.png"}/></a>
               </div>
 
 
