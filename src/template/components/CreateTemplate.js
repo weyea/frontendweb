@@ -13,8 +13,15 @@ module.exports =   React.createClass({
     clearInterval(this.interval);
   },
   createTemplate:function(){
-    $.post("/json/template",{title:$("#tempalte-name").val()}, function(){
-      alert("创建成功")
+    $.post("/json/template",{title:$("#tempalte-name").val()}, function(result){
+      if(result.needLogin){
+        location.href = "/user/login"
+        return;
+      }
+      else{
+        alert("创建成功")
+      }
+
     })
   },
   render: function() {

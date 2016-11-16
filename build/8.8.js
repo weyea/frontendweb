@@ -572,8 +572,13 @@ webpackJsonp([8,17],{
 	    clearInterval(this.interval);
 	  },
 	  createTemplate: function createTemplate() {
-	    $.post("/json/template", { title: $("#tempalte-name").val() }, function () {
-	      alert("创建成功");
+	    $.post("/json/template", { title: $("#tempalte-name").val() }, function (result) {
+	      if (result.needLogin) {
+	        location.href = "/user/login";
+	        return;
+	      } else {
+	        alert("创建成功");
+	      }
 	    });
 	  },
 	  render: function render() {
