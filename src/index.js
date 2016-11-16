@@ -27,6 +27,13 @@ else {
 }
 
 
+if(/localhost/.test(location.host)){
+    window.debug = true
+}
+else{
+    window.debug = false
+}
+
 const rootRoute = {
 
     path: '/',

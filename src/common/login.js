@@ -3,6 +3,9 @@
 
 var login = {
   isLogin:function(){
+	  if(/localhost/.test(location.hostname)){
+		  return true
+	  }
     return $.cookie("islogin")
   },
   getUser:function(){

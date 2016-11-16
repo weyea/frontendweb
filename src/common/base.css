@@ -377,3 +377,17 @@ footer section:last-child p {
 .menu-list .menu-hover .link .title{
     color: #FFF;
 }
+
+
+.btn-green{
+    background:#00c4d8;
+    border-radius:2px;
+    color:#fff;
+}
+
+.btn-green-line{
+    border: 1px solid #00c4d8;
+    border-radius: 2px;
+    color: #00d9ef;
+    font-size: 12px;
+}

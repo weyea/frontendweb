@@ -1,9 +1,22 @@
-.add-site {
-    position: absolute;
-    top: 0;
-    right: 50px;
-}
+
 #my-container {
     display: block;
     position: relative;
+}
+
+
+.add-site {
+
+    border-bottom:1px solid #eaeaea;
+    padding: 0 20px 20px 0;
+
+}
+
+.add-site-button {
+
+}
+
+.blank-tips{
+    text-align: center;
+    padding: 200px;
 }
