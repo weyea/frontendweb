@@ -81,16 +81,24 @@ module.exports =   React.createClass({
 
 
   },
+    valid:function(){
+        var email = $(this.refs["email"]);
+        var username = $(this.refs["username"]);
+        var password = $(this.refs["password"])
+        var repeatPassword = $(this.refs["repeatPassword"]);
+        if(email.validity.valid&&username.validity.valid&&password.validity.valid&&repeatPassword.validity.valid){
+            return true
+        }
+    },
     submitLogin:function(e){
         var self = this;
         var emailValue = $(this.refs["email"]).val();
         var username = $(this.refs["username"]).val();
         var password = $(this.refs["password"]).val();
         var repeatPassword = $(this.refs["repeatPassword"]).val();
-        debugger
-        console.log(this._hasErrors)
-        if(this._hasErrors!==-4){
-            alert("请先错误")
+
+        if(!this.valid()){
+            alert("请先处理错误")
             return;
         }
 
