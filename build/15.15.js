@@ -1358,9 +1358,10 @@ webpackJsonp([15,17],{
 	    },
 
 	    getData: function getData() {
+	        var _this = this;
 
 	        $.get('/json/template/top', function (result) {
-	            this.setState({ template: result });
+	            _this.setState({ template: result });
 	        });
 	    },
 

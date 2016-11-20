@@ -8,7 +8,7 @@ export default  React.createClass({
 
     getData: function(){
 
-        $.get('/json/template/top', function(result){
+        $.get('/json/template/top', (result) => {
             this.setState({template:result})
         })
     },
