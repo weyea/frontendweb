@@ -449,7 +449,7 @@ webpackJsonp([15,17],{
 
 	var login = {
 		isLogin: function isLogin() {
-			if (/localhost/.test(location.hostname)) {
+			if (window.debug) {
 				return true;
 			}
 			return $.cookie("islogin");
