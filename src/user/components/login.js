@@ -28,7 +28,13 @@ module.exports =  React.createClass({
             }
           }
           else {
-            $(this.refs["errors"]).text(result.errors)
+              if(result.errors.length){
+                  $(this.refs["errors"]).text(result.errors)
+              }
+              else if(Object.keys(workflow.outcome.errfor).length !== 0){
+                  $(this.refs["errors"]).text(result.errfor)
+              }
+
           }
       })
   },

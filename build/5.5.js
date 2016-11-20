@@ -328,7 +328,11 @@ webpackJsonp([5,17],{
 	          location.href = result.defaultReturnUrl;
 	        }
 	      } else {
-	        $(_this.refs["errors"]).text(result.errors);
+	        if (result.errors.length) {
+	          $(_this.refs["errors"]).text(result.errors);
+	        } else if (Object.keys(workflow.outcome.errfor).length !== 0) {
+	          $(_this.refs["errors"]).text(result.errfor);
+	        }
 	      }
 	    });
 	  },

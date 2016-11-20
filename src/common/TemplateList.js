@@ -3,10 +3,14 @@ require('./TemplateList.css');
 
 module.exports = React.createClass({
     getInitialState:function(){
-      return {siteList:[{title:123}]};
+      return {
+          tab:"all",
+          siteList:[{title:123}]
+      };
     },
     componentDidMount: function (){
         var self = this;
+        this.tabbar = $(this.refs["tabbar"])
         self.flush();
         // $(this).delegate(".create", "click", function (ev){
         //     return;
@@ -20,32 +24,80 @@ module.exports = React.createClass({
         //     })
         // })
     },
-    flush: function (){
+    flush: function (tab){
         var self = this;
-        $.get("/json/template/?page=0", function (data){
-            if (data.needLogin){
-                location.href = "/user/login"
-                return;
-            }
-            if(typeof data !=="string"){
-              self.setState({siteList:data})
-            }
+        var tab = tab||this.state.tab
+        if(this.state.tab == "all") {
+            $.get("/json/template/?page=0", function (data){
+                if (data.needLogin){
+                    location.href = "/user/login"
+                    return;
+                }
+                if(typeof data !=="string"){
+                    self.setState({siteList:data})
+                }
 
 
 
-        })
+            })
+        }
+        else if(this.state.tab == "new"){
+            $.get("/json/template/new?page=0", function (data){
+                if (data.needLogin){
+                    location.href = "/user/login"
+                    return;
+                }
+                if(typeof data !=="string"){
+                    self.setState({siteList:data})
+                }
+
+
+
+            })
+        }
+        else if(this.state.tab == "hot"){
+            $.get("/json/template/top?page=0", function (data){
+                if (data.needLogin){
+                    location.href = "/user/login"
+                    return;
+                }
+                if(typeof data !=="string"){
+                    self.setState({siteList:data})
+                }
+
+
+
+            })
+        }
+        else {
+            $.get("/json/template/bytype?page=0&&catgory="+this.state.tab, function (data){
+                if (data.needLogin){
+                    location.href = "/user/login"
+                    return;
+                }
+                if(typeof data !=="string"){
+                    self.setState({siteList:data})
+                }
+
+            })
+        }
+
     },
+
+    showTab:function(e){
+        var target = $(e.target)
+
+        this.setState({tab:target.attr("data-type")})
+
+        this.flush(target.attr("data-type"));
+    },
+
     render:function(){
       return (
         <div className="template-list">
-            <div className="list">
-              <a className="active" href="#">全部</a>
-              <a className="" href="#">最新模板</a>
-              <a className="" href="#">热门模板</a>
-              <a className="" href="#">企业精选</a>
-              <a className="" href="#">单页模板</a>
-              <a className="" href="#">营销模板</a>
 
+            <div ref="tabbar" className="list" onClick={this.showTab}>
+                {this.renderTab()}
             </div>
             <div className="body">
               {this.renderItem()}
@@ -53,6 +105,24 @@ module.exports = React.createClass({
 
         </div>
       )
+    },
+    renderTab: function() {
+        var result = [];
+        var types = [
+            {name:"all","title":"全部"},
+            {name:"new","title":"最新模板"},
+            {name:"hot","title":"热门模板"},
+            {name:"company","title":"企业精选"},
+            {name:"landingpage","title":"单页模板"},
+            {name:"sale","title":"营销模板"}
+            ];
+
+        for(var i=0;i<types.length;i++){
+            var className = types[i].name == this.state.tab ?"active":"";
+            var tab = (<a className={className}  data-type = {types[i].name} href="#">{types[i].title}</a>)
+            result.push(tab);
+        }
+        return result;
     },
     renderItem:function(){
       var result = []

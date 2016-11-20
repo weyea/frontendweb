@@ -842,92 +842,198 @@ webpackJsonp([6,17],{
 
 	__webpack_require__(269);
 	module.exports = React.createClass({
-	  displayName: 'exports',
+	    displayName: 'exports',
 
 
-	  componentDidMount: function componentDidMount() {},
+	    componentDidMount: function componentDidMount() {
 
-	  render: function render() {
-	    return React.createElement(
-	      'div',
-	      null,
-	      React.createElement(_Header2.default, { active: 'my' }),
-	      React.createElement(
-	        'div',
-	        { className: 'container signup-page' },
-	        React.createElement(
-	          'div',
-	          { className: 'signup' },
-	          React.createElement(
+	        var email = $(this.refs["email"]);
+	        var username = $(this.refs["username"]);
+	        var password = $(this.refs["password"]);
+	        var repeatPassword = $(this.refs["repeatPassword"]);
+	        this._hasErrors = 0;
+	        var self = this;
+
+	        username.on("blur", function () {
+	            if (this.validity.valid) {
+	                $(this.nextElementSibling).addClass('show_pass');
+	                this.nextElementSibling.innerHTML = '用户名格式正确';
+	                self._hasErrors--;
+	            } else if (this.validity.valueMissing) {
+	                $(this.nextElementSibling).addClass("show_warn");
+	                this.nextElementSibling.innerHTML = '用户名不能为空';
+	                self._hasErrors++;
+	            } else if (this.validity.patternMismatch) {
+	                $(this.nextElementSibling).addClass('pc show_warn');
+	                this.nextElementSibling.innerHTML = '用户名格式非法,用户名由2-12数字或字母组成';
+	                self._hasErrors++;
+	            }
+	        });
+
+	        password.on("blur", function () {
+	            if (this.validity.valid) {
+	                $(this.nextElementSibling).addClass('pc show_pass');
+	                this.nextElementSibling.innerHTML = '密码格式正确';
+	                self._hasErrors--;
+	            } else if (this.validity.valueMissing) {
+	                $(this.nextElementSibling).addClass('pc show_warn');
+	                this.nextElementSibling.innerHTML = '用户密码不能为空';
+	                self._hasErrors++;
+	            } else if (this.validity.patternMismatch) {
+	                $(this.nextElementSibling).addClass('pc show_warn');
+	                this.nextElementSibling.innerHTML = '密码格式非法，密码由不少于8位数字/字母/英文符号组成';
+	                self._hasErrors++;
+	            }
+	        });
+
+	        repeatPassword.on("blur", function () {
+	            if (repeatPassword.val() == repeatPassword.val() && repeatPassword.val() !== "") {
+	                this.nextElementSibling.innerHTML = '输入正确';
+	                self._hasErrors--;
+	            } else {
+	                $(this.nextElementSibling).addClass('pc show_warn');
+	                this.nextElementSibling.innerHTML = '两次输入的密码不相等，请重新输入';
+	                self._hasErrors++;
+	            }
+	        });
+
+	        email.on("blur", function () {
+	            if (this.validity.valid) {
+	                $(this.nextElementSibling).addClass('pc show_pass');
+	                this.nextElementSibling.innerHTML = '邮箱格式正确';
+	                self._hasErrors--;
+	            } else if (this.validity.valueMissing) {
+	                $(this.nextElementSibling).addClass('pc show_warn');
+	                this.nextElementSibling.innerHTML = '邮箱不能为空';
+	                self._hasErrors++;
+	            } else if (this.validity.typeMismatch) {
+	                $(this.nextElementSibling).addClass('pc show_warn');
+	                this.nextElementSibling.innerHTML = '邮箱格式有误';
+	                self._hasErrors++;
+	            }
+	        });
+	    },
+	    submitLogin: function submitLogin(e) {
+	        var _this = this;
+
+	        var self = this;
+	        var emailValue = $(this.refs["email"]).val();
+	        var username = $(this.refs["username"]).val();
+	        var password = $(this.refs["password"]).val();
+	        var repeatPassword = $(this.refs["repeatPassword"]).val();
+	        debugger;
+	        console.log(this._hasErrors);
+	        if (this._hasErrors !== -4) {
+	            alert("请先错误");
+	            return;
+	        }
+
+	        if (password !== repeatPassword) {
+	            password.val("");
+	            repeatPassword.val("");
+	            alert("两次输入的密码不相等，请重新输入");
+	            return;
+	        }
+	        $.post("/json/user/signup", { username: username, email: emailValue, password: password }, function (result) {
+	            if (result.success) {
+	                if (sessionStorage && sessionStorage.getItem("redirect")) {
+	                    var redirect = sessionStorage.getItem("redirect");
+	                    sessionStorage.removeItem("redirect");
+	                    location.href = redirect;
+	                } else if (result.defaultReturnUrl) {
+	                    location.href = result.defaultReturnUrl;
+	                }
+	            } else {
+	                if (result.errors.length) {
+	                    $(_this.refs["errors"]).text(result.errors);
+	                } else if (Object.keys(workflow.outcome.errfor).length !== 0) {
+	                    $(_this.refs["errors"]).text(result.errfor);
+	                }
+	            }
+	        });
+	    },
+
+	    render: function render() {
+	        return React.createElement(
 	            'div',
-	            { className: 'form-signin-heading' },
-	            '注册'
-	          ),
-	          React.createElement(
-	            'form',
-	            { action: '/json/user/signup', method: 'POST' },
+	            null,
+	            React.createElement(_Header2.default, { active: 'my' }),
 	            React.createElement(
-	              'div',
-	              { className: 'type' },
-	              '用第三方账号注册'
+	                'div',
+	                { className: 'container signup-page' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'signup' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'form-signin-heading' },
+	                        '注册'
+	                    ),
+	                    React.createElement(
+	                        'form',
+	                        { action: '/json/user/signup', method: 'POST' },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'type' },
+	                            '用第三方账号注册'
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'third-logo' },
+	                            React.createElement('a', { href: '#', className: 'weibo' }),
+	                            React.createElement('a', { href: '#', className: 'qq' }),
+	                            React.createElement('a', { href: '#', className: 'renren' }),
+	                            React.createElement('a', { href: '#', className: 'tudou' })
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'form-group ' },
+	                            React.createElement('input', { ref: 'username', type: 'text', required: true, pattern: '^[0-9a-zA-Z]{2,12}$', name: 'username', placeholder: '您希望我们怎么称呼您？', className: 'form-control' }),
+	                            React.createElement('span', { className: 'help-block' })
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'form-group ' },
+	                            React.createElement('input', { ref: 'email', type: 'text', required: true, name: 'email', placeholder: '请输入邮箱', className: 'form-control' }),
+	                            React.createElement('span', { className: 'help-block' })
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'form-group ' },
+	                            React.createElement('input', { ref: 'password', type: 'password', required: true, pattern: '^\\w{8,100}$', name: 'password', placeholder: '输入密码', className: 'form-control' }),
+	                            React.createElement('span', { className: 'help-block' })
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'form-group ' },
+	                            React.createElement('input', { ref: 'repeatPassword', type: 'password', name: 'repassword', placeholder: '再次输入密码', className: 'form-control' }),
+	                            React.createElement('span', { className: 'help-block' })
+	                        ),
+	                        React.createElement('div', { ref: 'errors', className: 'alerts' }),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'form-group' },
+	                            React.createElement(
+	                                'button',
+	                                { ref: 'submit', onClick: this.submitLogin, className: 'btn btn-primary btn-signup' },
+	                                '注册'
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'login' },
+	                            React.createElement(
+	                                'a',
+	                                { href: '/user/login' },
+	                                '已有账号，直接登录'
+	                            )
+	                        )
+	                    )
+	                )
 	            ),
-	            React.createElement(
-	              'div',
-	              { className: 'third-logo' },
-	              React.createElement('a', { href: '#', className: 'weibo' }),
-	              React.createElement('a', { href: '#', className: 'qq' }),
-	              React.createElement('a', { href: '#', className: 'renren' }),
-	              React.createElement('a', { href: '#', className: 'tudou' })
-	            ),
-	            React.createElement(
-	              'div',
-	              { className: 'form-group ' },
-	              React.createElement('input', { type: 'text', name: 'username', placeholder: '您希望我们怎么称呼您？', className: 'form-control' }),
-	              React.createElement('span', { className: 'help-block' })
-	            ),
-	            React.createElement(
-	              'div',
-	              { className: 'form-group ' },
-	              React.createElement('input', { type: 'text', name: 'email', placeholder: '请输入邮箱/手机号码', className: 'form-control' }),
-	              React.createElement('span', { className: 'help-block' })
-	            ),
-	            React.createElement(
-	              'div',
-	              { className: 'form-group ' },
-	              React.createElement('input', { type: 'password', name: 'password', placeholder: '输入密码', className: 'form-control' }),
-	              React.createElement('span', { className: 'help-block' })
-	            ),
-	            React.createElement(
-	              'div',
-	              { className: 'form-group ' },
-	              React.createElement('input', { type: 'password', name: 'repassword', placeholder: '再次输入密码', className: 'form-control' }),
-	              React.createElement('span', { className: 'help-block' })
-	            ),
-	            React.createElement('div', { className: 'alerts' }),
-	            React.createElement(
-	              'div',
-	              { className: 'form-group' },
-	              React.createElement(
-	                'button',
-	                { type: 'submit', className: 'btn btn-primary btn-signup' },
-	                '注册'
-	              )
-	            ),
-	            React.createElement(
-	              'div',
-	              { className: 'login' },
-	              React.createElement(
-	                'a',
-	                { href: '/user/login' },
-	                '已有账号，直接登录'
-	              )
-	            )
-	          )
-	        )
-	      ),
-	      React.createElement(_Footer2.default, null)
-	    );
-	  }
+	            React.createElement(_Footer2.default, null)
+	        );
+	    }
 	});
 
 /***/ },

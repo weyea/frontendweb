@@ -963,10 +963,14 @@ webpackJsonp([15,17],{
 	    displayName: "exports",
 
 	    getInitialState: function getInitialState() {
-	        return { siteList: [{ title: 123 }] };
+	        return {
+	            tab: "all",
+	            siteList: [{ title: 123 }]
+	        };
 	    },
 	    componentDidMount: function componentDidMount() {
 	        var self = this;
+	        this.tabbar = $(this.refs["tabbar"]);
 	        self.flush();
 	        // $(this).delegate(".create", "click", function (ev){
 	        //     return;
@@ -980,55 +984,68 @@ webpackJsonp([15,17],{
 	        //     })
 	        // })
 	    },
-	    flush: function flush() {
+	    flush: function flush(tab) {
 	        var self = this;
-	        $.get("/json/template/?page=0", function (data) {
-	            if (data.needLogin) {
-	                location.href = "/user/login";
-	                return;
-	            }
-	            if (typeof data !== "string") {
-	                self.setState({ siteList: data });
-	            }
-	        });
+	        var tab = tab || this.state.tab;
+	        if (this.state.tab == "all") {
+	            $.get("/json/template/?page=0", function (data) {
+	                if (data.needLogin) {
+	                    location.href = "/user/login";
+	                    return;
+	                }
+	                if (typeof data !== "string") {
+	                    self.setState({ siteList: data });
+	                }
+	            });
+	        } else if (this.state.tab == "new") {
+	            $.get("/json/template/new?page=0", function (data) {
+	                if (data.needLogin) {
+	                    location.href = "/user/login";
+	                    return;
+	                }
+	                if (typeof data !== "string") {
+	                    self.setState({ siteList: data });
+	                }
+	            });
+	        } else if (this.state.tab == "hot") {
+	            $.get("/json/template/top?page=0", function (data) {
+	                if (data.needLogin) {
+	                    location.href = "/user/login";
+	                    return;
+	                }
+	                if (typeof data !== "string") {
+	                    self.setState({ siteList: data });
+	                }
+	            });
+	        } else {
+	            $.get("/json/template/bytype?page=0&&catgory=" + this.state.tab, function (data) {
+	                if (data.needLogin) {
+	                    location.href = "/user/login";
+	                    return;
+	                }
+	                if (typeof data !== "string") {
+	                    self.setState({ siteList: data });
+	                }
+	            });
+	        }
 	    },
+
+	    showTab: function showTab(e) {
+	        var target = $(e.target);
+
+	        this.setState({ tab: target.attr("data-type") });
+
+	        this.flush(target.attr("data-type"));
+	    },
+
 	    render: function render() {
 	        return React.createElement(
 	            "div",
 	            { className: "template-list" },
 	            React.createElement(
 	                "div",
-	                { className: "list" },
-	                React.createElement(
-	                    "a",
-	                    { className: "active", href: "#" },
-	                    "全部"
-	                ),
-	                React.createElement(
-	                    "a",
-	                    { className: "", href: "#" },
-	                    "最新模板"
-	                ),
-	                React.createElement(
-	                    "a",
-	                    { className: "", href: "#" },
-	                    "热门模板"
-	                ),
-	                React.createElement(
-	                    "a",
-	                    { className: "", href: "#" },
-	                    "企业精选"
-	                ),
-	                React.createElement(
-	                    "a",
-	                    { className: "", href: "#" },
-	                    "单页模板"
-	                ),
-	                React.createElement(
-	                    "a",
-	                    { className: "", href: "#" },
-	                    "营销模板"
-	                )
+	                { ref: "tabbar", className: "list", onClick: this.showTab },
+	                this.renderTab()
 	            ),
 	            React.createElement(
 	                "div",
@@ -1036,6 +1053,21 @@ webpackJsonp([15,17],{
 	                this.renderItem()
 	            )
 	        );
+	    },
+	    renderTab: function renderTab() {
+	        var result = [];
+	        var types = [{ name: "all", "title": "全部" }, { name: "new", "title": "最新模板" }, { name: "hot", "title": "热门模板" }, { name: "company", "title": "企业精选" }, { name: "landingpage", "title": "单页模板" }, { name: "sale", "title": "营销模板" }];
+
+	        for (var i = 0; i < types.length; i++) {
+	            var className = types[i].name == this.state.tab ? "active" : "";
+	            var tab = React.createElement(
+	                "a",
+	                { className: className, "data-type": types[i].name, href: "#" },
+	                types[i].title
+	            );
+	            result.push(tab);
+	        }
+	        return result;
 	    },
 	    renderItem: function renderItem() {
 	        var result = [];
