@@ -82,10 +82,10 @@ module.exports =   React.createClass({
 
   },
     valid:function(){
-        var email = $(this.refs["email"]);
-        var username = $(this.refs["username"]);
-        var password = $(this.refs["password"])
-        var repeatPassword = $(this.refs["repeatPassword"]);
+        var email = this.refs["email"];
+        var username = this.refs["username"];
+        var password = this.refs["password"];
+        var repeatPassword = this.refs["repeatPassword"];
         if(email.validity.valid&&username.validity.valid&&password.validity.valid&&repeatPassword.validity.valid){
             return true
         }
@@ -138,7 +138,7 @@ module.exports =   React.createClass({
 
             <div className="signup">
               <div className="form-signin-heading">注册</div>
-                <form action="/json/user/signup" method="POST">
+                <form method="POST">
 
                     <div className="type">用第三方账号注册</div>
                     <div className="third-logo">
