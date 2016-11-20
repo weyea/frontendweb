@@ -19,15 +19,15 @@ export default  React.createClass({
     },
     flush: function (){
         var self = this;
-        $.get("/json/app/top?page=0", function (data){
-            if (data.needLogin){
-                location.href = "/user/login"
-                return;
-            }
-            if(typeof data !=="string"){
-                self.setState({siteList:data})
-            }
-        })
+        // $.get("/json/app/top?page=0", function (data){
+        //     if (data.needLogin){
+        //         location.href = "/user/login"
+        //         return;
+        //     }
+        //     if(typeof data !=="string"){
+        //         self.setState({siteList:data})
+        //     }
+        // })
     },
     render:function(){
         return (
