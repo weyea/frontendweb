@@ -109,7 +109,7 @@
 	}
 
 	var history;
-	if (/localhost/.test(location.host)) {
+	if (/localhost:8484/.test(location.href)) {
 	  history = _reactRouter.browserHistory;
 	  window.rootPath = "/";
 	} else {
