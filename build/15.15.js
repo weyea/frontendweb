@@ -1008,7 +1008,7 @@ webpackJsonp([15,17],{
 	                }
 	            });
 	        } else if (this.state.tab == "hot") {
-	            $.get("/json/template/top?page=0", function (data) {
+	            $.get("/json/template/hot?page=0", function (data) {
 	                if (data.needLogin) {
 	                    location.href = "/user/login";
 	                    return;
@@ -1018,7 +1018,7 @@ webpackJsonp([15,17],{
 	                }
 	            });
 	        } else {
-	            $.get("/json/template/bytype?page=0&&catgory=" + this.state.tab, function (data) {
+	            $.get("/json/template/bycategory?page=0&&category=" + this.state.tab, function (data) {
 	                if (data.needLogin) {
 	                    location.href = "/user/login";
 	                    return;
