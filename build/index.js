@@ -109,7 +109,7 @@
 	}
 
 	var history;
-	if (location.host == "localhost:8484") {
+	if (/localhost/.test(location.host)) {
 	  history = _reactRouter.browserHistory;
 	  window.rootPath = "/";
 	} else {
@@ -140,7 +140,7 @@
 	  },
 	  getComponents: function getComponents(nextState, callback) {
 	    __webpack_require__.e/* nsure */(16, function (require) {
-	      callback(null, __webpack_require__(316));
+	      callback(null, __webpack_require__(323));
 	    });
 	  }
 	};

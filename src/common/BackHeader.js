@@ -12,7 +12,7 @@ export default  React.createClass({
         if(login.isLogin()){
             var user = login.getUser();
             return (
-                <p className="navbar-text navbar-right login">
+                <p className="navbar-text navbar-right login-status">
                     <span >
                       <i className="fa fa-user-md"></i><a href="#" className="navbar-Link">{user.username}</a>
                       <a href="/user/logout" className=""><span className="oi oi-account-logout"></span></a>

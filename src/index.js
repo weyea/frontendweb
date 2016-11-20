@@ -16,7 +16,7 @@ if(currentScript.src){
 
 
 var history;
-if(location.host == "localhost:8484"){
+if(/localhost/.test(location.host)){
   history = browserHistory
   window.rootPath = "/"
 }

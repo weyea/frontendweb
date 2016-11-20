@@ -24,7 +24,7 @@ webpackJsonp([8,17],{
 	      var user = login.getUser();
 	      return React.createElement(
 	        "p",
-	        { className: "navbar-text navbar-right login" },
+	        { className: "navbar-text navbar-right login-status" },
 	        React.createElement(
 	          "span",
 	          null,

@@ -1,0 +1,58 @@
+.site-list {
+            overflow: hidden;
+            display: block;
+            margin: 50px 0 16px 0px;
+        }
+        .site-list .templ {
+            width: 480px;
+            float: left;
+            margin-right: 30px;
+            margin-bottom: 30px;
+            overflow: hidden;
+            position: relative;
+        }
+        .site-list .templ .bd {
+            background: url("/imgbrowser.png") 0 0 no-repeat;
+            padding-top: 19px;
+            background-size: contain;
+            display: inline-block;
+            width: 280px;
+            vertical-align: top;
+            position: relative;
+        }
+        .site-list .templ .mobile {
+            position: absolute;
+            top: 90px;
+            left: 195px;
+            background: url("/img/mobile.png") 0 0 no-repeat;
+            width: 100px;
+            height: 140px;
+            display: none;
+        }
+        .site-list .templ .mobile img {
+            width: 73px;
+            margin: 9px 0 0 19px;
+        }
+        .site-list .templ .des {
+            display: inline-block;
+            width: 160px;
+            vertical-align: top;
+            text-align: left;
+            margin-left: 10px;
+        }
+        .site-list .templ h3 {
+            color: #373737;
+            font-size: 30px;
+            margin-top: 0;
+        }
+        .site-list .templ img {
+            width: 100%;
+        }
+        .site-list .templ .title, .site-list .templ .action {
+            color: #363636;
+            font-family: 'Helvetica45';
+            text-decoration: none;
+        }
+        .site-list .templ .action {
+            margin-top: 120px;
+        }

@@ -2,6 +2,8 @@ var TemplateList= require('../../common/TemplateList');
 require('./index.css');
 import Header from '../../common/Header'
 import Footer from '../../common/Footer'
+import TopTen from './TopTen'
+import StunningSite from './StunningSite'
 module.exports =  React.createClass({
   getInitialState: function() {
     return {};
@@ -61,28 +63,12 @@ module.exports =  React.createClass({
         </div>
 
 
-        <div id="top-template">
-          <div className="container">
-            <h1>每日精选</h1>
-            <div className="slide">
-              <a href="#">
-                <img src={window.rootPath +"img/template.png"}/>
-
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div id="template-list" >
-          <div className="container">
-          <h3 className="header">选择模板</h3>
 
 
+          <TopTen></TopTen>
 
-            <TemplateList></TemplateList>
 
-          </div>
-          </div>
+          <StunningSite></StunningSite>
 
           <Footer></Footer>
       </div>
