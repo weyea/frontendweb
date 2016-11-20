@@ -1,26 +1,61 @@
 import Header from '../../common/BackHeader'
 import Footer from '../../common/Footer'
+import './app.css'
 module.exports = React.createClass({
     getInitialState: function () {
-        return {};
+        return {site:{id:this.props.params.id,title:"站点"}};
+    },
+
+    componentDidMount: function (){
+        this.getData();
+
+    },
+
+    getData: function(){
+        var id = this.props.params.id;
+        $.get("/json/app/"+id, (site) => {
+            if(debug){
+
+            }
+            else{
+                this.setState({site:site})
+            }
+
+        })
     },
 
     render: function () {
+
         var site = window.serverData || {};
         return (
             <div>
                 <Header active="my"></Header>
-                <div className="container">
+                <div id="app-detail">
+                    {this.renderItem()}
+                </div>
+
+                <Footer></Footer>
+            </div>
+
+
+        );
+    },
+
+    renderItem:function(){
+        if(this.state.site||debug){
+            var site = this.state.site;
+            return (
+                <div  className="container">
                     <div className="templ">
-                        <p className="bd">
+                        <div className="bd">
                             <a href={"/my/app/"+site.id}><img src={window.rootPath+"img/01.jpg"}/></a>
-                        </p>
+                        </div>
                         <div className="des">
                             <h3><a href={"/app/"+site.id}>{site.title}</a></h3>
                             <div>
                                 <p className="action">
                                     <a className="" href={"/designer/app/"+site.id}>设计</a>
-                                    <span>|</span>
+                                    <span>  |  </span>
                                     <a className="del-site" href={"/app/json/"+site.id}>删除 </a>
                                 </p>
                             </div>
@@ -44,11 +79,11 @@ module.exports = React.createClass({
                     </div>
 
                 </div>
-
-                <Footer></Footer>
-            </div>
-
-
-        );
+            )
+        }
+        else{
+            return (<div className="loading">加载中...</div>)
+        }
     }
+
 });

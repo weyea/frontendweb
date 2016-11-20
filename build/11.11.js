@@ -678,16 +678,34 @@ webpackJsonp([11,17],{
 
 	var _Footer2 = _interopRequireDefault(_Footer);
 
+	__webpack_require__(292);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	module.exports = React.createClass({
 	    displayName: 'exports',
 
 	    getInitialState: function getInitialState() {
-	        return {};
+	        return { site: { id: this.props.params.id, title: "站点" } };
+	    },
+
+	    componentDidMount: function componentDidMount() {
+	        this.getData();
+	    },
+
+	    getData: function getData() {
+	        var _this = this;
+
+	        var id = this.props.params.id;
+	        $.get("/json/app/" + id, function (site) {
+	            if (debug) {} else {
+	                _this.setState({ site: site });
+	            }
+	        });
 	    },
 
 	    render: function render() {
+
 	        var site = window.serverData || {};
 	        return React.createElement(
 	            'div',
@@ -695,12 +713,24 @@ webpackJsonp([11,17],{
 	            React.createElement(_BackHeader2.default, { active: 'my' }),
 	            React.createElement(
 	                'div',
+	                { id: 'app-detail' },
+	                this.renderItem()
+	            ),
+	            React.createElement(_Footer2.default, null)
+	        );
+	    },
+
+	    renderItem: function renderItem() {
+	        if (this.state.site || debug) {
+	            var site = this.state.site;
+	            return React.createElement(
+	                'div',
 	                { className: 'container' },
 	                React.createElement(
 	                    'div',
 	                    { className: 'templ' },
 	                    React.createElement(
-	                        'p',
+	                        'div',
 	                        { className: 'bd' },
 	                        React.createElement(
 	                            'a',
@@ -734,7 +764,7 @@ webpackJsonp([11,17],{
 	                                React.createElement(
 	                                    'span',
 	                                    null,
-	                                    '|'
+	                                    '  |  '
 	                                ),
 	                                React.createElement(
 	                                    'a',
@@ -777,10 +807,16 @@ webpackJsonp([11,17],{
 	                        '...'
 	                    )
 	                )
-	            ),
-	            React.createElement(_Footer2.default, null)
-	        );
+	            );
+	        } else {
+	            return React.createElement(
+	                'div',
+	                { className: 'loading' },
+	                '加载中...'
+	            );
+	        }
 	    }
+
 	});
 
 /***/ },
@@ -977,6 +1013,48 @@ webpackJsonp([11,17],{
 
 	// module
 	exports.push([module.id, "#nav .main-back {\n    margin-top: 7px;\n}", ""]);
+
+	// exports
+
+
+/***/ },
+
+/***/ 292:
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(293);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(69)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./app.css", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./app.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+
+/***/ 293:
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(68)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "\n#my-container {\n    display: block;\n    position: relative;\n}\n\n\n.add-site {\n\n    border-bottom:1px solid #eaeaea;\n    padding: 0 20px 20px 0;\n\n}\n\n.add-site-button {\n\n}\n\n.blank-tips{\n    text-align: center;\n    padding: 200px;\n}\n\n\n#app-detail .templ{\n    display: flex;\n    flex-direction: row;\n    margin-bottom: 30px;\n}\n\n#app-detail .templ .bd{\n    width: 324px;\n    height: 234px;\n}\n\n#app-detail .templ .bd img{\n    width: 324px;\n    height: 234px;\n}\n\n#app-detail .templ .des{\n    flex: 1;\n    margin-left: 30px;\n}", ""]);
 
 	// exports
 
