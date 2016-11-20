@@ -914,10 +914,10 @@ webpackJsonp([6,17],{
 	        });
 	    },
 	    valid: function valid() {
-	        var email = $(this.refs["email"]);
-	        var username = $(this.refs["username"]);
-	        var password = $(this.refs["password"]);
-	        var repeatPassword = $(this.refs["repeatPassword"]);
+	        var email = this.refs["email"];
+	        var username = this.refs["username"];
+	        var password = this.refs["password"];
+	        var repeatPassword = this.refs["repeatPassword"];
 	        if (email.validity.valid && username.validity.valid && password.validity.valid && repeatPassword.validity.valid) {
 	            return true;
 	        }
@@ -979,7 +979,7 @@ webpackJsonp([6,17],{
 	                    ),
 	                    React.createElement(
 	                        'form',
-	                        { action: '/json/user/signup', method: 'POST' },
+	                        { method: 'POST' },
 	                        React.createElement(
 	                            'div',
 	                            { className: 'type' },
