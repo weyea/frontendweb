@@ -15,7 +15,7 @@ export default  React.createClass({
 
     componentDidMount: function (){
         var self = this;
-        self.flush();
+        self.getData();
     },
     render: function() {
         var l = this.state.template.length
