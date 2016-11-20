@@ -13,6 +13,10 @@ export default  React.createClass({
         })
     },
 
+    componentDidMount: function (){
+        var self = this;
+        self.flush();
+    },
     render: function() {
         var l = this.state.template.length
         return (

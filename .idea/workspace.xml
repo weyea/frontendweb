@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4ba0ceba-371b-4719-b3aa-61550dcf8397" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/home/components/StunningSite.js" afterPath="$PROJECT_DIR$/src/home/components/StunningSite.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/home/components/TopTen.js" afterPath="$PROJECT_DIR$/src/home/components/TopTen.js" />
     </list>
     <ignored path="frontendweb.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,20 +32,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StunningSite.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="StunningSite.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/home/components/StunningSite.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="29" column="13" selection-start-line="21" selection-start-column="7" selection-end-line="29" selection-end-column="13" />
+            <state relative-caret-position="210">
+              <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="18" selection-end-column="6" />
               <folding />
             </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="378fe0fab26240b85acf5ffc87bfca92.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build/378fe0fab26240b85acf5ffc87bfca92.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
           </provider>
         </entry>
       </file>
@@ -54,6 +47,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="435">
               <caret line="29" column="38" selection-start-line="29" selection-start-column="38" selection-end-line="29" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TopTen.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/home/components/TopTen.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="17" column="21" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -143,7 +146,6 @@
         <option value="$PROJECT_DIR$/src/home/components/index.js" />
         <option value="$PROJECT_DIR$/src/home/components/StunningSite.css" />
         <option value="$PROJECT_DIR$/src/home/components/TopTen.css" />
-        <option value="$PROJECT_DIR$/src/home/components/TopTen.js" />
         <option value="$PROJECT_DIR$/src/user/components/login.js" />
         <option value="$PROJECT_DIR$/src/common/TemplateList.js" />
         <option value="$PROJECT_DIR$/src/common/login.js" />
@@ -151,6 +153,7 @@
         <option value="$PROJECT_DIR$/src/common/Header.js" />
         <option value="$PROJECT_DIR$/src/user/components/signup.js" />
         <option value="$PROJECT_DIR$/src/home/components/StunningSite.js" />
+        <option value="$PROJECT_DIR$/src/home/components/TopTen.js" />
       </list>
     </option>
   </component>
@@ -359,12 +362,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1477919925994</updated>
-      <workItem from="1479301637546" duration="21175000" />
+      <workItem from="1479301637546" duration="21372000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21175000" />
+    <option name="totallyTimeSpent" value="21372000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -692,14 +695,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/home/components/TopTen.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="395">
-          <caret line="67" column="46" selection-start-line="67" selection-start-column="46" selection-end-line="67" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/user/routes/signup.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -713,7 +708,7 @@
         <state relative-caret-position="585">
           <caret line="39" column="4" selection-start-line="15" selection-start-column="2" selection-end-line="39" selection-end-column="4" />
           <folding>
-            <element signature="e#0#40#0" expanded="true" />
+            <element signature="e#0#40#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -802,8 +797,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/home/components/StunningSite.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="29" column="13" selection-start-line="21" selection-start-column="7" selection-end-line="29" selection-end-column="13" />
+        <state relative-caret-position="210">
+          <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="18" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/home/components/TopTen.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="21" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
           <folding />
         </state>
       </provider>

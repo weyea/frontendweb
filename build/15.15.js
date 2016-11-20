@@ -1364,6 +1364,10 @@ webpackJsonp([15,17],{
 	        });
 	    },
 
+	    componentDidMount: function componentDidMount() {
+	        var self = this;
+	        self.flush();
+	    },
 	    render: function render() {
 	        var l = this.state.template.length;
 	        return React.createElement(
