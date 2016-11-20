@@ -3,7 +3,7 @@
 
 var login = {
   isLogin:function(){
-	  if(/localhost/.test(location.hostname)){
+	  if(window.debug){
 		  return true
 	  }
     return $.cookie("islogin")

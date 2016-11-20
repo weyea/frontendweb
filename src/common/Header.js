@@ -9,7 +9,6 @@ export default  React.createClass({
 
   renderLoginInfo:function(){
 
-
     if(login.isLogin()){
       var user = login.getUser();
     return (
