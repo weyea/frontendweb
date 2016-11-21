@@ -1,6 +1,9 @@
 import Header from '../../common/BackHeader'
 import Footer from '../../common/Footer'
 import './app.css'
+
+import '../../utils/upload'
+
 module.exports = React.createClass({
     getInitialState: function () {
         return {site:{id:this.props.params.id,title:"站点"}};
@@ -8,6 +11,41 @@ module.exports = React.createClass({
 
     componentDidMount: function (){
         this.getData();
+        this.uploadImg();
+
+    },
+
+    uploadImg: function(){
+
+
+        // Change this to the location of your server-side upload handler:
+        var url = "/json/app/bg";
+        var $input = $("#fileupload").html5_upload({
+            url: url,
+            sendBoundary: window.FormData || $.browser.mozilla,
+            onStart: function(event, total) {
+                return true;
+                return confirm("You are trying to upload " + total + " files. Are you sure?");
+            },
+            onProgress: function(event, progress, name, number, total) {
+                console.log(progress, number);
+            },
+            setName: function(text) {
+                $("#progress_report_name").text(text);
+            },
+            setStatus: function(text) {
+                $("#progress_report_status").text(text);
+            },
+            setProgress: function(val) {
+                $("#progress_report_bar").css('width', Math.ceil(val*100)+"%");
+            },
+            onFinishOne: function(event, response, name, number, total) {
+                //alert(response);
+            },
+            onError: function(event, name, error) {
+                alert('error while uploading file ' + name);
+            }
+        });
 
     },
 
@@ -54,6 +92,7 @@ module.exports = React.createClass({
                             <h3><a href={"/app/"+site.id}>{site.title}</a></h3>
                             <div>
                                 <p className="action">
+                                    <input id="fileupload" type="file" name="file" />
                                     <a className="" href={"/designer/app/"+site.id}>设计</a>
                                     <span>  |  </span>
                                     <a className="del-site" href={"/app/json/"+site.id}>删除 </a>

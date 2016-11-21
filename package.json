@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "app": "git+https://github.com/zhangquan/app.git",
+    "blueimp-file-upload": "^9.14.1",
     "designer": "git+https://github.com/zhangquan/designer.git",
     "jquery.cookie": "^1.4.1",
     "react": "^15.3.2",
