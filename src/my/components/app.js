@@ -27,6 +27,7 @@ module.exports = React.createClass({
                 return true;
                 return confirm("You are trying to upload " + total + " files. Are you sure?");
             },
+            fieldName:"file",
             onProgress: function(event, progress, name, number, total) {
                 console.log(progress, number);
             },

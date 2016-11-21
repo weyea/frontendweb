@@ -707,6 +707,7 @@ webpackJsonp([11,17],{
 	                return true;
 	                return confirm("You are trying to upload " + total + " files. Are you sure?");
 	            },
+	            fieldName: "file",
 	            onProgress: function onProgress(event, progress, name, number, total) {
 	                console.log(progress, number);
 	            },
