@@ -19,7 +19,7 @@ module.exports = React.createClass({
 
 
         // Change this to the location of your server-side upload handler:
-        var url = "/json/app/bg";
+        var url = "/json/app/"+this.props.params.id+"/bg";
         var $input = $("#fileupload").html5_upload({
             url: url,
             sendBoundary: window.FormData || $.browser.mozilla,
