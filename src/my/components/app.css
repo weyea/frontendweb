@@ -5,16 +5,7 @@
 }
 
 
-.add-site {
 
-    border-bottom:1px solid #eaeaea;
-    padding: 0 20px 20px 0;
-
-}
-
-.add-site-button {
-
-}
 
 .blank-tips{
     text-align: center;
@@ -23,18 +14,19 @@
 
 
 #app-detail .templ{
-
+    display: flex;
+    flex-direction: row;
     margin-bottom: 30px;
 }
 
 #app-detail .templ .bd{
     width: 324px;
-    height: 126px;
+    height: 234px;
 }
 
 #app-detail .templ .bd img{
     width: 324px;
-    height: 126px;
+    height: 234px;
 }
 
 #app-detail .templ .des{
