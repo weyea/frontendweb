@@ -930,7 +930,7 @@ webpackJsonp([11,19],{
 
 
 	// module
-	exports.push([module.id, "\n#my-container {\n    display: block;\n    position: relative;\n}\n\n\n.add-site {\n\n    border-bottom:1px solid #eaeaea;\n    padding: 0 20px 20px 0;\n\n}\n\n.add-site-button {\n\n}\n\n.blank-tips{\n    text-align: center;\n    padding: 200px;\n}\n\n\n#app-detail .templ{\n    display: flex;\n    flex-direction: row;\n    margin-bottom: 30px;\n}\n\n#app-detail .templ .bd{\n    width: 324px;\n    height: 234px;\n}\n\n#app-detail .templ .bd img{\n    width: 324px;\n    height: 234px;\n}\n\n#app-detail .templ .des{\n    flex: 1;\n    margin-left: 30px;\n}", ""]);
+	exports.push([module.id, "\n#my-container {\n    display: block;\n    position: relative;\n}\n\n\n.add-site {\n\n    border-bottom:1px solid #eaeaea;\n    padding: 0 20px 20px 0;\n\n}\n\n.add-site-button {\n\n}\n\n.blank-tips{\n    text-align: center;\n    padding: 200px;\n}\n\n\n#app-detail .templ{\n\n    margin-bottom: 30px;\n}\n\n#app-detail .templ .bd{\n    width: 324px;\n    height: 126px;\n}\n\n#app-detail .templ .bd img{\n    width: 324px;\n    height: 126px;\n}\n\n#app-detail .templ .des{\n    flex: 1;\n    margin-left: 30px;\n}", ""]);
 
 	// exports
 

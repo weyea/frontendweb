@@ -23,19 +23,18 @@
 
 
 #app-detail .templ{
-    display: flex;
-    flex-direction: row;
+
     margin-bottom: 30px;
 }
 
 #app-detail .templ .bd{
     width: 324px;
-    height: 234px;
+    height: 126px;
 }
 
 #app-detail .templ .bd img{
     width: 324px;
-    height: 234px;
+    height: 126px;
 }
 
 #app-detail .templ .des{
