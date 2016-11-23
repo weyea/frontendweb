@@ -52,7 +52,7 @@ module.exports = React.createClass({
 
     getData: function(){
         var id = this.props.params.id;
-        $.get("/json/app/"+id, (site) => {
+        $.get("/json/template/"+id, (site) => {
             if(debug){
 
             }

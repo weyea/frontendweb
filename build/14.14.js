@@ -846,7 +846,7 @@ webpackJsonp([14,19],{
 	                    React.createElement(
 	                        "a",
 	                        { href: "/my/app/" + site.id },
-	                        React.createElement("img", { src: site.logo || window.rootPath + "img/01.jpg" })
+	                        React.createElement("img", { src: site.logo || window.rootPath + "img/template_bg.png" })
 	                    )
 	                ),
 	                React.createElement(
@@ -915,7 +915,7 @@ webpackJsonp([14,19],{
 
 
 	// module
-	exports.push([module.id, ".site-list {\n            overflow: hidden;\n            display: block;\n            margin: 50px 0 16px 0px;\n        }\n        .site-list .templ {\n            background:#ffffff;\n\n            width:198px;\n\n            margin-top: 20px;\n            margin-right: 30px;\n        }\n        .site-list .templ .bd {\n            background: url(\"/imgbrowser.png\") 0 0 no-repeat;\n            background:#ffffff;\n\n            width:198px;\n            height:198px;\n        }\n\n\n        .site-list .templ h3  {\n            family:MicrosoftYaHei;\n            font-size:12px;\n            color:#666666;\n            letter-spacing:0.99px;\n            text-align: center;\n        }\n\n.site-list .templ h3  a {\n    family:MicrosoftYaHei;\n    font-size:12px;\n    color:#666666;\n    letter-spacing:0.99px;\n    text-align: center;\n}\n        .site-list .templ img {\n            width: 100%;\n        }\n\n        .blank-tips .tips{\n            font-family:MicrosoftYaHei;\n            font-size:20px;\n            color:#cccccc;\n            letter-spacing:1.66px;\n            margin-bottom: 30px;\n        }\n\n.blank-tips .btn{\n    margin-right: 30px;\n}\n\n", ""]);
+	exports.push([module.id, "    .site-list {\n        overflow: hidden;\n        display: block;\n        margin: 50px 0 16px 0px;\n    }\n    .site-list .templ {\n        background:#ffffff;\n\n        width:198px;\n\n        margin-top: 20px;\n        margin-right: 30px;\n        display: flex;\n        flex-direction: row;\n    }\n    .site-list .templ .bd {\n        background: url(\"/imgbrowser.png\") 0 0 no-repeat;\n        background:#ffffff;\n\n        width:198px;\n        height:198px;\n    }\n\n\n    .site-list .templ h3  {\n        family:MicrosoftYaHei;\n        font-size:12px;\n        color:#666666;\n        letter-spacing:0.99px;\n        text-align: center;\n    }\n\n    .site-list .templ h3  a {\n        family:MicrosoftYaHei;\n        font-size:12px;\n        color:#666666;\n        letter-spacing:0.99px;\n        text-align: center;\n    }\n    .site-list .templ img {\n        width: 100%;\n    }\n\n    .blank-tips .tips{\n        font-family:MicrosoftYaHei;\n        font-size:20px;\n        color:#cccccc;\n        letter-spacing:1.66px;\n        margin-bottom: 30px;\n    }\n\n    .blank-tips .btn{\n        margin-right: 30px;\n    }\n\n", ""]);
 
 	// exports
 

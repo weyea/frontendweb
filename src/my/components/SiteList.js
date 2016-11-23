@@ -67,7 +67,7 @@ module.exports =  React.createClass({
       var item =(
         <div className="templ">
             <div className="bd">
-                <a href={"/my/app/"+site.id}><img src={site.logo||window.rootPath+"img/01.jpg"}/></a>
+                <a href={"/my/app/"+site.id}><img src={site.logo||window.rootPath+"img/template_bg.png"}/></a>
             </div>
             <div className="des">
                 <h3><a href={"/app/"+site.id}>{site.title}</a></h3>

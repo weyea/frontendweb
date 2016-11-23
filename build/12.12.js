@@ -1064,7 +1064,7 @@ webpackJsonp([12,19],{
 	        var _this = this;
 
 	        var id = this.props.params.id;
-	        $.get("/json/app/" + id, function (site) {
+	        $.get("/json/template/" + id, function (site) {
 	            if (debug) {} else {
 	                _this.setState({ site: site });
 	            }
