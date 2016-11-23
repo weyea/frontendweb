@@ -1102,7 +1102,7 @@ webpackJsonp([12,19],{
 	                        React.createElement(
 	                            'a',
 	                            { href: "/my/app/" + site.id },
-	                            React.createElement('img', { src: site.logo || window.rootPath + "img/01.jpg" })
+	                            React.createElement('img', { src: site.logo || window.rootPath + "img/template_bg.png" })
 	                        )
 	                    ),
 	                    React.createElement(
