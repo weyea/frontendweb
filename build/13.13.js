@@ -777,7 +777,7 @@ webpackJsonp([13,19],{
 	        if (debug) {
 	            self.setState({ siteList: [{ id: 123, title: "我的新站点" }] });
 	        } else {
-	            $.get("/json/my/template", function (data) {
+	            $.get("/json/template/my", function (data) {
 	                if (data.needLogin) {
 	                    location.href = "/user/login";
 	                    return;
