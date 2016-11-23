@@ -1,6 +1,8 @@
 
 import  "./TopTen.css"
 
+import Ajax from "../../utils/ajax"
+
 export default  React.createClass({
     getInitialState: function() {
         return {template:[{id:123}]};
@@ -8,8 +10,11 @@ export default  React.createClass({
 
     getData: function(){
 
-        $.get('/json/template/top', (result) => {
-            this.setState({template:result})
+        Ajax.get('/json/template/top', (result) => {
+            if(result){
+                this.setState({template:result})
+            }
+
         })
     },
 

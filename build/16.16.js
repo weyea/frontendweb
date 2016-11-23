@@ -1,4 +1,4 @@
-webpackJsonp([16,17],{
+webpackJsonp([16,19],{
 
 /***/ 68:
 /***/ function(module, exports) {
@@ -310,7 +310,11 @@ webpackJsonp([16,17],{
 	        React.createElement(
 	          "span",
 	          null,
-	          React.createElement("i", { className: "fa fa-user-md" }),
+	          React.createElement(
+	            "a",
+	            { className: "ava" },
+	            React.createElement("i", { className: "fa fa-user-md" })
+	          ),
 	          React.createElement(
 	            "a",
 	            { href: "#", className: "navbar-Link" },
@@ -442,562 +446,57 @@ webpackJsonp([16,17],{
 
 /***/ },
 
-/***/ 263:
-/***/ function(module, exports) {
-
-	"use strict";
-
-	var login = {
-		isLogin: function isLogin() {
-			if (window.debug) {
-				return true;
-			}
-			return $.cookie("islogin");
-		},
-		getUser: function getUser() {
-			var username = $.cookie("username");
-			return {
-				username: username
-			};
-		},
-		checkLoginRouter: function checkLoginRouter(nextState, replace, callback) {
-			if (!login.isLogin()) {
-				if (sessionStorage) {
-					console.log(nextState);
-					sessionStorage.setItem("redirect", nextState.location.pathname || "/");
-				}
-				replace("/user/login");
-			}
-			callback();
-		}
-	};
-
-	(function ($) {
-
-		var pluses = /\+/g;
-
-		function encode(s) {
-			return config.raw ? s : encodeURIComponent(s);
-		}
-
-		function decode(s) {
-			return config.raw ? s : decodeURIComponent(s);
-		}
-
-		function stringifyCookieValue(value) {
-			return encode(config.json ? JSON.stringify(value) : String(value));
-		}
-
-		function parseCookieValue(s) {
-			if (s.indexOf('"') === 0) {
-				// This is a quoted cookie as according to RFC2068, unescape...
-				s = s.slice(1, -1).replace(/\\"/g, '"').replace(/\\\\/g, '\\');
-			}
-
-			try {
-				// Replace server-side written pluses with spaces.
-				// If we can't decode the cookie, ignore it, it's unusable.
-				// If we can't parse the cookie, ignore it, it's unusable.
-				s = decodeURIComponent(s.replace(pluses, ' '));
-				return config.json ? JSON.parse(s) : s;
-			} catch (e) {}
-		}
-
-		function read(s, converter) {
-			var value = config.raw ? s : parseCookieValue(s);
-			return $.isFunction(converter) ? converter(value) : value;
-		}
-
-		var config = $.cookie = function (key, value, options) {
-
-			// Write
-
-			if (arguments.length > 1 && !$.isFunction(value)) {
-				options = $.extend({}, config.defaults, options);
-
-				if (typeof options.expires === 'number') {
-					var days = options.expires,
-					    t = options.expires = new Date();
-					t.setMilliseconds(t.getMilliseconds() + days * 864e+5);
-				}
-
-				return document.cookie = [encode(key), '=', stringifyCookieValue(value), options.expires ? '; expires=' + options.expires.toUTCString() : '', // use expires attribute, max-age is not supported by IE
-				options.path ? '; path=' + options.path : '', options.domain ? '; domain=' + options.domain : '', options.secure ? '; secure' : ''].join('');
-			}
-
-			// Read
-
-			var result = key ? undefined : {},
-
-			// To prevent the for loop in the first place assign an empty array
-			// in case there are no cookies at all. Also prevents odd result when
-			// calling $.cookie().
-			cookies = document.cookie ? document.cookie.split('; ') : [],
-			    i = 0,
-			    l = cookies.length;
-
-			for (; i < l; i++) {
-				var parts = cookies[i].split('='),
-				    name = decode(parts.shift()),
-				    cookie = parts.join('=');
-
-				if (key === name) {
-					// If second argument (value) is a function it's a converter...
-					result = read(cookie, value);
-					break;
-				}
-
-				// Prevent storing a cookie that we couldn't decode.
-				if (!key && (cookie = read(cookie)) !== undefined) {
-					result[name] = cookie;
-				}
-			}
-
-			return result;
-		};
-
-		config.defaults = {};
-
-		$.removeCookie = function (key, options) {
-			// Must not alter options, thus extending a fresh object...
-			$.cookie(key, '', $.extend({}, options, { expires: -1 }));
-			return !$.cookie(key);
-		};
-	})(jQuery);
-
-	module.exports = login;
-
-/***/ },
-
-/***/ 264:
-/***/ function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.default = React.createClass({
-	    displayName: "Footer",
-
-	    getInitialState: function getInitialState() {
-	        return { secondsElapsed: 0 };
-	    },
-	    tick: function tick() {
-	        this.setState({ secondsElapsed: this.state.secondsElapsed + 1 });
-	    },
-	    componentDidMount: function componentDidMount() {
-	        this.interval = setInterval(this.tick, 1000);
-	    },
-	    componentWillUnmount: function componentWillUnmount() {
-	        clearInterval(this.interval);
-	    },
-
-	    render: function render() {
-	        return React.createElement(
-	            "footer",
-	            null,
-	            React.createElement("div", { className: "btt" }),
-	            React.createElement(
-	                "section",
-	                { className: "new_footer" },
-	                React.createElement(
-	                    "div",
-	                    null,
-	                    React.createElement(
-	                        "nav",
-	                        { className: "footer_nav" },
-	                        React.createElement(
-	                            "h3",
-	                            null,
-	                            "PRODUCT"
-	                        ),
-	                        React.createElement(
-	                            "ul",
-	                            null,
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "a",
-	                                    { target: "_blank", href: "/template/create" },
-	                                    "创建新模板"
-	                                )
-	                            ),
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "a",
-	                                    { target: "_blank", href: "http://localhost:3000/btemplate/list" },
-	                                    "基本模板"
-	                                )
-	                            ),
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "a",
-	                                    { target: "_blank", href: "http://www.wix.com/about/features" },
-	                                    "Features"
-	                                )
-	                            ),
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "span",
-	                                    null,
-	                                    "My Sites"
-	                                )
-	                            ),
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "a",
-	                                    { target: "_blank", href: "http://www.wix.com/upgrade/website" },
-	                                    "Premium Plans"
-	                                )
-	                            ),
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "a",
-	                                    { target: "_blank", href: "http://www.wix.com/ecommerce/website" },
-	                                    "Online Store"
-	                                )
-	                            ),
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "a",
-	                                    { target: "_blank", href: "http://www.wix.com/app-market/main" },
-	                                    "App Market"
-	                                )
-	                            ),
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "a",
-	                                    { target: "_blank", href: "http://www.wix.com/domain/names" },
-	                                    "Domains"
-	                                )
-	                            ),
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "a",
-	                                    { target: "_blank", href: "http://www.wix.com/website/templates/flash/all/1" },
-	                                    "Flash Templates"
-	                                )
-	                            ),
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "a",
-	                                    { target: "_blank", href: "http://www.wix.com/facebook/templates/html/facebook/facebook-welcomer/1" },
-	                                    "Facebook Templates"
-	                                )
-	                            ),
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "a",
-	                                    { target: "_blank", href: "http://dev.wix.com" },
-	                                    "Developers"
-	                                )
-	                            )
-	                        )
-	                    ),
-	                    React.createElement(
-	                        "nav",
-	                        { className: "footer_nav" },
-	                        React.createElement(
-	                            "h3",
-	                            null,
-	                            "COMPANY"
-	                        ),
-	                        React.createElement(
-	                            "ul",
-	                            null,
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "a",
-	                                    { target: "_blank", href: "http://www.wix.com/about/us" },
-	                                    "About Wix"
-	                                )
-	                            ),
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "a",
-	                                    { target: "_blank", href: "http://investors.wix.com" },
-	                                    "Investor Relations"
-	                                )
-	                            ),
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "a",
-	                                    { target: "_blank", href: "http://www.wix.com/jobs/main" },
-	                                    "Jobs"
-	                                )
-	                            ),
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "a",
-	                                    { target: "_blank", href: "http://www.wix.com/about/design-assets" },
-	                                    "Design Assets"
-	                                )
-	                            ),
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "a",
-	                                    { target: "_blank", href: "http://www.wix.com/about/terms-of-use" },
-	                                    "Terms of use"
-	                                )
-	                            ),
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "a",
-	                                    { target: "_blank", href: "http://www.wix.com/about/privacy" },
-	                                    "Privacy"
-	                                )
-	                            ),
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "a",
-	                                    { target: "_blank", href: "http://www.wix.com/upgrade/abuse" },
-	                                    "Abuse"
-	                                )
-	                            ),
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "a",
-	                                    { target: "_blank", href: "http://www.wix.com/about/resellers" },
-	                                    "Resellers"
-	                                )
-	                            ),
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "a",
-	                                    { target: "_blank", href: "http://www.wix.com/about/affiliates" },
-	                                    "Affiliates"
-	                                )
-	                            ),
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "a",
-	                                    { target: "_blank", href: "http://www.wix.com/about/contact-us" },
-	                                    "Contact Us"
-	                                )
-	                            )
-	                        )
-	                    ),
-	                    React.createElement(
-	                        "nav",
-	                        { className: "footer_nav" },
-	                        React.createElement(
-	                            "h3",
-	                            null,
-	                            "COMMUNITY"
-	                        ),
-	                        React.createElement(
-	                            "ul",
-	                            null,
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "a",
-	                                    { target: "_blank", href: "http://www.wix.com/blog" },
-	                                    "Wix Blog"
-	                                )
-	                            ),
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "a",
-	                                    { target: "_blank", href: "http://www.wix.com/stories" },
-	                                    "Wix Stories"
-	                                )
-	                            ),
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "a",
-	                                    { target: "_blank", href: "http://arena.wix.com/" },
-	                                    "Wix Arena"
-	                                )
-	                            ),
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "a",
-	                                    { target: "_blank", href: "http://www.wix.com/lounge/main" },
-	                                    "Wix Lounge"
-	                                )
-	                            ),
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "a",
-	                                    { target: "_blank", href: "http://www.facebook.com/wix" },
-	                                    "Facebook"
-	                                )
-	                            ),
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "a",
-	                                    { target: "_blank", href: "https://twitter.com/Wix" },
-	                                    "Twitter"
-	                                )
-	                            ),
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "a",
-	                                    { target: "_blank", href: "https://plus.google.com/+Wix/posts" },
-	                                    "Google+"
-	                                )
-	                            ),
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "a",
-	                                    { target: "_blank", href: "http://pinterest.com/wixcom" },
-	                                    "Pinterest"
-	                                )
-	                            ),
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "a",
-	                                    { target: "_blank", href: "https://www.youtube.com/user/Wix" },
-	                                    "YouTube"
-	                                )
-	                            )
-	                        )
-	                    ),
-	                    React.createElement(
-	                        "nav",
-	                        { className: "footer_nav" },
-	                        React.createElement(
-	                            "h3",
-	                            null,
-	                            "SUPPORT"
-	                        ),
-	                        React.createElement(
-	                            "ul",
-	                            null,
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "a",
-	                                    { target: "_blank", href: "http://www.wix.com/support/html5/" },
-	                                    "Support Center"
-	                                )
-	                            ),
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "a",
-	                                    { target: "_blank", href: "https://www.youtube.com/user/Wix" },
-	                                    "Training Videos"
-	                                )
-	                            )
-	                        )
-	                    )
-	                )
-	            )
-	        );
-	    }
-	});
-
-/***/ },
-
-/***/ 324:
+/***/ 311:
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	var _Header = __webpack_require__(262);
 
 	var _Header2 = _interopRequireDefault(_Header);
 
-	var _Footer = __webpack_require__(264);
-
-	var _Footer2 = _interopRequireDefault(_Footer);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	__webpack_require__(325);
-	// var Header = require('./common/Header');
-	// var Footer = require('./common/Footer');
+	__webpack_require__(312);
+
 
 	module.exports = React.createClass({
-	  displayName: 'exports',
+	  displayName: "exports",
 
 	  getInitialState: function getInitialState() {
-	    return { secondsElapsed: 0 };
+	    return {};
 	  },
-	  tick: function tick() {},
+
 	  componentDidMount: function componentDidMount() {},
 	  componentWillUnmount: function componentWillUnmount() {},
 	  render: function render() {
+
 	    return React.createElement(
-	      'div',
-	      { className: 'app' },
-	      this.props.children
+	      "div",
+	      { id: "preview" },
+	      React.createElement(_Header2.default, { active: "" }),
+	      React.createElement(
+	        "div",
+	        { id: "nofound-container" },
+	        React.createElement(
+	          "span",
+	          null,
+	          "抱歉！页面无法访问……"
+	        )
+	      )
 	    );
 	  }
 	});
 
 /***/ },
 
-/***/ 325:
+/***/ 312:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(326);
+	var content = __webpack_require__(313);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(69)(content, {});
@@ -1006,8 +505,8 @@ webpackJsonp([16,17],{
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./base.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./base.css");
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./index.css", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./index.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -1018,7 +517,7 @@ webpackJsonp([16,17],{
 
 /***/ },
 
-/***/ 326:
+/***/ 313:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(68)();
@@ -1026,7 +525,7 @@ webpackJsonp([16,17],{
 
 
 	// module
-	exports.push([module.id, "body{\n  font-family:MicrosoftYaHei;\n\n}\n\n\n\n#cta-text {\n    color: #fff;\n}\n\n#button-row a {\n    color: #fff;\n    background-color: rgba(255, 255, 255, 0.05);\n    font-family: 'Helvetica65';\n    border-radius: 5px;\n    border: solid 2px #fff;\n    cursor: pointer;\n    outline: none;\n    font-weight: normal;\n    padding: 0px;\n    display: inline-block;\n    text-align: center;\n    -moz-user-select: none;\n    -webkit-user-select: none;\n    -ms-user-select: none;\n    user-select: none;\n    width: 146px;\n    height: 36px;\n    font-size: 20px;\n    border-radius: 4px;\n    margin: 24px 0px;\n    line-height: 36px;\n\n}\n\n#button-row a:hover {\n\n    background-color: rgba(255, 255, 255, 0.15);\n}\n\n#nav {\n  background:#333333;\nheight:60px;\n\nborder-radius: 0;\n}\n\n#nav a {\n    color:#cccccc;\n\n}\n\n#nav a:hover {\n    color: #0f0f0f;\n}\n\n\n\n#nav .nav>li>a{\n   padding: 10px 25px;\n}\n\n#nav .main{\n   margin-right: 90px;\n   margin-top: 7px;\n}\n#nav .navbar-text.login-status{\n  margin-top: 10px;\n  margin-bottom: 0px;\n}\n\n#nav .navbar-text.signup{\n  margin-top: 18px;\n  margin-bottom: 0px;\n}\n\n#nav .navbar-text a{\n  font-size:12px;\n  margin-right: 15px;\n}\n\n#nav a {\n    color:#cccccc;\n\n}\n\n#nav .navbar-brand img{\n\n    margin-top:-12px;\n    height:50px;\n}\n\n#nav.home .navbar-brand img{\n\n    margin-top:-25px;\n    height:50px;\n}\n\n#nav a:hover,#nav a.active {\n\ncolor:#00c2d6;\nbackground-color:transparent;\n}\n\n#nav li.active a {\n\ncolor:#00c2d6;\nbackground-color:transparent;\n}\n\n\n#nav .login .fa-user-md{\n\n  background:#ffffff;\nwidth:40px;\nheight:40px;\nborder-radius:100%;\nline-height: 40px;\n    text-align: center;\n    color: #000;\n    margin-right: 10px;\n}\n\n\n\n/*页尾*/\n/* NEW FOOTER */\n\nli {\n    list-style-type: none;\n    margin: 0px;\n    padding: 0px;\n}\n\nul {\n    margin: 0px;\n    padding: 0px;\n    list-style-type: none;\n}\n\nfooter {\n    background-color: #666666;\n    position: relative;\n}\n\nfooter .btt {\n    position: absolute;\n    background-color: #f5f5f5;\n    background-repeat: no-repeat;\n    background-position: center top;\n    border-radius: 0px 0px 4px 4px;\n    cursor: pointer;\n    -webkit-user-select: none;\n    -moz-user-select: none;\n    -ms-user-select: none;\n    user-select: none;\n}\n\n.new_footer {\n    background-color: #666666;\n    border-spacing: 0px px;\n    margin: auto;\n    display: table;\n}\n\n.new_footer div[row] {\n    display: table-row;\n}\n\n.new_footer .footer_nav, .new_footer .left_summery {\n    display: table-cell;\n    text-align: left;\n    vertical-align: top;\n}\n\n.new_footer .left_summery p {\n    font-family: 'Helvetica45';\n    margin: 0px;\n    color: White;\n}\n\n.new_footer .left_summery .footer_logo {\n    background-repeat: no-repeat;\n}\n\n.new_footer .left_summery nav a {\n    font-size: 0px;\n    display: block;\n    border: none;\n    opacity: 0.5;\n    transition: opacity 0.2s ease;\n}\n\n.new_footer .left_summery nav a:hover {\n    opacity: 1;\n}\n\n.new_footer .left_summery li {\n    float: left;\n}\n\n.new_footer .left_summery li:last-child {\n    margin-right: 0px;\n}\n\n.new_footer h3 {\n    color: White;\n    font-family: 'Helvetica75';\n    font-weight: normal;\n}\n\n.new_footer .footer_nav a, .new_footer .footer_nav span {\n    font-family: 'Helvetica55';\n    text-decoration: none;\n    color: #BCBCBC;\n    white-space: pre;\n    cursor: pointer;\n}\n\n.new_footer .footer_nav a:hover, .new_footer .footer_nav span:hover {\n    color: #fff;\n}\n\nfooter section:last-child {\n    text-align: center;\n}\n\nfooter section:last-child p {\n    display: block;\n    color: #bcbcbc;\n    font-family: 'Helvetica45';\n    margin: 0px auto 0px auto;\n}\n\n/* FOOTER */\nfooter .btt {\n    width: 50px;\n    height: 21px;\n    top: 0px;\n    right: 40px;\n    background-image: url(http://static.parastorage.com/services/html-landing/hp/brazil/images/1600/footer-new/btt.png);\n}\n\n.new_footer {\n}\n\n.new_footer .footer_nav, .new_footer .left_summery {\n    padding-right: 44px;\n}\n\n.new_footer .left_summery {\n    padding-top: 58px;\n}\n\n.new_footer .left_summery .footer_logo {\n    width: 66px;\n    height: 16px;\n    background-image: url(http://static.parastorage.com/services/html-landing/hp/brazil/images/1280/footer-new/logo.png);\n}\n\n.new_footer .footer_nav:last-child {\n    padding-right: 0px;\n    width: 10px;\n}\n\n.new_footer .left_summery p {\n    font-size: 10px;\n    line-height: 14px;\n    margin-top: 7px;\n}\n\n.new_footer .left_summery nav {\n    margin-top: 18px;\n}\n\n.new_footer .left_summery li {\n    margin-right: 14px;\n}\n\n.new_footer .left_summery nav a img {\n    height: 17px;\n}\n\n.new_footer .left_summery ul li:nth-child(1) a img {\n    width: 9px;\n}\n\n.new_footer .left_summery ul li:nth-child(2) a img {\n    width: 21px;\n}\n\n.new_footer .left_summery ul li:nth-child(3) a img {\n    width: 17px;\n}\n\n.new_footer .left_summery ul li:nth-child(4) a img {\n    width: 15px;\n}\n\n.new_footer .left_summery ul li:nth-child(5) a img {\n    width: 13px;\n}\n\n.new_footer .left_summery ul li:nth-child(6) a img {\n    width: 17px;\n}\n\n.new_footer .left_summery ul li:nth-child(7) a img {\n    width: 18px;\n}\n\n.new_footer h3 {\n    font-size: 11px;\n    padding: 63px 0px 12px 0px;\n}\n\n.new_footer .footer_nav li {\n    margin-bottom: 5px;\n}\n\n.new_footer .footer_nav a, .new_footer .footer_nav span {\n    font-size: 11px;\n    line-height: 13px;\n}\n\nfooter section:last-child {\n    padding-bottom: 48px;\n    padding-top: 20px;\n}\n\nfooter section:last-child p {\n    font-size: 11px;\n}\n\n.skin-box-bd {\n    background: #7F5E5E;\n}\n\n.all-cats {\n    background: #7F5E5E;\n}\n\n.all-cats .link {\n    background: #7F5E5E;\n    border:none ;\n\n}\n\n.all-cats .link .title{\n    color: #FFF;\n}\n\n.skin-box-bd .menu-list .menu{\n    border:none ;\n}\n.menu-list {\n    background: #7F5E5E;\n}\n\n\n.menu-list .link {\n    background: #7F5E5E;\n    color: #FFF;\n    border:none ;\n}\n.menu-list .link .title{\n\n    color: #FFF;\n}\n\n\n.menu-list .menu-hover .link {\n    background: #7F5E5E;\n\n}\n.menu-list .menu-hover .link .title{\n    color: #FFF;\n}\n\n\n.btn-green{\n    background:#00c4d8;\n    border-radius:2px;\n    color:#fff;\n}\n\n.btn-green-line{\n    border: 1px solid #00c4d8;\n    border-radius: 2px;\n    color: #00d9ef;\n    font-size: 12px;\n}", ""]);
+	exports.push([module.id, "#nofound-container{\n  text-align: center;\n  padding: 100px;\n  font-size: 48px;\n  font-weight: bold;\n}\n", ""]);
 
 	// exports
 

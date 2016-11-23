@@ -9,7 +9,8 @@ module.exports  = {
         callback(null, [
           require('./routes/app'),
           // require('./routes/preview'),
-          // require('./routes/market')
+          require('./routes/template'),
+            require('./routes/templateDetail')
         ])
       })
     },

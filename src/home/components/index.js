@@ -4,6 +4,7 @@ import Header from '../../common/Header'
 import Footer from '../../common/Footer'
 import TopTen from './TopTen'
 import StunningSite from './StunningSite'
+import Banner from './Banner'
 module.exports =  React.createClass({
   getInitialState: function() {
     return {};
@@ -13,16 +14,7 @@ module.exports =  React.createClass({
     return (
       <div>
         <Header type="home" active="home"></Header>
-        <div id="banner">
-          <div  className="container">
-              <div id="cta-text" className="row">
-                      <h1 className="title1">零代码/一站式服务</h1>
-                      <h1 className="title2">无障碍自由建站/乐在其中！</h1>
-                      <a  className="create" href="/template/market">免费创建</a>
-              </div>
-          </div>
-
-        </div>
+         <Banner></Banner>
         <div className="features">
           <div className="container">
         <div className="row">

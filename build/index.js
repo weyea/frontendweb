@@ -28,7 +28,7 @@
 /******/ 	// Array means "loading", array contains callbacks
 /******/ 	var installedChunks = {
 /******/ 		1:0,
-/******/ 		17:0
+/******/ 		19:0
 /******/ 	};
 
 /******/ 	// The require function
@@ -128,19 +128,19 @@
 	  path: '/',
 	  getChildRoutes: function getChildRoutes(partialNextState, callback) {
 	    __webpack_require__.e/* nsure */(2, function (require) {
-	      callback(null, [__webpack_require__(187), __webpack_require__(259), __webpack_require__(275), __webpack_require__(286), __webpack_require__(299), __webpack_require__(306)]);
+	      callback(null, [__webpack_require__(187), __webpack_require__(259), __webpack_require__(275), __webpack_require__(286), __webpack_require__(303), __webpack_require__(310)]);
 	    });
 	  },
 	  getIndexRoute: function getIndexRoute(partialNextState, callback) {
-	    __webpack_require__.e/* nsure */(15, function (require) {
+	    __webpack_require__.e/* nsure */(17, function (require) {
 	      callback(null, {
-	        component: __webpack_require__(310)
+	        component: __webpack_require__(314)
 	      });
 	    });
 	  },
 	  getComponents: function getComponents(nextState, callback) {
-	    __webpack_require__.e/* nsure */(16, function (require) {
-	      callback(null, __webpack_require__(324));
+	    __webpack_require__.e/* nsure */(18, function (require) {
+	      callback(null, __webpack_require__(331));
 	    });
 	  }
 	};

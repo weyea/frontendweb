@@ -10,8 +10,10 @@ var login = {
   },
   getUser:function(){
     var username =  $.cookie("username");
+	  var email =  $.cookie("email");
     return {
-      username:username
+      username:username,
+		email:email
     }
   },
   checkLoginRouter:function(nextState, replace, callback){

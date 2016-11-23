@@ -23,59 +23,43 @@ export default  React.createClass({
         <div >
             
             <nav className="footer_nav">
-                <h3>PRODUCT</h3>
+                <h3>产品</h3>
                 <ul>
 
                     <li><a target="_blank" href="/template/create">创建新模板</a></li>
-                    <li><a target="_blank" href="http://localhost:3000/btemplate/list">基本模板</a></li>
-                    <li><a target="_blank" href="http://www.wix.com/about/features">Features</a></li>
-                    <li><span >My Sites</span></li>
-                    <li><a target="_blank" href="http://www.wix.com/upgrade/website">Premium Plans</a></li>
-                    <li><a target="_blank" href="http://www.wix.com/ecommerce/website">Online Store</a></li>
-                    <li><a target="_blank" href="http://www.wix.com/app-market/main">App Market</a></li>
-                    <li><a target="_blank" href="http://www.wix.com/domain/names">Domains</a></li>
-                    <li><a target="_blank" href="http://www.wix.com/website/templates/flash/all/1">Flash Templates</a></li>
-                    <li><a target="_blank" href="http://www.wix.com/facebook/templates/html/facebook/facebook-welcomer/1">Facebook Templates</a></li>
-                    <li><a target="_blank" href="http://dev.wix.com">Developers</a></li>
-                </ul>
-            </nav>
-            <nav className="footer_nav">
-                <h3>COMPANY</h3>
-                <ul>
-                    <li><a target="_blank" href="http://www.wix.com/about/us">About Wix</a></li>
-                    <li><a target="_blank" href="http://investors.wix.com">Investor Relations</a></li>
-                    <li><a target="_blank" href="http://www.wix.com/jobs/main">Jobs</a></li>
-                    <li><a target="_blank" href="http://www.wix.com/about/design-assets">Design Assets</a></li>
-                    <li><a target="_blank" href="http://www.wix.com/about/terms-of-use">Terms of use</a></li>
-                    <li><a target="_blank" href="http://www.wix.com/about/privacy">Privacy</a></li>
-                    <li><a target="_blank" href="http://www.wix.com/upgrade/abuse">Abuse</a></li>
-                    <li><a target="_blank" href="http://www.wix.com/about/resellers">Resellers</a></li>
-                    <li><a target="_blank" href="http://www.wix.com/about/affiliates">Affiliates</a></li>
-                    <li><a target="_blank" href="http://www.wix.com/about/contact-us">Contact Us</a></li>
-                </ul>
-            </nav>
-            <nav className="footer_nav">
-                <h3>COMMUNITY</h3>
-                <ul>
-                    <li><a target="_blank" href="http://www.wix.com/blog">Wix Blog</a></li>
-                    <li><a target="_blank" href="http://www.wix.com/stories">Wix Stories</a></li>
-                    <li><a target="_blank" href="http://arena.wix.com/">Wix Arena</a></li>
-                    <li><a target="_blank" href="http://www.wix.com/lounge/main">Wix Lounge</a></li>
+                    <li><a target="_blank" href="/template/market">市场</a></li>
+                    <li><a target="_blank" href="/user/login">登录</a></li>
+                    <li><a target="_blank" href="/user/signup">注册</a></li>
+                    <li><a target="_blank" href="/my">我的站点</a></li>
 
-                    <li><a target="_blank" href="http://www.facebook.com/wix">Facebook</a></li>
-                    <li><a target="_blank" href="https://twitter.com/Wix">Twitter</a></li>
-                    <li><a target="_blank" href="https://plus.google.com/+Wix/posts">Google+</a></li>
-                    <li><a target="_blank" href="http://pinterest.com/wixcom">Pinterest</a></li>
-                    <li><a target="_blank" href="https://www.youtube.com/user/Wix">YouTube</a></li>
                 </ul>
             </nav>
             <nav className="footer_nav">
-                <h3>SUPPORT</h3>
+                <h3>公司</h3>
                 <ul>
-                    <li><a target="_blank" href="http://www.wix.com/support/html5/">Support Center</a></li>
-                    <li><a target="_blank" href="https://www.youtube.com/user/Wix">Training Videos</a></li>
+                    <li><a target="_blank" href="/about/us">关于我们</a></li>
+                    <li><a target="_blank" href="/jobs/main">招聘</a></li>
+                    <li><a target="_blank" href="/about/privacy">协议</a></li>
+                    <li><a target="_blank" href="/about/contact-us">联系我们</a></li>
                 </ul>
             </nav>
+
+            <nav className="footer_nav">
+                <h3>帮助</h3>
+                <ul>
+                    <li><a target="_blank" href="/support/html5/">文档</a></li>
+                    <li><a target="_blank" href="/user/Wix">视频</a></li>
+                </ul>
+            </nav>
+            <nav className="footer_nav">
+                <h3>社区</h3>
+                <ul>
+                    <li><a target="_blank" href="/blog">微博</a></li>
+                    <li><a target="_blank" href="/stories">微信</a></li>
+
+                </ul>
+            </nav>
+
         </div>
     </section>
 

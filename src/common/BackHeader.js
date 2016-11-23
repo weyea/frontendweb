@@ -28,14 +28,20 @@ export default  React.createClass({
 
     renderItem:function(){
         var result = [];
+        var user = login.getUser();
         var items = {
             "my":<Link className="home" to="/my">我的站点</Link>,
             "favarite":<Link className="market" to="/my/favarite">我的收藏</Link>,
+            "template":<Link className="my" to="/my/template">我的模板</Link>,
             "account":<Link className="my" to="/my/account">账号中心</Link>,
+
         }
         var active = this.props.active ||"home"
         var i = 0;
         for(var p in items){
+            // if(p == "template"&&(!user||user.email !== "114165396@qq.com")&&(!debug)){
+            //     continue;
+            // }
             if(p == active){
                 result.push(<li key={i++} className="active">{items[p]}</li>)
             }

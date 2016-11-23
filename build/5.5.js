@@ -1,4 +1,4 @@
-webpackJsonp([5,17],{
+webpackJsonp([5,19],{
 
 /***/ 68:
 /***/ function(module, exports) {
@@ -421,7 +421,11 @@ webpackJsonp([5,17],{
 	        React.createElement(
 	          "span",
 	          null,
-	          React.createElement("i", { className: "fa fa-user-md" }),
+	          React.createElement(
+	            "a",
+	            { className: "ava" },
+	            React.createElement("i", { className: "fa fa-user-md" })
+	          ),
 	          React.createElement(
 	            "a",
 	            { href: "#", className: "navbar-Link" },
@@ -594,7 +598,7 @@ webpackJsonp([5,17],{
 	                        React.createElement(
 	                            "h3",
 	                            null,
-	                            "PRODUCT"
+	                            "产品"
 	                        ),
 	                        React.createElement(
 	                            "ul",
@@ -613,8 +617,8 @@ webpackJsonp([5,17],{
 	                                null,
 	                                React.createElement(
 	                                    "a",
-	                                    { target: "_blank", href: "http://localhost:3000/btemplate/list" },
-	                                    "基本模板"
+	                                    { target: "_blank", href: "/template/market" },
+	                                    "市场"
 	                                )
 	                            ),
 	                            React.createElement(
@@ -622,17 +626,8 @@ webpackJsonp([5,17],{
 	                                null,
 	                                React.createElement(
 	                                    "a",
-	                                    { target: "_blank", href: "http://www.wix.com/about/features" },
-	                                    "Features"
-	                                )
-	                            ),
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "span",
-	                                    null,
-	                                    "My Sites"
+	                                    { target: "_blank", href: "/user/login" },
+	                                    "登录"
 	                                )
 	                            ),
 	                            React.createElement(
@@ -640,8 +635,8 @@ webpackJsonp([5,17],{
 	                                null,
 	                                React.createElement(
 	                                    "a",
-	                                    { target: "_blank", href: "http://www.wix.com/upgrade/website" },
-	                                    "Premium Plans"
+	                                    { target: "_blank", href: "/user/signup" },
+	                                    "注册"
 	                                )
 	                            ),
 	                            React.createElement(
@@ -649,53 +644,8 @@ webpackJsonp([5,17],{
 	                                null,
 	                                React.createElement(
 	                                    "a",
-	                                    { target: "_blank", href: "http://www.wix.com/ecommerce/website" },
-	                                    "Online Store"
-	                                )
-	                            ),
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "a",
-	                                    { target: "_blank", href: "http://www.wix.com/app-market/main" },
-	                                    "App Market"
-	                                )
-	                            ),
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "a",
-	                                    { target: "_blank", href: "http://www.wix.com/domain/names" },
-	                                    "Domains"
-	                                )
-	                            ),
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "a",
-	                                    { target: "_blank", href: "http://www.wix.com/website/templates/flash/all/1" },
-	                                    "Flash Templates"
-	                                )
-	                            ),
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "a",
-	                                    { target: "_blank", href: "http://www.wix.com/facebook/templates/html/facebook/facebook-welcomer/1" },
-	                                    "Facebook Templates"
-	                                )
-	                            ),
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "a",
-	                                    { target: "_blank", href: "http://dev.wix.com" },
-	                                    "Developers"
+	                                    { target: "_blank", href: "/my" },
+	                                    "我的站点"
 	                                )
 	                            )
 	                        )
@@ -706,7 +656,7 @@ webpackJsonp([5,17],{
 	                        React.createElement(
 	                            "h3",
 	                            null,
-	                            "COMPANY"
+	                            "公司"
 	                        ),
 	                        React.createElement(
 	                            "ul",
@@ -716,8 +666,8 @@ webpackJsonp([5,17],{
 	                                null,
 	                                React.createElement(
 	                                    "a",
-	                                    { target: "_blank", href: "http://www.wix.com/about/us" },
-	                                    "About Wix"
+	                                    { target: "_blank", href: "/about/us" },
+	                                    "关于我们"
 	                                )
 	                            ),
 	                            React.createElement(
@@ -725,8 +675,8 @@ webpackJsonp([5,17],{
 	                                null,
 	                                React.createElement(
 	                                    "a",
-	                                    { target: "_blank", href: "http://investors.wix.com" },
-	                                    "Investor Relations"
+	                                    { target: "_blank", href: "/jobs/main" },
+	                                    "招聘"
 	                                )
 	                            ),
 	                            React.createElement(
@@ -734,8 +684,8 @@ webpackJsonp([5,17],{
 	                                null,
 	                                React.createElement(
 	                                    "a",
-	                                    { target: "_blank", href: "http://www.wix.com/jobs/main" },
-	                                    "Jobs"
+	                                    { target: "_blank", href: "/about/privacy" },
+	                                    "协议"
 	                                )
 	                            ),
 	                            React.createElement(
@@ -743,62 +693,8 @@ webpackJsonp([5,17],{
 	                                null,
 	                                React.createElement(
 	                                    "a",
-	                                    { target: "_blank", href: "http://www.wix.com/about/design-assets" },
-	                                    "Design Assets"
-	                                )
-	                            ),
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "a",
-	                                    { target: "_blank", href: "http://www.wix.com/about/terms-of-use" },
-	                                    "Terms of use"
-	                                )
-	                            ),
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "a",
-	                                    { target: "_blank", href: "http://www.wix.com/about/privacy" },
-	                                    "Privacy"
-	                                )
-	                            ),
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "a",
-	                                    { target: "_blank", href: "http://www.wix.com/upgrade/abuse" },
-	                                    "Abuse"
-	                                )
-	                            ),
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "a",
-	                                    { target: "_blank", href: "http://www.wix.com/about/resellers" },
-	                                    "Resellers"
-	                                )
-	                            ),
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "a",
-	                                    { target: "_blank", href: "http://www.wix.com/about/affiliates" },
-	                                    "Affiliates"
-	                                )
-	                            ),
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "a",
-	                                    { target: "_blank", href: "http://www.wix.com/about/contact-us" },
-	                                    "Contact Us"
+	                                    { target: "_blank", href: "/about/contact-us" },
+	                                    "联系我们"
 	                                )
 	                            )
 	                        )
@@ -809,7 +705,7 @@ webpackJsonp([5,17],{
 	                        React.createElement(
 	                            "h3",
 	                            null,
-	                            "COMMUNITY"
+	                            "帮助"
 	                        ),
 	                        React.createElement(
 	                            "ul",
@@ -819,8 +715,8 @@ webpackJsonp([5,17],{
 	                                null,
 	                                React.createElement(
 	                                    "a",
-	                                    { target: "_blank", href: "http://www.wix.com/blog" },
-	                                    "Wix Blog"
+	                                    { target: "_blank", href: "/support/html5/" },
+	                                    "文档"
 	                                )
 	                            ),
 	                            React.createElement(
@@ -828,71 +724,8 @@ webpackJsonp([5,17],{
 	                                null,
 	                                React.createElement(
 	                                    "a",
-	                                    { target: "_blank", href: "http://www.wix.com/stories" },
-	                                    "Wix Stories"
-	                                )
-	                            ),
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "a",
-	                                    { target: "_blank", href: "http://arena.wix.com/" },
-	                                    "Wix Arena"
-	                                )
-	                            ),
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "a",
-	                                    { target: "_blank", href: "http://www.wix.com/lounge/main" },
-	                                    "Wix Lounge"
-	                                )
-	                            ),
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "a",
-	                                    { target: "_blank", href: "http://www.facebook.com/wix" },
-	                                    "Facebook"
-	                                )
-	                            ),
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "a",
-	                                    { target: "_blank", href: "https://twitter.com/Wix" },
-	                                    "Twitter"
-	                                )
-	                            ),
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "a",
-	                                    { target: "_blank", href: "https://plus.google.com/+Wix/posts" },
-	                                    "Google+"
-	                                )
-	                            ),
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "a",
-	                                    { target: "_blank", href: "http://pinterest.com/wixcom" },
-	                                    "Pinterest"
-	                                )
-	                            ),
-	                            React.createElement(
-	                                "li",
-	                                null,
-	                                React.createElement(
-	                                    "a",
-	                                    { target: "_blank", href: "https://www.youtube.com/user/Wix" },
-	                                    "YouTube"
+	                                    { target: "_blank", href: "/user/Wix" },
+	                                    "视频"
 	                                )
 	                            )
 	                        )
@@ -903,7 +736,7 @@ webpackJsonp([5,17],{
 	                        React.createElement(
 	                            "h3",
 	                            null,
-	                            "SUPPORT"
+	                            "社区"
 	                        ),
 	                        React.createElement(
 	                            "ul",
@@ -913,8 +746,8 @@ webpackJsonp([5,17],{
 	                                null,
 	                                React.createElement(
 	                                    "a",
-	                                    { target: "_blank", href: "http://www.wix.com/support/html5/" },
-	                                    "Support Center"
+	                                    { target: "_blank", href: "/blog" },
+	                                    "微博"
 	                                )
 	                            ),
 	                            React.createElement(
@@ -922,8 +755,8 @@ webpackJsonp([5,17],{
 	                                null,
 	                                React.createElement(
 	                                    "a",
-	                                    { target: "_blank", href: "https://www.youtube.com/user/Wix" },
-	                                    "Training Videos"
+	                                    { target: "_blank", href: "/stories" },
+	                                    "微信"
 	                                )
 	                            )
 	                        )

@@ -1,4 +1,4 @@
-webpackJsonp([14,17],{
+webpackJsonp([14,19],{
 
 /***/ 68:
 /***/ function(module, exports) {
@@ -282,217 +282,391 @@ webpackJsonp([14,17],{
 
 /***/ },
 
-/***/ 262:
+/***/ 264:
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = React.createClass({
+	    displayName: "Footer",
+
+	    getInitialState: function getInitialState() {
+	        return { secondsElapsed: 0 };
+	    },
+	    tick: function tick() {
+	        this.setState({ secondsElapsed: this.state.secondsElapsed + 1 });
+	    },
+	    componentDidMount: function componentDidMount() {
+	        this.interval = setInterval(this.tick, 1000);
+	    },
+	    componentWillUnmount: function componentWillUnmount() {
+	        clearInterval(this.interval);
+	    },
+
+	    render: function render() {
+	        return React.createElement(
+	            "footer",
+	            null,
+	            React.createElement("div", { className: "btt" }),
+	            React.createElement(
+	                "section",
+	                { className: "new_footer" },
+	                React.createElement(
+	                    "div",
+	                    null,
+	                    React.createElement(
+	                        "nav",
+	                        { className: "footer_nav" },
+	                        React.createElement(
+	                            "h3",
+	                            null,
+	                            "产品"
+	                        ),
+	                        React.createElement(
+	                            "ul",
+	                            null,
+	                            React.createElement(
+	                                "li",
+	                                null,
+	                                React.createElement(
+	                                    "a",
+	                                    { target: "_blank", href: "/template/create" },
+	                                    "创建新模板"
+	                                )
+	                            ),
+	                            React.createElement(
+	                                "li",
+	                                null,
+	                                React.createElement(
+	                                    "a",
+	                                    { target: "_blank", href: "/template/market" },
+	                                    "市场"
+	                                )
+	                            ),
+	                            React.createElement(
+	                                "li",
+	                                null,
+	                                React.createElement(
+	                                    "a",
+	                                    { target: "_blank", href: "/user/login" },
+	                                    "登录"
+	                                )
+	                            ),
+	                            React.createElement(
+	                                "li",
+	                                null,
+	                                React.createElement(
+	                                    "a",
+	                                    { target: "_blank", href: "/user/signup" },
+	                                    "注册"
+	                                )
+	                            ),
+	                            React.createElement(
+	                                "li",
+	                                null,
+	                                React.createElement(
+	                                    "a",
+	                                    { target: "_blank", href: "/my" },
+	                                    "我的站点"
+	                                )
+	                            )
+	                        )
+	                    ),
+	                    React.createElement(
+	                        "nav",
+	                        { className: "footer_nav" },
+	                        React.createElement(
+	                            "h3",
+	                            null,
+	                            "公司"
+	                        ),
+	                        React.createElement(
+	                            "ul",
+	                            null,
+	                            React.createElement(
+	                                "li",
+	                                null,
+	                                React.createElement(
+	                                    "a",
+	                                    { target: "_blank", href: "/about/us" },
+	                                    "关于我们"
+	                                )
+	                            ),
+	                            React.createElement(
+	                                "li",
+	                                null,
+	                                React.createElement(
+	                                    "a",
+	                                    { target: "_blank", href: "/jobs/main" },
+	                                    "招聘"
+	                                )
+	                            ),
+	                            React.createElement(
+	                                "li",
+	                                null,
+	                                React.createElement(
+	                                    "a",
+	                                    { target: "_blank", href: "/about/privacy" },
+	                                    "协议"
+	                                )
+	                            ),
+	                            React.createElement(
+	                                "li",
+	                                null,
+	                                React.createElement(
+	                                    "a",
+	                                    { target: "_blank", href: "/about/contact-us" },
+	                                    "联系我们"
+	                                )
+	                            )
+	                        )
+	                    ),
+	                    React.createElement(
+	                        "nav",
+	                        { className: "footer_nav" },
+	                        React.createElement(
+	                            "h3",
+	                            null,
+	                            "帮助"
+	                        ),
+	                        React.createElement(
+	                            "ul",
+	                            null,
+	                            React.createElement(
+	                                "li",
+	                                null,
+	                                React.createElement(
+	                                    "a",
+	                                    { target: "_blank", href: "/support/html5/" },
+	                                    "文档"
+	                                )
+	                            ),
+	                            React.createElement(
+	                                "li",
+	                                null,
+	                                React.createElement(
+	                                    "a",
+	                                    { target: "_blank", href: "/user/Wix" },
+	                                    "视频"
+	                                )
+	                            )
+	                        )
+	                    ),
+	                    React.createElement(
+	                        "nav",
+	                        { className: "footer_nav" },
+	                        React.createElement(
+	                            "h3",
+	                            null,
+	                            "社区"
+	                        ),
+	                        React.createElement(
+	                            "ul",
+	                            null,
+	                            React.createElement(
+	                                "li",
+	                                null,
+	                                React.createElement(
+	                                    "a",
+	                                    { target: "_blank", href: "/blog" },
+	                                    "微博"
+	                                )
+	                            ),
+	                            React.createElement(
+	                                "li",
+	                                null,
+	                                React.createElement(
+	                                    "a",
+	                                    { target: "_blank", href: "/stories" },
+	                                    "微信"
+	                                )
+	                            )
+	                        )
+	                    )
+	                )
+	            )
+	        );
+	    }
+	});
+
+/***/ },
+
+/***/ 289:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+	    value: true
 	});
 
 	var _reactRouter = __webpack_require__(100);
 
 	var login = __webpack_require__(263);
+	__webpack_require__(290);
+
 	exports.default = React.createClass({
-	  displayName: "Header",
+	    displayName: "BackHeader",
 
+	    componentDidMount: function componentDidMount() {},
 
-	  componentDidMount: function componentDidMount() {},
+	    renderLoginInfo: function renderLoginInfo() {
 
-	  renderLoginInfo: function renderLoginInfo() {
+	        if (login.isLogin()) {
+	            var user = login.getUser();
+	            return React.createElement(
+	                "p",
+	                { className: "navbar-text navbar-right login-status" },
+	                React.createElement(
+	                    "span",
+	                    null,
+	                    React.createElement("i", { className: "fa fa-user-md" }),
+	                    React.createElement(
+	                        "a",
+	                        { href: "#", className: "navbar-Link" },
+	                        user.username
+	                    ),
+	                    React.createElement(
+	                        "a",
+	                        { href: "/user/logout", className: "" },
+	                        React.createElement("span", { className: "oi oi-account-logout" })
+	                    )
+	                )
+	            );
+	        } else {
+	            return React.createElement(
+	                "p",
+	                { className: "navbar-text navbar-right signup" },
+	                React.createElement(
+	                    "span",
+	                    { className: "" },
+	                    React.createElement(
+	                        "a",
+	                        { href: "/user/login", className: "navbar-Link" },
+	                        "登录"
+	                    ),
+	                    " ",
+	                    React.createElement(
+	                        "a",
+	                        { href: "/user/signup", className: "navbar-Link" },
+	                        "注册"
+	                    )
+	                )
+	            );
+	        }
+	    },
 
-	    if (login.isLogin()) {
-	      var user = login.getUser();
-	      return React.createElement(
-	        "p",
-	        { className: "navbar-text navbar-right login-status" },
-	        React.createElement(
-	          "span",
-	          null,
-	          React.createElement("i", { className: "fa fa-user-md" }),
-	          React.createElement(
-	            "a",
-	            { href: "#", className: "navbar-Link" },
-	            user.username
-	          ),
-	          React.createElement(
-	            "a",
-	            { href: "/user/logout", className: "" },
-	            React.createElement("span", { className: "oi oi-account-logout" })
-	          )
-	        )
-	      );
-	    } else {
-	      return React.createElement(
-	        "p",
-	        { className: "navbar-text navbar-right signup" },
-	        React.createElement(
-	          "span",
-	          { className: "" },
-	          React.createElement(
-	            "a",
-	            { href: "/user/login", className: "navbar-Link" },
-	            "登录"
-	          ),
-	          " ",
-	          React.createElement(
-	            "a",
-	            { href: "/user/signup", className: "navbar-Link" },
-	            "注册"
-	          )
-	        )
-	      );
-	    }
-	  },
-
-	  renderItem: function renderItem() {
-	    var result = [];
-	    var items = {
-	      "home": React.createElement(
-	        _reactRouter.Link,
-	        { className: "home", to: "/" },
-	        "首页"
-	      ),
-	      "market": React.createElement(
-	        _reactRouter.Link,
-	        { className: "market", to: "/template/market" },
-	        "模板市场"
-	      ),
-	      "my": React.createElement(
-	        _reactRouter.Link,
-	        { className: "my", to: "/my" },
-	        "我的站点"
-	      ),
-	      "tru": React.createElement(
-	        _reactRouter.Link,
-	        { className: "tru", to: "/template/market" },
-	        "新手指南"
-	      )
-	    };
-	    var active = this.props.active || "home";
-	    var i = 0;
-	    for (var p in items) {
-	      if (p == active) {
-	        result.push(React.createElement(
-	          "li",
-	          { key: i++, className: "active" },
-	          items[p]
-	        ));
-	      } else {
-	        result.push(React.createElement(
-	          "li",
-	          { key: i++ },
-	          items[p]
-	        ));
-	      }
-	    }
-	    return result;
-	  },
-	  render: function render() {
-
-	    var active = this.props.active || "home";
-	    var className = "navbar";
-	    if (this.props.type == "home") {
-	      className = "navbar home";
-	    }
-
-	    return React.createElement(
-	      "div",
-	      { id: "nav", className: className, role: "navigation" },
-	      React.createElement(
-	        "div",
-	        { className: "container" },
-	        React.createElement(
-	          "div",
-	          { className: "navbar-header" },
-	          React.createElement(
-	            "button",
-	            { type: "button", className: "navbar-toggle collapsed", "data-toggle": "collapse",
-	              "data-target": "#bs-example-navbar-collapse-1" },
-	            React.createElement(
-	              "span",
-	              { className: "sr-only" },
-	              "Toggle navigation"
+	    renderItem: function renderItem() {
+	        var result = [];
+	        var user = login.getUser();
+	        var items = {
+	            "my": React.createElement(
+	                _reactRouter.Link,
+	                { className: "home", to: "/my" },
+	                "我的站点"
 	            ),
-	            React.createElement("span", { className: "icon-bar" }),
-	            React.createElement("span", { className: "icon-bar" }),
-	            React.createElement("span", { className: "icon-bar" })
-	          ),
-	          React.createElement(
-	            "a",
-	            { className: "navbar-brand", href: "/" },
-	            React.createElement("img", { src: window.rootPath + "img/logo1x.png" })
-	          )
-	        ),
-	        React.createElement(
-	          "div",
-	          { className: "collapse navbar-collapse ", id: "bs-example-navbar-collapse-1" },
-	          this.renderLoginInfo(),
-	          React.createElement(
-	            "ul",
-	            { className: "nav navbar-nav navbar-right main " },
-	            this.renderItem()
-	          )
-	        )
-	      )
-	    );
-	  }
+	            "favarite": React.createElement(
+	                _reactRouter.Link,
+	                { className: "market", to: "/my/favarite" },
+	                "我的收藏"
+	            ),
+	            "template": React.createElement(
+	                _reactRouter.Link,
+	                { className: "my", to: "/my/template" },
+	                "我的模板"
+	            ),
+	            "account": React.createElement(
+	                _reactRouter.Link,
+	                { className: "my", to: "/my/account" },
+	                "账号中心"
+	            )
+
+	        };
+	        var active = this.props.active || "home";
+	        var i = 0;
+	        for (var p in items) {
+	            // if(p == "template"&&(!user||user.email !== "114165396@qq.com")&&(!debug)){
+	            //     continue;
+	            // }
+	            if (p == active) {
+	                result.push(React.createElement(
+	                    "li",
+	                    { key: i++, className: "active" },
+	                    items[p]
+	                ));
+	            } else {
+	                result.push(React.createElement(
+	                    "li",
+	                    { key: i++ },
+	                    items[p]
+	                ));
+	            }
+	        }
+	        return result;
+	    },
+	    render: function render() {
+
+	        var active = this.props.active || "home";
+	        var className = "navbar";
+	        if (this.props.type == "home") {
+	            className = "navbar home";
+	        }
+
+	        return React.createElement(
+	            "div",
+	            { id: "nav", className: className, role: "navigation" },
+	            React.createElement(
+	                "div",
+	                { className: "container" },
+	                React.createElement(
+	                    "div",
+	                    { className: "navbar-header" },
+	                    React.createElement(
+	                        "button",
+	                        { type: "button", className: "navbar-toggle collapsed", "data-toggle": "collapse",
+	                            "data-target": "#bs-example-navbar-collapse-1" },
+	                        React.createElement(
+	                            "span",
+	                            { className: "sr-only" },
+	                            "Toggle navigation"
+	                        ),
+	                        React.createElement("span", { className: "icon-bar" }),
+	                        React.createElement("span", { className: "icon-bar" }),
+	                        React.createElement("span", { className: "icon-bar" })
+	                    ),
+	                    React.createElement(
+	                        "a",
+	                        { className: "navbar-brand", href: "/" },
+	                        React.createElement("img", { src: window.rootPath + "img/logo1x.png" })
+	                    )
+	                ),
+	                React.createElement(
+	                    "div",
+	                    { className: "collapse navbar-collapse ", id: "bs-example-navbar-collapse-1" },
+	                    this.renderLoginInfo(),
+	                    React.createElement(
+	                        "ul",
+	                        { className: "nav navbar-nav navbar-right main-back " },
+	                        this.renderItem()
+	                    )
+	                )
+	            )
+	        );
+	    }
 	});
 
 /***/ },
 
-/***/ 307:
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	var _Header = __webpack_require__(262);
-
-	var _Header2 = _interopRequireDefault(_Header);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	__webpack_require__(308);
-
-
-	module.exports = React.createClass({
-	  displayName: "exports",
-
-	  getInitialState: function getInitialState() {
-	    return {};
-	  },
-
-	  componentDidMount: function componentDidMount() {},
-	  componentWillUnmount: function componentWillUnmount() {},
-	  render: function render() {
-
-	    return React.createElement(
-	      "div",
-	      { id: "preview" },
-	      React.createElement(_Header2.default, { active: "" }),
-	      React.createElement(
-	        "div",
-	        { id: "nofound-container" },
-	        React.createElement(
-	          "span",
-	          null,
-	          "抱歉！页面无法访问……"
-	        )
-	      )
-	    );
-	  }
-	});
-
-/***/ },
-
-/***/ 308:
+/***/ 290:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(309);
+	var content = __webpack_require__(291);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(69)(content, {});
@@ -501,8 +675,8 @@ webpackJsonp([14,17],{
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./index.css", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js!./index.css");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./BackHeader.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./BackHeader.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -513,7 +687,7 @@ webpackJsonp([14,17],{
 
 /***/ },
 
-/***/ 309:
+/***/ 291:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(68)();
@@ -521,10 +695,268 @@ webpackJsonp([14,17],{
 
 
 	// module
-	exports.push([module.id, "#nofound-container{\n  text-align: center;\n  padding: 100px;\n  font-size: 48px;\n  font-weight: bold;\n}\n", ""]);
+	exports.push([module.id, "#nav .main-back {\n    margin-top: 7px;\n}", ""]);
 
 	// exports
 
+
+/***/ },
+
+/***/ 292:
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(293);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(69)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./app.css", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./app.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+
+/***/ 293:
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(68)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "\n#my-container {\n    display: block;\n    position: relative;\n}\n\n\n.add-site {\n\n    border-bottom:1px solid #eaeaea;\n    padding: 0 20px 20px 0;\n\n}\n\n.add-site-button {\n\n}\n\n.blank-tips{\n    text-align: center;\n    padding: 200px;\n}\n\n\n#app-detail .templ{\n    display: flex;\n    flex-direction: row;\n    margin-bottom: 30px;\n}\n\n#app-detail .templ .bd{\n    width: 324px;\n    height: 234px;\n}\n\n#app-detail .templ .bd img{\n    width: 324px;\n    height: 234px;\n}\n\n#app-detail .templ .des{\n    flex: 1;\n    margin-left: 30px;\n}", ""]);
+
+	// exports
+
+
+/***/ },
+
+/***/ 299:
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	__webpack_require__(300);
+	module.exports = React.createClass({
+	    displayName: "exports",
+
+	    getInitialState: function getInitialState() {
+	        return { siteList: [] };
+	    },
+	    componentDidMount: function componentDidMount() {
+	        var self = this;
+	        self.flush();
+	    },
+	    flush: function flush() {
+	        var self = this;
+	        if (debug) {
+	            self.setState({ siteList: [{ id: 123, title: "我的新站点" }] });
+	        } else {
+	            $.get("/json/my/app", function (data) {
+	                if (data.needLogin) {
+	                    location.href = "/user/login";
+	                    return;
+	                }
+
+	                if (typeof data !== "string") {
+	                    self.setState({ siteList: data });
+	                }
+	            });
+	        }
+	    },
+
+	    rendBody: function rendBody() {
+	        if (this.state.siteList.length == 0) {
+	            return this.renderBlank();
+	        } else {
+	            return this.renderList();
+	        }
+	    },
+
+	    renderBlank: function renderBlank() {
+	        return React.createElement(
+	            "div",
+	            { className: "container blank-tips" },
+	            React.createElement(
+	                "div",
+	                { className: "tips" },
+	                "您还没有创建网站，去模板市场挑选一个吧！"
+	            ),
+	            React.createElement(
+	                "a",
+	                { className: "btn btn-green-line ", href: "/template/market" },
+	                "挑选免费模板"
+	            ),
+	            React.createElement(
+	                "a",
+	                { className: "btn btn-green-line", href: "/template/market" },
+	                "新建空白站点"
+	            )
+	        );
+	    },
+
+	    renderList: function renderList() {
+	        return React.createElement(
+	            "div",
+	            null,
+	            React.createElement(
+	                "div",
+	                { className: "add-site" },
+	                React.createElement(
+	                    "div",
+	                    { className: "container" },
+	                    React.createElement(
+	                        "a",
+	                        { className: "btn btn-green add-site-button", href: "/template/market" },
+	                        "创建新站点"
+	                    )
+	                )
+	            ),
+	            React.createElement(
+	                "div",
+	                { className: "container", id: "my-container" },
+	                this.renderItem()
+	            )
+	        );
+	    },
+
+	    renderItem: function renderItem() {
+	        var result = [];
+	        for (var i = 0; i < this.state.siteList.length; i++) {
+	            var site = this.state.siteList[i];
+	            var item = React.createElement(
+	                "div",
+	                { className: "templ" },
+	                React.createElement(
+	                    "div",
+	                    { className: "bd" },
+	                    React.createElement(
+	                        "a",
+	                        { href: "/my/app/" + site.id },
+	                        React.createElement("img", { src: site.logo || window.rootPath + "img/01.jpg" })
+	                    )
+	                ),
+	                React.createElement(
+	                    "div",
+	                    { className: "des" },
+	                    React.createElement(
+	                        "h3",
+	                        null,
+	                        React.createElement(
+	                            "a",
+	                            { href: "/app/" + site.id },
+	                            site.title
+	                        )
+	                    )
+	                )
+	            );
+
+	            result.push(item);
+	        }
+	        return result;
+	    },
+
+	    render: function render() {
+	        return React.createElement(
+	            "div",
+	            { className: "site-list" },
+	            this.rendBody()
+	        );
+	    }
+	});
+
+/***/ },
+
+/***/ 300:
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(301);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(69)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./SiteList.css", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./SiteList.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+
+/***/ 301:
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(68)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".site-list {\n            overflow: hidden;\n            display: block;\n            margin: 50px 0 16px 0px;\n        }\n        .site-list .templ {\n            background:#ffffff;\n\n            width:198px;\n\n            margin-top: 20px;\n            margin-right: 30px;\n        }\n        .site-list .templ .bd {\n            background: url(\"/imgbrowser.png\") 0 0 no-repeat;\n            background:#ffffff;\n\n            width:198px;\n            height:198px;\n        }\n\n\n        .site-list .templ h3  {\n            family:MicrosoftYaHei;\n            font-size:12px;\n            color:#666666;\n            letter-spacing:0.99px;\n            text-align: center;\n        }\n\n.site-list .templ h3  a {\n    family:MicrosoftYaHei;\n    font-size:12px;\n    color:#666666;\n    letter-spacing:0.99px;\n    text-align: center;\n}\n        .site-list .templ img {\n            width: 100%;\n        }\n\n        .blank-tips .tips{\n            font-family:MicrosoftYaHei;\n            font-size:20px;\n            color:#cccccc;\n            letter-spacing:1.66px;\n            margin-bottom: 30px;\n        }\n\n.blank-tips .btn{\n    margin-right: 30px;\n}\n\n", ""]);
+
+	// exports
+
+
+/***/ },
+
+/***/ 302:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _BackHeader = __webpack_require__(289);
+
+	var _BackHeader2 = _interopRequireDefault(_BackHeader);
+
+	var _Footer = __webpack_require__(264);
+
+	var _Footer2 = _interopRequireDefault(_Footer);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var SiteList = __webpack_require__(299);
+	__webpack_require__(292);
+	module.exports = React.createClass({
+	  displayName: 'exports',
+
+	  getInitialState: function getInitialState() {
+	    return {};
+	  },
+
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      { className: 'my' },
+	      React.createElement(_BackHeader2.default, { active: 'my' }),
+	      React.createElement(SiteList, null),
+	      React.createElement(_Footer2.default, null)
+	    );
+	  }
+
+	});
 
 /***/ }
 

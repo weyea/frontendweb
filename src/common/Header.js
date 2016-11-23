@@ -14,7 +14,7 @@ export default  React.createClass({
     return (
       <p className="navbar-text navbar-right login-status">
         <span >
-          <i className="fa fa-user-md"></i><a href="#" className="navbar-Link">{user.username}</a>
+          <a className="ava"><i className="fa fa-user-md"></i></a><a href="#" className="navbar-Link">{user.username}</a>
           <a href="/user/logout" className=""><span className="oi oi-account-logout"></span></a>
         </span>
     </p>

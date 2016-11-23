@@ -3,7 +3,7 @@
   top:20px;
   left:0;
   width: 100%;
-
+z-index: 99;
   background-color: transparent;
 }
 
@@ -24,35 +24,6 @@ background-color:transparent;
 }
 
 
-
-#banner{
-  background-image: url("../../../img/banner@3x.png");
-  height: 630px;
-}
-
-#cta-text{
-  margin-top: 205px;
-  text-align: center;
-}
-
-#cta-text h1{
-  font-family:MicrosoftYaHei;
-font-size:45px;
-color:#ffffff;
-}
-
-#cta-text  .create{
-  border:1px solid #00c4d8;
-border-radius:4px;
-width:212px;
-height:46px;
-font-size:18px;
-color:#00d9ef;
-display: inline-block;
-vertical-align: middle;;
-line-height: 46px;
-margin-top: 87px;
-}
 
 .features{
   background:#ffffff;

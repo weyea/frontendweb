@@ -3,11 +3,26 @@ body{
 
 }
 
+.carousel-indicators li {
+    width:6px;
+    height:6px;
+    margin: 0;
+    margin-right: 10px;
 
-
-#cta-text {
-    color: #fff;
 }
+.carousel-indicators li.active {
+    width:6px;
+    height:6px;
+    margin: 0;
+    margin-right: 10px;
+    background-color: #00c4d8;
+    border-color: #00c4d8;
+}
+
+
+
+
+
 
 #button-row a {
     color: #fff;
@@ -110,7 +125,7 @@ background-color:transparent;
 }
 
 
-#nav .login .fa-user-md{
+#nav .login-status .fa-user-md{
 
   background:#ffffff;
 width:40px;
