@@ -52,15 +52,17 @@ module.exports =  React.createClass({
     },
 
     renderList: function() {
-        return <div>
+        return <div className="site-list-wrap">
             <div className="add-site">
                 <div className="container">
                     <a className="btn btn-green add-site-button" href="/template/create">创建模板</a>
                 </div>
             </div>
 
-            <div className="container" id="my-container">
-                {this.renderItem()}
+            <div className="container">
+                <div id="my-site-list">
+                    {this.renderItem()}
+                </div>
             </div>
         </div>
     },

@@ -29,20 +29,17 @@ export default  React.createClass({
   renderItem:function(){
     var result = [];
     var items = {
-      "home":<Link className="home" to="/">首页</Link>,
-      "market":<Link className="market" to="/template/market">模板市场</Link>,
-      "my":<Link className="my" to="/my">我的站点</Link>,
-      "tru":<Link className="tru" to="/template/market">新手指南</Link>
+      "home":<Link activeClassName="active" className="home" to="/">首页</Link>,
+      "market":<Link activeClassName="active" className="market" to="/template/market">模板市场</Link>,
+      "my":<Link activeClassName="active" className="my" to="/my">我的站点</Link>,
+      "tru":<Link activeClassName="active" className="tru" to="/template/market">新手指南</Link>
     }
-      var active = this.props.active ||"home"
+
       var i = 0;
       for(var p in items){
-        if(p == active){
-            result.push(<li key={i++} className="active">{items[p]}</li>)
-        }
-        else{
+
           result.push(<li key = {i++} >{items[p]}</li>)
-        }
+
       }
       return result;
   },

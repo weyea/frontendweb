@@ -355,41 +355,34 @@ webpackJsonp([17,19],{
 	    var items = {
 	      "home": React.createElement(
 	        _reactRouter.Link,
-	        { className: "home", to: "/" },
+	        { activeClassName: "active", className: "home", to: "/" },
 	        "首页"
 	      ),
 	      "market": React.createElement(
 	        _reactRouter.Link,
-	        { className: "market", to: "/template/market" },
+	        { activeClassName: "active", className: "market", to: "/template/market" },
 	        "模板市场"
 	      ),
 	      "my": React.createElement(
 	        _reactRouter.Link,
-	        { className: "my", to: "/my" },
+	        { activeClassName: "active", className: "my", to: "/my" },
 	        "我的站点"
 	      ),
 	      "tru": React.createElement(
 	        _reactRouter.Link,
-	        { className: "tru", to: "/template/market" },
+	        { activeClassName: "active", className: "tru", to: "/template/market" },
 	        "新手指南"
 	      )
 	    };
-	    var active = this.props.active || "home";
+
 	    var i = 0;
 	    for (var p in items) {
-	      if (p == active) {
-	        result.push(React.createElement(
-	          "li",
-	          { key: i++, className: "active" },
-	          items[p]
-	        ));
-	      } else {
-	        result.push(React.createElement(
-	          "li",
-	          { key: i++ },
-	          items[p]
-	        ));
-	      }
+
+	      result.push(React.createElement(
+	        "li",
+	        { key: i++ },
+	        items[p]
+	      ));
 	    }
 	    return result;
 	  },

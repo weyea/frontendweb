@@ -565,22 +565,22 @@ webpackJsonp([12,19],{
 	        var items = {
 	            "my": React.createElement(
 	                _reactRouter.Link,
-	                { className: "home", to: "/my" },
+	                { activeClassName: "active", className: "my", to: "/my" },
 	                "我的站点"
 	            ),
 	            "favarite": React.createElement(
 	                _reactRouter.Link,
-	                { className: "market", to: "/my/favarite" },
+	                { activeClassName: "active", className: "favarite", to: "/my/favarite" },
 	                "我的收藏"
 	            ),
 	            "template": React.createElement(
 	                _reactRouter.Link,
-	                { className: "my", to: "/my/template" },
+	                { activeClassName: "active", className: "template", to: "/my/template" },
 	                "我的模板"
 	            ),
 	            "account": React.createElement(
 	                _reactRouter.Link,
-	                { className: "my", to: "/my/account" },
+	                { activeClassName: "active", className: "account", to: "/my/account" },
 	                "账号中心"
 	            )
 
@@ -588,22 +588,11 @@ webpackJsonp([12,19],{
 	        var active = this.props.active || "home";
 	        var i = 0;
 	        for (var p in items) {
-	            // if(p == "template"&&(!user||user.email !== "114165396@qq.com")&&(!debug)){
-	            //     continue;
-	            // }
-	            if (p == active) {
-	                result.push(React.createElement(
-	                    "li",
-	                    { key: i++, className: "active" },
-	                    items[p]
-	                ));
-	            } else {
-	                result.push(React.createElement(
-	                    "li",
-	                    { key: i++ },
-	                    items[p]
-	                ));
-	            }
+	            result.push(React.createElement(
+	                "li",
+	                { key: i++ },
+	                items[p]
+	            ));
 	        }
 	        return result;
 	    },

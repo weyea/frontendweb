@@ -54,8 +54,10 @@ module.exports =  React.createClass({
                     </div>
                 </div>
 
-                <div className="container" id="my-container">
-                    {this.renderItem()}
+                <div className="container">
+                    <div id="my-site-list">
+                        {this.renderItem()}
+                    </div>
                 </div>
         </div>)
     },

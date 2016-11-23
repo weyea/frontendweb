@@ -565,22 +565,22 @@ webpackJsonp([14,19],{
 	        var items = {
 	            "my": React.createElement(
 	                _reactRouter.Link,
-	                { className: "home", to: "/my" },
+	                { activeClassName: "active", className: "my", to: "/my" },
 	                "我的站点"
 	            ),
 	            "favarite": React.createElement(
 	                _reactRouter.Link,
-	                { className: "market", to: "/my/favarite" },
+	                { activeClassName: "active", className: "favarite", to: "/my/favarite" },
 	                "我的收藏"
 	            ),
 	            "template": React.createElement(
 	                _reactRouter.Link,
-	                { className: "my", to: "/my/template" },
+	                { activeClassName: "active", className: "template", to: "/my/template" },
 	                "我的模板"
 	            ),
 	            "account": React.createElement(
 	                _reactRouter.Link,
-	                { className: "my", to: "/my/account" },
+	                { activeClassName: "active", className: "account", to: "/my/account" },
 	                "账号中心"
 	            )
 
@@ -588,22 +588,11 @@ webpackJsonp([14,19],{
 	        var active = this.props.active || "home";
 	        var i = 0;
 	        for (var p in items) {
-	            // if(p == "template"&&(!user||user.email !== "114165396@qq.com")&&(!debug)){
-	            //     continue;
-	            // }
-	            if (p == active) {
-	                result.push(React.createElement(
-	                    "li",
-	                    { key: i++, className: "active" },
-	                    items[p]
-	                ));
-	            } else {
-	                result.push(React.createElement(
-	                    "li",
-	                    { key: i++ },
-	                    items[p]
-	                ));
-	            }
+	            result.push(React.createElement(
+	                "li",
+	                { key: i++ },
+	                items[p]
+	            ));
 	        }
 	        return result;
 	    },
@@ -827,8 +816,12 @@ webpackJsonp([14,19],{
 	            ),
 	            React.createElement(
 	                "div",
-	                { className: "container", id: "my-container" },
-	                this.renderItem()
+	                { className: "container" },
+	                React.createElement(
+	                    "div",
+	                    { id: "my-site-list" },
+	                    this.renderItem()
+	                )
 	            )
 	        );
 	    },
@@ -915,7 +908,7 @@ webpackJsonp([14,19],{
 
 
 	// module
-	exports.push([module.id, ".add-site {\n\n    border-bottom:1px solid #eaeaea;\n    padding: 0 0px 20px 0;\n\n}\n\n.add-site-button {\n\n}\n\n    .site-list {\n        overflow: hidden;\n        display: block;\n        margin: 50px 0 16px 0px;\n        display: flex;\n        flex-direction: row;\n    }\n    .site-list-wrap{\n        width: 100%;\n    }\n    .site-list .templ {\n        background:#ffffff;\n\n        width:198px;\n        margin-top: 20px;\n        margin-right: 30px;\n\n    }\n    .site-list .templ .bd {\n        background: url(\"/imgbrowser.png\") 0 0 no-repeat;\n        background:#ffffff;\n\n        width:198px;\n        height:126px;\n    }\n\n\n    .site-list .templ h3  {\n        family:MicrosoftYaHei;\n        font-size:12px;\n        color:#666666;\n        letter-spacing:0.99px;\n        text-align: center;\n    }\n\n    .site-list .templ h3  a {\n        family:MicrosoftYaHei;\n        font-size:12px;\n        color:#666666;\n        letter-spacing:0.99px;\n        text-align: center;\n    }\n    .site-list .templ img {\n        width: 100%;\n    }\n\n    .blank-tips .tips{\n        font-family:MicrosoftYaHei;\n        font-size:20px;\n        color:#cccccc;\n        letter-spacing:1.66px;\n        margin-bottom: 30px;\n    }\n\n    .blank-tips .btn{\n        margin-right: 30px;\n    }\n\n", ""]);
+	exports.push([module.id, ".add-site {\n\n    border-bottom:1px solid #eaeaea;\n    padding: 0 0px 20px 0;\n\n}\n\n.add-site-button {\n\n}\n\n    .site-list {\n        overflow: hidden;\n        display: block;\n        margin: 50px 0 16px 0px;\n        display: flex;\n        flex-direction: row;\n    }\n\n#my-site-list {\n\n    display: flex;\n    flex-direction: row;\n}\n\n\n    .site-list-wrap{\n        width: 100%;\n    }\n    .site-list .templ {\n        background:#ffffff;\n\n        width:198px;\n        margin-top: 20px;\n        margin-right: 30px;\n\n    }\n    .site-list .templ .bd {\n        background: url(\"/imgbrowser.png\") 0 0 no-repeat;\n        background:#ffffff;\n\n        width:198px;\n        height:126px;\n    }\n\n\n    .site-list .templ h3  {\n        family:MicrosoftYaHei;\n        font-size:12px;\n        color:#666666;\n        letter-spacing:0.99px;\n        text-align: center;\n    }\n\n    .site-list .templ h3  a {\n        family:MicrosoftYaHei;\n        font-size:12px;\n        color:#666666;\n        letter-spacing:0.99px;\n        text-align: center;\n    }\n    .site-list .templ img {\n        width: 100%;\n    }\n\n    .blank-tips .tips{\n        font-family:MicrosoftYaHei;\n        font-size:20px;\n        color:#cccccc;\n        letter-spacing:1.66px;\n        margin-bottom: 30px;\n    }\n\n    .blank-tips .btn{\n        margin-right: 30px;\n    }\n\n", ""]);
 
 	// exports
 
