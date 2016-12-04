@@ -18,7 +18,7 @@ webpackJsonp([2,19],{
 
 /***/ },
 
-/***/ 259:
+/***/ 260:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28,14 +28,14 @@ webpackJsonp([2,19],{
 	  path: 'user',
 	  getChildRoutes: function getChildRoutes(partialNextState, callback) {
 	    __webpack_require__.e/* nsure */(4, function (require) {
-	      callback(null, [__webpack_require__(260), __webpack_require__(267)]);
+	      callback(null, [__webpack_require__(261), __webpack_require__(268)]);
 	    });
 	  }
 	};
 
 /***/ },
 
-/***/ 263:
+/***/ 264:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -164,7 +164,7 @@ webpackJsonp([2,19],{
 
 /***/ },
 
-/***/ 275:
+/***/ 276:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -174,7 +174,7 @@ webpackJsonp([2,19],{
 	  path: 'template',
 	  getChildRoutes: function getChildRoutes(partialNextState, callback) {
 	    __webpack_require__.e/* nsure */(7, function (require) {
-	      callback(null, [__webpack_require__(276), __webpack_require__(278)]);
+	      callback(null, [__webpack_require__(277), __webpack_require__(279)]);
 	    });
 	  },
 
@@ -185,21 +185,21 @@ webpackJsonp([2,19],{
 
 /***/ },
 
-/***/ 286:
+/***/ 287:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var login = __webpack_require__(263);
+	var login = __webpack_require__(264);
 
 	module.exports = {
 
 	  path: 'my',
 	  getChildRoutes: function getChildRoutes(partialNextState, callback) {
 	    __webpack_require__.e/* nsure */(10, function (require) {
-	      callback(null, [__webpack_require__(287),
+	      callback(null, [__webpack_require__(288),
 	      // require('./routes/preview'),
-	      __webpack_require__(295), __webpack_require__(296)]);
+	      __webpack_require__(296), __webpack_require__(297)]);
 	    });
 	  },
 
@@ -207,7 +207,7 @@ webpackJsonp([2,19],{
 	  getIndexRoute: function getIndexRoute(partialNextState, callback) {
 	    __webpack_require__.e/* nsure */(14, function (require) {
 	      callback(null, {
-	        component: __webpack_require__(302)
+	        component: __webpack_require__(303)
 	      });
 	    });
 	  }
@@ -215,7 +215,7 @@ webpackJsonp([2,19],{
 
 /***/ },
 
-/***/ 303:
+/***/ 304:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -226,14 +226,14 @@ webpackJsonp([2,19],{
 
 	  getComponents: function getComponents(nextState, callback) {
 	    __webpack_require__.e/* nsure */(15, function (require) {
-	      callback(null, __webpack_require__(304));
+	      callback(null, __webpack_require__(305));
 	    });
 	  }
 	};
 
 /***/ },
 
-/***/ 310:
+/***/ 311:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -244,7 +244,7 @@ webpackJsonp([2,19],{
 
 	  getComponents: function getComponents(nextState, callback) {
 	    __webpack_require__.e/* nsure */(16, function (require) {
-	      callback(null, __webpack_require__(311));
+	      callback(null, __webpack_require__(312));
 	    });
 	  }
 	};

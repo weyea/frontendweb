@@ -41,7 +41,7 @@ module.exports = React.createClass({
                 $("#progress_report_bar").css('width', Math.ceil(val*100)+"%");
             },
             onFinishOne: function(event, response, name, number, total) {
-                //alert(response);
+                console.log(response)
             },
             onError: function(event, name, error) {
                 alert('error while uploading file ' + name);

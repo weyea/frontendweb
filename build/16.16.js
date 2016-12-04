@@ -282,7 +282,7 @@ webpackJsonp([16,19],{
 
 /***/ },
 
-/***/ 262:
+/***/ 263:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -293,7 +293,7 @@ webpackJsonp([16,19],{
 
 	var _reactRouter = __webpack_require__(100);
 
-	var login = __webpack_require__(263);
+	var login = __webpack_require__(264);
 	exports.default = React.createClass({
 	  displayName: "Header",
 
@@ -439,18 +439,18 @@ webpackJsonp([16,19],{
 
 /***/ },
 
-/***/ 311:
+/***/ 312:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var _Header = __webpack_require__(262);
+	var _Header = __webpack_require__(263);
 
 	var _Header2 = _interopRequireDefault(_Header);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	__webpack_require__(312);
+	__webpack_require__(313);
 
 
 	module.exports = React.createClass({
@@ -483,13 +483,13 @@ webpackJsonp([16,19],{
 
 /***/ },
 
-/***/ 312:
+/***/ 313:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(313);
+	var content = __webpack_require__(314);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(69)(content, {});
@@ -510,7 +510,7 @@ webpackJsonp([16,19],{
 
 /***/ },
 
-/***/ 313:
+/***/ 314:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(68)();

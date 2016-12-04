@@ -21,6 +21,8 @@ module.exports =   React.createClass({
     designer.configs.templateUrl = url;
     designer.configs.saveUrl = "/json/designer/"+this.props.params.type+"/"+this.props.params.appId;
     designer.configs.captureUrl = "/json/designer/capture/"+this.props.params.type+"/"+this.props.params.appId;
+    designer.configs.uploadMaterial = "/json/material";
+    designer.configs.getMaterial = "/json/material"
     designer.run();
 
   },

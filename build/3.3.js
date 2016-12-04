@@ -4822,6 +4822,8 @@ webpackJsonp([3,19],[
 	    designer.configs.templateUrl = url;
 	    designer.configs.saveUrl = "/json/designer/" + this.props.params.type + "/" + this.props.params.appId;
 	    designer.configs.captureUrl = "/json/designer/capture/" + this.props.params.type + "/" + this.props.params.appId;
+	    designer.configs.uploadMaterial = "/json/material";
+	    designer.configs.getMaterial = "/json/material";
 	    designer.run();
 	  },
 	  componentWillUnmount: function componentWillUnmount() {},
@@ -4850,15 +4852,15 @@ webpackJsonp([3,19],[
 
 	__webpack_require__(197);
 	__webpack_require__(198);
-
 	__webpack_require__(200);
 
 	__webpack_require__(201);
-	__webpack_require__(203);
+
+	__webpack_require__(202);
 	__webpack_require__(204);
 	__webpack_require__(205);
-
 	__webpack_require__(206);
+
 	__webpack_require__(207);
 	__webpack_require__(208);
 	__webpack_require__(209);
@@ -4866,8 +4868,8 @@ webpackJsonp([3,19],[
 	__webpack_require__(211);
 	__webpack_require__(212);
 	__webpack_require__(213);
-
 	__webpack_require__(214);
+
 	__webpack_require__(215);
 	__webpack_require__(216);
 	__webpack_require__(217);
@@ -4877,15 +4879,16 @@ webpackJsonp([3,19],[
 	__webpack_require__(221);
 	__webpack_require__(222);
 	__webpack_require__(223);
-
 	__webpack_require__(224);
+
 	__webpack_require__(225);
 	__webpack_require__(226);
 	__webpack_require__(227);
 	__webpack_require__(228);
 	__webpack_require__(229);
+	__webpack_require__(230);
 
-	module.exports = __webpack_require__(230);
+	module.exports = __webpack_require__(231);
 
 /***/ },
 /* 190 */
@@ -9056,6 +9059,257 @@ webpackJsonp([3,19],[
 /* 200 */
 /***/ function(module, exports) {
 
+	'use strict';
+
+	(function ($) {
+	    $.fn.html5_upload = function (options) {
+
+	        function get_file_name(file) {
+	            return file.name || file.fileName;
+	        }
+	        function get_file_size(file) {
+	            return file.size || file.fileSize;
+	        }
+	        var available_events = ['onStart', 'onStartOne', 'onProgress', 'onFinishOne', 'onFinish', 'onError'];
+	        var options = $.extend({
+	            onStart: function onStart(event, total) {
+	                return true;
+	            },
+	            onStartOne: function onStartOne(event, name, number, total) {
+	                return true;
+	            },
+	            onProgress: function onProgress(event, progress, name, number, total) {},
+	            onFinishOne: function onFinishOne(event, response, name, number, total) {},
+	            onFinish: function onFinish(event, total) {},
+	            onError: function onError(event, name, error) {},
+	            onBrowserIncompatible: function onBrowserIncompatible() {
+	                alert("Sorry, but your browser is incompatible with uploading files using HTML5 (at least, with current preferences.\n Please install the latest version of Firefox, Safari or Chrome");
+	            },
+	            autostart: true,
+	            autoclear: true,
+	            stopOnFirstError: false,
+	            sendBoundary: false,
+	            fieldName: 'user_file[]', //ignore if sendBoundary is false
+	            extraFields: {}, // extra fields to send with file upload request (HTML5 only)
+	            method: 'post',
+
+	            STATUSES: {
+	                'STARTED': 'Started',
+	                'PROGRESS': 'Progress',
+	                'LOADED': 'Loaded',
+	                'FINISHED': 'Finished'
+	            },
+	            headers: {
+	                "Cache-Control": "no-cache",
+	                "X-Requested-With": "XMLHttpRequest",
+	                "X-File-Name": function XFileName(file) {
+	                    return encodeURIComponent(get_file_name(file));
+	                },
+	                "X-File-Size": function XFileSize(file) {
+	                    return get_file_size(file);
+	                },
+	                "X-CSRF-Token": $('meta[name="csrf-token"]').attr("content"),
+	                "Content-Type": function ContentType(file) {
+	                    if (!options.sendBoundary) return 'multipart/form-data';
+	                    return false;
+	                }
+	            },
+
+	            setName: function setName(text) {},
+	            setStatus: function setStatus(text) {},
+	            setProgress: function setProgress(value) {},
+
+	            genName: function genName(file, number, total) {
+	                return file + "(" + (number + 1) + " of " + total + ")";
+	            },
+	            genStatus: function genStatus(progress, finished) {
+	                if (finished) {
+	                    return options.STATUSES['FINISHED'];
+	                }
+	                if (progress == 0) {
+	                    return options.STATUSES['STARTED'];
+	                } else if (progress == 1) {
+	                    return options.STATUSES['LOADED'];
+	                } else {
+	                    return options.STATUSES['PROGRESS'];
+	                }
+	            },
+	            genProgress: function genProgress(loaded, total) {
+	                return loaded / total;
+	            }
+	        }, options);
+
+	        function upload(files) {
+	            var total = files.length;
+	            var $this = $(this);
+	            if (!$this.triggerHandler('html5_upload.onStart', [total])) {
+	                return false;
+	            }
+	            this.disabled = true;
+	            var uploaded = 0;
+	            var xhr = this.html5_upload['xhr'];
+	            this.html5_upload['continue_after_abort'] = true;
+	            function upload_file(number) {
+	                if (number == total) {
+	                    $this.triggerHandler('html5_upload.onFinish', [total]);
+	                    options.setStatus(options.genStatus(1, true));
+	                    $this.attr("disabled", false);
+	                    if (options.autoclear) {
+	                        $this.val("");
+	                    }
+	                    return;
+	                }
+	                var file = files[number];
+	                if (!$this.triggerHandler('html5_upload.onStartOne', [get_file_name(file), number, total])) {
+	                    return upload_file(number + 1);
+	                }
+	                options.setStatus(options.genStatus(0));
+	                options.setName(options.genName(get_file_name(file), number, total));
+	                options.setProgress(options.genProgress(0, get_file_size(file)));
+	                xhr.upload['onprogress'] = function (rpe) {
+	                    $this.triggerHandler('html5_upload.onProgress', [rpe.loaded / rpe.total, get_file_name(file), number, total]);
+	                    options.setStatus(options.genStatus(rpe.loaded / rpe.total));
+	                    options.setProgress(options.genProgress(rpe.loaded, rpe.total));
+	                };
+	                xhr.onload = function (load) {
+	                    if (xhr.status >= 205 || xhr.status < 200) {
+	                        $this.triggerHandler('html5_upload.onError', [get_file_name(file), load]);
+	                        if (!options.stopOnFirstError) {
+	                            upload_file(number + 1);
+	                        }
+	                    } else {
+	                        $this.triggerHandler('html5_upload.onFinishOne', [xhr.responseText, get_file_name(file), number, total]);
+	                        options.setStatus(options.genStatus(1, true));
+	                        options.setProgress(options.genProgress(get_file_size(file), get_file_size(file)));
+	                        upload_file(number + 1);
+	                    }
+	                };
+	                xhr.onabort = function () {
+	                    if ($this[0].html5_upload['continue_after_abort']) {
+	                        upload_file(number + 1);
+	                    } else {
+	                        $this.attr("disabled", false);
+	                        if (options.autoclear) {
+	                            $this.val("");
+	                        }
+	                    }
+	                };
+	                xhr.onerror = function (e) {
+	                    $this.triggerHandler('html5_upload.onError', [get_file_name(file), e]);
+	                    if (!options.stopOnFirstError) {
+	                        upload_file(number + 1);
+	                    }
+	                };
+	                xhr.open(options.method, typeof options.url == "function" ? options.url(number) : options.url, true);
+	                $.each(options.headers, function (key, val) {
+	                    val = typeof val == "function" ? val(file) : encodeURIComponent(val); // resolve value
+	                    if (val === false) return true; // if resolved value is boolean false, do not send this header
+	                    xhr.setRequestHeader(key, val);
+	                });
+
+	                if (!options.sendBoundary) {
+	                    xhr.send(file);
+	                } else {
+	                    if (window.FormData) {
+	                        //Many thanks to scottt.tw
+	                        var f = new FormData();
+	                        f.append(typeof options.fieldName == "function" ? options.fieldName() : options.fieldName, file);
+	                        options.extraFields = typeof options.extraFields == "function" ? options.extraFields() : options.extraFields;
+	                        $.each(options.extraFields, function (key, val) {
+	                            f.append(key, val);
+	                        });
+	                        xhr.send(f);
+	                    } else if (file.getAsBinary) {
+	                        //Thanks to jm.schelcher
+	                        var boundary = '------multipartformboundary' + new Date().getTime();
+	                        var dashdash = '--';
+	                        var crlf = '\r\n';
+
+	                        /* Build RFC2388 string. */
+	                        var builder = '';
+
+	                        builder += dashdash;
+	                        builder += boundary;
+	                        builder += crlf;
+
+	                        builder += 'Content-Disposition: form-data; name="' + (typeof options.fieldName == "function" ? options.fieldName() : options.fieldName) + '"';
+
+	                        //thanks to oyejo...@gmail.com for this fix
+	                        fileName = unescape(encodeURIComponent(get_file_name(file))); //encode_utf8
+
+	                        builder += '; filename="' + fileName + '"';
+	                        builder += crlf;
+
+	                        builder += 'Content-Type: ' + file.type;
+	                        builder += crlf;
+	                        builder += crlf;
+
+	                        /* Append binary data. */
+	                        builder += file.getAsBinary();
+	                        builder += crlf;
+
+	                        /* Write boundary. */
+	                        builder += dashdash;
+	                        builder += boundary;
+	                        builder += dashdash;
+	                        builder += crlf;
+
+	                        xhr.setRequestHeader('content-type', 'multipart/form-data; boundary=' + boundary);
+	                        xhr.sendAsBinary(builder);
+	                    } else {
+	                        options.onBrowserIncompatible();
+	                    }
+	                }
+	            }
+	            upload_file(0);
+	            return true;
+	        }
+
+	        try {
+	            return this.each(function () {
+	                var file_input = this;
+	                this.html5_upload = {
+	                    xhr: new XMLHttpRequest(),
+	                    continue_after_abort: true
+	                };
+	                if (options.autostart) {
+	                    $(this).bind('change', function (e) {
+	                        upload.call(e.target, this.files);
+	                    });
+	                }
+	                var self = this;
+	                $.each(available_events, function (event) {
+	                    if (options[available_events[event]]) {
+	                        $(self).bind("html5_upload." + available_events[event], options[available_events[event]]);
+	                    }
+	                });
+	                $(this).bind('html5_upload.startFromDrop', function (e, dropEvent) {
+	                    if (dropEvent.dataTransfer && dropEvent.dataTransfer.files.length) {
+	                        upload.call(file_input, dropEvent.dataTransfer.files);
+	                    }
+	                }).bind('html5_upload.start', upload).bind('html5_upload.cancelOne', function () {
+	                    this.html5_upload['xhr'].abort();
+	                }).bind('html5_upload.cancelAll', function () {
+	                    this.html5_upload['continue_after_abort'] = false;
+	                    this.html5_upload['xhr'].abort();
+	                }).bind('html5_upload.destroy', function () {
+	                    this.html5_upload['continue_after_abort'] = false;
+	                    this.xhr.abort();
+	                    delete this.html5_upload;
+	                    $(this).unbind('html5_upload.*').unbind('change', upload);
+	                });
+	            });
+	        } catch (ex) {
+	            options.onBrowserIncompatible();
+	            return false;
+	        }
+	    };
+	})(jQuery);
+
+/***/ },
+/* 201 */
+/***/ function(module, exports) {
+
 	"use strict";
 
 	var _play;
@@ -9925,7 +10179,7 @@ webpackJsonp([3,19],[
 	});
 
 /***/ },
-/* 201 */
+/* 202 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -9943,7 +10197,7 @@ webpackJsonp([3,19],[
 	     *
 	     * (c) 2012 Jakub Jankiewicz
 	     */
-	    var Rangy = __webpack_require__(202);
+	    var Rangy = __webpack_require__(203);
 
 	    var mainSheet, commonSheet;
 	    var start = new Date().getTime();
@@ -10752,7 +11006,7 @@ webpackJsonp([3,19],[
 	})();
 
 /***/ },
-/* 202 */
+/* 203 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;"use strict";var _typeof=typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"?function(obj){return typeof obj;}:function(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol?"symbol":typeof obj;};/**
@@ -11089,7 +11343,7 @@ webpackJsonp([3,19],[
 	addListener(window,"load",loadHandler);}}return api;},undefined);
 
 /***/ },
-/* 203 */
+/* 204 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -11223,7 +11477,7 @@ webpackJsonp([3,19],[
 	})();
 
 /***/ },
-/* 204 */
+/* 205 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -12779,7 +13033,7 @@ webpackJsonp([3,19],[
 	})();
 
 /***/ },
-/* 205 */
+/* 206 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -12924,6 +13178,7 @@ webpackJsonp([3,19],[
 
 	  if (!$.isArray(children)) children = [children];
 	  for (var i = 0; i < children.length; i++) {
+	    if (children[i].type == "text") continue;
 	    if (children[i].name == "p-layout-inner") {
 	      var innerCoord = getChildrenCoord($(children[i].nativeNode));
 	      if (innerCoord) {
@@ -14761,7 +15016,7 @@ webpackJsonp([3,19],[
 	play.grid = defaultExports;
 
 /***/ },
-/* 206 */
+/* 207 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -14998,7 +15253,7 @@ webpackJsonp([3,19],[
 	})();
 
 /***/ },
-/* 207 */
+/* 208 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -16165,7 +16420,7 @@ webpackJsonp([3,19],[
 	})();
 
 /***/ },
-/* 208 */
+/* 209 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -16309,7 +16564,7 @@ webpackJsonp([3,19],[
 	})();
 
 /***/ },
-/* 209 */
+/* 210 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -16905,7 +17160,7 @@ webpackJsonp([3,19],[
 	})();
 
 /***/ },
-/* 210 */
+/* 211 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -16975,7 +17230,7 @@ webpackJsonp([3,19],[
 	})();
 
 /***/ },
-/* 211 */
+/* 212 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -17317,13 +17572,13 @@ webpackJsonp([3,19],[
 	})();
 
 /***/ },
-/* 212 */
+/* 213 */
 /***/ function(module, exports) {
 
 	"use strict";
 
 /***/ },
-/* 213 */
+/* 214 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -17529,7 +17784,7 @@ webpackJsonp([3,19],[
 	})();
 
 /***/ },
-/* 214 */
+/* 215 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -17891,7 +18146,7 @@ webpackJsonp([3,19],[
 	})();
 
 /***/ },
-/* 215 */
+/* 216 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -18234,7 +18489,7 @@ webpackJsonp([3,19],[
 	})();
 
 /***/ },
-/* 216 */
+/* 217 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -18346,7 +18601,7 @@ webpackJsonp([3,19],[
 	})();
 
 /***/ },
-/* 217 */
+/* 218 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -18417,7 +18672,7 @@ webpackJsonp([3,19],[
 	})();
 
 /***/ },
-/* 218 */
+/* 219 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -19012,7 +19267,7 @@ webpackJsonp([3,19],[
 	})();
 
 /***/ },
-/* 219 */
+/* 220 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -19155,7 +19410,7 @@ webpackJsonp([3,19],[
 	})();
 
 /***/ },
-/* 220 */
+/* 221 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -19957,7 +20212,7 @@ webpackJsonp([3,19],[
 	})();
 
 /***/ },
-/* 221 */
+/* 222 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -20047,7 +20302,7 @@ webpackJsonp([3,19],[
 	})();
 
 /***/ },
-/* 222 */
+/* 223 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -20113,7 +20368,7 @@ webpackJsonp([3,19],[
 	})();
 
 /***/ },
-/* 223 */
+/* 224 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -20136,7 +20391,7 @@ webpackJsonp([3,19],[
 	})();
 
 /***/ },
-/* 224 */
+/* 225 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -20174,7 +20429,7 @@ webpackJsonp([3,19],[
 	})();
 
 /***/ },
-/* 225 */
+/* 226 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -20271,7 +20526,7 @@ webpackJsonp([3,19],[
 	})();
 
 /***/ },
-/* 226 */
+/* 227 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -20285,7 +20540,7 @@ webpackJsonp([3,19],[
 	})();
 
 /***/ },
-/* 227 */
+/* 228 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -20853,7 +21108,7 @@ webpackJsonp([3,19],[
 	})();
 
 /***/ },
-/* 228 */
+/* 229 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20864,7 +21119,7 @@ webpackJsonp([3,19],[
 	(function ($) {
 	    'use strict';
 
-	    var Rangy = __webpack_require__(202);
+	    var Rangy = __webpack_require__(203);
 	    var readFileIntoDataUrl = function readFileIntoDataUrl(fileInfo) {
 	        var loader = $.Deferred(),
 	            fReader = new FileReader();
@@ -21096,7 +21351,7 @@ webpackJsonp([3,19],[
 	})(window.jQuery);
 
 /***/ },
-/* 229 */
+/* 230 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -21235,19 +21490,19 @@ webpackJsonp([3,19],[
 	});
 
 /***/ },
-/* 230 */
+/* 231 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var Layout = __webpack_require__(231);
+	var Layout = __webpack_require__(232);
 
-	var ToolPanel = __webpack_require__(232);
-	var QuickBar = __webpack_require__(254);
-	var EditorView = __webpack_require__(255);
-	var PageManagerModal = __webpack_require__(251);
-	var HistoryModal = __webpack_require__(257);
-	var ImageView = __webpack_require__(258);
+	var ToolPanel = __webpack_require__(233);
+	var QuickBar = __webpack_require__(255);
+	var EditorView = __webpack_require__(256);
+	var PageManagerModal = __webpack_require__(252);
+	var HistoryModal = __webpack_require__(258);
+	var ImageView = __webpack_require__(259);
 
 	Sophie.createStyleSheet({
 	  'app': {
@@ -21288,13 +21543,13 @@ webpackJsonp([3,19],[
 	module.exports = designer;
 
 /***/ },
-/* 231 */
+/* 232 */
 /***/ function(module, exports) {
 
 	"use strict";
 
 /***/ },
-/* 232 */
+/* 233 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21307,11 +21562,11 @@ webpackJsonp([3,19],[
 	// <link rel="import" href="/editor/colorpicker.html">
 
 
-	var SetStyleView = __webpack_require__(233);
-	var PageManagerView = __webpack_require__(250);
-	var ColorPicker = __webpack_require__(252);
+	var SetStyleView = __webpack_require__(234);
+	var PageManagerView = __webpack_require__(251);
+	var ColorPicker = __webpack_require__(253);
 
-	var WidgetPanel = __webpack_require__(253);
+	var WidgetPanel = __webpack_require__(254);
 
 	var ToolPanel = Sophie.createClass("tool-panel", {
 	    componentDidMount: function componentDidMount() {
@@ -21540,7 +21795,7 @@ webpackJsonp([3,19],[
 	module.exports = ToolPanel;
 
 /***/ },
-/* 233 */
+/* 234 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21551,24 +21806,24 @@ webpackJsonp([3,19],[
 
 	// <link rel="import" href="../site/compontents/p-container-set.html">
 	// <link rel="import" href="../site/compontents/p-list-set.html">
-	var ListSet = __webpack_require__(234);
-	var LayoutTwoSet = __webpack_require__(235);
+	var ListSet = __webpack_require__(235);
+	var LayoutTwoSet = __webpack_require__(236);
 
 	// <link rel="import" href="./font-set.html">
-	var TextSet = __webpack_require__(236);
+	var TextSet = __webpack_require__(237);
 	// <link rel="import" href="./img-set.html">
-	var ImgSet = __webpack_require__(238);
+	var ImgSet = __webpack_require__(239);
 	// <link rel="import" href="./layout-set.html">
 	//
 	// <link rel="import" href="../site/compontents/p-nav-page-set.html">
 
-	var NavPageSet = __webpack_require__(239);
-	var NavPageLineSet = __webpack_require__(240);
-	var NavPageAbsoluteSet = __webpack_require__(241);
-	var LogoSet = __webpack_require__(242);
+	var NavPageSet = __webpack_require__(240);
+	var NavPageLineSet = __webpack_require__(241);
+	var NavPageAbsoluteSet = __webpack_require__(242);
+	var LogoSet = __webpack_require__(243);
 
-	var GridSet = __webpack_require__(243);
-	var SlideSet = __webpack_require__(244);
+	var GridSet = __webpack_require__(244);
+	var SlideSet = __webpack_require__(245);
 	//
 	// <link rel="import" href="./p-nav-h-set.html">
 	//
@@ -21581,9 +21836,9 @@ webpackJsonp([3,19],[
 	//
 	// <link rel="import" href="../site/compontents/p-masonry-set.html">
 
-	var AlignPanel = __webpack_require__(245);
+	var AlignPanel = __webpack_require__(246);
 
-	var LayoutSet = __webpack_require__(246);
+	var LayoutSet = __webpack_require__(247);
 
 	var Slider = __webpack_require__(198);
 
@@ -22291,7 +22546,7 @@ webpackJsonp([3,19],[
 	module.exports = CSSPanel;
 
 /***/ },
-/* 234 */
+/* 235 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -22613,7 +22868,7 @@ webpackJsonp([3,19],[
 	module.exports = ListSet;
 
 /***/ },
-/* 235 */
+/* 236 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -22721,7 +22976,7 @@ webpackJsonp([3,19],[
 	module.exports = LayoutTwoSet;
 
 /***/ },
-/* 236 */
+/* 237 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -22730,9 +22985,9 @@ webpackJsonp([3,19],[
 
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-	var IconList = __webpack_require__(237);
+	var IconList = __webpack_require__(238);
 
-	var Rangy = __webpack_require__(202);
+	var Rangy = __webpack_require__(203);
 
 	//var  summernote = require("../../summernote");
 
@@ -24045,13 +24300,13 @@ webpackJsonp([3,19],[
 	module.exports = TextSet;
 
 /***/ },
-/* 237 */
+/* 238 */
 /***/ function(module, exports) {
 
 	"use strict";var IconList=Sophie.createClass("icon-list",{render:function render(){return Sophie.element("icon-list",null,Sophie.element("div",{id:"icons"},Sophie.element("section",{id:"new"},Sophie.element("h2",{"class":"page-header"},"66 New Icons in 4.4"),Sophie.element("div",{"class":"row fontawesome-icon-list"},Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/500px"},Sophie.element("i",{"class":""}),"不显示")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/500px"},Sophie.element("i",{"class":"fa fa-500px"})," 500px")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/amazon"},Sophie.element("i",{"class":"fa fa-amazon"})," amazon")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/balance-scale"},Sophie.element("i",{"class":"fa fa-balance-scale"}),"balance-scale")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/battery-empty"},Sophie.element("i",{"class":"fa fa-battery-0"}),"battery-0 ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/battery-quarter"},Sophie.element("i",{"class":"fa fa-battery-1"}),"battery-1 ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/battery-half"},Sophie.element("i",{"class":"fa fa-battery-2"})," battery-2",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/battery-three-quarters"},Sophie.element("i",{"class":"fa fa-battery-3"}),"battery-3 ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/battery-full"},Sophie.element("i",{"class":"fa fa-battery-4"})," battery-4",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/battery-empty"},Sophie.element("i",{"class":"fa fa-battery-empty"}),"battery-empty")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/battery-full"},Sophie.element("i",{"class":"fa fa-battery-full"}),"battery-full")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/battery-half"},Sophie.element("i",{"class":"fa fa-battery-half"}),"battery-half")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/battery-quarter"},Sophie.element("i",{"class":"fa fa-battery-quarter"}),"battery-quarter")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/battery-three-quarters"},Sophie.element("i",{"class":"fa fa-battery-three-quarters"})," battery-three-quarters")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/black-tie"},Sophie.element("i",{"class":"fa fa-black-tie"}),"black-tie")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/calendar-check-o"},Sophie.element("i",{"class":"fa fa-calendar-check-o"})," calendar-check-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/calendar-minus-o"},Sophie.element("i",{"class":"fa fa-calendar-minus-o"})," calendar-minus-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/calendar-plus-o"},Sophie.element("i",{"class":"fa fa-calendar-plus-o"}),"calendar-plus-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/calendar-times-o"},Sophie.element("i",{"class":"fa fa-calendar-times-o"})," calendar-times-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cc-diners-club"},Sophie.element("i",{"class":"fa fa-cc-diners-club"}),"cc-diners-club")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cc-jcb"},Sophie.element("i",{"class":"fa fa-cc-jcb"})," cc-jcb")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/chrome"},Sophie.element("i",{"class":"fa fa-chrome"})," chrome")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/clone"},Sophie.element("i",{"class":"fa fa-clone"})," clone")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/commenting"},Sophie.element("i",{"class":"fa fa-commenting"})," commenting")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/commenting-o"},Sophie.element("i",{"class":"fa fa-commenting-o"}),"commenting-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/contao"},Sophie.element("i",{"class":"fa fa-contao"})," contao")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/creative-commons"},Sophie.element("i",{"class":"fa fa-creative-commons"})," creative-commons")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/expeditedssl"},Sophie.element("i",{"class":"fa fa-expeditedssl"}),"expeditedssl")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/firefox"},Sophie.element("i",{"class":"fa fa-firefox"})," firefox")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/fonticons"},Sophie.element("i",{"class":"fa fa-fonticons"}),"fonticons")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/genderless"},Sophie.element("i",{"class":"fa fa-genderless"})," genderless")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/get-pocket"},Sophie.element("i",{"class":"fa fa-get-pocket"})," get-pocket")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/gg"},Sophie.element("i",{"class":"fa fa-gg"})," gg")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/gg-circle"},Sophie.element("i",{"class":"fa fa-gg-circle"}),"gg-circle")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-rock-o"},Sophie.element("i",{"class":"fa fa-hand-grab-o"}),"hand-grab-o ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-lizard-o"},Sophie.element("i",{"class":"fa fa-hand-lizard-o"}),"hand-lizard-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-paper-o"},Sophie.element("i",{"class":"fa fa-hand-paper-o"}),"hand-paper-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-peace-o"},Sophie.element("i",{"class":"fa fa-hand-peace-o"}),"hand-peace-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-pointer-o"},Sophie.element("i",{"class":"fa fa-hand-pointer-o"}),"hand-pointer-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-rock-o"},Sophie.element("i",{"class":"fa fa-hand-rock-o"}),"hand-rock-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-scissors-o"},Sophie.element("i",{"class":"fa fa-hand-scissors-o"}),"hand-scissors-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-spock-o"},Sophie.element("i",{"class":"fa fa-hand-spock-o"}),"hand-spock-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-paper-o"},Sophie.element("i",{"class":"fa fa-hand-stop-o"}),"hand-stop-o ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hourglass"},Sophie.element("i",{"class":"fa fa-hourglass"}),"hourglass")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hourglass-start"},Sophie.element("i",{"class":"fa fa-hourglass-1"}),"hourglass-1 ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hourglass-half"},Sophie.element("i",{"class":"fa fa-hourglass-2"}),"hourglass-2 ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hourglass-end"},Sophie.element("i",{"class":"fa fa-hourglass-3"}),"hourglass-3 ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hourglass-end"},Sophie.element("i",{"class":"fa fa-hourglass-end"}),"hourglass-end")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hourglass-half"},Sophie.element("i",{"class":"fa fa-hourglass-half"}),"hourglass-half")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hourglass-o"},Sophie.element("i",{"class":"fa fa-hourglass-o"}),"hourglass-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hourglass-start"},Sophie.element("i",{"class":"fa fa-hourglass-start"}),"hourglass-start")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/houzz"},Sophie.element("i",{"class":"fa fa-houzz"})," houzz")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/i-cursor"},Sophie.element("i",{"class":"fa fa-i-cursor"})," i-cursor")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/industry"},Sophie.element("i",{"class":"fa fa-industry"})," industry")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/internet-explorer"},Sophie.element("i",{"class":"fa fa-internet-explorer"})," internet-explorer")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/map"},Sophie.element("i",{"class":"fa fa-map"})," map")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/map-o"},Sophie.element("i",{"class":"fa fa-map-o"})," map-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/map-pin"},Sophie.element("i",{"class":"fa fa-map-pin"})," map-pin")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/map-signs"},Sophie.element("i",{"class":"fa fa-map-signs"}),"map-signs")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/mouse-pointer"},Sophie.element("i",{"class":"fa fa-mouse-pointer"}),"mouse-pointer")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/object-group"},Sophie.element("i",{"class":"fa fa-object-group"}),"object-group")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/object-ungroup"},Sophie.element("i",{"class":"fa fa-object-ungroup"}),"object-ungroup")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/odnoklassniki"},Sophie.element("i",{"class":"fa fa-odnoklassniki"}),"odnoklassniki")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/odnoklassniki-square"},Sophie.element("i",{"class":"fa fa-odnoklassniki-square"})," odnoklassniki-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/opencart"},Sophie.element("i",{"class":"fa fa-opencart"})," opencart")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/opera"},Sophie.element("i",{"class":"fa fa-opera"})," opera")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/optin-monster"},Sophie.element("i",{"class":"fa fa-optin-monster"}),"optin-monster")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/registered"},Sophie.element("i",{"class":"fa fa-registered"})," registered")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/safari"},Sophie.element("i",{"class":"fa fa-safari"})," safari")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/sticky-note"},Sophie.element("i",{"class":"fa fa-sticky-note"}),"sticky-note")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/sticky-note-o"},Sophie.element("i",{"class":"fa fa-sticky-note-o"}),"sticky-note-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/television"},Sophie.element("i",{"class":"fa fa-television"})," television")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/trademark"},Sophie.element("i",{"class":"fa fa-trademark"}),"trademark")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/tripadvisor"},Sophie.element("i",{"class":"fa fa-tripadvisor"}),"tripadvisor")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/television"},Sophie.element("i",{"class":"fa fa-tv"})," tv ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/vimeo"},Sophie.element("i",{"class":"fa fa-vimeo"})," vimeo")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/wikipedia-w"},Sophie.element("i",{"class":"fa fa-wikipedia-w"}),"wikipedia-w")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/y-combinator"},Sophie.element("i",{"class":"fa fa-y-combinator"}),"y-combinator")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/y-combinator"},Sophie.element("i",{"class":"fa fa-yc"})," yc ",Sophie.element("span",{"class":"text-muted"},"(alias)"))))),Sophie.element("section",{id:"web-application"},Sophie.element("h2",{"class":"page-header"},"Web Application Icons"),Sophie.element("div",{"class":"row fontawesome-icon-list"},Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/adjust"},Sophie.element("i",{"class":"fa fa-adjust"})," adjust")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/anchor"},Sophie.element("i",{"class":"fa fa-anchor"})," anchor")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/archive"},Sophie.element("i",{"class":"fa fa-archive"})," archive")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/area-chart"},Sophie.element("i",{"class":"fa fa-area-chart"})," area-chart")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/arrows"},Sophie.element("i",{"class":"fa fa-arrows"})," arrows")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/arrows-h"},Sophie.element("i",{"class":"fa fa-arrows-h"})," arrows-h")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/arrows-v"},Sophie.element("i",{"class":"fa fa-arrows-v"})," arrows-v")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/asterisk"},Sophie.element("i",{"class":"fa fa-asterisk"})," asterisk")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/at"},Sophie.element("i",{"class":"fa fa-at"})," at")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/car"},Sophie.element("i",{"class":"fa fa-automobile"})," automobile ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/balance-scale"},Sophie.element("i",{"class":"fa fa-balance-scale"}),"balance-scale")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/ban"},Sophie.element("i",{"class":"fa fa-ban"})," ban")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/university"},Sophie.element("i",{"class":"fa fa-bank"})," bank ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bar-chart"},Sophie.element("i",{"class":"fa fa-bar-chart"})," bar-chart")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bar-chart"},Sophie.element("i",{"class":"fa fa-bar-chart-o"})," bar-chart-o ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/barcode"},Sophie.element("i",{"class":"fa fa-barcode"})," barcode")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bars"},Sophie.element("i",{"class":"fa fa-bars"})," bars")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/battery-empty"},Sophie.element("i",{"class":"fa fa-battery-0"})," battery-0 ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/battery-quarter"},Sophie.element("i",{"class":"fa fa-battery-1"})," battery-1",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/battery-half"},Sophie.element("i",{"class":"fa fa-battery-2"})," battery-2 ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/battery-three-quarters"},Sophie.element("i",{"class":"fa fa-battery-3"}),"battery-3 ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/battery-full"},Sophie.element("i",{"class":"fa fa-battery-4"})," battery-4 ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/battery-empty"},Sophie.element("i",{"class":"fa fa-battery-empty"}),"battery-empty")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/battery-full"},Sophie.element("i",{"class":"fa fa-battery-full"}),"battery-full")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/battery-half"},Sophie.element("i",{"class":"fa fa-battery-half"}),"battery-half")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/battery-quarter"},Sophie.element("i",{"class":"fa fa-battery-quarter"}),"battery-quarter")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/battery-three-quarters"},Sophie.element("i",{"class":"fa fa-battery-three-quarters"})," battery-three-quarters")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bed"},Sophie.element("i",{"class":"fa fa-bed"})," bed")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/beer"},Sophie.element("i",{"class":"fa fa-beer"})," beer")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bell"},Sophie.element("i",{"class":"fa fa-bell"})," bell")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bell-o"},Sophie.element("i",{"class":"fa fa-bell-o"})," bell-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bell-slash"},Sophie.element("i",{"class":"fa fa-bell-slash"})," bell-slash")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bell-slash-o"},Sophie.element("i",{"class":"fa fa-bell-slash-o"}),"bell-slash-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bicycle"},Sophie.element("i",{"class":"fa fa-bicycle"})," bicycle")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/binoculars"},Sophie.element("i",{"class":"fa fa-binoculars"})," binoculars")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/birthday-cake"},Sophie.element("i",{"class":"fa fa-birthday-cake"}),"birthday-cake")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bolt"},Sophie.element("i",{"class":"fa fa-bolt"})," bolt")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bomb"},Sophie.element("i",{"class":"fa fa-bomb"})," bomb")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/book"},Sophie.element("i",{"class":"fa fa-book"})," book")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bookmark"},Sophie.element("i",{"class":"fa fa-bookmark"})," bookmark")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bookmark-o"},Sophie.element("i",{"class":"fa fa-bookmark-o"})," bookmark-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/briefcase"},Sophie.element("i",{"class":"fa fa-briefcase"})," briefcase")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bug"},Sophie.element("i",{"class":"fa fa-bug"})," bug")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/building"},Sophie.element("i",{"class":"fa fa-building"})," building")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/building-o"},Sophie.element("i",{"class":"fa fa-building-o"})," building-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bullhorn"},Sophie.element("i",{"class":"fa fa-bullhorn"})," bullhorn")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bullseye"},Sophie.element("i",{"class":"fa fa-bullseye"})," bullseye")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bus"},Sophie.element("i",{"class":"fa fa-bus"})," bus")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/taxi"},Sophie.element("i",{"class":"fa fa-cab"})," cab ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/calculator"},Sophie.element("i",{"class":"fa fa-calculator"})," calculator")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/calendar"},Sophie.element("i",{"class":"fa fa-calendar"})," calendar")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/calendar-check-o"},Sophie.element("i",{"class":"fa fa-calendar-check-o"}),"calendar-check-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/calendar-minus-o"},Sophie.element("i",{"class":"fa fa-calendar-minus-o"}),"calendar-minus-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/calendar-o"},Sophie.element("i",{"class":"fa fa-calendar-o"})," calendar-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/calendar-plus-o"},Sophie.element("i",{"class":"fa fa-calendar-plus-o"}),"calendar-plus-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/calendar-times-o"},Sophie.element("i",{"class":"fa fa-calendar-times-o"}),"calendar-times-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/camera"},Sophie.element("i",{"class":"fa fa-camera"})," camera")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/camera-retro"},Sophie.element("i",{"class":"fa fa-camera-retro"}),"camera-retro")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/car"},Sophie.element("i",{"class":"fa fa-car"})," car")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/caret-square-o-down"},Sophie.element("i",{"class":"fa fa-caret-square-o-down"}),"caret-square-o-down")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/caret-square-o-left"},Sophie.element("i",{"class":"fa fa-caret-square-o-left"}),"caret-square-o-left")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/caret-square-o-right"},Sophie.element("i",{"class":"fa fa-caret-square-o-right"})," caret-square-o-right")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/caret-square-o-up"},Sophie.element("i",{"class":"fa fa-caret-square-o-up"}),"caret-square-o-up")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cart-arrow-down"},Sophie.element("i",{"class":"fa fa-cart-arrow-down"}),"cart-arrow-down")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cart-plus"},Sophie.element("i",{"class":"fa fa-cart-plus"})," cart-plus")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cc"},Sophie.element("i",{"class":"fa fa-cc"})," cc")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/certificate"},Sophie.element("i",{"class":"fa fa-certificate"})," certificate")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/check"},Sophie.element("i",{"class":"fa fa-check"})," check")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/check-circle"},Sophie.element("i",{"class":"fa fa-check-circle"}),"check-circle")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/check-circle-o"},Sophie.element("i",{"class":"fa fa-check-circle-o"}),"check-circle-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/check-square"},Sophie.element("i",{"class":"fa fa-check-square"}),"check-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/check-square-o"},Sophie.element("i",{"class":"fa fa-check-square-o"}),"check-square-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/child"},Sophie.element("i",{"class":"fa fa-child"})," child")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/circle"},Sophie.element("i",{"class":"fa fa-circle"})," circle")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/circle-o"},Sophie.element("i",{"class":"fa fa-circle-o"})," circle-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/circle-o-notch"},Sophie.element("i",{"class":"fa fa-circle-o-notch"}),"circle-o-notch")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/circle-thin"},Sophie.element("i",{"class":"fa fa-circle-thin"})," circle-thin")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/clock-o"},Sophie.element("i",{"class":"fa fa-clock-o"})," clock-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/clone"},Sophie.element("i",{"class":"fa fa-clone"})," clone")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/times"},Sophie.element("i",{"class":"fa fa-close"})," close ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cloud"},Sophie.element("i",{"class":"fa fa-cloud"})," cloud")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cloud-download"},Sophie.element("i",{"class":"fa fa-cloud-download"}),"cloud-download")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cloud-upload"},Sophie.element("i",{"class":"fa fa-cloud-upload"}),"cloud-upload")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/code"},Sophie.element("i",{"class":"fa fa-code"})," code")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/code-fork"},Sophie.element("i",{"class":"fa fa-code-fork"})," code-fork")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/coffee"},Sophie.element("i",{"class":"fa fa-coffee"})," coffee")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cog"},Sophie.element("i",{"class":"fa fa-cog"})," cog")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cogs"},Sophie.element("i",{"class":"fa fa-cogs"})," cogs")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/comment"},Sophie.element("i",{"class":"fa fa-comment"})," comment")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/comment-o"},Sophie.element("i",{"class":"fa fa-comment-o"})," comment-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/commenting"},Sophie.element("i",{"class":"fa fa-commenting"})," commenting")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/commenting-o"},Sophie.element("i",{"class":"fa fa-commenting-o"}),"commenting-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/comments"},Sophie.element("i",{"class":"fa fa-comments"})," comments")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/comments-o"},Sophie.element("i",{"class":"fa fa-comments-o"})," comments-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/compass"},Sophie.element("i",{"class":"fa fa-compass"})," compass")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/copyright"},Sophie.element("i",{"class":"fa fa-copyright"})," copyright")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/creative-commons"},Sophie.element("i",{"class":"fa fa-creative-commons"}),"creative-commons")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/credit-card"},Sophie.element("i",{"class":"fa fa-credit-card"})," credit-card")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/crop"},Sophie.element("i",{"class":"fa fa-crop"})," crop")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/crosshairs"},Sophie.element("i",{"class":"fa fa-crosshairs"})," crosshairs")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cube"},Sophie.element("i",{"class":"fa fa-cube"})," cube")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cubes"},Sophie.element("i",{"class":"fa fa-cubes"})," cubes")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cutlery"},Sophie.element("i",{"class":"fa fa-cutlery"})," cutlery")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/tachometer"},Sophie.element("i",{"class":"fa fa-dashboard"})," dashboard ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/database"},Sophie.element("i",{"class":"fa fa-database"})," database")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/desktop"},Sophie.element("i",{"class":"fa fa-desktop"})," desktop")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/diamond"},Sophie.element("i",{"class":"fa fa-diamond"})," diamond")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/dot-circle-o"},Sophie.element("i",{"class":"fa fa-dot-circle-o"}),"dot-circle-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/download"},Sophie.element("i",{"class":"fa fa-download"})," download")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/pencil-square-o"},Sophie.element("i",{"class":"fa fa-edit"})," edit ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/ellipsis-h"},Sophie.element("i",{"class":"fa fa-ellipsis-h"})," ellipsis-h")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/ellipsis-v"},Sophie.element("i",{"class":"fa fa-ellipsis-v"})," ellipsis-v")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/envelope"},Sophie.element("i",{"class":"fa fa-envelope"})," envelope")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/envelope-o"},Sophie.element("i",{"class":"fa fa-envelope-o"})," envelope-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/envelope-square"},Sophie.element("i",{"class":"fa fa-envelope-square"}),"envelope-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/eraser"},Sophie.element("i",{"class":"fa fa-eraser"})," eraser")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/exchange"},Sophie.element("i",{"class":"fa fa-exchange"})," exchange")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/exclamation"},Sophie.element("i",{"class":"fa fa-exclamation"})," exclamation")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/exclamation-circle"},Sophie.element("i",{"class":"fa fa-exclamation-circle"}),"exclamation-circle")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/exclamation-triangle"},Sophie.element("i",{"class":"fa fa-exclamation-triangle"})," exclamation-triangle")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/external-link"},Sophie.element("i",{"class":"fa fa-external-link"}),"external-link")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/external-link-square"},Sophie.element("i",{"class":"fa fa-external-link-square"})," external-link-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/eye"},Sophie.element("i",{"class":"fa fa-eye"})," eye")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/eye-slash"},Sophie.element("i",{"class":"fa fa-eye-slash"})," eye-slash")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/eyedropper"},Sophie.element("i",{"class":"fa fa-eyedropper"})," eyedropper")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/fax"},Sophie.element("i",{"class":"fa fa-fax"})," fax")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/rss"},Sophie.element("i",{"class":"fa fa-feed"})," feed ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/female"},Sophie.element("i",{"class":"fa fa-female"})," female")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/fighter-jet"},Sophie.element("i",{"class":"fa fa-fighter-jet"})," fighter-jet")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-archive-o"},Sophie.element("i",{"class":"fa fa-file-archive-o"}),"file-archive-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-audio-o"},Sophie.element("i",{"class":"fa fa-file-audio-o"}),"file-audio-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-code-o"},Sophie.element("i",{"class":"fa fa-file-code-o"})," file-code-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-excel-o"},Sophie.element("i",{"class":"fa fa-file-excel-o"}),"file-excel-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-image-o"},Sophie.element("i",{"class":"fa fa-file-image-o"}),"file-image-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-video-o"},Sophie.element("i",{"class":"fa fa-file-movie-o"})," file-movie-o",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-pdf-o"},Sophie.element("i",{"class":"fa fa-file-pdf-o"})," file-pdf-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-image-o"},Sophie.element("i",{"class":"fa fa-file-photo-o"})," file-photo-o",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-image-o"},Sophie.element("i",{"class":"fa fa-file-picture-o"}),"file-picture-o ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-powerpoint-o"},Sophie.element("i",{"class":"fa fa-file-powerpoint-o"}),"file-powerpoint-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-audio-o"},Sophie.element("i",{"class":"fa fa-file-sound-o"})," file-sound-o",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-video-o"},Sophie.element("i",{"class":"fa fa-file-video-o"}),"file-video-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-word-o"},Sophie.element("i",{"class":"fa fa-file-word-o"})," file-word-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-archive-o"},Sophie.element("i",{"class":"fa fa-file-zip-o"})," file-zip-o",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/film"},Sophie.element("i",{"class":"fa fa-film"})," film")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/filter"},Sophie.element("i",{"class":"fa fa-filter"})," filter")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/fire"},Sophie.element("i",{"class":"fa fa-fire"})," fire")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/fire-extinguisher"},Sophie.element("i",{"class":"fa fa-fire-extinguisher"}),"fire-extinguisher")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/flag"},Sophie.element("i",{"class":"fa fa-flag"})," flag")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/flag-checkered"},Sophie.element("i",{"class":"fa fa-flag-checkered"}),"flag-checkered")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/flag-o"},Sophie.element("i",{"class":"fa fa-flag-o"})," flag-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bolt"},Sophie.element("i",{"class":"fa fa-flash"})," flash ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/flask"},Sophie.element("i",{"class":"fa fa-flask"})," flask")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/folder"},Sophie.element("i",{"class":"fa fa-folder"})," folder")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/folder-o"},Sophie.element("i",{"class":"fa fa-folder-o"})," folder-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/folder-open"},Sophie.element("i",{"class":"fa fa-folder-open"})," folder-open")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/folder-open-o"},Sophie.element("i",{"class":"fa fa-folder-open-o"}),"folder-open-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/frown-o"},Sophie.element("i",{"class":"fa fa-frown-o"})," frown-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/futbol-o"},Sophie.element("i",{"class":"fa fa-futbol-o"})," futbol-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/gamepad"},Sophie.element("i",{"class":"fa fa-gamepad"})," gamepad")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/gavel"},Sophie.element("i",{"class":"fa fa-gavel"})," gavel")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cog"},Sophie.element("i",{"class":"fa fa-gear"})," gear ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cogs"},Sophie.element("i",{"class":"fa fa-gears"})," gears ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/gift"},Sophie.element("i",{"class":"fa fa-gift"})," gift")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/glass"},Sophie.element("i",{"class":"fa fa-glass"})," glass")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/globe"},Sophie.element("i",{"class":"fa fa-globe"})," globe")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/graduation-cap"},Sophie.element("i",{"class":"fa fa-graduation-cap"}),"graduation-cap")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/users"},Sophie.element("i",{"class":"fa fa-group"})," group ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-rock-o"},Sophie.element("i",{"class":"fa fa-hand-grab-o"})," hand-grab-o",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-lizard-o"},Sophie.element("i",{"class":"fa fa-hand-lizard-o"}),"hand-lizard-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-paper-o"},Sophie.element("i",{"class":"fa fa-hand-paper-o"}),"hand-paper-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-peace-o"},Sophie.element("i",{"class":"fa fa-hand-peace-o"}),"hand-peace-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-pointer-o"},Sophie.element("i",{"class":"fa fa-hand-pointer-o"}),"hand-pointer-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-rock-o"},Sophie.element("i",{"class":"fa fa-hand-rock-o"})," hand-rock-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-scissors-o"},Sophie.element("i",{"class":"fa fa-hand-scissors-o"}),"hand-scissors-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-spock-o"},Sophie.element("i",{"class":"fa fa-hand-spock-o"}),"hand-spock-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-paper-o"},Sophie.element("i",{"class":"fa fa-hand-stop-o"})," hand-stop-o",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hdd-o"},Sophie.element("i",{"class":"fa fa-hdd-o"})," hdd-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/headphones"},Sophie.element("i",{"class":"fa fa-headphones"})," headphones")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/heart"},Sophie.element("i",{"class":"fa fa-heart"})," heart")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/heart-o"},Sophie.element("i",{"class":"fa fa-heart-o"})," heart-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/heartbeat"},Sophie.element("i",{"class":"fa fa-heartbeat"})," heartbeat")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/history"},Sophie.element("i",{"class":"fa fa-history"})," history")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/home"},Sophie.element("i",{"class":"fa fa-home"})," home")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bed"},Sophie.element("i",{"class":"fa fa-hotel"})," hotel ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hourglass"},Sophie.element("i",{"class":"fa fa-hourglass"})," hourglass")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hourglass-start"},Sophie.element("i",{"class":"fa fa-hourglass-1"})," hourglass-1",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hourglass-half"},Sophie.element("i",{"class":"fa fa-hourglass-2"})," hourglass-2",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hourglass-end"},Sophie.element("i",{"class":"fa fa-hourglass-3"})," hourglass-3",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hourglass-end"},Sophie.element("i",{"class":"fa fa-hourglass-end"}),"hourglass-end")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hourglass-half"},Sophie.element("i",{"class":"fa fa-hourglass-half"}),"hourglass-half")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hourglass-o"},Sophie.element("i",{"class":"fa fa-hourglass-o"})," hourglass-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hourglass-start"},Sophie.element("i",{"class":"fa fa-hourglass-start"}),"hourglass-start")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/i-cursor"},Sophie.element("i",{"class":"fa fa-i-cursor"})," i-cursor")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/picture-o"},Sophie.element("i",{"class":"fa fa-image"})," image ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/inbox"},Sophie.element("i",{"class":"fa fa-inbox"})," inbox")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/industry"},Sophie.element("i",{"class":"fa fa-industry"})," industry")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/info"},Sophie.element("i",{"class":"fa fa-info"})," info")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/info-circle"},Sophie.element("i",{"class":"fa fa-info-circle"})," info-circle")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/university"},Sophie.element("i",{"class":"fa fa-institution"})," institution ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/key"},Sophie.element("i",{"class":"fa fa-key"})," key")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/keyboard-o"},Sophie.element("i",{"class":"fa fa-keyboard-o"})," keyboard-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/language"},Sophie.element("i",{"class":"fa fa-language"})," language")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/laptop"},Sophie.element("i",{"class":"fa fa-laptop"})," laptop")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/leaf"},Sophie.element("i",{"class":"fa fa-leaf"})," leaf")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/gavel"},Sophie.element("i",{"class":"fa fa-legal"})," legal ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/lemon-o"},Sophie.element("i",{"class":"fa fa-lemon-o"})," lemon-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/level-down"},Sophie.element("i",{"class":"fa fa-level-down"})," level-down")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/level-up"},Sophie.element("i",{"class":"fa fa-level-up"})," level-up")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/life-ring"},Sophie.element("i",{"class":"fa fa-life-bouy"})," life-bouy ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/life-ring"},Sophie.element("i",{"class":"fa fa-life-buoy"})," life-buoy ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/life-ring"},Sophie.element("i",{"class":"fa fa-life-ring"})," life-ring")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/life-ring"},Sophie.element("i",{"class":"fa fa-life-saver"})," life-saver ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/lightbulb-o"},Sophie.element("i",{"class":"fa fa-lightbulb-o"})," lightbulb-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/line-chart"},Sophie.element("i",{"class":"fa fa-line-chart"})," line-chart")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/location-arrow"},Sophie.element("i",{"class":"fa fa-location-arrow"}),"location-arrow")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/lock"},Sophie.element("i",{"class":"fa fa-lock"})," lock")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/magic"},Sophie.element("i",{"class":"fa fa-magic"})," magic")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/magnet"},Sophie.element("i",{"class":"fa fa-magnet"})," magnet")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/share"},Sophie.element("i",{"class":"fa fa-mail-forward"})," mail-forward ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/reply"},Sophie.element("i",{"class":"fa fa-mail-reply"})," mail-reply ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/reply-all"},Sophie.element("i",{"class":"fa fa-mail-reply-all"})," mail-reply-all",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/male"},Sophie.element("i",{"class":"fa fa-male"})," male")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/map"},Sophie.element("i",{"class":"fa fa-map"})," map")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/map-marker"},Sophie.element("i",{"class":"fa fa-map-marker"})," map-marker")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/map-o"},Sophie.element("i",{"class":"fa fa-map-o"})," map-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/map-pin"},Sophie.element("i",{"class":"fa fa-map-pin"})," map-pin")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/map-signs"},Sophie.element("i",{"class":"fa fa-map-signs"})," map-signs")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/meh-o"},Sophie.element("i",{"class":"fa fa-meh-o"})," meh-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/microphone"},Sophie.element("i",{"class":"fa fa-microphone"})," microphone")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/microphone-slash"},Sophie.element("i",{"class":"fa fa-microphone-slash"}),"microphone-slash")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/minus"},Sophie.element("i",{"class":"fa fa-minus"})," minus")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/minus-circle"},Sophie.element("i",{"class":"fa fa-minus-circle"}),"minus-circle")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/minus-square"},Sophie.element("i",{"class":"fa fa-minus-square"}),"minus-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/minus-square-o"},Sophie.element("i",{"class":"fa fa-minus-square-o"}),"minus-square-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/mobile"},Sophie.element("i",{"class":"fa fa-mobile"})," mobile")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/mobile"},Sophie.element("i",{"class":"fa fa-mobile-phone"})," mobile-phone ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/money"},Sophie.element("i",{"class":"fa fa-money"})," money")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/moon-o"},Sophie.element("i",{"class":"fa fa-moon-o"})," moon-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/graduation-cap"},Sophie.element("i",{"class":"fa fa-mortar-board"})," mortar-board",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/motorcycle"},Sophie.element("i",{"class":"fa fa-motorcycle"})," motorcycle")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/mouse-pointer"},Sophie.element("i",{"class":"fa fa-mouse-pointer"}),"mouse-pointer")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/music"},Sophie.element("i",{"class":"fa fa-music"})," music")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bars"},Sophie.element("i",{"class":"fa fa-navicon"})," navicon ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/newspaper-o"},Sophie.element("i",{"class":"fa fa-newspaper-o"})," newspaper-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/object-group"},Sophie.element("i",{"class":"fa fa-object-group"}),"object-group")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/object-ungroup"},Sophie.element("i",{"class":"fa fa-object-ungroup"}),"object-ungroup")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/paint-brush"},Sophie.element("i",{"class":"fa fa-paint-brush"})," paint-brush")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/paper-plane"},Sophie.element("i",{"class":"fa fa-paper-plane"})," paper-plane")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/paper-plane-o"},Sophie.element("i",{"class":"fa fa-paper-plane-o"}),"paper-plane-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/paw"},Sophie.element("i",{"class":"fa fa-paw"})," paw")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/pencil"},Sophie.element("i",{"class":"fa fa-pencil"})," pencil")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/pencil-square"},Sophie.element("i",{"class":"fa fa-pencil-square"}),"pencil-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/pencil-square-o"},Sophie.element("i",{"class":"fa fa-pencil-square-o"}),"pencil-square-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/phone"},Sophie.element("i",{"class":"fa fa-phone"})," phone")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/phone-square"},Sophie.element("i",{"class":"fa fa-phone-square"}),"phone-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/picture-o"},Sophie.element("i",{"class":"fa fa-photo"})," photo ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/picture-o"},Sophie.element("i",{"class":"fa fa-picture-o"})," picture-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/pie-chart"},Sophie.element("i",{"class":"fa fa-pie-chart"})," pie-chart")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/plane"},Sophie.element("i",{"class":"fa fa-plane"})," plane")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/plug"},Sophie.element("i",{"class":"fa fa-plug"})," plug")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/plus"},Sophie.element("i",{"class":"fa fa-plus"})," plus")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/plus-circle"},Sophie.element("i",{"class":"fa fa-plus-circle"})," plus-circle")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/plus-square"},Sophie.element("i",{"class":"fa fa-plus-square"})," plus-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/plus-square-o"},Sophie.element("i",{"class":"fa fa-plus-square-o"}),"plus-square-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/power-off"},Sophie.element("i",{"class":"fa fa-power-off"})," power-off")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/print"},Sophie.element("i",{"class":"fa fa-print"})," print")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/puzzle-piece"},Sophie.element("i",{"class":"fa fa-puzzle-piece"}),"puzzle-piece")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/qrcode"},Sophie.element("i",{"class":"fa fa-qrcode"})," qrcode")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/question"},Sophie.element("i",{"class":"fa fa-question"})," question")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/question-circle"},Sophie.element("i",{"class":"fa fa-question-circle"}),"question-circle")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/quote-left"},Sophie.element("i",{"class":"fa fa-quote-left"})," quote-left")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/quote-right"},Sophie.element("i",{"class":"fa fa-quote-right"})," quote-right")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/random"},Sophie.element("i",{"class":"fa fa-random"})," random")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/recycle"},Sophie.element("i",{"class":"fa fa-recycle"})," recycle")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/refresh"},Sophie.element("i",{"class":"fa fa-refresh"})," refresh")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/registered"},Sophie.element("i",{"class":"fa fa-registered"})," registered")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/times"},Sophie.element("i",{"class":"fa fa-remove"})," remove ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bars"},Sophie.element("i",{"class":"fa fa-reorder"})," reorder ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/reply"},Sophie.element("i",{"class":"fa fa-reply"})," reply")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/reply-all"},Sophie.element("i",{"class":"fa fa-reply-all"})," reply-all")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/retweet"},Sophie.element("i",{"class":"fa fa-retweet"})," retweet")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/road"},Sophie.element("i",{"class":"fa fa-road"})," road")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/rocket"},Sophie.element("i",{"class":"fa fa-rocket"})," rocket")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/rss"},Sophie.element("i",{"class":"fa fa-rss"})," rss")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/rss-square"},Sophie.element("i",{"class":"fa fa-rss-square"})," rss-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/search"},Sophie.element("i",{"class":"fa fa-search"})," search")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/search-minus"},Sophie.element("i",{"class":"fa fa-search-minus"}),"search-minus")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/search-plus"},Sophie.element("i",{"class":"fa fa-search-plus"})," search-plus")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/paper-plane"},Sophie.element("i",{"class":"fa fa-send"})," send ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/paper-plane-o"},Sophie.element("i",{"class":"fa fa-send-o"})," send-o ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/server"},Sophie.element("i",{"class":"fa fa-server"})," server")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/share"},Sophie.element("i",{"class":"fa fa-share"})," share")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/share-alt"},Sophie.element("i",{"class":"fa fa-share-alt"})," share-alt")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/share-alt-square"},Sophie.element("i",{"class":"fa fa-share-alt-square"}),"share-alt-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/share-square"},Sophie.element("i",{"class":"fa fa-share-square"}),"share-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/share-square-o"},Sophie.element("i",{"class":"fa fa-share-square-o"}),"share-square-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/shield"},Sophie.element("i",{"class":"fa fa-shield"})," shield")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/ship"},Sophie.element("i",{"class":"fa fa-ship"})," ship")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/shopping-cart"},Sophie.element("i",{"class":"fa fa-shopping-cart"}),"shopping-cart")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/sign-in"},Sophie.element("i",{"class":"fa fa-sign-in"})," sign-in")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/sign-out"},Sophie.element("i",{"class":"fa fa-sign-out"})," sign-out")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/signal"},Sophie.element("i",{"class":"fa fa-signal"})," signal")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/sitemap"},Sophie.element("i",{"class":"fa fa-sitemap"})," sitemap")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/sliders"},Sophie.element("i",{"class":"fa fa-sliders"})," sliders")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/smile-o"},Sophie.element("i",{"class":"fa fa-smile-o"})," smile-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/futbol-o"},Sophie.element("i",{"class":"fa fa-soccer-ball-o"})," soccer-ball-o",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/sort"},Sophie.element("i",{"class":"fa fa-sort"})," sort")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/sort-alpha-asc"},Sophie.element("i",{"class":"fa fa-sort-alpha-asc"}),"sort-alpha-asc")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/sort-alpha-desc"},Sophie.element("i",{"class":"fa fa-sort-alpha-desc"}),"sort-alpha-desc")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/sort-amount-asc"},Sophie.element("i",{"class":"fa fa-sort-amount-asc"}),"sort-amount-asc")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/sort-amount-desc"},Sophie.element("i",{"class":"fa fa-sort-amount-desc"}),"sort-amount-desc")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/sort-asc"},Sophie.element("i",{"class":"fa fa-sort-asc"})," sort-asc")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/sort-desc"},Sophie.element("i",{"class":"fa fa-sort-desc"})," sort-desc")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/sort-desc"},Sophie.element("i",{"class":"fa fa-sort-down"})," sort-down ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/sort-numeric-asc"},Sophie.element("i",{"class":"fa fa-sort-numeric-asc"}),"sort-numeric-asc")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/sort-numeric-desc"},Sophie.element("i",{"class":"fa fa-sort-numeric-desc"}),"sort-numeric-desc")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/sort-asc"},Sophie.element("i",{"class":"fa fa-sort-up"})," sort-up ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/space-shuttle"},Sophie.element("i",{"class":"fa fa-space-shuttle"}),"space-shuttle")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/spinner"},Sophie.element("i",{"class":"fa fa-spinner"})," spinner")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/spoon"},Sophie.element("i",{"class":"fa fa-spoon"})," spoon")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/square"},Sophie.element("i",{"class":"fa fa-square"})," square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/square-o"},Sophie.element("i",{"class":"fa fa-square-o"})," square-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/star"},Sophie.element("i",{"class":"fa fa-star"})," star")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/star-half"},Sophie.element("i",{"class":"fa fa-star-half"})," star-half")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/star-half-o"},Sophie.element("i",{"class":"fa fa-star-half-empty"}),"star-half-empty ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/star-half-o"},Sophie.element("i",{"class":"fa fa-star-half-full"}),"star-half-full ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/star-half-o"},Sophie.element("i",{"class":"fa fa-star-half-o"})," star-half-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/star-o"},Sophie.element("i",{"class":"fa fa-star-o"})," star-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/sticky-note"},Sophie.element("i",{"class":"fa fa-sticky-note"})," sticky-note")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/sticky-note-o"},Sophie.element("i",{"class":"fa fa-sticky-note-o"}),"sticky-note-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/street-view"},Sophie.element("i",{"class":"fa fa-street-view"})," street-view")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/suitcase"},Sophie.element("i",{"class":"fa fa-suitcase"})," suitcase")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/sun-o"},Sophie.element("i",{"class":"fa fa-sun-o"})," sun-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/life-ring"},Sophie.element("i",{"class":"fa fa-support"})," support ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/tablet"},Sophie.element("i",{"class":"fa fa-tablet"})," tablet")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/tachometer"},Sophie.element("i",{"class":"fa fa-tachometer"})," tachometer")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/tag"},Sophie.element("i",{"class":"fa fa-tag"})," tag")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/tags"},Sophie.element("i",{"class":"fa fa-tags"})," tags")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/tasks"},Sophie.element("i",{"class":"fa fa-tasks"})," tasks")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/taxi"},Sophie.element("i",{"class":"fa fa-taxi"})," taxi")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/television"},Sophie.element("i",{"class":"fa fa-television"})," television")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/terminal"},Sophie.element("i",{"class":"fa fa-terminal"})," terminal")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/thumb-tack"},Sophie.element("i",{"class":"fa fa-thumb-tack"})," thumb-tack")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/thumbs-down"},Sophie.element("i",{"class":"fa fa-thumbs-down"})," thumbs-down")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/thumbs-o-down"},Sophie.element("i",{"class":"fa fa-thumbs-o-down"}),"thumbs-o-down")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/thumbs-o-up"},Sophie.element("i",{"class":"fa fa-thumbs-o-up"})," thumbs-o-up")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/thumbs-up"},Sophie.element("i",{"class":"fa fa-thumbs-up"})," thumbs-up")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/ticket"},Sophie.element("i",{"class":"fa fa-ticket"})," ticket")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/times"},Sophie.element("i",{"class":"fa fa-times"})," times")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/times-circle"},Sophie.element("i",{"class":"fa fa-times-circle"}),"times-circle")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/times-circle-o"},Sophie.element("i",{"class":"fa fa-times-circle-o"}),"times-circle-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/tint"},Sophie.element("i",{"class":"fa fa-tint"})," tint")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/caret-square-o-down"},Sophie.element("i",{"class":"fa fa-toggle-down"}),"toggle-down ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/caret-square-o-left"},Sophie.element("i",{"class":"fa fa-toggle-left"}),"toggle-left ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/toggle-off"},Sophie.element("i",{"class":"fa fa-toggle-off"})," toggle-off")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/toggle-on"},Sophie.element("i",{"class":"fa fa-toggle-on"})," toggle-on")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/caret-square-o-right"},Sophie.element("i",{"class":"fa fa-toggle-right"}),"toggle-right ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/caret-square-o-up"},Sophie.element("i",{"class":"fa fa-toggle-up"})," toggle-up",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/trademark"},Sophie.element("i",{"class":"fa fa-trademark"})," trademark")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/trash"},Sophie.element("i",{"class":"fa fa-trash"})," trash")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/trash-o"},Sophie.element("i",{"class":"fa fa-trash-o"})," trash-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/tree"},Sophie.element("i",{"class":"fa fa-tree"})," tree")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/trophy"},Sophie.element("i",{"class":"fa fa-trophy"})," trophy")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/truck"},Sophie.element("i",{"class":"fa fa-truck"})," truck")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/tty"},Sophie.element("i",{"class":"fa fa-tty"})," tty")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/television"},Sophie.element("i",{"class":"fa fa-tv"})," tv ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/umbrella"},Sophie.element("i",{"class":"fa fa-umbrella"})," umbrella")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/university"},Sophie.element("i",{"class":"fa fa-university"})," university")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/unlock"},Sophie.element("i",{"class":"fa fa-unlock"})," unlock")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/unlock-alt"},Sophie.element("i",{"class":"fa fa-unlock-alt"})," unlock-alt")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/sort"},Sophie.element("i",{"class":"fa fa-unsorted"})," unsorted ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/upload"},Sophie.element("i",{"class":"fa fa-upload"})," upload")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/user"},Sophie.element("i",{"class":"fa fa-user"})," user")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/user-plus"},Sophie.element("i",{"class":"fa fa-user-plus"})," user-plus")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/user-secret"},Sophie.element("i",{"class":"fa fa-user-secret"})," user-secret")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/user-times"},Sophie.element("i",{"class":"fa fa-user-times"})," user-times")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/users"},Sophie.element("i",{"class":"fa fa-users"})," users")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/video-camera"},Sophie.element("i",{"class":"fa fa-video-camera"}),"video-camera")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/volume-down"},Sophie.element("i",{"class":"fa fa-volume-down"})," volume-down")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/volume-off"},Sophie.element("i",{"class":"fa fa-volume-off"})," volume-off")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/volume-up"},Sophie.element("i",{"class":"fa fa-volume-up"})," volume-up")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/exclamation-triangle"},Sophie.element("i",{"class":"fa fa-warning"})," warning",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/wheelchair"},Sophie.element("i",{"class":"fa fa-wheelchair"})," wheelchair")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/wifi"},Sophie.element("i",{"class":"fa fa-wifi"})," wifi")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/wrench"},Sophie.element("i",{"class":"fa fa-wrench"})," wrench")))),Sophie.element("section",{id:"hand"},Sophie.element("h2",{"class":"page-header"},"Hand Icons"),Sophie.element("div",{"class":"row fontawesome-icon-list"},Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-rock-o"},Sophie.element("i",{"class":"fa fa-hand-grab-o"}),"hand-grab-o ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-lizard-o"},Sophie.element("i",{"class":"fa fa-hand-lizard-o"}),"hand-lizard-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-o-down"},Sophie.element("i",{"class":"fa fa-hand-o-down"}),"hand-o-down")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-o-left"},Sophie.element("i",{"class":"fa fa-hand-o-left"}),"hand-o-left")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-o-right"},Sophie.element("i",{"class":"fa fa-hand-o-right"}),"hand-o-right")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-o-up"},Sophie.element("i",{"class":"fa fa-hand-o-up"}),"hand-o-up")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-paper-o"},Sophie.element("i",{"class":"fa fa-hand-paper-o"}),"hand-paper-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-peace-o"},Sophie.element("i",{"class":"fa fa-hand-peace-o"}),"hand-peace-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-pointer-o"},Sophie.element("i",{"class":"fa fa-hand-pointer-o"}),"hand-pointer-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-rock-o"},Sophie.element("i",{"class":"fa fa-hand-rock-o"}),"hand-rock-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-scissors-o"},Sophie.element("i",{"class":"fa fa-hand-scissors-o"}),"hand-scissors-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-spock-o"},Sophie.element("i",{"class":"fa fa-hand-spock-o"}),"hand-spock-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-paper-o"},Sophie.element("i",{"class":"fa fa-hand-stop-o"}),"hand-stop-o ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/thumbs-down"},Sophie.element("i",{"class":"fa fa-thumbs-down"}),"thumbs-down")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/thumbs-o-down"},Sophie.element("i",{"class":"fa fa-thumbs-o-down"}),"thumbs-o-down")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/thumbs-o-up"},Sophie.element("i",{"class":"fa fa-thumbs-o-up"}),"thumbs-o-up")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/thumbs-up"},Sophie.element("i",{"class":"fa fa-thumbs-up"}),"thumbs-up")))),Sophie.element("section",{id:"transportation"},Sophie.element("h2",{"class":"page-header"},"Transportation Icons"),Sophie.element("div",{"class":"row fontawesome-icon-list"},Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/ambulance"},Sophie.element("i",{"class":"fa fa-ambulance"}),"ambulance")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/car"},Sophie.element("i",{"class":"fa fa-automobile"})," automobile ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bicycle"},Sophie.element("i",{"class":"fa fa-bicycle"})," bicycle")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bus"},Sophie.element("i",{"class":"fa fa-bus"})," bus")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/taxi"},Sophie.element("i",{"class":"fa fa-cab"})," cab ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/car"},Sophie.element("i",{"class":"fa fa-car"})," car")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/fighter-jet"},Sophie.element("i",{"class":"fa fa-fighter-jet"}),"fighter-jet")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/motorcycle"},Sophie.element("i",{"class":"fa fa-motorcycle"})," motorcycle")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/plane"},Sophie.element("i",{"class":"fa fa-plane"})," plane")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/rocket"},Sophie.element("i",{"class":"fa fa-rocket"})," rocket")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/ship"},Sophie.element("i",{"class":"fa fa-ship"})," ship")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/space-shuttle"},Sophie.element("i",{"class":"fa fa-space-shuttle"}),"space-shuttle")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/subway"},Sophie.element("i",{"class":"fa fa-subway"})," subway")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/taxi"},Sophie.element("i",{"class":"fa fa-taxi"})," taxi")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/train"},Sophie.element("i",{"class":"fa fa-train"})," train")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/truck"},Sophie.element("i",{"class":"fa fa-truck"})," truck")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/wheelchair"},Sophie.element("i",{"class":"fa fa-wheelchair"})," wheelchair")))),Sophie.element("section",{id:"gender"},Sophie.element("h2",{"class":"page-header"},"Gender Icons"),Sophie.element("div",{"class":"row fontawesome-icon-list"},Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/genderless"},Sophie.element("i",{"class":"fa fa-genderless"})," genderless")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/transgender"},Sophie.element("i",{"class":"fa fa-intersex"})," intersex",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/mars"},Sophie.element("i",{"class":"fa fa-mars"})," mars")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/mars-double"},Sophie.element("i",{"class":"fa fa-mars-double"}),"mars-double")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/mars-stroke"},Sophie.element("i",{"class":"fa fa-mars-stroke"}),"mars-stroke")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/mars-stroke-h"},Sophie.element("i",{"class":"fa fa-mars-stroke-h"}),"mars-stroke-h")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/mars-stroke-v"},Sophie.element("i",{"class":"fa fa-mars-stroke-v"}),"mars-stroke-v")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/mercury"},Sophie.element("i",{"class":"fa fa-mercury"})," mercury")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/neuter"},Sophie.element("i",{"class":"fa fa-neuter"})," neuter")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/transgender"},Sophie.element("i",{"class":"fa fa-transgender"}),"transgender")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/transgender-alt"},Sophie.element("i",{"class":"fa fa-transgender-alt"}),"transgender-alt")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/venus"},Sophie.element("i",{"class":"fa fa-venus"})," venus")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/venus-double"},Sophie.element("i",{"class":"fa fa-venus-double"}),"venus-double")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/venus-mars"},Sophie.element("i",{"class":"fa fa-venus-mars"})," venus-mars")))),Sophie.element("section",{id:"file-type"},Sophie.element("h2",{"class":"page-header"},"File Type Icons"),Sophie.element("div",{"class":"row fontawesome-icon-list"},Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file"},Sophie.element("i",{"class":"fa fa-file"})," file")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-archive-o"},Sophie.element("i",{"class":"fa fa-file-archive-o"}),"file-archive-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-audio-o"},Sophie.element("i",{"class":"fa fa-file-audio-o"}),"file-audio-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-code-o"},Sophie.element("i",{"class":"fa fa-file-code-o"}),"file-code-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-excel-o"},Sophie.element("i",{"class":"fa fa-file-excel-o"}),"file-excel-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-image-o"},Sophie.element("i",{"class":"fa fa-file-image-o"}),"file-image-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-video-o"},Sophie.element("i",{"class":"fa fa-file-movie-o"}),"file-movie-o ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-o"},Sophie.element("i",{"class":"fa fa-file-o"})," file-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-pdf-o"},Sophie.element("i",{"class":"fa fa-file-pdf-o"})," file-pdf-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-image-o"},Sophie.element("i",{"class":"fa fa-file-photo-o"}),"file-photo-o ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-image-o"},Sophie.element("i",{"class":"fa fa-file-picture-o"}),"file-picture-o ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-powerpoint-o"},Sophie.element("i",{"class":"fa fa-file-powerpoint-o"})," file-powerpoint-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-audio-o"},Sophie.element("i",{"class":"fa fa-file-sound-o"}),"file-sound-o ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-text"},Sophie.element("i",{"class":"fa fa-file-text"}),"file-text")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-text-o"},Sophie.element("i",{"class":"fa fa-file-text-o"}),"file-text-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-video-o"},Sophie.element("i",{"class":"fa fa-file-video-o"}),"file-video-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-word-o"},Sophie.element("i",{"class":"fa fa-file-word-o"}),"file-word-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-archive-o"},Sophie.element("i",{"class":"fa fa-file-zip-o"}),"file-zip-o ",Sophie.element("span",{"class":"text-muted"},"(alias)"))))),Sophie.element("section",{id:"spinner"},Sophie.element("h2",{"class":"page-header"},"Spinner Icons"),Sophie.element("div",{"class":"alert alert-success"},Sophie.element("ul",{"class":"fa-ul"},Sophie.element("li",null,Sophie.element("i",{"class":"fa fa-info-circle fa-lg fa-li"}),"These icons work great with the ",Sophie.element("code",null,"fa-spin")," class. Check out the",Sophie.element("a",{href:"../examples/#animated","class":"alert-link"},"spinning icons example"),"."))),Sophie.element("div",{"class":"row fontawesome-icon-list"},Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/circle-o-notch"},Sophie.element("i",{"class":"fa fa-circle-o-notch"}),"circle-o-notch")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cog"},Sophie.element("i",{"class":"fa fa-cog"})," cog")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cog"},Sophie.element("i",{"class":"fa fa-gear"})," gear ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/refresh"},Sophie.element("i",{"class":"fa fa-refresh"})," refresh")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/spinner"},Sophie.element("i",{"class":"fa fa-spinner"})," spinner")))),Sophie.element("section",{id:"form-control"},Sophie.element("h2",{"class":"page-header"},"Form Control Icons"),Sophie.element("div",{"class":"row fontawesome-icon-list"},Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/check-square"},Sophie.element("i",{"class":"fa fa-check-square"}),"check-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/check-square-o"},Sophie.element("i",{"class":"fa fa-check-square-o"}),"check-square-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/circle"},Sophie.element("i",{"class":"fa fa-circle"})," circle")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/circle-o"},Sophie.element("i",{"class":"fa fa-circle-o"})," circle-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/dot-circle-o"},Sophie.element("i",{"class":"fa fa-dot-circle-o"}),"dot-circle-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/minus-square"},Sophie.element("i",{"class":"fa fa-minus-square"}),"minus-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/minus-square-o"},Sophie.element("i",{"class":"fa fa-minus-square-o"}),"minus-square-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/plus-square"},Sophie.element("i",{"class":"fa fa-plus-square"}),"plus-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/plus-square-o"},Sophie.element("i",{"class":"fa fa-plus-square-o"}),"plus-square-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/square"},Sophie.element("i",{"class":"fa fa-square"})," square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/square-o"},Sophie.element("i",{"class":"fa fa-square-o"})," square-o")))),Sophie.element("section",{id:"payment"},Sophie.element("h2",{"class":"page-header"},"Payment Icons"),Sophie.element("div",{"class":"row fontawesome-icon-list"},Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cc-amex"},Sophie.element("i",{"class":"fa fa-cc-amex"})," cc-amex")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cc-diners-club"},Sophie.element("i",{"class":"fa fa-cc-diners-club"}),"cc-diners-club")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cc-discover"},Sophie.element("i",{"class":"fa fa-cc-discover"}),"cc-discover")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cc-jcb"},Sophie.element("i",{"class":"fa fa-cc-jcb"})," cc-jcb")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cc-mastercard"},Sophie.element("i",{"class":"fa fa-cc-mastercard"}),"cc-mastercard")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cc-paypal"},Sophie.element("i",{"class":"fa fa-cc-paypal"}),"cc-paypal")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cc-stripe"},Sophie.element("i",{"class":"fa fa-cc-stripe"}),"cc-stripe")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cc-visa"},Sophie.element("i",{"class":"fa fa-cc-visa"})," cc-visa")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/credit-card"},Sophie.element("i",{"class":"fa fa-credit-card"}),"credit-card")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/google-wallet"},Sophie.element("i",{"class":"fa fa-google-wallet"}),"google-wallet")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/paypal"},Sophie.element("i",{"class":"fa fa-paypal"})," paypal")))),Sophie.element("section",{id:"chart"},Sophie.element("h2",{"class":"page-header"},"Chart Icons"),Sophie.element("div",{"class":"row fontawesome-icon-list"},Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/area-chart"},Sophie.element("i",{"class":"fa fa-area-chart"})," area-chart")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bar-chart"},Sophie.element("i",{"class":"fa fa-bar-chart"}),"bar-chart")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bar-chart"},Sophie.element("i",{"class":"fa fa-bar-chart-o"}),"bar-chart-o ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/line-chart"},Sophie.element("i",{"class":"fa fa-line-chart"})," line-chart")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/pie-chart"},Sophie.element("i",{"class":"fa fa-pie-chart"}),"pie-chart")))),Sophie.element("section",{id:"currency"},Sophie.element("h2",{"class":"page-header"},"Currency Icons"),Sophie.element("div",{"class":"row fontawesome-icon-list"},Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/btc"},Sophie.element("i",{"class":"fa fa-bitcoin"})," bitcoin ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/btc"},Sophie.element("i",{"class":"fa fa-btc"})," btc")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/jpy"},Sophie.element("i",{"class":"fa fa-cny"})," cny ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/usd"},Sophie.element("i",{"class":"fa fa-dollar"})," dollar ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/eur"},Sophie.element("i",{"class":"fa fa-eur"})," eur")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/eur"},Sophie.element("i",{"class":"fa fa-euro"})," euro ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/gbp"},Sophie.element("i",{"class":"fa fa-gbp"})," gbp")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/gg"},Sophie.element("i",{"class":"fa fa-gg"})," gg")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/gg-circle"},Sophie.element("i",{"class":"fa fa-gg-circle"}),"gg-circle")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/ils"},Sophie.element("i",{"class":"fa fa-ils"})," ils")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/inr"},Sophie.element("i",{"class":"fa fa-inr"})," inr")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/jpy"},Sophie.element("i",{"class":"fa fa-jpy"})," jpy")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/krw"},Sophie.element("i",{"class":"fa fa-krw"})," krw")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/money"},Sophie.element("i",{"class":"fa fa-money"})," money")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/jpy"},Sophie.element("i",{"class":"fa fa-rmb"})," rmb ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/rub"},Sophie.element("i",{"class":"fa fa-rouble"})," rouble ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/rub"},Sophie.element("i",{"class":"fa fa-rub"})," rub")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/rub"},Sophie.element("i",{"class":"fa fa-ruble"})," ruble ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/inr"},Sophie.element("i",{"class":"fa fa-rupee"})," rupee ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/ils"},Sophie.element("i",{"class":"fa fa-shekel"})," shekel ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/ils"},Sophie.element("i",{"class":"fa fa-sheqel"})," sheqel ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/try"},Sophie.element("i",{"class":"fa fa-try"})," try")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/try"},Sophie.element("i",{"class":"fa fa-turkish-lira"})," turkish-lira",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/usd"},Sophie.element("i",{"class":"fa fa-usd"})," usd")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/krw"},Sophie.element("i",{"class":"fa fa-won"})," won ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/jpy"},Sophie.element("i",{"class":"fa fa-yen"})," yen ",Sophie.element("span",{"class":"text-muted"},"(alias)"))))),Sophie.element("section",{id:"text-editor"},Sophie.element("h2",{"class":"page-header"},"Text Editor Icons"),Sophie.element("div",{"class":"row fontawesome-icon-list"},Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/align-center"},Sophie.element("i",{"class":"fa fa-align-center"}),"align-center")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/align-justify"},Sophie.element("i",{"class":"fa fa-align-justify"}),"align-justify")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/align-left"},Sophie.element("i",{"class":"fa fa-align-left"})," align-left")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/align-right"},Sophie.element("i",{"class":"fa fa-align-right"}),"align-right")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bold"},Sophie.element("i",{"class":"fa fa-bold"})," bold")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/link"},Sophie.element("i",{"class":"fa fa-chain"})," chain ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/chain-broken"},Sophie.element("i",{"class":"fa fa-chain-broken"}),"chain-broken")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/clipboard"},Sophie.element("i",{"class":"fa fa-clipboard"}),"clipboard")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/columns"},Sophie.element("i",{"class":"fa fa-columns"})," columns")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/files-o"},Sophie.element("i",{"class":"fa fa-copy"})," copy ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/scissors"},Sophie.element("i",{"class":"fa fa-cut"})," cut ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/outdent"},Sophie.element("i",{"class":"fa fa-dedent"})," dedent ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/eraser"},Sophie.element("i",{"class":"fa fa-eraser"})," eraser")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file"},Sophie.element("i",{"class":"fa fa-file"})," file")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-o"},Sophie.element("i",{"class":"fa fa-file-o"})," file-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-text"},Sophie.element("i",{"class":"fa fa-file-text"}),"file-text")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/file-text-o"},Sophie.element("i",{"class":"fa fa-file-text-o"}),"file-text-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/files-o"},Sophie.element("i",{"class":"fa fa-files-o"})," files-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/floppy-o"},Sophie.element("i",{"class":"fa fa-floppy-o"})," floppy-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/font"},Sophie.element("i",{"class":"fa fa-font"})," font")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/header"},Sophie.element("i",{"class":"fa fa-header"})," header")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/indent"},Sophie.element("i",{"class":"fa fa-indent"})," indent")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/italic"},Sophie.element("i",{"class":"fa fa-italic"})," italic")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/link"},Sophie.element("i",{"class":"fa fa-link"})," link")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/list"},Sophie.element("i",{"class":"fa fa-list"})," list")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/list-alt"},Sophie.element("i",{"class":"fa fa-list-alt"})," list-alt")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/list-ol"},Sophie.element("i",{"class":"fa fa-list-ol"})," list-ol")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/list-ul"},Sophie.element("i",{"class":"fa fa-list-ul"})," list-ul")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/outdent"},Sophie.element("i",{"class":"fa fa-outdent"})," outdent")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/paperclip"},Sophie.element("i",{"class":"fa fa-paperclip"}),"paperclip")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/paragraph"},Sophie.element("i",{"class":"fa fa-paragraph"}),"paragraph")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/clipboard"},Sophie.element("i",{"class":"fa fa-paste"})," paste ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/repeat"},Sophie.element("i",{"class":"fa fa-repeat"})," repeat")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/undo"},Sophie.element("i",{"class":"fa fa-rotate-left"})," rotate-left",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/repeat"},Sophie.element("i",{"class":"fa fa-rotate-right"})," rotate-right",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/floppy-o"},Sophie.element("i",{"class":"fa fa-save"})," save ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/scissors"},Sophie.element("i",{"class":"fa fa-scissors"})," scissors")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/strikethrough"},Sophie.element("i",{"class":"fa fa-strikethrough"}),"strikethrough")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/subscript"},Sophie.element("i",{"class":"fa fa-subscript"}),"subscript")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/superscript"},Sophie.element("i",{"class":"fa fa-superscript"}),"superscript")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/table"},Sophie.element("i",{"class":"fa fa-table"})," table")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/text-height"},Sophie.element("i",{"class":"fa fa-text-height"}),"text-height")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/text-width"},Sophie.element("i",{"class":"fa fa-text-width"})," text-width")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/th"},Sophie.element("i",{"class":"fa fa-th"})," th")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/th-large"},Sophie.element("i",{"class":"fa fa-th-large"})," th-large")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/th-list"},Sophie.element("i",{"class":"fa fa-th-list"})," th-list")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/underline"},Sophie.element("i",{"class":"fa fa-underline"}),"underline")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/undo"},Sophie.element("i",{"class":"fa fa-undo"})," undo")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/chain-broken"},Sophie.element("i",{"class":"fa fa-unlink"})," unlink ",Sophie.element("span",{"class":"text-muted"},"(alias)"))))),Sophie.element("section",{id:"directional"},Sophie.element("h2",{"class":"page-header"},"Directional Icons"),Sophie.element("div",{"class":"row fontawesome-icon-list"},Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/angle-double-down"},Sophie.element("i",{"class":"fa fa-angle-double-down"})," angle-double-down")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/angle-double-left"},Sophie.element("i",{"class":"fa fa-angle-double-left"})," angle-double-left")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/angle-double-right"},Sophie.element("i",{"class":"fa fa-angle-double-right"})," angle-double-right")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/angle-double-up"},Sophie.element("i",{"class":"fa fa-angle-double-up"}),"angle-double-up")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/angle-down"},Sophie.element("i",{"class":"fa fa-angle-down"})," angle-down")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/angle-left"},Sophie.element("i",{"class":"fa fa-angle-left"})," angle-left")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/angle-right"},Sophie.element("i",{"class":"fa fa-angle-right"}),"angle-right")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/angle-up"},Sophie.element("i",{"class":"fa fa-angle-up"})," angle-up")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/arrow-circle-down"},Sophie.element("i",{"class":"fa fa-arrow-circle-down"})," arrow-circle-down")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/arrow-circle-left"},Sophie.element("i",{"class":"fa fa-arrow-circle-left"})," arrow-circle-left")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/arrow-circle-o-down"},Sophie.element("i",{"class":"fa fa-arrow-circle-o-down"})," arrow-circle-o-down")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/arrow-circle-o-left"},Sophie.element("i",{"class":"fa fa-arrow-circle-o-left"})," arrow-circle-o-left")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/arrow-circle-o-right"},Sophie.element("i",{"class":"fa fa-arrow-circle-o-right"})," arrow-circle-o-right")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/arrow-circle-o-up"},Sophie.element("i",{"class":"fa fa-arrow-circle-o-up"})," arrow-circle-o-up")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/arrow-circle-right"},Sophie.element("i",{"class":"fa fa-arrow-circle-right"})," arrow-circle-right")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/arrow-circle-up"},Sophie.element("i",{"class":"fa fa-arrow-circle-up"}),"arrow-circle-up")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/arrow-down"},Sophie.element("i",{"class":"fa fa-arrow-down"})," arrow-down")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/arrow-left"},Sophie.element("i",{"class":"fa fa-arrow-left"})," arrow-left")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/arrow-right"},Sophie.element("i",{"class":"fa fa-arrow-right"}),"arrow-right")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/arrow-up"},Sophie.element("i",{"class":"fa fa-arrow-up"})," arrow-up")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/arrows"},Sophie.element("i",{"class":"fa fa-arrows"})," arrows")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/arrows-alt"},Sophie.element("i",{"class":"fa fa-arrows-alt"})," arrows-alt")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/arrows-h"},Sophie.element("i",{"class":"fa fa-arrows-h"})," arrows-h")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/arrows-v"},Sophie.element("i",{"class":"fa fa-arrows-v"})," arrows-v")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/caret-down"},Sophie.element("i",{"class":"fa fa-caret-down"})," caret-down")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/caret-left"},Sophie.element("i",{"class":"fa fa-caret-left"})," caret-left")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/caret-right"},Sophie.element("i",{"class":"fa fa-caret-right"}),"caret-right")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/caret-square-o-down"},Sophie.element("i",{"class":"fa fa-caret-square-o-down"})," caret-square-o-down")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/caret-square-o-left"},Sophie.element("i",{"class":"fa fa-caret-square-o-left"})," caret-square-o-left")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/caret-square-o-right"},Sophie.element("i",{"class":"fa fa-caret-square-o-right"})," caret-square-o-right")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/caret-square-o-up"},Sophie.element("i",{"class":"fa fa-caret-square-o-up"})," caret-square-o-up")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/caret-up"},Sophie.element("i",{"class":"fa fa-caret-up"})," caret-up")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/chevron-circle-down"},Sophie.element("i",{"class":"fa fa-chevron-circle-down"})," chevron-circle-down")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/chevron-circle-left"},Sophie.element("i",{"class":"fa fa-chevron-circle-left"})," chevron-circle-left")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/chevron-circle-right"},Sophie.element("i",{"class":"fa fa-chevron-circle-right"})," chevron-circle-right")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/chevron-circle-up"},Sophie.element("i",{"class":"fa fa-chevron-circle-up"})," chevron-circle-up")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/chevron-down"},Sophie.element("i",{"class":"fa fa-chevron-down"}),"chevron-down")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/chevron-left"},Sophie.element("i",{"class":"fa fa-chevron-left"}),"chevron-left")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/chevron-right"},Sophie.element("i",{"class":"fa fa-chevron-right"}),"chevron-right")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/chevron-up"},Sophie.element("i",{"class":"fa fa-chevron-up"})," chevron-up")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/exchange"},Sophie.element("i",{"class":"fa fa-exchange"})," exchange")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-o-down"},Sophie.element("i",{"class":"fa fa-hand-o-down"}),"hand-o-down")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-o-left"},Sophie.element("i",{"class":"fa fa-hand-o-left"}),"hand-o-left")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-o-right"},Sophie.element("i",{"class":"fa fa-hand-o-right"}),"hand-o-right")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hand-o-up"},Sophie.element("i",{"class":"fa fa-hand-o-up"}),"hand-o-up")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/long-arrow-down"},Sophie.element("i",{"class":"fa fa-long-arrow-down"}),"long-arrow-down")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/long-arrow-left"},Sophie.element("i",{"class":"fa fa-long-arrow-left"}),"long-arrow-left")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/long-arrow-right"},Sophie.element("i",{"class":"fa fa-long-arrow-right"})," long-arrow-right")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/long-arrow-up"},Sophie.element("i",{"class":"fa fa-long-arrow-up"}),"long-arrow-up")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/caret-square-o-down"},Sophie.element("i",{"class":"fa fa-toggle-down"}),"toggle-down ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/caret-square-o-left"},Sophie.element("i",{"class":"fa fa-toggle-left"}),"toggle-left ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/caret-square-o-right"},Sophie.element("i",{"class":"fa fa-toggle-right"})," toggle-right ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/caret-square-o-up"},Sophie.element("i",{"class":"fa fa-toggle-up"}),"toggle-up ",Sophie.element("span",{"class":"text-muted"},"(alias)"))))),Sophie.element("section",{id:"video-player"},Sophie.element("h2",{"class":"page-header"},"Video Player Icons"),Sophie.element("div",{"class":"row fontawesome-icon-list"},Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/arrows-alt"},Sophie.element("i",{"class":"fa fa-arrows-alt"})," arrows-alt")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/backward"},Sophie.element("i",{"class":"fa fa-backward"})," backward")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/compress"},Sophie.element("i",{"class":"fa fa-compress"})," compress")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/eject"},Sophie.element("i",{"class":"fa fa-eject"})," eject")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/expand"},Sophie.element("i",{"class":"fa fa-expand"})," expand")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/fast-backward"},Sophie.element("i",{"class":"fa fa-fast-backward"}),"fast-backward")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/fast-forward"},Sophie.element("i",{"class":"fa fa-fast-forward"}),"fast-forward")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/forward"},Sophie.element("i",{"class":"fa fa-forward"})," forward")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/pause"},Sophie.element("i",{"class":"fa fa-pause"})," pause")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/play"},Sophie.element("i",{"class":"fa fa-play"})," play")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/play-circle"},Sophie.element("i",{"class":"fa fa-play-circle"}),"play-circle")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/play-circle-o"},Sophie.element("i",{"class":"fa fa-play-circle-o"}),"play-circle-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/random"},Sophie.element("i",{"class":"fa fa-random"})," random")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/step-backward"},Sophie.element("i",{"class":"fa fa-step-backward"}),"step-backward")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/step-forward"},Sophie.element("i",{"class":"fa fa-step-forward"}),"step-forward")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/stop"},Sophie.element("i",{"class":"fa fa-stop"})," stop")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/youtube-play"},Sophie.element("i",{"class":"fa fa-youtube-play"}),"youtube-play")))),Sophie.element("section",{id:"brand"},Sophie.element("h2",{"class":"page-header"},"Brand Icons"),Sophie.element("div",{"class":"alert alert-warning"},Sophie.element("h4",null,Sophie.element("i",{"class":"fa fa-warning"})," Warning!"),"Apparently, Adblock Plus can remove Font Awesome brand icons with their \"Remove SocialMedia Buttons\" setting. We will not use hacks to force them to display. Please",Sophie.element("a",{href:"https://adblockplus.org/en/bugs","class":"alert-link"},"report an issue with Adblock Plus")," if you believethis to be an error. To work around this, you ll need to modify the social icon class names."),Sophie.element("div",{"class":"row fontawesome-icon-list margin-bottom-lg"},Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/500px"},Sophie.element("i",{"class":"fa fa-500px"})," 500px")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/adn"},Sophie.element("i",{"class":"fa fa-adn"})," adn")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/amazon"},Sophie.element("i",{"class":"fa fa-amazon"})," amazon")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/android"},Sophie.element("i",{"class":"fa fa-android"})," android")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/angellist"},Sophie.element("i",{"class":"fa fa-angellist"})," angellist")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/apple"},Sophie.element("i",{"class":"fa fa-apple"})," apple")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/behance"},Sophie.element("i",{"class":"fa fa-behance"})," behance")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/behance-square"},Sophie.element("i",{"class":"fa fa-behance-square"}),"behance-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bitbucket"},Sophie.element("i",{"class":"fa fa-bitbucket"})," bitbucket")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/bitbucket-square"},Sophie.element("i",{"class":"fa fa-bitbucket-square"}),"bitbucket-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/btc"},Sophie.element("i",{"class":"fa fa-bitcoin"})," bitcoin ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/black-tie"},Sophie.element("i",{"class":"fa fa-black-tie"})," black-tie")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/btc"},Sophie.element("i",{"class":"fa fa-btc"})," btc")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/buysellads"},Sophie.element("i",{"class":"fa fa-buysellads"})," buysellads")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cc-amex"},Sophie.element("i",{"class":"fa fa-cc-amex"})," cc-amex")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cc-diners-club"},Sophie.element("i",{"class":"fa fa-cc-diners-club"}),"cc-diners-club")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cc-discover"},Sophie.element("i",{"class":"fa fa-cc-discover"})," cc-discover")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cc-jcb"},Sophie.element("i",{"class":"fa fa-cc-jcb"})," cc-jcb")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cc-mastercard"},Sophie.element("i",{"class":"fa fa-cc-mastercard"}),"cc-mastercard")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cc-paypal"},Sophie.element("i",{"class":"fa fa-cc-paypal"})," cc-paypal")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cc-stripe"},Sophie.element("i",{"class":"fa fa-cc-stripe"})," cc-stripe")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/cc-visa"},Sophie.element("i",{"class":"fa fa-cc-visa"})," cc-visa")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/chrome"},Sophie.element("i",{"class":"fa fa-chrome"})," chrome")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/codepen"},Sophie.element("i",{"class":"fa fa-codepen"})," codepen")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/connectdevelop"},Sophie.element("i",{"class":"fa fa-connectdevelop"}),"connectdevelop")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/contao"},Sophie.element("i",{"class":"fa fa-contao"})," contao")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/css3"},Sophie.element("i",{"class":"fa fa-css3"})," css3")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/dashcube"},Sophie.element("i",{"class":"fa fa-dashcube"})," dashcube")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/delicious"},Sophie.element("i",{"class":"fa fa-delicious"})," delicious")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/deviantart"},Sophie.element("i",{"class":"fa fa-deviantart"})," deviantart")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/digg"},Sophie.element("i",{"class":"fa fa-digg"})," digg")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/dribbble"},Sophie.element("i",{"class":"fa fa-dribbble"})," dribbble")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/dropbox"},Sophie.element("i",{"class":"fa fa-dropbox"})," dropbox")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/drupal"},Sophie.element("i",{"class":"fa fa-drupal"})," drupal")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/empire"},Sophie.element("i",{"class":"fa fa-empire"})," empire")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/expeditedssl"},Sophie.element("i",{"class":"fa fa-expeditedssl"}),"expeditedssl")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/facebook"},Sophie.element("i",{"class":"fa fa-facebook"})," facebook")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/facebook"},Sophie.element("i",{"class":"fa fa-facebook-f"})," facebook-f ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/facebook-official"},Sophie.element("i",{"class":"fa fa-facebook-official"}),"facebook-official")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/facebook-square"},Sophie.element("i",{"class":"fa fa-facebook-square"}),"facebook-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/firefox"},Sophie.element("i",{"class":"fa fa-firefox"})," firefox")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/flickr"},Sophie.element("i",{"class":"fa fa-flickr"})," flickr")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/fonticons"},Sophie.element("i",{"class":"fa fa-fonticons"})," fonticons")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/forumbee"},Sophie.element("i",{"class":"fa fa-forumbee"})," forumbee")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/foursquare"},Sophie.element("i",{"class":"fa fa-foursquare"})," foursquare")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/empire"},Sophie.element("i",{"class":"fa fa-ge"})," ge ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/get-pocket"},Sophie.element("i",{"class":"fa fa-get-pocket"})," get-pocket")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/gg"},Sophie.element("i",{"class":"fa fa-gg"})," gg")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/gg-circle"},Sophie.element("i",{"class":"fa fa-gg-circle"})," gg-circle")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/git"},Sophie.element("i",{"class":"fa fa-git"})," git")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/git-square"},Sophie.element("i",{"class":"fa fa-git-square"})," git-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/github"},Sophie.element("i",{"class":"fa fa-github"})," github")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/github-alt"},Sophie.element("i",{"class":"fa fa-github-alt"})," github-alt")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/github-square"},Sophie.element("i",{"class":"fa fa-github-square"}),"github-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/gratipay"},Sophie.element("i",{"class":"fa fa-gittip"})," gittip ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/google"},Sophie.element("i",{"class":"fa fa-google"})," google")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/google-plus"},Sophie.element("i",{"class":"fa fa-google-plus"})," google-plus")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/google-plus-square"},Sophie.element("i",{"class":"fa fa-google-plus-square"}),"google-plus-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/google-wallet"},Sophie.element("i",{"class":"fa fa-google-wallet"}),"google-wallet")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/gratipay"},Sophie.element("i",{"class":"fa fa-gratipay"})," gratipay")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hacker-news"},Sophie.element("i",{"class":"fa fa-hacker-news"})," hacker-news")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/houzz"},Sophie.element("i",{"class":"fa fa-houzz"})," houzz")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/html5"},Sophie.element("i",{"class":"fa fa-html5"})," html5")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/instagram"},Sophie.element("i",{"class":"fa fa-instagram"})," instagram")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/internet-explorer"},Sophie.element("i",{"class":"fa fa-internet-explorer"}),"internet-explorer")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/ioxhost"},Sophie.element("i",{"class":"fa fa-ioxhost"})," ioxhost")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/joomla"},Sophie.element("i",{"class":"fa fa-joomla"})," joomla")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/jsfiddle"},Sophie.element("i",{"class":"fa fa-jsfiddle"})," jsfiddle")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/lastfm"},Sophie.element("i",{"class":"fa fa-lastfm"})," lastfm")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/lastfm-square"},Sophie.element("i",{"class":"fa fa-lastfm-square"}),"lastfm-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/leanpub"},Sophie.element("i",{"class":"fa fa-leanpub"})," leanpub")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/linkedin"},Sophie.element("i",{"class":"fa fa-linkedin"})," linkedin")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/linkedin-square"},Sophie.element("i",{"class":"fa fa-linkedin-square"}),"linkedin-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/linux"},Sophie.element("i",{"class":"fa fa-linux"})," linux")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/maxcdn"},Sophie.element("i",{"class":"fa fa-maxcdn"})," maxcdn")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/meanpath"},Sophie.element("i",{"class":"fa fa-meanpath"})," meanpath")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/medium"},Sophie.element("i",{"class":"fa fa-medium"})," medium")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/odnoklassniki"},Sophie.element("i",{"class":"fa fa-odnoklassniki"}),"odnoklassniki")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/odnoklassniki-square"},Sophie.element("i",{"class":"fa fa-odnoklassniki-square"})," odnoklassniki-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/opencart"},Sophie.element("i",{"class":"fa fa-opencart"})," opencart")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/openid"},Sophie.element("i",{"class":"fa fa-openid"})," openid")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/opera"},Sophie.element("i",{"class":"fa fa-opera"})," opera")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/optin-monster"},Sophie.element("i",{"class":"fa fa-optin-monster"}),"optin-monster")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/pagelines"},Sophie.element("i",{"class":"fa fa-pagelines"})," pagelines")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/paypal"},Sophie.element("i",{"class":"fa fa-paypal"})," paypal")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/pied-piper"},Sophie.element("i",{"class":"fa fa-pied-piper"})," pied-piper")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/pied-piper-alt"},Sophie.element("i",{"class":"fa fa-pied-piper-alt"}),"pied-piper-alt")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/pinterest"},Sophie.element("i",{"class":"fa fa-pinterest"})," pinterest")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/pinterest-p"},Sophie.element("i",{"class":"fa fa-pinterest-p"})," pinterest-p")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/pinterest-square"},Sophie.element("i",{"class":"fa fa-pinterest-square"}),"pinterest-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/qq"},Sophie.element("i",{"class":"fa fa-qq"})," qq")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/rebel"},Sophie.element("i",{"class":"fa fa-ra"})," ra ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/rebel"},Sophie.element("i",{"class":"fa fa-rebel"})," rebel")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/reddit"},Sophie.element("i",{"class":"fa fa-reddit"})," reddit")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/reddit-square"},Sophie.element("i",{"class":"fa fa-reddit-square"}),"reddit-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/renren"},Sophie.element("i",{"class":"fa fa-renren"})," renren")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/safari"},Sophie.element("i",{"class":"fa fa-safari"})," safari")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/sellsy"},Sophie.element("i",{"class":"fa fa-sellsy"})," sellsy")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/share-alt"},Sophie.element("i",{"class":"fa fa-share-alt"})," share-alt")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/share-alt-square"},Sophie.element("i",{"class":"fa fa-share-alt-square"}),"share-alt-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/shirtsinbulk"},Sophie.element("i",{"class":"fa fa-shirtsinbulk"}),"shirtsinbulk")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/simplybuilt"},Sophie.element("i",{"class":"fa fa-simplybuilt"})," simplybuilt")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/skyatlas"},Sophie.element("i",{"class":"fa fa-skyatlas"})," skyatlas")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/skype"},Sophie.element("i",{"class":"fa fa-skype"})," skype")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/slack"},Sophie.element("i",{"class":"fa fa-slack"})," slack")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/slideshare"},Sophie.element("i",{"class":"fa fa-slideshare"})," slideshare")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/soundcloud"},Sophie.element("i",{"class":"fa fa-soundcloud"})," soundcloud")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/spotify"},Sophie.element("i",{"class":"fa fa-spotify"})," spotify")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/stack-exchange"},Sophie.element("i",{"class":"fa fa-stack-exchange"}),"stack-exchange")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/stack-overflow"},Sophie.element("i",{"class":"fa fa-stack-overflow"}),"stack-overflow")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/steam"},Sophie.element("i",{"class":"fa fa-steam"})," steam")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/steam-square"},Sophie.element("i",{"class":"fa fa-steam-square"}),"steam-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/stumbleupon"},Sophie.element("i",{"class":"fa fa-stumbleupon"})," stumbleupon")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/stumbleupon-circle"},Sophie.element("i",{"class":"fa fa-stumbleupon-circle"}),"stumbleupon-circle")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/tencent-weibo"},Sophie.element("i",{"class":"fa fa-tencent-weibo"}),"tencent-weibo")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/trello"},Sophie.element("i",{"class":"fa fa-trello"})," trello")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/tripadvisor"},Sophie.element("i",{"class":"fa fa-tripadvisor"})," tripadvisor")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/tumblr"},Sophie.element("i",{"class":"fa fa-tumblr"})," tumblr")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/tumblr-square"},Sophie.element("i",{"class":"fa fa-tumblr-square"}),"tumblr-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/twitch"},Sophie.element("i",{"class":"fa fa-twitch"})," twitch")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/twitter"},Sophie.element("i",{"class":"fa fa-twitter"})," twitter")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/twitter-square"},Sophie.element("i",{"class":"fa fa-twitter-square"}),"twitter-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/viacoin"},Sophie.element("i",{"class":"fa fa-viacoin"})," viacoin")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/vimeo"},Sophie.element("i",{"class":"fa fa-vimeo"})," vimeo")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/vimeo-square"},Sophie.element("i",{"class":"fa fa-vimeo-square"}),"vimeo-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/vine"},Sophie.element("i",{"class":"fa fa-vine"})," vine")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/vk"},Sophie.element("i",{"class":"fa fa-vk"})," vk")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/weixin"},Sophie.element("i",{"class":"fa fa-wechat"})," wechat ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/weibo"},Sophie.element("i",{"class":"fa fa-weibo"})," weibo")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/weixin"},Sophie.element("i",{"class":"fa fa-weixin"})," weixin")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/whatsapp"},Sophie.element("i",{"class":"fa fa-whatsapp"})," whatsapp")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/wikipedia-w"},Sophie.element("i",{"class":"fa fa-wikipedia-w"})," wikipedia-w")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/windows"},Sophie.element("i",{"class":"fa fa-windows"})," windows")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/wordpress"},Sophie.element("i",{"class":"fa fa-wordpress"})," wordpress")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/xing"},Sophie.element("i",{"class":"fa fa-xing"})," xing")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/xing-square"},Sophie.element("i",{"class":"fa fa-xing-square"})," xing-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/y-combinator"},Sophie.element("i",{"class":"fa fa-y-combinator"}),"y-combinator")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hacker-news"},Sophie.element("i",{"class":"fa fa-y-combinator-square"}),"y-combinator-square ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/yahoo"},Sophie.element("i",{"class":"fa fa-yahoo"})," yahoo")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/y-combinator"},Sophie.element("i",{"class":"fa fa-yc"})," yc ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hacker-news"},Sophie.element("i",{"class":"fa fa-yc-square"})," yc-square ",Sophie.element("span",{"class":"text-muted"},"(alias)"))),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/yelp"},Sophie.element("i",{"class":"fa fa-yelp"})," yelp")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/youtube"},Sophie.element("i",{"class":"fa fa-youtube"})," youtube")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/youtube-play"},Sophie.element("i",{"class":"fa fa-youtube-play"}),"youtube-play")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/youtube-square"},Sophie.element("i",{"class":"fa fa-youtube-square"}),"youtube-square"))),Sophie.element("div",{"class":"alert alert-success"},Sophie.element("ul",{"class":"margin-bottom-none padding-left-lg"},Sophie.element("li",null,"All brand icons are trademarks of their respective owners."),Sophie.element("li",null,"The use of these trademarks does not indicate endorsement of the trademark holder by Font Awesome, nor vice versa.")))),Sophie.element("section",{id:"medical"},Sophie.element("h2",{"class":"page-header"},"Medical Icons"),Sophie.element("div",{"class":"row fontawesome-icon-list"},Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/ambulance"},Sophie.element("i",{"class":"fa fa-ambulance"}),"ambulance")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/h-square"},Sophie.element("i",{"class":"fa fa-h-square"})," h-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/heart"},Sophie.element("i",{"class":"fa fa-heart"})," heart")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/heart-o"},Sophie.element("i",{"class":"fa fa-heart-o"})," heart-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/heartbeat"},Sophie.element("i",{"class":"fa fa-heartbeat"}),"heartbeat")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/hospital-o"},Sophie.element("i",{"class":"fa fa-hospital-o"})," hospital-o")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/medkit"},Sophie.element("i",{"class":"fa fa-medkit"})," medkit")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/plus-square"},Sophie.element("i",{"class":"fa fa-plus-square"}),"plus-square")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/stethoscope"},Sophie.element("i",{"class":"fa fa-stethoscope"}),"stethoscope")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/user-md"},Sophie.element("i",{"class":"fa fa-user-md"})," user-md")),Sophie.element("div",{"class":"fa-hover col-md-3 col-sm-4"},Sophie.element("a",{href:"../icon/wheelchair"},Sophie.element("i",{"class":"fa fa-wheelchair"})," wheelchair"))))));}});Sophie.createStyleSheet({'.fontawesome-icon-list .fa-hover a':{'overflow':'hidden','textOverflow':'ellipsis','white-space':'nowrap','display':'block','color':'#222222','lineHeight':'32px','height':'32px','paddingLeft':'10px','borderRadius':'4px'}});module.exports=IconList;
 
 /***/ },
-/* 238 */
+/* 239 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -24585,7 +24840,7 @@ webpackJsonp([3,19],[
 	module.exports = ImgSet;
 
 /***/ },
-/* 239 */
+/* 240 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -24856,7 +25111,7 @@ webpackJsonp([3,19],[
 	module.exports = NavPageSet;
 
 /***/ },
-/* 240 */
+/* 241 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -24979,7 +25234,7 @@ webpackJsonp([3,19],[
 	module.exports = LayoutTwoSet;
 
 /***/ },
-/* 241 */
+/* 242 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -25101,7 +25356,7 @@ webpackJsonp([3,19],[
 	module.exports = LayoutTwoSet;
 
 /***/ },
-/* 242 */
+/* 243 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -25144,7 +25399,7 @@ webpackJsonp([3,19],[
 	module.exports = LogoSet;
 
 /***/ },
-/* 243 */
+/* 244 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -25190,7 +25445,7 @@ webpackJsonp([3,19],[
 	module.exports = PGridSet;
 
 /***/ },
-/* 244 */
+/* 245 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -25243,7 +25498,7 @@ webpackJsonp([3,19],[
 	module.exports = ListSet;
 
 /***/ },
-/* 245 */
+/* 246 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -25318,14 +25573,14 @@ webpackJsonp([3,19],[
 	module.exports = AlignPanel;
 
 /***/ },
-/* 246 */
+/* 247 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var StyleBg = __webpack_require__(247);
+	var StyleBg = __webpack_require__(248);
 	var Slider = __webpack_require__(198);
-	__webpack_require__(248);
+	__webpack_require__(249);
 
 	var LayoutSet = Sophie.createClass("layout-set", {
 	    render: function render() {
@@ -25692,7 +25947,7 @@ webpackJsonp([3,19],[
 	module.exports = LayoutSet;
 
 /***/ },
-/* 247 */
+/* 248 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -25977,13 +26232,13 @@ webpackJsonp([3,19],[
 	module.exports = BG;
 
 /***/ },
-/* 248 */
+/* 249 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(249);
+	var content = __webpack_require__(250);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(69)(content, {});
@@ -26003,7 +26258,7 @@ webpackJsonp([3,19],[
 	}
 
 /***/ },
-/* 249 */
+/* 250 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(68)();
@@ -26017,12 +26272,12 @@ webpackJsonp([3,19],[
 
 
 /***/ },
-/* 250 */
+/* 251 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var PageManagerModal = __webpack_require__(251);
+	var PageManagerModal = __webpack_require__(252);
 	var PangeManagerView = Sophie.createClass("pages", {
 
 	  getInitialState: function getInitialState() {
@@ -26356,7 +26611,7 @@ webpackJsonp([3,19],[
 	module.exports = PangeManagerView;
 
 /***/ },
-/* 251 */
+/* 252 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -26490,7 +26745,7 @@ webpackJsonp([3,19],[
 	module.exports = PageManagerModal;
 
 /***/ },
-/* 252 */
+/* 253 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -26610,7 +26865,7 @@ webpackJsonp([3,19],[
 	module.exports = ColorPicker;
 
 /***/ },
-/* 253 */
+/* 254 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -27207,7 +27462,7 @@ webpackJsonp([3,19],[
 	module.exports = WidgetPanel;
 
 /***/ },
-/* 254 */
+/* 255 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -27744,7 +27999,7 @@ webpackJsonp([3,19],[
 	module.exports = QuickBar;
 
 /***/ },
-/* 255 */
+/* 256 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -27759,7 +28014,7 @@ webpackJsonp([3,19],[
 
 	// require("./css/editor-view.css");
 
-	var SelectMask = __webpack_require__(256);
+	var SelectMask = __webpack_require__(257);
 
 	var EditorView = Sophie.createClass("editor-view", {
 	    componentDidMount: function componentDidMount() {
@@ -28898,7 +29153,7 @@ webpackJsonp([3,19],[
 	module.exports = EditorView;
 
 /***/ },
-/* 256 */
+/* 257 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -29800,7 +30055,7 @@ webpackJsonp([3,19],[
 	module.exports = SelectMask;
 
 /***/ },
-/* 257 */
+/* 258 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -29889,78 +30144,81 @@ webpackJsonp([3,19],[
 	module.exports = PageManagerModal;
 
 /***/ },
-/* 258 */
+/* 259 */
 /***/ function(module, exports) {
 
-	'use strict';
+	"use strict";
 
 	var ImagePanel = Sophie.createClass({
 	    getInitialState: function getInitialState() {
 	        return {
-	            initState: false
+	            initState: false,
+	            urls: []
 	        };
+	    },
+
+	    getData: function getData() {
+	        var _this = this;
+
+	        $.get(window.designer.configs.getMaterial, function (data) {
+	            _this.setState({ urls: data });
+	        });
+	    },
+
+	    upload: function upload() {
+	        var self = this;
+	        var url = window.designer.configs.uploadMaterial;
+	        var $input = $("#material-file-upload").html5_upload({
+	            url: url,
+	            sendBoundary: window.FormData || $.browser.mozilla,
+	            onStart: function onStart(event, total) {
+	                return true;
+	            },
+	            fieldName: "file",
+	            onProgress: function onProgress(event, progress, name, number, total) {
+	                console.log(progress, number);
+	            },
+	            setName: function setName(text) {
+	                $("#progress_report_name").text(text);
+	            },
+	            setStatus: function setStatus(text) {
+	                $("#progress_report_status").text(text);
+	            },
+	            setProgress: function setProgress(val) {
+	                $("#progress_report_bar").css('width', Math.ceil(val * 100) + "%");
+	            },
+	            onFinishOne: function onFinishOne(event, response, name, number, total) {
+	                self.addImg(JSON.parse(response).url);
+	            },
+	            onError: function onError(event, name, error) {
+	                alert('error while uploading file ' + name);
+	            }
+	        });
 	    },
 	    componentDidMount: function componentDidMount() {
 	        var h = this.nativeNode;
 
-	        Sophie.ready(function () {
-
-	            $("#select-img-view").modal({
-	                show: false,
-	                keyboard: true
-
-	            });
-	            //@todo
-	            if (!$('#fileupload').fileupload) {
-	                return;
-	            }
-
-	            $('#fileupload').fileupload({
-	                dataType: 'json',
-	                done: function done(e, data) {
-	                    $.each(data.result.files, function (index, file) {
-	                        addImg("/uploads/" + file.name);
-	                    });
-	                }
-	            });
+	        $("#select-img-view").modal({
+	            show: false,
+	            keyboard: true
 	        });
-
-	        var addImg = function addImg(src) {
-	            $("#select-img-view").find(".row").append('<div class="col-lg-2" ><img class="img-thumbnail" src="' + src + '"></div>');
-	        };
+	        this.upload();
 
 	        $(h).on("click", "img", function (e) {
 	            $("#select-img-view").modal("hide");
-
 	            $(e.target).trigger("selectImg", e.target.src);
 	        });
-
-	        $("#select-img-view").on("click", ".upload", function (e) {
-	            play.utils.upload(function (result) {
-	                addImg(result[0].url);
-	            });
-	        });
+	    },
+	    addImg: function addImg(url) {
+	        var urls = [url].concat(this.state.urls);
+	        this.setState({ urls: urls });
 	    },
 	    show: function show() {
 
 	        $("#select-img-view").modal("show");
-	        var init = function init() {
-
-	            // $.getJSON(play.uploadUrl, function (data) {
-	            //
-	            //     if (data) {
-	            //         for (var p in data) {
-	            //
-	            //             addImg("/uploads/" + p);
-	            //         }
-	            //     }
-	            // })
-
-
-	        };
 
 	        if (!this.state.initState) {
-	            init();
+	            this.getData();
 	            this.state.initState = true;
 	        }
 	    },
@@ -29968,69 +30226,61 @@ webpackJsonp([3,19],[
 	        $("#select-img-view").modal("hide");
 	    },
 	    render: function render() {
+	        var urls = this.state.urls;
 	        return Sophie.element(
-	            'div',
-	            { 'class': 'modal fade', tabindex: '-1', role: 'dialog', 'aria-labelledby': 'myModalLabel', 'aria-hidden': 'true', id: 'select-img-view' },
+	            "div",
+	            { "class": "modal fade", tabindex: "-1", role: "dialog", "aria-labelledby": "myModalLabel", "aria-hidden": "true", id: "select-img-view" },
 	            Sophie.element(
-	                'div',
-	                { 'class': 'modal-dialog' },
+	                "div",
+	                { "class": "modal-dialog" },
 	                Sophie.element(
-	                    'div',
-	                    { 'class': 'modal-content' },
+	                    "div",
+	                    { "class": "modal-content" },
 	                    Sophie.element(
-	                        'div',
-	                        { 'class': 'modal-header' },
+	                        "div",
+	                        { "class": "modal-header" },
 	                        Sophie.element(
-	                            'button',
-	                            { type: 'button', 'class': 'close', 'data-dismiss': 'modal', 'aria-hidden': 'true' },
-	                            '×'
+	                            "button",
+	                            { type: "button", "class": "close", "data-dismiss": "modal", "aria-hidden": "true" },
+	                            "×"
 	                        ),
 	                        Sophie.element(
-	                            'h4',
-	                            { 'class': 'modal-title' },
-	                            '我的图片'
+	                            "h4",
+	                            { "class": "modal-title" },
+	                            "我的图片"
 	                        )
 	                    ),
 	                    Sophie.element(
-	                        'div',
-	                        { 'class': 'modal-body' },
-	                        Sophie.element(
-	                            'div',
-	                            { 'class': 'row', style: 'overflow: hidden' },
-	                            Sophie.element(
-	                                'div',
-	                                { 'class': 'col-lg-2' },
-	                                Sophie.element('img', { 'class': 'img-thumbnail', src: 'http://img.tuku.cn/file_big/201502/ad45f0968eba4b92ba549cc7abf0e70a.jpg' })
-	                            ),
-	                            Sophie.element(
-	                                'div',
-	                                { 'class': 'col-lg-2' },
-	                                Sophie.element('img', { 'class': 'img-thumbnail', src: '/images/header.jpg' })
-	                            )
-	                        )
+	                        "div",
+	                        { "class": "modal-body" },
+	                        this.renderItems()
 	                    ),
 	                    Sophie.element(
-	                        'div',
+	                        "div",
 	                        null,
-	                        Sophie.element('input', { id: 'fileupload', type: 'file', name: 'files[]', 'data-url': '/json/piclist' })
+	                        "上传：",
+	                        Sophie.element("input", { id: "material-file-upload", type: "file", name: "file" })
 	                    ),
 	                    Sophie.element(
-	                        'div',
-	                        { 'class': 'modal-footer' },
+	                        "div",
+	                        { "class": "modal-footer" },
 	                        Sophie.element(
-	                            'button',
-	                            { type: 'button', 'class': 'btn btn-primary upload' },
-	                            '上传'
-	                        ),
-	                        Sophie.element(
-	                            'button',
-	                            { type: 'button', 'class': 'btn btn-default', 'data-dismiss': 'modal' },
-	                            '关闭'
+	                            "button",
+	                            { type: "button", "class": "btn btn-default", "data-dismiss": "modal" },
+	                            "关闭"
 	                        )
 	                    )
 	                )
 	            )
 	        );
+	    },
+	    renderItems: function renderItems() {
+	        var result = [];
+	        var urls = this.state.urls;
+	        for (var i = 0; i < urls.length; i++) {
+	            result.push(Sophie.element("img", { className: "img-thumbnail", src: urls[i] }));
+	        }
+	        return result;
 	    }
 
 	});
