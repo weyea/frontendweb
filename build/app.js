@@ -52,52 +52,67 @@
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	window.__DEV__ = true;
 	var Sophie = __webpack_require__(2);
-
-	__webpack_require__(65);
 	__webpack_require__(66);
+	window.App = {
+	  getMaxWidth: function getMaxWidth() {
+	    return $("body").attr("data-maxwidth") || 1100;
+	  },
+	  updateLayout: __webpack_require__(67).update,
+	  getMediaName: function getMediaName() {
+	    var id = $(document.documentElement).attr("id");
+	    if (id == "media-pc") return "pc";else {
+	      return "phone";
+	    }
+	  }
+	};
 
-	__webpack_require__(70);
-	var template = __webpack_require__(71);
+	__webpack_require__(68);
+	__webpack_require__(69);
 
-	var creater = __webpack_require__(79);
-	var app = {
+	var template = __webpack_require__(73);
+
+	$.extend(App, {
 	  template: template,
 	  // run:function(APP){
 	  //   Sophie.runApp(APP||template.App);
 	  // },
 	  render: template.renderData,
 
-	  Header: __webpack_require__(75),
-	  Body: __webpack_require__(77),
-	  Footer: __webpack_require__(78),
-	  Page: __webpack_require__(73),
-	  Site: __webpack_require__(72),
+	  Header: __webpack_require__(82),
+	  Body: __webpack_require__(85),
+	  Footer: __webpack_require__(84),
+	  Page: __webpack_require__(75),
+	  Site: __webpack_require__(74),
 
-	  LayoutInner: __webpack_require__(81),
-	  LayoutTwo: __webpack_require__(83),
-	  LayoutThree: __webpack_require__(84),
-	  LayoutTwoResponse: __webpack_require__(85),
-	  LayoutTwoNoResponse: __webpack_require__(86),
-	  LayoutThreeResponse: __webpack_require__(87),
-	  LayoutThreeNoResponse: __webpack_require__(88),
-	  Pic: __webpack_require__(82),
-	  Logo: __webpack_require__(89),
-	  Grid: __webpack_require__(90),
+	  LayoutInner: __webpack_require__(90),
+	  LayoutTwo: __webpack_require__(91),
+	  LayoutThree: __webpack_require__(92),
+	  LayoutTwoResponse: __webpack_require__(93),
+	  LayoutTwoNoResponse: __webpack_require__(94),
+	  LayoutThreeResponse: __webpack_require__(95),
+	  LayoutThreeNoResponse: __webpack_require__(96),
+	  Pic: __webpack_require__(97),
+	  Bg: __webpack_require__(98),
+	  Masonry: __webpack_require__(99),
+	  Logo: __webpack_require__(107),
+	  Grid: __webpack_require__(78),
+	  Group: __webpack_require__(108),
 
-	  NavPage: __webpack_require__(92),
-	  NavPageInline: __webpack_require__(94),
-	  NavPageAbsolute: __webpack_require__(96),
+	  NavPage: __webpack_require__(109),
+	  NavPageMask: __webpack_require__(86),
+	  NavPageInline: __webpack_require__(110),
+	  NavPageAbsolute: __webpack_require__(111),
 
-	  A: __webpack_require__(93),
-	  Text: __webpack_require__(97),
+	  A: __webpack_require__(88),
+	  Text: __webpack_require__(112),
 
-	  List: __webpack_require__(80),
+	  List: __webpack_require__(113),
 
-	  ListImg: __webpack_require__(98),
+	  ListImg: __webpack_require__(116),
 
 	  //--
 	  // require('./components/p-masonry.js')
@@ -108,34 +123,15 @@
 	  // require('./components/p-nav-h.js')
 	  //
 	  // require('./components/p-nav-v.js')
-	  Slide: __webpack_require__(99),
-	  // require('./components/p-list-layout.js')
-	  // require('./components/p-tabs.js')
-	  // require('./components/p-scroll-h.js')
-	  //
-	  // require('./components/p-nav-page-scroll.js')
-	  //
-	  // require('./components/p-layout.js')
-	  //
-	  //
-	  // require('./components/p-grid.js')
-	  // require('./components/p-text-s.js')
-	  //
-	  //
-	  //
-	  //
-	  // require('./components/p-container-fluid.js')
-	  //
-	  //
+	  Slide: __webpack_require__(117)
+	});
 
-	  //
-	  // require('./components/p-nav-bar.js')
-	  creater: creater
-	};
+	__webpack_require__(118);
+	App.creater = __webpack_require__(119);
 
-	app.render(window.serverData);
-	window.App = app;
-	module.exports = app;
+	App.render(window.serverData);
+
+	module.exports = App;
 
 /***/ },
 /* 2 */
@@ -147,13 +143,13 @@
 
 	var Register = __webpack_require__(45);
 	var Element = __webpack_require__(49);
-	var mount = __webpack_require__(61);
+	var mount = __webpack_require__(62);
 
 
-	var Import = __webpack_require__(62);
+	var Import = __webpack_require__(63);
 	var StyleSheet = __webpack_require__(53);
-	var Compontent = __webpack_require__(63);
-	var Bootstrap = __webpack_require__(64);
+	var Compontent = __webpack_require__(64);
+	var Bootstrap = __webpack_require__(65);
 	var EE = __webpack_require__(47);
 
 	var Sophie = {
@@ -163,12 +159,18 @@
 	  renderToJSON: Bootstrap.renderToJSON,
 	  renderFromJSON: Bootstrap.renderFromJSON,
 	  isBaseVnode: Bootstrap.isBaseVnode,
+
 	  getOwner: Bootstrap.getOwner,
 	  getParent: Bootstrap.getParent,
 	  closestBaseParent: Bootstrap.closestBaseParent,
 	  getBaseParent: Bootstrap.getBaseParent,
 
+	  getMainDocumentParent: Bootstrap.getBaseParent,
+	  isMainDocumentEl: Bootstrap.isBaseVnode,
+	  getMainDocumentEl: Bootstrap.closestBaseParent,
+
 	  createVnodeByTagName: Bootstrap.createVnodeByTagName,
+	  createVnodeByFun: Bootstrap.createVnodeByFun,
 
 	  createElementByVnode: Bootstrap.createElementByVnode,
 
@@ -288,6 +290,7 @@
 	 */
 
 	var Actions = exports.Actions = (0, _unionType2.default)({
+	  setHTML: [String, String],
 	  setAttribute: [String, Any, Any],
 	  removeAttribute: [String, Any],
 	  insertChild: [Any, Number, Path],
@@ -351,7 +354,57 @@
 	  var key = function key(a) {
 	    return a.key;
 	  };
+
 	  var changes = [];
+
+	  var equal = function equal(prev, next) {
+
+	    // No left node to compare it to
+	    // TODO: This should just return a createNode action
+	    if ((0, _isUndefined2.default)(prev)) {
+	      throw new Error('Left node must not be null or undefined');
+	    }
+
+	    // Bail out and skip updating this whole sub-tree
+	    if (prev === next) {
+	      return true;
+	    }
+
+	    if ((prev.key && prev.key) == (next.key && next.key)) {
+	      return true;
+	    }
+
+	    if ((prev.nativeNode && prev.nativeNode) == (next.nativeNode && next.nativeNode)) {
+	      return true;
+	    }
+
+	    // Native
+	    if ((0, _element.isNative)(prev) && (0, _element.isNative)(next)) {
+	      if (prev.tagName == next.tagName) {
+	        return true;
+	      }
+	    }
+
+	    // Text
+	    if ((0, _element.isText)(prev) && (0, _element.isText)(next)) {
+	      if (prev.nodeValue == next.nodeValue) {
+	        return true;
+	      }
+	    }
+	    // html
+	    if (prev.type == "html" && prev.type == "html") {
+	      if (prev.nodeValue == next.nodeValue) {
+	        return true;
+	      }
+	    }
+
+	    // Thunk
+	    if ((0, _element.isThunk)(prev) && (0, _element.isThunk)(next)) {
+	      if ((0, _element.isSameThunk)(prev, next)) {
+	        return true;
+	      }
+	    }
+	  };
 
 	  function effect(type, prev, next, pos) {
 	    var nextPath = next ? (0, _element.createPath)(parentPath, next.key == null ? next.index : next.key) : null;
@@ -384,7 +437,7 @@
 	    }
 	  }
 
-	  (0, diffActions.default)(previousChildren, nextChildren, effect, key);
+	  (0, diffActions.default)(previousChildren, nextChildren, effect, equal);
 
 	  return updateChildren(changes);
 	}
@@ -397,6 +450,7 @@
 	function diffNode(prev, next, path) {
 	  var replaceNode = Actions.replaceNode;
 	  var setAttribute = Actions.setAttribute;
+	  var setHTML = Actions.setHTML;
 	  var sameNode = Actions.sameNode;
 	  var removeNode = Actions.removeNode;
 	  var updateThunk = Actions.updateThunk;
@@ -446,16 +500,23 @@
 	    }
 	    return _changes;
 	  }
+	  if (next.type == "html") {
+	    var _changes2 = [];
+	    if (prev.nodeValue !== next.nodeValue) {
+	      _changes2.push(setHTML(next.nodeValue, prev.nodeValue));
+	    }
+	    return _changes2;
+	  }
 
 	  // Thunk
 	  if ((0, _element.isThunk)(next)) {
-	    var _changes2 = [];
+	    var _changes3 = [];
 	    if ((0, _element.isSameThunk)(prev, next)) {
-	      _changes2.push(updateThunk(prev, next, path));
+	      _changes3.push(updateThunk(prev, next, path));
 	    } else {
-	      _changes2.push(replaceNode(prev, next, path));
+	      _changes3.push(replaceNode(prev, next, path));
 	    }
-	    return _changes2;
+	    return _changes3;
 	  }
 
 	  // Empty
@@ -630,7 +691,7 @@
 	};
 
 	var isSameThunk = exports.isSameThunk = function isSameThunk(left, right) {
-	  return isThunk(left) && isThunk(right) && left.fn === right.fn;
+	  return isThunk(left) && isThunk(right) && left.constructor === right.constructor;
 	};
 
 	/**
@@ -791,7 +852,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+	    value: true
 	});
 	exports.REMOVE = exports.MOVE = exports.UPDATE = exports.CREATE = undefined;
 
@@ -813,128 +874,124 @@
 	 * dift
 	 */
 
-	function dift(prev, next, effect, key) {
-	  var pStartIdx = 0;
-	  var nStartIdx = 0;
-	  var pEndIdx = prev.length - 1;
-	  var nEndIdx = next.length - 1;
-	  var pStartItem = prev[pStartIdx];
-	  var nStartItem = next[nStartIdx];
+	function dift(prev, next, effect, equal) {
+	    var pStartIdx = 0;
+	    var nStartIdx = 0;
+	    var pEndIdx = prev.length - 1;
+	    var nEndIdx = next.length - 1;
+	    var pStartItem = prev[pStartIdx];
+	    var nStartItem = next[nStartIdx];
 
-	  // List head is the same
-	  while (pStartIdx <= pEndIdx && nStartIdx <= nEndIdx && equal(pStartItem, nStartItem)) {
-	    effect(UPDATE, pStartItem, nStartItem, nStartIdx);
-	    pStartItem = prev[++pStartIdx];
-	    nStartItem = next[++nStartIdx];
-	  }
-
-	  // The above case is orders of magnitude more common than the others, so fast-path it
-	  if (nStartIdx > nEndIdx && pStartIdx > pEndIdx) {
-	    return;
-	  }
-
-	  var pEndItem = prev[pEndIdx];
-	  var nEndItem = next[nEndIdx];
-	  var movedFromFront = 0;
-
-	  // Reversed
-	  while (pStartIdx <= pEndIdx && nStartIdx <= nEndIdx && equal(pStartItem, nEndItem)) {
-	    effect(MOVE, pStartItem, nEndItem, pEndIdx - movedFromFront + 1);
-	    pStartItem = prev[++pStartIdx];
-	    nEndItem = next[--nEndIdx];
-	    ++movedFromFront;
-	  }
-
-	  // Reversed the other way (in case of e.g. reverse and append)
-	  while (pEndIdx >= pStartIdx && nStartIdx <= nEndIdx && equal(nStartItem, pEndItem)) {
-	    effect(MOVE, pEndItem, nStartItem, nStartIdx);
-	    pEndItem = prev[--pEndIdx];
-	    nStartItem = next[++nStartIdx];
-	    --movedFromFront;
-	  }
-
-	  // List tail is the same
-	  while (pEndIdx >= pStartIdx && nEndIdx >= nStartIdx && equal(pEndItem, nEndItem)) {
-	    effect(UPDATE, pEndItem, nEndItem, nEndIdx);
-	    pEndItem = prev[--pEndIdx];
-	    nEndItem = next[--nEndIdx];
-	  }
-
-	  if (pStartIdx > pEndIdx) {
-	    while (nStartIdx <= nEndIdx) {
-	      effect(CREATE, null, nStartItem, nStartIdx);
-	      nStartItem = next[++nStartIdx];
+	    // List head is the same
+	    while (pStartIdx <= pEndIdx && nStartIdx <= nEndIdx && equal(pStartItem, nStartItem)) {
+	        effect(UPDATE, pStartItem, nStartItem, nStartIdx);
+	        pStartItem = prev[++pStartIdx];
+	        nStartItem = next[++nStartIdx];
 	    }
 
-	    return;
-	  }
-
-	  if (nStartIdx > nEndIdx) {
-	    while (pStartIdx <= pEndIdx) {
-	      effect(REMOVE, pStartItem);
-	      pStartItem = prev[++pStartIdx];
+	    // The above case is orders of magnitude more common than the others, so fast-path it
+	    if (nStartIdx > nEndIdx && pStartIdx > pEndIdx) {
+	        return;
 	    }
 
-	    return;
-	  }
+	    var pEndItem = prev[pEndIdx];
+	    var nEndItem = next[nEndIdx];
+	    var movedFromFront = 0;
 
-	  var created = 0;
-	  var pivotDest = null;
-	  var pivotIdx = pStartIdx - movedFromFront;
-	  var keepBase = pStartIdx;
-	  var keep = (0, _bitVector.createBv)(pEndIdx - pStartIdx);
-
-	  var prevMap = keyMap(prev, pStartIdx, pEndIdx + 1, key);
-
-	  for (; nStartIdx <= nEndIdx; nStartItem = next[++nStartIdx]) {
-	    var oldIdx = prevMap[key(nStartItem)];
-
-	    if (isUndefined(oldIdx)) {
-	      effect(CREATE, null, nStartItem, pivotIdx++);
-	      ++created;
-	    } else if (pStartIdx !== oldIdx) {
-	      (0, _bitVector.setBit)(keep, oldIdx - keepBase);
-	      effect(MOVE, prev[oldIdx], nStartItem, pivotIdx++);
-	    } else {
-	      pivotDest = nStartIdx;
+	    // Reversed
+	    while (pStartIdx <= pEndIdx && nStartIdx <= nEndIdx && equal(pStartItem, nEndItem)) {
+	        effect(MOVE, pStartItem, nEndItem, pEndIdx - movedFromFront + 1);
+	        pStartItem = prev[++pStartIdx];
+	        nEndItem = next[--nEndIdx];
+	        ++movedFromFront;
 	    }
-	  }
 
-	  if (pivotDest !== null) {
-	    (0, _bitVector.setBit)(keep, 0);
-	    effect(MOVE, prev[pStartIdx], next[pivotDest], pivotDest);
-	  }
-
-	  // If there are no creations, then you have to
-	  // remove exactly max(prevLen - nextLen, 0) elements in this
-	  // diff. You have to remove one more for each element
-	  // that was created. This means once we have
-	  // removed that many, we can stop.
-	  var necessaryRemovals = prev.length - next.length + created;
-	  for (var removals = 0; removals < necessaryRemovals; pStartItem = prev[++pStartIdx]) {
-	    if (!(0, _bitVector.getBit)(keep, pStartIdx - keepBase)) {
-	      effect(REMOVE, pStartItem);
-	      ++removals;
+	    // Reversed the other way (in case of e.g. reverse and append)
+	    while (pEndIdx >= pStartIdx && nStartIdx <= nEndIdx && equal(nStartItem, pEndItem)) {
+	        effect(MOVE, pEndItem, nStartItem, nStartIdx);
+	        pEndItem = prev[--pEndIdx];
+	        nStartItem = next[++nStartIdx];
+	        --movedFromFront;
 	    }
-	  }
 
-	  function equal(a, b) {
-	    return key(a) === key(b);
-	  }
+	    // List tail is the same
+	    while (pEndIdx >= pStartIdx && nEndIdx >= nStartIdx && equal(pEndItem, nEndItem)) {
+	        effect(UPDATE, pEndItem, nEndItem, nEndIdx);
+	        pEndItem = prev[--pEndIdx];
+	        nEndItem = next[--nEndIdx];
+	    }
+
+	    if (pStartIdx > pEndIdx) {
+	        while (nStartIdx <= nEndIdx) {
+	            effect(CREATE, null, nStartItem, nStartIdx);
+	            nStartItem = next[++nStartIdx];
+	        }
+
+	        return;
+	    }
+
+	    if (nStartIdx > nEndIdx) {
+	        while (pStartIdx <= pEndIdx) {
+	            effect(REMOVE, pStartItem);
+	            pStartItem = prev[++pStartIdx];
+	        }
+
+	        return;
+	    }
+
+	    var created = 0;
+	    var pivotDest = null;
+	    var pivotIdx = pStartIdx - movedFromFront;
+	    var keepBase = pStartIdx;
+	    var keep = (0, _bitVector.createBv)(pEndIdx - pStartIdx);
+
+	    var prevMap = keyMap(prev, pStartIdx, pEndIdx + 1, key);
+
+	    for (; nStartIdx <= nEndIdx; nStartItem = next[++nStartIdx]) {
+	        var oldIdx = prevMap[key(nStartItem)];
+
+	        if (isUndefined(oldIdx)) {
+	            effect(CREATE, null, nStartItem, pivotIdx++);
+	            ++created;
+	        } else if (pStartIdx !== oldIdx) {
+	            (0, _bitVector.setBit)(keep, oldIdx - keepBase);
+	            effect(MOVE, prev[oldIdx], nStartItem, pivotIdx++);
+	        } else {
+	            pivotDest = nStartIdx;
+	        }
+	    }
+
+	    if (pivotDest !== null) {
+	        (0, _bitVector.setBit)(keep, 0);
+	        effect(MOVE, prev[pStartIdx], next[pivotDest], pivotDest);
+	    }
+
+	    // If there are no creations, then you have to
+	    // remove exactly max(prevLen - nextLen, 0) elements in this
+	    // diff. You have to remove one more for each element
+	    // that was created. This means once we have
+	    // removed that many, we can stop.
+	    var necessaryRemovals = prev.length - next.length + created;
+	    for (var removals = 0; removals < necessaryRemovals; pStartItem = prev[++pStartIdx]) {
+	        if (!(0, _bitVector.getBit)(keep, pStartIdx - keepBase)) {
+	            effect(REMOVE, pStartItem);
+	            ++removals;
+	        }
+	    }
 	}
 
 	function isUndefined(val) {
-	  return typeof val === 'undefined';
+	    return typeof val === 'undefined';
 	}
 
 	function keyMap(items, start, end, key) {
-	  var map = {};
+	    var map = {};
 
-	  for (var i = start; i < end; ++i) {
-	    map[key(items[i])] = i;
-	  }
+	    for (var i = start; i < end; ++i) {
+	        map[key(items[i])] = i;
+	    }
 
-	  return map;
+	    return map;
 	}
 
 	/**
@@ -1539,6 +1596,8 @@
 	  switch (vnode.type) {
 	    case 'text':
 	      return create.createElement(vnode, path, dispatch, context);
+	    case 'html':
+	      return createFragment(vnode.nodeValue);
 	    case 'empty':
 	      return create.createElement(vnode, path, dispatch, context);
 	    case 'thunk':
@@ -1546,6 +1605,22 @@
 	    case 'native':
 	      return createHTMLElement(vnode, path, dispatch, context);
 	  }
+	}
+
+	function createFragment(html) {
+	  var div = document.createElement("div");
+	  div.innerHTML = html;
+	  var fragment = document.createDocumentFragment();
+	  var children = [];
+	  for (var i = 0; i < div.childNodes.length; i++) {
+	    children[i] = div.childNodes[i];
+	  }
+
+	  for (var i = 0; i < children.length; i++) {
+	    fragment.appendChild(children[i]);
+	  }
+
+	  return fragment;
 	}
 
 	function getCachedElement(type) {
@@ -1597,9 +1672,8 @@
 	  vnode.options.output = output;
 	  vnode.nativeNode = DOMElement;
 	  DOMElement.vnode = vnode.options;
+	  DOMElement.rootVnode = vnode.options;
 	  DOMElement.vnodeInstance = vnode;
-
-	  vnode.state.vnode = output;
 
 	  return DOMElement;
 	}
@@ -2082,6 +2156,18 @@
 	  return document.createTextNode(value);
 	}
 
+	function createFragment(html) {
+	  var div = document.createElement("div");
+	  div.innerHTML = html;
+	  var fragment = document.createDocumentFragment();
+	  var children = div.childNodes;
+	  for (var i = 0; i < children.length; i++) {
+	    fragment.appendChild(children[i]);
+	  }
+
+	  return fragment;
+	}
+
 	function createThunk(vnode, path, dispatch, context) {
 	  var props = vnode.props;
 	  var children = vnode.children;
@@ -2175,6 +2261,18 @@
 	      setAttribute: function setAttribute(name, value, previousValue) {
 	        (0, _setAttribute2.setAttribute)(DOMElement, name, value, previousValue);
 	      },
+	      setHTML: function setHTML(html) {
+	        var div = document.createElement("div");
+	        div.innerHTML = html;
+	        var children = [];
+	        for (var i = 0; i < div.childNodes.length; i++) {
+	          children[i] = div.childNodes[i];
+	        }
+	        for (var i = 0; i < children.length; i++) {
+	          DOMElement.appendChild(children[i]);
+	        }
+	      },
+
 	      removeAttribute: function removeAttribute(name, previousValue) {
 	        (0, _setAttribute2.removeAttribute)(DOMElement, name, previousValue);
 	      },
@@ -2188,9 +2286,19 @@
 	        DOMElement = _updateThunk(DOMElement, prev, next, path, dispatch, context);
 	      },
 	      replaceNode: function replaceNode(prev, next, path) {
-	        var newEl = (0, _create.createElement)(next, path, dispatch, context);
+
 	        var parentEl = DOMElement.parentNode;
-	        if (parentEl) parentEl.replaceChild(newEl, DOMElement);
+	        var placeHolder = document.createElement("div");
+	        if (parentEl) {
+	          parentEl.replaceChild(placeHolder, DOMElement);
+	        }
+
+	        var newEl = (0, _create.createElement)(next, path, dispatch, context);
+
+	        if (parentEl) {
+	          parentEl.replaceChild(newEl, placeHolder);
+	        }
+
 	        DOMElement = newEl;
 	        removeThunks(prev, dispatch);
 	      },
@@ -2219,7 +2327,7 @@
 	        insertAtIndex(DOMElement, index, (0, _create.createElement)(vnode, path, dispatch, context));
 	      },
 	      removeChild: function removeChild(index) {
-	        DOMElement.removeChild(childNodes[index]);
+	        if (childNodes[index] && childNodes[index].parentNode == DOMElement) DOMElement.removeChild(childNodes[index]);
 	      },
 	      updateChild: function updateChild(index, actions) {
 	        var _update = updateElement(dispatch, context);
@@ -2240,7 +2348,7 @@
 	  var children = next.children;
 	  var onUpdate = next.options.onUpdate;
 
-	  var prevNode = prev.state.vnode;
+	  var prevNode = prev.rootVnode;
 	  var model = {
 	    children: children,
 	    props: props,
@@ -2252,10 +2360,8 @@
 	  var changes = (0, _diff.diffNode)(prevNode, nextNode, (0, _element.createPath)(path, '0'));
 	  DOMElement = (0, _reduceArray2.default)(updateElement(dispatch, context), DOMElement, changes);
 	  if (onUpdate) dispatch(onUpdate(model));
-	  next.state = {
-	    vnode: nextNode,
-	    model: model
-	  };
+	  next.rootVnode = nextNode;
+	  next.nativeNode = DOMElement;
 	  return DOMElement;
 	}
 
@@ -2264,15 +2370,15 @@
 	 */
 
 	function removeThunks(vnode, dispatch) {
-	  while ((0, _element.isThunk)(vnode)) {
+	  while (vnode && (0, _element.isThunk)(vnode)) {
 	    var onRemove = vnode.options.onRemove;
 	    var model = vnode.state.model;
 
 	    if (onRemove) dispatch(onRemove(model));
 	    vnode = vnode.state.vnode;
 	  }
-	  if (vnode.children) {
-	    (0, _foreach2.default)(vnode.children, function (child) {
+	  if (vnode && vnode.props.children) {
+	    (0, _foreach2.default)(vnode.props.children, function (child) {
 	      return removeThunks(child, dispatch);
 	    });
 	  }
@@ -2598,233 +2704,151 @@
 	var merge = __webpack_require__(51);
 	var currentOwner = __webpack_require__(50);
 	var registry = {};
+	var SophieBaseClass = __webpack_require__(61);
 
-	function register(inName, inOptions) {
+	function register(inName, inOptions, ExtendClass) {
 
-	  if (!inOptions) {
-	    inOptions = inName;
-	    inName = "undefined";
-	  }
+	    if (!inOptions) {
+	        inOptions = inName;
+	        inName = "undefined";
+	    }
 
-	  var definition = inOptions || {};
-	  definition.name = inName || definition.name;
+	    var definition = inOptions || {};
+	    definition.name = inName || definition.name;
 
-	  if (!inName) {
-	    throw new Error('Name argument must not be empty');
-	  }
+	    if (!inName) {
+	        throw new Error('Name argument must not be empty');
+	    }
 
-	  resolveTagName(definition);
-	  resolveMixin(definition);
+	    resolveTagName(definition);
+	    resolveMixin(definition);
 
-	  var SohpieConstructor = function SohpieConstructor() {
-	    this.state = {};
-	    this.props = {};
-	    this.children = [];
-	    this.refs = {};
+	    ExtendClass = ExtendClass || SophieBaseClass;
 
-	    var defaultProps = this.getDefaultProps && this.getDefaultProps();
-	    var newProps = merge(defaultProps || {}, this.props);
-	    this.props = newProps;
-	    this.attributes = newProps;
+	    //只能扩展Sophie类
+	    if (ExtendClass == SophieBaseClass || ExtendClass.prototype instanceof SophieBaseClass) {
+	        var SohpieConstructor = function SohpieConstructor(props) {
+	            ExtendClass.apply(this, [props]);
+	        };
+	        SohpieConstructor.prototype = Object.create(ExtendClass.prototype);
+	        SohpieConstructor.prototype.constructor = SohpieConstructor;
+	    } else {
+	        var SohpieConstructor = function SohpieConstructor(props) {
+	            SophieBaseClass.apply(this, [props]);
+	        };
+	        SohpieConstructor.prototype = Object.create(SophieBaseClass.prototype);
+	        SohpieConstructor.prototype.constructor = SohpieConstructor;
+	    }
 
-	    var defaultState = this.getInitialState && this.getInitialState();
-	    var newState = merge({}, defaultState || {});
-	    this.state = newState;
-	  };
+	    var oldRender = definition.render;
+	    var oldComponentDidMount = definition.componentDidMount;
+	    var oldComponentWillMount = definition.componentWillMount;
+	    var componentDidInsertChild = definition.componentDidInsertChild;
 
-	  var oldRender = definition.render;
-	  var oldComponentDidMount = definition.componentDidMount;
-	  var oldComponentWillMount = definition.componentWillMount;
-	  var componentDidInsert = definition.componentDidInsert;
-	  var componentDidInsert = definition.componentDidInsert;
-	  var getDefaultChildren = definition.getDefaultChildren;
+	    var getDefaultChildren = definition.getDefaultChildren;
+	    var componentDidSetChildren = definition.componentDidSetChildren;
 
-	  SohpieConstructor.prototype = definition;
+	    if (getDefaultChildren) {
+	        definition.getDefaultChildren = function () {
+	            var result = getDefaultChildren.apply(this, arguments);
+	            for (var i = 0; i < result.length; i++) {
+	                result[i].parent = this;
+	            }
+	            return result;
+	        };
+	    }
 
-	  if (getDefaultChildren) {
-	    SohpieConstructor.prototype.getDefaultChildren = function () {
+	    //for decleare
+	    // SohpieConstructor.prototype.getDefaultProps = function(){}
+	    // SohpieConstructor.prototype.getInitialState = function(){}
 
-	      var result = getDefaultChildren.apply(this, arguments);
 
-	      return result;
+	    if (oldRender) {
+	        definition.render = function () {
+	            currentOwner.target = this;
+	            var result = oldRender.apply(this, arguments);
+	            currentOwner.target = undefined;
+	            return result;
+	        };
+	    }
+
+	    if (oldComponentDidMount) {
+	        definition.componentDidMount = function () {
+	            oldComponentDidMount && oldComponentDidMount.apply(this, arguments);
+	            EE.trigger("componentDidMount", [this]);
+	        };
+	    }
+
+	    if (componentDidInsertChild) {
+	        definition.componentDidInserted = function () {
+	            componentDidInsertChild && componentDidInsertChild.apply(this, arguments);
+	            EE.trigger("componentDidInsertChild", [this]);
+	        };
+	    }
+
+	    if (componentDidSetChildren) {
+	        definition.componentDidSetChildren = function () {
+	            componentDidSetChildren && componentDidSetChildren.apply(this, arguments);
+	            EE.trigger("componentDidSetChildren", [this]);
+	        };
+	    }
+
+	    if (oldComponentWillMount) {
+	        definition.componentWillMount = function () {
+	            oldComponentWillMount && oldComponentWillMount.apply(this, arguments);
+	            EE.trigger("oldComponentWillMount", [this]);
+	        };
+	    }
+
+	    merge(SohpieConstructor.prototype, definition);
+	    SohpieConstructor.prototype.constructor = SohpieConstructor;
+
+	    SohpieConstructor.createStyleSheet = function (styles, mediaQuery) {
+	        StyleSheet.create(styles, mediaQuery, inName);
 	    };
-	  }
 
-	  SohpieConstructor.prototype.render = function () {
-	    currentOwner.target = this;
-	    var result = oldRender.apply(this, arguments);
-	    currentOwner.target = undefined;
-	    return result;
-	  };
-
-	  // if(Sophie&&Sophie.renderRootElement){
-	  //   SohpieConstructor.prototype.render = function(){
-	  //     return this.element(this.name, this.attributes, oldRender.apply(this, arguments))
-	  //   }
-	  // }
-
-
-	  SohpieConstructor.prototype.componentDidMount = function () {
-	    oldComponentDidMount && oldComponentDidMount.apply(this, arguments);
-	    EE.trigger("componentDidMount", [this.node]);
-	  };
-
-	  SohpieConstructor.prototype.componentDidInserted = function () {
-	    oldComponentDidInserted && oldComponentDidInserted.apply(this, arguments);
-	    EE.trigger("componentDidInsert", [this.node]);
-	  };
-
-	  SohpieConstructor.prototype.componentWillMount = function () {
-	    oldComponentWillMount && oldComponentWillMount.apply(this, arguments);
-	    EE.trigger("oldComponentWillMount", [this.node]);
-	  };
-
-	  //for decleare
-	  // SohpieConstructor.prototype.getDefaultProps = function(){}
-	  // SohpieConstructor.prototype.getInitialState = function(){}
-
-	  SohpieConstructor.prototype.setState = function (value) {
-
-	    this.state = merge(this.state, value);
-	    this._update();
-	  };
-
-	  // //重置render方法，生成根元素
-	  // var oRender = definition.render;
-	  // SohpieConstructor.prototype.render = function(){
-	  //   return element(this.name,this.props,oRender.apply(this,arguments));
-	  // }
-
-
-	  SohpieConstructor.prototype.forceUpdate = SohpieConstructor.prototype._update = function () {
-	    // debugger
-	    var oldVnode = this.rootVnode;
-	    var newVnode = this.render();
-
-	    var changes = _index.diff.diffNode(oldVnode, newVnode, this.id || '0');
-	    var node = changes.reduce(_index.dom.updateElement(function () {}, this), this.nativeNode);
-
-	    this.rootVnode = newVnode;
-	    this.nativeNode = node;
-	    return node;
-	  };
-
-	  SohpieConstructor.prototype.element = function () {
-	    var vnode = element.apply(null, arguments);
-
-	    return vnode;
-	  }, SohpieConstructor.prototype.append = function (child) {
-	    var children = this.children;
-	    child.parent = this;
-	    children.push(child);
-	    this._update();
-	    if (child.componentDidInsert) {
-	      child.componentDidInsert();
+	    if (inName !== "undefined") {
+	        registerDefinition(inName, SohpieConstructor);
+	        document.createElement(inName);
 	    }
-	  };
 
-	  SohpieConstructor.prototype.remove = function (child) {
-	    var parent = this;
-	    var children = parent.children;
-	    for (var i = 0; i < children.length; i++) {
-	      if (children[i] == child) {
-	        //  children[i].parent = undefined
-	        children.splice(i, 1);
-
-	        break;
-	      }
-	    }
-	    this._update();
-	    if (child.componentDidRemove) {
-	      child.componentDidRemove();
-	    }
-	  };
-
-	  SohpieConstructor.prototype.insertBefore = function (target, before) {
-	    var parent = this;
-	    var children = parent.children;
-	    for (var i = 0; i < children.length; i++) {
-	      if (children[i] == before) {
-	        children.splice(i, 0, target);
-
-	        target.parent = parent;
-	        break;
-	      }
-	    }
-	    this._update();
-	    if (target.componentDidInsert) {
-	      target.componentDidInsert();
-	    }
-	  };
-
-	  SohpieConstructor.prototype.insertAfter = function (target, after) {
-	    var parent = this;
-	    var children = parent.children;
-	    for (var i = 0; i < children.length; i++) {
-	      if (children[i] == after) {
-	        children.splice(i + 1, 0, target);
-	        target.parent = parent;
-
-	        break;
-	      }
-	    }
-	    this._update();
-	    if (target.componentDidInserted) {
-	      target.componentDidInsert();
-	    }
-	  };
-
-	  SohpieConstructor.createStyleSheet = function (styles, mediaQuery) {
-	    StyleSheet.create(styles, mediaQuery, inName);
-	  };
-
-	  if (inName !== "undefined") {
-	    registerDefinition(inName, SohpieConstructor);
-	    document.createElement(inName);
-	  }
-
-	  SohpieConstructor.prototype.constructor = SohpieConstructor;
-
-	  return SohpieConstructor;
+	    return SohpieConstructor;
 	}
 
 	function resolveTagName(inDefinition) {
-	  inDefinition.tagName = inDefinition.name;
-	  inDefinition.type = inDefinition.name;
+	    inDefinition.tagName = inDefinition.name;
+	    inDefinition.type = inDefinition.name;
 	}
 
 	function resolveMixin(inDefinition) {
-	  var mixin = inDefinition.mixin || [];
-	  for (var i = 0; i < mixin.length; i++) {
-	    var pName = mixin[i];
-	    var pDefinition = registry[pName] || {};
-	    for (var p in pDefinition) {
-	      if (!inDefinition[p]) {
-	        inDefinition[p] = pDefinition[p];
-	      }
+	    var mixin = inDefinition.mixin || [];
+	    for (var i = 0; i < mixin.length; i++) {
+	        var pDefinition = mixin[i];
+	        for (var p in pDefinition) {
+	            if (!inDefinition[p]) {
+	                inDefinition[p] = pDefinition[p];
+	            }
+	        }
 	    }
-	  }
 	}
 
 	function registerDefinition(inName, inDefinition) {
-	  registry[inName] = inDefinition;
+	    registry[inName] = inDefinition;
 	}
 
 	function isLeaf(inElement) {
-	  if (inElement) {
-	    var name = inElement.tagName.toLowerCase();
-	    return registry[name];
-	  }
+	    if (inElement) {
+	        var name = inElement.tagName.toLowerCase();
+	        return registry[name];
+	    }
 	}
 
 	var isReady = false;
 
 	module.exports = {
-
-	  registry: registry,
-	  isLeaf: isLeaf,
-
-	  register: register
+	    registry: registry,
+	    isLeaf: isLeaf,
+	    register: register
 	};
 
 /***/ },
@@ -2865,7 +2889,7 @@
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
 	/*!
-	 * EventEmitter v5.1.0 - git.io/ee
+	 * EventEmitter v5.2.2 - git.io/ee
 	 * Unlicense - http://unlicense.org/
 	 * Oliver Caldwell - http://oli.me.uk/
 	 * @preserve
@@ -3108,7 +3132,7 @@
 
 	    /**
 	     * Adds listeners in bulk using the manipulateListeners method.
-	     * If you pass an object as the second argument you can add to multiple events at once. The object should contain key value pairs of events and listeners or listener arrays. You can also pass it an event name and an array of listeners to be added.
+	     * If you pass an object as the first argument you can add to multiple events at once. The object should contain key value pairs of events and listeners or listener arrays. You can also pass it an event name and an array of listeners to be added.
 	     * You can also pass it a regular expression to add the array of listeners to all events that match it.
 	     * Yeah, this function does quite a bit. That's probably a bad thing.
 	     *
@@ -3123,7 +3147,7 @@
 
 	    /**
 	     * Removes listeners in bulk using the manipulateListeners method.
-	     * If you pass an object as the second argument you can remove from multiple events at once. The object should contain key value pairs of events and listeners or listener arrays.
+	     * If you pass an object as the first argument you can remove from multiple events at once. The object should contain key value pairs of events and listeners or listener arrays.
 	     * You can also pass it an event name and an array of listeners to be removed.
 	     * You can also pass it a regular expression to remove the listeners from all events that match it.
 	     *
@@ -3369,7 +3393,7 @@
 
 	  //class
 	  if (typeof type === 'function') {
-	    type = new type();
+	    type = new type(attributes, currentOwner.target);
 	    if (type.render) {
 	      var oldRender = type.render;
 	      type.render = function () {
@@ -3390,6 +3414,7 @@
 	  }
 
 	  var result = _index.element.apply(null, args);
+	  result.creater = result.compontentContext = result.owner = result._owner = currentOwner.target;
 
 	  if (result.type == "thunk" && result.options) {
 
@@ -3402,13 +3427,14 @@
 	    var options = result.options;
 	    options.type = result.type;
 	    options.fn = result.fn;
-	    options.key = result.key;
+	    options.key = options.id = result.key || result.id;
 	    options.children = result.children;
 	    options.attributes = options.props = merge(options.props, result.props);
 
 	    options.props.children = result.children;
+	    options.creater = options.owner = options.compontentContext = options._owner = currentOwner.target;
 
-	    if (!options.props.children || options.props.children == 0) {
+	    if (!options.props.children || options.props.children.length == 0) {
 	      if (options.getDefaultChildren) {
 	        options.props.children = options.getDefaultChildren();
 	      }
@@ -3422,12 +3448,12 @@
 	  var children = result.children;
 	  for (var i = 0; i < children.length; i++) {
 	    if (!children[i]) continue;
+
+	    //创建时的parent
 	    if (!children[i].parent) {
 	      children[i].parent = result;
 	    }
 	  }
-
-	  result.compontentContext = result._owner = currentOwner.target;
 
 	  if (attributes && attributes["ref"]) {
 	    var refValue = attributes["ref"];
@@ -4364,6 +4390,183 @@
 
 	var _index = __webpack_require__(3);
 
+	/**
+	 * parent: 为元素创建时所在vnode结构外层元素
+	 * creater：为元素创建时render方法所属于的元素
+	 * rootVnode：是组件的每一个根元素，根元素无parent，但有creater
+	 * nativeNode:是组件的每一个根元素相对应的dom元素，render方法渲染完成时生成
+	 */
+
+	var merge = __webpack_require__(51);
+
+	var _element = __webpack_require__(49);
+
+
+	var SohpieConstructor = function SohpieConstructor(props, owner) {
+	    if (owner) {
+	        this.owner = owner;
+	    }
+	    this.state = {};
+	    this.props = props || {};
+	    this.children = [];
+	    this.refs = {};
+	    var defaultProps = this.getDefaultProps && this.getDefaultProps();
+	    var newProps = merge(defaultProps || {}, props || {});
+	    this.props = newProps;
+	    this.attributes = newProps;
+	    var defaultState = this.getInitialState && this.getInitialState();
+	    var newState = merge({}, defaultState || {});
+	    this.state = newState;
+	};
+
+	// //重置render方法，生成根元素
+	// var oRender = definition.render;
+	// SohpieConstructor.prototype.render = function(){
+	//   return element(this.name,this.props,oRender.apply(this,arguments));
+	// }
+
+
+	var baseClassPrototype = {
+	    forceUpdate: function forceUpdate(updateChildren) {
+	        // debugger
+	        var oldVnode = this.rootVnode;
+	        var newVnode = this.render();
+
+	        var changes = _index.diff.diffNode(oldVnode, newVnode, this.id || '0');
+	        var node = changes.reduce(_index.dom.updateElement(function () {}, this), this.nativeNode);
+
+	        this.rootVnode = newVnode;
+	        this.nativeNode = node;
+
+	        if (updateChildren && this.props.children && this.props.children.length) {
+	            for (var i = 0; i < this.props.children.length; i++) {
+	                var child = this.props.children[i];
+	                if (child.forceUpdate) {
+	                    child.forceUpdate(updateChildren);
+	                }
+	            }
+	        }
+
+	        return node;
+	    },
+	    setState: function setState(value) {
+	        this.state = merge(this.state, value);
+	        this._update();
+	    },
+	    setProps: function setProps(value) {
+	        if (this.componentWillSetProps) {
+	            this.componentWillSetProps(value);
+	        }
+	        //设置属性
+	        this.props = merge(this.props, value);
+	        if (this.componentDidSetProps) {
+	            this.componentDidSetProps(value);
+	        }
+	        this._update();
+	    },
+	    element: function element() {
+	        var vnode = _element.apply(null, arguments);
+	        return vnode;
+	    },
+	    render: function render() {},
+
+	    addChild: function addChild(child) {
+	        child.parent = this;
+	        var children = this.props.children;
+	        children.push(child);
+	    },
+
+	    append: function append(child) {
+	        child.parent = this;
+	        child.owner = child.creater = this.owner;
+	        var children = this.props.children;
+	        children.push(child);
+	        this._update();
+	        if (this.componentDidInsertChild) {
+	            this.componentDidInsertChild(child);
+	        }
+	    },
+
+	    setChildren: function setChildren(children) {
+	        var result = [];
+	        for (var i = 0; i < children.length; i++) {
+	            var child = children[i];
+	            child.parent = this;
+	            child.owner = child.creater = this.owner;
+	            result.push(child);
+	        }
+	        this.props.children = this.children = this.attributes.children = result;
+	        if (this.componentDidSetChildren) {
+	            this.componentDidSetChildren(children);
+	        }
+	    },
+
+	    remove: function remove(child) {
+	        var parent = this;
+	        var children = parent.children;
+	        for (var i = 0; i < children.length; i++) {
+	            if (children[i] == child) {
+	                //  children[i].parent = undefined
+	                children.splice(i, 1);
+
+	                break;
+	            }
+	        }
+	        this._update();
+	        if (child.componentDidRemoveChild) {
+	            child.componentDidRemoveChild(child);
+	        }
+	    },
+	    insertBefore: function insertBefore(target, before) {
+	        var parent = this;
+	        var children = parent.children;
+	        for (var i = 0; i < children.length; i++) {
+	            if (children[i] == before) {
+	                children.splice(i, 0, target);
+
+	                target.parent = parent;
+	                break;
+	            }
+	        }
+	        this._update();
+	        if (target.componentDidInsert) {
+	            target.componentDidInsert();
+	        }
+	    },
+	    insertAfter: function insertAfter(target, after) {
+	        var parent = this;
+	        var children = parent.children;
+	        for (var i = 0; i < children.length; i++) {
+	            if (children[i] == after) {
+	                children.splice(i + 1, 0, target);
+	                target.parent = parent;
+
+	                break;
+	            }
+	        }
+	        this._update();
+	        if (target.componentDidInsertChild) {
+	            target.componentDidInsertChild();
+	        }
+	    }
+	};
+
+	baseClassPrototype._update = baseClassPrototype.forceUpdate;
+
+	merge(SohpieConstructor.prototype, baseClassPrototype);
+
+	SohpieConstructor.prototype.constructor = SohpieConstructor;
+
+	module.exports = SohpieConstructor;
+
+/***/ },
+/* 62 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var _index = __webpack_require__(3);
+
 	function mountAfterElement(mountVnode) {
 	  if (_index.vnode.isThunk(mountVnode)) {
 	    var component = mountVnode;
@@ -4429,7 +4632,7 @@
 	module.exports = mountElement;
 
 /***/ },
-/* 62 */
+/* 63 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -4443,19 +4646,19 @@
 	};
 
 /***/ },
-/* 63 */
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
 	var Register = __webpack_require__(45);
 
-	module.exports = function (tagName, prototype) {
-	  return Register.register(tagName, prototype);
+	module.exports = function (tagName, prototype, extendClass) {
+	  return Register.register(tagName, prototype, extendClass);
 	};
 
 /***/ },
-/* 64 */
+/* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -4469,7 +4672,8 @@
 	var Element = __webpack_require__(49);
 	var EE = __webpack_require__(47);
 	var StyleSheet = __webpack_require__(53);
-	var mount = __webpack_require__(61);
+	var mount = __webpack_require__(62);
+	var merge = __webpack_require__(51);
 
 	var currentOwner = __webpack_require__(50);
 
@@ -4501,7 +4705,7 @@
 	    var container = container ? container : document.body;
 	    var render = (0, _index.createApp)(container);
 	    var vnode = Element(compontent, {}, null);
-	    Sophie.firstVnode = vnode;
+	    Sophie.firstVnode = Sophie.app = vnode;
 	    render(vnode);
 	    mount(vnode);
 	    if (!isReady) {
@@ -4522,33 +4726,49 @@
 	    var walk = function walk(vnode) {
 
 	      var currentData = {};
-	      var children = vnode.children;
+	      var children;
+
+	      if (vnode.children && vnode.children.length) {
+	        children = vnode.children;
+	      }
+	      if (vnode.attributes && vnode.attributes.children) {
+	        children = vnode.attributes.children;
+	      }
+	      if (vnode.props && vnode.props.children) {
+	        children = vnode.props.children;
+	      }
+	      if (!Array.isArray(children)) {
+	        children = [children];
+	      }
 
 	      if (Sophie.isThunk(vnode)) {
 	        var component = vnode;
-	        children = vnode.children;
 
 	        currentData.type = "thunk";
 	        // currentData.state = component.state
 	        var attributes = {};
-	        for (var p in component.attributes) {
+
+	        for (var p in component.props) {
 	          if (p == "children") continue;
-	          attributes[p] = component.attributes[p];
+	          attributes[p] = component.props[p];
 	        }
-	        currentData.attributes = attributes;
+	        currentData.props = attributes;
 	        currentData.name = component.name;
 	      } else if (vnode.type == "text") {
+	        currentData.type = vnode.type;
+	        currentData.nodeValue = vnode.nodeValue;
+	      } else if (vnode.type == "html") {
 	        currentData.type = vnode.type;
 	        currentData.nodeValue = vnode.nodeValue;
 	      } else if (vnode.type == "native") {
 	        currentData.type = "native";
 	        currentData.tagName = vnode.tagName;
 	        var attributes = {};
-	        for (var p in vnode.attributes) {
+	        for (var p in vnode.props) {
 	          if (p == "children") continue;
-	          attributes[p] = vnode.attributes[p];
+	          attributes[p] = vnode.props[p];
 	        }
-	        currentData.attributes = attributes;
+	        currentData.props = attributes;
 	      }
 	      currentData.children = [];
 	      if (children && children.length) {
@@ -4579,15 +4799,21 @@
 	              if (!c || !c.type) continue;
 
 	              if (c.type == "thunk") {
-	                result.push(self.element(Sophie.registry[c.name], c.attributes, func(c.children)));
+	                result.push(self.element(Sophie.registry[c.name], c.props, func(c.children)));
 	              } else if (c.type == "text") {
 
 	                result.push({
 	                  type: 'text',
 	                  nodeValue: c.nodeValue
 	                });
+	              } else if (c.type == "html") {
+
+	                result.push({
+	                  type: 'html',
+	                  nodeValue: c.nodeValue
+	                });
 	              } else if (c.type = "native") {
-	                result.push(self.element(c.tagName, c.attributes, func(c.children)));
+	                result.push(self.element(c.tagName, c.props, func(c.children)));
 	              }
 	            }
 
@@ -4607,12 +4833,16 @@
 	  },
 	  //第个组件生成元素
 	  isBaseVnode: function isBaseVnode(vnode) {
-	    return vnode._owner && vnode._owner.name == Sophie.firstVnode.name;
+	    return vnode.owner && vnode.owner.name == Sophie.firstVnode.name;
 	  },
 
 	  getOwner: function getOwner(vnode) {
 
-	    return vnode._owner;
+	    return vnode.owner || vnode._owner;
+	  },
+	  getCreater: function getCreater(vnode) {
+
+	    return vnode.owner || vnode._owner;
 	  },
 
 	  getParent: function getParent(vnode) {
@@ -4636,6 +4866,13 @@
 	    }
 	  },
 
+	  cloneVnode: function cloneVnode(vnode) {
+	    var name = vnode.name;
+
+	    var newVnode = createVnodeByTagName(name);
+	    newVnode.attributes = newVnode.props = vnode.attributes;
+	    newVnode.state = vnode.state;
+	  },
 	  createVnodeByTagName: function createVnodeByTagName(name, attributes, children) {
 	    var compontent = Register.registry[name];
 	    if (!compontent) throw new Error("name 没有注册");
@@ -4643,6 +4880,12 @@
 	    currentOwner.target = Sophie.firstVnode;
 
 	    var vnode = Element(compontent, attributes || {}, children || null);
+	    currentOwner.target = undefined;
+	    return vnode;
+	  },
+	  createVnodeByFun: function createVnodeByFun(fun) {
+	    currentOwner.target = Sophie.firstVnode;
+	    var vnode = fun();
 	    currentOwner.target = undefined;
 	    return vnode;
 	  },
@@ -4662,7 +4905,132 @@
 	};
 
 /***/ },
-/* 65 */
+/* 66 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	(function () {
+	    //画新元素
+	    var on = jQuery.fn.on;
+
+	    jQuery.fn.on = function (type, selector, data, callback) {
+	        var l = arguments.length;
+	        var oldCallback = callback;
+	        if (typeof selector == "function") {
+	            oldCallback = selector;
+	        } else if (typeof data == "function") {
+	            oldCallback = data;
+	        }
+
+	        var newCallback = function newCallback(event) {
+	            if (window.onNativeEventFire) {
+	                return window.onNativeEventFire.apply(this, [event, oldCallback]);
+	            } else {
+	                return oldCallback.apply(this, arguments);
+	            }
+	        };
+
+	        arguments[l - 1] = newCallback;
+	        return on.apply(this, arguments);
+	    };
+	})();
+
+/***/ },
+/* 67 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	/**
+	 * Created by zq on 17/6/26.
+	 */
+
+	var needUpdateLayout = [];
+	var getCoord = function getCoord(el) {
+	    var c = {};
+	    var offset = el.offset();
+
+	    c.left = offset.left;
+	    c.top = offset.top;
+
+	    c.width = el.outerWidth();
+	    c.height = el.outerHeight();
+
+	    c.right = c.left + c.width;
+	    c.bottom = c.top + c.height;
+	    c.fontSize = parseFloat(el.css("fontSize"));
+	    return c;
+	};
+
+	var getAllCoodByCood = function getAllCoodByCood(coods) {
+
+	    if (coods.length == 0) return;
+
+	    var children = [];
+	    var bottoms = [];
+	    var rights = [];
+	    var tops = [];
+	    var lefts = [];
+	    var fontSize = coods[0].fontSize;
+
+	    for (var i = 0; i < coods.length; i++) {
+	        bottoms.push(coods[i].bottom);
+	    }
+	    for (var i = 0; i < coods.length; i++) {
+	        lefts.push(coods[i].left);
+	    }
+	    for (var i = 0; i < coods.length; i++) {
+	        tops.push(coods[i].top);
+	    }
+	    for (var i = 0; i < coods.length; i++) {
+	        rights.push(coods[i].right);
+	    }
+	    var bottom = Math.max.apply(Math, bottoms);
+	    var top = Math.min.apply(Math, tops);
+	    var left = Math.min.apply(Math, lefts);
+	    var right = Math.max.apply(Math, rights);
+	    return { top: top, left: left, right: right, bottom: bottom, width: right - left, height: bottom - top, fontSize: fontSize };
+	};
+
+	var getAllCoord = function getAllCoord(c) {
+
+	    var coods = [];
+
+	    for (var i = 0; i < c.length; i++) {
+	        var coord = getCoord($(c[i]));
+	        coods.push(coord);
+	    }
+
+	    return getAllCoodByCood(coods);
+	};
+
+	var UpdateLayout = {
+	    update: function update(el) {
+
+	        // todo need change to a right method
+	        var layouts = el.parents("p-layout");
+
+	        for (var i = 0; i < layouts.length; i++) {
+	            var layout = $(layouts[i]);
+	            var parentCoord = getCoord(layout);
+	            if (layout.get(0).vnode.props.paddingBottom) {
+	                var paddingBottom = parseFloat(layout.get(0).vnode.props.paddingBottom);
+	                var paddingTop = parseFloat(layout.get(0).vnode.props.paddingTop);
+
+	                var layoutChildren = layout.children();
+	                var childrenCoord = getAllCoord(layoutChildren);
+	                var height = childrenCoord.height + paddingTop * parentCoord.fontSize + paddingBottom * parentCoord.fontSize;
+	                layout.css("height", height + "px");
+	            }
+	        }
+	    }
+	};
+
+	module.exports = UpdateLayout;
+
+/***/ },
+/* 68 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4701,16 +5069,19 @@
 	        'line-height': '0',
 	        'content': '""'
 	    },
-	    '.p-container-fluid, p-page > .p-container': {
+	    '.p-container-fluid, .p-container': {
 	        height: 'auto!important',
 	        position: 'relative',
 	        margin: "auto!important"
 	    },
+	    '.p-container-absolute': {
+	        zIndex: 10
+	    },
 
-	    '.p-container': {
-	        height: 'auto!important',
-	        position: 'relative',
-	        margin: "auto!important"
+	    ".p-container-fluid > *": {
+	        width: "100%!important",
+	        marginLeft: "auto!important",
+	        marginRight: "auto!important"
 	    },
 
 	    '#page': {
@@ -4743,21 +5114,31 @@
 	        'line-height': '0',
 	        'content': '""',
 	        'clear': 'both'
+	    },
+
+	    '.wysiwyg-text-align-center': {
+	        textAlign: "center"
+	    },
+	    '.wysiwyg-text-align-left': {
+	        textAlign: "left"
+	    },
+	    '.wysiwyg-text-align-right': {
+	        textAlign: "right"
 	    }
 
 	});
 
 /***/ },
-/* 66 */
+/* 69 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(67);
+	var content = __webpack_require__(70);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(69)(content, {});
+	var update = __webpack_require__(72)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -4774,21 +5155,21 @@
 	}
 
 /***/ },
-/* 67 */
+/* 70 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(68)();
+	exports = module.exports = __webpack_require__(71)();
 	// imports
 
 
 	// module
-	exports.push([module.id, "\n[data-moveable]{\n    cursor: move;\n}\n\n[contenteditable=\"true\"]{\n    cursor:text;\n}\n\n\nbody.draw *{\n    cursor: copy!important;\n}\n\np-container{\n    box-shadow:  0 0 0 4px rgba(0, 0, 0, .1),  0 0 0 4px rgba(255, 255, 255, .2), 0 0 0 0px rgba(204, 204, 204, .4);\n\n}\n\n\n/*p-header,p-page,p-footer{\n    box-shadow: inset 0 0 0 4px rgba(0, 0, 0, .1), inset 0 0 0 4px rgba(255, 255, 255, .2), 0 0 0 0px rgba(204, 204, 204, .4);\n}*/\n\np-header{\n  border-bottom: 1px #ccc dashed;\n}\np-footer{\n  border-top: 1px #ccc dashed;\n}\n\np-layout ,p-layout-inner{\n    box-shadow: inset 0 0 0 4px rgba(0, 0, 0, .1), inset 0 0 0 4px rgba(255, 255, 255, .2), 0 0 0 0px rgba(204, 204, 204, .4);\n}\n\n.c-ceil{\n    box-shadow: inset 0 0 0 4px rgba(0, 0, 0, .1), inset 0 0 0 4px rgba(255, 255, 255, .2), 0 0 0 0px rgba(204, 204, 204, .4);\n}\n\np-layout-two > div {\n    box-shadow: inset 0 0 0 4px rgba(0, 0, 0, .1), inset 0 0 0 4px rgba(255, 255, 255, .2), 0 0 0 0px rgba(204, 204, 204, .4);\n}\n\n\n@media (max-width: 767px){\n  p-grid{\n    box-shadow: inset 0 0 0 4px rgba(0, 0, 0, .1), inset 0 0 0 4px rgba(255, 255, 255, .2), 0 0 0 0px rgba(204, 204, 204, .4);\n  }\n}\n", ""]);
+	exports.push([module.id, "\n[data-moveable]{\n    cursor: move;\n}\n\n[contenteditable=\"true\"]{\n    cursor:text;\n}\n\n\nbody.draw *{\n    cursor: copy!important;\n}\n\np-container{\n    box-shadow:  0 0 0 4px rgba(0, 0, 0, .1),  0 0 0 4px rgba(255, 255, 255, .2), 0 0 0 0px rgba(204, 204, 204, .4);\n\n}\n\n\n/*p-header,p-page,p-footer{\n    box-shadow: inset 0 0 0 4px rgba(0, 0, 0, .1), inset 0 0 0 4px rgba(255, 255, 255, .2), 0 0 0 0px rgba(204, 204, 204, .4);\n}*/\n\np-header{\n  border-bottom: 1px #ccc dashed;\n}\np-footer{\n  border-top: 1px #ccc dashed;\n}\n\n\n\n/*@media (max-width: 767px){*/\n  /*p-grid{*/\n    /*box-shadow: inset 0 0 0 4px rgba(0, 0, 0, .1), inset 0 0 0 4px rgba(255, 255, 255, .2), 0 0 0 0px rgba(204, 204, 204, .4);*/\n  /*}*/\n/*}*/\n", ""]);
 
 	// exports
 
 
 /***/ },
-/* 68 */
+/* 71 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -4843,7 +5224,7 @@
 	};
 
 /***/ },
-/* 69 */
+/* 72 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -5068,487 +5449,286 @@
 
 
 /***/ },
-/* 70 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	var Sophie = __webpack_require__(2);
-	(function (select) {
-
-	    // 在编辑状态下，更新编辑属性
-	    if (parent.play && parent.play.dom) {
-	        //重置模板元素的属性
-	        Sophie.on("onBeforeUpgrade", function (el) {
-	            el = $(el);
-	            parent.play.resetTemplateEditProp(el);
-	        });
-
-	        //设计当前元素的属性
-	        Sophie.on("componentDidMount", function (el) {
-	            el = $(el);
-	            parent.play.initEditProp($(el));
-	            //  $(parent.document).trigger("editableInit", [$(el)])
-	        });
-	    }
-
-	    //支持vm单位 data-unit-vm = true
-	    Sophie.on("onUpgrade", function (el) {
-	        return;
-	        el = $(el);
-	        if (el.attr("data-unit-vm")) {
-	            if (el.attr("data-p")) {
-	                resetHeight(el);
-	            }
-	        }
-	    });
-
-	    $(window).on("resize", function () {
-	        return;
-	        resetHeightAll();
-	    });
-
-	    var resetHeight = function resetHeight(el) {
-	        var p = el.attr("data-p");
-	        if (p) {
-	            var v = parseFloat(p);
-	            el.css("min-height", el.width() * v + "px");
-	        }
-	        if (parent.play) {
-	            parent.play.select.reflow();
-	        }
-	    };
-
-	    var resetHeightAll = function resetHeightAll(el) {
-	        var all = $("[data-p]");
-	        all.each(function (index, el) {
-	            resetHeight($(el));
-	        });
-	        if (parent.play) {
-	            parent.play.select.reflow();
-	        }
-	    };
-
-	    //支持hover
-	    $(document).on("mouseover", function (ev) {
-	        if (window.isEditing) return;
-	        var target = $(ev.target);
-	        if (target.attr("data-hover")) {
-	            target.addClass("hover");
-	        }
-	    });
-
-	    $(document).on("mouseout", function (ev) {
-	        if (window.isEditing) return;
-
-	        var target = $(ev.target);
-
-	        if (target.attr("data-hover")) {
-	            target.removeClass("hover");
-	        }
-	    });
-
-	    //通知父页面加载
-	    Sophie.on("ready", function () {
-	        if (parent.play && parent.play.dom) {
-	            var jQuery = parent.$;
-	            jQuery(parent).trigger("iframeComplete", [window]);
-	        }
-	    });
-
-	    window.play = {
-	        mediaQueryValue: {
-	            'phone': 767,
-	            'pad': [768, 991],
-	            pc: 992
-	        },
-	        idPrefix: "p",
-	        unit: "em",
-	        pxToPercent: function pxToPercent(value, parentCoord) {
-	            return value / parentCoord.width * 100;
-	        },
-	        pxToEm: function pxToEm(value, fontSize) {
-	            return value / fontSize;
-	        }
-	    };
-
-	    window.play.utils = {
-	        generateID: function generateID() {
-	            var selectorNum = parseInt($("body").attr("data-selector-num")) || 0;
-	            selectorNum++;
-	            $("body").attr("data-selector-num", selectorNum);
-	            return selectorNum;
-	        },
-	        getID: function getID() {
-	            var selectorNum = parseInt($("body").attr("data-selector-num"));
-	            if (!selectorNum) {
-	                selectorNum = 0;
-	                $("body").attr("data-selector-num", 0);
-	            }
-	            return selectorNum;
-	        }
-	    };
-
-	    //jquery extend
-	    var binds = [];
-	    $.fn.extend({
-	        bindWidthDesc: function bindWidthDesc(desc, type, func) {
-	            var self = this;
-	            if (parent.play && parent.play) {
-	                play.bindWidthDesc(desc, type, func, self);
-	            } else {
-	                this.on(type, func);
-	            }
-	        }
-
-	    });
-
-	    //支持rem
-
-	    (function () {
-	        //设置rem
-	        // w:1280px  f:40px
-	        // w: 640px  f:20px
-	        var basefontSize = 60;
-
-	        //TODO FOR TEST
-	        var maxWidth = 1100;
-
-	        Sophie.createStyleSheet({
-	            '.p-container': {
-	                maxWidth: maxWidth + "px!important"
-	            }
-
-	        });
-	        var initBaseRem = function initBaseRem() {
-	            var documentWidth = $("html").width();
-
-	            if (documentWidth > maxWidth) documentWidth = maxWidth;
-
-	            basefontSize = documentWidth / 1280 * 60;
-	            $(document.documentElement).css("font-size", basefontSize + "px");
-	            if (documentWidth < 768) {
-	                $(document.documentElement).attr("id", "media-phone");
-	            } else {
-	                $(document.documentElement).attr("id", "media-pc");
-	            }
-
-	            play.baseFontSize = basefontSize;
-	        };
-
-	        initBaseRem();
-	        var timer;
-	        $(window).on("resize", function () {
-	            if (timer) {
-	                clearTimeout(timer);
-
-	                timer = null;
-	            }
-	            timer = setTimeout(function () {
-	                initBaseRem();
-	            }, 1);
-	        });
-
-	        if (parent.play) {
-	            parent.play.pxToRem = function (px) {
-	                return px / basefontSize;
-	            };
-	        }
-	    })();
-	})();
-
-	//覆盖 Sophie.createStyleSheet
-
-	var createStyleSheet = Sophie.StyleSheet.create;
-
-	Sophie.createStyleSheet = Sophie.StyleSheet.create = function (styles, mediaQuery, name) {
-
-	    if (mediaQuery === "@media (max-width: 767px)") {
-	        var newStyle = {};
-	        for (var p in styles) {
-	            newStyle["#media-phone #dotlinkface " + p] = styles[p];
-	        }
-
-	        createStyleSheet(newStyle, mediaQuery, name);
-	    } else if (!mediaQuery) {
-	        var newStyle = {};
-	        for (var p in styles) {
-	            newStyle["#media-pc #dotlinkface " + p] = styles[p];
-	        }
-
-	        // createStyleSheet(newStyle,mediaQuery,name)
-	        createStyleSheet(styles, mediaQuery, name);
-	    }
-	};
-
-/***/ },
-/* 71 */
+/* 73 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var Sophie = __webpack_require__(2);
-	var Site = __webpack_require__(72);
-	var Header = __webpack_require__(75);
-	var Body = __webpack_require__(77);
-	var Footer = __webpack_require__(78);
-	var Page = __webpack_require__(73);
+	var Site = __webpack_require__(74);
+	var Header = __webpack_require__(82);
+	var Body = __webpack_require__(85);
+	var Footer = __webpack_require__(84);
+	var Page = __webpack_require__(75);
+
+	var APP = Sophie.createClass("app", {
+	    render: function render() {
+	        return Sophie.element(
+	            'app',
+	            null,
+	            Sophie.element(Site, null)
+	        );
+	    }
+	});
+
+	Sophie.createStyleSheet({
+	    app: {
+	        display: "block"
+	    }
+	});
 
 	var _renderData = function _renderData(data, callback) {
 
-	  var links = data.links.split(",");
-	  //创建links
-	  for (var i = 0; i < links.length; i++) {
-	    var hasExit = $('[href="' + $.trim(links[i]) + '"]').length;
-	    if (!hasExit && !$.trim(links[i])) {
-	      var linkEl = $('<link custom="true" rel="import" href="' + $.trim(links[i]) + '">');
-	      $("head").append(linkEl);
+	    if (data && data.html) {
+	        var links = data.links || "";
+	        links = links.split(",");
+	        //创建links
+	        for (var i = 0; i < links.length; i++) {
+	            var hasExit = $('[href="' + $.trim(links[i]) + '"]').length;
+	            if (!hasExit && !$.trim(links[i])) {
+	                var linkEl = $('<link custom="true" rel="import" href="' + $.trim(links[i]) + '">');
+	                $("head").append(linkEl);
+	            }
+	        }
+
+	        var pageStyle = $("#page-style").get(0);
+	        $("#page-style").text("");
+
+	        if (pageStyle.styleSheet) {
+	            pageStyle.styleSheet.cssText = data.pagecss;
+	        } else {
+	            pageStyle.appendChild(document.createTextNode(data.pagecss));
+	        }
+
+	        var htmlData = data.html;
+
+	        if (htmlData) {
+	            if (typeof htmlData == "string") {
+	                htmlData = JSON.parse(htmlData);
+	            }
+
+	            Sophie.renderFromJSON(htmlData, null, callback);
+	        }
+	    } else {
+
+	        Sophie.runApp(APP, document.body, true);
 	    }
-	  }
-
-	  var pageStyle = $("#page-style").get(0);
-	  $("#page-style").text("");
-
-	  if (pageStyle.styleSheet) {
-	    pageStyle.styleSheet.cssText = data.pagecss;
-	  } else {
-	    pageStyle.appendChild(document.createTextNode(data.pagecss));
-	  }
-
-	  var htmlData = data.html;
-
-	  if (htmlData) {
-	    if (typeof htmlData == "string") {
-	      htmlData = JSON.parse(htmlData);
-	    }
-
-	    Sophie.renderFromJSON(htmlData, null, callback);
-	  } else {
-
-	    Sophie.runApp(APP, document.body, true);
-	  }
 	};
 
-	var APP = Sophie.createClass("app", {
-	  componentDidMount: function componentDidMount() {},
-
-	  render: function render() {
-	    return Sophie.element(
-	      'app',
-	      null,
-	      Sophie.element(
-	        Site,
-	        null,
-	        Sophie.element(Header, { ref: 'header' }),
-	        Sophie.element(
-	          Body,
-	          { ref: 'body' },
-	          Sophie.element(Page, { 'class': 'active', id: 'main-page', title: '首页' })
-	        ),
-	        Sophie.element(Footer, { ref: 'footer' })
-	      )
-	    );
-	  }
-
-	});
-
-	Sophie.createStyleSheet({
-	  app: {
-	    display: "block"
-	  }
-	});
-
 	module.exports = {
-	  App: APP,
-	  renderData: function renderData(data) {
-	    var currentData = data;
+	    App: APP,
+	    renderData: function renderData(data) {
+	        var currentData = data;
 
-	    _renderData(currentData);
-	  }
+	        _renderData(currentData);
+	    }
 	};
 
 /***/ },
-/* 72 */
+/* 74 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
-	var Page = __webpack_require__(73);
+	var Page = __webpack_require__(75);
+	var Header = __webpack_require__(82);
+	var Footer = __webpack_require__(84);
+	var Body = __webpack_require__(85);
+	var NavPageMask = __webpack_require__(86);
+	var NavPageMobile = __webpack_require__(87);
+	var Layout = __webpack_require__(89);
+
+	var GridLayout = __webpack_require__(77);
 
 	var PSite = Sophie.createClass("p-site", {
+	    mixin: [GridLayout],
+	    getDefaultProps: function getDefaultProps() {
+	        return {
+	            activePageId: "dotlinkface-homepage"
+	        };
+	    },
 
-	  getDefaultProps: function getDefaultProps() {
-	    return {
-	      activePageId: "main-page"
-	    };
-	  },
+	    getDefaultChildren: function getDefaultChildren() {
+	        return [Sophie.element(Header, { id: 'page-header', ref: 'header' }), Sophie.element(
+	            Body,
+	            { id: 'page-body', ref: 'body' },
+	            Sophie.element(Page, { id: 'dotlinkface-homepage', title: '首页', active: 'true' })
+	        ), Sophie.element(Footer, { id: 'page-footer', ref: 'footer' }), Sophie.element(
+	            Layout,
+	            { id: 'page-mask' },
+	            Sophie.element(NavPageMobile, { id: 'page-nav-mobile' })
+	        )];
+	    },
 
-	  componentDidMount: function componentDidMount() {
-	    var siteTitle = $(this).attr("title");
-	    $("title").text(siteTitle);
-	    this.active(this.props.activePageId);
-	  },
+	    componentDidMount: function componentDidMount() {
+	        var siteTitle = $(this).attr("title");
+	        $("title").text(siteTitle);
+	        this.active(this.props.activePageId);
+	        var self = this;
+	        $(window).on("resize", function () {
+	            self.forceUpdate(true);
+	        });
+	    },
 
-	  render: function render() {
-	    return Sophie.element(
-	      "p-site",
-	      { id: "app" },
-	      this.children
-	    );
-	  },
+	    render: function render() {
+	        return Sophie.element(
+	            'p-site',
+	            { id: 'app' },
+	            this.renderVisibleChildren()
+	        );
+	    },
 
-	  addPage: function addPage(title) {
-	    var self = this;
+	    renderChildren: function renderChildren() {
+	        var children = [];
+	        for (var i = 0; i < this.props.children; i++) {
+	            if (this.props.children[i]) {}
+	        }
+	    },
 
-	    var id = play.idPrefix + play.utils.generateID();
+	    addPage: function addPage(title) {
+	        var self = this;
 
-	    var pageVnode = Sophie.createVnodeByTagName("p-page", { id: id, title: title });
+	        var id = play.idPrefix + play.utils.generateID();
 
-	    var appVnode = Sophie.firstVnode;
+	        var pageVnode = Sophie.createVnodeByTagName("p-page", { id: id, title: title });
 
-	    appVnode.refs["body"].append(pageVnode);
+	        var appVnode = Sophie.firstVnode;
 
-	    if ($("p-nav-page").get(0)) {
-	      var nav = $("p-nav-page").get(0).vnode;
-	      if (nav) {
+	        appVnode.refs["body"].append(pageVnode);
 
-	        nav.addOne(id, title, true);
-	      }
+	        if ($("p-nav-page").get(0)) {
+	            var nav = $("p-nav-page").get(0).vnode;
+	            if (nav) {
+
+	                nav.addOne(id, title, true);
+	            }
+	        }
+
+	        if ($("p-nav-page-mobile").get(0)) {
+	            var nav = $("p-nav-page-mobile").get(0).vnode;
+	            if (nav) {
+
+	                nav.addOne(id, title, true);
+	            }
+	        }
+
+	        this.active(id);
+	    },
+
+	    delPage: function delPage(pageID) {
+	        var self = this;
+	        var pageNav = $("p-header p-nav-page");
+	        var pageNavMobile = $("p-nav-page-mobile");
+
+	        var page = $("#" + pageID).get(0);
+
+	        if (page) {
+	            var isActive = $(page).hasClass("active");
+
+	            var appVnode = Sophie.firstVnode;
+
+	            appVnode.refs["body"].remove(page.vnode);
+	            if (pageNav.get(0)) {
+	                pageNav.get(0).vnode.removeItem(pageID);
+	            }
+	            if (pageNavMobile.get(0)) {
+	                pageNavMobile.get(0).vnode.removeItem(pageID);
+	            }
+
+	            if (isActive) {
+	                this.activeFist();
+	            }
+	        }
+	    },
+
+	    active: function active(id) {
+	        var self = this;
+	        //
+	        // var nav =   $("p-nav-page",play.iframeDoc);
+	        //
+	        //
+	        // if(nav&&nav.length){
+	        //
+	        //     nav.get(0).vnode.active(id);
+	        // }
+
+	        this.props.activePageId = id;
+
+	        var pages = $("p-body p-page");
+	        pages.removeClass("active");
+	        $("#" + id).addClass("active");
+
+	        var nav = $("p-nav-page");
+	        var pageNavMobile = $("p-nav-page-mobile");
+
+	        if (nav && nav.get(0)) nav.get(0).vnode.active(id);
+	        if (pageNavMobile && pageNavMobile.get(0)) pageNavMobile.get(0).vnode.active(id);
+	        //
+	        // $("#"+id).addClass('animated fadeIn');
+	        // $("#"+id).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+	        //    // $("#"+id,play.iframeDoc).removeClass("animated fadeIn")
+	        // });
+	    },
+
+	    activeFist: function activeFist() {
+	        var self = this;
+	        var pages = $("p-body p-page");
+
+	        var id = pages.eq(0).attr("id");
+	        this.props.activePageId = id;
+	        this.active(id);
 	    }
-
-	    this.active(id);
-	  },
-
-	  delPage: function delPage(pageID) {
-	    var self = this;
-	    var pageNav = $("p-header p-nav-page");
-
-	    var page = $("#" + pageID).get(0);
-
-	    if (page) {
-	      var isActive = $(page).hasClass("active");
-
-	      var appVnode = Sophie.firstVnode;
-
-	      appVnode.refs["body"].remove(page.vnode);
-	      if (pageNav.get(0)) {
-	        pageNav.get(0).vnode.removeItem(pageID);
-	      }
-
-	      if (isActive) {
-	        this.activeFist();
-	      }
-	    }
-	  },
-
-	  active: function active(id) {
-	    var self = this;
-	    //
-	    // var nav =   $("p-nav-page",play.iframeDoc);
-	    //
-	    //
-	    // if(nav&&nav.length){
-	    //
-	    //     nav.get(0).vnode.active(id);
-	    // }
-
-	    this.props.activePageId = id;
-
-	    var pages = $("p-body p-page");
-	    pages.removeClass("active");
-	    $("#" + id).addClass("active");
-
-	    var nav = $("p-nav-page");
-
-	    if (nav && nav.get(0)) nav.get(0).vnode.active(id);
-	    //
-	    // $("#"+id).addClass('animated fadeIn');
-	    // $("#"+id).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
-	    //    // $("#"+id,play.iframeDoc).removeClass("animated fadeIn")
-	    // });
-	  },
-
-	  activeFist: function activeFist() {
-	    var self = this;
-	    var pages = $("p-body p-page");
-
-	    var id = pages.eq(0).attr("id");
-	    this.props.activePageId = id;
-	    this.active(id);
-	  }
 	});
 
 	Sophie.createStyleSheet({
-	  'p-site': {
-	    minHeight: '10rem',
-	    display: 'block',
-	    width: '100%!important',
-	    position: 'relative'
+	    'p-site': {
+	        minHeight: '10rem',
+	        display: 'block',
+	        width: '100%!important',
+	        position: 'relative'
 
-	  },
+	    },
 
-	  'p-site:before,p-site:after': {
-	    display: 'table',
-	    lineHeight: 0,
-	    content: "",
-	    clear: 'both'
+	    'p-site:before,p-site:after': {
+	        display: 'table',
+	        lineHeight: 0,
+	        content: '" "',
+	        clear: 'both'
 
-	  }
+	    }
 	});
 
 	module.exports = PSite;
 
 /***/ },
-/* 73 */
+/* 75 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
 	var Sophie = __webpack_require__(2);
-	var Children = __webpack_require__(74);
+	var Children = __webpack_require__(76);
 
+	var GridLayout = __webpack_require__(77);
 	var PPage = Sophie.createClass("p-page", {
+	  mixin: [GridLayout],
+	  getDefaultProps: function getDefaultProps() {},
 	  getInitialState: function getInitialState() {
 	    return {
-	      isActive: false
+	      isActive: this.props.active || false
 	    };
 	  },
 
 	  render: function render() {
 	    var className = "";
 	    if (this.state.isActive) {
-	      className = "acitve";
+	      className = "active";
 	    }
 	    return Sophie.element(
 	      "p-page",
 	      { "class": className, id: this.props.id, title: this.props.title },
-	      this.renderChild()
+	      this.renderGridChildrenFullWidth()
 	    );
-	  },
-
-	  renderChild: function renderChild() {
-	    var child = [];
-
-	    if (this.children) {
-	      for (var i = 0; i < this.children.length; i++) {
-
-	        if (this.children[i].attributes.fullWidth) {
-	          child.push(Sophie.element(
-	            "div",
-	            { "class": "p-container-fluid" },
-	            this.children[i]
-	          ));
-	        } else {
-	          child.push(Sophie.element(
-	            "div",
-	            { "class": "p-container" },
-	            this.children[i]
-	          ));
-	        }
-	      }
-	    }
-
-	    return child;
 	  },
 
 	  setConfig: function setConfig(config) {
@@ -5558,12 +5738,8 @@
 	  },
 
 	  componentDidMount: function componentDidMount() {
-	    this.mobileRender();
+
 	    var self = this;
-	    $(window).on("resize", function () {
-	      self.mobileRender();
-	    });
-	    console.log("page did mount", this.node);
 	  },
 
 	  scale: function scale(el, width) {
@@ -5575,68 +5751,16 @@
 	  },
 	  active: function active() {
 	    this.setState({ isActive: true });
-	  },
-
-	  mobileRender: function mobileRender() {
-	    var self = this;
-	    //document的宽度不准
-	    var winWidth = $('body').width();
-	    if (winWidth <= play.mediaQueryValue.phone) {
-	      return;
-
-	      var children = $(".p-container-fluid", self).children();
-	      children.each(function (index, el) {
-	        el = $(el);
-	        if (el.is(".grid-row")) {
-
-	          var gridChildren = el.children();
-	          gridChildren.each(function (index, gridChildrenEl) {
-	            gridChildrenEl = $(gridChildrenEl);
-	            var width = gridChildrenEl.width();
-
-	            if (winWidth - width < 1) {
-	              return;
-	            } else {
-
-	              self.scale(gridChildrenEl, winWidth - 20);
-	            }
-	          });
-	        } else {
-	          var width = el.width();
-
-	          if (winWidth - width < 1) {
-	            return;
-	          } else {
-
-	            self.scale(el, winWidth - 20);
-	          }
-	        }
-	      });
-	    } else {
-	      var children = $(".p-container-fluid", self).children();
-	      children.each(function (index, el) {
-	        el = $(el);
-	        if (el.is(".grid-row")) {
-	          var gridChildren = el.children();
-	          gridChildren.each(function (index, gridChildrenEl) {
-	            gridChildrenEl = $(gridChildrenEl);
-	            gridChildrenEl.css("fontSize", "");
-	          });
-	        } else {
-	          el.css("fontSize", "");
-	        }
-	      });
-	    }
 	  }
 
 	});
 
-	Sophie.createStyleSheet({
+	PPage.createStyleSheet({
 	  'p-page': {
 	    display: 'none',
 	    width: '100%!important',
-	    minHeight: 800,
-	    overflowX: 'hidden',
+	    minHeight: '1em',
+	    height: '15em',
 	    margin: '0!important',
 	    padding: '0!important'
 
@@ -5660,35 +5784,18 @@
 
 	  'p-page:before ,p-page:after': {
 	    display: 'table',
-	    content: "",
+	    content: '" "',
 	    lineHeight: 0
 	  }
 
 	});
 
-	Sophie.createStyleSheet({
-	  'p-page > .p-container-fluid > *': {
-	    'font-size': 'inherit!important'
-	  },
-	  'p-page > .p-container-fluid > *,p-page > .p-container> *': {
-	    marginLeft: 'auto!important',
-	    marginRight: 'auto!important'
-
-	  },
-
-	  'p-page > .p-container-fluid > .grid-row > *,p-page > .p-container > .grid-row > *': {
-	    margin: '0 0 10px 0!important',
-	    float: 'none',
-	    marginLeft: 'auto!important',
-	    marginRight: 'auto!important'
-	  }
-
-	}, "@media (min-width: 768px)");
+	PPage.createStyleSheet({}, "@media (min-width: 768px)");
 
 	module.exports = PPage;
 
 /***/ },
-/* 74 */
+/* 76 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -5707,70 +5814,650 @@
 	module.exports = Children;
 
 /***/ },
-/* 75 */
+/* 77 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	/**
+	 * Created by zq on 17/6/27.
+	 */
+	var Grid = __webpack_require__(78);
+	var GridColumn = __webpack_require__(80);
+	var GridMix = __webpack_require__(81);
+	module.exports = {
+	    renderLayout: function renderLayout(layout, isInnerLever) {
+	        var result;
+	        if (layout.type && layout.type == "row") {
+	            var children = layout.children;
+	            var newChildren = [];
+	            for (var i = 0; i < children.length; i++) {
+	                newChildren.push(this.renderLayout(children[i], true));
+	            }
+	            if (newChildren.length) {
+	                result = Sophie.element(
+	                    Grid,
+	                    null,
+	                    newChildren
+	                );
+	            }
+	        } else if (layout.type && layout.type == "column") {
+	            var children = layout.children;
+	            var newChildren = [];
+	            for (var i = 0; i < children.length; i++) {
+	                newChildren.push(this.renderLayout(children[i], true));
+	            }
+
+	            if (newChildren.length) {
+	                if (isInnerLever) {
+	                    result = Sophie.element(
+	                        GridColumn,
+	                        null,
+	                        newChildren
+	                    );
+	                } else {
+	                    result = newChildren;
+	                }
+	            }
+	        } else if (layout.type && layout.type == "mix") {
+	            var children = layout.children;
+	            var newChildren = [];
+	            for (var i = 0; i < children.length; i++) {
+	                newChildren.push(this.renderLayout(children[i], true));
+	            }
+	            if (newChildren.length) {
+	                result = Sophie.element(
+	                    GridMix,
+	                    null,
+	                    newChildren
+	                );
+	            }
+	        } else {
+	            result = this.findChild(layout);
+	        }
+
+	        return result;
+	    },
+
+	    findChild: function findChild(node) {
+	        if (node.id) {
+	            var oldChildren = this.props.children || [];
+	            for (var i = 0; i < oldChildren.length; i++) {
+	                if (oldChildren[i].props.id == node.id || oldChildren[i].props.pid == node.id) {
+	                    return oldChildren[i];
+	                    break;
+	                }
+	            }
+	        } else if (node.index) {
+	            var result;
+	            var oldChildren = this.props.children || [];
+	            if (oldChildren.length - 1 > node.index) {
+	                return oldChildren[node.index];
+	            }
+	        }
+	    },
+	    renderChild: function renderChild() {
+	        var child = [];
+
+	        if (this.props.children) {
+	            for (var i = 0; i < this.props.children.length; i++) {
+
+	                if (this.props.children[i].props.fullWidth) {
+	                    child.push(Sophie.element(
+	                        "div",
+	                        { "class": "p-container-fluid" },
+	                        this.props.children[i]
+	                    ));
+	                } else {
+	                    child.push(Sophie.element(
+	                        "div",
+	                        { "class": "p-container" },
+	                        this.props.children[i]
+	                    ));
+	                }
+	            }
+	        }
+
+	        return child;
+	    },
+	    renderVisibleChildren: function renderVisibleChildren(isWrap) {
+	        var child = [];
+	        var media = window.App.getMediaName();
+
+	        if (!this.props[media]) {
+	            this.props[media] = {};
+	        }
+
+	        if (this.props.children) {
+	            for (var i = 0; i < this.props.children.length; i++) {
+	                var thisChild = this.props.children[i];
+	                if (thisChild.props[media] && thisChild.props[media]["isHidden"]) {} else {
+	                    if (thisChild.props.fullWidth) {
+	                        if (isWrap) {
+	                            child.push(Sophie.element(
+	                                "div",
+	                                { "class": "p-container-fluid" },
+	                                thisChild
+	                            ));
+	                        } else {
+	                            child.push(thisChild);
+	                        }
+	                    } else {
+	                        if (isWrap) {
+	                            child.push(Sophie.element(
+	                                "div",
+	                                { "class": "p-container" },
+	                                thisChild
+	                            ));
+	                        } else {
+	                            child.push(thisChild);
+	                        }
+	                    }
+	                }
+	            }
+	        }
+
+	        return child;
+	    },
+
+	    renderGridChildren: function renderGridChildren() {
+	        var media = window.App.getMediaName();
+
+	        if (!this.props[media]) {
+	            this.props[media] = {};
+	        }
+	        var gridLayout = this.props[media].gridLayout;
+
+	        if (gridLayout) {
+	            var children = [];
+
+	            var result = this.renderLayout(gridLayout);
+	            if (result) {
+	                children.push(result);
+	            }
+
+	            var absoluteLayout = gridLayout.absoluteLayout;
+	            if (absoluteLayout) {
+	                var achildren = [];
+	                for (var i = 0; i < absoluteLayout.length; i++) {
+	                    var child = this.findChild(absoluteLayout[i]);
+	                    achildren.push(child);
+	                }
+	                children.push(achildren);
+	            }
+
+	            var hiddenLayout = gridLayout.hiddenLayout;
+	            if (hiddenLayout) {
+	                var hLayout = [];
+	                for (var i = 0; i < hiddenLayout.length; i++) {
+	                    var child = this.findChild(hiddenLayout[i]);
+	                    hLayout.push(child);
+	                }
+	                children = children.concat(hLayout);
+	            }
+
+	            return Sophie.element(
+	                "div",
+	                { "class": "p-container" },
+	                children
+	            );
+	        } else {
+	            return Sophie.element(
+	                "div",
+	                { "class": "p-container" },
+	                this.props.children
+	            );
+	        }
+	    },
+	    renderGridChildrenFullWidth: function renderGridChildrenFullWidth() {
+	        var media = window.App.getMediaName();
+
+	        if (!this.props[media]) {
+	            this.props[media] = {};
+	        }
+	        var gridLayout = this.props[media].gridLayout;
+
+	        if (gridLayout) {
+	            var children = [];
+	            var rows = gridLayout.children || [];
+
+	            var absoluteLayout = gridLayout.absoluteLayout;
+	            if (absoluteLayout) {
+	                var achildren = [];
+	                for (var i = 0; i < absoluteLayout.length; i++) {
+	                    var child = this.findChild(absoluteLayout[i]);
+	                    achildren.push(child);
+	                }
+	                children.push(Sophie.element(
+	                    "div",
+	                    { "class": "p-container p-container-absolute " },
+	                    achildren
+	                ));
+	            }
+
+	            if (gridLayout.type == "row" || gridLayout.type == "mix") {
+	                children.push(Sophie.element(
+	                    "div",
+	                    { "class": "p-container" },
+	                    this.renderLayout(gridLayout)
+	                ));
+	            } else if (gridLayout.type == "column") {
+	                for (var i = 0; i < rows.length; i++) {
+	                    var row = rows[i];
+	                    if (row.type) {
+	                        children.push(Sophie.element(
+	                            "div",
+	                            { "class": "p-container" },
+	                            this.renderLayout(row)
+	                        ));
+	                    } else {
+	                        var child = this.findChild(row);
+	                        if (child) {
+	                            if (child.props.fullWidth) {
+	                                children.push(Sophie.element(
+	                                    "div",
+	                                    { "class": "p-container-fluid" },
+	                                    child
+	                                ));
+	                            } else {
+	                                children.push(Sophie.element(
+	                                    "div",
+	                                    { "class": "p-container" },
+	                                    child
+	                                ));
+	                            }
+	                        }
+	                    }
+	                }
+	            }
+
+	            var hiddenLayout = gridLayout.hiddenLayout;
+	            if (hiddenLayout) {
+	                var hLayout = [];
+	                for (var i = 0; i < hiddenLayout.length; i++) {
+	                    var child = this.findChild(hiddenLayout[i]);
+	                    hLayout.push(child);
+	                }
+	                children = children.concat(hLayout);
+	            }
+
+	            return children;
+	        } else {
+	            return this.renderChild ? this.renderChild() : this.props.children;
+	        }
+	    }
+	};
+
+/***/ },
+/* 78 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var utils = __webpack_require__(79);
+	var Grid = Sophie.createClass("p-grid", {
+	  getDefaultProps: function getDefaultProps() {
+	    return {
+	      className: "grid-row"
+	    };
+	  },
+	  render: function render() {
+	    var className = this.props.className;
+	    return Sophie.element(
+	      "p-grid",
+	      { "class": className },
+	      this.props.children
+	    );
+	  },
+	  componentDidMount: function componentDidMount() {
+	    //p-grid下的元素的设置fontsize
+
+	    // if(el.parent().is("p-grid")&&el.parent().parent().parent().is("p-page")){
+	    //   if(play.mediaName !== "phone"){
+	    //     var phoneWidth =  coords.width/coords.fontSize;
+	    //     var fontSize =   this.getResponseFontSize(phoneWidth);
+	    //      if(!utils.hasMediaCSSRule(el, play.mediaQuery.phone)){
+	    //          play.dom._cssMedia(el, "font-size", fontSize+"rem",play.mediaQuery.phone);
+	    //           // play.dom._cssMedia(el, "z-index", 100,play.mediaQuery.phone);
+	    //           //  utils.createCSSRule(el,"font-size",fontSize+"rem", play.mediaQuery.phone)
+	    //           //     utils.createCSSRule(el,"z-index",100, play.mediaQuery.phone)
+	    //           //       utils.createCSSRule(el,"z-index",100, "all")
+	    //           //         utils.createCSSRule(el,"z-index",100, play.mediaQuery.pc)
+	    //      }
+	    //
+	    //   }
+	    // }
+	  }
+
+	});
+
+	var getFlexCSS = function getFlexCSS() {
+	  if (utils.supportFlex) {
+	    return utils.getFlexCSS();
+	  } else {
+	    return {
+	      display: "block"
+	    };
+	  }
+	};
+
+	var getFlexItemCSS = function getFlexItemCSS() {
+	  if (utils.supportFlex) {
+	    return utils.getFlexItemCSS();
+	  } else {
+	    return {
+	      'float': 'left'
+	    };
+	  }
+	};
+
+	Sophie.createStyleSheet({
+	  "p-grid.grid-row": getFlexCSS(),
+
+	  '.grid-row': {
+
+	    'width': '100%!important',
+	    'margin-left': '0!important',
+	    'margin-right': '0!important',
+	    'height': 'auto!important',
+	    'min-height': 'auto!important'
+	  },
+
+	  '.p-grid:before,.p-grid:after': {
+	    'display': 'table',
+	    'line-height': '0',
+	    'content': '""'
+	  },
+
+	  '.grid-row:after': {
+	    'clear': 'both'
+	  },
+
+	  '.grid-row:after, .grid-row:before': {
+	    'display': 'table',
+	    'content': '""'
+	  },
+
+	  '.grid-row > * ': getFlexItemCSS(),
+
+	  '.grid-row.grid-row-column > * ': {
+
+	    'display': 'block',
+	    'float': 'none',
+	    'margin': '10px 0 0 0',
+	    'width': '100%'
+	  },
+
+	  '.grid-row.grid-row-column:first-child ': {
+	    'margin-top': '0'
+	  }
+
+	});
+
+	Sophie.createStyleSheet({}, '@media (max-width: 767px)');
+
+	module.exports = Grid;
+
+/***/ },
+/* 79 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	module.exports = {
+	  supportFlex: function supportFlex() {
+	    var doc = document.body || document.documentElement;
+	    var style = doc.style;
+	    if (style.webkitFlexWrap == '' || style.msFlexWrap == '' || style.flexWrap == '') {
+	      return true;
+	    }
+	  },
+	  getFlexCSS: function getFlexCSS() {
+	    var doc = document.body || document.documentElement;
+	    var style = doc.style;
+	    if (style.flexWrap == '') {
+	      return {
+	        display: "flex",
+	        "align-items": "flex-start",
+	        "flex-flow": "row nowrap",
+	        "justify-content": "flex-start"
+	      };
+	    } else if (style.msFlexWrap == '') {
+	      return {
+	        display: "flex",
+	        "align-items": "flex-start",
+	        "flex-flow": "row nowrap",
+	        "justify-content": "flex-start"
+	      };
+	    }
+	  },
+	  getFlexColumnCSS: function getFlexColumnCSS() {
+	    var doc = document.body || document.documentElement;
+	    var style = doc.style;
+	    if (style.flexWrap == '') {
+	      return {
+	        display: "flex",
+	        "align-items": "flex-start",
+	        "flex-flow": "column nowrap",
+	        "justify-content": "flex-start"
+	      };
+	    } else if (style.msFlexWrap == '') {
+	      return {
+	        display: "flex",
+	        "align-items": "flex-start",
+	        "flex-flow": "column nowrap",
+	        "justify-content": "flex-start"
+	      };
+	    }
+	  },
+	  getFlexItemCSS: function getFlexItemCSS() {
+	    var doc = document.body || document.documentElement;
+	    var style = doc.style;
+	    if (style.flexWrap == '') {
+	      return {
+	        //运行时可变为可伸缩
+	        flex: "none"
+	      };
+	    }
+	  }
+
+	};
+
+/***/ },
+/* 80 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var utils = __webpack_require__(79);
+	var Grid = Sophie.createClass("p-grid-column", {
+
+	  render: function render() {
+	    return Sophie.element(
+	      "p-grid",
+	      { "class": "grid-column" },
+	      this.children
+	    );
+	  },
+	  componentDidMount: function componentDidMount() {
+	    //p-grid下的元素的设置fontsize
+
+	    // if(el.parent().is("p-grid")&&el.parent().parent().parent().is("p-page")){
+	    //   if(play.mediaName !== "phone"){
+	    //     var phoneWidth =  coords.width/coords.fontSize;
+	    //     var fontSize =   this.getResponseFontSize(phoneWidth);
+	    //      if(!utils.hasMediaCSSRule(el, play.mediaQuery.phone)){
+	    //          play.dom._cssMedia(el, "font-size", fontSize+"rem",play.mediaQuery.phone);
+	    //           // play.dom._cssMedia(el, "z-index", 100,play.mediaQuery.phone);
+	    //           //  utils.createCSSRule(el,"font-size",fontSize+"rem", play.mediaQuery.phone)
+	    //           //     utils.createCSSRule(el,"z-index",100, play.mediaQuery.phone)
+	    //           //       utils.createCSSRule(el,"z-index",100, "all")
+	    //           //         utils.createCSSRule(el,"z-index",100, play.mediaQuery.pc)
+	    //      }
+	    //
+	    //   }
+	    // }
+	  }
+
+	});
+
+	var getFlexCSS = function getFlexCSS() {
+	  if (utils.supportFlex) {
+	    return utils.getFlexColumnCSS();
+	  } else {
+	    return {
+	      display: "block"
+	    };
+	  }
+	};
+
+	var getFlexItemCSS = function getFlexItemCSS() {
+	  if (utils.supportFlex) {
+	    return utils.getFlexItemCSS();
+	  } else {
+	    return {
+	      'float': 'left'
+	    };
+	  }
+	};
+
+	Sophie.createStyleSheet({
+	  "p-grid.grid-column": getFlexCSS(),
+
+	  'p-grid.grid-column:after': {
+	    'clear': 'both'
+	  },
+
+	  'p-grid.grid-column:after, p-grid.grid-column:before': {
+	    'display': 'table',
+	    'content': '""'
+	  },
+
+	  '.grid-row > * ': getFlexItemCSS()
+
+	});
+
+	Sophie.createStyleSheet({
+	  "p-grid.grid-column": {
+	    width: "100%"
+	  }
+
+	}, '@media (max-width: 767px)');
+
+	module.exports = Grid;
+
+/***/ },
+/* 81 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var _Sophie$createStyleSh;
+
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+	var utils = __webpack_require__(79);
+	var Grid = Sophie.createClass("p-grid-mix", {
+
+	  render: function render() {
+	    return Sophie.element(
+	      "p-grid",
+	      { "class": "grid-mix" },
+	      this.children
+	    );
+	  },
+	  componentDidMount: function componentDidMount() {
+	    //p-grid下的元素的设置fontsize
+
+	    // if(el.parent().is("p-grid")&&el.parent().parent().parent().is("p-page")){
+	    //   if(play.mediaName !== "phone"){
+	    //     var phoneWidth =  coords.width/coords.fontSize;
+	    //     var fontSize =   this.getResponseFontSize(phoneWidth);
+	    //      if(!utils.hasMediaCSSRule(el, play.mediaQuery.phone)){
+	    //          play.dom._cssMedia(el, "font-size", fontSize+"rem",play.mediaQuery.phone);
+	    //           // play.dom._cssMedia(el, "z-index", 100,play.mediaQuery.phone);
+	    //           //  utils.createCSSRule(el,"font-size",fontSize+"rem", play.mediaQuery.phone)
+	    //           //     utils.createCSSRule(el,"z-index",100, play.mediaQuery.phone)
+	    //           //       utils.createCSSRule(el,"z-index",100, "all")
+	    //           //         utils.createCSSRule(el,"z-index",100, play.mediaQuery.pc)
+	    //      }
+	    //
+	    //   }
+	    // }
+	  }
+
+	});
+
+	var getFlexCSS = function getFlexCSS() {
+	  if (utils.supportFlex) {
+	    return utils.getFlexColumnCSS();
+	  } else {
+	    return {
+	      display: "block"
+	    };
+	  }
+	};
+
+	var getFlexItemCSS = function getFlexItemCSS() {
+	  if (utils.supportFlex) {
+	    return utils.getFlexItemCSS();
+	  } else {
+	    return {};
+	  }
+	};
+
+	Sophie.createStyleSheet((_Sophie$createStyleSh = {
+	  "p-grid.grid-mix": getFlexCSS()
+	}, _defineProperty(_Sophie$createStyleSh, "p-grid.grid-mix", {
+	  overflow: "hidden"
+	}), _defineProperty(_Sophie$createStyleSh, 'p-grid.grid-mix:after', {
+	  'clear': 'both'
+	}), _defineProperty(_Sophie$createStyleSh, 'p-grid.grid-mix:after, p-grid.grid-mix:before', {
+	  'display': 'table',
+	  'content': '""'
+	}), _Sophie$createStyleSh));
+
+	Sophie.createStyleSheet({}, '@media (max-width: 767px)');
+
+	module.exports = Grid;
+
+/***/ },
+/* 82 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
 	// <link rel="import" href="p-container-fluid.html">
-	var NavBar = __webpack_require__(76);
+	var NavBar = __webpack_require__(83);
 
+	var GridLayout = __webpack_require__(77);
 	var Header = Sophie.createClass('p-header', {
 
+	  mixin: [GridLayout],
 	  componentDidMount: function componentDidMount() {
 	    var siteTitle = $(this).attr("title");
-	    this.isShow = false;
+	    this.state.isShow = false;
 	    $("title").text(siteTitle);
 	    var self = this;
-
-	    $(document).click(function (ev) {
-	      var target = $(ev.target);
-	      var bar = $("p-nav-bar", self.nativeNode);
-	      var navbar = $(".navbar-nav", self.nativeNode);
-
-	      if (!target.closest(bar).length && !target.closest(navbar).length) {
-	        self.hideSidebar();
-	      }
-
-	      if (target.closest(bar).length) {
-	        self.showSidebar();
-	      }
-	    });
 	  },
 	  showSidebar: function showSidebar() {
-	    var self = this;
-	    if (this.isShow == true) {
-
-	      $("p-site").removeClass("nav-open");
-	      $("p-site").addClass("nav-close");
-	      this.isShow = false;
-	    } else {
-	      $("p-site").addClass("nav-open");
-	      $("p-site").removeClass("nav-close");
-
-	      this.isShow = true;
-	    }
+	    $("p-site").addClass("nav-open");
+	    $("p-site").removeClass("nav-close");
 	  },
 	  hideSidebar: function hideSidebar() {
-	    var self = this;
-	    if (this.isShow == true) {
-
-	      $(this.nativeNode).removeClass("nav-open");
-	      $(this.nativeNode).addClass("nav-close");
-	      this.isShow = false;
-	    }
+	    $(this.nativeNode).removeClass("nav-open");
+	    $(this.nativeNode).addClass("nav-close");
+	    this.state.isShow = false;
+	  },
+	  getDefaultChildren: function getDefaultChildren() {
+	    return [Sophie.element(NavBar, { id: "page-header-navbar" })];
 	  },
 
 	  render: function render() {
 	    return Sophie.element(
 	      "p-header",
 	      null,
-	      Sophie.element(
-	        "div",
-	        { "class": "p-container" },
-	        this.children,
-	        Sophie.element(NavBar, null)
-	      )
+	      this.renderGridChildrenFullWidth()
 	    );
 	  }
 
@@ -5779,144 +6466,194 @@
 	Sophie.createStyleSheet({
 
 	  'p-header': {
-	    height: '2em',
+	    height: '3em',
 	    display: 'block',
 	    minHeight: 10,
 	    margin: '0!important',
 	    padding: '0!important',
 
 	    width: '100%!important',
-	    position: "absolute",
+	    position: "relative",
+
 	    zIndex: "100"
 
+	  },
+
+	  'p-header .p-container-nav': {
+	    height: 0,
+	    width: 0
 	  },
 
 	  'p-header:before,p-header:after': {
 	    display: 'table',
 	    lineHeight: 0,
-	    content: "",
+	    content: '" "',
 	    clear: 'both'
-	  },
-
-	  'p-header > .p-container > p-nav-bar': {
-	    display: 'none',
-	    position: 'absolute'
-
 	  }
 
 	});
 
-	Sophie.createStyleSheet({
-
-	  'p-site.nav-open': {
-	    "transform": "translate3d(-300px, 0px, 0px)",
-	    transition: "all 0.5s"
-	  },
-
-	  'p-site.nav-close': {
-	    transition: "all 0.5s"
-	  },
-
-	  'p-site > p-header': {
-	    position: "fixed",
-	    top: "0em",
-	    left: "100%",
-	    width: "300px!important",
-	    height: "100%!important"
-	  },
-
-	  'p-site > p-header  p-nav-page': {
-	    position: "static",
-	    width: "100%",
-	    height: "auto"
-	  },
-
-	  'p-header': {
-	    height: '2em'
-	  },
-
-	  'p-header  p-logo': {
-	    "left": "-450px"
-
-	  },
-	  'p-header > .p-container > p-nav-bar': {
-	    display: 'block',
-	    left: "-50px",
-	    top: "0"
-
-	  }
-
-	}, '@media (max-width: 767px)');
+	Sophie.createStyleSheet({}, '@media (max-width: 767px)');
 
 	module.exports = Header;
 
 /***/ },
-/* 76 */
+/* 83 */
 /***/ function(module, exports) {
 
 	"use strict";
 
 	var NavBar = Sophie.createClass("p-nav-bar", {
-	  render: function render() {
-	    return Sophie.element(
-	      "p-nav-bar",
-	      null,
-	      Sophie.element(
-	        "button",
-	        { "class": "navbar-toggle", type: "button", "data-toggle": "collapse", "data-target": ".bs-navbar-collapse" },
-	        Sophie.element("span", { "class": "icon-bar" }),
-	        Sophie.element("span", { "class": "icon-bar" }),
-	        Sophie.element("span", { "class": "icon-bar" })
-	      )
-	    );
-	  }
+
+	    render: function render() {
+	        return Sophie.element(
+	            "p-nav-bar",
+	            null,
+	            Sophie.element(
+	                "button",
+	                { "class": "navbar-toggle", type: "button", "data-toggle": "collapse", "data-target": ".bs-navbar-collapse" },
+	                Sophie.element("span", { "class": "icon-bar" }),
+	                Sophie.element("span", { "class": "icon-bar" }),
+	                Sophie.element("span", { "class": "icon-bar" })
+	            )
+	        );
+	    },
+	    getDefaultProps: function getDefaultProps() {
+	        return {
+	            isStatic: false,
+	            pc: {
+	                isHidden: true
+
+	            }
+	        };
+	    },
+	    componentDidMount: function componentDidMount() {
+
+	        var self = this;
+	        //不能加到document上，重新渲染时无法注销
+	        $(self.nativeNode).on("click", function (ev) {
+	            self.showSidebar();
+	        });
+	    },
+	    showSidebar: function showSidebar() {
+
+	        $("p-site").addClass("nav-open");
+	        $("p-site").removeClass("nav-close");
+	    },
+	    hideSidebar: function hideSidebar() {
+
+	        $(this.nativeNode).removeClass("nav-open");
+	        $(this.nativeNode).addClass("nav-close");
+	        this.state.isShow = false;
+	    }
 	});
 
 	Sophie.createStyleSheet({
-	  "p-nav-bar": {
-	    display: 'block',
-	    width: '44px',
-	    height: '34px',
-	    overflow: 'hidden',
-	    position: 'absolute'
+	    "p-nav-bar": {
+	        display: 'none',
+	        width: '44px',
+	        height: '34px',
+	        overflow: 'hidden',
+	        position: 'absolute',
+	        right: "10px",
+	        top: "50%"
 
-	  },
+	    },
 
-	  'p-nav-bar .navbar-toggle': {
-	    position: 'relative',
-	    float: 'none',
-	    padding: '9px 10px',
-	    marginTop: '8px',
-	    marginRight: '15px',
-	    marginBottom: '8px',
-	    backgroundColor: 'transparent',
-	    backgroundImage: 'none',
-	    border: '1px solid transparent',
-	    borderRadius: '4px',
-	    margin: '0'
+	    'p-nav-bar .navbar-toggle': {
+	        position: 'relative',
+	        float: 'none',
+	        padding: '9px 10px',
+	        marginTop: '8px',
+	        marginRight: '15px',
+	        marginBottom: '8px',
+	        backgroundColor: 'transparent',
+	        backgroundImage: 'none',
+	        border: '1px solid transparent',
+	        borderRadius: '4px',
+	        margin: '0'
 
-	  },
+	    },
 
-	  'p-nav-bar .navbar-toggle .icon-bar': {
-	    backgroundColor: 'red'
-	  }
+	    'p-nav-bar .navbar-toggle .icon-bar': {
+	        backgroundColor: 'red'
+	    }
 
 	});
+
+	Sophie.createStyleSheet({
+
+	    "p-header p-nav-bar": {
+	        display: 'block'
+	    }
+
+	}, "@media (max-width: 767px)");
 
 	module.exports = NavBar;
 
 /***/ },
-/* 77 */
+/* 84 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var PPage = __webpack_require__(73);
+	// <link rel="import" href="p-container-fluid.html">
+
+	var GridLayout = __webpack_require__(77);
+	var Footer = Sophie.createClass("p-footer", {
+	    mixin: [GridLayout],
+	    componentDidMount: function componentDidMount() {
+	        var siteTitle = $(this).attr("title");
+	        $("title").text(siteTitle);
+	    },
+
+	    render: function render() {
+	        return Sophie.element(
+	            "p-footer",
+	            null,
+	            this.renderGridChildrenFullWidth()
+	        );
+	    }
+	});
+
+	Sophie.createStyleSheet({
+	    'p-footer': {
+	        height: '4rem',
+	        display: 'block',
+	        margin: '0!important',
+	        padding: '0!important',
+	        minHeight: '10px',
+	        width: '100%!important',
+	        zIndex: "100"
+
+	    },
+	    'p-footer:before,p-footer:after': {
+	        display: 'table',
+	        lineHeight: '0',
+	        content: '" "',
+	        clear: 'both'
+	    },
+
+	    'p-footer > p-container-fluid': {
+	        height: '100%'
+	    }
+
+	});
+
+	module.exports = Footer;
+
+/***/ },
+/* 85 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var PPage = __webpack_require__(75);
 
 	var PBody = Sophie.createClass("p-body", {
 	  getDefaultProps: function getDefaultProps() {
 	    return {
-	      activePageId: "main-page"
+	      activePageId: "dotlinkface-homepage"
 	    };
 	  },
 	  getInitialState: function getInitialState() {
@@ -5924,11 +6661,17 @@
 	      activePageId: this.props.activePageId
 	    };
 	  },
+
+	  componentDidMount: function componentDidMount() {},
 	  render: function render() {
+	    if (this.props.children.length == 1) {
+	      this.state.activePageId = this.props.children[0].props.id;
+	      this.props.children[0].state.isActive = true;
+	    }
 	    return Sophie.element(
 	      "p-body",
 	      null,
-	      this.children
+	      this.props.children
 	    );
 	  },
 
@@ -5946,16 +6689,16 @@
 	    display: 'block',
 	    margin: '0!important',
 	    padding: '0!important',
-	    overflowX: 'hidden!important',
+	    minHeight: "1em",
 	    width: '100%!important',
-	    height: 'auto!important',
-	    overflow: "hidden"
+	    height: 'auto!important'
+
 	  },
 
 	  'p-body:before, p-body:after': {
 	    display: 'table',
 	    lineHeight: '0',
-	    content: "",
+	    content: '" "',
 	    clear: 'both'
 	  }
 
@@ -5966,14 +6709,14 @@
 	    display: 'block',
 	    margin: '0!important',
 	    padding: '0!important',
-	    overflowX: 'hidden!important',
+
 	    width: '100%!important',
 	    height: 'auto!important'
 	  },
 	  'p-body:before, p-body:after': {
 	    display: 'table',
 	    lineHeight: 0,
-	    content: "",
+	    content: '" "',
 	    clear: 'both'
 	  }
 
@@ -5984,784 +6727,686 @@
 	module.exports = PBody;
 
 /***/ },
-/* 78 */
+/* 86 */
 /***/ function(module, exports) {
 
 	"use strict";
 
-	// <link rel="import" href="p-container-fluid.html">
+	var NavMask = Sophie.createClass("p-nav-page-mask", {
 
-	var Footer = Sophie.createClass("p-footer", {
-	    componentDidMount: function componentDidMount() {
-	        var siteTitle = $(this).attr("title");
-	        $("title").text(siteTitle);
+	    render: function render() {
+	        return Sophie.element("p-nav-page-mask", null);
 	    },
+
+	    componentDidMount: function componentDidMount() {}
+
+	});
+
+	Sophie.createStyleSheet({
+	    'p-nav-page-mask ': {
+	        display: "none!important"
+	    },
+	    '#page-mask': {
+	        position: 'fixed',
+	        left: '0',
+	        top: '0',
+	        bottom: 0,
+	        right: 0,
+	        width: "100%",
+	        height: "100%",
+	        margin: '0!important',
+	        display: "none"
+
+	    }
+
+	});
+
+	Sophie.createStyleSheet({
+
+	    '#page-mask': {
+	        position: 'fixed',
+	        left: '0',
+	        top: '0',
+	        bottom: 0,
+	        right: 0,
+	        margin: '0!important',
+	        display: "none"
+
+	    },
+
+	    'p-nav-page-mask': {
+	        position: 'fixed',
+	        left: '0',
+	        top: '0',
+	        bottom: 0,
+	        right: 0,
+	        margin: '0!important',
+	        display: "none"
+
+	    }
+
+	}, "@media (max-width: 767px)");
+
+	module.exports = NavMask;
+
+/***/ },
+/* 87 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var Page = __webpack_require__(75);
+	var A = __webpack_require__(88);
+	var NavBar = __webpack_require__(83);
+
+	var Nav = Sophie.createClass("p-nav-page-mobile", {
 
 	    render: function render() {
 	        return Sophie.element(
-	            "p-footer",
+	            "p-nav-page-mobile",
 	            null,
 	            Sophie.element(
-	                "div",
-	                { "class": "p-container-fluid" },
-	                " ",
-	                this.children,
-	                " "
-	            )
-	        );
-	    }
-	});
-
-	Sophie.createStyleSheet({
-	    'p-footer': {
-	        height: '2rem',
-	        display: 'block',
-	        margin: '0!important',
-	        padding: '0!important',
-	        minHeight: '10px',
-	        overflowX: 'hidden',
-	        width: '100%!important',
-	        position: 'absolute',
-	        bottom: "0!important",
-	        left: "0!important",
-	        zIndex: "100",
-	        top: "auto!important"
-
-	    },
-	    'p-footer:before,p-footer:after': {
-	        display: 'table',
-	        lineHeight: '0',
-	        content: '',
-	        clear: 'both'
-	    },
-
-	    'p-footer > p-container-fluid': {
-	        height: '100%'
-	    }
-
-	});
-
-	module.exports = Footer;
-
-/***/ },
-/* 79 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	var List = __webpack_require__(80);
-	var Pic = __webpack_require__(82);
-	var creater = {
-	  listImg: function listImg() {
-	    return Sophie.element(List, { "class": "p-list-img", defaultInnerVnodeName: "p-pic", "data-c-num": 2, "data-r-num": 2 });
-	  }
-	};
-
-	Sophie.createStyleSheet({
-	  "p-list.p-list-img .c-ceil >  p-pic": {
-	    height: "100%",
-	    display: "block",
-	    width: "auto",
-	    overflow: "hidden"
-
-	  }
-
-	});
-
-	module.exports = creater;
-
-/***/ },
-/* 80 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	var Layout = __webpack_require__(81);
-
-	var padding = 5;
-	var List = Sophie.createClass("p-list", {
-
-	    render: function render() {
-	        var self = this;
-	        var style = "";
-	        if ($(document).width() <= 768 && self.parent.name == "p-page") {
-	            //可能已经被删除了
-	            if (self.nativeNode.parentNode) {
-	                style = "fontSize:" + this.props["data-c-num"] + "rem";
-	                self.isMobile = true;
-	            }
-	        } else {
-	            style = "";
-	            self.isMobile = false;
-	        }
-
-	        return Sophie.element(
-	            "p-list",
-	            { "class": this.props.class, "data-c-num": this.props["data-c-num"], "data-r-num": this.props["data-r-num"] },
-	            Sophie.element(
-	                "div",
-	                { style: style, "class": "ul" },
+	                "ul",
+	                { "class": "nav navbar-nav" },
 	                this.renderChildren()
 	            )
 	        );
 	    },
 
-	    getDefaultProps: function getDefaultProps() {
+	    getInitialState: function getInitialState() {
 	        return {
-	            class: "",
-	            defaultInnerVnodeName: "",
-	            "data-c-num": 2,
-	            "data-r-num": 2,
-	            cellHeight: "5rem",
-	            cellWidth: "5rem"
+	            pageList: []
+
 	        };
 	    },
-
-	    getDefaultChildren: function getDefaultChildren() {
-	        var result = [];
-	        for (var i = 0; i < 4; i++) {
-	            result.push(Sophie.element(Layout, null));
-	        }
-	        return result;
-	    },
-
-	    renderChildren: function renderChildren() {
-	        var Layout;
-	        if (this.props.defaultInnerVnodeName) {
-	            Layout = Sophie.registry[this.props.defaultInnerVnodeName];
-	        }
-
-	        var children = this.props.children;
-	        var result = [];
-	        var cellStyle = "height:" + this.props.cellHeight + "width:" + this.props.cellWidth;
-
-	        for (var i = 0; i < children.length; i++) {
-	            if (Layout) {
-	                var r = Sophie.element(
-	                    "div",
-	                    { "class": "c-list" },
-	                    Sophie.element(
-	                        "div",
-	                        { "class": "c-ceil", style: cellStyle },
-	                        Sophie.element(Layout, null)
-	                    )
-	                );
-	                result.push(r);
-	            } else {
-	                var r = Sophie.element(
-	                    "div",
-	                    { "class": "c-list" },
-	                    Sophie.element(
-	                        "div",
-	                        { "class": "c-ceil", style: cellStyle },
-	                        children[i]
-	                    )
-	                );
-	                result.push(r);
+	    getDefaultProps: function getDefaultProps() {
+	        return {
+	            pc: {
+	                isHidden: true
 	            }
-	        }
-
-	        return result;
+	        };
 	    },
-
-	    componentWillMount: function componentWillMount() {},
+	    renderItem: function renderItem() {
+	        var items = [];
+	        for (var i = 0; i < this.state.pageList.length; i++) {
+	            var data = this.state.pageList[i];
+	            var child = Sophie.element(
+	                A,
+	                { "data-id": data.id },
+	                data.title
+	            );
+	            child.creater = child._owner = this.creater;
+	            child.parent = this;
+	            items.push(child);
+	        }
+	        this.props.children = items;
+	    },
+	    renderChildren: function renderChildren() {
+	        this.renderItem();
+	        var items = [];
+	        for (var i = 0; i < this.props.children.length; i++) {
+	            var data = this.props.children[i];
+	            items.push(Sophie.element(
+	                "li",
+	                { "data-id": data.id },
+	                data
+	            ));
+	        }
+	        return items;
+	    },
+	    getDefaultChildren: function getDefaultChildren() {
+	        var items = [];
+	        for (var i = 0; i < this.state.pageList.length; i++) {
+	            var data = this.state.pageList[i];
+	            items.push(Sophie.element(
+	                "li",
+	                { "data-id": data.id },
+	                Sophie.element(
+	                    A,
+	                    { "data-id": data.id },
+	                    data.title
+	                )
+	            ));
+	        }
+	        return items;
+	    },
 
 	    componentDidMount: function componentDidMount() {
-	        this.$ = $(this.nativeNode);
-
 	        var self = this;
+	        this.state.isShow = false;
 
-	        $(window).on("resize", function () {
+	        Sophie.ready(function () {
+
 	            setTimeout(function () {
-	                self.forceUpdate();
-	            }, 10);
+
+	                self.initPage();
+
+	                self.activeBind();
+	                self.navbarToggle = $("p-header p-nav-bar");
+
+	                //
+	                // self.navbarToggle.appendTo("p-header .p-container-fluid");
+	                // self.navbarToggle.addClass("navbar-toggle-render")
+	                //
+
+	                var mask = $("#page-mask");
+	                mask.click(function (ev) {
+	                    self.hideSidebar();
+	                });
+
+	                $('p-site').addClass("nav-close");
+
+	                self.navbarToggle.click(function () {
+	                    // self.showPopup()
+	                    self.showSidebar();
+	                });
+
+	                // $(document).click(function(ev){
+	                //   var target = $(ev.target);
+	                //
+	                //   if(!target.closest(self.navbarToggle).length&&!target.closest(self.navbar).length){
+	                //     self.hideSidebar();
+	                //   }
+	                //
+	                // })
+	            }, 0);
 	        });
-
-	        setTimeout(function () {
-	            this.showOrHideCeil();
-	        }, 0);
 	    },
+	    activeBind: function activeBind() {
+	        var self = this;
 
-	    resize: function resize() {
-	        setTimeout(function () {
-	            this.setAllColumnWidth();
-	            this.setAllRowHeight();
-	            this.showOrHideCeil();
-	        }, 0);
-	    },
-
-	    setColumn: function setColumn(columm) {
-	        $(this.$).attr("data-c-num", columm);
-	        this.setAllColumnWidth();
-	        this.showOrHideCeil();
-	    },
-	    setRow: function setRow(row) {
-	        $(this.$).attr("data-r-num", row);
-	        this.setAllColumnWidth();
-	        this.setAllRowHeight();
-	        this.showOrHideCeil();
-	    },
-
-	    initRowColumn: function initRowColumn() {
-	        this.showOrHideCeil();
-	    },
-
-	    autoContainerHeight: function autoContainerHeight() {
-	        var h = $(this.$).find(".ul");
-	        var innerHeight = h.height();
-	        var outerHeight = $(this.$).height();
-	        if (outerHeight < innerHeight) {
-	            $(this.$).height(innerHeight);
-	        }
-	    },
-
-	    showOrHideCeil: function showOrHideCeil() {
-
-	        var cnum = parseInt($(this.$).attr("data-c-num"));
-	        var rnum = parseInt($(this.$).attr("data-r-num"));
-	        var allNum = cnum * rnum;
-	        var realNum = $(this.$).find(".c-list").length;
-
-	        if (allNum <= realNum) {
-	            for (var i = 0; i < realNum; i++) {
-	                if (i < allNum) {
-	                    $(this.$).find(".c-list").eq(i).show();
-	                } else {
-	                    $(this.$).find(".c-list").eq(i).hide();
-	                }
+	        for (var i = 0; i < this.state.pageList.length; i++) {
+	            if (this.state.pageList[i].isActive) {
+	                this.active(this.state.pageList[i].id);
 	            }
-	        } else {
-	            $(this.$).find(".c-list").show();
-	        }
-	    },
-
-	    addOne: function addOne(el) {
-	        this.children.push(el.vnode);
-	        this._update();
-	    },
-
-	    addAuto: function addAuto() {
-	        var children = this.props.children[0];
-	        if (children && children.name) {
-	            this.addOneVnode(Sophie.createVnodeByTagName(children.name));
-	        } else {
-	            this.addOneEmpty();
 	        }
 
-	        this._update();
-	    },
-
-	    addOneVnode: function addOneVnode(elVnode) {
-	        this.children.push(elVnode);
-	        this._update();
-	    },
-
-	    addOneEmpty: function addOneEmpty() {
-	        this.addOneVnode(Sophie.createVnodeByTagName("p-layout"));
-	    },
-	    wrapOne: function wrapOne(el) {
-	        var li = $('<div class="c-list"><p-layout class="c-ceil"></p-layout></div>');
-	        li.find(".c-ceil").append(el);
-	        return li;
-	    },
-
-	    setAllColumnWidth: function setAllColumnWidth(width) {
-
-	        var width = width || $(this.$).width();
-
-	        width = width + padding * 2;
-	        var oNum = parseInt($(this.$).attr("data-c-num"));
-	        var columnWith = width / oNum;
-	        var self = this;
-
-	        $(".c-list", this.$).each(function (index, el) {
-	            self.setColumnWidth($(el), columnWith);
-	        });
-	    },
-	    setColumnWidth: function setColumnWidth(column, columnWith) {
-
-	        if (!columnWith) {
-	            var width = $(this.$).width();
-	            var oNum = parseInt($(this.$).attr("data-c-num"));
-	            var columnWith = width / oNum;
-	        }
-
-	        var currentFontSize = parseFloat($(this.$).css("fontSize"));
-
-	        var value = columnWith + "px";
-	        if (play.unit == "rem") {
-	            value = play.pxToRem(columnWith) + "rem";
-	        } else if (play.unit == "%") {
-	            value = play.pxToPresent(columnWith) + "%";
-	        } else if (play.unit == "em") {
-	            value = play.pxToEm(columnWith, currentFontSize) + "em";
-	        }
-
-	        this.props.cellWidth = value;
-	        $(column).css("width", value);
-	    },
-
-	    setAllRowHeight: function setAllRowHeight(height) {
-	        var height = height || $(this.$).height();
-	        var rowNum = parseInt($(this.$).attr("data-r-num"));
-	        var rowHeight = height / rowNum;
-	        var self = this;
-
-	        $(".c-list", this.$).each(function (index, el) {
-
-	            self.setRowHeight(el, rowHeight);
+	        $(this.nativeNode).delegate("li p-a", "click", function (ev) {
+	            var li = $(ev.target).closest("p-a");
+	            var id = li.attr("data-id");
+	            var site = $("p-site");
+	            if (site.length) {
+	                site.get(0).vnode.active(id);
+	                self.active(id);
+	            } else {
+	                self.active(id);
+	            }
 	        });
 	    },
 
-	    setRowHeight: function setRowHeight(row, rowHeight) {
-	        if (!rowHeight) {
-	            var height = $(this.$).height();
-	            var currentFontSize = parseFloat($(this.$).css("fontSize"));
-	            var rowNum = parseInt($(this.$).attr("data-r-num"));
-	            var rowHeight = height / rowNum;
+	    active: function active(id) {
+	        var self = this;
+	        var lis = $(".navbar-nav li p-a", self.nativeNode);
+	        lis.removeClass("active");
+	        lis.each(function (index, el) {
+	            if ($(el).attr("data-id") == id) {
+	                $(el).addClass("active");
+	            }
+	        });
+
+	        this.hideSidebar();
+	    },
+
+	    removeItem: function removeItem(id) {
+	        var children = this.state.pageList;
+
+	        for (var i = 0; i < children.length; i++) {
+	            if (children[i]["id"] == id) {
+	                this.state.pageList.splice(i, 1);
+	                this._update();
+	            }
 	        }
 
-	        var currentFontSize = parseFloat($(this.$).css("fontSize"));
-	        var value = rowHeight + "px";
-	        if (play.unit == "rem") {
-	            value = play.pxToRem(rowHeight) + "rem";
-	        } else if (play.unit == "%") {
-	            value = play.pxToPresent(rowHeight) + "%";
-	        } else if (play.unit == "em") {
-	            value = play.pxToEm(rowHeight, currentFontSize) + "em";
+	        this.autoWidth();
+	    },
+
+	    addOne: function addOne(id, title, isActive, autoWidth) {
+
+	        autoWidth = autoWidth ? autoWidth : true;
+
+	        if ($('li[data-id=' + id + ']', this.nativeNode).length) {
+	            return;
 	        }
 
-	        this.props.cellHeight = value;
+	        this.state.pageList.push({
+	            id: id,
+	            title: title
+	        });
 
-	        $(row).css("height", value);
+	        this._update();
+	        if (isActive) {
+	            this.active(id);
+	        }
+
+	        if (autoWidth) this.autoWidth();
+	    },
+
+	    createDefault: function createDefault() {},
+
+	    initPage: function initPage() {
+	        var pages = $("p-body").find("p-page");
+
+	        var pageData = [];
+	        pages.each(function (index, el) {
+	            pageData.push({ id: $(el).attr("id"), title: $(el).attr("title"), isActive: $(el).hasClass("active") });
+	        });
+
+	        if (pageData.length) {
+
+	            this.setState({ pageList: pageData });
+	        } else {
+
+	            this.createDefault();
+	        }
+
+	        this.autoWidth();
+	    },
+
+	    autoHeight: function autoHeight() {
+	        //使用table-cell解决
+
+	        $(".navbar-nav li", this.nativeNode).css("height", "100%");
+	    },
+	    autoWidth: function autoWidth() {
+
+	        var li = $(".navbar-nav li", this.nativeNode);
+	        var l = li.length;
+	        // var allWidth = $(this).width();
+
+	        // var width = (allWidth - 10 * (li.length - 1) ) / li.length / allWidth * 100;
+	        // if (width < 20)width = 20;
+	        li.css("width", 1 / l * 100 + "%");
+	    },
+
+	    showPopup: function showPopup() {
+	        var self = this;
+	        if ($(".fixed-nav", self).prop("isShow") == true) {
+	            $(".fixed-nav", self).hide();
+	            $(".fixed-nav", self).prop("isShow", false);
+
+	            $("body").css("overflow", "");
+	        } else {
+	            $(".fixed-nav", self).show();
+
+	            $(".fixed-nav", self).prop("isShow", true);
+
+	            $("body").css("overflow", "hidden");
+	            $(".fixed-nav", self).height($(window).height() - parseInt($(".fixed-nav", self).css("top")));
+	        }
+	    },
+	    showSidebar: function showSidebar() {
+	        var self = this;
+
+	        $(this.nativeNode).addClass("nav-open");
+	        $(this.nativeNode).removeClass("nav-close");
+	    },
+
+	    hideSidebar: function hideSidebar() {
+
+	        $("p-site").removeClass("nav-open");
+	        $("p-site").addClass("nav-close");
+	    },
+
+	    scale: function scale(el, width) {
+	        var oldWidth = el.width();
+	        var currentFontSize = parseInt(el.css("fontSize"));
+
+	        var fontSize = width / oldWidth * currentFontSize;
+	        el.css("fontSize", fontSize + "px");
 	    }
 
 	});
 
-	Sophie.createStyleSheet({
-
-	    'p-list': {
-	        display: 'table',
-	        overflow: 'hidden',
-	        width: '10rem',
-	        height: '10rem',
-	        clear: 'both'
-	    },
-
-	    'p-list:before,  p-list:after': {
-	        display: 'table',
-	        lineHeight: '0',
-	        content: ''
-	    },
-
-	    'p-list > .ul': {
-	        display: 'block',
-	        overflow: 'hidden',
-	        marginRight: '-10px',
-	        marginLeft: '-5px',
-	        height: '100%'
-	    },
-
-	    'p-list > .ul .c-list': {
-	        width: '50%',
-	        float: 'left',
-	        listStyle: 'none',
-	        minHeight: '10px',
-	        height: '100%',
-	        overflow: 'hidden',
-	        boxSizing: 'border-box',
-	        padding: '0px 5px 10px 5px'
-	    },
-
-	    'p-list > .ul .c-list .c-ceil': {
-	        height: '100%',
-	        minHeight: '10px',
-	        display: 'block',
-	        width: 'auto',
-	        overflow: 'hidden'
-	    },
-
-	    'p-list  .c-ceil > p-layout-inner': {
-	        height: '100%',
-	        minHeight: '0px',
-	        display: 'block',
-	        width: 'auto',
-	        overflow: 'hidden'
-
-	    },
-
-	    'p-list > ul .c-list .c-ceil .placeholder': {
-	        display: 'none!important',
-	        position: 'absolute'
-	    }
-
-	});
+	Sophie.createStyleSheet({});
 
 	Sophie.createStyleSheet({
-	    'p-page > .p-container-fluid > p-list': {
-	        height: 'auto!important',
-	        marginLeft: '0px!important',
-	        marginRight: '0px!important',
-	        width: '100%'
+
+	    'p-header p-nav-page ': {
+	        display: 'none!important'
+	    },
+	    'p-nav-page-mobile': {
+	        position: 'absolute',
+	        left: 7 + "em",
+	        top: '50px',
+	        width: '200px!important',
+	        height: "auto",
+	        backgroundColor: 'rgba(255, 255, 255, 0.0)',
+	        margin: '0!important'
+
+	    },
+
+	    'p-nav-page-mobile .navbar-nav ': {
+	        backgroundColor: 'rgba(255, 255, 255, 0.9)'
+	    },
+
+	    ' p-nav-page-mobile .navbar-nav': {
+
+	        width: '100%!important',
+	        height: '100%!important',
+	        left: '0px',
+	        top: '0px',
+	        backgroundColor: '#fff',
+	        margin: '0!important',
+	        display: "flex",
+	        "flex-direction": "column"
+
+	    },
+
+	    'p-nav-page-mobile .navbar-nav li ': {
+	        display: 'block',
+	        float: 'none',
+	        width: '100%!important',
+	        "height": "3em"
+	    },
+
+	    'p-nav-page-mobile .navbar-nav li p-a ': {
+
+	        textAlign: 'left',
+	        padding: '0 20px',
+	        width: "100%",
+	        height: "100%"
+	    },
+
+	    'p-site.nav-open  p-header p-nav-page-mobile': {
+	        display: "block"
+
+	        // transition: "left 0.5s",
+	        // left:"-200px"
+	    },
+
+	    'p-site.nav-close  p-header p-nav-page-mobile': {
+	        display: "none"
+	        // transition: "left 0.5s",
+	        // left:0
+	    },
+
+	    'p-site.nav-open p-nav-page-mask ': {
+	        display: "block!important"
+	    },
+
+	    'p-site.nav-close p-nav-page-mask ': {
+	        display: "none"
+	    },
+
+	    '#page-mask': {
+	        backgroundColor: 'rgba(0,0,0,0.7)',
+	        zIndex: 9999
+	    },
+
+	    'p-site.nav-open #page-mask ': {
+	        display: "block!important"
+	    },
+
+	    'p-site.nav-close #page-mask ': {
+	        display: "none"
+	    },
+
+	    'p-site.nav-open p-nav-page-mobile ': {
+	        display: "block!important"
+	    },
+
+	    'p-site.nav-close p-nav-page-mobile': {
+	        display: "none"
+	    },
+
+	    'p-header': {
+	        height: '4em'
 	    }
 
 	}, "@media (max-width: 767px)");
 
-	module.exports = List;
+	module.exports = Nav;
 
 /***/ },
-/* 81 */
+/* 88 */
 /***/ function(module, exports) {
 
 	"use strict";
 
-	//可以作为容器，但不能被选择
-	var Layout = Sophie.createClass("p-layout-inner", {
-	  getDefaultProps: function getDefaultProps() {
-	    return {
-	      style: ""
-	    };
-	  },
-	  render: function render() {
-	    return Sophie.element(
-	      "p-layout-inner",
-	      { style: this.props.style, "class": this.props.class },
-	      " ",
-	      this.props.children,
-	      " "
-	    );
-	  }
-	});
-
-	Sophie.createStyleSheet({
-	  "p-layout-inner": {
-
-	    display: 'table',
-
-	    minHeight: '1em',
-	    height: '5em',
-
-	    width: '10rem'
-
-	  },
-
-	  "p-layout-inner:before, p-layout-inner:after": {
-	    display: 'table',
-	    lineHeight: 0,
-	    content: "''"
-	  },
-
-	  "p-layout-inner::after": {
-	    clear: "both"
-	  }
-
-	});
-
-	module.exports = Layout;
-
-/***/ },
-/* 82 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	var _pPicA, _pPicCircleA, _pImgA;
+	var _pAPTextWrap;
 
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-	var Layout = __webpack_require__(81);
-	var PIC = Sophie.createClass("p-pic", {
-
+	var A = Sophie.createClass('p-a', {
 	    getDefaultProps: function getDefaultProps() {
 	        return {
-	            src: "http://dotlinkface.oss-cn-shanghai.aliyuncs.com/default.jpg",
-	            href: "http://dotlinkface.oss-cn-shanghai.aliyuncs.com/default.jpg"
+	            href: "/"
 	        };
 	    },
 	    componentDidMount: function componentDidMount() {
-
-	        // var src = $(this.node).attr("src")||"http://img.tuku.cn/file_big/201502/ad45f0968eba4b92ba549cc7abf0e70a.jpg"
-	        // var href = $(this.node).attr("href")||"/editor/img/3.jpg"
-	        // this.setHref(href);
-	        // this.setSrc(src)
-	    },
-	    getDefaultChildren: function getDefaultChildren() {
-	        return Sophie.element(Layout, null);
-	    },
-
-	    render: function render() {
-
-	        var background = "background-image:url(" + this.props.src + ")";
-	        return Sophie.element(
-	            "p-pic",
-	            null,
-	            Sophie.element("a", { href: this.props.href, style: background }),
-	            this.props.children
-	        );
-	    },
-	    renderChildren: function renderChildren() {
-	        if (this.children.length == 0) {
-	            this.children.push(Sophie.element(Layout, { "class": "children" }));
-	        }
-	        return this.children;
-	    },
-
-	    setHref: function setHref(href) {
-	        // $(this.node).attr("href",href);
-	        // var a = $(this.node).find("a");
-	        // a.attr("href", href)
-
-	        this.attributes.href = href;
-	        this._update();
-	    },
-
-	    setSrc: function setSrc(src) {
-	        $(this.node).attr("src", src);
-	        var a = $(this.node).find("a");
-	        if (src) {
-	            a.css("background-image", "url(" + src + ")");
-	        }
-
-	        this.attributes.src = src;
-	        this._update();
-	    }
-	});
-
-	PIC.createStyleSheet({
-	    'p-pic': {
-	        display: 'block',
-	        width: '5em',
-	        height: '5em',
-	        overflow: 'hidden',
-	        position: 'relative'
-	    },
-
-	    'p-pic > div': {
-	        position: 'absolute',
-	        top: 0,
-	        left: 0,
-	        height: '100%',
-
-	        display: 'block',
-	        border: 0,
-	        width: '100%'
+	        // var text = $("a",this).text();
+	        // if(!$.trim(text)){
+	        //     $("a",this).text("这是一个连接")
+	        // }
 
 	    },
-
-	    'p-pic  > a': (_pPicA = {
-	        position: 'absolute',
-	        top: 0,
-	        left: 0,
-	        height: '100%',
-
-	        display: 'block',
-	        border: 0,
-	        width: '100%',
-	        backgroundSize: 'cover',
-	        backgroundRepeat: 'no-repeat!important',
-	        backgroundPosition: 'center center',
-	        backgroundImage: 'url(http://img.tuku.cn/file_big/201502/ad45f0968eba4b92ba549cc7abf0e70a.jpg)'
-	    }, _defineProperty(_pPicA, "position", 'relative'), _defineProperty(_pPicA, "borderRadius", 'inherit'), _pPicA),
-
-	    'p-pic > .children,p-pic > p-layout-inner': {
-	        position: 'absolute',
-	        top: 0,
-	        left: 0,
-	        height: '100%',
-
-	        display: 'block',
-	        border: 0,
-	        width: '100%'
-	    },
-
-	    'p-pic  a img': {
-	        width: '100%'
-	    }
-
-	});
-
-	PIC.createStyleSheet({
-	    "p-pic": {}
-	}, "@media (max-width: 767px)");
-
-	Sophie.createClass("p-pic-circle", {
-
-	    componentDidMount: function componentDidMount() {
-
-	        var src = $(this.node).attr("src") || "http://img.tuku.cn/file_big/201502/ad45f0968eba4b92ba549cc7abf0e70a.jpg";
-	        var href = $(this.node).attr("href") || "/editor/img/3.jpg";
-	        this.setHref(href);
-	        this.setSrc(src);
-	    },
-
 	    render: function render() {
 	        return Sophie.element(
-	            "p-pic-circle",
-	            null,
-	            Sophie.element("a", { href: "/editor/img/4.jpg" }),
+	            "p-a",
+	            { "data-id": this.props["data-id"] },
 	            Sophie.element(
-	                "div",
-	                { "class": "children" },
+	                "a",
+	                { href: this.props.href, "class": "p-text-wrap" },
 	                this.children
 	            )
 	        );
 	    },
-
-	    setHref: function setHref(href) {
-	        $(this.node).attr("href", href);
-	        var a = $(this.node).find("a");
-	        a.attr("href", href);
+	    setFontSize: function setFontSize(fontSize) {
+	        $('.p-text-wrap', this.nativeNode).css("fontSize", fontSize);
 	    },
-
-	    setSrc: function setSrc(src) {
-	        $(this.node).attr("src", src);
-	        var a = $(this.node).find("a");
-	        if (src) {
-	            a.css("background-image", "url(" + src + ")");
-	        }
+	    setHref: function setHref(href) {
+	        this.attributes.href = href;
+	        this._update();
 	    }
 	});
 
 	Sophie.createStyleSheet({
-	    'p-pic-circle': {
-	        display: 'block',
-	        width: '5em',
-	        height: '5em',
-	        border: 0,
+	    'p-a': {
 	        overflow: 'hidden',
-	        position: 'relative',
-	        borderRadius: '50%'
-	    },
+	        outline: 'none',
 
-	    'p-pic-circle > div': {
-	        position: 'absolute',
-	        top: 0,
-	        left: 0,
-	        height: '100%',
+	        minHeight: '1rem',
+	        lineHeight: '1rem',
 
-	        display: 'block',
-	        border: 0,
-	        width: '100%'
+	        width: '5rem',
+	        display: 'table',
+	        padding: '0 10px',
+
+	        cursor: 'pointer',
+	        verticalAlign: 'middle'
 
 	    },
 
-	    'p-pic-circle  > a': (_pPicCircleA = {
-	        position: 'absolute',
-	        top: 0,
-	        left: 0,
-	        height: '100%',
+	    'p-a > .p-text-wrap > p-icon': {
 
-	        display: 'block',
-	        border: 0,
-	        width: '100%',
-	        backgroundSize: 'cover',
-	        backgroundRepeat: 'no-repeat!important',
-	        backgroundPosition: 'center center',
-	        backgroundImage: 'url(http://img.tuku.cn/file_big/201502/ad45f0968eba4b92ba549cc7abf0e70a.jpg)'
-	    }, _defineProperty(_pPicCircleA, "position", 'relative'), _defineProperty(_pPicCircleA, "borderRadius", 'inherit'), _pPicCircleA),
+	        display: 'inline!important',
+	        marginRight: '0.25rem'
 
-	    'p-pic-circle .children': {
-	        position: 'absolute',
-	        top: 0,
-	        left: 0,
-	        height: '100%',
-
-	        display: 'block',
-	        border: 0,
-	        width: '100%'
 	    },
 
-	    'p-pic-circle  a img': {
-	        width: '100%'
+	    'p-a .p-text-wrap': (_pAPTextWrap = {
+	        whiteSpace: 'nowrap',
+	        textDecoration: 'none',
+	        color: 'inherit',
+	        fontSize: '14px',
+	        fontFamily: 'inherit',
+	        fontWeight: 'inherit',
+	        fontStyle: 'inherit',
+	        textAlign: 'inherit'
+	    }, _defineProperty(_pAPTextWrap, "textDecoration", 'inherit'), _defineProperty(_pAPTextWrap, "backgroundColor", 'transparent !important'), _defineProperty(_pAPTextWrap, "height", '100%'), _defineProperty(_pAPTextWrap, "width", '100%'), _defineProperty(_pAPTextWrap, "display", 'table-cell'), _defineProperty(_pAPTextWrap, "verticalAlign", 'middle'), _pAPTextWrap),
+
+	    'p-a .p-text-wrap * ': {
+	        /* display: none !important;*/
 	    }
 
 	});
 
-	Sophie.createClass("p-img", {
-
-	    componentDidMount: function componentDidMount() {
-	        var src = $(this.node).attr("src") || "/editor/img/3.jpg";
-	        var href = $(this.node).attr("href") || "/editor/img/3.jpg";
-	        this.setHref(href);
-	        this.setSrc(src);
-	    },
-
-	    setHref: function setHref(href) {
-	        $(this.node).attr("href", href);
-	        var a = $(this.node).find("a");
-	        a.attr("href", href);
-	    },
-
-	    setSrc: function setSrc(src) {
-	        $(this.node).attr("src", src);
-	        var a = $(this.node).find("a");
-	        var img = $(this.node).find("a img");
-	        if (src) {
-	            img.prop("src", src);
-	        }
-	    },
-	    rener: function rener() {
-	        return Sophie.element(
-	            "div",
-	            null,
-	            Sophie.element("a", { href: "/editor/img/4.jpg" }),
-	            Sophie.element("children", null)
-	        );
-	    }
-	});
-
-	Sophie.createStyleSheet({
-	    'p-img': {
-	        display: 'block',
-	        width: '4em',
-	        height: 'auto!important',
-
-	        border: 0,
-	        overflow: 'hidden',
-	        position: 'relative'
-	    },
-
-	    'p-img > a': (_pImgA = {
-	        position: 'absolute',
-	        top: 0,
-	        left: 0,
-	        height: '100%',
-
-	        display: 'block',
-	        border: 0,
-
-	        width: '100%',
-	        backgroundSize: 'cover',
-	        backgroundRepeat: 'no-repeat!important',
-	        backgroundPosition: 'center center',
-	        backgroundImage: 'url(http://img.tuku.cn/file_big/201502/ad45f0968eba4b92ba549cc7abf0e70a.jpg)'
-	    }, _defineProperty(_pImgA, "position", 'relative'), _defineProperty(_pImgA, "borderRadius", 'inherit'), _pImgA),
-
-	    'p-img > children': {
-	        position: 'absolute',
-	        top: 0,
-	        left: 0,
-	        height: '100%',
-	        display: 'block',
-	        border: 0,
-	        width: '100%'
-	    },
-
-	    'p-img > a > img': {
-	        width: '100%'
-	    }
-
-	});
-
-	module.exports = PIC;
+	module.exports = A;
 
 /***/ },
-/* 83 */
+/* 89 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var Layout = __webpack_require__(81);
+	var utils = __webpack_require__(79);
+	var GridLayout = __webpack_require__(77);
+	var Layout = Sophie.createClass("p-layout", {
+	    mixin: [GridLayout],
+	    getDefaultProps: function getDefaultProps() {
+	        return {
+	            style: "",
+	            className: ""
+	        };
+	    },
+	    render: function render() {
+	        var className = this.props.className;
+	        if (this.props.responseLayout) {
+	            className += "response-layout";
+	        }
+	        return Sophie.element(
+	            "p-layout",
+	            { style: this.props.style, "class": className },
+	            this.renderGridChildren()
+	        );
+	    }
+	});
+
+	var getFlexCSS = function getFlexCSS() {
+	    if (utils.supportFlex) {
+	        return utils.getFlexColumnCSS();
+	    } else {
+	        return {
+	            display: "block"
+	        };
+	    }
+	};
+
+	var getFlexItemCSS = function getFlexItemCSS() {
+	    if (utils.supportFlex) {
+	        return utils.getFlexItemCSS();
+	    } else {
+	        return {
+	            'float': 'left'
+	        };
+	    }
+	};
+
+	Sophie.createStyleSheet({
+	    "p-layout": {
+	        display: "block",
+	        minHeight: '1em',
+	        height: '5em',
+	        width: '10em',
+	        backgroundColor: "#eee"
+	    },
+
+	    "p-layout:before,p-layout:after": {
+	        display: 'table',
+	        lineHeight: 0,
+	        content: '" "'
+	    }
+
+	});
+
+	Layout.createStyleSheet({
+	    "p-layout.response-layout > div > p-grid.grid-row": getFlexCSS(),
+	    "p-layout.response-layout > div > p-grid.grid-row > *": getFlexItemCSS()
+
+	}, "@media (max-width: 767px)");
+
+	module.exports = Layout;
+
+/***/ },
+/* 90 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	//可以作为容器，但不能被选择
+	var utils = __webpack_require__(79);
+	var GridLayout = __webpack_require__(77);
+	var Layout = Sophie.createClass("p-layout-inner", {
+	    mixin: [GridLayout],
+	    getDefaultProps: function getDefaultProps() {
+	        return {
+	            style: "",
+	            id: this.props.id || "el-" + Date.now(),
+	            className: ""
+	        };
+	    },
+	    render: function render() {
+	        var className = this.props.className;
+	        if (this.props.responseLayout) {
+	            className += "response-layout";
+	        }
+	        return Sophie.element(
+	            "p-layout-inner",
+	            { id: this.props.id, style: this.props.style, "class": className },
+	            this.renderGridChildren()
+	        );
+	    }
+	});
+
+	var getFlexCSS = function getFlexCSS() {
+	    if (utils.supportFlex) {
+	        return utils.getFlexColumnCSS();
+	    } else {
+	        return {
+	            display: "block"
+	        };
+	    }
+	};
+
+	var getFlexItemCSS = function getFlexItemCSS() {
+	    if (utils.supportFlex) {
+	        return utils.getFlexItemCSS();
+	    } else {
+	        return {
+	            'float': 'left'
+	        };
+	    }
+	};
+
+	Sophie.createStyleSheet({
+	    "p-layout-inner": {
+
+	        display: 'block',
+	        overflow: "visible",
+	        minHeight: '1em',
+	        height: '5em',
+
+	        width: '10rem'
+
+	    },
+
+	    "p-layout-inner:before, p-layout-inner:after": {
+	        display: 'table',
+	        lineHeight: 0,
+	        content: "''"
+	    },
+
+	    "p-layout-inner::after": {
+	        clear: "both"
+	    }
+
+	});
+
+	Layout.createStyleSheet({
+	    "p-layout-inner.response-layout > div > p-grid.grid-row": getFlexCSS(),
+	    "p-layout-inner.response-layout > div > p-grid.grid-row > *": getFlexItemCSS()
+
+	}, "@media (max-width: 767px)");
+
+	module.exports = Layout;
+
+/***/ },
+/* 91 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var Layout = __webpack_require__(90);
 	var LayoutTow = Sophie.createClass("p-layout-two", {
 
 	  getDefaultProps: function getDefaultProps() {
@@ -6973,12 +7618,12 @@
 	module.exports = LayoutTow;
 
 /***/ },
-/* 84 */
+/* 92 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var Layout = __webpack_require__(81);
+	var Layout = __webpack_require__(90);
 	var LayoutTow = Sophie.createClass("p-layout-three", {
 
 	  getDefaultProps: function getDefaultProps() {
@@ -7186,12 +7831,12 @@
 	module.exports = LayoutTow;
 
 /***/ },
-/* 85 */
+/* 93 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var Layout = __webpack_require__(81);
+	var Layout = __webpack_require__(90);
 
 	//响应式元素不能被嵌套
 	//@todo 实现这个机制，嵌套了也不会做响应
@@ -7370,12 +8015,12 @@
 	module.exports = LayoutTow;
 
 /***/ },
-/* 86 */
+/* 94 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var Layout = __webpack_require__(81);
+	var Layout = __webpack_require__(90);
 	var LayoutTow = Sophie.createClass("p-layout-two-noresponse", {
 
 	  getDefaultProps: function getDefaultProps() {
@@ -7447,12 +8092,12 @@
 	module.exports = LayoutTow;
 
 /***/ },
-/* 87 */
+/* 95 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var Layout = __webpack_require__(81);
+	var Layout = __webpack_require__(90);
 	var LayoutTow = Sophie.createClass("p-layout-three-response", {
 
 	  getDefaultProps: function getDefaultProps() {
@@ -7634,12 +8279,12 @@
 	module.exports = LayoutTow;
 
 /***/ },
-/* 88 */
+/* 96 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var Layout = __webpack_require__(81);
+	var Layout = __webpack_require__(90);
 	var LayoutTow = Sophie.createClass("p-layout-three-noresponse", {
 
 	  getDefaultProps: function getDefaultProps() {
@@ -7715,7 +8360,2885 @@
 	module.exports = LayoutTow;
 
 /***/ },
-/* 89 */
+/* 97 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var _pPicA, _pPicCircleA, _pImgA;
+
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+	var Layout = __webpack_require__(90);
+	var GridLayout = __webpack_require__(77);
+
+	var PIC = Sophie.createClass("p-pic", {
+	    mixin: [GridLayout],
+	    getDefaultProps: function getDefaultProps() {
+	        return {
+	            defaultSrc: "http://dotlinkface.oss-cn-shanghai.aliyuncs.com/default.jpg",
+	            defaultHref: "#"
+	        };
+	    },
+	    componentDidMount: function componentDidMount() {
+
+	        // var src = $(this.node).attr("src")||"http://img.tuku.cn/file_big/201502/ad45f0968eba4b92ba549cc7abf0e70a.jpg"
+	        // var href = $(this.node).attr("href")||"/editor/img/3.jpg"
+	        // this.setHref(href);
+	        // this.setSrc(src)
+	    },
+
+	    render: function render() {
+
+	        var src = this.props.src || this.props.defaultSrc;
+	        var href = this.props.href || "#";
+
+	        var background = "background-image:url(" + src + ")";
+	        return Sophie.element(
+	            "p-pic",
+	            null,
+	            Sophie.element("a", { href: href, style: background }),
+	            Sophie.element(
+	                "div",
+	                { "class": "p-layout-inner" },
+	                this.renderGridChildren()
+	            )
+	        );
+	    },
+	    setHref: function setHref(href) {
+	        // $(this.node).attr("href",href);
+	        // var a = $(this.node).find("a");
+	        // a.attr("href", href)
+	        this.attributes.href = href;
+	        this._update();
+	    },
+
+	    setSrc: function setSrc(src) {
+	        $(this.node).attr("src", src);
+	        var a = $(this.node).find("a");
+	        if (src) {
+	            a.css("background-image", "url(" + src + ")");
+	        }
+
+	        this.attributes.src = src;
+	        this._update();
+	    }
+	});
+
+	PIC.createStyleSheet({
+	    'p-pic': {
+	        display: 'block',
+	        width: '5em',
+	        height: '5em',
+	        overflow: 'visible',
+	        position: 'relative'
+	    },
+
+	    'p-pic > div': {
+	        position: 'absolute',
+	        top: 0,
+	        left: 0,
+	        height: '100%',
+
+	        display: 'block',
+	        border: 0,
+	        width: '100%'
+
+	    },
+
+	    'p-pic  > a': (_pPicA = {
+	        position: 'absolute',
+	        top: 0,
+	        left: 0,
+	        height: '100%',
+
+	        display: 'block',
+	        border: 0,
+	        width: '100%',
+	        backgroundSize: 'cover',
+	        backgroundRepeat: 'no-repeat!important',
+	        backgroundPosition: 'center center',
+	        backgroundImage: 'url(http://img.tuku.cn/file_big/201502/ad45f0968eba4b92ba549cc7abf0e70a.jpg)'
+	    }, _defineProperty(_pPicA, "position", 'relative'), _defineProperty(_pPicA, "borderRadius", 'inherit'), _pPicA),
+
+	    'p-pic > .children,p-pic > .p-layout-inner': {
+	        position: 'absolute',
+	        top: 0,
+	        left: 0,
+	        height: '100%',
+
+	        display: 'block',
+	        border: 0,
+	        width: '100%'
+	    },
+
+	    'p-pic  a img': {
+	        width: '100%'
+	    }
+
+	});
+
+	PIC.createStyleSheet({
+	    "p-pic": {}
+	}, "@media (max-width: 767px)");
+
+	Sophie.createClass("p-pic-circle", {
+	    mixin: [GridLayout],
+	    componentDidMount: function componentDidMount() {
+
+	        var src = $(this.node).attr("src") || "http://img.tuku.cn/file_big/201502/ad45f0968eba4b92ba549cc7abf0e70a.jpg";
+	        var href = $(this.node).attr("href") || "/editor/img/3.jpg";
+	        this.setHref(href);
+	        this.setSrc(src);
+	    },
+
+	    render: function render() {
+	        return Sophie.element(
+	            "p-pic-circle",
+	            null,
+	            Sophie.element("a", { href: "/editor/img/4.jpg" }),
+	            Sophie.element(
+	                "div",
+	                { "class": "p-layout-inner" },
+	                this.renderGridChildren()
+	            )
+	        );
+	    },
+
+	    setHref: function setHref(href) {
+	        $(this.node).attr("href", href);
+	        var a = $(this.node).find("a");
+	        a.attr("href", href);
+	    },
+
+	    setSrc: function setSrc(src) {
+	        $(this.node).attr("src", src);
+	        var a = $(this.node).find("a");
+	        if (src) {
+	            a.css("background-image", "url(" + src + ")");
+	        }
+	    }
+	});
+
+	Sophie.createStyleSheet({
+	    'p-pic-circle': {
+	        display: 'block',
+	        width: '5em',
+	        height: '5em',
+	        border: 0,
+	        overflow: 'hidden',
+	        position: 'relative',
+	        borderRadius: '50%'
+	    },
+
+	    'p-pic-circle > div': {
+	        position: 'absolute',
+	        top: 0,
+	        left: 0,
+	        height: '100%',
+
+	        display: 'block',
+	        border: 0,
+	        width: '100%'
+
+	    },
+
+	    'p-pic-circle  > a': (_pPicCircleA = {
+	        position: 'absolute',
+	        top: 0,
+	        left: 0,
+	        height: '100%',
+
+	        display: 'block',
+	        border: 0,
+	        width: '100%',
+	        backgroundSize: 'cover',
+	        backgroundRepeat: 'no-repeat!important',
+	        backgroundPosition: 'center center',
+	        backgroundImage: 'url(http://img.tuku.cn/file_big/201502/ad45f0968eba4b92ba549cc7abf0e70a.jpg)'
+	    }, _defineProperty(_pPicCircleA, "position", 'relative'), _defineProperty(_pPicCircleA, "borderRadius", 'inherit'), _pPicCircleA),
+
+	    'p-pic-circle > .p-layout-inner': {
+	        position: 'absolute',
+	        top: 0,
+	        left: 0,
+	        height: '100%',
+
+	        display: 'block',
+	        border: 0,
+	        width: '100%'
+	    },
+
+	    'p-pic-circle  a img': {
+	        width: '100%'
+	    }
+
+	});
+
+	Sophie.createClass("p-img", {
+
+	    componentDidMount: function componentDidMount() {
+	        var src = $(this.node).attr("src") || "/editor/img/3.jpg";
+	        var href = $(this.node).attr("href") || "/editor/img/3.jpg";
+	        this.setHref(href);
+	        this.setSrc(src);
+	    },
+
+	    setHref: function setHref(href) {
+	        $(this.node).attr("href", href);
+	        var a = $(this.node).find("a");
+	        a.attr("href", href);
+	    },
+
+	    setSrc: function setSrc(src) {
+	        $(this.node).attr("src", src);
+	        var a = $(this.node).find("a");
+	        var img = $(this.node).find("a img");
+	        if (src) {
+	            img.prop("src", src);
+	        }
+	    },
+	    rener: function rener() {
+	        return Sophie.element(
+	            "div",
+	            null,
+	            Sophie.element("a", { href: "/editor/img/4.jpg" }),
+	            Sophie.element("children", null)
+	        );
+	    }
+	});
+
+	Sophie.createStyleSheet({
+	    'p-img': {
+	        display: 'block',
+	        width: '4em',
+	        height: 'auto!important',
+
+	        border: 0,
+	        overflow: 'hidden',
+	        position: 'relative'
+	    },
+
+	    'p-img > a': (_pImgA = {
+	        position: 'absolute',
+	        top: 0,
+	        left: 0,
+	        height: '100%',
+
+	        display: 'block',
+	        border: 0,
+
+	        width: '100%',
+	        backgroundSize: 'cover',
+	        backgroundRepeat: 'no-repeat!important',
+	        backgroundPosition: 'center center',
+	        backgroundImage: 'url(http://img.tuku.cn/file_big/201502/ad45f0968eba4b92ba549cc7abf0e70a.jpg)'
+	    }, _defineProperty(_pImgA, "position", 'relative'), _defineProperty(_pImgA, "borderRadius", 'inherit'), _pImgA),
+
+	    'p-img > children': {
+	        position: 'absolute',
+	        top: 0,
+	        left: 0,
+	        height: '100%',
+	        display: 'block',
+	        border: 0,
+	        width: '100%'
+	    },
+
+	    'p-img > a > img': {
+	        width: '100%'
+	    }
+
+	});
+
+	module.exports = PIC;
+
+/***/ },
+/* 98 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var Layout = __webpack_require__(90);
+	var GridLayout = __webpack_require__(77);
+
+	var PIC = Sophie.createClass("p-bg", {
+	    mixin: [GridLayout],
+	    getDefaultProps: function getDefaultProps() {
+	        return {
+	            src: "http://dotlinkface.oss-cn-shanghai.aliyuncs.com/default.jpg",
+	            fullWidth: true
+	        };
+	    },
+	    componentDidMount: function componentDidMount() {
+
+	        // var src = $(this.node).attr("src")||"http://img.tuku.cn/file_big/201502/ad45f0968eba4b92ba549cc7abf0e70a.jpg"
+	        // var href = $(this.node).attr("href")||"/editor/img/3.jpg"
+	        // this.setHref(href);
+	        // this.setSrc(src)
+	    },
+
+	    render: function render() {
+
+	        var background = "background-image:url(" + this.props.src + ")";
+	        return Sophie.element(
+	            "p-bg",
+	            null,
+	            Sophie.element(
+	                "div",
+	                { "class": "p-bg-wrap" },
+	                Sophie.element("div", { "class": "p-bg-content", style: background })
+	            ),
+	            Sophie.element(
+	                "div",
+	                { "class": "p-layout-inner" },
+	                this.renderGridChildren()
+	            )
+	        );
+	    },
+
+	    setSrc: function setSrc(src) {
+	        this.props.src = src;
+	        this._update();
+	    }
+	});
+
+	PIC.createStyleSheet({
+	    'p-bg': {
+	        display: 'block',
+	        width: '100%!important',
+	        height: '10em',
+	        overflow: 'visible',
+	        position: 'relative'
+	    },
+
+	    'p-bg  .p-bg-wrap, p-bg .p-bg-content': {
+	        position: 'absolute',
+	        top: 0,
+	        left: 0,
+	        height: '100%',
+
+	        display: 'block',
+	        border: 0,
+	        width: '100%'
+
+	    },
+
+	    'p-bg > .children,p-bg > .p-layout-inner': {}
+
+	});
+
+	PIC.createStyleSheet({
+	    "p-pic": {}
+	}, "@media (max-width: 767px)");
+
+	module.exports = PIC;
+
+/***/ },
+/* 99 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var masonry = __webpack_require__(100);
+
+	var Pic = __webpack_require__(97);
+
+	var NavBar = Sophie.createClass("p-masonry", {
+	    getDefaultProps: function getDefaultProps() {
+	        return {
+	            initWidth: 600,
+	            initHeight: 500,
+	            columnNum: 2,
+	            gutter: 10
+	        };
+	    },
+
+	    getDefaultChildren: function getDefaultChildren() {
+	        return [Sophie.element(Pic, null), Sophie.element(Pic, null), Sophie.element(Pic, null), Sophie.element(Pic, null)];
+	    },
+
+	    renderChildren: function renderChildren() {
+	        var width = this.props.initWidth;
+	        var oNum = this.props.columnNum;
+	        var columnWith = width - this.props.gutter * (oNum - 1);
+	        var children = [];
+	        var style = "width:" + columnWith / oNum + "px;height:200px;margin-bottom:" + this.props.gutter + "px";
+	        for (var i = 0; i < this.props.children.length; i++) {
+	            children.push(Sophie.element(
+	                "div",
+	                { "class": "grid-item" },
+	                Sophie.element(
+	                    "div",
+	                    { "class": "grid-item-content", style: style },
+	                    Sophie.element(
+	                        "div",
+	                        { "class": "grid-ceil" },
+	                        this.props.children[i]
+	                    )
+	                )
+	            ));
+	        }
+	        return children;
+	    },
+
+	    render: function render() {
+
+	        return Sophie.element(
+	            "p-masonry",
+	            null,
+	            Sophie.element(
+	                "div",
+	                { "class": "grid" },
+	                this.renderChildren()
+	            )
+	        );
+	    },
+
+	    componentDidMount: function componentDidMount() {
+	        var self = this;
+
+	        self.initRowColumn();
+	        var width = this.props.initWidth;
+	        var oNum = this.props.columnNum;
+	        var columnWidth = (width - this.props.gutter * (oNum - 1)) / oNum;
+
+	        console.log(columnWidth);
+
+	        var grid = new masonry($(".grid", this.nativeNode).get(0), {
+	            // columnWidth: '.grid-sizer',
+
+	            gutter: self.props.gutter,
+	            columnWidth: columnWidth,
+	            horizontalOrder: true,
+
+	            itemSelector: '.grid-item',
+	            percentPosition: true,
+	            resize: false,
+	            containerStyle: { width: width + "px" }
+
+	        });
+
+	        self.grid = grid;
+
+	        // grid.imagesLoaded().progress( function() {
+	        //     grid.masonry('layout');
+	        // });
+
+
+	        // grid.layout();
+
+	    },
+
+	    initRowColumn: function initRowColumn() {
+	        this.setAllColumnWidth();
+	    },
+
+	    showOrHideCeil: function showOrHideCeil() {},
+
+	    addOne: function addOne(el) {
+
+	        el = el || $('<div class="grid-item"><div class="grid-ceil"> <img  src="/editor/img/4.jpg"></div></grid-item>');
+
+	        // debugger;
+	        this.setColumnWidth(el);
+	        this.grid.masonry().append(el).masonry('appended', el)
+	        // layout
+	        .masonry();
+
+	        // this.setAllColumnWidth()
+
+
+	        return el;
+	    },
+
+	    setColumn: function setColumn(columm) {
+	        this.props.columnNum = column;
+	        this.setAllColumnWidth();
+	        this.grid.layout();
+	        this.showOrHideCeil();
+	    },
+
+	    setRow: function setRow(row) {
+	        $(this).attr("data-r-num", row);
+	    },
+
+	    setAllColumnWidth: function setAllColumnWidth(width) {
+	        var width = width || $(this.nativeNode).width();
+	        var oNum = this.props.columnNum;
+	        var columnWith = 1 / oNum;
+
+	        $(".grid-sizer", this.nativeNode).css("width", columnWith * 100 + "%");
+	        // $(".grid-item", this).each(function (index, el) {
+	        //     $(el).css("width", columnWith * 100 + "%");
+	        // })
+	    },
+
+	    setColumnWidth: function setColumnWidth(column) {
+	        var width = width || $(this.nativeNode).width();
+	        var oNum = this.props.columnNum;
+	        var columnWith = 1 / oNum;
+	        $(".grid-sizer", this.nativeNode).css("width", columnWith * 100 + "%");
+	        this.grid.layout();
+	    },
+
+	    setAllRowHeight: function setAllRowHeight(height) {},
+
+	    setRowHeight: function setRowHeight(row) {}
+	});
+
+	Sophie.createStyleSheet({
+	    'p-masonry': {
+	        width: '580px',
+	        'height': '10em',
+	        display: 'block',
+	        "position": "relative"
+	    },
+	    'p-masonry .grid': {
+	        height: '100%',
+	        width: '100%'
+	    },
+
+	    'p-masonry .grid-item': {
+
+	        overflow: 'hidden'
+	    },
+
+	    'p-masonry .grid-ceil': {
+	        width: '100%',
+	        height: '100%'
+	    },
+
+	    'p-masonry .grid-sizer': {
+	        width: '50%'
+	    },
+
+	    'p-masonry .gutter-sizer': {
+	        width: '0em'
+	    },
+
+	    'p-masonry .grid-item p-pic ': {
+	        width: '100%',
+	        height: '100%'
+	    }
+
+	});
+
+	Sophie.createStyleSheet({}, "@media (max-width: 767px)");
+
+	module.exports = NavBar;
+
+/***/ },
+/* 100 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
+
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
+	/*!
+	 * Masonry v4.2.0
+	 * Cascading grid layout library
+	 * http://masonry.desandro.com
+	 * MIT License
+	 * by David DeSandro
+	 */
+
+	(function (window, factory) {
+	  // universal module definition
+	  /* jshint strict: false */ /*globals define, module, require */
+	  if (true) {
+	    // AMD
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(101), __webpack_require__(103)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	  } else if ((typeof module === 'undefined' ? 'undefined' : _typeof(module)) == 'object' && module.exports) {
+	    // CommonJS
+	    module.exports = factory(require('outlayer'), require('get-size'));
+	  } else {
+	    // browser global
+	    window.Masonry = factory(window.Outlayer, window.getSize);
+	  }
+	})(window, function factory(Outlayer, getSize) {
+
+	  'use strict';
+
+	  // -------------------------- masonryDefinition -------------------------- //
+
+	  // create an Outlayer layout class
+
+	  var Masonry = Outlayer.create('masonry');
+	  // isFitWidth -> fitWidth
+	  Masonry.compatOptions.fitWidth = 'isFitWidth';
+
+	  var proto = Masonry.prototype;
+
+	  proto._resetLayout = function () {
+	    this.getSize();
+	    this._getMeasurement('columnWidth', 'outerWidth');
+	    this._getMeasurement('gutter', 'outerWidth');
+	    this.measureColumns();
+
+	    // reset column Y
+	    this.colYs = [];
+	    for (var i = 0; i < this.cols; i++) {
+	      this.colYs.push(0);
+	    }
+
+	    this.maxY = 0;
+	    this.horizontalColIndex = 0;
+	  };
+
+	  proto.measureColumns = function () {
+	    this.getContainerWidth();
+	    // if columnWidth is 0, default to outerWidth of first item
+	    if (!this.columnWidth) {
+	      var firstItem = this.items[0];
+	      var firstItemElem = firstItem && firstItem.element;
+	      // columnWidth fall back to item of first element
+	      this.columnWidth = firstItemElem && getSize(firstItemElem).outerWidth ||
+	      // if first elem has no width, default to size of container
+	      this.containerWidth;
+	    }
+
+	    var columnWidth = this.columnWidth += this.gutter;
+
+	    // calculate columns
+	    var containerWidth = this.containerWidth + this.gutter;
+	    var cols = containerWidth / columnWidth;
+	    // fix rounding errors, typically with gutters
+	    var excess = columnWidth - containerWidth % columnWidth;
+	    // if overshoot is less than a pixel, round up, otherwise floor it
+	    var mathMethod = excess && excess < 1 ? 'round' : 'floor';
+	    cols = Math[mathMethod](cols);
+	    this.cols = Math.max(cols, 1);
+	  };
+
+	  proto.getContainerWidth = function () {
+	    // container is parent if fit width
+	    var isFitWidth = this._getOption('fitWidth');
+	    var container = isFitWidth ? this.element.parentNode : this.element;
+	    // check that this.size and size are there
+	    // IE8 triggers resize on body size change, so they might not be
+	    var size = getSize(container);
+	    this.containerWidth = size && size.innerWidth;
+	  };
+
+	  proto._getItemLayoutPosition = function (item) {
+	    item.getSize();
+	    // how many columns does this brick span
+	    var remainder = item.size.outerWidth % this.columnWidth;
+	    var mathMethod = remainder && remainder < 1 ? 'round' : 'ceil';
+	    // round if off by 1 pixel, otherwise use ceil
+	    var colSpan = Math[mathMethod](item.size.outerWidth / this.columnWidth);
+	    colSpan = Math.min(colSpan, this.cols);
+	    // use horizontal or top column position
+	    var colPosMethod = this.options.horizontalOrder ? '_getHorizontalColPosition' : '_getTopColPosition';
+	    var colPosition = this[colPosMethod](colSpan, item);
+	    // position the brick
+	    var position = {
+	      x: this.columnWidth * colPosition.col,
+	      y: colPosition.y
+	    };
+	    // apply setHeight to necessary columns
+	    var setHeight = colPosition.y + item.size.outerHeight;
+	    var setMax = colSpan + colPosition.col;
+	    for (var i = colPosition.col; i < setMax; i++) {
+	      this.colYs[i] = setHeight;
+	    }
+
+	    return position;
+	  };
+
+	  proto._getTopColPosition = function (colSpan) {
+	    var colGroup = this._getTopColGroup(colSpan);
+	    // get the minimum Y value from the columns
+	    var minimumY = Math.min.apply(Math, colGroup);
+
+	    return {
+	      col: colGroup.indexOf(minimumY),
+	      y: minimumY
+	    };
+	  };
+
+	  /**
+	   * @param {Number} colSpan - number of columns the element spans
+	   * @returns {Array} colGroup
+	   */
+	  proto._getTopColGroup = function (colSpan) {
+	    if (colSpan < 2) {
+	      // if brick spans only one column, use all the column Ys
+	      return this.colYs;
+	    }
+
+	    var colGroup = [];
+	    // how many different places could this brick fit horizontally
+	    var groupCount = this.cols + 1 - colSpan;
+	    // for each group potential horizontal position
+	    for (var i = 0; i < groupCount; i++) {
+	      colGroup[i] = this._getColGroupY(i, colSpan);
+	    }
+	    return colGroup;
+	  };
+
+	  proto._getColGroupY = function (col, colSpan) {
+	    if (colSpan < 2) {
+	      return this.colYs[col];
+	    }
+	    // make an array of colY values for that one group
+	    var groupColYs = this.colYs.slice(col, col + colSpan);
+	    // and get the max value of the array
+	    return Math.max.apply(Math, groupColYs);
+	  };
+
+	  // get column position based on horizontal index. #873
+	  proto._getHorizontalColPosition = function (colSpan, item) {
+	    var col = this.horizontalColIndex % this.cols;
+	    var isOver = colSpan > 1 && col + colSpan > this.cols;
+	    // shift to next row if item can't fit on current row
+	    col = isOver ? 0 : col;
+	    // don't let zero-size items take up space
+	    var hasSize = item.size.outerWidth && item.size.outerHeight;
+	    this.horizontalColIndex = hasSize ? col + colSpan : this.horizontalColIndex;
+
+	    return {
+	      col: col,
+	      y: this._getColGroupY(col, colSpan)
+	    };
+	  };
+
+	  proto._manageStamp = function (stamp) {
+	    var stampSize = getSize(stamp);
+	    var offset = this._getElementOffset(stamp);
+	    // get the columns that this stamp affects
+	    var isOriginLeft = this._getOption('originLeft');
+	    var firstX = isOriginLeft ? offset.left : offset.right;
+	    var lastX = firstX + stampSize.outerWidth;
+	    var firstCol = Math.floor(firstX / this.columnWidth);
+	    firstCol = Math.max(0, firstCol);
+	    var lastCol = Math.floor(lastX / this.columnWidth);
+	    // lastCol should not go over if multiple of columnWidth #425
+	    lastCol -= lastX % this.columnWidth ? 0 : 1;
+	    lastCol = Math.min(this.cols - 1, lastCol);
+	    // set colYs to bottom of the stamp
+
+	    var isOriginTop = this._getOption('originTop');
+	    var stampMaxY = (isOriginTop ? offset.top : offset.bottom) + stampSize.outerHeight;
+	    for (var i = firstCol; i <= lastCol; i++) {
+	      this.colYs[i] = Math.max(stampMaxY, this.colYs[i]);
+	    }
+	  };
+
+	  proto._getContainerSize = function () {
+	    this.maxY = Math.max.apply(Math, this.colYs);
+	    var size = {
+	      height: this.maxY
+	    };
+
+	    if (this._getOption('fitWidth')) {
+	      size.width = this._getContainerFitWidth();
+	    }
+
+	    return size;
+	  };
+
+	  proto._getContainerFitWidth = function () {
+	    var unusedCols = 0;
+	    // count unused columns
+	    var i = this.cols;
+	    while (--i) {
+	      if (this.colYs[i] !== 0) {
+	        break;
+	      }
+	      unusedCols++;
+	    }
+	    // fit container to columns that have been used
+	    return (this.cols - unusedCols) * this.columnWidth - this.gutter;
+	  };
+
+	  proto.needsResizeLayout = function () {
+	    var previousWidth = this.containerWidth;
+	    this.getContainerWidth();
+	    return previousWidth != this.containerWidth;
+	  };
+
+	  return Masonry;
+	});
+
+/***/ },
+/* 101 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
+
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
+	/*!
+	 * Outlayer v2.1.1
+	 * the brains and guts of a layout library
+	 * MIT license
+	 */
+
+	(function (window, factory) {
+	  'use strict';
+	  // universal module definition
+	  /* jshint strict: false */ /* globals define, module, require */
+
+	  if (true) {
+	    // AMD - RequireJS
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(102), __webpack_require__(103), __webpack_require__(104), __webpack_require__(106)], __WEBPACK_AMD_DEFINE_RESULT__ = function (EvEmitter, getSize, utils, Item) {
+	      return factory(window, EvEmitter, getSize, utils, Item);
+	    }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	  } else if ((typeof module === 'undefined' ? 'undefined' : _typeof(module)) == 'object' && module.exports) {
+	    // CommonJS - Browserify, Webpack
+	    module.exports = factory(window, require('ev-emitter'), require('get-size'), require('fizzy-ui-utils'), require('./item'));
+	  } else {
+	    // browser global
+	    window.Outlayer = factory(window, window.EvEmitter, window.getSize, window.fizzyUIUtils, window.Outlayer.Item);
+	  }
+	})(window, function factory(window, EvEmitter, getSize, utils, Item) {
+	  'use strict';
+
+	  // ----- vars ----- //
+
+	  var console = window.console;
+	  var jQuery = window.jQuery;
+	  var noop = function noop() {};
+
+	  // -------------------------- Outlayer -------------------------- //
+
+	  // globally unique identifiers
+	  var GUID = 0;
+	  // internal store of all Outlayer intances
+	  var instances = {};
+
+	  /**
+	   * @param {Element, String} element
+	   * @param {Object} options
+	   * @constructor
+	   */
+	  function Outlayer(element, options) {
+	    var queryElement = utils.getQueryElement(element);
+	    if (!queryElement) {
+	      if (console) {
+	        console.error('Bad element for ' + this.constructor.namespace + ': ' + (queryElement || element));
+	      }
+	      return;
+	    }
+	    this.element = queryElement;
+	    // add jQuery
+	    if (jQuery) {
+	      this.$element = jQuery(this.element);
+	    }
+
+	    // options
+	    this.options = utils.extend({}, this.constructor.defaults);
+	    this.option(options);
+
+	    // add id for Outlayer.getFromElement
+	    var id = ++GUID;
+	    this.element.outlayerGUID = id; // expando
+	    instances[id] = this; // associate via id
+
+	    // kick it off
+	    this._create();
+
+	    var isInitLayout = this._getOption('initLayout');
+	    if (isInitLayout) {
+	      this.layout();
+	    }
+	  }
+
+	  // settings are for internal use only
+	  Outlayer.namespace = 'outlayer';
+	  Outlayer.Item = Item;
+
+	  // default options
+	  Outlayer.defaults = {
+	    containerStyle: {
+	      position: 'relative'
+	    },
+	    initLayout: true,
+	    originLeft: true,
+	    originTop: true,
+	    resize: true,
+	    resizeContainer: true,
+	    // item options
+	    transitionDuration: '0.4s',
+	    hiddenStyle: {
+	      opacity: 0,
+	      transform: 'scale(0.001)'
+	    },
+	    visibleStyle: {
+	      opacity: 1,
+	      transform: 'scale(1)'
+	    }
+	  };
+
+	  var proto = Outlayer.prototype;
+	  // inherit EvEmitter
+	  utils.extend(proto, EvEmitter.prototype);
+
+	  /**
+	   * set options
+	   * @param {Object} opts
+	   */
+	  proto.option = function (opts) {
+	    utils.extend(this.options, opts);
+	  };
+
+	  /**
+	   * get backwards compatible option value, check old name
+	   */
+	  proto._getOption = function (option) {
+	    var oldOption = this.constructor.compatOptions[option];
+	    return oldOption && this.options[oldOption] !== undefined ? this.options[oldOption] : this.options[option];
+	  };
+
+	  Outlayer.compatOptions = {
+	    // currentName: oldName
+	    initLayout: 'isInitLayout',
+	    horizontal: 'isHorizontal',
+	    layoutInstant: 'isLayoutInstant',
+	    originLeft: 'isOriginLeft',
+	    originTop: 'isOriginTop',
+	    resize: 'isResizeBound',
+	    resizeContainer: 'isResizingContainer'
+	  };
+
+	  proto._create = function () {
+	    // get items from children
+	    this.reloadItems();
+	    // elements that affect layout, but are not laid out
+	    this.stamps = [];
+	    this.stamp(this.options.stamp);
+	    // set container style
+	    utils.extend(this.element.style, this.options.containerStyle);
+
+	    // bind resize method
+	    var canBindResize = this._getOption('resize');
+	    if (canBindResize) {
+	      this.bindResize();
+	    }
+	  };
+
+	  // goes through all children again and gets bricks in proper order
+	  proto.reloadItems = function () {
+	    // collection of item elements
+	    this.items = this._itemize(this.element.children);
+	  };
+
+	  /**
+	   * turn elements into Outlayer.Items to be used in layout
+	   * @param {Array or NodeList or HTMLElement} elems
+	   * @returns {Array} items - collection of new Outlayer Items
+	   */
+	  proto._itemize = function (elems) {
+
+	    var itemElems = this._filterFindItemElements(elems);
+	    var Item = this.constructor.Item;
+
+	    // create new Outlayer Items for collection
+	    var items = [];
+	    for (var i = 0; i < itemElems.length; i++) {
+	      var elem = itemElems[i];
+	      var item = new Item(elem, this);
+	      items.push(item);
+	    }
+
+	    return items;
+	  };
+
+	  /**
+	   * get item elements to be used in layout
+	   * @param {Array or NodeList or HTMLElement} elems
+	   * @returns {Array} items - item elements
+	   */
+	  proto._filterFindItemElements = function (elems) {
+	    return utils.filterFindElements(elems, this.options.itemSelector);
+	  };
+
+	  /**
+	   * getter method for getting item elements
+	   * @returns {Array} elems - collection of item elements
+	   */
+	  proto.getItemElements = function () {
+	    return this.items.map(function (item) {
+	      return item.element;
+	    });
+	  };
+
+	  // ----- init & layout ----- //
+
+	  /**
+	   * lays out all items
+	   */
+	  proto.layout = function () {
+	    this._resetLayout();
+	    this._manageStamps();
+
+	    // don't animate first layout
+	    var layoutInstant = this._getOption('layoutInstant');
+	    var isInstant = layoutInstant !== undefined ? layoutInstant : !this._isLayoutInited;
+	    this.layoutItems(this.items, isInstant);
+
+	    // flag for initalized
+	    this._isLayoutInited = true;
+	  };
+
+	  // _init is alias for layout
+	  proto._init = proto.layout;
+
+	  /**
+	   * logic before any new layout
+	   */
+	  proto._resetLayout = function () {
+	    this.getSize();
+	  };
+
+	  proto.getSize = function () {
+	    this.size = getSize(this.element);
+	  };
+
+	  /**
+	   * get measurement from option, for columnWidth, rowHeight, gutter
+	   * if option is String -> get element from selector string, & get size of element
+	   * if option is Element -> get size of element
+	   * else use option as a number
+	   *
+	   * @param {String} measurement
+	   * @param {String} size - width or height
+	   * @private
+	   */
+	  proto._getMeasurement = function (measurement, size) {
+	    var option = this.options[measurement];
+	    var elem;
+	    if (!option) {
+	      // default to 0
+	      this[measurement] = 0;
+	    } else {
+	      // use option as an element
+	      if (typeof option == 'string') {
+	        elem = this.element.querySelector(option);
+	      } else if (option instanceof HTMLElement) {
+	        elem = option;
+	      }
+	      // use size of element, if element
+	      this[measurement] = elem ? getSize(elem)[size] : option;
+	    }
+	  };
+
+	  /**
+	   * layout a collection of item elements
+	   * @api public
+	   */
+	  proto.layoutItems = function (items, isInstant) {
+	    items = this._getItemsForLayout(items);
+
+	    this._layoutItems(items, isInstant);
+
+	    this._postLayout();
+	  };
+
+	  /**
+	   * get the items to be laid out
+	   * you may want to skip over some items
+	   * @param {Array} items
+	   * @returns {Array} items
+	   */
+	  proto._getItemsForLayout = function (items) {
+	    return items.filter(function (item) {
+	      return !item.isIgnored;
+	    });
+	  };
+
+	  /**
+	   * layout items
+	   * @param {Array} items
+	   * @param {Boolean} isInstant
+	   */
+	  proto._layoutItems = function (items, isInstant) {
+	    this._emitCompleteOnItems('layout', items);
+
+	    if (!items || !items.length) {
+	      // no items, emit event with empty array
+	      return;
+	    }
+
+	    var queue = [];
+
+	    items.forEach(function (item) {
+	      // get x/y object from method
+	      var position = this._getItemLayoutPosition(item);
+	      // enqueue
+	      position.item = item;
+	      position.isInstant = isInstant || item.isLayoutInstant;
+	      queue.push(position);
+	    }, this);
+
+	    this._processLayoutQueue(queue);
+	  };
+
+	  /**
+	   * get item layout position
+	   * @param {Outlayer.Item} item
+	   * @returns {Object} x and y position
+	   */
+	  proto._getItemLayoutPosition = function () /* item */{
+	    return {
+	      x: 0,
+	      y: 0
+	    };
+	  };
+
+	  /**
+	   * iterate over array and position each item
+	   * Reason being - separating this logic prevents 'layout invalidation'
+	   * thx @paul_irish
+	   * @param {Array} queue
+	   */
+	  proto._processLayoutQueue = function (queue) {
+	    this.updateStagger();
+	    queue.forEach(function (obj, i) {
+	      this._positionItem(obj.item, obj.x, obj.y, obj.isInstant, i);
+	    }, this);
+	  };
+
+	  // set stagger from option in milliseconds number
+	  proto.updateStagger = function () {
+	    var stagger = this.options.stagger;
+	    if (stagger === null || stagger === undefined) {
+	      this.stagger = 0;
+	      return;
+	    }
+	    this.stagger = getMilliseconds(stagger);
+	    return this.stagger;
+	  };
+
+	  /**
+	   * Sets position of item in DOM
+	   * @param {Outlayer.Item} item
+	   * @param {Number} x - horizontal position
+	   * @param {Number} y - vertical position
+	   * @param {Boolean} isInstant - disables transitions
+	   */
+	  proto._positionItem = function (item, x, y, isInstant, i) {
+	    if (isInstant) {
+	      // if not transition, just set CSS
+	      item.goTo(x, y);
+	    } else {
+	      item.stagger(i * this.stagger);
+	      item.moveTo(x, y);
+	    }
+	  };
+
+	  /**
+	   * Any logic you want to do after each layout,
+	   * i.e. size the container
+	   */
+	  proto._postLayout = function () {
+	    this.resizeContainer();
+	  };
+
+	  proto.resizeContainer = function () {
+	    var isResizingContainer = this._getOption('resizeContainer');
+	    if (!isResizingContainer) {
+	      return;
+	    }
+	    var size = this._getContainerSize();
+	    if (size) {
+	      this._setContainerMeasure(size.width, true);
+	      this._setContainerMeasure(size.height, false);
+	    }
+	  };
+
+	  /**
+	   * Sets width or height of container if returned
+	   * @returns {Object} size
+	   *   @param {Number} width
+	   *   @param {Number} height
+	   */
+	  proto._getContainerSize = noop;
+
+	  /**
+	   * @param {Number} measure - size of width or height
+	   * @param {Boolean} isWidth
+	   */
+	  proto._setContainerMeasure = function (measure, isWidth) {
+	    if (measure === undefined) {
+	      return;
+	    }
+
+	    var elemSize = this.size;
+	    // add padding and border width if border box
+	    if (elemSize.isBorderBox) {
+	      measure += isWidth ? elemSize.paddingLeft + elemSize.paddingRight + elemSize.borderLeftWidth + elemSize.borderRightWidth : elemSize.paddingBottom + elemSize.paddingTop + elemSize.borderTopWidth + elemSize.borderBottomWidth;
+	    }
+
+	    measure = Math.max(measure, 0);
+	    this.element.style[isWidth ? 'width' : 'height'] = measure + 'px';
+	  };
+
+	  /**
+	   * emit eventComplete on a collection of items events
+	   * @param {String} eventName
+	   * @param {Array} items - Outlayer.Items
+	   */
+	  proto._emitCompleteOnItems = function (eventName, items) {
+	    var _this = this;
+	    function onComplete() {
+	      _this.dispatchEvent(eventName + 'Complete', null, [items]);
+	    }
+
+	    var count = items.length;
+	    if (!items || !count) {
+	      onComplete();
+	      return;
+	    }
+
+	    var doneCount = 0;
+	    function tick() {
+	      doneCount++;
+	      if (doneCount == count) {
+	        onComplete();
+	      }
+	    }
+
+	    // bind callback
+	    items.forEach(function (item) {
+	      item.once(eventName, tick);
+	    });
+	  };
+
+	  /**
+	   * emits events via EvEmitter and jQuery events
+	   * @param {String} type - name of event
+	   * @param {Event} event - original event
+	   * @param {Array} args - extra arguments
+	   */
+	  proto.dispatchEvent = function (type, event, args) {
+	    // add original event to arguments
+	    var emitArgs = event ? [event].concat(args) : args;
+	    this.emitEvent(type, emitArgs);
+
+	    if (jQuery) {
+	      // set this.$element
+	      this.$element = this.$element || jQuery(this.element);
+	      if (event) {
+	        // create jQuery event
+	        var $event = jQuery.Event(event);
+	        $event.type = type;
+	        this.$element.trigger($event, args);
+	      } else {
+	        // just trigger with type if no event available
+	        this.$element.trigger(type, args);
+	      }
+	    }
+	  };
+
+	  // -------------------------- ignore & stamps -------------------------- //
+
+
+	  /**
+	   * keep item in collection, but do not lay it out
+	   * ignored items do not get skipped in layout
+	   * @param {Element} elem
+	   */
+	  proto.ignore = function (elem) {
+	    var item = this.getItem(elem);
+	    if (item) {
+	      item.isIgnored = true;
+	    }
+	  };
+
+	  /**
+	   * return item to layout collection
+	   * @param {Element} elem
+	   */
+	  proto.unignore = function (elem) {
+	    var item = this.getItem(elem);
+	    if (item) {
+	      delete item.isIgnored;
+	    }
+	  };
+
+	  /**
+	   * adds elements to stamps
+	   * @param {NodeList, Array, Element, or String} elems
+	   */
+	  proto.stamp = function (elems) {
+	    elems = this._find(elems);
+	    if (!elems) {
+	      return;
+	    }
+
+	    this.stamps = this.stamps.concat(elems);
+	    // ignore
+	    elems.forEach(this.ignore, this);
+	  };
+
+	  /**
+	   * removes elements to stamps
+	   * @param {NodeList, Array, or Element} elems
+	   */
+	  proto.unstamp = function (elems) {
+	    elems = this._find(elems);
+	    if (!elems) {
+	      return;
+	    }
+
+	    elems.forEach(function (elem) {
+	      // filter out removed stamp elements
+	      utils.removeFrom(this.stamps, elem);
+	      this.unignore(elem);
+	    }, this);
+	  };
+
+	  /**
+	   * finds child elements
+	   * @param {NodeList, Array, Element, or String} elems
+	   * @returns {Array} elems
+	   */
+	  proto._find = function (elems) {
+	    if (!elems) {
+	      return;
+	    }
+	    // if string, use argument as selector string
+	    if (typeof elems == 'string') {
+	      elems = this.element.querySelectorAll(elems);
+	    }
+	    elems = utils.makeArray(elems);
+	    return elems;
+	  };
+
+	  proto._manageStamps = function () {
+	    if (!this.stamps || !this.stamps.length) {
+	      return;
+	    }
+
+	    this._getBoundingRect();
+
+	    this.stamps.forEach(this._manageStamp, this);
+	  };
+
+	  // update boundingLeft / Top
+	  proto._getBoundingRect = function () {
+	    // get bounding rect for container element
+	    var boundingRect = this.element.getBoundingClientRect();
+	    var size = this.size;
+	    this._boundingRect = {
+	      left: boundingRect.left + size.paddingLeft + size.borderLeftWidth,
+	      top: boundingRect.top + size.paddingTop + size.borderTopWidth,
+	      right: boundingRect.right - (size.paddingRight + size.borderRightWidth),
+	      bottom: boundingRect.bottom - (size.paddingBottom + size.borderBottomWidth)
+	    };
+	  };
+
+	  /**
+	   * @param {Element} stamp
+	  **/
+	  proto._manageStamp = noop;
+
+	  /**
+	   * get x/y position of element relative to container element
+	   * @param {Element} elem
+	   * @returns {Object} offset - has left, top, right, bottom
+	   */
+	  proto._getElementOffset = function (elem) {
+	    var boundingRect = elem.getBoundingClientRect();
+	    var thisRect = this._boundingRect;
+	    var size = getSize(elem);
+	    var offset = {
+	      left: boundingRect.left - thisRect.left - size.marginLeft,
+	      top: boundingRect.top - thisRect.top - size.marginTop,
+	      right: thisRect.right - boundingRect.right - size.marginRight,
+	      bottom: thisRect.bottom - boundingRect.bottom - size.marginBottom
+	    };
+	    return offset;
+	  };
+
+	  // -------------------------- resize -------------------------- //
+
+	  // enable event handlers for listeners
+	  // i.e. resize -> onresize
+	  proto.handleEvent = utils.handleEvent;
+
+	  /**
+	   * Bind layout to window resizing
+	   */
+	  proto.bindResize = function () {
+	    window.addEventListener('resize', this);
+	    this.isResizeBound = true;
+	  };
+
+	  /**
+	   * Unbind layout to window resizing
+	   */
+	  proto.unbindResize = function () {
+	    window.removeEventListener('resize', this);
+	    this.isResizeBound = false;
+	  };
+
+	  proto.onresize = function () {
+	    this.resize();
+	  };
+
+	  utils.debounceMethod(Outlayer, 'onresize', 100);
+
+	  proto.resize = function () {
+	    // don't trigger if size did not change
+	    // or if resize was unbound. See #9
+	    if (!this.isResizeBound || !this.needsResizeLayout()) {
+	      return;
+	    }
+
+	    this.layout();
+	  };
+
+	  /**
+	   * check if layout is needed post layout
+	   * @returns Boolean
+	   */
+	  proto.needsResizeLayout = function () {
+	    var size = getSize(this.element);
+	    // check that this.size and size are there
+	    // IE8 triggers resize on body size change, so they might not be
+	    var hasSizes = this.size && size;
+	    return hasSizes && size.innerWidth !== this.size.innerWidth;
+	  };
+
+	  // -------------------------- methods -------------------------- //
+
+	  /**
+	   * add items to Outlayer instance
+	   * @param {Array or NodeList or Element} elems
+	   * @returns {Array} items - Outlayer.Items
+	  **/
+	  proto.addItems = function (elems) {
+	    var items = this._itemize(elems);
+	    // add items to collection
+	    if (items.length) {
+	      this.items = this.items.concat(items);
+	    }
+	    return items;
+	  };
+
+	  /**
+	   * Layout newly-appended item elements
+	   * @param {Array or NodeList or Element} elems
+	   */
+	  proto.appended = function (elems) {
+	    var items = this.addItems(elems);
+	    if (!items.length) {
+	      return;
+	    }
+	    // layout and reveal just the new items
+	    this.layoutItems(items, true);
+	    this.reveal(items);
+	  };
+
+	  /**
+	   * Layout prepended elements
+	   * @param {Array or NodeList or Element} elems
+	   */
+	  proto.prepended = function (elems) {
+	    var items = this._itemize(elems);
+	    if (!items.length) {
+	      return;
+	    }
+	    // add items to beginning of collection
+	    var previousItems = this.items.slice(0);
+	    this.items = items.concat(previousItems);
+	    // start new layout
+	    this._resetLayout();
+	    this._manageStamps();
+	    // layout new stuff without transition
+	    this.layoutItems(items, true);
+	    this.reveal(items);
+	    // layout previous items
+	    this.layoutItems(previousItems);
+	  };
+
+	  /**
+	   * reveal a collection of items
+	   * @param {Array of Outlayer.Items} items
+	   */
+	  proto.reveal = function (items) {
+	    this._emitCompleteOnItems('reveal', items);
+	    if (!items || !items.length) {
+	      return;
+	    }
+	    var stagger = this.updateStagger();
+	    items.forEach(function (item, i) {
+	      item.stagger(i * stagger);
+	      item.reveal();
+	    });
+	  };
+
+	  /**
+	   * hide a collection of items
+	   * @param {Array of Outlayer.Items} items
+	   */
+	  proto.hide = function (items) {
+	    this._emitCompleteOnItems('hide', items);
+	    if (!items || !items.length) {
+	      return;
+	    }
+	    var stagger = this.updateStagger();
+	    items.forEach(function (item, i) {
+	      item.stagger(i * stagger);
+	      item.hide();
+	    });
+	  };
+
+	  /**
+	   * reveal item elements
+	   * @param {Array}, {Element}, {NodeList} items
+	   */
+	  proto.revealItemElements = function (elems) {
+	    var items = this.getItems(elems);
+	    this.reveal(items);
+	  };
+
+	  /**
+	   * hide item elements
+	   * @param {Array}, {Element}, {NodeList} items
+	   */
+	  proto.hideItemElements = function (elems) {
+	    var items = this.getItems(elems);
+	    this.hide(items);
+	  };
+
+	  /**
+	   * get Outlayer.Item, given an Element
+	   * @param {Element} elem
+	   * @param {Function} callback
+	   * @returns {Outlayer.Item} item
+	   */
+	  proto.getItem = function (elem) {
+	    // loop through items to get the one that matches
+	    for (var i = 0; i < this.items.length; i++) {
+	      var item = this.items[i];
+	      if (item.element == elem) {
+	        // return item
+	        return item;
+	      }
+	    }
+	  };
+
+	  /**
+	   * get collection of Outlayer.Items, given Elements
+	   * @param {Array} elems
+	   * @returns {Array} items - Outlayer.Items
+	   */
+	  proto.getItems = function (elems) {
+	    elems = utils.makeArray(elems);
+	    var items = [];
+	    elems.forEach(function (elem) {
+	      var item = this.getItem(elem);
+	      if (item) {
+	        items.push(item);
+	      }
+	    }, this);
+
+	    return items;
+	  };
+
+	  /**
+	   * remove element(s) from instance and DOM
+	   * @param {Array or NodeList or Element} elems
+	   */
+	  proto.remove = function (elems) {
+	    var removeItems = this.getItems(elems);
+
+	    this._emitCompleteOnItems('remove', removeItems);
+
+	    // bail if no items to remove
+	    if (!removeItems || !removeItems.length) {
+	      return;
+	    }
+
+	    removeItems.forEach(function (item) {
+	      item.remove();
+	      // remove item from collection
+	      utils.removeFrom(this.items, item);
+	    }, this);
+	  };
+
+	  // ----- destroy ----- //
+
+	  // remove and disable Outlayer instance
+	  proto.destroy = function () {
+	    // clean up dynamic styles
+	    var style = this.element.style;
+	    style.height = '';
+	    style.position = '';
+	    style.width = '';
+	    // destroy items
+	    this.items.forEach(function (item) {
+	      item.destroy();
+	    });
+
+	    this.unbindResize();
+
+	    var id = this.element.outlayerGUID;
+	    delete instances[id]; // remove reference to instance by id
+	    delete this.element.outlayerGUID;
+	    // remove data for jQuery
+	    if (jQuery) {
+	      jQuery.removeData(this.element, this.constructor.namespace);
+	    }
+	  };
+
+	  // -------------------------- data -------------------------- //
+
+	  /**
+	   * get Outlayer instance from element
+	   * @param {Element} elem
+	   * @returns {Outlayer}
+	   */
+	  Outlayer.data = function (elem) {
+	    elem = utils.getQueryElement(elem);
+	    var id = elem && elem.outlayerGUID;
+	    return id && instances[id];
+	  };
+
+	  // -------------------------- create Outlayer class -------------------------- //
+
+	  /**
+	   * create a layout class
+	   * @param {String} namespace
+	   */
+	  Outlayer.create = function (namespace, options) {
+	    // sub-class Outlayer
+	    var Layout = subclass(Outlayer);
+	    // apply new options and compatOptions
+	    Layout.defaults = utils.extend({}, Outlayer.defaults);
+	    utils.extend(Layout.defaults, options);
+	    Layout.compatOptions = utils.extend({}, Outlayer.compatOptions);
+
+	    Layout.namespace = namespace;
+
+	    Layout.data = Outlayer.data;
+
+	    // sub-class Item
+	    Layout.Item = subclass(Item);
+
+	    // -------------------------- declarative -------------------------- //
+
+	    utils.htmlInit(Layout, namespace);
+
+	    // -------------------------- jQuery bridge -------------------------- //
+
+	    // make into jQuery plugin
+	    if (jQuery && jQuery.bridget) {
+	      jQuery.bridget(namespace, Layout);
+	    }
+
+	    return Layout;
+	  };
+
+	  function subclass(Parent) {
+	    function SubClass() {
+	      Parent.apply(this, arguments);
+	    }
+
+	    SubClass.prototype = Object.create(Parent.prototype);
+	    SubClass.prototype.constructor = SubClass;
+
+	    return SubClass;
+	  }
+
+	  // ----- helpers ----- //
+
+	  // how many milliseconds are in each unit
+	  var msUnits = {
+	    ms: 1,
+	    s: 1000
+	  };
+
+	  // munge time-like parameter into millisecond number
+	  // '0.4s' -> 40
+	  function getMilliseconds(time) {
+	    if (typeof time == 'number') {
+	      return time;
+	    }
+	    var matches = time.match(/(^\d*\.?\d*)(\w*)/);
+	    var num = matches && matches[1];
+	    var unit = matches && matches[2];
+	    if (!num.length) {
+	      return 0;
+	    }
+	    num = parseFloat(num);
+	    var mult = msUnits[unit] || 1;
+	    return num * mult;
+	  }
+
+	  // ----- fin ----- //
+
+	  // back in global
+	  Outlayer.Item = Item;
+
+	  return Outlayer;
+	});
+
+/***/ },
+/* 102 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
+
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
+	/**
+	 * EvEmitter v1.1.0
+	 * Lil' event emitter
+	 * MIT License
+	 */
+
+	/* jshint unused: true, undef: true, strict: true */
+
+	(function (global, factory) {
+	  // universal module definition
+	  /* jshint strict: false */ /* globals define, module, window */
+	  if (true) {
+	    // AMD - RequireJS
+	    !(__WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	  } else if ((typeof module === 'undefined' ? 'undefined' : _typeof(module)) == 'object' && module.exports) {
+	    // CommonJS - Browserify, Webpack
+	    module.exports = factory();
+	  } else {
+	    // Browser globals
+	    global.EvEmitter = factory();
+	  }
+	})(typeof window != 'undefined' ? window : undefined, function () {
+
+	  "use strict";
+
+	  function EvEmitter() {}
+
+	  var proto = EvEmitter.prototype;
+
+	  proto.on = function (eventName, listener) {
+	    if (!eventName || !listener) {
+	      return;
+	    }
+	    // set events hash
+	    var events = this._events = this._events || {};
+	    // set listeners array
+	    var listeners = events[eventName] = events[eventName] || [];
+	    // only add once
+	    if (listeners.indexOf(listener) == -1) {
+	      listeners.push(listener);
+	    }
+
+	    return this;
+	  };
+
+	  proto.once = function (eventName, listener) {
+	    if (!eventName || !listener) {
+	      return;
+	    }
+	    // add event
+	    this.on(eventName, listener);
+	    // set once flag
+	    // set onceEvents hash
+	    var onceEvents = this._onceEvents = this._onceEvents || {};
+	    // set onceListeners object
+	    var onceListeners = onceEvents[eventName] = onceEvents[eventName] || {};
+	    // set flag
+	    onceListeners[listener] = true;
+
+	    return this;
+	  };
+
+	  proto.off = function (eventName, listener) {
+	    var listeners = this._events && this._events[eventName];
+	    if (!listeners || !listeners.length) {
+	      return;
+	    }
+	    var index = listeners.indexOf(listener);
+	    if (index != -1) {
+	      listeners.splice(index, 1);
+	    }
+
+	    return this;
+	  };
+
+	  proto.emitEvent = function (eventName, args) {
+	    var listeners = this._events && this._events[eventName];
+	    if (!listeners || !listeners.length) {
+	      return;
+	    }
+	    // copy over to avoid interference if .off() in listener
+	    listeners = listeners.slice(0);
+	    args = args || [];
+	    // once stuff
+	    var onceListeners = this._onceEvents && this._onceEvents[eventName];
+
+	    for (var i = 0; i < listeners.length; i++) {
+	      var listener = listeners[i];
+	      var isOnce = onceListeners && onceListeners[listener];
+	      if (isOnce) {
+	        // remove listener
+	        // remove before trigger to prevent recursion
+	        this.off(eventName, listener);
+	        // unset once flag
+	        delete onceListeners[listener];
+	      }
+	      // trigger listener
+	      listener.apply(this, args);
+	    }
+
+	    return this;
+	  };
+
+	  proto.allOff = function () {
+	    delete this._events;
+	    delete this._onceEvents;
+	  };
+
+	  return EvEmitter;
+	});
+
+/***/ },
+/* 103 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
+
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
+	/*!
+	 * getSize v2.0.2
+	 * measure size of elements
+	 * MIT license
+	 */
+
+	/*jshint browser: true, strict: true, undef: true, unused: true */
+	/*global define: false, module: false, console: false */
+
+	(function (window, factory) {
+	  'use strict';
+
+	  if (true) {
+	    // AMD
+	    !(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
+	      return factory();
+	    }.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	  } else if ((typeof module === 'undefined' ? 'undefined' : _typeof(module)) == 'object' && module.exports) {
+	    // CommonJS
+	    module.exports = factory();
+	  } else {
+	    // browser global
+	    window.getSize = factory();
+	  }
+	})(window, function factory() {
+	  'use strict';
+
+	  // -------------------------- helpers -------------------------- //
+
+	  // get a number from a string, not a percentage
+
+	  function getStyleSize(value) {
+	    var num = parseFloat(value);
+	    // not a percent like '100%', and a number
+	    var isValid = value.indexOf('%') == -1 && !isNaN(num);
+	    return isValid && num;
+	  }
+
+	  function noop() {}
+
+	  var logError = typeof console == 'undefined' ? noop : function (message) {
+	    console.error(message);
+	  };
+
+	  // -------------------------- measurements -------------------------- //
+
+	  var measurements = ['paddingLeft', 'paddingRight', 'paddingTop', 'paddingBottom', 'marginLeft', 'marginRight', 'marginTop', 'marginBottom', 'borderLeftWidth', 'borderRightWidth', 'borderTopWidth', 'borderBottomWidth'];
+
+	  var measurementsLength = measurements.length;
+
+	  function getZeroSize() {
+	    var size = {
+	      width: 0,
+	      height: 0,
+	      innerWidth: 0,
+	      innerHeight: 0,
+	      outerWidth: 0,
+	      outerHeight: 0
+	    };
+	    for (var i = 0; i < measurementsLength; i++) {
+	      var measurement = measurements[i];
+	      size[measurement] = 0;
+	    }
+	    return size;
+	  }
+
+	  // -------------------------- getStyle -------------------------- //
+
+	  /**
+	   * getStyle, get style of element, check for Firefox bug
+	   * https://bugzilla.mozilla.org/show_bug.cgi?id=548397
+	   */
+	  function getStyle(elem) {
+	    var style = getComputedStyle(elem);
+	    if (!style) {
+	      logError('Style returned ' + style + '. Are you running this code in a hidden iframe on Firefox? ' + 'See http://bit.ly/getsizebug1');
+	    }
+	    return style;
+	  }
+
+	  // -------------------------- setup -------------------------- //
+
+	  var isSetup = false;
+
+	  var isBoxSizeOuter;
+
+	  /**
+	   * setup
+	   * check isBoxSizerOuter
+	   * do on first getSize() rather than on page load for Firefox bug
+	   */
+	  function setup() {
+	    // setup once
+	    if (isSetup) {
+	      return;
+	    }
+	    isSetup = true;
+
+	    // -------------------------- box sizing -------------------------- //
+
+	    /**
+	     * WebKit measures the outer-width on style.width on border-box elems
+	     * IE & Firefox<29 measures the inner-width
+	     */
+	    var div = document.createElement('div');
+	    div.style.width = '200px';
+	    div.style.padding = '1px 2px 3px 4px';
+	    div.style.borderStyle = 'solid';
+	    div.style.borderWidth = '1px 2px 3px 4px';
+	    div.style.boxSizing = 'border-box';
+
+	    var body = document.body || document.documentElement;
+	    body.appendChild(div);
+	    var style = getStyle(div);
+
+	    getSize.isBoxSizeOuter = isBoxSizeOuter = getStyleSize(style.width) == 200;
+	    body.removeChild(div);
+	  }
+
+	  // -------------------------- getSize -------------------------- //
+
+	  function getSize(elem) {
+	    setup();
+
+	    // use querySeletor if elem is string
+	    if (typeof elem == 'string') {
+	      elem = document.querySelector(elem);
+	    }
+
+	    // do not proceed on non-objects
+	    if (!elem || (typeof elem === 'undefined' ? 'undefined' : _typeof(elem)) != 'object' || !elem.nodeType) {
+	      return;
+	    }
+
+	    var style = getStyle(elem);
+
+	    // if hidden, everything is 0
+	    if (style.display == 'none') {
+	      return getZeroSize();
+	    }
+
+	    var size = {};
+	    size.width = elem.offsetWidth;
+	    size.height = elem.offsetHeight;
+
+	    var isBorderBox = size.isBorderBox = style.boxSizing == 'border-box';
+
+	    // get all measurements
+	    for (var i = 0; i < measurementsLength; i++) {
+	      var measurement = measurements[i];
+	      var value = style[measurement];
+	      var num = parseFloat(value);
+	      // any 'auto', 'medium' value will be 0
+	      size[measurement] = !isNaN(num) ? num : 0;
+	    }
+
+	    var paddingWidth = size.paddingLeft + size.paddingRight;
+	    var paddingHeight = size.paddingTop + size.paddingBottom;
+	    var marginWidth = size.marginLeft + size.marginRight;
+	    var marginHeight = size.marginTop + size.marginBottom;
+	    var borderWidth = size.borderLeftWidth + size.borderRightWidth;
+	    var borderHeight = size.borderTopWidth + size.borderBottomWidth;
+
+	    var isBorderBoxSizeOuter = isBorderBox && isBoxSizeOuter;
+
+	    // overwrite width and height if we can get it from style
+	    var styleWidth = getStyleSize(style.width);
+	    if (styleWidth !== false) {
+	      size.width = styleWidth + (
+	      // add padding and border unless it's already including it
+	      isBorderBoxSizeOuter ? 0 : paddingWidth + borderWidth);
+	    }
+
+	    var styleHeight = getStyleSize(style.height);
+	    if (styleHeight !== false) {
+	      size.height = styleHeight + (
+	      // add padding and border unless it's already including it
+	      isBorderBoxSizeOuter ? 0 : paddingHeight + borderHeight);
+	    }
+
+	    size.innerWidth = size.width - (paddingWidth + borderWidth);
+	    size.innerHeight = size.height - (paddingHeight + borderHeight);
+
+	    size.outerWidth = size.width + marginWidth;
+	    size.outerHeight = size.height + marginHeight;
+
+	    return size;
+	  }
+
+	  return getSize;
+	});
+
+/***/ },
+/* 104 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
+
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
+	/**
+	 * Fizzy UI utils v2.0.5
+	 * MIT license
+	 */
+
+	/*jshint browser: true, undef: true, unused: true, strict: true */
+
+	(function (window, factory) {
+	  // universal module definition
+	  /*jshint strict: false */ /*globals define, module, require */
+
+	  if (true) {
+	    // AMD
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(105)], __WEBPACK_AMD_DEFINE_RESULT__ = function (matchesSelector) {
+	      return factory(window, matchesSelector);
+	    }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	  } else if ((typeof module === 'undefined' ? 'undefined' : _typeof(module)) == 'object' && module.exports) {
+	    // CommonJS
+	    module.exports = factory(window, require('desandro-matches-selector'));
+	  } else {
+	    // browser global
+	    window.fizzyUIUtils = factory(window, window.matchesSelector);
+	  }
+	})(window, function factory(window, matchesSelector) {
+
+	  'use strict';
+
+	  var utils = {};
+
+	  // ----- extend ----- //
+
+	  // extends objects
+	  utils.extend = function (a, b) {
+	    for (var prop in b) {
+	      a[prop] = b[prop];
+	    }
+	    return a;
+	  };
+
+	  // ----- modulo ----- //
+
+	  utils.modulo = function (num, div) {
+	    return (num % div + div) % div;
+	  };
+
+	  // ----- makeArray ----- //
+
+	  // turn element or nodeList into an array
+	  utils.makeArray = function (obj) {
+	    var ary = [];
+	    if (Array.isArray(obj)) {
+	      // use object if already an array
+	      ary = obj;
+	    } else if (obj && (typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) == 'object' && typeof obj.length == 'number') {
+	      // convert nodeList to array
+	      for (var i = 0; i < obj.length; i++) {
+	        ary.push(obj[i]);
+	      }
+	    } else {
+	      // array of single index
+	      ary.push(obj);
+	    }
+	    return ary;
+	  };
+
+	  // ----- removeFrom ----- //
+
+	  utils.removeFrom = function (ary, obj) {
+	    var index = ary.indexOf(obj);
+	    if (index != -1) {
+	      ary.splice(index, 1);
+	    }
+	  };
+
+	  // ----- getParent ----- //
+
+	  utils.getParent = function (elem, selector) {
+	    while (elem.parentNode && elem != document.body) {
+	      elem = elem.parentNode;
+	      if (matchesSelector(elem, selector)) {
+	        return elem;
+	      }
+	    }
+	  };
+
+	  // ----- getQueryElement ----- //
+
+	  // use element as selector string
+	  utils.getQueryElement = function (elem) {
+	    if (typeof elem == 'string') {
+	      return document.querySelector(elem);
+	    }
+	    return elem;
+	  };
+
+	  // ----- handleEvent ----- //
+
+	  // enable .ontype to trigger from .addEventListener( elem, 'type' )
+	  utils.handleEvent = function (event) {
+	    var method = 'on' + event.type;
+	    if (this[method]) {
+	      this[method](event);
+	    }
+	  };
+
+	  // ----- filterFindElements ----- //
+
+	  utils.filterFindElements = function (elems, selector) {
+	    // make array of elems
+	    elems = utils.makeArray(elems);
+	    var ffElems = [];
+
+	    elems.forEach(function (elem) {
+	      // check that elem is an actual element
+	      if (!(elem instanceof HTMLElement)) {
+	        return;
+	      }
+	      // add elem if no selector
+	      if (!selector) {
+	        ffElems.push(elem);
+	        return;
+	      }
+	      // filter & find items if we have a selector
+	      // filter
+	      if (matchesSelector(elem, selector)) {
+	        ffElems.push(elem);
+	      }
+	      // find children
+	      var childElems = elem.querySelectorAll(selector);
+	      // concat childElems to filterFound array
+	      for (var i = 0; i < childElems.length; i++) {
+	        ffElems.push(childElems[i]);
+	      }
+	    });
+
+	    return ffElems;
+	  };
+
+	  // ----- debounceMethod ----- //
+
+	  utils.debounceMethod = function (_class, methodName, threshold) {
+	    // original method
+	    var method = _class.prototype[methodName];
+	    var timeoutName = methodName + 'Timeout';
+
+	    _class.prototype[methodName] = function () {
+	      var timeout = this[timeoutName];
+	      if (timeout) {
+	        clearTimeout(timeout);
+	      }
+	      var args = arguments;
+
+	      var _this = this;
+	      this[timeoutName] = setTimeout(function () {
+	        method.apply(_this, args);
+	        delete _this[timeoutName];
+	      }, threshold || 100);
+	    };
+	  };
+
+	  // ----- docReady ----- //
+
+	  utils.docReady = function (callback) {
+	    var readyState = document.readyState;
+	    if (readyState == 'complete' || readyState == 'interactive') {
+	      // do async to allow for other scripts to run. metafizzy/flickity#441
+	      setTimeout(callback);
+	    } else {
+	      document.addEventListener('DOMContentLoaded', callback);
+	    }
+	  };
+
+	  // ----- htmlInit ----- //
+
+	  // http://jamesroberts.name/blog/2010/02/22/string-functions-for-javascript-trim-to-camel-case-to-dashed-and-to-underscore/
+	  utils.toDashed = function (str) {
+	    return str.replace(/(.)([A-Z])/g, function (match, $1, $2) {
+	      return $1 + '-' + $2;
+	    }).toLowerCase();
+	  };
+
+	  var console = window.console;
+	  /**
+	   * allow user to initialize classes via [data-namespace] or .js-namespace class
+	   * htmlInit( Widget, 'widgetName' )
+	   * options are parsed from data-namespace-options
+	   */
+	  utils.htmlInit = function (WidgetClass, namespace) {
+	    utils.docReady(function () {
+	      var dashedNamespace = utils.toDashed(namespace);
+	      var dataAttr = 'data-' + dashedNamespace;
+	      var dataAttrElems = document.querySelectorAll('[' + dataAttr + ']');
+	      var jsDashElems = document.querySelectorAll('.js-' + dashedNamespace);
+	      var elems = utils.makeArray(dataAttrElems).concat(utils.makeArray(jsDashElems));
+	      var dataOptionsAttr = dataAttr + '-options';
+	      var jQuery = window.jQuery;
+
+	      elems.forEach(function (elem) {
+	        var attr = elem.getAttribute(dataAttr) || elem.getAttribute(dataOptionsAttr);
+	        var options;
+	        try {
+	          options = attr && JSON.parse(attr);
+	        } catch (error) {
+	          // log error, do not initialize
+	          if (console) {
+	            console.error('Error parsing ' + dataAttr + ' on ' + elem.className + ': ' + error);
+	          }
+	          return;
+	        }
+	        // initialize
+	        var instance = new WidgetClass(elem, options);
+	        // make available via $().data('namespace')
+	        if (jQuery) {
+	          jQuery.data(elem, namespace, instance);
+	        }
+	      });
+	    });
+	  };
+
+	  // -----  ----- //
+
+	  return utils;
+	});
+
+/***/ },
+/* 105 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
+
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
+	/**
+	 * matchesSelector v2.0.2
+	 * matchesSelector( element, '.selector' )
+	 * MIT license
+	 */
+
+	/*jshint browser: true, strict: true, undef: true, unused: true */
+
+	(function (window, factory) {
+	  /*global define: false, module: false */
+	  'use strict';
+	  // universal module definition
+
+	  if (true) {
+	    // AMD
+	    !(__WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	  } else if ((typeof module === 'undefined' ? 'undefined' : _typeof(module)) == 'object' && module.exports) {
+	    // CommonJS
+	    module.exports = factory();
+	  } else {
+	    // browser global
+	    window.matchesSelector = factory();
+	  }
+	})(window, function factory() {
+	  'use strict';
+
+	  var matchesMethod = function () {
+	    var ElemProto = window.Element.prototype;
+	    // check for the standard method name first
+	    if (ElemProto.matches) {
+	      return 'matches';
+	    }
+	    // check un-prefixed
+	    if (ElemProto.matchesSelector) {
+	      return 'matchesSelector';
+	    }
+	    // check vendor prefixes
+	    var prefixes = ['webkit', 'moz', 'ms', 'o'];
+
+	    for (var i = 0; i < prefixes.length; i++) {
+	      var prefix = prefixes[i];
+	      var method = prefix + 'MatchesSelector';
+	      if (ElemProto[method]) {
+	        return method;
+	      }
+	    }
+	  }();
+
+	  return function matchesSelector(elem, selector) {
+	    return elem[matchesMethod](selector);
+	  };
+	});
+
+/***/ },
+/* 106 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
+
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
+	/**
+	 * Outlayer Item
+	 */
+
+	(function (window, factory) {
+	  // universal module definition
+	  /* jshint strict: false */ /* globals define, module, require */
+	  if (true) {
+	    // AMD - RequireJS
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(102), __webpack_require__(103)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	  } else if ((typeof module === 'undefined' ? 'undefined' : _typeof(module)) == 'object' && module.exports) {
+	    // CommonJS - Browserify, Webpack
+	    module.exports = factory(require('ev-emitter'), require('get-size'));
+	  } else {
+	    // browser global
+	    window.Outlayer = {};
+	    window.Outlayer.Item = factory(window.EvEmitter, window.getSize);
+	  }
+	})(window, function factory(EvEmitter, getSize) {
+	  'use strict';
+
+	  // ----- helpers ----- //
+
+	  function isEmptyObj(obj) {
+	    for (var prop in obj) {
+	      return false;
+	    }
+	    prop = null;
+	    return true;
+	  }
+
+	  // -------------------------- CSS3 support -------------------------- //
+
+
+	  var docElemStyle = document.documentElement.style;
+
+	  var transitionProperty = typeof docElemStyle.transition == 'string' ? 'transition' : 'WebkitTransition';
+	  var transformProperty = typeof docElemStyle.transform == 'string' ? 'transform' : 'WebkitTransform';
+
+	  var transitionEndEvent = {
+	    WebkitTransition: 'webkitTransitionEnd',
+	    transition: 'transitionend'
+	  }[transitionProperty];
+
+	  // cache all vendor properties that could have vendor prefix
+	  var vendorProperties = {
+	    transform: transformProperty,
+	    transition: transitionProperty,
+	    transitionDuration: transitionProperty + 'Duration',
+	    transitionProperty: transitionProperty + 'Property',
+	    transitionDelay: transitionProperty + 'Delay'
+	  };
+
+	  // -------------------------- Item -------------------------- //
+
+	  function Item(element, layout) {
+	    if (!element) {
+	      return;
+	    }
+
+	    this.element = element;
+	    // parent layout class, i.e. Masonry, Isotope, or Packery
+	    this.layout = layout;
+	    this.position = {
+	      x: 0,
+	      y: 0
+	    };
+
+	    this._create();
+	  }
+
+	  // inherit EvEmitter
+	  var proto = Item.prototype = Object.create(EvEmitter.prototype);
+	  proto.constructor = Item;
+
+	  proto._create = function () {
+	    // transition objects
+	    this._transn = {
+	      ingProperties: {},
+	      clean: {},
+	      onEnd: {}
+	    };
+
+	    this.css({
+	      position: 'absolute'
+	    });
+	  };
+
+	  // trigger specified handler for event type
+	  proto.handleEvent = function (event) {
+	    var method = 'on' + event.type;
+	    if (this[method]) {
+	      this[method](event);
+	    }
+	  };
+
+	  proto.getSize = function () {
+	    this.size = getSize(this.element);
+	  };
+
+	  /**
+	   * apply CSS styles to element
+	   * @param {Object} style
+	   */
+	  proto.css = function (style) {
+	    var elemStyle = this.element.style;
+
+	    for (var prop in style) {
+	      // use vendor property if available
+	      var supportedProp = vendorProperties[prop] || prop;
+	      elemStyle[supportedProp] = style[prop];
+	    }
+	  };
+
+	  // measure position, and sets it
+	  proto.getPosition = function () {
+	    var style = getComputedStyle(this.element);
+	    var isOriginLeft = this.layout._getOption('originLeft');
+	    var isOriginTop = this.layout._getOption('originTop');
+	    var xValue = style[isOriginLeft ? 'left' : 'right'];
+	    var yValue = style[isOriginTop ? 'top' : 'bottom'];
+	    var x = parseFloat(xValue);
+	    var y = parseFloat(yValue);
+	    // convert percent to pixels
+	    var layoutSize = this.layout.size;
+	    if (xValue.indexOf('%') != -1) {
+	      x = x / 100 * layoutSize.width;
+	    }
+	    if (yValue.indexOf('%') != -1) {
+	      y = y / 100 * layoutSize.height;
+	    }
+	    // clean up 'auto' or other non-integer values
+	    x = isNaN(x) ? 0 : x;
+	    y = isNaN(y) ? 0 : y;
+	    // remove padding from measurement
+	    x -= isOriginLeft ? layoutSize.paddingLeft : layoutSize.paddingRight;
+	    y -= isOriginTop ? layoutSize.paddingTop : layoutSize.paddingBottom;
+
+	    this.position.x = x;
+	    this.position.y = y;
+	  };
+
+	  // set settled position, apply padding
+	  proto.layoutPosition = function () {
+	    var layoutSize = this.layout.size;
+	    var style = {};
+	    var isOriginLeft = this.layout._getOption('originLeft');
+	    var isOriginTop = this.layout._getOption('originTop');
+
+	    // x
+	    var xPadding = isOriginLeft ? 'paddingLeft' : 'paddingRight';
+	    var xProperty = isOriginLeft ? 'left' : 'right';
+	    var xResetProperty = isOriginLeft ? 'right' : 'left';
+
+	    var x = this.position.x + layoutSize[xPadding];
+	    // set in percentage or pixels
+	    style[xProperty] = this.getXValue(x);
+	    // reset other property
+	    style[xResetProperty] = '';
+
+	    // y
+	    var yPadding = isOriginTop ? 'paddingTop' : 'paddingBottom';
+	    var yProperty = isOriginTop ? 'top' : 'bottom';
+	    var yResetProperty = isOriginTop ? 'bottom' : 'top';
+
+	    var y = this.position.y + layoutSize[yPadding];
+	    // set in percentage or pixels
+	    style[yProperty] = this.getYValue(y);
+	    // reset other property
+	    style[yResetProperty] = '';
+
+	    this.css(style);
+	    this.emitEvent('layout', [this]);
+	  };
+
+	  proto.getXValue = function (x) {
+	    var isHorizontal = this.layout._getOption('horizontal');
+	    return this.layout.options.percentPosition && !isHorizontal ? x / this.layout.size.width * 100 + '%' : x + 'px';
+	  };
+
+	  proto.getYValue = function (y) {
+	    var isHorizontal = this.layout._getOption('horizontal');
+	    return this.layout.options.percentPosition && isHorizontal ? y / this.layout.size.height * 100 + '%' : y + 'px';
+	  };
+
+	  proto._transitionTo = function (x, y) {
+	    this.getPosition();
+	    // get current x & y from top/left
+	    var curX = this.position.x;
+	    var curY = this.position.y;
+
+	    var didNotMove = x == this.position.x && y == this.position.y;
+
+	    // save end position
+	    this.setPosition(x, y);
+
+	    // if did not move and not transitioning, just go to layout
+	    if (didNotMove && !this.isTransitioning) {
+	      this.layoutPosition();
+	      return;
+	    }
+
+	    var transX = x - curX;
+	    var transY = y - curY;
+	    var transitionStyle = {};
+	    transitionStyle.transform = this.getTranslate(transX, transY);
+
+	    this.transition({
+	      to: transitionStyle,
+	      onTransitionEnd: {
+	        transform: this.layoutPosition
+	      },
+	      isCleaning: true
+	    });
+	  };
+
+	  proto.getTranslate = function (x, y) {
+	    // flip cooridinates if origin on right or bottom
+	    var isOriginLeft = this.layout._getOption('originLeft');
+	    var isOriginTop = this.layout._getOption('originTop');
+	    x = isOriginLeft ? x : -x;
+	    y = isOriginTop ? y : -y;
+	    return 'translate3d(' + x + 'px, ' + y + 'px, 0)';
+	  };
+
+	  // non transition + transform support
+	  proto.goTo = function (x, y) {
+	    this.setPosition(x, y);
+	    this.layoutPosition();
+	  };
+
+	  proto.moveTo = proto._transitionTo;
+
+	  proto.setPosition = function (x, y) {
+	    this.position.x = parseFloat(x);
+	    this.position.y = parseFloat(y);
+	  };
+
+	  // ----- transition ----- //
+
+	  /**
+	   * @param {Object} style - CSS
+	   * @param {Function} onTransitionEnd
+	   */
+
+	  // non transition, just trigger callback
+	  proto._nonTransition = function (args) {
+	    this.css(args.to);
+	    if (args.isCleaning) {
+	      this._removeStyles(args.to);
+	    }
+	    for (var prop in args.onTransitionEnd) {
+	      args.onTransitionEnd[prop].call(this);
+	    }
+	  };
+
+	  /**
+	   * proper transition
+	   * @param {Object} args - arguments
+	   *   @param {Object} to - style to transition to
+	   *   @param {Object} from - style to start transition from
+	   *   @param {Boolean} isCleaning - removes transition styles after transition
+	   *   @param {Function} onTransitionEnd - callback
+	   */
+	  proto.transition = function (args) {
+	    // redirect to nonTransition if no transition duration
+	    if (!parseFloat(this.layout.options.transitionDuration)) {
+	      this._nonTransition(args);
+	      return;
+	    }
+
+	    var _transition = this._transn;
+	    // keep track of onTransitionEnd callback by css property
+	    for (var prop in args.onTransitionEnd) {
+	      _transition.onEnd[prop] = args.onTransitionEnd[prop];
+	    }
+	    // keep track of properties that are transitioning
+	    for (prop in args.to) {
+	      _transition.ingProperties[prop] = true;
+	      // keep track of properties to clean up when transition is done
+	      if (args.isCleaning) {
+	        _transition.clean[prop] = true;
+	      }
+	    }
+
+	    // set from styles
+	    if (args.from) {
+	      this.css(args.from);
+	      // force redraw. http://blog.alexmaccaw.com/css-transitions
+	      var h = this.element.offsetHeight;
+	      // hack for JSHint to hush about unused var
+	      h = null;
+	    }
+	    // enable transition
+	    this.enableTransition(args.to);
+	    // set styles that are transitioning
+	    this.css(args.to);
+
+	    this.isTransitioning = true;
+	  };
+
+	  // dash before all cap letters, including first for
+	  // WebkitTransform => -webkit-transform
+	  function toDashedAll(str) {
+	    return str.replace(/([A-Z])/g, function ($1) {
+	      return '-' + $1.toLowerCase();
+	    });
+	  }
+
+	  var transitionProps = 'opacity,' + toDashedAll(transformProperty);
+
+	  proto.enableTransition = function () /* style */{
+	    // HACK changing transitionProperty during a transition
+	    // will cause transition to jump
+	    if (this.isTransitioning) {
+	      return;
+	    }
+
+	    // make `transition: foo, bar, baz` from style object
+	    // HACK un-comment this when enableTransition can work
+	    // while a transition is happening
+	    // var transitionValues = [];
+	    // for ( var prop in style ) {
+	    //   // dash-ify camelCased properties like WebkitTransition
+	    //   prop = vendorProperties[ prop ] || prop;
+	    //   transitionValues.push( toDashedAll( prop ) );
+	    // }
+	    // munge number to millisecond, to match stagger
+	    var duration = this.layout.options.transitionDuration;
+	    duration = typeof duration == 'number' ? duration + 'ms' : duration;
+	    // enable transition styles
+	    this.css({
+	      transitionProperty: transitionProps,
+	      transitionDuration: duration,
+	      transitionDelay: this.staggerDelay || 0
+	    });
+	    // listen for transition end event
+	    this.element.addEventListener(transitionEndEvent, this, false);
+	  };
+
+	  // ----- events ----- //
+
+	  proto.onwebkitTransitionEnd = function (event) {
+	    this.ontransitionend(event);
+	  };
+
+	  proto.onotransitionend = function (event) {
+	    this.ontransitionend(event);
+	  };
+
+	  // properties that I munge to make my life easier
+	  var dashedVendorProperties = {
+	    '-webkit-transform': 'transform'
+	  };
+
+	  proto.ontransitionend = function (event) {
+	    // disregard bubbled events from children
+	    if (event.target !== this.element) {
+	      return;
+	    }
+	    var _transition = this._transn;
+	    // get property name of transitioned property, convert to prefix-free
+	    var propertyName = dashedVendorProperties[event.propertyName] || event.propertyName;
+
+	    // remove property that has completed transitioning
+	    delete _transition.ingProperties[propertyName];
+	    // check if any properties are still transitioning
+	    if (isEmptyObj(_transition.ingProperties)) {
+	      // all properties have completed transitioning
+	      this.disableTransition();
+	    }
+	    // clean style
+	    if (propertyName in _transition.clean) {
+	      // clean up style
+	      this.element.style[event.propertyName] = '';
+	      delete _transition.clean[propertyName];
+	    }
+	    // trigger onTransitionEnd callback
+	    if (propertyName in _transition.onEnd) {
+	      var onTransitionEnd = _transition.onEnd[propertyName];
+	      onTransitionEnd.call(this);
+	      delete _transition.onEnd[propertyName];
+	    }
+
+	    this.emitEvent('transitionEnd', [this]);
+	  };
+
+	  proto.disableTransition = function () {
+	    this.removeTransitionStyles();
+	    this.element.removeEventListener(transitionEndEvent, this, false);
+	    this.isTransitioning = false;
+	  };
+
+	  /**
+	   * removes style property from element
+	   * @param {Object} style
+	  **/
+	  proto._removeStyles = function (style) {
+	    // clean up transition styles
+	    var cleanStyle = {};
+	    for (var prop in style) {
+	      cleanStyle[prop] = '';
+	    }
+	    this.css(cleanStyle);
+	  };
+
+	  var cleanTransitionStyle = {
+	    transitionProperty: '',
+	    transitionDuration: '',
+	    transitionDelay: ''
+	  };
+
+	  proto.removeTransitionStyles = function () {
+	    // remove transition
+	    this.css(cleanTransitionStyle);
+	  };
+
+	  // ----- stagger ----- //
+
+	  proto.stagger = function (delay) {
+	    delay = isNaN(delay) ? 0 : delay;
+	    this.staggerDelay = delay + 'ms';
+	  };
+
+	  // ----- show/hide/remove ----- //
+
+	  // remove element from DOM
+	  proto.removeElem = function () {
+	    this.element.parentNode.removeChild(this.element);
+	    // remove display: none
+	    this.css({ display: '' });
+	    this.emitEvent('remove', [this]);
+	  };
+
+	  proto.remove = function () {
+	    // just remove element if no transition support or no transition
+	    if (!transitionProperty || !parseFloat(this.layout.options.transitionDuration)) {
+	      this.removeElem();
+	      return;
+	    }
+
+	    // start transition
+	    this.once('transitionEnd', function () {
+	      this.removeElem();
+	    });
+	    this.hide();
+	  };
+
+	  proto.reveal = function () {
+	    delete this.isHidden;
+	    // remove display: none
+	    this.css({ display: '' });
+
+	    var options = this.layout.options;
+
+	    var onTransitionEnd = {};
+	    var transitionEndProperty = this.getHideRevealTransitionEndProperty('visibleStyle');
+	    onTransitionEnd[transitionEndProperty] = this.onRevealTransitionEnd;
+
+	    this.transition({
+	      from: options.hiddenStyle,
+	      to: options.visibleStyle,
+	      isCleaning: true,
+	      onTransitionEnd: onTransitionEnd
+	    });
+	  };
+
+	  proto.onRevealTransitionEnd = function () {
+	    // check if still visible
+	    // during transition, item may have been hidden
+	    if (!this.isHidden) {
+	      this.emitEvent('reveal');
+	    }
+	  };
+
+	  /**
+	   * get style property use for hide/reveal transition end
+	   * @param {String} styleProperty - hiddenStyle/visibleStyle
+	   * @returns {String}
+	   */
+	  proto.getHideRevealTransitionEndProperty = function (styleProperty) {
+	    var optionStyle = this.layout.options[styleProperty];
+	    // use opacity
+	    if (optionStyle.opacity) {
+	      return 'opacity';
+	    }
+	    // get first property
+	    for (var prop in optionStyle) {
+	      return prop;
+	    }
+	  };
+
+	  proto.hide = function () {
+	    // set flag
+	    this.isHidden = true;
+	    // remove display: none
+	    this.css({ display: '' });
+
+	    var options = this.layout.options;
+
+	    var onTransitionEnd = {};
+	    var transitionEndProperty = this.getHideRevealTransitionEndProperty('hiddenStyle');
+	    onTransitionEnd[transitionEndProperty] = this.onHideTransitionEnd;
+
+	    this.transition({
+	      from: options.visibleStyle,
+	      to: options.hiddenStyle,
+	      // keep hidden stuff hidden
+	      isCleaning: true,
+	      onTransitionEnd: onTransitionEnd
+	    });
+	  };
+
+	  proto.onHideTransitionEnd = function () {
+	    // check if still hidden
+	    // during transition, item may have been un-hidden
+	    if (this.isHidden) {
+	      this.css({ display: 'none' });
+	      this.emitEvent('hide');
+	    }
+	  };
+
+	  proto.destroy = function () {
+	    this.css({
+	      position: '',
+	      left: '',
+	      right: '',
+	      top: '',
+	      bottom: '',
+	      transition: '',
+	      transform: ''
+	    });
+	  };
+
+	  return Item;
+	});
+
+/***/ },
+/* 107 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -7745,8 +11268,7 @@
 	    backgroundSize: 'contain',
 	    backgroundRepeat: 'no-repeat !important',
 	    backgroundPosition: 'center center',
-	    backgroundImage: 'url(https://img.alicdn.com/tps/i2/TB1bNE7LFXXXXaOXFXXwFSA1XXX-292-116.png_145x145.jpg)',
-	    position: 'absolute'
+	    backgroundImage: 'url(https://img.alicdn.com/tps/i2/TB1bNE7LFXXXXaOXFXXwFSA1XXX-292-116.png_145x145.jpg)'
 
 	  },
 
@@ -7761,228 +11283,105 @@
 
 	Sophie.createStyleSheet({
 
-	  "p-logo": {
-
-	    left: "10px",
-	    top: "10px",
-
-	    position: 'absolute'
-
-	  }
+	  "p-logo": {}
 
 	}, "@media (max-width: 767px)");
 
 	module.exports = Logo;
 
 /***/ },
-/* 90 */
+/* 108 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var utils = __webpack_require__(91);
-	var Grid = Sophie.createClass("p-grid", {
+	var utils = __webpack_require__(79);
+	var Grid = __webpack_require__(78);
+	var GridColumn = __webpack_require__(80);
+	var GridMix = __webpack_require__(81);
 
-	  render: function render() {
-	    return Sophie.element(
-	      "p-grid",
-	      { "class": "grid-row" },
-	      this.children
-	    );
-	  },
-	  componentDidMount: function componentDidMount() {
-	    //p-grid下的元素的设置fontsize
+	var GridLayout = __webpack_require__(77);
 
-	    // if(el.parent().is("p-grid")&&el.parent().parent().parent().is("p-page")){
-	    //   if(play.mediaName !== "phone"){
-	    //     var phoneWidth =  coords.width/coords.fontSize;
-	    //     var fontSize =   this.getResponseFontSize(phoneWidth);
-	    //      if(!utils.hasMediaCSSRule(el, play.mediaQuery.phone)){
-	    //          play.dom._cssMedia(el, "font-size", fontSize+"rem",play.mediaQuery.phone);
-	    //           // play.dom._cssMedia(el, "z-index", 100,play.mediaQuery.phone);
-	    //           //  utils.createCSSRule(el,"font-size",fontSize+"rem", play.mediaQuery.phone)
-	    //           //     utils.createCSSRule(el,"z-index",100, play.mediaQuery.phone)
-	    //           //       utils.createCSSRule(el,"z-index",100, "all")
-	    //           //         utils.createCSSRule(el,"z-index",100, play.mediaQuery.pc)
-	    //      }
-	    //
-	    //   }
-	    // }
-	  }
+	var Group = Sophie.createClass("p-group", {
+	    mixin: [GridLayout],
+	    render: function render() {
+	        return Sophie.element(
+	            "p-group",
+	            null,
+	            this.renderGridChildren()
+	        );
+	    },
 
-	});
-
-	var getFlexCSS = function getFlexCSS() {
-	  if (utils.supportFlex) {
-	    return utils.getFlexCSS();
-	  } else {
-	    return {
-	      display: "block"
-	    };
-	  }
-	};
-
-	var getFlexItemCSS = function getFlexItemCSS() {
-	  if (utils.supportFlex) {
-	    return utils.getFlexItemCSS();
-	  } else {
-	    return {
-	      'float': 'left'
-	    };
-	  }
-	};
-
-	Sophie.createStyleSheet({
-	  "p-grid": getFlexCSS(),
-
-	  '.grid-row': {
-
-	    'width': '100%!important',
-	    'margin-left': '0!important',
-	    'margin-right': '0!important',
-	    'height': 'auto!important',
-	    'min-height': 'auto!important'
-	  },
-
-	  '.p-layout:before,.p-layout:after': {
-	    'display': 'table',
-	    'line-height': '0',
-	    'content': '""'
-	  },
-
-	  '.grid-row:after': {
-	    'clear': 'both'
-	  },
-
-	  '.grid-row:after, .grid-row:before': {
-	    'display': 'table',
-	    'content': '""'
-	  },
-
-	  '.grid-row > * ': getFlexItemCSS(),
-
-	  '.grid-row.grid-row-column > * ': {
-
-	    'display': 'block',
-	    'float': 'none',
-	    'margin': '10px 0 0 0',
-	    'width': '100%'
-	  },
-
-	  '.grid-row.grid-row-column:first-child ': {
-	    'margin-top': '0'
-	  }
+	    componentDidMount: function componentDidMount() {}
 
 	});
 
 	Sophie.createStyleSheet({
-	  ".grid-row": getFlexCSS(),
-	  ".grid-row > *": getFlexItemCSS(),
+	    "p-group": {
+	        "display": "block",
+	        "overflow": "hidden"
+	    }
 
-	  'p-page > .p-container-fluid > .grid-row ,p-page > .p-container > .grid-row.cloumn': {
-	    display: 'block!important'
-	  },
-	  'p-page > .p-container > .grid-row ,p-page > .p-container-fluid > .grid-row ,p-page > .p-container-fluid > .grid-row.cloumn,p-page > .p-container > .grid-row.cloumn': utils.getFlexColumnCSS(),
+	});
 
-	  'p-page > .p-container-fluid > .grid-row > *,p-page > .p-container > .grid-row.cloumn > *': {
-	    marginTop: 10,
-	    float: 'none',
-	    display: 'block'
-	  }
+	Sophie.createStyleSheet({}, '@media (max-width: 767px)');
 
-	}, '@media (max-width: 767px)');
-
-	module.exports = Grid;
+	module.exports = Group;
 
 /***/ },
-/* 91 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	module.exports = {
-	  supportFlex: function supportFlex() {
-	    var doc = document.body || document.documentElement;
-	    var style = doc.style;
-	    if (style.webkitFlexWrap == '' || style.msFlexWrap == '' || style.flexWrap == '') {
-	      return true;
-	    }
-	  },
-	  getFlexCSS: function getFlexCSS() {
-	    var doc = document.body || document.documentElement;
-	    var style = doc.style;
-	    if (style.flexWrap == '') {
-	      return {
-	        display: "flex",
-	        "align-items": "flex-start",
-	        "flex-flow": "row nowrap",
-	        "justify-content": "flex-start"
-	      };
-	    } else if (style.msFlexWrap == '') {
-	      return {
-	        display: "flex",
-	        "align-items": "flex-start",
-	        "flex-flow": "row nowrap",
-	        "justify-content": "flex-start"
-	      };
-	    }
-	  },
-	  getFlexColumnCSS: function getFlexColumnCSS() {
-	    var doc = document.body || document.documentElement;
-	    var style = doc.style;
-	    if (style.flexWrap == '') {
-	      return {
-	        display: "flex",
-	        "align-items": "flex-start",
-	        "flex-flow": "column nowrap",
-	        "justify-content": "flex-start"
-	      };
-	    } else if (style.msFlexWrap == '') {
-	      return {
-	        display: "flex",
-	        "align-items": "flex-start",
-	        "flex-flow": "column nowrap",
-	        "justify-content": "flex-start"
-	      };
-	    }
-	  },
-	  getFlexItemCSS: function getFlexItemCSS() {
-	    var doc = document.body || document.documentElement;
-	    var style = doc.style;
-	    if (style.flexWrap == '') {
-	      return {
-	        //运行时可变为可伸缩
-	        flex: "none"
-	      };
-	    }
-	  }
-
-	};
-
-/***/ },
-/* 92 */
+/* 109 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var Page = __webpack_require__(73);
-	var A = __webpack_require__(93);
-	var NavBar = __webpack_require__(76);
+	var Page = __webpack_require__(75);
+	var A = __webpack_require__(88);
+	var NavBar = __webpack_require__(83);
 
 	var Nav = Sophie.createClass("p-nav-page", {
 
 	    render: function render() {
+
 	        return Sophie.element(
 	            "p-nav-page",
 	            null,
 	            Sophie.element(
 	                "ul",
 	                { "class": "nav navbar-nav" },
-	                this.renderItem()
+	                this.renderChildren()
 	            )
 	        );
 	    },
 	    renderItem: function renderItem() {
+	        var items = [];
+	        for (var i = 0; i < this.state.pageList.length; i++) {
+	            var data = this.state.pageList[i];
+	            var child = Sophie.element(
+	                A,
+	                { "data-id": data.id },
+	                data.title
+	            );
+	            child.creater = child._owner = this.creater;
+	            child.parent = this;
+	            items.push(child);
+	        }
+	        this.props.children = items;
+	    },
+	    renderChildren: function renderChildren() {
+	        this.renderItem();
+	        var items = [];
+	        for (var i = 0; i < this.props.children.length; i++) {
+	            var data = this.props.children[i];
+
+	            items.push(Sophie.element(
+	                "li",
+	                { "data-id": data.id },
+	                data
+	            ));
+	        }
+	        return items;
+	    },
+	    getDefaultChildren: function getDefaultChildren() {
 	        var items = [];
 	        for (var i = 0; i < this.state.pageList.length; i++) {
 	            var data = this.state.pageList[i];
@@ -8007,41 +11406,31 @@
 	    componentDidMount: function componentDidMount() {
 	        var self = this;
 
+	        self.activeBind();
 	        Sophie.ready(function () {
 
-	            setTimeout(function () {
+	            self.initPage();
 
-	                self.initPage();
-	                self.mobileRender();
-	                $(window).on("resize", function () {
-	                    self.mobileRender();
-	                });
+	            // $(".navbar-toggle-render","p-header").remove();
+	            self.navbarToggle = $("p-nav-bar", self.nativeNode);
+	            self.navbar = $(".navbar-nav", self.nativeNode);
 
-	                self.activeBind();
-	                // $(".navbar-toggle-render","p-header").remove();
-	                self.navbarToggle = $("p-nav-bar", self.nativeNode);
-	                self.navbar = $(".navbar-nav", self.nativeNode);
-	                //
-	                // self.navbarToggle.appendTo("p-header .p-container-fluid");
-	                // self.navbarToggle.addClass("navbar-toggle-render")
-	                //
+	            $('p-site').addClass("nav-close");
 
+	            // self.navbarToggle.click(function () {
+	            //     // self.showPopup()
+	            //     self.showSidebar();
+	            // })
+	            //
+	            // $(document).click(function(ev){
+	            //   var target = $(ev.target);
+	            //
+	            //   if(!target.closest(self.navbarToggle).length&&!target.closest(self.navbar).length){
+	            //     self.hideSidebar();
+	            //   }
+	            //
+	            // })
 
-	                $('p-site').addClass("nav-close");
-
-	                self.navbarToggle.click(function () {
-	                    // self.showPopup()
-	                    self.showSidebar();
-	                });
-
-	                $(document).click(function (ev) {
-	                    var target = $(ev.target);
-
-	                    if (!target.closest(self.navbarToggle).length && !target.closest(self.navbar).length) {
-	                        self.hideSidebar();
-	                    }
-	                });
-	            }, 0);
 	        });
 	    },
 	    activeBind: function activeBind() {
@@ -8056,7 +11445,13 @@
 	        $(this.nativeNode).delegate("li p-a", "click", function (ev) {
 	            var li = $(ev.target).closest("p-a");
 	            var id = li.attr("data-id");
-	            self.active(id);
+	            var site = $("p-site");
+	            if (site.length) {
+	                site.get(0).vnode.active(id);
+	                self.active(id);
+	            } else {
+	                self.active(id);
+	            }
 	        });
 	    },
 
@@ -8076,7 +11471,6 @@
 
 	        for (var i = 0; i < children.length; i++) {
 	            if (children[i]["id"] == id) {
-	                debugger;
 	                this.state.pageList.splice(i, 1);
 	                this._update();
 	            }
@@ -8248,7 +11642,7 @@
 	    },
 
 	    'p-nav-page p-a  .p-text-wrap': {
-	        fontSize: '0.5em'
+	        fontSize: '0.3em'
 	    },
 
 	    'p-nav-page ul li p-a.active,p-nav-page ul li p-a.hover ': {
@@ -8272,13 +11666,14 @@
 	Sophie.createStyleSheet({
 
 	    'p-nav-page': {
-	        position: 'fixed',
-	        left: '12.13px',
-	        top: '2.1em',
-	        width: '200px',
-	        height: "200px",
+	        position: 'absolute',
+	        left: 7 + "em",
+	        top: '50px',
+	        width: '200px!important',
+	        height: "auto",
 	        backgroundColor: 'rgba(255, 255, 255, 0.0)',
-	        margin: '0!important'
+	        margin: '0!important',
+	        "display": "none"
 
 	    },
 
@@ -8293,7 +11688,9 @@
 	        left: '0px',
 	        top: '0px',
 	        backgroundColor: '#fff',
-	        margin: '0!important'
+	        margin: '0!important',
+	        display: "flex",
+	        "flex-direction": "column"
 
 	    },
 
@@ -8301,12 +11698,45 @@
 	        display: 'block',
 	        float: 'none',
 	        width: '100%!important',
-	        height: '50px'
+	        "height": "1.5em"
 	    },
 
 	    'p-nav-page .navbar-nav li a ': {
 	        textAlign: 'left',
 	        padding: '0 20px'
+	    },
+
+	    'p-site.nav-open  p-header p-nav-page': {
+	        display: "none"
+
+	        // transition: "left 0.5s",
+	        // left:"-200px"
+	    },
+
+	    'p-site.nav-close  p-header p-nav-page': {
+	        display: "none"
+	        // transition: "left 0.5s",
+	        // left:0
+	    },
+
+	    'p-site.nav-open p-nav-page-mask ': {
+	        display: "block!important"
+	    },
+
+	    'p-site.nav-close p-nav-page-mask ': {
+	        display: "none"
+	    },
+
+	    'p-site.nav-open p-nav-page ': {
+	        display: "none!important"
+	    },
+
+	    'p-site.nav-close p-nav-page ': {
+	        display: "none"
+	    },
+
+	    'p-header': {
+	        height: '4em'
 	    }
 
 	}, "@media (max-width: 767px)");
@@ -8314,93 +11744,7 @@
 	module.exports = Nav;
 
 /***/ },
-/* 93 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	var _pAPTextWrap;
-
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-	var A = Sophie.createClass('p-a', {
-	    getDefaultProps: function getDefaultProps() {
-	        return {
-	            href: "/"
-	        };
-	    },
-	    componentDidMount: function componentDidMount() {
-	        // var text = $("a",this).text();
-	        // if(!$.trim(text)){
-	        //     $("a",this).text("这是一个连接")
-	        // }
-
-	    },
-	    render: function render() {
-	        return Sophie.element(
-	            "p-a",
-	            { "data-id": this.props["data-id"] },
-	            Sophie.element(
-	                "a",
-	                { href: this.props.href, "class": "p-text-wrap" },
-	                this.children
-	            )
-	        );
-	    },
-	    setFontSize: function setFontSize(fontSize) {
-	        $('.p-text-wrap', this.nativeNode).css("fontSize", fontSize);
-	    },
-	    setHref: function setHref(href) {
-	        this.attributes.href = href;
-	        this._update();
-	    }
-	});
-
-	Sophie.createStyleSheet({
-	    'p-a': {
-	        overflow: 'hidden',
-	        outline: 'none',
-
-	        minHeight: '1rem',
-	        lineHeight: '1rem',
-
-	        width: '5rem',
-	        display: 'table',
-	        padding: '0 10px',
-
-	        cursor: 'pointer',
-	        verticalAlign: 'middle'
-
-	    },
-
-	    'p-a > .p-text-wrap > p-icon': {
-
-	        display: 'inline!important',
-	        marginRight: '0.25rem'
-
-	    },
-
-	    'p-a .p-text-wrap': (_pAPTextWrap = {
-	        whiteSpace: 'nowrap',
-	        textDecoration: 'none',
-	        color: 'inherit',
-	        fontSize: '14px',
-	        fontFamily: 'inherit',
-	        fontWeight: 'inherit',
-	        fontStyle: 'inherit',
-	        textAlign: 'inherit'
-	    }, _defineProperty(_pAPTextWrap, "textDecoration", 'inherit'), _defineProperty(_pAPTextWrap, "backgroundColor", 'transparent !important'), _defineProperty(_pAPTextWrap, "height", '100%'), _defineProperty(_pAPTextWrap, "width", '100%'), _defineProperty(_pAPTextWrap, "display", 'table-cell'), _defineProperty(_pAPTextWrap, "verticalAlign", 'middle'), _pAPTextWrap),
-
-	    'p-a .p-text-wrap * ': {
-	        /* display: none !important;*/
-	    }
-
-	});
-
-	module.exports = A;
-
-/***/ },
-/* 94 */
+/* 110 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -8409,11 +11753,11 @@
 
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-	var PageNav = __webpack_require__(92);
-	var LayoutGrid = __webpack_require__(86);
-	var Layout = __webpack_require__(95);
-	var Logo = __webpack_require__(89);
-	var Pic = __webpack_require__(82);
+	var PageNav = __webpack_require__(109);
+	var LayoutGrid = __webpack_require__(94);
+	var Layout = __webpack_require__(89);
+	var Logo = __webpack_require__(107);
+	var Pic = __webpack_require__(97);
 
 	var Nav = Sophie.createClass("p-nav-page-inline", {
 	  getDefaultProps: function getDefaultProps() {
@@ -8522,56 +11866,17 @@
 	module.exports = Nav;
 
 /***/ },
-/* 95 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	var Layout = Sophie.createClass("p-layout", {
-	  getDefaultProps: function getDefaultProps() {
-	    return {
-	      style: ""
-	    };
-	  },
-	  render: function render() {
-	    return Sophie.element(
-	      "p-layout",
-	      { style: this.props.style, "class": this.props.class },
-	      this.children
-	    );
-	  }
-	});
-
-	Sophie.createStyleSheet({
-	  "p-layout": {
-	    display: 'table',
-	    minHeight: '1em',
-	    height: '5em',
-	    width: '10rem'
-	  },
-
-	  "p-layout:before,p-layout:after": {
-	    display: 'table',
-	    lineHeight: 0,
-	    content: ""
-	  }
-
-	});
-
-	module.exports = Layout;
-
-/***/ },
-/* 96 */
+/* 111 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var PageNav = __webpack_require__(92);
-	var LayoutGrid = __webpack_require__(86);
-	var Layout = __webpack_require__(95);
-	var Logo = __webpack_require__(89);
-	var Pic = __webpack_require__(82);
-	var NavBar = __webpack_require__(76);
+	var PageNav = __webpack_require__(109);
+	var LayoutGrid = __webpack_require__(94);
+	var Layout = __webpack_require__(89);
+	var Logo = __webpack_require__(107);
+	var Pic = __webpack_require__(97);
+	var NavBar = __webpack_require__(83);
 
 	var Nav = Sophie.createClass("p-nav-page-absolute", {
 	  getDefaultProps: function getDefaultProps() {
@@ -8722,7 +12027,7 @@
 	module.exports = Nav;
 
 /***/ },
-/* 97 */
+/* 112 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -8732,12 +12037,15 @@
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 	var placeholder = "双击输入内容...";
-	var defineText = {
+	var Text = Sophie.createClass("p-text", {
 	    componentDidMount: function componentDidMount() {
 	        //粘贴
 	        var self = this;
 	        var target = $(".p-text-wrap", this.nativeNode);
 	        var el = $(this.nativeNode);
+	        if (this.props.children.length == 0) {
+	            this.prepareChildren();
+	        }
 
 	        //元素删除之后事件会丢失, 所以加在#page，其它事件加在html上
 	        target.on("mousedown mouseup dbclick click keyup keydown", function (ev) {
@@ -8768,13 +12076,13 @@
 	                ev.preventDefault();
 	                target.html(text);
 	                target.focus();
+	                self.prepareChildren();
 	                // document.execCommand("insertHTML", false, text);
 	            }
 	        });
 
 	        target.on('keydown', function (ev) {
 	            var target = $(ev.target);
-
 	            if (target.closest("p-a").length || target.closest("p-h").length) {
 	                //阻止换行
 	                var keycode = ev.charCode || ev.keyCode;
@@ -8786,10 +12094,20 @@
 	        });
 
 	        target.on('keyup', function (ev) {
+	            self.prepareChildren();
+	            $(document).trigger("textInput");
+	        });
 
-	            var value = target.html();
-	            self.children = self.props.children = [{ type: "text", nodeValue: value }];
-	            $(document).trigger("textInputt");
+	        //ie 可能不支持
+
+	        target.on('change input', function (ev) {
+	            self.prepareChildren();
+	            $(document).trigger("textInput");
+	        });
+
+	        target.on('textChange', function () {
+	            self.prepareChildren();
+	            $(document).trigger("textInput");
 	        });
 	    },
 	    getInitialState: function getInitialState() {
@@ -8801,7 +12119,7 @@
 	        var contenteditable = this.state.editing;
 	        return Sophie.element(
 	            "p-text",
-	            null,
+	            { "class": this.props.class || "" },
 	            Sophie.element(
 	                "div",
 	                { "class": "p-text-wrap", contenteditable: contenteditable },
@@ -8809,9 +12127,17 @@
 	            )
 	        );
 	    },
+
 	    setFontSize: function setFontSize(fontSize) {
 	        $('.p-text-wrap', this.nativeNode).css("fontSize", fontSize);
 	    },
+	    prepareChildren: function prepareChildren() {
+	        var target = $(".p-text-wrap", this.nativeNode);
+	        var value = target.html();
+
+	        this.props.children = [{ type: "html", nodeValue: value }];
+	    },
+
 	    toEdit: function toEdit(el) {
 	        var self = this;
 
@@ -8821,7 +12147,6 @@
 	        if ($.trim(target.text()) === placeholder) {
 	            target.html("");
 	        }
-
 	        $(target).focus();
 	    },
 
@@ -8831,28 +12156,27 @@
 	        var el = $('.p-text-wrap', this.nativeNode);
 	        el.attr("contenteditable", false);
 	        el.blur();
+	        el.removeClass("wysihtml-sandbox");
+	        el.removeClass("wysihtml-editor");
 	        if ($.trim(el.text()) === "") el.text(placeholder);
 	    }
 
-	};
+	});
 
-	var defineHeader = $.extend({}, defineText, {
+	var Header = Sophie.createClass("p-h", {
 	    render: function render() {
 	        var contenteditable = this.state.editing;
 	        return Sophie.element(
 	            "p-h",
-	            null,
+	            { "class": this.props.class || "" },
 	            Sophie.element(
 	                "div",
-	                { "class": "p-text-wrap" },
+	                { "class": "p-text-wrap", contenteditable: contenteditable },
 	                this.props.children
 	            )
 	        );
 	    }
-	});
-
-	var Text = Sophie.createClass("p-text", defineText);
-	var Header = Sophie.createClass("p-h", defineHeader);
+	}, Text);
 
 	Sophie.createStyleSheet({
 
@@ -8874,7 +12198,7 @@
 	        fontWeight: 'inherit',
 	        fontStyle: 'inherit',
 	        textAlign: 'inherit'
-	    }, _defineProperty(_pTextPTextWrap, "textDecoration", 'inherit'), _defineProperty(_pTextPTextWrap, "fontSize", '16px'), _defineProperty(_pTextPTextWrap, "lineHeight", '20px'), _defineProperty(_pTextPTextWrap, "backgroundColor", 'transparent !important'), _defineProperty(_pTextPTextWrap, "height", '100%'), _defineProperty(_pTextPTextWrap, "width", '100%'), _defineProperty(_pTextPTextWrap, "wordWrap", 'break-word'), _defineProperty(_pTextPTextWrap, "wordBreak", 'break-all'), _defineProperty(_pTextPTextWrap, "wordWrap", 'break-word'), _defineProperty(_pTextPTextWrap, "display", 'table-cell'), _defineProperty(_pTextPTextWrap, "verticalAlign", 'middle'), _defineProperty(_pTextPTextWrap, "pointerEvents", 'none'), _pTextPTextWrap),
+	    }, _defineProperty(_pTextPTextWrap, "textDecoration", 'inherit'), _defineProperty(_pTextPTextWrap, "fontSize", "0.3em"), _defineProperty(_pTextPTextWrap, "backgroundColor", 'transparent !important'), _defineProperty(_pTextPTextWrap, "height", '100%'), _defineProperty(_pTextPTextWrap, "width", '100%'), _defineProperty(_pTextPTextWrap, "wordWrap", 'break-word'), _defineProperty(_pTextPTextWrap, "wordBreak", 'break-all'), _defineProperty(_pTextPTextWrap, "wordWrap", 'break-word'), _defineProperty(_pTextPTextWrap, "display", 'table-cell'), _defineProperty(_pTextPTextWrap, "verticalAlign", 'middle'), _defineProperty(_pTextPTextWrap, "pointerEvents", 'none'), _pTextPTextWrap),
 
 	    'p-text > .p-text-wrap > p-icon': {
 	        display: 'inline!important',
@@ -8888,7 +12212,7 @@
 
 	        display: 'table',
 	        width: '5em',
-	        height: '1em',
+	        height: '2em',
 	        padding: '0 10px ',
 	        fontWeight: 'bold',
 
@@ -8920,136 +12244,500 @@
 	        whiteSpace: 'nowrap',
 	        textDecoration: 'none',
 	        color: 'inherit',
-	        fontSize: '16px',
-	        lineHeight: '16px'
 
-	    }, _defineProperty(_pHPTextWrap, "fontSize", '16px'), _defineProperty(_pHPTextWrap, "fontFamily", 'inherit'), _defineProperty(_pHPTextWrap, "fontWeight", 'inherit'), _defineProperty(_pHPTextWrap, "fontStyle", 'inherit'), _defineProperty(_pHPTextWrap, "textAlign", 'inherit'), _defineProperty(_pHPTextWrap, "textDecoration", 'inherit'), _defineProperty(_pHPTextWrap, "backgroundColor", 'transparent !important'), _defineProperty(_pHPTextWrap, "height", '100%'), _defineProperty(_pHPTextWrap, "width", '100%'), _defineProperty(_pHPTextWrap, "textOverflow", 'clip'), _defineProperty(_pHPTextWrap, "display", 'table-cell'), _defineProperty(_pHPTextWrap, "verticalAlign", 'middle'), _pHPTextWrap)
+	        fontFamily: 'inherit',
+	        fontWeight: 'inherit',
+	        fontStyle: 'inherit',
+	        textAlign: 'inherit'
+	    }, _defineProperty(_pHPTextWrap, "textDecoration", 'inherit'), _defineProperty(_pHPTextWrap, "fontSize", "0.5em"), _defineProperty(_pHPTextWrap, "backgroundColor", 'transparent !important'), _defineProperty(_pHPTextWrap, "height", '100%'), _defineProperty(_pHPTextWrap, "width", '100%'), _defineProperty(_pHPTextWrap, "textOverflow", 'clip'), _defineProperty(_pHPTextWrap, "display", 'table-cell'), _defineProperty(_pHPTextWrap, "verticalAlign", 'middle'), _pHPTextWrap)
 
 	});
 
 	module.exports = Text;
 
 /***/ },
-/* 98 */
+/* 113 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var List = __webpack_require__(80);
-	var Pic = __webpack_require__(82);
+	var Layout = __webpack_require__(89);
+	var RootTag = __webpack_require__(114);
+	var TagName = __webpack_require__(115);
 
-	var ListImg = Sophie.createClass("p-list-img", {
+	var List = Sophie.createClass("p-list", {
+	    getDefaultProps: function getDefaultProps() {
+	        return {
+	            class: "",
+	            defaultInnerVnodeName: "",
+	            "data-c-num": 2,
+	            "data-r-num": 2,
+	            spacing: 0,
 
-	  render: function render() {
-	    return Sophie.element(
-	      "p-list-img",
-	      { "class": "p-list-img" },
-	      Sophie.element(
-	        List,
-	        { "data-c-num": this.props["data-c-num"], "data-r-num": this.props["data-r-num"] },
-	        this.props.children
-	      )
-	    );
-	  },
+	            template: "",
+	            padding: 8,
+	            props: []
+	        };
+	    },
 
-	  getDefaultProps: function getDefaultProps() {
-	    return {
-	      "data-c-num": 2,
-	      "data-r-num": 2
-	    };
-	  },
+	    render: function render() {
+	        var self = this;
+	        var style = "";
+	        if ($(document).width() <= 768 && self.parent.name == "p-page") {
+	            //可能已经被删除了
+	            if (self.nativeNode.parentNode) {
+	                style = "fontSize:" + this.props["data-c-num"] + "rem";
+	                self.isMobile = true;
+	            }
+	        } else {
+	            style = "";
+	            self.isMobile = false;
+	        }
 
-	  getDefaultChildren: function getDefaultChildren() {
-	    var result = [];
-	    for (var i = 0; i < 4; i++) {
-	      result.push(Sophie.element(Pic, null));
+	        var l = this.props["data-c-num"] * this.props["data-r-num"];
+	        var children = this.props.children;
+
+	        return Sophie.element(
+	            "p-list",
+	            { "class": this.props.class, "data-c-num": this.props["data-c-num"], "data-r-num": this.props["data-r-num"] },
+	            Sophie.element(
+	                "div",
+	                { style: style, "class": "ul" },
+	                this.renderChildren()
+	            )
+	        );
+	    },
+
+	    getDefaultChildren: function getDefaultChildren() {
+	        var result = [];
+
+	        var l = this.props["data-c-num"] * this.props["data-r-num"];
+
+	        for (var i = 0; i < l; i++) {
+	            result.push(this.getTemplate());
+	        }
+	        return result;
+	    },
+	    componentDidSetProps: function componentDidSetProps(value) {
+	        if (value["padding"]) {
+	            this.setAllColumnWidth(undefined, false);
+	        } else if (value["padding-left"]) {}
+	    },
+
+	    getTemplate: function getTemplate() {
+	        return Sophie.element(Layout, null);
+	    },
+	    clearPlaceholdChilren: function clearPlaceholdChilren() {
+	        var l = this.props["data-c-num"] * this.props["data-r-num"];
+
+	        var children = this.props.children;
+
+	        if (l < children.length) {
+	            var newChildren = [];
+	            for (var i = 0; i < children.length; i++) {
+	                if (i < l) {
+	                    newChildren.push(children[i]);
+	                } else {
+	                    if (children[i].props.children.length || children[i].props.src) {
+	                        newChildren.push(children[i]);
+	                    }
+	                }
+	            }
+	            this.props.children = newChildren;
+	        }
+	    },
+
+	    renderChildren: function renderChildren() {
+
+	        var result = [];
+	        this.clearPlaceholdChilren();
+
+	        var l = this.props["data-c-num"] * this.props["data-r-num"];
+	        var padding = this.props.padding - 0.5;
+
+	        var children = this.props.children;
+	        for (var i = 0; i < l; i++) {
+	            if (children[i]) {
+	                var index = i + 1;
+
+	                var cellStyle = "height:" + this.props.cellHeight + "em" + ";width:" + this.props.cellWidth + "%";
+	                var c = index % this.props["data-c-num"];
+
+	                if (c !== 0) {
+	                    console.log(c);
+	                    cellStyle += ";margin-right:" + padding + "px";
+	                }
+	                if (index > this.props["data-c-num"]) {
+	                    cellStyle += ";margin-top:" + padding + "px";
+	                }
+	                var r = Sophie.element(
+	                    "div",
+	                    { "class": "c-list", style: cellStyle },
+	                    Sophie.element(
+	                        "div",
+	                        { "class": "c-ceil" },
+	                        children[i]
+	                    )
+	                );
+	                result.push(r);
+	            }
+	        }
+
+	        return result;
+	    },
+
+	    componentWillMount: function componentWillMount() {},
+
+	    componentDidMount: function componentDidMount() {
+	        this.$ = $(this.nativeNode);
+	        var self = this;
+
+	        if (!this.props.cellWidth) {
+	            self.initRowColumn();
+	            self.forceUpdate();
+	        }
+
+	        $(window).on("resize", function () {
+	            setTimeout(function () {
+	                self.forceUpdate();
+	            }, 10);
+	        });
+	    },
+
+	    initRowColumn: function initRowColumn() {
+	        this.setAllColumnWidth(undefined, false);
+	        this.setAllRowHeight(undefined, false);
+	    },
+
+	    resize: function resize() {
+	        setTimeout(function () {
+	            this.setAllColumnWidth();
+	            this.setAllRowHeight();
+	        }, 0);
+	    },
+
+	    setColumn: function setColumn(columm) {
+	        this.props["data-c-num"] = columm;
+	        var l = this.props["data-c-num"] * this.props["data-r-num"];
+	        var cl = this.props.children.length;
+
+	        if (cl < l) {
+	            for (var i = 0; i < l - cl; i++) {
+	                this.append(this.getTemplate());
+	            }
+	        }
+
+	        this.setAllColumnWidth();
+	    },
+
+	    setRow: function setRow(row) {
+	        this.props["data-r-num"] = row;
+	        var l = this.props["data-c-num"] * this.props["data-r-num"];
+	        var cl = this.props.children.length;
+
+	        if (cl < l) {
+	            for (var i = 0; i < l - cl; i++) {
+	                this.append(this.getTemplate());
+	            }
+	            this.forceUpdate();
+	            this.autoContainerHeight();
+	        } else {
+	            this.forceUpdate();
+	            this.autoContainerHeight();
+	        }
+	    },
+	    computerHeight: function computerHeight() {
+	        var r = this.props["data-r-num"];
+	        var height = this.props.cellHeight;
+	        var currentFontSize = parseFloat($(this.$).css("fontSize"));
+
+	        var allHeight = height * currentFontSize * r + (r - 1) * this.props.padding;
+	        return allHeight;
+	    },
+
+	    autoContainerHeight: function autoContainerHeight() {
+
+	        var allHeight = this.computerHeight();
+	        $(this.$).height(allHeight);
+	    },
+
+	    showOrHideCeil: function showOrHideCeil() {
+
+	        var cnum = this.props["data-c-num"];
+	        var rnum = this.props["data-r-num"];
+	        var allNum = cnum * rnum;
+	        var realNum = $(this.$).find(".c-list").length;
+
+	        if (allNum <= realNum) {
+	            for (var i = 0; i < realNum; i++) {
+	                if (i < allNum) {
+	                    $(this.$).find(".c-list").eq(i).show();
+	                } else {
+	                    $(this.$).find(".c-list").eq(i).hide();
+	                }
+	            }
+	        } else {
+	            $(this.$).find(".c-list").show();
+	        }
+	    },
+
+	    addOne: function addOne(el) {
+	        var l = this.props["data-c-num"] * this.props["data-r-num"];
+	        this.append(el.vnode);
+	    },
+
+	    addOneVnode: function addOneVnode(elVnode) {
+	        var l = this.props["data-c-num"] * this.props["data-r-num"];
+	        this.append(elVnode);
+	        this._update();
+	        var children = this.props.children;
+
+	        if (children.length > l && children.length < l + this.props["data-c-num"]) {
+	            this.props["data-r-num"] += 1;
+	            this._update();
+	            this.autoContainerHeight();
+	        }
+	    },
+	    removeOne: function removeOne(elVnode) {},
+
+	    addOneEmpty: function addOneEmpty() {
+	        this.addOneVnode(this.getTemplate());
+	    },
+
+	    setAllColumnWidth: function setAllColumnWidth(width, updateForce) {
+	        var updateForce = updateForce === undefined ? true : updateForce;
+
+	        var width = width || $(this.$).width();
+
+	        var padding = this.props.padding;
+	        var oNum = this.props["data-c-num"];
+	        var columnWith = (width - padding * (oNum - 1)) / oNum;
+	        var self = this;
+
+	        var currentFontSize = parseFloat($(this.$).css("fontSize"));
+
+	        var cellWidth = play.pxToPercent(columnWith, { width: width });
+
+	        this.props.cellWidth = cellWidth;
+
+	        if (updateForce) {
+	            this.forceUpdate();
+	        }
+	    },
+
+	    setAllRowHeight: function setAllRowHeight(height, updateForce) {
+	        var updateForce = updateForce === undefined ? true : updateForce;
+	        var height = height || $(this.$).height();
+	        var rowNum = this.props["data-r-num"];
+	        var padding = this.props.padding;
+	        var rowHeight = (height - (rowNum - 1) * padding) / rowNum;
+
+	        var currentFontSize = parseFloat($(this.$).css("fontSize"));
+
+	        var value = play.pxToEm(rowHeight, currentFontSize);
+
+	        this.props.cellHeight = value;
+	        if (updateForce) {
+	            this.forceUpdate();
+	        }
 	    }
-	    return result;
-	  },
 
-	  componentWillMount: function componentWillMount() {},
-	  addOne: function addOne(el) {
-	    var children = this.props.children[0];
-	    if (children && children.name) {
-	      this.props.children.push(Sophie.createVnodeByTagName(children.name));
-	    }
-
-	    this._update();
-	  },
-	  addOneEmpty: function addOneEmpty() {
-	    this.props.children.push(Sophie.createVnodeByTagName("p-pic"));
-	    this._update();
-
-	    this._update();
-	  }
 	});
 
 	Sophie.createStyleSheet({
-	  'p-list-layout': {
-	    display: 'table',
-	    overflow: 'hidden',
-	    width: '10rem',
-	    height: '5rem'
-	  },
 
-	  'p-list-layout > p-list': {
-	    width: '100%!important',
-	    height: '100%!important'
-	  },
+	    'p-list': {
+	        display: 'block',
+	        overflow: 'hidden',
+	        width: '10rem',
+	        height: '10rem',
+	        clear: 'both'
+	    },
 
-	  'p-list-layout p-layout ': {
-	    height: '100%',
-	    minHeight: '0px',
-	    display: 'block',
-	    width: 'auto',
-	    overflow: 'hidden'
+	    'p-list:before,  p-list:after': {
+	        display: 'table',
+	        lineHeight: '0',
+	        content: ''
+	    },
 
+	    'p-list > .ul': {
+	        display: 'block',
+	        width: "100%"
+	    },
+
+	    'p-list > .ul .c-list': {
+	        float: 'left',
+	        listStyle: 'none',
+	        minHeight: '10px',
+	        overflow: 'hidden',
+	        boxSizing: 'border-box'
+	    },
+
+	    'p-list > .ul .c-list .c-ceil': {
+	        height: '100%',
+	        minHeight: '10px',
+	        display: 'block',
+	        width: '100%',
+	        overflow: 'hidden'
+	    },
+
+	    'p-list  .c-ceil > p-layout': {
+	        height: '100%',
+	        minHeight: '0px',
+	        display: 'block',
+	        width: '100%',
+	        overflow: 'hidden'
+
+	    },
+
+	    'p-list > ul .c-list .c-ceil .placeholder': {
+	        display: 'none!important',
+	        position: 'absolute'
+	    }
+
+	});
+
+	Sophie.createStyleSheet({}, "@media (max-width: 767px)");
+
+	module.exports = List;
+
+/***/ },
+/* 114 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var Sophie = __webpack_require__(2);
+	var TagName = __webpack_require__(115);
+
+	var Children = Sophie.createClass('p-tagname', {
+
+	  componentWillMount: function componentWillMount() {
+	    this.props.tagName = this.owner.name;
 	  }
+
+	}, TagName);
+
+	module.exports = Children;
+
+/***/ },
+/* 115 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var Sophie = __webpack_require__(2);
+
+	var Children = Sophie.createClass('p-tagname', {
+	  getDefaultProps: function getDefaultProps() {
+	    return {
+	      tagName: "div"
+	    };
+	  },
+
+	  componentWillMount: function componentWillMount() {},
+
+	  getAllClassName: function getAllClassName() {
+	    var className = [];
+	    var fun = function fun(c) {
+
+	      if (c.tagName) {
+	        className.push(c.tagName);
+	      }
+	    };
+	  },
+
+	  render: function render() {
+	    var tagName = this.props.tagName;
+	    // var className = this.props.class || "";
+	    //
+	    // this.props.class = tagName + className;
+	    return Sophie.element(tagName, this.props, this.props.children);
+	  }
+	});
+
+	module.exports = Children;
+
+/***/ },
+/* 116 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var List = __webpack_require__(113);
+	var Pic = __webpack_require__(97);
+
+	var ListImg = Sophie.createClass("p-list-img", {
+	    getTemplate: function getTemplate() {
+	        return Sophie.element(Pic, null);
+	    }
+
+	}, List);
+
+	Sophie.createStyleSheet({
+	    "p-list .c-ceil >  p-pic": {
+	        height: "100%",
+	        display: "block",
+	        width: "100%",
+	        overflow: "hidden"
+
+	    }
 
 	});
 
 	module.exports = ListImg;
 
 /***/ },
-/* 99 */
+/* 117 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var Text = __webpack_require__(97);
-	var Pic = __webpack_require__(82);
+	var Text = __webpack_require__(112);
+	var Pic = __webpack_require__(97);
 
 	var Slide = Sophie.createClass("p-slide", {
 
 	    getDefaultChildren: function getDefaultChildren() {
 	        return [Sophie.element(
-	            'div',
-	            { 'class': 'item active' },
-	            Sophie.element(Pic, null),
+	            Pic,
+	            null,
 	            Sophie.element(
 	                Text,
 	                { 'class': 'carousel-caption' },
 	                '图片1'
 	            )
 	        ), Sophie.element(
-	            'div',
-	            { 'class': 'item' },
-	            Sophie.element(Pic, null),
+	            Pic,
+	            null,
 	            Sophie.element(
 	                Text,
 	                { 'class': 'carousel-caption' },
 	                '图片2'
 	            )
 	        ), Sophie.element(
-	            'div',
-	            { 'class': 'item ' },
-	            Sophie.element(Pic, null),
+	            Pic,
+	            null,
 	            Sophie.element(
 	                Text,
 	                { 'class': 'carousel-caption' },
 	                '图片3'
 	            )
 	        )];
+	    },
+
+	    renderChildren: function renderChildren() {
+	        var children = [];
+
+	        for (var i = 0; i < this.props.children.length; i++) {
+	            var className = i == 0 ? "item active" : "item";
+	            children.push(Sophie.element(
+	                'div',
+	                { 'class': className },
+	                this.props.children[i]
+	            ));
+	        }
+	        return children;
 	    },
 	    render: function render() {
 	        return Sophie.element(
@@ -9059,14 +12747,14 @@
 	                'div',
 	                { 'class': 'carousel slide' },
 	                Sophie.element(
+	                    'div',
+	                    { 'class': 'carousel-inner' },
+	                    this.renderChildren()
+	                ),
+	                Sophie.element(
 	                    'ol',
 	                    { 'class': 'carousel-indicators' },
 	                    this.renderItemBar()
-	                ),
-	                Sophie.element(
-	                    'div',
-	                    { 'class': 'carousel-inner' },
-	                    this.props.children
 	                ),
 	                Sophie.element(
 	                    'a',
@@ -9108,9 +12796,8 @@
 
 	    addOne: function addOne(picSrc, text) {
 	        var newChildren = Sophie.element(
-	            'div',
-	            { 'class': 'item' },
-	            Sophie.element(Pic, null),
+	            Pic,
+	            null,
 	            Sophie.element(
 	                Text,
 	                { 'class': 'carousel-caption' },
@@ -9131,10 +12818,12 @@
 	        width: '20rem',
 	        height: '5rem'
 	    },
+	    'p-slide .carousel-inner': {},
 
 	    'p-slide .carousel-indicators': {
 	        bottom: 0,
-	        height: '40px'
+	        height: '40px',
+	        zIndex: 10
 
 	    },
 
@@ -9144,10 +12833,9 @@
 	    },
 
 	    'p-slide .carousel-caption': {
-	        right: '20%',
 	        left: '20%',
 	        width: 'auto',
-	        marginBottom: '30px',
+	        top: '3.5rem',
 	        display: 'block',
 	        textAlign: 'center'
 	    },
@@ -9166,6 +12854,226 @@
 	});
 
 	module.exports = Slide;
+
+/***/ },
+/* 118 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var Sophie = __webpack_require__(2);
+	(function (select) {
+
+	    // 在编辑状态下，更新编辑属性
+	    if (parent.play && parent.play.dom) {
+	        //重置模板元素的属性
+	        Sophie.on("onBeforeUpgrade", function (el) {
+	            el = $(el);
+	            parent.play.resetTemplateEditProp(el);
+	        });
+
+	        //设计当前元素的属性
+	        Sophie.on("componentDidMount", function (el) {
+	            el = $(el);
+	            parent.play.initEditProp($(el));
+	            //  $(parent.document).trigger("editableInit", [$(el)])
+	        });
+	    }
+
+	    //支持vm单位 data-unit-vm = true
+	    Sophie.on("onUpgrade", function (el) {
+	        return;
+	        el = $(el);
+	        if (el.attr("data-unit-vm")) {
+	            if (el.attr("data-p")) {
+	                resetHeight(el);
+	            }
+	        }
+	    });
+
+	    var resetHeight = function resetHeight(el) {
+	        var p = el.attr("data-p");
+	        if (p) {
+	            var v = parseFloat(p);
+	            el.css("min-height", el.width() * v + "px");
+	        }
+	        if (parent.play) {
+	            parent.play.select.reflow();
+	        }
+	    };
+
+	    var resetHeightAll = function resetHeightAll(el) {
+	        var all = $("[data-p]");
+	        all.each(function (index, el) {
+	            resetHeight($(el));
+	        });
+	        if (parent.play) {
+	            parent.play.select.reflow();
+	        }
+	    };
+
+	    //支持hover
+	    $(document).one("mouseover", function (ev) {
+	        if (window.isEditing) return;
+	        var target = $(ev.target);
+	        if (target.attr("data-hover")) {
+	            target.addClass("hover");
+	        }
+	    });
+
+	    $(document).one("mouseout", function (ev) {
+	        if (window.isEditing) return;
+
+	        var target = $(ev.target);
+
+	        if (target.attr("data-hover")) {
+	            target.removeClass("hover");
+	        }
+	    });
+
+	    window.play = {
+	        mediaQueryValue: {
+	            'phone': 767,
+	            'pad': [768, 991],
+	            pc: 992
+	        },
+	        idPrefix: "p",
+	        unit: "em",
+	        pxToPercent: function pxToPercent(value, parentCoord) {
+	            return value / parentCoord.width * 100;
+	        },
+	        pxToEm: function pxToEm(value, fontSize) {
+	            return value / fontSize;
+	        }
+	    };
+
+	    window.play.utils = {
+	        generateID: function generateID() {
+	            var selectorNum = parseInt($("body").attr("data-selector-num")) || 0;
+	            selectorNum++;
+	            $("body").attr("data-selector-num", selectorNum);
+	            return selectorNum;
+	        },
+	        getID: function getID() {
+	            var selectorNum = parseInt($("body").attr("data-selector-num"));
+	            if (!selectorNum) {
+	                selectorNum = 0;
+	                $("body").attr("data-selector-num", 0);
+	            }
+	            return selectorNum;
+	        }
+	    };
+
+	    //jquery extend
+	    var binds = [];
+	    $.fn.extend({
+	        bindWidthDesc: function bindWidthDesc(desc, type, func) {
+	            var self = this;
+	            if (parent.play && parent.play) {
+	                play.bindWidthDesc(desc, type, func, self);
+	            } else {
+	                this.on(type, func);
+	            }
+	        }
+
+	    });
+
+	    //支持rem
+
+	    (function () {
+	        //设置rem
+	        // w:1280px  f:40px
+	        // w: 640px  f:20px
+	        var basefontSize = 60;
+
+	        //TODO FOR TEST
+	        var maxWidth = App.getMaxWidth();
+
+	        Sophie.createStyleSheet({
+	            '.p-container': {
+	                maxWidth: maxWidth + "px!important"
+	            }
+
+	        });
+	        var initBaseRem = function initBaseRem() {
+	            var documentWidth = $("html").width();
+
+	            if (documentWidth > maxWidth) documentWidth = maxWidth;
+
+	            basefontSize = documentWidth / 1280 * 60;
+	            $(document.documentElement).css("font-size", basefontSize + "px");
+	            if (documentWidth < 768) {
+	                $(document.documentElement).attr("id", "media-phone");
+	            } else {
+	                $(document.documentElement).attr("id", "media-pc");
+	            }
+
+	            play.baseFontSize = basefontSize;
+	        };
+
+	        initBaseRem();
+
+	        $(window).on("resize", function () {
+	            initBaseRem();
+	        });
+
+	        if (parent.play) {
+	            parent.play.pxToRem = function (px) {
+	                return px / basefontSize;
+	            };
+	        }
+	    })();
+	})();
+
+	//覆盖 Sophie.createStyleSheet
+
+	var createStyleSheet = Sophie.StyleSheet.create;
+
+	Sophie.createStyleSheet = Sophie.StyleSheet.create = function (styles, mediaQuery, name) {
+
+	    if (mediaQuery === "@media (max-width: 767px)") {
+	        var newStyle = {};
+	        for (var p in styles) {
+	            newStyle["#media-phone #dotlinkface " + p] = styles[p];
+	        }
+
+	        createStyleSheet(newStyle, mediaQuery, name);
+	    } else if (!mediaQuery) {
+	        var newStyle = {};
+	        for (var p in styles) {
+	            newStyle["#media-pc #dotlinkface " + p] = styles[p];
+	        }
+
+	        // createStyleSheet(newStyle,mediaQuery,name)
+	        createStyleSheet(styles, mediaQuery, name);
+	    }
+	};
+
+	//通知父页面加载
+	Sophie.on("ready", function () {
+	    if (parent.play && parent.play.dom) {
+	        var jQuery = parent.$;
+	        jQuery(parent).trigger("iframeComplete", [window]);
+	    }
+	});
+
+/***/ },
+/* 119 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var List = __webpack_require__(116);
+	var Pic = __webpack_require__(97);
+	var creater = {
+	  listImg: function listImg() {
+	    return Sophie.element(List, null);
+	  }
+	};
+
+	Sophie.createStyleSheet({});
+
+	module.exports = creater;
 
 /***/ }
 /******/ ]);
