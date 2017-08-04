@@ -282,22 +282,22 @@ webpackJsonp([5,19],{
 
 /***/ },
 
-/***/ 590:
+/***/ 605:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _Header = __webpack_require__(591);
+	var _Header = __webpack_require__(606);
 
 	var _Header2 = _interopRequireDefault(_Header);
 
-	var _Footer = __webpack_require__(593);
+	var _Footer = __webpack_require__(608);
 
 	var _Footer2 = _interopRequireDefault(_Footer);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	__webpack_require__(594);
+	__webpack_require__(609);
 	module.exports = React.createClass({
 	  displayName: 'exports',
 
@@ -393,7 +393,7 @@ webpackJsonp([5,19],{
 
 /***/ },
 
-/***/ 591:
+/***/ 606:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -404,7 +404,7 @@ webpackJsonp([5,19],{
 
 	var _reactRouter = __webpack_require__(120);
 
-	var login = __webpack_require__(592);
+	var login = __webpack_require__(607);
 	exports.default = React.createClass({
 	  displayName: "Header",
 
@@ -481,7 +481,7 @@ webpackJsonp([5,19],{
 	      ),
 	      "tru": React.createElement(
 	        _reactRouter.Link,
-	        { activeClassName: "active", className: "tru", to: "/template/market" },
+	        { activeClassName: "active", className: "tru", to: "/template/tru" },
 	        "新手指南"
 	      )
 	    };
@@ -550,7 +550,7 @@ webpackJsonp([5,19],{
 
 /***/ },
 
-/***/ 593:
+/***/ 608:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -762,13 +762,13 @@ webpackJsonp([5,19],{
 
 /***/ },
 
-/***/ 594:
+/***/ 609:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(595);
+	var content = __webpack_require__(610);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(72)(content, {});
@@ -789,7 +789,7 @@ webpackJsonp([5,19],{
 
 /***/ },
 
-/***/ 595:
+/***/ 610:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(71)();

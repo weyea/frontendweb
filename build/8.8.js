@@ -1,6 +1,6 @@
 webpackJsonp([8,19],{
 
-/***/ 591:
+/***/ 606:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -11,7 +11,7 @@ webpackJsonp([8,19],{
 
 	var _reactRouter = __webpack_require__(120);
 
-	var login = __webpack_require__(592);
+	var login = __webpack_require__(607);
 	exports.default = React.createClass({
 	  displayName: "Header",
 
@@ -88,7 +88,7 @@ webpackJsonp([8,19],{
 	      ),
 	      "tru": React.createElement(
 	        _reactRouter.Link,
-	        { activeClassName: "active", className: "tru", to: "/template/market" },
+	        { activeClassName: "active", className: "tru", to: "/template/tru" },
 	        "新手指南"
 	      )
 	    };
@@ -157,7 +157,7 @@ webpackJsonp([8,19],{
 
 /***/ },
 
-/***/ 593:
+/***/ 608:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -369,16 +369,16 @@ webpackJsonp([8,19],{
 
 /***/ },
 
-/***/ 606:
+/***/ 621:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _Header = __webpack_require__(591);
+	var _Header = __webpack_require__(606);
 
 	var _Header2 = _interopRequireDefault(_Header);
 
-	var _Footer = __webpack_require__(593);
+	var _Footer = __webpack_require__(608);
 
 	var _Footer2 = _interopRequireDefault(_Footer);
 
