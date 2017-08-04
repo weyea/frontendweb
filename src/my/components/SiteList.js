@@ -72,7 +72,14 @@ module.exports =  React.createClass({
                 <a href={"/my/app/"+site.id}><img src={site.logo||window.rootPath+"img/template_bg.png"}/></a>
             </div>
             <div className="des">
-                <h3><a href={"/app/"+site.id}>{site.title}</a></h3>
+                <h3><a href={"/app/"+site.id}>{site.title}</a> <span className="status">已发布</span></h3>
+                <p className="url"><a href={"/app/"+site.id}>{"/app/"+site.id}</a></p>
+                <p className="visitors">过去7天的访问量: <span class="num"> 100</span></p>
+                <div className="action">
+                    <a className="edit btn btn-green ">编辑</a>
+                    <a className="data icon">数据</a>
+                    <a className="share icon">分享</a>
+                </div>
             </div>
         </div>
       );

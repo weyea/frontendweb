@@ -35,7 +35,7 @@
     "jquery.cookie": "^1.4.1",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
-    "react-router": "^3.0.0",
+    "react-router": "^3.0.5",
     "react-style": "~0.5.5",
     "sophie": "git+https://github.com/zhangquan/sophie.git",
     "wysihtml": "^0.6.0-beta1"

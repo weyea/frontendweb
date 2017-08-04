@@ -32,7 +32,7 @@ export default  React.createClass({
       "home":<Link activeClassName="active" className="home" to="/">首页</Link>,
       "market":<Link activeClassName="active" className="market" to="/template/market">模板市场</Link>,
       "my":<Link activeClassName="active" className="my" to="/my">我的站点</Link>,
-      "tru":<Link activeClassName="active" className="tru" to="/template/market">新手指南</Link>
+      "tru":<Link activeClassName="active" className="tru" to="/template/tru">新手指南</Link>
     }
 
       var i = 0;

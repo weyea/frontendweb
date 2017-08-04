@@ -12,9 +12,6 @@ module.exports =  React.createClass({
         <Header active="market"></Header>
 
 
-
-
-
         <div id="template-market">
           <div className="container">
             <TemplateList></TemplateList>

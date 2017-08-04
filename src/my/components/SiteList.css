@@ -1,13 +1,13 @@
-.add-site {
+    .add-site {
 
-    border-bottom:1px solid #eaeaea;
-    padding: 0 0px 20px 0;
+        border-bottom:1px solid #eaeaea;
+        padding: 0 0px 20px 0;
 
-}
+    }
 
-.add-site-button {
+    .add-site-button {
 
-}
+    }
 
     .site-list {
         overflow: hidden;
@@ -17,11 +17,13 @@
         flex-direction: row;
     }
 
-#my-site-list {
+    #my-site-list {
 
-    display: flex;
-    flex-direction: row;
-}
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding-bottom: 100px;
+    }
 
 
     .site-list-wrap{
@@ -30,17 +32,30 @@
     .site-list .templ {
         background:#ffffff;
 
-        width:198px;
+        width:650px;
         margin-top: 20px;
         margin-right: 30px;
+        height:206px;
+        display: flex;
+        flex-direction: row;
+        box-shadow: 0px 1px 4px 1px rgba(0,0,0,0.16);
+
+
+
 
     }
     .site-list .templ .bd {
         background: url("/imgbrowser.png") 0 0 no-repeat;
         background:#ffffff;
 
-        width:198px;
-        height:126px;
+        width:273px;
+        height:206px;
+    }
+
+    .site-list .templ .des {
+        padding:15px 15px 15px 20px;
+        position: relative;
+        color: #666666;
     }
 
 
@@ -50,15 +65,57 @@
         color:#666666;
         letter-spacing:0.99px;
         text-align: center;
+        margin: 0;
+
+    }
+    .site-list .templ .status  {
+        padding: 1px 2px;
+        color: #fff;
+        border-radius: 2px;
+        background-color: #84C634;
+        font-size: 11px;
+        margin-left: 10px;
+
     }
 
     .site-list .templ h3  a {
         family:MicrosoftYaHei;
-        font-size:12px;
+
         color:#666666;
         letter-spacing:0.99px;
         text-align: center;
+        font-size: 20px;
     }
+
+
+    .site-list .templ  .url {
+        margin-top: 15px;
+
+    }
+
+    .site-list .templ  .url  a{
+        color: #00C4D8;
+    }
+
+    .site-list .templ  .action{
+        position: absolute;
+        bottom:20px;
+        left:20px;
+    }
+
+    .site-list .templ  .action a{
+        margin-right: 10px;
+    }
+
+    .site-list .templ  .visitors span{
+        color: #00C4D8;
+        font-size: 18px;
+        margin-left: 10px;
+
+    }
+
+
+
     .site-list .templ img {
         width: 100%;
     }

@@ -394,10 +394,32 @@ footer section:last-child p {
 }
 
 
-.btn-green{
+.btn-green,.btn-green:hover{
     background:#00c4d8;
     border-radius:2px;
     color:#fff;
+}
+
+.btn-green-s,.btn-green-s:hover{
+    background:#00c4d8;
+    border-radius:2px;
+    color:#fff;
+    display: inline-block;
+    padding: 8px 20px;
+
+}
+
+.btn-green-s{
+    background:#00c4d8;
+    border-radius:2px;
+    color:#fff;
+    display: inline-block;
+    padding: 8px 20px;
+}
+
+.icon{
+    color:#666;
+    font-size: 12px;
 }
 
 .btn-green-line{

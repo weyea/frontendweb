@@ -5,7 +5,7 @@ module.exports = React.createClass({
     getInitialState:function(){
       return {
           tab:"all",
-          siteList:[{title:123}]
+          siteList:[{title:123, id:1}]
       };
     },
     componentDidMount: function (){

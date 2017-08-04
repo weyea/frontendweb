@@ -4,12 +4,12 @@ import  "./StunningSite.css"
 export default  React.createClass({
     getInitialState:function(){
         return {siteList:[
-            {title:"我的化妆工作室", logo:window.rootPath+"img/01.png"},
-            {title:"我的化妆工作室", logo:window.rootPath+"img/template_bg_1.png"},
-            {title:"我的化妆工作室", logo:window.rootPath+"img/template_bg_2.png"},
-            {title:"我的化妆工作室", logo:window.rootPath+"img/template_bg_3.png"},
-            {title:"我的化妆工作室", logo:window.rootPath+"img/template_bg_4.png"},
-            {title:"我的化妆工作室", logo:window.rootPath+"img/template_bg_5.png"},
+            {title:"我的化妆工作室", id:1,logo:window.rootPath+"img/01.png"},
+            {title:"我的化妆工作室", id:2,logo:window.rootPath+"img/template_bg_1.png"},
+            {title:"我的化妆工作室", id:3,logo:window.rootPath+"img/template_bg_2.png"},
+            {title:"我的化妆工作室", id:4,logo:window.rootPath+"img/template_bg_3.png"},
+            {title:"我的化妆工作室", id:5,logo:window.rootPath+"img/template_bg_4.png"},
+            {title:"我的化妆工作室", id:6,logo:window.rootPath+"img/template_bg_5.png"},
 
             ]};
     },
@@ -47,7 +47,7 @@ export default  React.createClass({
         for(var i=0;i<this.state.siteList.length;i++){
             var site = this.state.siteList[i];
             var item =(
-                <div className="list">
+                <div key = {site.id} className="list">
 
                     <div className="bd">
                         <a href={"/app/"+i}><img src={site.logo||window.rootPath+"img/01.png"}/></a>
