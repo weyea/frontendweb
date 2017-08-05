@@ -5591,14 +5591,13 @@
 
 	        var pageVnode = Sophie.createVnodeByTagName("p-page", { id: id, title: title });
 
-	        var appVnode = Sophie.firstVnode;
+	        var body = $("p-body", this.nativeNode).get(0).vnode;
 
-	        appVnode.refs["body"].append(pageVnode);
+	        body.append(pageVnode);
 
 	        if ($("p-nav-page").get(0)) {
 	            var nav = $("p-nav-page").get(0).vnode;
 	            if (nav) {
-
 	                nav.addOne(id, title, true);
 	            }
 	        }
@@ -5622,9 +5621,9 @@
 	        var page = $("#" + pageID).get(0);
 
 	        if (page) {
-	            var appVnode = Sophie.firstVnode;
+	            var body = $("p-body", this.nativeNode).get(0).vnode;
 
-	            appVnode.refs["body"].remove(page.vnode);
+	            body.remove(page.vnode);
 
 	            if (pageNav.get(0)) {
 	                pageNav.get(0).vnode.removeItem(pageID);
