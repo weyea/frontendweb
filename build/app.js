@@ -5543,16 +5543,14 @@
 	var PSite = Sophie.createClass("p-site", {
 	    mixin: [GridLayout],
 	    getDefaultProps: function getDefaultProps() {
-	        return {
-	            activePageId: "dotlinkface-homepage"
-	        };
+	        return {};
 	    },
 
 	    getDefaultChildren: function getDefaultChildren() {
 	        return [Sophie.element(Header, { id: 'page-header', ref: 'header' }), Sophie.element(
 	            Body,
 	            { id: 'page-body', ref: 'body' },
-	            Sophie.element(Page, { id: 'dotlinkface-homepage', title: '首页', active: 'true' })
+	            Sophie.element(Page, { id: 'dotlinkface-homepage', title: '首页' })
 	        ), Sophie.element(Footer, { id: 'page-footer', ref: 'footer' }), Sophie.element(
 	            Layout,
 	            { id: 'page-mask' },
@@ -5563,7 +5561,8 @@
 	    componentDidMount: function componentDidMount() {
 	        var siteTitle = $(this).attr("title");
 	        $("title").text(siteTitle);
-	        this.active(this.props.activePageId);
+	        this.activeFirstPage();
+
 	        var self = this;
 	        $(window).on("resize", function () {
 	            self.forceUpdate(true);
@@ -5623,60 +5622,32 @@
 	        var page = $("#" + pageID).get(0);
 
 	        if (page) {
-	            var isActive = $(page).hasClass("active");
-
 	            var appVnode = Sophie.firstVnode;
 
 	            appVnode.refs["body"].remove(page.vnode);
+
 	            if (pageNav.get(0)) {
 	                pageNav.get(0).vnode.removeItem(pageID);
 	            }
+
 	            if (pageNavMobile.get(0)) {
 	                pageNavMobile.get(0).vnode.removeItem(pageID);
-	            }
-
-	            if (isActive) {
-	                this.activeFist();
 	            }
 	        }
 	    },
 
 	    active: function active(id) {
-	        var self = this;
-	        //
-	        // var nav =   $("p-nav-page",play.iframeDoc);
-	        //
-	        //
-	        // if(nav&&nav.length){
-	        //
-	        //     nav.get(0).vnode.active(id);
-	        // }
-
-	        this.props.activePageId = id;
-
-	        var pages = $("p-body p-page");
-	        pages.removeClass("active");
-	        $("#" + id).addClass("active");
-
-	        var nav = $("p-nav-page");
-	        var pageNavMobile = $("p-nav-page-mobile");
-
-	        if (nav && nav.get(0)) nav.get(0).vnode.active(id);
-	        if (pageNavMobile && pageNavMobile.get(0)) pageNavMobile.get(0).vnode.active(id);
-	        //
-	        // $("#"+id).addClass('animated fadeIn');
-	        // $("#"+id).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
-	        //    // $("#"+id,play.iframeDoc).removeClass("animated fadeIn")
-	        // });
+	        var pages = $("p-page", this.nativeNode);
+	        for (var i = 0; i < pages.length; i++) {
+	            pages.get(i).vnode.unActive();
+	        }
+	        var page = $("#" + id, this.nativeNode).get(0).vnode;
+	        page.active();
 	    },
 
-	    activeFist: function activeFist() {
-	        var self = this;
-	        var pages = $("p-body p-page");
-
-	        var id = pages.eq(0).attr("id");
-	        this.props.activePageId = id;
-	        this.active(id);
+	    activeFirstPage: function activeFirstPage() {
+	        var pages = $("p-page", this.nativeNode);
+	        pages.get(0).vnode.active();
 	    }
 	});
 
@@ -5711,82 +5682,86 @@
 
 	var GridLayout = __webpack_require__(77);
 	var PPage = Sophie.createClass("p-page", {
-	  mixin: [GridLayout],
-	  getDefaultProps: function getDefaultProps() {},
-	  getInitialState: function getInitialState() {
-	    return {
-	      isActive: this.props.active || false
-	    };
-	  },
+	    mixin: [GridLayout],
+	    getDefaultProps: function getDefaultProps() {
+	        return {
+	            active: false
+	        };
+	    },
+	    getInitialState: function getInitialState() {
+	        var active = false;
+	        // if(this.props.homePageId&&(this.props.homePageId ===this.props.id)){
+	        //     active = true;
+	        // }
 
-	  render: function render() {
-	    var className = "";
-	    if (this.state.isActive) {
-	      className = "active";
+	        return {
+	            active: active
+	        };
+	    },
+
+	    render: function render() {
+	        var className = "";
+
+	        if (this.state.active) {
+	            className = "active";
+	        }
+
+	        return Sophie.element(
+	            "p-page",
+	            { "class": className, id: this.props.id, title: this.props.title },
+	            this.renderGridChildrenFullWidth()
+	        );
+	    },
+
+	    setConfig: function setConfig(config) {
+	        if (config.title) {
+	            this.props.title = config.title;
+	        }
+	    },
+
+	    componentDidMount: function componentDidMount() {},
+
+	    active: function active() {
+	        this.setState({ active: true });
+	    },
+	    unActive: function unActive() {
+	        this.setState({ active: false });
 	    }
-	    return Sophie.element(
-	      "p-page",
-	      { "class": className, id: this.props.id, title: this.props.title },
-	      this.renderGridChildrenFullWidth()
-	    );
-	  },
-
-	  setConfig: function setConfig(config) {
-	    if (config.title) {
-	      this.props.title = config.title;
-	    }
-	  },
-
-	  componentDidMount: function componentDidMount() {
-
-	    var self = this;
-	  },
-
-	  scale: function scale(el, width) {
-	    var oldWidth = el.width();
-	    var currentFontSize = parseInt(el.css("fontSize"));
-
-	    var fontSize = width / oldWidth * currentFontSize;
-	    el.css("fontSize", fontSize + "px");
-	  },
-	  active: function active() {
-	    this.setState({ isActive: true });
-	  }
 
 	});
 
 	PPage.createStyleSheet({
-	  'p-page': {
-	    display: 'none',
-	    width: '100%!important',
-	    minHeight: '1em',
-	    height: '15em',
-	    margin: '0!important',
-	    padding: '0!important'
+	    'p-page': {
+	        display: 'none',
+	        width: '100%!important',
+	        minHeight: '1em',
+	        height: '15em',
+	        margin: '0!important',
+	        padding: '0!important'
 
-	  },
+	    },
 
-	  'p-page.active': {
-	    display: 'block!important'
-	  },
+	    'p-page.active': {
+	        display: 'block!important'
+	    },
 
-	  'p-page > .p-container-fluid, p-page > .p-container': {
-	    height: 'auto!important',
-	    position: 'relative',
-	    margin: "auto!important"
-	  },
+	    'p-page > .p-container-fluid, p-page > .p-container': {
+	        height: 'auto!important',
+	        position: 'relative',
+	        margin: "auto!important"
+	    },
 
-	  'p-page > .p-container': {
-	    height: 'auto!important',
-	    position: 'relative',
-	    margin: "auto!important"
-	  },
+	    'p-page > .p-container': {
+	        height: 'auto!important',
+	        position: 'relative',
+	        margin: "auto!important"
+	    },
 
-	  'p-page:before ,p-page:after': {
-	    display: 'table',
-	    content: '" "',
-	    lineHeight: 0
-	  }
+	    'p-page:before ,p-page:after': {
+	        display: 'table',
+	        content: '" "',
+	        lineHeight: 0
+	    }
 
 	});
 
@@ -6652,22 +6627,20 @@
 
 	var PBody = Sophie.createClass("p-body", {
 	  getDefaultProps: function getDefaultProps() {
-	    return {
-	      activePageId: "dotlinkface-homepage"
-	    };
+	    return {};
 	  },
 	  getInitialState: function getInitialState() {
-	    return {
-	      activePageId: this.props.activePageId
-	    };
+	    return {};
+	  },
+
+	  getDefaultChildren: function getDefaultChildren() {
+	    return [Sophie.element(Page, { id: "dotlinkface-homepage", title: "首页", active: "true" })];
 	  },
 
 	  componentDidMount: function componentDidMount() {},
+
 	  render: function render() {
-	    if (this.props.children.length == 1) {
-	      this.state.activePageId = this.props.children[0].props.id;
-	      this.props.children[0].state.isActive = true;
-	    }
+
 	    return Sophie.element(
 	      "p-body",
 	      null,
@@ -6675,12 +6648,7 @@
 	    );
 	  },
 
-	  renderChildren: function renderChildren() {},
-
-	  activePage: function activePage(id) {
-	    this.state.activePageId = id;
-	    this._update();
-	  }
+	  renderChildren: function renderChildren() {}
 
 	});
 

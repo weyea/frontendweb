@@ -42523,7 +42523,7 @@ webpackJsonp([3,19],[
 	        left: '0',
 	        top: '0',
 	        padding: '0 10px'
-	    }, _defineProperty(_shortcutbar, "top", '-36px'), _defineProperty(_shortcutbar, "height", '36px'), _defineProperty(_shortcutbar, "lineHeight", '20px'), _defineProperty(_shortcutbar, "left", '0'), _defineProperty(_shortcutbar, "whiteSpace", 'nowrap'), _defineProperty(_shortcutbar, "zIndex", '999'), _defineProperty(_shortcutbar, "width", '700px'), _shortcutbar),
+	    }, _defineProperty(_shortcutbar, "top", '-36px'), _defineProperty(_shortcutbar, "height", '36px'), _defineProperty(_shortcutbar, "lineHeight", '20px'), _defineProperty(_shortcutbar, "left", '0'), _defineProperty(_shortcutbar, "pointerEvents", 'auto'), _defineProperty(_shortcutbar, "whiteSpace", 'nowrap'), _defineProperty(_shortcutbar, "zIndex", '999'), _defineProperty(_shortcutbar, "width", '700px'), _shortcutbar),
 
 	    '.shortcutbar-wrap': (_shortcutbarWrap = {
 	        padding: '0 10px',
