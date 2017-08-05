@@ -94,9 +94,9 @@ module.exports = React.createClass({
                             <div>
                                 <p className="action">
                                     <input id="fileupload" type="file" name="file" />
-                                    <a className="" href={"/designer/app/"+site.id}>设计</a>
+                                    <a className="" href={"/designer/template/"+site.id}>设计</a>
                                     <span>  |  </span>
-                                    <a className="del-site" href={"/app/json/"+site.id}>删除 </a>
+                                    <a className="del-site" href={"/template/json/"+site.id}>删除 </a>
                                 </p>
                             </div>
                         </div>

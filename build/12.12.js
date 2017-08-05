@@ -1115,7 +1115,7 @@ webpackJsonp([12,19],{
 	                                React.createElement('input', { id: 'fileupload', type: 'file', name: 'file' }),
 	                                React.createElement(
 	                                    'a',
-	                                    { className: '', href: "/designer/app/" + site.id },
+	                                    { className: '', href: "/designer/template/" + site.id },
 	                                    '设计'
 	                                ),
 	                                React.createElement(
@@ -1125,7 +1125,7 @@ webpackJsonp([12,19],{
 	                                ),
 	                                React.createElement(
 	                                    'a',
-	                                    { className: 'del-site', href: "/app/json/" + site.id },
+	                                    { className: 'del-site', href: "/template/json/" + site.id },
 	                                    '删除 '
 	                                )
 	                            )
