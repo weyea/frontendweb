@@ -523,6 +523,7 @@ webpackJsonp([11,19],{
 	    componentDidMount: function componentDidMount() {
 	        this.getData();
 	        this.uploadImg();
+	        this.bindEvent();
 	    },
 
 	    uploadImg: function uploadImg() {
@@ -566,6 +567,22 @@ webpackJsonp([11,19],{
 	            if (debug) {} else {
 	                _this.setState({ site: site });
 	            }
+	        });
+	    },
+	    bindEvent: function bindEvent() {
+	        var delEl = $(".del-site", this.nativeNode);
+	        delEl.on("click", function (ev) {
+	            ev.preventDefault();
+	            window.confirm("确定删除这个站点嘛？");
+
+	            var url = $(ev.target).attr("href");
+	            $.ajax({
+	                url: url,
+	                type: "DELETE",
+	                success: function success() {
+	                    location.href = "/my";
+	                }
+	            });
 	        });
 	    },
 
@@ -634,7 +651,7 @@ webpackJsonp([11,19],{
 	                                ),
 	                                React.createElement(
 	                                    'a',
-	                                    { className: 'del-site', href: "/app/json/" + site.id },
+	                                    { className: 'del-site', href: "/json/app/" + site.id },
 	                                    '删除 '
 	                                )
 	                            )

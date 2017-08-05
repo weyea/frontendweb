@@ -12,6 +12,7 @@ module.exports = React.createClass({
     componentDidMount: function (){
         this.getData();
         this.uploadImg();
+        this.bindEvent();
 
     },
 
@@ -62,6 +63,22 @@ module.exports = React.createClass({
 
         })
     },
+    bindEvent:function(){
+        var delEl = $(".del-site",this.nativeNode)
+        delEl.on("click", function(ev){
+            ev.preventDefault();
+            window.confirm("确定删除这个站点嘛？")
+
+            var url = $(ev.target).attr("href")
+            $.ajax({
+                url:url,
+                type:"DELETE",
+                success:function(){
+                    location.href = "/my"
+                }
+            })
+        })
+    },
 
     render: function () {
 
@@ -96,7 +113,7 @@ module.exports = React.createClass({
                                     <input id="fileupload" type="file" name="file" />
                                     <a className="" href={"/designer/app/"+site.id}>设计</a>
                                     <span>  |  </span>
-                                    <a className="del-site" href={"/app/json/"+site.id}>删除 </a>
+                                    <a className="del-site" href={"/json/app/"+site.id}>删除 </a>
                                 </p>
                             </div>
                         </div>
