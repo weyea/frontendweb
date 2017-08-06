@@ -2256,6 +2256,7 @@
 
 	function updateElement(dispatch, context) {
 	  return function (DOMElement, action) {
+	    if (!DOMElement) return;
 	    _diff.Actions.case({
 	      sameNode: _noop2.default,
 	      setAttribute: function setAttribute(name, value, previousValue) {
@@ -2320,6 +2321,7 @@
 	function _updateChildren(DOMElement, changes, dispatch, context) {
 	  // Create a clone of the children so we can reference them later
 	  // using their original position even if they move around
+	  if (!DOMElement) return;
 	  var childNodes = (0, _toArray2.default)(DOMElement.childNodes);
 	  changes.forEach(function (change) {
 	    _diff.Actions.case({
@@ -2344,6 +2346,7 @@
 	 */
 
 	function _updateThunk(DOMElement, prev, next, path, dispatch, context) {
+	  if (!DOMElement) return;
 	  var props = next.props;
 	  var children = next.children;
 	  var onUpdate = next.options.onUpdate;
@@ -5559,13 +5562,20 @@
 	    },
 
 	    componentDidMount: function componentDidMount() {
+	        var _this = this;
+
 	        var siteTitle = $(this).attr("title");
 	        $("title").text(siteTitle);
 	        this.activeFirstPage();
+	        this.state.mediaName = window.App.getMediaName();
 
 	        var self = this;
 	        $(window).on("resize", function () {
-	            self.forceUpdate(true);
+	            var mediaName = window.App.getMediaName();;
+	            if (mediaName !== _this.state.mediaName) {
+	                self.forceUpdate(true);
+	                _this.state.mediaName = mediaName;
+	            }
 	        });
 	    },
 
@@ -5703,6 +5713,11 @@
 
 	        if (this.state.active) {
 	            className = "active";
+	        }
+
+	        if (!this.props.id) {
+	            var id = play.idPrefix + play.utils.generateID();
+	            this.props.id = id;
 	        }
 
 	        return Sophie.element(

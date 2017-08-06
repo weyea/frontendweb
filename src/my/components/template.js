@@ -12,6 +12,7 @@ module.exports = React.createClass({
     componentDidMount: function (){
         this.getData();
         this.uploadImg();
+        this.bindEvent()
 
     },
 
@@ -124,6 +125,22 @@ module.exports = React.createClass({
         else{
             return (<div className="loading">加载中...</div>)
         }
-    }
+    },
+    bindEvent:function(){
+        var delEl = $(".del-site",this.nativeNode)
+        delEl.on("click", function(ev){
+            ev.preventDefault();
+            window.confirm("确定删除这个站点嘛？")
+
+            var url = $(ev.target).attr("href")
+            $.ajax({
+                url:url,
+                type:"DELETE",
+                success:function(){
+                    location.href = "/my"
+                }
+            })
+        })
+    },
 
 });
