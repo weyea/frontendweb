@@ -88,7 +88,7 @@ module.exports = React.createClass({
                 <div  className="container">
                     <div className="templ">
                         <div className="bd">
-                            <a href={"/my/app/"+site.id}><img src={site.logo||window.rootPath+"img/template_bg.png"}/></a>
+                            <a href={"/my/preview/template/"+site.id}><img src={site.logo||window.rootPath+"img/template_bg.png"}/></a>
                         </div>
                         <div className="des">
                             <h3><a href={"/app/"+site.id}>{site.title}</a></h3>
@@ -97,7 +97,7 @@ module.exports = React.createClass({
                                     <input id="fileupload" type="file" name="file" />
                                     <a className="" href={"/designer/template/"+site.id}>设计</a>
                                     <span>  |  </span>
-                                    <a className="del-site" href={"/template/json/"+site.id}>删除 </a>
+                                    <a className="del-site" href={"/json/template/"+site.id}>删除 </a>
                                 </p>
                             </div>
                         </div>
