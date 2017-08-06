@@ -27940,30 +27940,7 @@ webpackJsonp([3,19],[
 	        }
 	    }), _defineProperty(_selectWithGroup, "getCurrentContextVnode", function getCurrentContextVnode(target, context) {
 
-	        target = play.getMainDocumentEl(target);
-
-	        if (!target) {
-	            return;
-	        }
-	        var parent = play.getParent(target);
-
-	        if (target.is("app") || target.is("p-site")) {
-	            return;
-	        }
-
-	        if (select.isSelectable(target) && context && $(context).closest(parent).length) {
-	            return target;
-	        }
-
-	        if (play.isLayout(target) && select.isSelectable(target)) {
-	            return target;
-	        }
-
-	        if ((parent.is("p-body") || parent.is(context) || play.isLayout(parent)) && select.isSelectable(target)) {
-	            return target;
-	        }
-
-	        return this.getCurrentContextVnode(play.getParent(target), context);
+	        return this.getElInContext(target);
 	    }), _defineProperty(_selectWithGroup, "getElInContext", function getElInContext(target, context) {
 	        var context = context || play.select.selectedEL;
 	        target = play.getMainDocumentEl(target);

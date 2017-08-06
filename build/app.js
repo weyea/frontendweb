@@ -88,26 +88,26 @@
 	  Page: __webpack_require__(75),
 	  Site: __webpack_require__(74),
 
-	  LayoutInner: __webpack_require__(90),
-	  LayoutTwo: __webpack_require__(91),
-	  LayoutThree: __webpack_require__(92),
-	  LayoutTwoResponse: __webpack_require__(93),
-	  LayoutTwoNoResponse: __webpack_require__(94),
-	  LayoutThreeResponse: __webpack_require__(95),
-	  LayoutThreeNoResponse: __webpack_require__(96),
-	  Pic: __webpack_require__(97),
-	  Bg: __webpack_require__(98),
-	  Masonry: __webpack_require__(99),
-	  Logo: __webpack_require__(107),
+	  LayoutInner: __webpack_require__(91),
+	  LayoutTwo: __webpack_require__(92),
+	  LayoutThree: __webpack_require__(93),
+	  LayoutTwoResponse: __webpack_require__(94),
+	  LayoutTwoNoResponse: __webpack_require__(95),
+	  LayoutThreeResponse: __webpack_require__(96),
+	  LayoutThreeNoResponse: __webpack_require__(97),
+	  Pic: __webpack_require__(98),
+	  Bg: __webpack_require__(99),
+	  Masonry: __webpack_require__(100),
+	  Logo: __webpack_require__(108),
 	  Grid: __webpack_require__(78),
-	  Group: __webpack_require__(108),
+	  Group: __webpack_require__(109),
 
-	  NavPage: __webpack_require__(109),
+	  NavPage: __webpack_require__(88),
 	  NavPageMask: __webpack_require__(86),
 	  NavPageInline: __webpack_require__(110),
 	  NavPageAbsolute: __webpack_require__(111),
 
-	  A: __webpack_require__(88),
+	  A: __webpack_require__(89),
 	  Text: __webpack_require__(112),
 
 	  List: __webpack_require__(113),
@@ -5539,7 +5539,7 @@
 	var Body = __webpack_require__(85);
 	var NavPageMask = __webpack_require__(86);
 	var NavPageMobile = __webpack_require__(87);
-	var Layout = __webpack_require__(89);
+	var Layout = __webpack_require__(90);
 
 	var GridLayout = __webpack_require__(77);
 
@@ -5553,7 +5553,11 @@
 	        return [Sophie.element(Header, { id: 'page-header', ref: 'header' }), Sophie.element(
 	            Body,
 	            { id: 'page-body', ref: 'body' },
-	            Sophie.element(Page, { id: 'dotlinkface-homepage', title: '首页' })
+	            Sophie.element(Page, { id: 'dotlinkface-homepage', title: '首页' }),
+	            Sophie.element(Page, { id: 'dotlinkface-page-1', title: '页面1' }),
+	            Sophie.element(Page, { id: 'dotlinkface-page-2', title: '页面2' }),
+	            Sophie.element(Page, { id: 'dotlinkface-page-3', title: '页面3' }),
+	            Sophie.element(Page, { id: 'dotlinkface-page-4', title: '页面4' })
 	        ), Sophie.element(Footer, { id: 'page-footer', ref: 'footer' }), Sophie.element(
 	            Layout,
 	            { id: 'page-mask' },
@@ -5587,13 +5591,6 @@
 	        );
 	    },
 
-	    renderChildren: function renderChildren() {
-	        var children = [];
-	        for (var i = 0; i < this.props.children; i++) {
-	            if (this.props.children[i]) {}
-	        }
-	    },
-
 	    addPage: function addPage(title) {
 	        var self = this;
 
@@ -5625,14 +5622,13 @@
 
 	    delPage: function delPage(pageID) {
 	        var self = this;
-	        var pageNav = $("p-header p-nav-page");
+	        var pageNav = $("p-nav-page");
 	        var pageNavMobile = $("p-nav-page-mobile");
 
 	        var page = $("#" + pageID).get(0);
 
 	        if (page) {
 	            var body = $("p-body", this.nativeNode).get(0).vnode;
-
 	            body.remove(page.vnode);
 
 	            if (pageNav.get(0)) {
@@ -5641,6 +5637,25 @@
 
 	            if (pageNavMobile.get(0)) {
 	                pageNavMobile.get(0).vnode.removeItem(pageID);
+	            }
+	        }
+
+	        if (page.hasClass("active")) {
+	            this.activeFirstPage();
+	        }
+	    },
+	    activeNav: function activeNav(id) {
+	        if ($("p-nav-page").get(0)) {
+	            var nav = $("p-nav-page").get(0).vnode;
+	            if (nav) {
+	                nav.active(id);
+	            }
+	        }
+
+	        if ($("p-nav-page-mobile").get(0)) {
+	            var nav = $("p-nav-page-mobile").get(0).vnode;
+	            if (nav) {
+	                nav.active(id);
 	            }
 	        }
 	    },
@@ -5652,11 +5667,13 @@
 	        }
 	        var page = $("#" + id, this.nativeNode).get(0).vnode;
 	        page.active();
+	        this.activeNav(id);
 	    },
 
 	    activeFirstPage: function activeFirstPage() {
 	        var pages = $("p-page", this.nativeNode);
-	        pages.get(0).vnode.active();
+	        var id = pages.eq(0).attr("id");
+	        this.active(id);
 	    }
 	});
 
@@ -6778,7 +6795,8 @@
 	"use strict";
 
 	var Page = __webpack_require__(75);
-	var A = __webpack_require__(88);
+	var PageNav = __webpack_require__(88);
+	var A = __webpack_require__(89);
 	var NavBar = __webpack_require__(83);
 
 	var Nav = Sophie.createClass("p-nav-page-mobile", {
@@ -6795,12 +6813,6 @@
 	        );
 	    },
 
-	    getInitialState: function getInitialState() {
-	        return {
-	            pageList: []
-
-	        };
-	    },
 	    getDefaultProps: function getDefaultProps() {
 	        return {
 	            pc: {
@@ -6808,69 +6820,14 @@
 	            }
 	        };
 	    },
-	    renderItem: function renderItem() {
-	        var items = [];
-	        for (var i = 0; i < this.state.pageList.length; i++) {
-	            var data = this.state.pageList[i];
-	            var child = Sophie.element(
-	                A,
-	                { "data-id": data.id },
-	                data.title
-	            );
-	            child.creater = child._owner = this.creater;
-	            child.parent = this;
-	            items.push(child);
-	        }
-	        this.props.children = items;
-	    },
-	    renderChildren: function renderChildren() {
-	        this.renderItem();
-	        var items = [];
-	        for (var i = 0; i < this.props.children.length; i++) {
-	            var data = this.props.children[i];
-	            items.push(Sophie.element(
-	                "li",
-	                { "data-id": data.id },
-	                data
-	            ));
-	        }
-	        return items;
-	    },
-	    getDefaultChildren: function getDefaultChildren() {
-	        var items = [];
-	        for (var i = 0; i < this.state.pageList.length; i++) {
-	            var data = this.state.pageList[i];
-	            items.push(Sophie.element(
-	                "li",
-	                { "data-id": data.id },
-	                Sophie.element(
-	                    A,
-	                    { "data-id": data.id },
-	                    data.title
-	                )
-	            ));
-	        }
-	        return items;
-	    },
 
 	    componentDidMount: function componentDidMount() {
 	        var self = this;
 	        this.state.isShow = false;
-
+	        self.activeBind();
 	        Sophie.ready(function () {
-
 	            setTimeout(function () {
-
-	                self.initPage();
-
-	                self.activeBind();
 	                self.navbarToggle = $("p-header p-nav-bar");
-
-	                //
-	                // self.navbarToggle.appendTo("p-header .p-container-fluid");
-	                // self.navbarToggle.addClass("navbar-toggle-render")
-	                //
-
 	                var mask = $("#page-mask");
 	                mask.click(function (ev) {
 	                    self.hideSidebar();
@@ -6882,162 +6839,26 @@
 	                    // self.showPopup()
 	                    self.showSidebar();
 	                });
-
-	                // $(document).click(function(ev){
-	                //   var target = $(ev.target);
-	                //
-	                //   if(!target.closest(self.navbarToggle).length&&!target.closest(self.navbar).length){
-	                //     self.hideSidebar();
-	                //   }
-	                //
-	                // })
+	                self.initPageChildren();
 	            }, 0);
 	        });
 	    },
-	    activeBind: function activeBind() {
-	        var self = this;
 
-	        for (var i = 0; i < this.state.pageList.length; i++) {
-	            if (this.state.pageList[i].isActive) {
-	                this.active(this.state.pageList[i].id);
-	            }
-	        }
-
-	        $(this.nativeNode).delegate("li p-a", "click", function (ev) {
-	            var li = $(ev.target).closest("p-a");
-	            var id = li.attr("data-id");
-	            var site = $("p-site");
-	            if (site.length) {
-	                site.get(0).vnode.active(id);
-	                self.active(id);
-	            } else {
-	                self.active(id);
-	            }
-	        });
-	    },
-
-	    active: function active(id) {
-	        var self = this;
-	        var lis = $(".navbar-nav li p-a", self.nativeNode);
-	        lis.removeClass("active");
-	        lis.each(function (index, el) {
-	            if ($(el).attr("data-id") == id) {
-	                $(el).addClass("active");
-	            }
-	        });
-
+	    activeCallback: function activeCallback() {
 	        this.hideSidebar();
 	    },
 
-	    removeItem: function removeItem(id) {
-	        var children = this.state.pageList;
-
-	        for (var i = 0; i < children.length; i++) {
-	            if (children[i]["id"] == id) {
-	                this.state.pageList.splice(i, 1);
-	                this._update();
-	            }
-	        }
-
-	        this.autoWidth();
-	    },
-
-	    addOne: function addOne(id, title, isActive, autoWidth) {
-
-	        autoWidth = autoWidth ? autoWidth : true;
-
-	        if ($('li[data-id=' + id + ']', this.nativeNode).length) {
-	            return;
-	        }
-
-	        this.state.pageList.push({
-	            id: id,
-	            title: title
-	        });
-
-	        this._update();
-	        if (isActive) {
-	            this.active(id);
-	        }
-
-	        if (autoWidth) this.autoWidth();
-	    },
-
-	    createDefault: function createDefault() {},
-
-	    initPage: function initPage() {
-	        var pages = $("p-body").find("p-page");
-
-	        var pageData = [];
-	        pages.each(function (index, el) {
-	            pageData.push({ id: $(el).attr("id"), title: $(el).attr("title"), isActive: $(el).hasClass("active") });
-	        });
-
-	        if (pageData.length) {
-
-	            this.setState({ pageList: pageData });
-	        } else {
-
-	            this.createDefault();
-	        }
-
-	        this.autoWidth();
-	    },
-
-	    autoHeight: function autoHeight() {
-	        //使用table-cell解决
-
-	        $(".navbar-nav li", this.nativeNode).css("height", "100%");
-	    },
-	    autoWidth: function autoWidth() {
-
-	        var li = $(".navbar-nav li", this.nativeNode);
-	        var l = li.length;
-	        // var allWidth = $(this).width();
-
-	        // var width = (allWidth - 10 * (li.length - 1) ) / li.length / allWidth * 100;
-	        // if (width < 20)width = 20;
-	        li.css("width", 1 / l * 100 + "%");
-	    },
-
-	    showPopup: function showPopup() {
-	        var self = this;
-	        if ($(".fixed-nav", self).prop("isShow") == true) {
-	            $(".fixed-nav", self).hide();
-	            $(".fixed-nav", self).prop("isShow", false);
-
-	            $("body").css("overflow", "");
-	        } else {
-	            $(".fixed-nav", self).show();
-
-	            $(".fixed-nav", self).prop("isShow", true);
-
-	            $("body").css("overflow", "hidden");
-	            $(".fixed-nav", self).height($(window).height() - parseInt($(".fixed-nav", self).css("top")));
-	        }
-	    },
 	    showSidebar: function showSidebar() {
 	        var self = this;
-
 	        $(this.nativeNode).addClass("nav-open");
 	        $(this.nativeNode).removeClass("nav-close");
 	    },
 
 	    hideSidebar: function hideSidebar() {
-
 	        $("p-site").removeClass("nav-open");
 	        $("p-site").addClass("nav-close");
-	    },
-
-	    scale: function scale(el, width) {
-	        var oldWidth = el.width();
-	        var currentFontSize = parseInt(el.css("fontSize"));
-
-	        var fontSize = width / oldWidth * currentFontSize;
-	        el.css("fontSize", fontSize + "px");
 	    }
-
-	});
+	}, PageNav);
 
 	Sophie.createStyleSheet({});
 
@@ -7059,6 +6880,7 @@
 
 	    'p-nav-page-mobile .navbar-nav ': {
 	        backgroundColor: 'rgba(255, 255, 255, 0.9)'
+
 	    },
 
 	    ' p-nav-page-mobile .navbar-nav': {
@@ -7078,7 +6900,8 @@
 	        display: 'block',
 	        float: 'none',
 	        width: '100%!important',
-	        "height": "3em"
+	        "height": "3em",
+	        flex: 1
 	    },
 
 	    'p-nav-page-mobile .navbar-nav li p-a ': {
@@ -7141,6 +6964,313 @@
 
 /***/ },
 /* 88 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var Page = __webpack_require__(75);
+	var A = __webpack_require__(89);
+	var NavBar = __webpack_require__(83);
+
+	var Nav = Sophie.createClass("p-nav-page", {
+
+	    getInitialState: function getInitialState() {
+	        return {
+	            pageList: [],
+	            activeId: ""
+	        };
+	    },
+
+	    render: function render() {
+	        return Sophie.element(
+	            "p-nav-page",
+	            null,
+	            Sophie.element(
+	                "ul",
+	                { "class": "nav navbar-nav" },
+	                this.renderChildren()
+	            )
+	        );
+	    },
+
+	    renderChildren: function renderChildren() {
+	        var items = [];
+	        for (var i = 0; i < this.props.children.length; i++) {
+	            var child = this.props.children[i];
+	            items.push(Sophie.element(
+	                "li",
+	                { "data-id": child.id },
+	                child
+	            ));
+	        }
+	        return items;
+	    },
+
+	    getDefaultChildren: function getDefaultChildren() {
+	        var pageList = this.initPage();
+	        var items = [];
+	        for (var i = 0; i < pageList.length; i++) {
+	            var data = pageList[i];
+	            if (data.isActive) {
+	                this.state.defaultPageId = data.id;
+	            }
+
+	            items.push(Sophie.element(
+	                A,
+	                { "data-id": data.id },
+	                data.title
+	            ));
+	        }
+	        return items;
+	    },
+
+	    componentDidMount: function componentDidMount() {
+	        var self = this;
+
+	        self.activeBind();
+	        if (this.state.defaultPageId) {
+	            this.active(this.state.defaultPageId);
+	        }
+	        Sophie.ready(function () {
+	            // $(".navbar-toggle-render","p-header").remove();
+	            self.navbarToggle = $("p-nav-bar", self.nativeNode);
+	            self.navbar = $(".navbar-nav", self.nativeNode);
+	            $('p-site').addClass("nav-close");
+	            setTimeout(function () {
+	                self.initPageChildren();
+	            }, 0);
+	        });
+	    },
+
+	    activeBind: function activeBind() {
+	        var self = this;
+	        $(this.nativeNode).delegate("li p-a", "click", function (ev) {
+	            var li = $(ev.target).closest("p-a");
+	            var id = li.attr("data-id");
+	            var site = $("p-site");
+	            if (site.length) {
+	                site.get(0).vnode.active(id);
+	            } else {
+	                self.active(id);
+	            }
+	            this.activeCallback && this.activeCallback();
+	        });
+	    },
+
+	    active: function active(id) {
+	        var self = this;
+	        var lis = $(".navbar-nav li p-a", self.nativeNode);
+	        lis.removeClass("active");
+	        lis.each(function (index, el) {
+	            if ($(el).attr("data-id") == id) {
+	                $(el).addClass("active");
+	            }
+	        });
+	    },
+
+	    removeItem: function removeItem(id) {
+	        var children = this.props.children;
+
+	        for (var i = 0; i < children.length; i++) {
+	            if (children[i].props["data-id"] == id) {
+	                children.splice(i, 1);
+	            }
+	        }
+	        this.forceUpdate();
+	    },
+
+	    addOne: function addOne(id, title, isActive, autoWidth) {
+
+	        var autoWidth = autoWidth ? autoWidth : true;
+	        if ($('li[data-id=' + id + ']', this.nativeNode).length) {
+	            return;
+	        }
+
+	        this.props.children.push(Sophie.element(
+	            A,
+	            { "data-id": id },
+	            title
+	        ));
+	        this.forceUpdate();
+	    },
+
+	    initPage: function initPage() {
+	        var pages = $("p-body").find("p-page");
+	        var pageData = [];
+	        pages.each(function (index, el) {
+	            pageData.push({ id: $(el).attr("id"), title: $(el).attr("title"), isActive: $(el).hasClass("active") });
+	        });
+	        return pageData;
+	    },
+
+	    initPageChildren: function initPageChildren() {
+
+	        if (this.props.children && this.props.children.length > 0) {
+	            return;
+	        }
+	        var pageList = this.initPage();
+	        var items = [];
+	        for (var i = 0; i < pageList.length; i++) {
+	            var data = pageList[i];
+	            if (data.isActive) {
+	                this.state.defaultPageId = data.id;
+	            }
+
+	            items.push(Sophie.element(
+	                A,
+	                { "data-id": data.id },
+	                data.title
+	            ));
+	        }
+	        for (var i = 0; i < items.length; i++) {
+	            items[i].owner = items[i]._owner = this.owner;
+	        }
+	        this.props.children = items;
+	        this.forceUpdate();
+	    }
+
+	});
+
+	Sophie.createStyleSheet({
+	    'p-nav-page ': {
+	        color: '#777777',
+	        height: '1rem',
+	        display: 'block',
+	        width: '10rem',
+	        position: 'absolute',
+	        margin: 'auto!important'
+	    },
+
+	    'p-nav-page .navbar-nav ': {
+	        margin: '0 !important',
+	        padding: '0 !important',
+	        height: '100%',
+	        width: '100%',
+	        overflowX: 'hidden',
+	        float: 'none!important',
+	        display: 'flex',
+	        'flex-direction': 'row'
+	    },
+
+	    'p-nav-page .navbar-nav li ': {
+	        width: '25%',
+	        overflow: 'hidden',
+	        float: 'left',
+	        height: '100%',
+	        flex: 1
+	    },
+
+	    'p-nav-page p-a ': {
+
+	        width: '100%',
+	        height: '100%',
+	        textAlign: 'center'
+	    },
+
+	    'p-nav-page p-a  .p-text-wrap': {
+	        fontSize: '0.3em'
+	    },
+
+	    'p-nav-page ul li p-a.active,p-nav-page ul li p-a.hover ': {
+	        color: '#fff',
+	        backgroundColor: 'red'
+	    },
+
+	    'p-nav-page .navbar-nav li:last-child ': {
+	        marginRight: '0'
+
+	    },
+
+	    'p-nav-page > p-nav-bar': {
+	        display: 'none',
+	        position: 'absolute'
+
+	    }
+
+	});
+
+	Sophie.createStyleSheet({
+
+	    'p-nav-page': {
+	        position: 'absolute',
+	        left: 7 + "em",
+	        top: '50px',
+	        width: '200px!important',
+	        height: "auto",
+	        backgroundColor: 'rgba(255, 255, 255, 0.0)',
+	        margin: '0!important',
+	        "display": "none"
+
+	    },
+
+	    'p-nav-page .navbar-nav ': {
+	        backgroundColor: 'rgba(255, 255, 255, 0.9)'
+	    },
+
+	    ' p-nav-page .navbar-nav': {
+
+	        width: '100%!important',
+	        height: '100%!important',
+	        left: '0px',
+	        top: '0px',
+	        backgroundColor: '#fff',
+	        margin: '0!important',
+	        display: "flex",
+	        "flex-direction": "column"
+
+	    },
+
+	    'p-nav-page .navbar-nav li ': {
+	        display: 'block',
+	        float: 'none',
+	        width: '100%!important',
+	        "height": "1.5em"
+	    },
+
+	    'p-nav-page .navbar-nav li a ': {
+	        textAlign: 'left',
+	        padding: '0 20px'
+	    },
+
+	    'p-site.nav-open  p-header p-nav-page': {
+	        display: "none"
+
+	        // transition: "left 0.5s",
+	        // left:"-200px"
+	    },
+
+	    'p-site.nav-close  p-header p-nav-page': {
+	        display: "none"
+	        // transition: "left 0.5s",
+	        // left:0
+	    },
+
+	    'p-site.nav-open p-nav-page-mask ': {
+	        display: "block!important"
+	    },
+
+	    'p-site.nav-close p-nav-page-mask ': {
+	        display: "none"
+	    },
+
+	    'p-site.nav-open p-nav-page ': {
+	        display: "none!important"
+	    },
+
+	    'p-site.nav-close p-nav-page ': {
+	        display: "none"
+	    },
+
+	    'p-header': {
+	        height: '4em'
+	    }
+
+	}, "@media (max-width: 767px)");
+
+	module.exports = Nav;
+
+/***/ },
+/* 89 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -7226,7 +7356,7 @@
 	module.exports = A;
 
 /***/ },
-/* 89 */
+/* 90 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -7300,7 +7430,7 @@
 	module.exports = Layout;
 
 /***/ },
-/* 90 */
+/* 91 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -7383,12 +7513,12 @@
 	module.exports = Layout;
 
 /***/ },
-/* 91 */
+/* 92 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var Layout = __webpack_require__(90);
+	var Layout = __webpack_require__(91);
 	var LayoutTow = Sophie.createClass("p-layout-two", {
 
 	  getDefaultProps: function getDefaultProps() {
@@ -7600,12 +7730,12 @@
 	module.exports = LayoutTow;
 
 /***/ },
-/* 92 */
+/* 93 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var Layout = __webpack_require__(90);
+	var Layout = __webpack_require__(91);
 	var LayoutTow = Sophie.createClass("p-layout-three", {
 
 	  getDefaultProps: function getDefaultProps() {
@@ -7813,12 +7943,12 @@
 	module.exports = LayoutTow;
 
 /***/ },
-/* 93 */
+/* 94 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var Layout = __webpack_require__(90);
+	var Layout = __webpack_require__(91);
 
 	//响应式元素不能被嵌套
 	//@todo 实现这个机制，嵌套了也不会做响应
@@ -7997,12 +8127,12 @@
 	module.exports = LayoutTow;
 
 /***/ },
-/* 94 */
+/* 95 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var Layout = __webpack_require__(90);
+	var Layout = __webpack_require__(91);
 	var LayoutTow = Sophie.createClass("p-layout-two-noresponse", {
 
 	  getDefaultProps: function getDefaultProps() {
@@ -8074,12 +8204,12 @@
 	module.exports = LayoutTow;
 
 /***/ },
-/* 95 */
+/* 96 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var Layout = __webpack_require__(90);
+	var Layout = __webpack_require__(91);
 	var LayoutTow = Sophie.createClass("p-layout-three-response", {
 
 	  getDefaultProps: function getDefaultProps() {
@@ -8261,12 +8391,12 @@
 	module.exports = LayoutTow;
 
 /***/ },
-/* 96 */
+/* 97 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var Layout = __webpack_require__(90);
+	var Layout = __webpack_require__(91);
 	var LayoutTow = Sophie.createClass("p-layout-three-noresponse", {
 
 	  getDefaultProps: function getDefaultProps() {
@@ -8342,7 +8472,7 @@
 	module.exports = LayoutTow;
 
 /***/ },
-/* 97 */
+/* 98 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -8351,7 +8481,7 @@
 
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-	var Layout = __webpack_require__(90);
+	var Layout = __webpack_require__(91);
 	var GridLayout = __webpack_require__(77);
 
 	var PIC = Sophie.createClass("p-pic", {
@@ -8636,12 +8766,12 @@
 	module.exports = PIC;
 
 /***/ },
-/* 98 */
+/* 99 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var Layout = __webpack_require__(90);
+	var Layout = __webpack_require__(91);
 	var GridLayout = __webpack_require__(77);
 
 	var PIC = Sophie.createClass("p-bg", {
@@ -8717,14 +8847,14 @@
 	module.exports = PIC;
 
 /***/ },
-/* 99 */
+/* 100 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var masonry = __webpack_require__(100);
+	var masonry = __webpack_require__(101);
 
-	var Pic = __webpack_require__(97);
+	var Pic = __webpack_require__(98);
 
 	var NavBar = Sophie.createClass("p-masonry", {
 	    getDefaultProps: function getDefaultProps() {
@@ -8911,7 +9041,7 @@
 	module.exports = NavBar;
 
 /***/ },
-/* 100 */
+/* 101 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
@@ -8931,7 +9061,7 @@
 	  /* jshint strict: false */ /*globals define, module, require */
 	  if (true) {
 	    // AMD
-	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(101), __webpack_require__(103)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(102), __webpack_require__(104)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	  } else if ((typeof module === 'undefined' ? 'undefined' : _typeof(module)) == 'object' && module.exports) {
 	    // CommonJS
 	    module.exports = factory(require('outlayer'), require('get-size'));
@@ -9146,7 +9276,7 @@
 	});
 
 /***/ },
-/* 101 */
+/* 102 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
@@ -9166,7 +9296,7 @@
 
 	  if (true) {
 	    // AMD - RequireJS
-	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(102), __webpack_require__(103), __webpack_require__(104), __webpack_require__(106)], __WEBPACK_AMD_DEFINE_RESULT__ = function (EvEmitter, getSize, utils, Item) {
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(103), __webpack_require__(104), __webpack_require__(105), __webpack_require__(107)], __WEBPACK_AMD_DEFINE_RESULT__ = function (EvEmitter, getSize, utils, Item) {
 	      return factory(window, EvEmitter, getSize, utils, Item);
 	    }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	  } else if ((typeof module === 'undefined' ? 'undefined' : _typeof(module)) == 'object' && module.exports) {
@@ -10063,7 +10193,7 @@
 	});
 
 /***/ },
-/* 102 */
+/* 103 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
@@ -10182,7 +10312,7 @@
 	});
 
 /***/ },
-/* 103 */
+/* 104 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
@@ -10382,7 +10512,7 @@
 	});
 
 /***/ },
-/* 104 */
+/* 105 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
@@ -10402,7 +10532,7 @@
 
 	  if (true) {
 	    // AMD
-	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(105)], __WEBPACK_AMD_DEFINE_RESULT__ = function (matchesSelector) {
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(106)], __WEBPACK_AMD_DEFINE_RESULT__ = function (matchesSelector) {
 	      return factory(window, matchesSelector);
 	    }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	  } else if ((typeof module === 'undefined' ? 'undefined' : _typeof(module)) == 'object' && module.exports) {
@@ -10614,7 +10744,7 @@
 	});
 
 /***/ },
-/* 105 */
+/* 106 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
@@ -10675,7 +10805,7 @@
 	});
 
 /***/ },
-/* 106 */
+/* 107 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
@@ -10691,7 +10821,7 @@
 	  /* jshint strict: false */ /* globals define, module, require */
 	  if (true) {
 	    // AMD - RequireJS
-	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(102), __webpack_require__(103)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(103), __webpack_require__(104)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	  } else if ((typeof module === 'undefined' ? 'undefined' : _typeof(module)) == 'object' && module.exports) {
 	    // CommonJS - Browserify, Webpack
 	    module.exports = factory(require('ev-emitter'), require('get-size'));
@@ -11220,7 +11350,7 @@
 	});
 
 /***/ },
-/* 107 */
+/* 108 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -11272,7 +11402,7 @@
 	module.exports = Logo;
 
 /***/ },
-/* 108 */
+/* 109 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -11311,421 +11441,6 @@
 	module.exports = Group;
 
 /***/ },
-/* 109 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	var Page = __webpack_require__(75);
-	var A = __webpack_require__(88);
-	var NavBar = __webpack_require__(83);
-
-	var Nav = Sophie.createClass("p-nav-page", {
-
-	    render: function render() {
-
-	        return Sophie.element(
-	            "p-nav-page",
-	            null,
-	            Sophie.element(
-	                "ul",
-	                { "class": "nav navbar-nav" },
-	                this.renderChildren()
-	            )
-	        );
-	    },
-	    renderItem: function renderItem() {
-	        var items = [];
-	        for (var i = 0; i < this.state.pageList.length; i++) {
-	            var data = this.state.pageList[i];
-	            var child = Sophie.element(
-	                A,
-	                { "data-id": data.id },
-	                data.title
-	            );
-	            child.creater = child._owner = this.creater;
-	            child.parent = this;
-	            items.push(child);
-	        }
-	        this.props.children = items;
-	    },
-	    renderChildren: function renderChildren() {
-	        this.renderItem();
-	        var items = [];
-	        for (var i = 0; i < this.props.children.length; i++) {
-	            var data = this.props.children[i];
-
-	            items.push(Sophie.element(
-	                "li",
-	                { "data-id": data.id },
-	                data
-	            ));
-	        }
-	        return items;
-	    },
-	    getDefaultChildren: function getDefaultChildren() {
-	        var items = [];
-	        for (var i = 0; i < this.state.pageList.length; i++) {
-	            var data = this.state.pageList[i];
-	            items.push(Sophie.element(
-	                "li",
-	                { "data-id": data.id },
-	                Sophie.element(
-	                    A,
-	                    { "data-id": data.id },
-	                    data.title
-	                )
-	            ));
-	        }
-	        return items;
-	    },
-	    getInitialState: function getInitialState() {
-	        return {
-	            pageList: []
-	        };
-	    },
-
-	    componentDidMount: function componentDidMount() {
-	        var self = this;
-
-	        self.activeBind();
-	        Sophie.ready(function () {
-
-	            self.initPage();
-
-	            // $(".navbar-toggle-render","p-header").remove();
-	            self.navbarToggle = $("p-nav-bar", self.nativeNode);
-	            self.navbar = $(".navbar-nav", self.nativeNode);
-
-	            $('p-site').addClass("nav-close");
-
-	            // self.navbarToggle.click(function () {
-	            //     // self.showPopup()
-	            //     self.showSidebar();
-	            // })
-	            //
-	            // $(document).click(function(ev){
-	            //   var target = $(ev.target);
-	            //
-	            //   if(!target.closest(self.navbarToggle).length&&!target.closest(self.navbar).length){
-	            //     self.hideSidebar();
-	            //   }
-	            //
-	            // })
-
-	        });
-	    },
-	    activeBind: function activeBind() {
-	        var self = this;
-
-	        for (var i = 0; i < this.state.pageList.length; i++) {
-	            if (this.state.pageList[i].isActive) {
-	                this.active(this.state.pageList[i].id);
-	            }
-	        }
-
-	        $(this.nativeNode).delegate("li p-a", "click", function (ev) {
-	            var li = $(ev.target).closest("p-a");
-	            var id = li.attr("data-id");
-	            var site = $("p-site");
-	            if (site.length) {
-	                site.get(0).vnode.active(id);
-	                self.active(id);
-	            } else {
-	                self.active(id);
-	            }
-	        });
-	    },
-
-	    active: function active(id) {
-	        var self = this;
-	        var lis = $(".navbar-nav li p-a", self.nativeNode);
-	        lis.removeClass("active");
-	        lis.each(function (index, el) {
-	            if ($(el).attr("data-id") == id) {
-	                $(el).addClass("active");
-	            }
-	        });
-	    },
-
-	    removeItem: function removeItem(id) {
-	        var children = this.state.pageList;
-
-	        for (var i = 0; i < children.length; i++) {
-	            if (children[i]["id"] == id) {
-	                this.state.pageList.splice(i, 1);
-	                this._update();
-	            }
-	        }
-
-	        this.autoWidth();
-	    },
-
-	    addOne: function addOne(id, title, isActive, autoWidth) {
-
-	        autoWidth = autoWidth ? autoWidth : true;
-
-	        if ($('li[data-id=' + id + ']', this.nativeNode).length) {
-	            return;
-	        }
-
-	        this.state.pageList.push({
-	            id: id,
-	            title: title
-	        });
-
-	        this._update();
-	        if (isActive) {
-	            this.active(id);
-	        }
-
-	        if (autoWidth) this.autoWidth();
-	    },
-
-	    createDefault: function createDefault() {},
-
-	    initPage: function initPage() {
-	        var pages = $("p-body").find("p-page");
-
-	        var pageData = [];
-	        pages.each(function (index, el) {
-	            pageData.push({ id: $(el).attr("id"), title: $(el).attr("title"), isActive: $(el).hasClass("active") });
-	        });
-
-	        if (pageData.length) {
-
-	            this.setState({ pageList: pageData });
-	        } else {
-
-	            this.createDefault();
-	        }
-
-	        this.autoWidth();
-	    },
-
-	    autoHeight: function autoHeight() {
-	        //使用table-cell解决
-
-	        $(".navbar-nav li", this.nativeNode).css("height", "100%");
-	    },
-	    autoWidth: function autoWidth() {
-
-	        var li = $(".navbar-nav li", this.nativeNode);
-	        var l = li.length;
-	        // var allWidth = $(this).width();
-
-	        // var width = (allWidth - 10 * (li.length - 1) ) / li.length / allWidth * 100;
-	        // if (width < 20)width = 20;
-	        li.css("width", 1 / l * 100 + "%");
-	    },
-
-	    showPopup: function showPopup() {
-	        var self = this;
-	        if ($(".fixed-nav", self).prop("isShow") == true) {
-	            $(".fixed-nav", self).hide();
-	            $(".fixed-nav", self).prop("isShow", false);
-
-	            $("body").css("overflow", "");
-	        } else {
-	            $(".fixed-nav", self).show();
-
-	            $(".fixed-nav", self).prop("isShow", true);
-
-	            $("body").css("overflow", "hidden");
-	            $(".fixed-nav", self).height($(window).height() - parseInt($(".fixed-nav", self).css("top")));
-	        }
-	    },
-
-	    showSidebar: function showSidebar() {
-	        var self = this;
-	        if (this.isShow == true) {
-
-	            $(this.nativeNode).removeClass("nav-open");
-	            $(this.nativeNode).addClass("nav-close");
-	            this.isShow = false;
-	        } else {
-	            $(this.nativeNode).addClass("nav-open");
-	            $(this.nativeNode).removeClass("nav-close");
-
-	            this.isShow = true;
-	        }
-	    },
-	    hideSidebar: function hideSidebar() {
-	        var self = this;
-	        if (this.isShow == true) {
-
-	            $(this.nativeNode).removeClass("nav-open");
-	            $(this.nativeNode).addClass("nav-close");
-	            this.isShow = false;
-	        }
-	    },
-
-	    scale: function scale(el, width) {
-	        var oldWidth = el.width();
-	        var currentFontSize = parseInt(el.css("fontSize"));
-
-	        var fontSize = width / oldWidth * currentFontSize;
-	        el.css("fontSize", fontSize + "px");
-	    },
-
-	    mobileRender: function mobileRender() {
-	        var winWidth = $('body').width();
-	        var self = this;
-
-	        if (winWidth <= play.mediaQueryValue.phone) {
-	            var children = $(self.nativeNode).find("li");
-	            children.each(function (index, el) {
-	                el = $(el);
-	                // self.scale(el, 200)
-	            });
-	        } else {
-	            $("p-site").removeClass("nav-open");
-	            var children = $(self.nativeNode).find("li");
-	            children.each(function (index, el) {
-	                el = $(el);
-	                el.css("fontSize", "");
-	            });
-	        }
-	    }
-
-	});
-
-	Sophie.createStyleSheet({
-	    'p-nav-page ': {
-	        color: '#777777',
-	        height: '1rem',
-	        display: 'block',
-	        width: '10rem',
-	        position: 'absolute',
-	        margin: 'auto!important'
-	    },
-
-	    'p-nav-page .navbar-nav ': {
-	        margin: '0 !important',
-	        padding: '0 !important',
-	        height: '100%',
-	        width: '100%',
-	        overflowX: 'hidden',
-	        float: 'none!important'
-	    },
-
-	    'p-nav-page .navbar-nav li ': {
-	        width: '25%',
-	        overflow: 'hidden',
-	        float: 'left',
-	        height: '100%'
-	    },
-
-	    'p-nav-page p-a ': {
-
-	        width: '100%',
-	        height: '100%',
-	        textAlign: 'center'
-	    },
-
-	    'p-nav-page p-a  .p-text-wrap': {
-	        fontSize: '0.3em'
-	    },
-
-	    'p-nav-page ul li p-a.active,p-nav-page ul li p-a.hover ': {
-	        color: '#fff',
-	        backgroundColor: 'red'
-	    },
-
-	    'p-nav-page .navbar-nav li:last-child ': {
-	        marginRight: '0'
-
-	    },
-
-	    'p-nav-page > p-nav-bar': {
-	        display: 'none',
-	        position: 'absolute'
-
-	    }
-
-	});
-
-	Sophie.createStyleSheet({
-
-	    'p-nav-page': {
-	        position: 'absolute',
-	        left: 7 + "em",
-	        top: '50px',
-	        width: '200px!important',
-	        height: "auto",
-	        backgroundColor: 'rgba(255, 255, 255, 0.0)',
-	        margin: '0!important',
-	        "display": "none"
-
-	    },
-
-	    'p-nav-page .navbar-nav ': {
-	        backgroundColor: 'rgba(255, 255, 255, 0.9)'
-	    },
-
-	    ' p-nav-page .navbar-nav': {
-
-	        width: '100%!important',
-	        height: '100%!important',
-	        left: '0px',
-	        top: '0px',
-	        backgroundColor: '#fff',
-	        margin: '0!important',
-	        display: "flex",
-	        "flex-direction": "column"
-
-	    },
-
-	    'p-nav-page .navbar-nav li ': {
-	        display: 'block',
-	        float: 'none',
-	        width: '100%!important',
-	        "height": "1.5em"
-	    },
-
-	    'p-nav-page .navbar-nav li a ': {
-	        textAlign: 'left',
-	        padding: '0 20px'
-	    },
-
-	    'p-site.nav-open  p-header p-nav-page': {
-	        display: "none"
-
-	        // transition: "left 0.5s",
-	        // left:"-200px"
-	    },
-
-	    'p-site.nav-close  p-header p-nav-page': {
-	        display: "none"
-	        // transition: "left 0.5s",
-	        // left:0
-	    },
-
-	    'p-site.nav-open p-nav-page-mask ': {
-	        display: "block!important"
-	    },
-
-	    'p-site.nav-close p-nav-page-mask ': {
-	        display: "none"
-	    },
-
-	    'p-site.nav-open p-nav-page ': {
-	        display: "none!important"
-	    },
-
-	    'p-site.nav-close p-nav-page ': {
-	        display: "none"
-	    },
-
-	    'p-header': {
-	        height: '4em'
-	    }
-
-	}, "@media (max-width: 767px)");
-
-	module.exports = Nav;
-
-/***/ },
 /* 110 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -11735,11 +11450,11 @@
 
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-	var PageNav = __webpack_require__(109);
-	var LayoutGrid = __webpack_require__(94);
-	var Layout = __webpack_require__(89);
-	var Logo = __webpack_require__(107);
-	var Pic = __webpack_require__(97);
+	var PageNav = __webpack_require__(88);
+	var LayoutGrid = __webpack_require__(95);
+	var Layout = __webpack_require__(90);
+	var Logo = __webpack_require__(108);
+	var Pic = __webpack_require__(98);
 
 	var Nav = Sophie.createClass("p-nav-page-inline", {
 	  getDefaultProps: function getDefaultProps() {
@@ -11853,11 +11568,11 @@
 
 	"use strict";
 
-	var PageNav = __webpack_require__(109);
-	var LayoutGrid = __webpack_require__(94);
-	var Layout = __webpack_require__(89);
-	var Logo = __webpack_require__(107);
-	var Pic = __webpack_require__(97);
+	var PageNav = __webpack_require__(88);
+	var LayoutGrid = __webpack_require__(95);
+	var Layout = __webpack_require__(90);
+	var Logo = __webpack_require__(108);
+	var Pic = __webpack_require__(98);
 	var NavBar = __webpack_require__(83);
 
 	var Nav = Sophie.createClass("p-nav-page-absolute", {
@@ -12243,7 +11958,7 @@
 
 	"use strict";
 
-	var Layout = __webpack_require__(89);
+	var Layout = __webpack_require__(90);
 	var RootTag = __webpack_require__(114);
 	var TagName = __webpack_require__(115);
 
@@ -12647,7 +12362,7 @@
 	"use strict";
 
 	var List = __webpack_require__(113);
-	var Pic = __webpack_require__(97);
+	var Pic = __webpack_require__(98);
 
 	var ListImg = Sophie.createClass("p-list-img", {
 	    getTemplate: function getTemplate() {
@@ -12676,7 +12391,7 @@
 	'use strict';
 
 	var Text = __webpack_require__(112);
-	var Pic = __webpack_require__(97);
+	var Pic = __webpack_require__(98);
 
 	var Slide = Sophie.createClass("p-slide", {
 
@@ -13046,7 +12761,7 @@
 	"use strict";
 
 	var List = __webpack_require__(116);
-	var Pic = __webpack_require__(97);
+	var Pic = __webpack_require__(98);
 	var creater = {
 	  listImg: function listImg() {
 	    return Sophie.element(List, null);
