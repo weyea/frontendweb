@@ -6968,6 +6968,8 @@
 
 	"use strict";
 
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 	var Page = __webpack_require__(75);
 	var A = __webpack_require__(89);
 	var NavBar = __webpack_require__(83);
@@ -7139,7 +7141,8 @@
 	        display: 'block',
 	        width: '10rem',
 	        position: 'absolute',
-	        margin: 'auto!important'
+	        margin: 'auto!important',
+	        overflow: 'hidden'
 	    },
 
 	    'p-nav-page .navbar-nav ': {
@@ -7150,22 +7153,24 @@
 	        overflowX: 'hidden',
 	        float: 'none!important',
 	        display: 'flex',
-	        'flex-direction': 'row'
+	        'flex-direction': 'row',
+	        overflow: 'hidden'
 	    },
 
-	    'p-nav-page .navbar-nav li ': {
+	    'p-nav-page .navbar-nav li ': _defineProperty({
 	        width: '25%',
 	        overflow: 'hidden',
 	        float: 'left',
 	        height: '100%',
 	        flex: 1
-	    },
+	    }, "overflow", 'hidden'),
 
 	    'p-nav-page p-a ': {
 
 	        width: '100%',
 	        height: '100%',
-	        textAlign: 'center'
+	        textAlign: 'center',
+	        overflow: 'hidden'
 	    },
 
 	    'p-nav-page p-a  .p-text-wrap': {
@@ -11896,7 +11901,7 @@
 	        fontWeight: 'inherit',
 	        fontStyle: 'inherit',
 	        textAlign: 'inherit'
-	    }, _defineProperty(_pTextPTextWrap, "textDecoration", 'inherit'), _defineProperty(_pTextPTextWrap, "fontSize", "0.3em"), _defineProperty(_pTextPTextWrap, "backgroundColor", 'transparent !important'), _defineProperty(_pTextPTextWrap, "height", '100%'), _defineProperty(_pTextPTextWrap, "width", '100%'), _defineProperty(_pTextPTextWrap, "wordWrap", 'break-word'), _defineProperty(_pTextPTextWrap, "wordBreak", 'break-all'), _defineProperty(_pTextPTextWrap, "wordWrap", 'break-word'), _defineProperty(_pTextPTextWrap, "display", 'table-cell'), _defineProperty(_pTextPTextWrap, "verticalAlign", 'middle'), _defineProperty(_pTextPTextWrap, "pointerEvents", 'none'), _pTextPTextWrap),
+	    }, _defineProperty(_pTextPTextWrap, "textDecoration", 'inherit'), _defineProperty(_pTextPTextWrap, "fontSize", "0.3em"), _defineProperty(_pTextPTextWrap, "backgroundColor", 'transparent !important'), _defineProperty(_pTextPTextWrap, "height", '100%'), _defineProperty(_pTextPTextWrap, "width", '100%'), _defineProperty(_pTextPTextWrap, "wordWrap", 'break-word'), _defineProperty(_pTextPTextWrap, "wordBreak", 'break-all'), _defineProperty(_pTextPTextWrap, "wordWrap", 'break-word'), _defineProperty(_pTextPTextWrap, "display", 'table-cell'), _defineProperty(_pTextPTextWrap, "verticalAlign", 'middle'), _defineProperty(_pTextPTextWrap, "pointerEvents", 'none'), _defineProperty(_pTextPTextWrap, "overflow", 'hidden'), _pTextPTextWrap),
 
 	    'p-text > .p-text-wrap > p-icon': {
 	        display: 'inline!important',
@@ -12272,14 +12277,17 @@
 	        minHeight: '10px',
 	        display: 'block',
 	        overflow: 'hidden',
-	        flex: 1
+	        flex: 1,
+	        position: "relative"
 	    },
 
 	    'p-list  .c-ceil > p-layout': {
-	        height: '100%',
-	        minHeight: '0px',
+	        position: "absolute",
+	        top: 0,
+	        left: 0,
+	        right: 0,
+	        bottom: 0,
 	        display: 'block',
-	        width: '100%',
 	        overflow: 'hidden',
 	        flex: 1
 
@@ -12371,10 +12379,15 @@
 
 	Sophie.createStyleSheet({
 	    "p-list .c-ceil >  p-pic": {
-	        height: "100%",
-	        display: "block",
-	        width: "100%",
-	        overflow: "hidden"
+
+	        position: "absolute",
+	        top: 0,
+	        left: 0,
+	        right: 0,
+	        bottom: 0,
+	        display: 'block',
+	        overflow: 'hidden',
+	        flex: 1
 
 	    }
 
