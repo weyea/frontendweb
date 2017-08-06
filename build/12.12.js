@@ -1091,7 +1091,7 @@ webpackJsonp([12,19],{
 	                        { className: 'bd' },
 	                        React.createElement(
 	                            'a',
-	                            { href: "/my/app/" + site.id },
+	                            { href: "/my/preview/template/" + site.id },
 	                            React.createElement('img', { src: site.logo || window.rootPath + "img/template_bg.png" })
 	                        )
 	                    ),
@@ -1126,7 +1126,7 @@ webpackJsonp([12,19],{
 	                                ),
 	                                React.createElement(
 	                                    'a',
-	                                    { className: 'del-site', href: "/template/json/" + site.id },
+	                                    { className: 'del-site', href: "/json/template/" + site.id },
 	                                    '删除 '
 	                                )
 	                            )
