@@ -11981,16 +11981,17 @@
 	    render: function render() {
 	        var self = this;
 	        var style = "";
-	        if ($(document).width() <= 768 && self.parent.name == "p-page") {
-	            //可能已经被删除了
-	            if (self.nativeNode.parentNode) {
-	                style = "fontSize:" + this.props["data-c-num"] + "rem";
-	                self.isMobile = true;
-	            }
-	        } else {
-	            style = "";
-	            self.isMobile = false;
-	        }
+	        // if($(document).width()<= 768&&self.parent.name=="p-page" ){
+	        //     //可能已经被删除了
+	        //     if(self.nativeNode.parentNode) {
+	        //         style = "fontSize:"+this.props["data-c-num"]+"rem";
+	        //         self.isMobile = true;
+	        //     }
+	        // }
+	        // else {
+	        //     style = ""
+	        //     self.isMobile = false;
+	        // }
 
 	        var l = this.props["data-c-num"] * this.props["data-r-num"];
 	        var children = this.props.children;
