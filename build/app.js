@@ -7045,6 +7045,7 @@
 	    activeBind: function activeBind() {
 	        var self = this;
 	        $(this.nativeNode).delegate("li p-a", "click", function (ev) {
+	            ev.preventDefault();
 	            var li = $(ev.target).closest("p-a");
 	            var id = li.attr("data-id");
 	            var site = $("p-site");
@@ -12050,7 +12051,6 @@
 	        this.clearPlaceholdChilren();
 
 	        var l = this.props["data-c-num"] * this.props["data-r-num"];
-	        var padding = this.props.padding - 0.5;
 
 	        var children = this.props.children;
 	        for (var i = 0; i < l; i++) {
@@ -12058,21 +12058,15 @@
 	                var index = i + 1;
 
 	                var cellStyle = "height:" + this.props.cellHeight + "em" + ";width:" + this.props.cellWidth + "%";
-	                var c = index % this.props["data-c-num"];
 
-	                if (c !== 0) {
-	                    console.log(c);
-	                    cellStyle += ";margin-right:" + padding + "px";
-	                }
-	                if (index > this.props["data-c-num"]) {
-	                    cellStyle += ";margin-top:" + padding + "px";
-	                }
+	                var cellInnerStyle = "margin:" + this.props.padding / 2 + "px";
+
 	                var r = Sophie.element(
 	                    "div",
 	                    { "class": "c-list", style: cellStyle },
 	                    Sophie.element(
 	                        "div",
-	                        { "class": "c-ceil" },
+	                        { "class": "c-ceil", style: cellInnerStyle },
 	                        children[i]
 	                    )
 	                );
@@ -12208,7 +12202,7 @@
 
 	        var padding = this.props.padding;
 	        var oNum = this.props["data-c-num"];
-	        var columnWith = (width - padding * (oNum - 1)) / oNum;
+	        var columnWith = width / oNum;
 	        var self = this;
 
 	        var currentFontSize = parseFloat($(this.$).css("fontSize"));
@@ -12227,7 +12221,7 @@
 	        var height = height || $(this.$).height();
 	        var rowNum = this.props["data-r-num"];
 	        var padding = this.props.padding;
-	        var rowHeight = (height - (rowNum - 1) * padding) / rowNum;
+	        var rowHeight = height / rowNum;
 
 	        var currentFontSize = parseFloat($(this.$).css("fontSize"));
 
@@ -12267,15 +12261,17 @@
 	        listStyle: 'none',
 	        minHeight: '10px',
 	        overflow: 'hidden',
-	        boxSizing: 'border-box'
+	        boxSizing: 'border-box',
+	        display: "flex",
+	        flexDirection: 'column'
 	    },
 
 	    'p-list > .ul .c-list .c-ceil': {
-	        height: '100%',
+
 	        minHeight: '10px',
 	        display: 'block',
-	        width: '100%',
-	        overflow: 'hidden'
+	        overflow: 'hidden',
+	        flex: 1
 	    },
 
 	    'p-list  .c-ceil > p-layout': {
@@ -12283,7 +12279,8 @@
 	        minHeight: '0px',
 	        display: 'block',
 	        width: '100%',
-	        overflow: 'hidden'
+	        overflow: 'hidden',
+	        flex: 1
 
 	    },
 
