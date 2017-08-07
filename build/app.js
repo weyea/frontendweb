@@ -12289,7 +12289,9 @@
 	        bottom: 0,
 	        display: 'block',
 	        overflow: 'hidden',
-	        flex: 1
+	        flex: 1,
+	        width: 'auto',
+	        height: "auto"
 
 	    },
 
@@ -12387,7 +12389,9 @@
 	        bottom: 0,
 	        display: 'block',
 	        overflow: 'hidden',
-	        flex: 1
+	        flex: 1,
+	        width: 'auto',
+	        height: "auto"
 
 	    }
 
