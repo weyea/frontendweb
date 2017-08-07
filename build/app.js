@@ -11964,6 +11964,10 @@
 
 	"use strict";
 
+	var _pListUlCList;
+
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 	var Layout = __webpack_require__(90);
 	var RootTag = __webpack_require__(114);
 	var TagName = __webpack_require__(115);
@@ -12266,15 +12270,14 @@
 	        border: "solid 1px blue"
 	    },
 
-	    'p-list > .ul .c-list': {
+	    'p-list > .ul .c-list': (_pListUlCList = {
 	        float: 'left',
 	        listStyle: 'none',
 	        minHeight: '10px',
 	        overflow: 'hidden',
 	        boxSizing: 'border-box',
-	        display: "flex",
-	        flexDirection: 'column'
-	    },
+	        display: "flex"
+	    }, _defineProperty(_pListUlCList, "display", "-webkit-flex"), _defineProperty(_pListUlCList, "flexDirection", 'column'), _defineProperty(_pListUlCList, "border", "solid 2px green"), _pListUlCList),
 
 	    'p-list > .ul .c-list .c-ceil': {
 
@@ -12282,7 +12285,9 @@
 	        display: 'block',
 	        overflow: 'hidden',
 	        flex: 1,
-	        position: "relative"
+	        position: "relative",
+
+	        border: "solid 2px green"
 	    },
 
 	    'p-list  .c-ceil > p-layout': {
