@@ -715,7 +715,7 @@ webpackJsonp([11,19],{
 
 	var _reactRouter = __webpack_require__(120);
 
-	var login = __webpack_require__(607);
+	var login = __webpack_require__(223);
 	__webpack_require__(634);
 
 	exports.default = React.createClass({

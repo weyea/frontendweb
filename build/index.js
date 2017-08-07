@@ -128,7 +128,7 @@
 	  path: '/',
 	  getChildRoutes: function getChildRoutes(partialNextState, callback) {
 	    __webpack_require__.e/* nsure */(2, function (require) {
-	      callback(null, [__webpack_require__(222), __webpack_require__(603), __webpack_require__(619), __webpack_require__(630), __webpack_require__(647), __webpack_require__(654)]);
+	      callback(null, [__webpack_require__(222), __webpack_require__(604), __webpack_require__(619), __webpack_require__(630), __webpack_require__(647), __webpack_require__(654)]);
 	    });
 	  },
 	  getIndexRoute: function getIndexRoute(partialNextState, callback) {

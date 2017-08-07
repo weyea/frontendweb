@@ -5,37 +5,21 @@ webpackJsonp([2,19],{
 
 	'use strict';
 
+	var login = __webpack_require__(223);
 	module.exports = {
 
 	  path: 'designer/:type/:appId',
-
+	  onEnter: login.checkLoginRouter,
 	  getComponents: function getComponents(nextState, callback) {
 	    __webpack_require__.e/* nsure */(3, function (require) {
-	      callback(null, __webpack_require__(223));
+	      callback(null, __webpack_require__(224));
 	    });
 	  }
 	};
 
 /***/ },
 
-/***/ 603:
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	module.exports = {
-
-	  path: 'user',
-	  getChildRoutes: function getChildRoutes(partialNextState, callback) {
-	    __webpack_require__.e/* nsure */(4, function (require) {
-	      callback(null, [__webpack_require__(604), __webpack_require__(611)]);
-	    });
-	  }
-	};
-
-/***/ },
-
-/***/ 607:
+/***/ 223:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -164,6 +148,23 @@ webpackJsonp([2,19],{
 
 /***/ },
 
+/***/ 604:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	module.exports = {
+
+	  path: 'user',
+	  getChildRoutes: function getChildRoutes(partialNextState, callback) {
+	    __webpack_require__.e/* nsure */(4, function (require) {
+	      callback(null, [__webpack_require__(605), __webpack_require__(611)]);
+	    });
+	  }
+	};
+
+/***/ },
+
 /***/ 619:
 /***/ function(module, exports, __webpack_require__) {
 
@@ -190,7 +191,7 @@ webpackJsonp([2,19],{
 
 	'use strict';
 
-	var login = __webpack_require__(607);
+	var login = __webpack_require__(223);
 
 	module.exports = {
 
