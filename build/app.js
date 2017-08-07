@@ -12262,8 +12262,7 @@
 	    'p-list > .ul': {
 	        display: 'block',
 	        width: "100%",
-	        overflow: "hidden",
-	        border: "solid 1px blue"
+	        overflow: "hidden"
 	    },
 
 	    'p-list > .ul .c-list': {
@@ -12271,9 +12270,7 @@
 	        listStyle: 'none',
 	        minHeight: '10px',
 	        overflow: 'hidden',
-	        boxSizing: 'border-box',
-
-	        border: "solid 2px green"
+	        boxSizing: 'border-box'
 	    },
 
 	    'p-list > .ul .c-list .c-ceil': {
@@ -12284,8 +12281,7 @@
 
 	        width: '100%',
 	        height: '100%',
-	        position: "relative",
-	        border: "solid 2px green"
+	        position: "relative"
 	    },
 
 	    'p-list  .c-ceil > p-layout': {
