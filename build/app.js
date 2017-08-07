@@ -12063,7 +12063,9 @@
 	            if (children[i]) {
 	                var index = i + 1;
 
-	                var cellStyle = "height:" + this.props.cellHeight + "em" + ";width:" + this.props.cellWidth + "%";
+	                var height = Math.round(this.props.cellHeight * 100) / 100;
+	                var width = Math.round(this.props.cellWidth * 100) / 100;
+	                var cellStyle = "height:" + height + "em" + ";width:" + width + "%";
 
 	                var cellInnerStyle = "margin:" + this.props.padding / 2 + "px";
 
@@ -12259,7 +12261,9 @@
 
 	    'p-list > .ul': {
 	        display: 'block',
-	        width: "100%"
+	        width: "100%",
+	        overflow: "hidden",
+	        border: "solid 1px blue"
 	    },
 
 	    'p-list > .ul .c-list': {
