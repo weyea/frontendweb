@@ -124,8 +124,8 @@
 	}
 
 	var rootRoute = {
-
 	  path: '/',
+
 	  getChildRoutes: function getChildRoutes(partialNextState, callback) {
 	    __webpack_require__.e/* nsure */(2, function (require) {
 	      callback(null, [__webpack_require__(222), __webpack_require__(636), __webpack_require__(651), __webpack_require__(662), __webpack_require__(679), __webpack_require__(686)]);

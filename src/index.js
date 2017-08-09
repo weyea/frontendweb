@@ -11,10 +11,6 @@ if(currentScript.src){
 }
 
 
-
-
-
-
 var history;
 if(/localhost:8484/.test(location.href)){
   history = browserHistory
@@ -35,8 +31,8 @@ else{
 }
 
 const rootRoute = {
-
     path: '/',
+
     getChildRoutes(partialNextState, callback) {
       require.ensure([], function (require) {
         callback(null, [
@@ -49,6 +45,7 @@ const rootRoute = {
         ])
       })
     },
+
     getIndexRoute(partialNextState, callback) {
       require.ensure([], function (require) {
         callback(null, {
@@ -56,6 +53,7 @@ const rootRoute = {
         })
       })
     },
+
     getComponents(nextState, callback) {
     require.ensure([], function (require) {
       callback(null, require('./App'))

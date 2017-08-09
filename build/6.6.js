@@ -670,86 +670,139 @@ webpackJsonp([6,19],{
 	module.exports = React.createClass({
 	    displayName: 'exports',
 
+	    getInitialState: function getInitialState() {
+	        return {
+	            codeActive: false,
+	            phoneError: "",
+	            passwordError: "",
+	            repasswordError: "",
+	            sendState: 0,
+	            stateTime: 30
+	        };
+	    },
+
+	    checkoutPhone: function checkoutPhone() {
+	        var email = $(this.refs["email"]);
+
+	        if (!email.val().trim()) {
+	            this.setState({ phoneError: "手机号码不能为空" });
+	        } else if (!/^1[0-9]{10}$/.test(email.val())) {
+	            this.setState({ phoneError: "手机号码格式不正确" });
+	        } else {
+	            this.setState({ phoneError: "" });
+	            return true;
+	        }
+	    },
+
+	    checkoutPassword: function checkoutPassword() {
+	        var password = $(this.refs["password"]);
+
+	        if (!password.val().trim()) {
+	            this.setState({ passwordError: "密码不能为空" });
+	        } else if (!/^\w{8,16}$/.test(password.val())) {
+	            this.setState({ passwordError: "密码格式不正确，密码由8-16位的数字/字母/英文符号组成" });
+	        } else {
+	            this.setState({ passwordError: "" });
+	            return true;
+	        }
+	    },
+	    checkoutRepassword: function checkoutRepassword() {
+	        var repeatPassword = $(this.refs["repeatPassword"]);
+	        var password = $(this.refs["password"]);
+
+	        if (password.val() !== repeatPassword.val()) {
+	            this.setState({ repasswordError: "两次输入的密码不相等，请重新输入" });
+	        } else {
+	            this.setState({ repasswordError: "" });
+	            return true;
+	        }
+	    },
+
+	    checkoutCode: function checkoutCode() {
+	        var code = $(this.refs["code"]);
+	        var email = $(this.refs["email"]);
+	        var value = this.checkoutPhone();
+	        if (!value) return;
+
+	        if (!code.val().trim()) {
+	            this.setState({ phoneError: "验证码不能为空" });
+	        } else {
+
+	            $.post("/json/user/verfycode/" + email.val().trim(), { code: code }, function (result) {
+	                if (result.success) {} else {
+	                    this.setState({ phoneError: result.message });
+	                }
+	            });
+	        }
+	    },
 
 	    componentDidMount: function componentDidMount() {
+	        var _this = this;
 
 	        var email = $(this.refs["email"]);
 	        var username = $(this.refs["username"]);
 	        var password = $(this.refs["password"]);
+	        var code = $(this.refs["code"]);
 	        var repeatPassword = $(this.refs["repeatPassword"]);
 	        this._hasErrors = 0;
 	        var self = this;
 
-	        username.on("blur", function () {
-	            if (this.validity.valid) {
-	                $(this.nextElementSibling).addClass('show_pass');
-	                this.nextElementSibling.innerHTML = '用户名格式正确';
-	                self._hasErrors--;
-	            } else if (this.validity.valueMissing) {
-	                $(this.nextElementSibling).addClass("show_warn");
-	                this.nextElementSibling.innerHTML = '用户名不能为空';
-	                self._hasErrors++;
-	            } else if (this.validity.patternMismatch) {
-	                $(this.nextElementSibling).addClass('pc show_warn');
-	                this.nextElementSibling.innerHTML = '用户名格式非法,用户名由2-12数字或字母组成';
-	                self._hasErrors++;
-	            }
+	        email.on("blur", function () {
+	            self.checkoutPhone();
+	        });
+	        code.on("blur", function () {
+	            self.checkoutCode();
 	        });
 
 	        password.on("blur", function () {
-	            if (this.validity.valid) {
-	                $(this.nextElementSibling).addClass('pc show_pass');
-	                this.nextElementSibling.innerHTML = '密码格式正确';
-	                self._hasErrors--;
-	            } else if (this.validity.valueMissing) {
-	                $(this.nextElementSibling).addClass('pc show_warn');
-	                this.nextElementSibling.innerHTML = '用户密码不能为空';
-	                self._hasErrors++;
-	            } else if (this.validity.patternMismatch) {
-	                $(this.nextElementSibling).addClass('pc show_warn');
-	                this.nextElementSibling.innerHTML = '密码格式非法，密码由不少于8位数字/字母/英文符号组成';
-	                self._hasErrors++;
-	            }
+	            self.checkoutPassword();
 	        });
 
 	        repeatPassword.on("blur", function () {
-	            if (repeatPassword.val() == repeatPassword.val() && repeatPassword.val() !== "") {
-	                this.nextElementSibling.innerHTML = '输入正确';
-	                self._hasErrors--;
-	            } else {
-	                $(this.nextElementSibling).addClass('pc show_warn');
-	                this.nextElementSibling.innerHTML = '两次输入的密码不相等，请重新输入';
-	                self._hasErrors++;
-	            }
+	            self.checkoutRepassword();
 	        });
 
-	        email.on("blur", function () {
-	            if (this.validity.valid) {
-	                $(this.nextElementSibling).addClass('pc show_pass');
-	                this.nextElementSibling.innerHTML = '邮箱格式正确';
-	                self._hasErrors--;
-	            } else if (this.validity.valueMissing) {
-	                $(this.nextElementSibling).addClass('pc show_warn');
-	                this.nextElementSibling.innerHTML = '邮箱不能为空';
-	                self._hasErrors++;
-	            } else if (this.validity.typeMismatch) {
-	                $(this.nextElementSibling).addClass('pc show_warn');
-	                this.nextElementSibling.innerHTML = '邮箱格式有误';
-	                self._hasErrors++;
-	            }
+	        email.on("focus", function () {
+	            _this.setState({ codeActive: true });
 	        });
 	    },
 	    valid: function valid() {
-	        var email = this.refs["email"];
-	        var username = this.refs["username"];
-	        var password = this.refs["password"];
-	        var repeatPassword = this.refs["repeatPassword"];
-	        if (email.validity.valid && username.validity.valid && password.validity.valid && repeatPassword.validity.valid) {
+	        var self = this;
+	        self.checkoutPhone();
+	        self.checkoutPassword();
+	        self.checkoutRepassword();
+	        if (self.state.phoneError == "" && self.state.passwordError == "" && self.state.repasswordError == "") {
 	            return true;
 	        }
 	    },
+	    sendCodeBind: function sendCodeBind() {
+	        var code = $(this.refs["code"]);
+	    },
+	    sendCode: function sendCode(target, t, ev) {
+
+	        ev.preventDefault();
+	        var self = this;
+	        var valid = this.checkoutPhone();
+	        var email = $(this.refs["email"]);
+	        if (!valid) return;
+	        $.post("/json/user/sendcode/" + email.val().trim(), function (result) {
+	            if (result.success) {
+	                self.setState({ "sendState": 1 });
+	                this.state.stateTime = 30;
+	                var time = setInterval(function () {
+	                    var nowNum = this.state.stateTime;
+	                    if (nowNum == 0) {
+	                        clearInterval(time);
+	                        self.setState({ "sendState": 2 });
+	                    } else {
+	                        self.setState({ "sendState": nowNum - 1 });
+	                    }
+	                }, 1000);
+	            }
+	        });
+	    },
 	    submitLogin: function submitLogin(e) {
-	        var _this = this;
+	        var _this2 = this;
 
 	        var self = this;
 	        var emailValue = $(this.refs["email"]).val();
@@ -758,7 +811,7 @@ webpackJsonp([6,19],{
 	        var repeatPassword = $(this.refs["repeatPassword"]).val();
 
 	        if (!this.valid()) {
-	            alert("请先处理错误");
+
 	            return;
 	        }
 
@@ -779,15 +832,41 @@ webpackJsonp([6,19],{
 	                }
 	            } else {
 	                if (result.errors.length) {
-	                    $(_this.refs["errors"]).text(result.errors);
+	                    $(_this2.refs["errors"]).text(result.errors);
 	                } else if (Object.keys(workflow.outcome.errfor).length !== 0) {
-	                    $(_this.refs["errors"]).text(result.errfor);
+	                    $(_this2.refs["errors"]).text(result.errfor);
 	                }
 	            }
 	        });
 	    },
 
+	    renderCodeButton: function renderCodeButton() {
+	        if (this.state.sendState == 0) {
+	            return React.createElement(
+	                'button',
+	                { className: 'code-button' },
+	                '发送验证码'
+	            );
+	        } else if (this.state.sendState == 1) {
+
+	            return React.createElement(
+	                'button',
+	                { className: 'code-button' },
+	                "验证码已发送 " + this.state.stateTime
+	            );
+	        } else if (this.state.sendState == 2) {
+	            return React.createElement(
+	                'button',
+	                { className: 'code-button active' },
+	                '重新发送'
+	            );
+	        }
+	    },
+
 	    render: function render() {
+
+	        var codeActive = this.state.codeActive;
+	        var displayStyle = { display: codeActive ? "inline-block" : "none" };
 	        return React.createElement(
 	            'div',
 	            null,
@@ -801,7 +880,7 @@ webpackJsonp([6,19],{
 	                    React.createElement(
 	                        'div',
 	                        { className: 'form-signin-heading' },
-	                        '注册'
+	                        React.createElement('img', { style: { width: "130px" }, src: '/img/logo_1.png' })
 	                    ),
 	                    React.createElement(
 	                        'form',
@@ -821,27 +900,47 @@ webpackJsonp([6,19],{
 	                        ),
 	                        React.createElement(
 	                            'div',
-	                            { className: 'form-group ' },
-	                            React.createElement('input', { ref: 'username', type: 'text', required: true, pattern: '^[0-9a-zA-Z]{2,12}$', name: 'username', placeholder: '您希望我们怎么称呼您？', className: 'form-control' }),
-	                            React.createElement('span', { className: 'help-block' })
+	                            { className: 'form-group' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'phone-box' },
+	                                React.createElement('input', { ref: 'email', type: 'text', pattern: '^1[0-9]{10}$', required: true, className: 'phone-input', name: 'email', placeholder: '请输入手机号码快速注册' }),
+	                                React.createElement(
+	                                    'span',
+	                                    { style: displayStyle, className: 'code-active' },
+	                                    React.createElement('input', { className: 'code-input', ref: 'code', type: 'text', required: true, name: 'code', placeholder: '请输入验证码' }),
+	                                    React.createElement(
+	                                        'a',
+	                                        { onClick: this.sendCode, className: 'code-button' },
+	                                        '发送验证码'
+	                                    )
+	                                )
+	                            ),
+	                            React.createElement(
+	                                'span',
+	                                { style: { display: this.state.phoneError ? "block" : "none" }, className: 'help-block' },
+	                                this.state.phoneError
+	                            )
 	                        ),
 	                        React.createElement(
 	                            'div',
-	                            { className: 'form-group ' },
-	                            React.createElement('input', { ref: 'email', type: 'text', required: true, name: 'email', placeholder: '请输入邮箱', className: 'form-control' }),
-	                            React.createElement('span', { className: 'help-block' })
-	                        ),
-	                        React.createElement(
-	                            'div',
-	                            { className: 'form-group ' },
-	                            React.createElement('input', { ref: 'password', type: 'password', required: true, pattern: '^\\w{8,100}$', name: 'password', placeholder: '输入密码', className: 'form-control' }),
-	                            React.createElement('span', { className: 'help-block' })
+	                            { className: 'form-group' },
+	                            React.createElement('input', { ref: 'password', type: 'password', required: true, pattern: '^\\w{8,100}$', name: 'password', placeholder: '输入密码(6-16位字母、数字和符号)', className: 'form-control' }),
+	                            React.createElement(
+	                                'span',
+	                                { style: { display: this.state.passwordError ? "block" : "none" }, className: 'help-block' },
+	                                this.state.passwordError
+	                            )
 	                        ),
 	                        React.createElement(
 	                            'div',
 	                            { className: 'form-group ' },
 	                            React.createElement('input', { ref: 'repeatPassword', type: 'password', name: 'repassword', placeholder: '再次输入密码', className: 'form-control' }),
-	                            React.createElement('span', { className: 'help-block' })
+	                            React.createElement(
+	                                'span',
+	                                { style: { display: this.state.repasswordError ? "block" : "none" }, className: 'help-block' },
+	                                this.state.repasswordError
+	                            )
 	                        ),
 	                        React.createElement('div', { ref: 'errors', className: 'alerts' }),
 	                        React.createElement(
@@ -907,7 +1006,7 @@ webpackJsonp([6,19],{
 
 
 	// module
-	exports.push([module.id, ".signup-page .signup{\n  margin:100px auto 200px auto;\n}\n\n\n.signup-page .signup .form-signin-heading{\n  font-family:MicrosoftYaHei;\nfont-size:30px;\ncolor:#00c4d8;\ntext-align: center;\n\nmargin-bottom: 20px;\nmargin-top: 0;\n\n}\n\n.signup-page .signup{\n  background:#f0f0f0;\n  border-radius:3px;\n  width:520px;\n  padding: 20px 60px 20px 60px;\n\n}\n\n\n.signup-page .signup .type{\n\n  font-family:MicrosoftYaHei;\n  font-size:12px;\n  color:#999999;\ntext-align: center;\n\nmargin-bottom: 30px;\nmargin-top: 0;\n\n}\n.signup-page .signup  .third-logo{\n  text-align: center;\n  margin-top: 26px;\n}\n.signup-page .signup  .third-logo a{\nwidth: 50px;\nheight: 50px;\nmargin: 0 17px;\ndisplay: inline-block;\nborder-radius: 100%;\n\n\n}\n.signup  .third-logo a.weibo{\n  background: url(" + __webpack_require__(647) + ") center no-repeat;\n  background-size: contain;\n}\n.signup  .third-logo a.qq{\n  background: url(" + __webpack_require__(648) + ") center no-repeat;\n  background-size: contain;\n}\n.signup  .third-logo a.tudou{\n  background: url(" + __webpack_require__(649) + ") center no-repeat;\n  background-size: contain;\n}\n.signup  .third-logo a.renren{\n  background: url(" + __webpack_require__(650) + ") center no-repeat;\n  background-size: contain;\n}\n\n.signup-page .signup input{\n  background:#ffffff;\nborder:1px solid #dddddd;\nwidth:398px;\nheight:38px;\nmargin-top: 20px;\n\n}\n\n.signup-page .signup .btn{\n  text-align: center;\n  line-height: 34px;\n  padding: 0;\n  border:1px solid #00c4d8;\nborder-radius:4px;\nwidth:118px;\nheight:34px;\n\nfont-size:14px;\ncolor:#00c4d8;\nbackground-color: transparent;\ndisplay: block;\nmargin:auto;\nmargin-top: 22px;\n}\n\n.signup-page .signup .login{\n  text-align: center;\n    margin-top: 13px;\n}\n.signup-page .signup .login a{\n  font-size:12px;\n  color:#999999;\n\n  text-align:center;\n}\n", ""]);
+	exports.push([module.id, ".signup-page .signup{\n  margin:100px auto 200px auto;\n}\n\n\n.signup-page .signup .form-signin-heading{\n  font-family:MicrosoftYaHei;\nfont-size:30px;\ncolor:#00c4d8;\ntext-align: center;\n\nmargin-bottom: 20px;\nmargin-top: 0;\n\n}\n\n.signup-page .signup{\n  background:#f0f0f0;\n  border-radius:3px;\n  width:520px;\n  padding: 20px 60px 20px 60px;\n\n}\n\n\n.signup-page .signup .type{\n\n  font-family:MicrosoftYaHei;\n  font-size:12px;\n  color:#999999;\ntext-align: center;\n\nmargin-bottom: 30px;\nmargin-top: 0;\n\n}\n.signup-page .signup  .third-logo{\n  text-align: center;\n  margin-top: 26px;\n}\n.signup-page .signup  .third-logo a{\nwidth: 50px;\nheight: 50px;\nmargin: 0 17px;\ndisplay: inline-block;\nborder-radius: 100%;\n\n\n}\n.signup  .third-logo a.weibo{\n  background: url(" + __webpack_require__(647) + ") center no-repeat;\n  background-size: contain;\n}\n.signup  .third-logo a.qq{\n  background: url(" + __webpack_require__(648) + ") center no-repeat;\n  background-size: contain;\n}\n.signup  .third-logo a.tudou{\n  background: url(" + __webpack_require__(649) + ") center no-repeat;\n  background-size: contain;\n}\n.signup  .third-logo a.renren{\n  background: url(" + __webpack_require__(650) + ") center no-repeat;\n  background-size: contain;\n}\n\n.signup-page .signup input{\n  background:#ffffff;\nborder:1px solid #dddddd;\nwidth:398px;\nheight:38px;\nmargin-top: 20px;\n  font-size: 12px;\n\n}\n\n.signup-page .signup .phone-box{\n  background:#ffffff;\n  border:1px solid #dddddd;\n  width:398px;\n  height:40px;\n  margin-top: 20px;\n  position: relative;\n}\n\n.signup-page .signup .phone-box .phone-input{\n\n  width:186px;\n  height:38px;\n  margin: 0;\n  border: none;\n  padding: 0px 12px;\n  color: #555;\n}\n\n.signup-page .signup .phone-box input::-webkit-input-placeholder{\n  color: #999;\n}\n\n.signup-page .signup .phone-box .code-input{\n  width:100px;\n  height:26px;\n  margin: 0;\n  border: none;\n  padding: 0px 8px;\n  margin-top: 5px;\n  border-left: solid 1px #ccc;\n  color: #555;\n}\n\n\n.signup-page .signup .phone-box .code-active{\n display: inline-block;\n}\n\n\n.signup-page .signup .code-button{\n\n  margin: 0;\n  border: none;\n  padding: 0px 12px;\n  border: solid 1px #ccc;\n  width: 112px;\n  height: 40px;\n  border:solid 1px #00C4D8;\n  background-color: #EFFEFF;\n  color: #00C4D8;\n  position: absolute;\n  top:-1px;\n  right: -1px;\n  font-size: 12px;\n  line-height: 40px;\n  text-align: center;\n  cursor: pointer;\n}\n\n.signup-page .signup .code-button.active{\n\n\n\n  border:solid 1px #DDDDDD;\n  background-color: #F0F0F0;\n  color: #999999;\n\n}\n\n.signup-page .signup .help-block{\n  color: #FF0404;\n  font-size: 12px;\n\n}\n\n\n\n\n.signup-page .signup .btn{\n  text-align: center;\n  line-height: 34px;\n  padding: 0;\n  border:1px solid #00c4d8;\nborder-radius:4px;\nwidth:118px;\nheight:34px;\n\nfont-size:14px;\ncolor:#00c4d8;\nbackground-color: transparent;\ndisplay: block;\nmargin:auto;\nmargin-top: 22px;\n}\n\n.signup-page .signup .login{\n  text-align: center;\n    margin-top: 13px;\n}\n.signup-page .signup .login a{\n  font-size:12px;\n  color:#999999;\n\n  text-align:center;\n}\n", ""]);
 
 	// exports
 

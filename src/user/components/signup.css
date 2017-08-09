@@ -70,8 +70,88 @@ border:1px solid #dddddd;
 width:398px;
 height:38px;
 margin-top: 20px;
+  font-size: 12px;
 
 }
+
+.signup-page .signup .phone-box{
+  background:#ffffff;
+  border:1px solid #dddddd;
+  width:398px;
+  height:40px;
+  margin-top: 20px;
+  position: relative;
+}
+
+.signup-page .signup .phone-box .phone-input{
+
+  width:186px;
+  height:38px;
+  margin: 0;
+  border: none;
+  padding: 0px 12px;
+  color: #555;
+}
+
+.signup-page .signup .phone-box input::-webkit-input-placeholder{
+  color: #999;
+}
+
+.signup-page .signup .phone-box .code-input{
+  width:100px;
+  height:26px;
+  margin: 0;
+  border: none;
+  padding: 0px 8px;
+  margin-top: 5px;
+  border-left: solid 1px #ccc;
+  color: #555;
+}
+
+
+.signup-page .signup .phone-box .code-active{
+ display: inline-block;
+}
+
+
+.signup-page .signup .code-button{
+
+  margin: 0;
+  border: none;
+  padding: 0px 12px;
+  border: solid 1px #ccc;
+  width: 112px;
+  height: 40px;
+  border:solid 1px #00C4D8;
+  background-color: #EFFEFF;
+  color: #00C4D8;
+  position: absolute;
+  top:-1px;
+  right: -1px;
+  font-size: 12px;
+  line-height: 40px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.signup-page .signup .code-button.active{
+
+
+
+  border:solid 1px #DDDDDD;
+  background-color: #F0F0F0;
+  color: #999999;
+
+}
+
+.signup-page .signup .help-block{
+  color: #FF0404;
+  font-size: 12px;
+
+}
+
+
+
 
 .signup-page .signup .btn{
   text-align: center;
