@@ -214,10 +214,10 @@ module.exports =   React.createClass({
       }
       else if(this.state.sendState == 1){
 
-          return <a  onClick={this.sendCode}  className ="code-button">{"验证码已发送 " + this.state.stateTime}</a>
+          return <a  onClick={this.sendCode}  className ="code-button active">{"验证码已发送 " + this.state.stateTime}</a>
       }
       else if(this.state.sendState == 2){
-          return <a  onClick={this.sendCode}  className ="code-button active">重新发送</a>
+          return <a  onClick={this.sendCode}  className ="code-button ">重新发送</a>
       }
 
     },
