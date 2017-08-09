@@ -173,6 +173,7 @@ module.exports =   React.createClass({
         var username = $(this.refs["username"]).val();
         var password = $(this.refs["password"]).val();
         var repeatPassword = $(this.refs["repeatPassword"]).val();
+        var code = $(this.refs["code"]).val();
 
         if(!this.valid()){
 
@@ -185,7 +186,7 @@ module.exports =   React.createClass({
             alert("两次输入的密码不相等，请重新输入")
             return;
         }
-        $.post("/json/user/signup",{username:username,email:emailValue,password:password}, (result) =>{
+        $.post("/json/user/signup",{username:username,email:emailValue,password:password, code:code}, (result) =>{
             if(result.success){
                 if(sessionStorage&&  sessionStorage.getItem("redirect")){
                     var redirect = sessionStorage.getItem("redirect")
@@ -199,7 +200,7 @@ module.exports =   React.createClass({
                 if(result.errors.length){
                     $(this.refs["errors"]).text(result.errors)
                 }
-                else if(Object.keys(workflow.outcome.errfor).length !== 0){
+                else if(Object.keys(result.errfor).length !== 0){
                     $(this.refs["errors"]).text(result.errfor)
                 }
 
