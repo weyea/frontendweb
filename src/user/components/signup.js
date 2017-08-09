@@ -151,9 +151,9 @@ module.exports =   React.createClass({
         $.post("/json/user/sendcode/"+email.val().trim(), function(result){
             if(result.success){
                 self.setState({"sendState":1})
-                this.state.stateTime = 30
+                self.state.stateTime = 30
                 var time = setInterval(function(){
-                    var nowNum = this.state.stateTime;
+                    var nowNum = self.state.stateTime;
                     if(nowNum == 0 ){
                         clearInterval(time);
                         self.setState({"sendState":2})
