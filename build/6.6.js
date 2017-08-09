@@ -788,9 +788,9 @@ webpackJsonp([6,19],{
 	        $.post("/json/user/sendcode/" + email.val().trim(), function (result) {
 	            if (result.success) {
 	                self.setState({ "sendState": 1 });
-	                this.state.stateTime = 30;
+	                self.state.stateTime = 30;
 	                var time = setInterval(function () {
-	                    var nowNum = this.state.stateTime;
+	                    var nowNum = self.state.stateTime;
 	                    if (nowNum == 0) {
 	                        clearInterval(time);
 	                        self.setState({ "sendState": 2 });
@@ -809,6 +809,7 @@ webpackJsonp([6,19],{
 	        var username = $(this.refs["username"]).val();
 	        var password = $(this.refs["password"]).val();
 	        var repeatPassword = $(this.refs["repeatPassword"]).val();
+	        var code = $(this.refs["code"]).val();
 
 	        if (!this.valid()) {
 
@@ -821,7 +822,7 @@ webpackJsonp([6,19],{
 	            alert("两次输入的密码不相等，请重新输入");
 	            return;
 	        }
-	        $.post("/json/user/signup", { username: username, email: emailValue, password: password }, function (result) {
+	        $.post("/json/user/signup", { username: username, email: emailValue, password: password, code: code }, function (result) {
 	            if (result.success) {
 	                if (sessionStorage && sessionStorage.getItem("redirect")) {
 	                    var redirect = sessionStorage.getItem("redirect");
@@ -833,7 +834,7 @@ webpackJsonp([6,19],{
 	            } else {
 	                if (result.errors.length) {
 	                    $(_this2.refs["errors"]).text(result.errors);
-	                } else if (Object.keys(workflow.outcome.errfor).length !== 0) {
+	                } else if (Object.keys(result.errfor).length !== 0) {
 	                    $(_this2.refs["errors"]).text(result.errfor);
 	                }
 	            }
