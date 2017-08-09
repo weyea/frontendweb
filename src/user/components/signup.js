@@ -159,7 +159,7 @@ module.exports =   React.createClass({
                         self.setState({"sendState":2})
                     }
                     else{
-                        self.setState({"sendState":nowNum -1})
+                        self.setState({"stateTime":nowNum -1})
                     }
 
                 },1000)
@@ -210,14 +210,14 @@ module.exports =   React.createClass({
 
     renderCodeButton:function(){
       if(this.state.sendState == 0){
-        return <button className ="code-button">发送验证码</button>
+        return <a  onClick={this.sendCode}  className ="code-button">发送验证码</a>
       }
       else if(this.state.sendState == 1){
 
-          return <button className ="code-button">{"验证码已发送 " + this.state.stateTime}</button>
+          return <a  onClick={this.sendCode}  className ="code-button">{"验证码已发送 " + this.state.stateTime}</a>
       }
       else if(this.state.sendState == 2){
-          return <button className ="code-button active">重新发送</button>
+          return <a  onClick={this.sendCode}  className ="code-button active">重新发送</a>
       }
 
     },
@@ -249,7 +249,7 @@ module.exports =   React.createClass({
                           <input ref = "email" type="text" pattern = "^1[0-9]{10}$" required className="phone-input" name="email" placeholder="请输入手机号码快速注册"/>
                           <span style={displayStyle} className = "code-active">
                                 <input className = "code-input"  ref = "code" type="text" required name="code" placeholder="请输入验证码" />
-                                <a  onClick={this.sendCode} className ="code-button">发送验证码</a>
+                                 {this.renderCodeButton()}
                          </span>
                      </div>
                       <span style={{display:this.state.phoneError?"block":"none"}} className="help-block">{this.state.phoneError}</span>
