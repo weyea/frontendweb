@@ -795,7 +795,7 @@ webpackJsonp([6,19],{
 	                        clearInterval(time);
 	                        self.setState({ "sendState": 2 });
 	                    } else {
-	                        self.setState({ "sendState": nowNum - 1 });
+	                        self.setState({ "stateTime": nowNum - 1 });
 	                    }
 	                }, 1000);
 	            }
@@ -844,21 +844,21 @@ webpackJsonp([6,19],{
 	    renderCodeButton: function renderCodeButton() {
 	        if (this.state.sendState == 0) {
 	            return React.createElement(
-	                'button',
-	                { className: 'code-button' },
+	                'a',
+	                { onClick: this.sendCode, className: 'code-button' },
 	                '发送验证码'
 	            );
 	        } else if (this.state.sendState == 1) {
 
 	            return React.createElement(
-	                'button',
-	                { className: 'code-button' },
+	                'a',
+	                { onClick: this.sendCode, className: 'code-button' },
 	                "验证码已发送 " + this.state.stateTime
 	            );
 	        } else if (this.state.sendState == 2) {
 	            return React.createElement(
-	                'button',
-	                { className: 'code-button active' },
+	                'a',
+	                { onClick: this.sendCode, className: 'code-button active' },
 	                '重新发送'
 	            );
 	        }
@@ -910,11 +910,7 @@ webpackJsonp([6,19],{
 	                                    'span',
 	                                    { style: displayStyle, className: 'code-active' },
 	                                    React.createElement('input', { className: 'code-input', ref: 'code', type: 'text', required: true, name: 'code', placeholder: '请输入验证码' }),
-	                                    React.createElement(
-	                                        'a',
-	                                        { onClick: this.sendCode, className: 'code-button' },
-	                                        '发送验证码'
-	                                    )
+	                                    this.renderCodeButton()
 	                                )
 	                            ),
 	                            React.createElement(
