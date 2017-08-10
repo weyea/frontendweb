@@ -5,7 +5,8 @@ export default  React.createClass({
   componentDidMount: function() {
 
   },
-    logout:function(){
+    logout:function(target, t, ev){
+        ev.preventDefault();
         var logout = $(this.refs["logout"]);
         var self = this;
         $.get(logout.attr("href"), function(result){
