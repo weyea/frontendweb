@@ -359,7 +359,7 @@ webpackJsonp([5,19],{
 	              '登录'
 	            ),
 	            React.createElement('div', { ref: 'errors' }),
-	            React.createElement('input', { name: 'email', type: 'text', ref: 'email', className: 'form-control email', placeholder: '邮箱/电话', required: true }),
+	            React.createElement('input', { name: 'email', type: 'text', ref: 'email', className: 'form-control email', placeholder: '电话', required: true }),
 	            React.createElement('input', { type: 'password', name: 'password', ref: 'password', className: 'form-control password', placeholder: '密码', required: true }),
 	            React.createElement('input', { type: 'hidden', name: 'redirect', value: '<%= locals.redirect %>', className: 'form-control', placeholder: 'Password', required: true }),
 	            React.createElement(
@@ -412,7 +412,8 @@ webpackJsonp([5,19],{
 
 
 	  componentDidMount: function componentDidMount() {},
-	  logout: function logout() {
+	  logout: function logout(target, t, ev) {
+	    ev.preventDefault();
 	    var logout = $(this.refs["logout"]);
 	    var self = this;
 	    $.get(logout.attr("href"), function (result) {

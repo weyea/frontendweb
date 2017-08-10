@@ -433,7 +433,8 @@ webpackJsonp([17,19],{
 
 
 	  componentDidMount: function componentDidMount() {},
-	  logout: function logout() {
+	  logout: function logout(target, t, ev) {
+	    ev.preventDefault();
 	    var logout = $(this.refs["logout"]);
 	    var self = this;
 	    $.get(logout.attr("href"), function (result) {
