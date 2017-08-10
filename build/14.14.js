@@ -779,7 +779,7 @@ webpackJsonp([14,19],{
 	    },
 
 	    changeTitle: function changeTitle(id, title) {
-	        $.post("/json/site/" + id, { title: title }, function (result) {
+	        $.post("/json/app/" + id, { title: title }, function (result) {
 	            if (result.success) {} else {
 	                alert("更新失败");
 	            }
