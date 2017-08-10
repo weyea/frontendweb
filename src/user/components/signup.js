@@ -167,8 +167,9 @@ module.exports =   React.createClass({
         })
 
     },
-    submitLogin:function(e){
+    submitLogin:function(target, t , ev){
         var self = this;
+        ev.preventDefault();
         var emailValue = $(this.refs["email"]).val();
         var username = $(this.refs["username"]).val();
         var password = $(this.refs["password"]).val();

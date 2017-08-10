@@ -801,10 +801,11 @@ webpackJsonp([6,19],{
 	            }
 	        });
 	    },
-	    submitLogin: function submitLogin(e) {
+	    submitLogin: function submitLogin(target, t, ev) {
 	        var _this2 = this;
 
 	        var self = this;
+	        ev.preventDefault();
 	        var emailValue = $(this.refs["email"]).val();
 	        var username = $(this.refs["username"]).val();
 	        var password = $(this.refs["password"]).val();
