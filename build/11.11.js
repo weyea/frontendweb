@@ -722,6 +722,19 @@ webpackJsonp([11,19],{
 	    displayName: "BackHeader",
 
 	    componentDidMount: function componentDidMount() {},
+	    logout: function logout(target, t, ev) {
+	        ev.preventDefault();
+	        var logout = $(this.refs["logout"]);
+	        var self = this;
+	        $.get(logout.attr("href"), function (result) {
+	            if (result.success) {
+	                login.logout();
+	                self.forceUpdate();
+	            } else {
+	                alert("登出失败");
+	            }
+	        });
+	    },
 
 	    renderLoginInfo: function renderLoginInfo() {
 
@@ -741,8 +754,12 @@ webpackJsonp([11,19],{
 	                    ),
 	                    React.createElement(
 	                        "a",
-	                        { href: "/user/logout", className: "" },
-	                        React.createElement("span", { className: "oi oi-account-logout" })
+	                        { ref: "logout", onClick: this.logout, href: "/json/user/logout", className: "" },
+	                        React.createElement(
+	                            "span",
+	                            { className: "oi oi-account-logout" },
+	                            "登出"
+	                        )
 	                    )
 	                )
 	            );
