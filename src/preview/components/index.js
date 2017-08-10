@@ -14,7 +14,7 @@ module.exports =  React.createClass({
 
       $(document).delegate("#create-new-site", "click", function (ev) {
           ev.preventDefault();
-         
+
           $.post("/json/app?templateid=" + id, {name: "mysite"}, function (data) {
               if (data.needLogin) {
                   location.href = data.loginURL;

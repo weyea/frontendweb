@@ -78,12 +78,12 @@
 
     }
 
-    .site-list .templ h3  a {
+    .site-list .templ h3  .edit-title  {
         family:MicrosoftYaHei;
 
         color:#666666;
         letter-spacing:0.99px;
-        text-align: center;
+        text-align: left;
         font-size: 20px;
     }
 
@@ -112,6 +112,14 @@
         font-size: 18px;
         margin-left: 10px;
 
+    }
+
+    .site-list  .edit-title{
+        border: none;
+
+    }
+    .site-list  .edit-title:hover,.site-list  .edit-title:focus{
+        border:solid 1px #ccc;
     }
 
 

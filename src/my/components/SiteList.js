@@ -8,7 +8,32 @@ module.exports =  React.createClass({
       var self = this;
       self.flush();
 
+
+      $(document).delegate(".edit-title","change", function(ev){
+
+          var target = $(ev.target);
+          var id = target.attr("data-siteid")
+          var newValue = target.val();
+          var value = target.attr("defaultValue");
+          if(value !== newValue){
+              self.changeTitle(id, value)
+          }
+      })
+
+
+
   },
+
+    changeTitle:function(id, title){
+        $.post("/json/site/"+id,{title: title}, function(result){
+            if(result.success){
+
+            }
+            else{
+                alert("更新失败")
+            }
+        })
+    },
   flush: function (){
       var self = this;
       if(debug){
@@ -69,14 +94,14 @@ module.exports =  React.createClass({
       var item =(
         <div className="templ">
             <div className="bd">
-                <a href={"/my/app/"+site.id}><img src={site.logo||window.rootPath+"img/template_bg.png"}/></a>
+                <a  href={"/my/app/"+site.id}><img src={site.logo||window.rootPath+"img/template_bg.png"}/></a>
             </div>
             <div className="des">
-                <h3><a href={"/app/"+site.id}>{site.title}</a> <span className="status">已发布</span></h3>
+                <h3><input  data-siteid = {site.id} defaultValue = {site.title} className="edit-title" type ="text"  placeholder ={site.title}   /> <span className="status">已发布</span></h3>
                 <p className="url"><a href={"/app/"+site.id}>{"/app/"+site.id}</a></p>
                 <p className="visitors">过去7天的访问量: <span class="num"> 100</span></p>
                 <div className="action">
-                    <a className="edit btn btn-green ">编辑</a>
+                    <a className="edit btn btn-green ">设计</a>
                     <a className="data icon">数据</a>
                     <a className="share icon">分享</a>
                 </div>
