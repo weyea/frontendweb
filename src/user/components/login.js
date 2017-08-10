@@ -53,7 +53,7 @@ module.exports =  React.createClass({
           <div className="form-signin">
               <h2 className="form-signin-heading">登录</h2>
               <div ref="errors"></div>
-              <input name="email" type="text" ref="email" className="form-control email" placeholder="邮箱/电话" required  />
+              <input name="email" type="text" ref="email" className="form-control email" placeholder="电话" required  />
               <input type="password" name="password" ref="password" className="form-control password" placeholder="密码" required />
               <input type="hidden" name="redirect" value="<%= locals.redirect %>" className="form-control" placeholder="Password" required />
 
