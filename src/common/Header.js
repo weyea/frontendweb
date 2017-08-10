@@ -27,7 +27,7 @@ export default  React.createClass({
       <p className="navbar-text navbar-right login-status">
         <span >
           <a className="ava"><i className="fa fa-user-md"></i></a><a href="#" className="navbar-Link">{user.username}</a>
-          <a ref="logout" onClick = {this.logout} href="/user/logout" className=""><span className="oi oi-account-logout">登出</span></a>
+          <a ref="logout" onClick = {this.logout} href="/json/user/logout" className=""><span className="oi oi-account-logout">登出</span></a>
         </span>
     </p>
     )

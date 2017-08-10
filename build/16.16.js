@@ -334,7 +334,7 @@ webpackJsonp([16,19],{
 	          ),
 	          React.createElement(
 	            "a",
-	            { ref: "logout", onClick: this.logout, href: "/user/logout", className: "" },
+	            { ref: "logout", onClick: this.logout, href: "/json/user/logout", className: "" },
 	            React.createElement(
 	              "span",
 	              { className: "oi oi-account-logout" },
