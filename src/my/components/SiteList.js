@@ -14,9 +14,9 @@ module.exports =  React.createClass({
           var target = $(ev.target);
           var id = target.attr("data-siteid")
           var newValue = target.val();
-          var value = target.attr("defaultValue");
+          var value = target.attr("data-oldvalue");
           if(value !== newValue){
-              self.changeTitle(id, value)
+              self.changeTitle(id, newValue)
           }
       })
 
@@ -97,7 +97,7 @@ module.exports =  React.createClass({
                 <a  href={"/my/app/"+site.id}><img src={site.logo||window.rootPath+"img/template_bg.png"}/></a>
             </div>
             <div className="des">
-                <h3><input  data-siteid = {site.id} defaultValue = {site.title} className="edit-title" type ="text"  placeholder ={site.title}   /> <span className="status">已发布</span></h3>
+                <h3><input  data-siteid = {site.id} data-oldvalue = {site.title} className="edit-title" type ="text"  placeholder ={site.title}   /> <span className="status">已发布</span></h3>
                 <p className="url"><a href={"/app/"+site.id}>{"/app/"+site.id}</a></p>
                 <p className="visitors">过去7天的访问量: <span class="num"> 100</span></p>
                 <div className="action">
