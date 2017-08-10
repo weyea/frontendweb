@@ -291,56 +291,53 @@ webpackJsonp([15,19],{
 	var Header = __webpack_require__(683);
 
 	module.exports = React.createClass({
-	  displayName: "exports",
+	    displayName: "exports",
 
-	  getInitialState: function getInitialState() {
-	    return {};
-	  },
+	    getInitialState: function getInitialState() {
+	        return {};
+	    },
 
-	  componentDidMount: function componentDidMount() {
+	    componentDidMount: function componentDidMount() {
 
-	    var id = this.props.params.id;
+	        var id = this.props.params.id;
 
-	    $(document).delegate(".cmd-create-site", "click", function (ev) {
-	      ev.preventDefault();
-	      $.post("/json/app?templateid=" + id, { name: $("#create-site-name").val() }, function (data) {
-	        if (data.needLogin) {
-	          location.href = data.loginURL;
-	          return;
-	        }
-	        var url = "http://" + location.host + "/app/" + data.id;
-	        $("#new-url").attr("href", url);
-	        $("#new-url").html(url);
-	        $("#site-manager").attr("href", "/my");
-	        $("#create-site").modal("hide");
-	        $("#create-site-success").modal("show");
-	      });
-	    });
-	    (function () {
-	      var self = this;
-	      $(document).delegate(".viewport-pic", "click", function () {
-	        $("#container-iframe").width(1280);
-	      });
+	        $(document).delegate("#create-new-site", "click", function (ev) {
+	            ev.preventDefault();
 
-	      $(document).delegate(".viewport-mobile", "click", function () {
-	        $("#container-iframe").width(480);
-	      });
-	    })();
-	  },
-	  componentWillUnmount: function componentWillUnmount() {},
-	  render: function render() {
-	    var id = this.props.params.id;
-	    return React.createElement(
-	      "div",
-	      { id: "preview" },
-	      React.createElement(Header, { type: "home", active: "market" }),
-	      React.createElement(
-	        "div",
-	        { id: "container-iframe" },
-	        React.createElement("iframe", { src: "/designer/source/template/" + id })
-	      )
-	    );
-	  }
+	            $.post("/json/app?templateid=" + id, { name: "mysite" }, function (data) {
+	                if (data.needLogin) {
+	                    location.href = data.loginURL;
+	                    return;
+	                }
+	                var url = "/designer/app/" + data.id;
+	                location.href = url;
+	            });
+	        });
+	        (function () {
+	            var self = this;
+	            $(document).delegate(".viewport-pic", "click", function () {
+	                $("#container-iframe").width(1280);
+	            });
+
+	            $(document).delegate(".viewport-mobile", "click", function () {
+	                $("#container-iframe").width(480);
+	            });
+	        })();
+	    },
+	    componentWillUnmount: function componentWillUnmount() {},
+	    render: function render() {
+	        var id = this.props.params.id;
+	        return React.createElement(
+	            "div",
+	            { id: "preview" },
+	            React.createElement(Header, { type: "home", active: "market" }),
+	            React.createElement(
+	                "div",
+	                { id: "container-iframe" },
+	                React.createElement("iframe", { src: "/designer/source/template/" + id })
+	            )
+	        );
+	    }
 	});
 
 /***/ },

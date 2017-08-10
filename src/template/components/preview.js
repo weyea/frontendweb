@@ -11,9 +11,11 @@ module.exports =  React.createClass({
 
     var id =  this.props.params.id;
 
+      console.log("gogogs")
 
           $(document).delegate("#create-new-site", "click", function (ev) {
                 ev.preventDefault();
+              debugger;
                 $.post("/json/app?templateid=" + id, {name: "mysite"}, function (data) {
                     if (data.needLogin) {
                         location.href = data.loginURL;
