@@ -302,6 +302,11 @@ webpackJsonp([18,19],{
 				email: email
 			};
 		},
+		logout: function logout() {
+			$.cookie("islogin", "false");
+			var username = $.cookie("username", "");
+			var email = $.cookie("email", "");
+		},
 		checkLoginRouter: function checkLoginRouter(nextState, replace, callback) {
 			if (!login.isLogin()) {
 				if (sessionStorage) {
@@ -428,6 +433,18 @@ webpackJsonp([18,19],{
 
 
 	  componentDidMount: function componentDidMount() {},
+	  logout: function logout() {
+	    var logout = $(this.refs["logout"]);
+	    var self = this;
+	    $.get(logout.attr("href"), function (result) {
+	      if (result.success) {
+	        login.logout();
+	        self.forceUpdate();
+	      } else {
+	        alert("登出失败");
+	      }
+	    });
+	  },
 
 	  renderLoginInfo: function renderLoginInfo() {
 
@@ -451,8 +468,12 @@ webpackJsonp([18,19],{
 	          ),
 	          React.createElement(
 	            "a",
-	            { href: "/user/logout", className: "" },
-	            React.createElement("span", { className: "oi oi-account-logout" })
+	            { ref: "logout", onClick: this.logout, href: "/user/logout", className: "" },
+	            React.createElement(
+	              "span",
+	              { className: "oi oi-account-logout" },
+	              "登出"
+	            )
 	          )
 	        )
 	      );

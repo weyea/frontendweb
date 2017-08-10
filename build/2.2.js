@@ -39,6 +39,11 @@ webpackJsonp([2,19],{
 				email: email
 			};
 		},
+		logout: function logout() {
+			$.cookie("islogin", "false");
+			var username = $.cookie("username", "");
+			var email = $.cookie("email", "");
+		},
 		checkLoginRouter: function checkLoginRouter(nextState, replace, callback) {
 			if (!login.isLogin()) {
 				if (sessionStorage) {

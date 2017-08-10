@@ -16,6 +16,11 @@ var login = {
 		email:email
     }
   },
+	logout:function(){
+		$.cookie("islogin","false")
+		var username =  $.cookie("username", "");
+		var email =  $.cookie("email","");
+	},
   checkLoginRouter:function(nextState, replace, callback){
     if(!login.isLogin()){
       if(sessionStorage){
