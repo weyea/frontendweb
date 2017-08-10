@@ -767,7 +767,6 @@ webpackJsonp([14,19],{
 	        self.flush();
 
 	        $(document).delegate(".edit-title", "change", function (ev) {
-
 	            var target = $(ev.target);
 	            var id = target.attr("data-siteid");
 	            var newValue = target.val();
