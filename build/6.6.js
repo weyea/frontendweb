@@ -802,8 +802,6 @@ webpackJsonp([6,19],{
 	        });
 	    },
 	    submitLogin: function submitLogin(target, t, ev) {
-	        var _this2 = this;
-
 	        var self = this;
 	        ev.preventDefault();
 	        var emailValue = $(this.refs["email"]).val();
@@ -836,9 +834,10 @@ webpackJsonp([6,19],{
 	                }
 	            } else {
 	                if (result.errors.length) {
-	                    $(_this2.refs["errors"]).text(result.errors);
+	                    $(self.refs["errors"]).text(result.errors);
 	                } else if (Object.keys(result.errfor).length !== 0) {
-	                    $(_this2.refs["errors"]).text(result.errfor);
+
+	                    self.setState(result.errfor);
 	                }
 	            }
 	        });
@@ -947,7 +946,7 @@ webpackJsonp([6,19],{
 	                            'div',
 	                            { className: 'form-group' },
 	                            React.createElement(
-	                                'button',
+	                                'a',
 	                                { ref: 'submit', onClick: this.submitLogin, className: 'btn btn-primary btn-signup' },
 	                                '注册'
 	                            )

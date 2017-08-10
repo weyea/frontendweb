@@ -202,10 +202,12 @@ module.exports =   React.createClass({
             }
             else {
                 if(result.errors.length){
-                    $(this.refs["errors"]).text(result.errors)
+                    $(self.refs["errors"]).text(result.errors)
                 }
                 else if(Object.keys(result.errfor).length !== 0){
-                    $(this.refs["errors"]).text(result.errfor)
+
+                    self.setState(result.errfor)
+
                 }
 
             }
@@ -275,7 +277,7 @@ module.exports =   React.createClass({
                     <div ref="errors" className="alerts"></div>
 
                     <div className="form-group">
-                        <button ref="submit" onClick={this.submitLogin}  className="btn btn-primary btn-signup">注册</button>
+                        <a ref="submit" onClick={this.submitLogin}  className="btn btn-primary btn-signup">注册</a>
                     </div>
                     <div className="login"><a href="/user/login">已有账号，直接登录</a></div>
 
