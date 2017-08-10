@@ -29,8 +29,7 @@ module.exports =  React.createClass({
 
 
                   <form className="navbar-form navbar-right" role="search">
-
-                      <a data-toggle="modal" data-target="#create-site" href="#" className="btn btn-default  to-create-site">创建站点</a>
+                      <a id="create-new-site"  href="#" className="btn btn-default  to-create-site">创建站点</a>
                   </form>
 
 
@@ -51,7 +50,7 @@ module.exports =  React.createClass({
                           <div className="modal-content">
                               <div className="modal-header">
                                   <button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                  <h4 className="modal-title" id="">创建新站点</h4>
+                                  <h4 className="modal-title" >创建新站点</h4>
                               </div>
                               <div className="modal-body">
                                   <input type="text" className="form-control" id="create-site-name" placeholder="请输入站点名称" />

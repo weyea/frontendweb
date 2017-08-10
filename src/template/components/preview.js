@@ -12,19 +12,16 @@ module.exports =  React.createClass({
     var id =  this.props.params.id;
 
 
-          $(document).delegate(".cmd-create-site", "click", function (ev) {
+          $(document).delegate("#create-new-site", "click", function (ev) {
                 ev.preventDefault();
-                $.post("/json/app?templateid=" + id, {name: $("#create-site-name").val()}, function (data) {
+                $.post("/json/app?templateid=" + id, {name: "mysite"})}, function (data) {
                     if (data.needLogin) {
                         location.href = data.loginURL;
                         return;
                     }
-                    var url = "http://" + location.host + "/app/" + data.id
-                    $("#new-url").attr("href", url);
-                    $("#new-url").html(url);
-                    $("#site-manager").attr("href", "/my");
-                    $("#create-site").modal("hide");
-                    $("#create-site-success").modal("show")
+                    var url = "/designer/app/" + data.id
+                    location.href = url;
+
                 })
           });
           (function () {
