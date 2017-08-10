@@ -326,6 +326,8 @@ webpackJsonp([5,19],{
 	          location.href = redirect;
 	        } else if (result.defaultReturnUrl) {
 	          location.href = result.defaultReturnUrl;
+	        } else {
+	          location.href = "/";
 	        }
 	      } else {
 	        if (result.errors.length) {

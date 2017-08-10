@@ -827,9 +827,11 @@ webpackJsonp([6,19],{
 	                if (sessionStorage && sessionStorage.getItem("redirect")) {
 	                    var redirect = sessionStorage.getItem("redirect");
 	                    sessionStorage.removeItem("redirect");
-	                    location.href = redirect;
+	                    location.href = "/" || redirect;
 	                } else if (result.defaultReturnUrl) {
 	                    location.href = result.defaultReturnUrl;
+	                } else {
+	                    location.href = "/";
 	                }
 	            } else {
 	                if (result.errors.length) {
@@ -852,13 +854,13 @@ webpackJsonp([6,19],{
 
 	            return React.createElement(
 	                'a',
-	                { onClick: this.sendCode, className: 'code-button' },
+	                { onClick: this.sendCode, className: 'code-button active' },
 	                "验证码已发送 " + this.state.stateTime
 	            );
 	        } else if (this.state.sendState == 2) {
 	            return React.createElement(
 	                'a',
-	                { onClick: this.sendCode, className: 'code-button active' },
+	                { onClick: this.sendCode, className: 'code-button ' },
 	                '重新发送'
 	            );
 	        }
@@ -881,7 +883,7 @@ webpackJsonp([6,19],{
 	                    React.createElement(
 	                        'div',
 	                        { className: 'form-signin-heading' },
-	                        React.createElement('img', { style: { width: "130px" }, src: '/img/logo_1.png' })
+	                        React.createElement('img', { style: { width: "130px" }, src: window.rootPath + 'img/logo_1.png' })
 	                    ),
 	                    React.createElement(
 	                        'form',
@@ -1003,7 +1005,7 @@ webpackJsonp([6,19],{
 
 
 	// module
-	exports.push([module.id, ".signup-page .signup{\n  margin:100px auto 200px auto;\n}\n\n\n.signup-page .signup .form-signin-heading{\n  font-family:MicrosoftYaHei;\nfont-size:30px;\ncolor:#00c4d8;\ntext-align: center;\n\nmargin-bottom: 20px;\nmargin-top: 0;\n\n}\n\n.signup-page .signup{\n  background:#f0f0f0;\n  border-radius:3px;\n  width:520px;\n  padding: 20px 60px 20px 60px;\n\n}\n\n\n.signup-page .signup .type{\n\n  font-family:MicrosoftYaHei;\n  font-size:12px;\n  color:#999999;\ntext-align: center;\n\nmargin-bottom: 30px;\nmargin-top: 0;\n\n}\n.signup-page .signup  .third-logo{\n  text-align: center;\n  margin-top: 26px;\n}\n.signup-page .signup  .third-logo a{\nwidth: 50px;\nheight: 50px;\nmargin: 0 17px;\ndisplay: inline-block;\nborder-radius: 100%;\n\n\n}\n.signup  .third-logo a.weibo{\n  background: url(" + __webpack_require__(647) + ") center no-repeat;\n  background-size: contain;\n}\n.signup  .third-logo a.qq{\n  background: url(" + __webpack_require__(648) + ") center no-repeat;\n  background-size: contain;\n}\n.signup  .third-logo a.tudou{\n  background: url(" + __webpack_require__(649) + ") center no-repeat;\n  background-size: contain;\n}\n.signup  .third-logo a.renren{\n  background: url(" + __webpack_require__(650) + ") center no-repeat;\n  background-size: contain;\n}\n\n.signup-page .signup input{\n  background:#ffffff;\nborder:1px solid #dddddd;\nwidth:398px;\nheight:38px;\nmargin-top: 20px;\n  font-size: 12px;\n\n}\n\n.signup-page .signup .phone-box{\n  background:#ffffff;\n  border:1px solid #dddddd;\n  width:398px;\n  height:40px;\n  margin-top: 20px;\n  position: relative;\n}\n\n.signup-page .signup .phone-box .phone-input{\n\n  width:186px;\n  height:38px;\n  margin: 0;\n  border: none;\n  padding: 0px 12px;\n  color: #555;\n}\n\n.signup-page .signup .phone-box input::-webkit-input-placeholder{\n  color: #999;\n}\n\n.signup-page .signup .phone-box .code-input{\n  width:100px;\n  height:26px;\n  margin: 0;\n  border: none;\n  padding: 0px 8px;\n  margin-top: 5px;\n  border-left: solid 1px #ccc;\n  color: #555;\n}\n\n\n.signup-page .signup .phone-box .code-active{\n display: inline-block;\n}\n\n\n.signup-page .signup .code-button{\n\n  margin: 0;\n  border: none;\n  padding: 0px 12px;\n  border: solid 1px #ccc;\n  width: 112px;\n  height: 40px;\n  border:solid 1px #00C4D8;\n  background-color: #EFFEFF;\n  color: #00C4D8;\n  position: absolute;\n  top:-1px;\n  right: -1px;\n  font-size: 12px;\n  line-height: 40px;\n  text-align: center;\n  cursor: pointer;\n}\n\n.signup-page .signup .code-button.active{\n\n\n\n  border:solid 1px #DDDDDD;\n  background-color: #F0F0F0;\n  color: #999999;\n\n}\n\n.signup-page .signup .help-block{\n  color: #FF0404;\n  font-size: 12px;\n\n}\n\n\n\n\n.signup-page .signup .btn{\n  text-align: center;\n  line-height: 34px;\n  padding: 0;\n  border:1px solid #00c4d8;\nborder-radius:4px;\nwidth:118px;\nheight:34px;\n\nfont-size:14px;\ncolor:#00c4d8;\nbackground-color: transparent;\ndisplay: block;\nmargin:auto;\nmargin-top: 22px;\n}\n\n.signup-page .signup .login{\n  text-align: center;\n    margin-top: 13px;\n}\n.signup-page .signup .login a{\n  font-size:12px;\n  color:#999999;\n\n  text-align:center;\n}\n", ""]);
+	exports.push([module.id, ".signup-page .signup{\n  margin:100px auto 200px auto;\n}\n\n\n.signup-page .signup .form-signin-heading{\n  font-family:MicrosoftYaHei;\nfont-size:30px;\ncolor:#00c4d8;\ntext-align: center;\n\nmargin-bottom: 20px;\nmargin-top: 0;\n\n}\n\n.signup-page .signup{\n  background:#f0f0f0;\n  border-radius:3px;\n  width:520px;\n  padding: 20px 60px 20px 60px;\n\n}\n\n\n.signup-page .signup .type{\n\n  font-family:MicrosoftYaHei;\n  font-size:12px;\n  color:#999999;\ntext-align: center;\n\nmargin-bottom: 30px;\nmargin-top: 0;\n\n}\n.signup-page .signup  .third-logo{\n  text-align: center;\n  margin-top: 26px;\n}\n.signup-page .signup  .third-logo a{\nwidth: 50px;\nheight: 50px;\nmargin: 0 17px;\ndisplay: inline-block;\nborder-radius: 100%;\n\n\n}\n.signup  .third-logo a.weibo{\n  background: url(" + __webpack_require__(647) + ") center no-repeat;\n  background-size: contain;\n}\n.signup  .third-logo a.qq{\n  background: url(" + __webpack_require__(648) + ") center no-repeat;\n  background-size: contain;\n}\n.signup  .third-logo a.tudou{\n  background: url(" + __webpack_require__(649) + ") center no-repeat;\n  background-size: contain;\n}\n.signup  .third-logo a.renren{\n  background: url(" + __webpack_require__(650) + ") center no-repeat;\n  background-size: contain;\n}\n\n.signup-page .signup input{\n  background:#ffffff;\nborder:1px solid #dddddd;\nwidth:398px;\nheight:38px;\nmargin-top: 20px;\n  font-size: 12px;\n\n}\n\n.signup-page .signup .phone-box{\n  background:#ffffff;\n  border:1px solid #dddddd;\n  width:398px;\n  height:40px;\n  margin-top: 20px;\n  position: relative;\n}\n\n.signup-page .signup .phone-box .phone-input{\n\n  width:186px;\n  height:38px;\n  margin: 0;\n  border: none;\n  padding: 0px 12px;\n  color: #555;\n}\n\n.signup-page .signup .phone-box input::-webkit-input-placeholder{\n  color: #999;\n}\n\n.signup-page .signup .phone-box .code-input{\n  width:100px;\n  height:26px;\n  margin: 0;\n  border: none;\n  padding: 0px 8px;\n  margin-top: 5px;\n  border-left: solid 1px #ccc;\n  color: #555;\n}\n\n\n.signup-page .signup .phone-box .code-active{\n display: inline-block;\n}\n\n\n.signup-page .signup .code-button{\n\n  margin: 0;\n  border: none;\n  padding: 0px 6px;\n  border: solid 1px #ccc;\n  width: 112px;\n  height: 40px;\n  border:solid 1px #00C4D8;\n  background-color: #EFFEFF;\n  color: #00C4D8;\n  position: absolute;\n  top:-1px;\n  right: -1px;\n  font-size: 12px;\n  line-height: 40px;\n  text-align: center;\n  cursor: pointer;\n}\n\n.signup-page .signup .code-button.active{\n\n\n\n  border:solid 1px #DDDDDD;\n  background-color: #F0F0F0;\n  color: #999999;\n\n}\n\n.signup-page .signup .help-block{\n  color: #FF0404;\n  font-size: 12px;\n\n}\n\n\n\n\n.signup-page .signup .btn{\n  text-align: center;\n  line-height: 34px;\n  padding: 0;\n  border:1px solid #00c4d8;\nborder-radius:4px;\nwidth:118px;\nheight:34px;\n\nfont-size:14px;\ncolor:#00c4d8;\nbackground-color: transparent;\ndisplay: block;\nmargin:auto;\nmargin-top: 22px;\n}\n\n.signup-page .signup .login{\n  text-align: center;\n    margin-top: 13px;\n}\n.signup-page .signup .login a{\n  font-size:12px;\n  color:#999999;\n\n  text-align:center;\n}\n", ""]);
 
 	// exports
 
