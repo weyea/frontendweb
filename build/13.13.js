@@ -924,9 +924,9 @@ webpackJsonp([13,19],{
 	            var target = $(ev.target);
 	            var id = target.attr("data-siteid");
 	            var newValue = target.val();
-	            var value = target.attr("defaultValue");
+	            var value = target.attr("data-oldvalue");
 	            if (value !== newValue) {
-	                self.changeTitle(id, value);
+	                self.changeTitle(id, newValue);
 	            }
 	        });
 	    },
@@ -1037,7 +1037,7 @@ webpackJsonp([13,19],{
 	                    React.createElement(
 	                        "h3",
 	                        null,
-	                        React.createElement("input", { "data-siteid": site.id, defaultValue: site.title, className: "edit-title", type: "text", placeholder: site.title }),
+	                        React.createElement("input", { "data-siteid": site.id, "data-oldvalue": site.title, className: "edit-title", type: "text", placeholder: site.title }),
 	                        " ",
 	                        React.createElement(
 	                            "span",
