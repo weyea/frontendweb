@@ -24,7 +24,7 @@ module.exports =  React.createClass({
               sessionStorage.removeItem("redirect");
               location.href = redirect;
             }else  if(result.defaultReturnUrl){
-              location.href = result.defaultReturnUrl;
+                location.href = result.defaultReturnUrl;
             }
             else{
                 location.href = "/"
