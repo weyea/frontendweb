@@ -6,6 +6,21 @@ export default  React.createClass({
     componentDidMount: function() {
 
     },
+    logout:function(target, t, ev){
+        ev.preventDefault();
+        var logout = $(this.refs["logout"]);
+        var self = this;
+        $.get(logout.attr("href"), function(result){
+            if(result.success){
+                login.logout();
+                self.forceUpdate();
+            }
+            else{
+                alert("登出失败")
+            }
+        })
+    },
+
 
     renderLoginInfo:function(){
 
@@ -15,7 +30,7 @@ export default  React.createClass({
                 <p className="navbar-text navbar-right login-status">
                     <span >
                       <i className="fa fa-user-md"></i><a href="#" className="navbar-Link">{user.username}</a>
-                      <a href="/user/logout" className=""><span className="oi oi-account-logout"></span></a>
+            <a ref="logout" onClick = {this.logout} href="/json/user/logout" className=""><span className="oi oi-account-logout">登出</span></a>
                     </span>
                 </p>
             )
