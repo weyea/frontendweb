@@ -299,98 +299,98 @@ webpackJsonp([5,19],{
 
 	__webpack_require__(641);
 	module.exports = React.createClass({
-	  displayName: 'exports',
+	    displayName: 'exports',
 
-	  getInitialState: function getInitialState() {
-	    return { secondsElapsed: 0 };
-	  },
-	  tick: function tick() {
-	    this.setState({ secondsElapsed: this.state.secondsElapsed + 1 });
-	  },
-	  componentDidMount: function componentDidMount() {
-	    $("#submit-login").click(function () {
-	      var email = $("");
-	    });
-	  },
-	  submitLogin: function submitLogin(e) {
-	    var _this = this;
+	    getInitialState: function getInitialState() {
+	        return { secondsElapsed: 0 };
+	    },
+	    tick: function tick() {
+	        this.setState({ secondsElapsed: this.state.secondsElapsed + 1 });
+	    },
+	    componentDidMount: function componentDidMount() {
+	        $("#submit-login").click(function () {
+	            var email = $("");
+	        });
+	    },
+	    submitLogin: function submitLogin(e) {
+	        var _this = this;
 
-	    var self = this;
-	    var emailValue = $(this.refs["email"]).val();
-	    var password = $(this.refs["password"]).val();
-	    $.post("/json/user/login", { email: emailValue, password: password }, function (result) {
-	      if (result.success) {
-	        if (sessionStorage && sessionStorage.getItem("redirect")) {
-	          var redirect = sessionStorage.getItem("redirect");
-	          sessionStorage.removeItem("redirect");
-	          location.href = redirect;
-	        } else if (result.defaultReturnUrl) {
-	          location.href = result.defaultReturnUrl;
-	        } else {
-	          location.href = "/";
-	        }
-	      } else {
-	        if (result.errors.length) {
-	          $(_this.refs["errors"]).text(result.errors);
-	        } else if (Object.keys(workflow.outcome.errfor).length !== 0) {
-	          $(_this.refs["errors"]).text(result.errfor);
-	        }
-	      }
-	    });
-	  },
-	  componentWillUnmount: function componentWillUnmount() {},
-	  render: function render() {
-	    return React.createElement(
-	      'div',
-	      null,
-	      React.createElement(_Header2.default, { active: 'my' }),
-	      React.createElement(
-	        'div',
-	        { className: 'container login-page' },
-	        React.createElement(
-	          'div',
-	          { className: 'login' },
-	          React.createElement(
+	        var self = this;
+	        var emailValue = $(this.refs["email"]).val();
+	        var password = $(this.refs["password"]).val();
+	        $.post("/json/user/login", { email: emailValue, password: password }, function (result) {
+	            if (result.success) {
+	                if (sessionStorage && sessionStorage.getItem("redirect")) {
+	                    var redirect = sessionStorage.getItem("redirect");
+	                    sessionStorage.removeItem("redirect");
+	                    location.href = redirect;
+	                } else if (result.defaultReturnUrl) {
+	                    location.href = result.defaultReturnUrl;
+	                } else {
+	                    location.href = "/";
+	                }
+	            } else {
+	                if (result.errors.length) {
+	                    $(_this.refs["errors"]).text(result.errors);
+	                } else if (Object.keys(workflow.outcome.errfor).length !== 0) {
+	                    $(_this.refs["errors"]).text(result.errfor);
+	                }
+	            }
+	        });
+	    },
+	    componentWillUnmount: function componentWillUnmount() {},
+	    render: function render() {
+	        return React.createElement(
 	            'div',
-	            { className: 'form-signin' },
+	            null,
+	            React.createElement(_Header2.default, { active: 'my' }),
 	            React.createElement(
-	              'h2',
-	              { className: 'form-signin-heading' },
-	              '登录'
+	                'div',
+	                { className: 'container login-page' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'login' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'form-signin' },
+	                        React.createElement(
+	                            'h2',
+	                            { className: 'form-signin-heading' },
+	                            '登录'
+	                        ),
+	                        React.createElement('div', { ref: 'errors' }),
+	                        React.createElement('input', { name: 'email', type: 'text', ref: 'email', className: 'form-control email', placeholder: '电话', required: true }),
+	                        React.createElement('input', { type: 'password', name: 'password', ref: 'password', className: 'form-control password', placeholder: '密码', required: true }),
+	                        React.createElement('input', { type: 'hidden', name: 'redirect', value: '<%= locals.redirect %>', className: 'form-control', placeholder: 'Password', required: true }),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'forgot' },
+	                            React.createElement(
+	                                'a',
+	                                { href: '/user/forgot' },
+	                                '忘记密码'
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'button',
+	                            { className: 'btn', onClick: this.submitLogin },
+	                            '登录'
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'signup' },
+	                            React.createElement(
+	                                'a',
+	                                { href: '/user/signup' },
+	                                '没有账号，创建一个'
+	                            )
+	                        )
+	                    )
+	                )
 	            ),
-	            React.createElement('div', { ref: 'errors' }),
-	            React.createElement('input', { name: 'email', type: 'text', ref: 'email', className: 'form-control email', placeholder: '电话', required: true }),
-	            React.createElement('input', { type: 'password', name: 'password', ref: 'password', className: 'form-control password', placeholder: '密码', required: true }),
-	            React.createElement('input', { type: 'hidden', name: 'redirect', value: '<%= locals.redirect %>', className: 'form-control', placeholder: 'Password', required: true }),
-	            React.createElement(
-	              'div',
-	              { className: 'forgot' },
-	              React.createElement(
-	                'a',
-	                { href: '/user/forgot' },
-	                '忘记密码'
-	              )
-	            ),
-	            React.createElement(
-	              'button',
-	              { className: 'btn', onClick: this.submitLogin },
-	              '登录'
-	            ),
-	            React.createElement(
-	              'div',
-	              { className: 'signup' },
-	              React.createElement(
-	                'a',
-	                { href: '/user/signup' },
-	                '没有账号，创建一个'
-	              )
-	            )
-	          )
-	        )
-	      ),
-	      React.createElement(_Footer2.default, null)
-	    );
-	  }
+	            React.createElement(_Footer2.default, null)
+	        );
+	    }
 	});
 
 /***/ },

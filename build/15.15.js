@@ -436,7 +436,7 @@ webpackJsonp([15,19],{
 	                        { className: "navbar-form navbar-right", role: "search" },
 	                        React.createElement(
 	                            "a",
-	                            { "data-toggle": "modal", "data-target": "#create-site", href: "#", className: "btn btn-default  to-create-site" },
+	                            { id: "create-new-site", href: "#", className: "btn btn-default  to-create-site" },
 	                            "创建站点"
 	                        )
 	                    ),
@@ -491,7 +491,7 @@ webpackJsonp([15,19],{
 	                                    ),
 	                                    React.createElement(
 	                                        "h4",
-	                                        { className: "modal-title", id: "" },
+	                                        { className: "modal-title" },
 	                                        "创建新站点"
 	                                    )
 	                                ),
