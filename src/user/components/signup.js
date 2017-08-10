@@ -191,9 +191,12 @@ module.exports =   React.createClass({
                 if(sessionStorage&&  sessionStorage.getItem("redirect")){
                     var redirect = sessionStorage.getItem("redirect")
                     sessionStorage.removeItem("redirect");
-                    location.href = redirect;
+                    location.href ="/" || redirect;
                 }else  if(result.defaultReturnUrl){
                     location.href = result.defaultReturnUrl;
+                }
+                else{
+                    location.href = "/"
                 }
             }
             else {
@@ -232,7 +235,7 @@ module.exports =   React.createClass({
         <div className="container signup-page">
 
             <div className="signup">
-              <div className="form-signin-heading"><img style={{width:"130px"}} src="/img/logo_1.png"/></div>
+              <div className="form-signin-heading"><img style={{width:"130px"}} src={window.rootPath+'img/logo_1.png'}/></div>
                 <form method="POST">
                     <div className="type">用第三方账号注册</div>
                     <div className="third-logo">

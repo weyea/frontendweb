@@ -26,6 +26,9 @@ module.exports =  React.createClass({
             }else  if(result.defaultReturnUrl){
               location.href = result.defaultReturnUrl;
             }
+            else{
+                location.href = "/"
+            }
           }
           else {
               if(result.errors.length){
