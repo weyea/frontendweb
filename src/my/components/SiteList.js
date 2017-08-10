@@ -10,7 +10,6 @@ module.exports =  React.createClass({
 
 
       $(document).delegate(".edit-title","change", function(ev){
-
           var target = $(ev.target);
           var id = target.attr("data-siteid")
           var newValue = target.val();
@@ -18,6 +17,7 @@ module.exports =  React.createClass({
           if(value !== newValue){
               self.changeTitle(id, newValue)
           }
+          
       })
 
 
@@ -93,9 +93,11 @@ module.exports =  React.createClass({
       var site = this.state.siteList[i];
       var item =(
         <div className="templ">
+
             <div className="bd">
                 <a  href={"/my/app/"+site.id}><img src={site.logo||window.rootPath+"img/template_bg.png"}/></a>
-            </div>
+            </div
+
             <div className="des">
                 <h3><input  data-siteid = {site.id} data-oldvalue = {site.title} className="edit-title" type ="text"  placeholder ={site.title}   /> <span className="status">已发布</span></h3>
                 <p className="url"><a href={"/app/"+site.id}>{"/app/"+site.id}</a></p>
@@ -106,6 +108,7 @@ module.exports =  React.createClass({
                     <a className="share icon">分享</a>
                 </div>
             </div>
+
         </div>
       );
 
