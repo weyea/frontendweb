@@ -5,13 +5,16 @@ module.exports =   React.createClass({
     return {secondsElapsed: 0};
   },
 
+
   componentDidMount: function() {
     this.interval = setInterval(this.tick, 1000);
 
   },
+
   componentWillUnmount: function() {
     clearInterval(this.interval);
   },
+
   createTemplate:function(){
     $.post("/json/template",{title:$("#tempalte-name").val()}, function(result){
       if(result.needLogin){

@@ -411,9 +411,11 @@ webpackJsonp([8,19],{
 	  componentDidMount: function componentDidMount() {
 	    this.interval = setInterval(this.tick, 1000);
 	  },
+
 	  componentWillUnmount: function componentWillUnmount() {
 	    clearInterval(this.interval);
 	  },
+
 	  createTemplate: function createTemplate() {
 	    $.post("/json/template", { title: $("#tempalte-name").val() }, function (result) {
 	      if (result.needLogin) {
