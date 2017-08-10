@@ -25,7 +25,7 @@ module.exports =  React.createClass({
   },
 
     changeTitle:function(id, title){
-        $.post("/json/site/"+id,{title: title}, function(result){
+        $.post("/json/app/"+id,{title: title}, function(result){
             if(result.success){
 
             }
