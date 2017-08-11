@@ -101,7 +101,7 @@ module.exports =  React.createClass({
             <div className="des">
                 <h3><input   data-siteid = {site.id} data-oldvalue = {site.title}   className="edit-title" type ="text"  placeholder ={site.title}   /> <span className="status">已发布</span></h3>
                 <p className="url"><a href={"/app/"+site.id}>{"/app/"+site.id}</a></p>
-                <p className="visitors">过去7天的访问量: <span class="num"> 100</span></p>
+                <p className="visitors">过去7天的访问量: <span class="num"> {site.pv.num} </span></p>
                 <div className="action">
                     <a className="edit btn btn-green ">设计</a>
                     <a className="data icon">数据</a>
