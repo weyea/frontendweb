@@ -1060,7 +1060,9 @@ webpackJsonp([13,19],{
 	                        React.createElement(
 	                            "span",
 	                            { "class": "num" },
-	                            " 100"
+	                            " ",
+	                            site.pv.num,
+	                            " "
 	                        )
 	                    ),
 	                    React.createElement(
