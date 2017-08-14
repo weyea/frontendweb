@@ -3,30 +3,28 @@ require('./TemplateList.css');
 
 module.exports = React.createClass({
     getInitialState:function(){
+        console.log(2)
       return {
           tab:"all",
           siteList:[{title:123, id:1}]
       };
     },
+    getDefaultProps:function(){
+
+      return {
+          type :"all"
+      }
+    },
     componentDidMount: function (){
         var self = this;
-        this.tabbar = $(this.refs["tabbar"])
+
         self.flush();
-        // $(this).delegate(".create", "click", function (ev){
-        //     return;
-        //     ev.preventDefault();
-        //     $.post("/json/site?template=" + $(ev.target).attr("data-id"),{name: $(ev.target).attr("data-name") + new Date().getTime() }, function (data){
-        //         if (data.needLogin){
-        //             location.href = data.loginURL + "?redirect=" + encodeURIComponent(location.href)
-        //             return;
-        //         }
-        //         self.flush();
-        //     })
-        // })
+
     },
     flush: function (tab){
         var self = this;
-        var tab = this.props.type || "all"
+        var tab = this.props.type
+
         if(tab == "all" || tab == "hot" || tab =="new") {
             $.get("/json/template/"+tab+"?page=0", function (data){
                 if (data.needLogin){
@@ -36,8 +34,6 @@ module.exports = React.createClass({
                 if(typeof data !=="string"){
                     self.setState({siteList:data})
                 }
-
-
 
             })
         }
@@ -57,38 +53,16 @@ module.exports = React.createClass({
 
     },
 
-    showTab:function(e){
-        var target = $(e.target)
-
-        this.setState({tab:target.attr("data-type")})
-
-        this.flush(target.attr("data-type"));
-    },
 
     render:function(){
+        this.flush();
       return (
           <div className="body">
               {this.renderItem()}
           </div>
       )
     },
-    renderTab: function() {
-        var result = [];
-        var types = [
-            {name:"all","title":"全部"},
-            {name:"new","title":"最新模板"},
-            {name:"hot","title":"热门模板"},
-            {name:"company","title":"企业精选"},
-            {name:"sale","title":"营销模板"}
-            ];
 
-        for(var i=0;i<types.length;i++){
-            var className = types[i].name == this.state.tab ?"active":"";
-            var tab = (<a className={className}  data-type = {types[i].name} href="#">{types[i].title}</a>)
-            result.push(tab);
-        }
-        return result;
-    },
     renderItem:function(){
       var result = []
       for(var i=0;i<this.state.siteList.length;i++){

@@ -12,7 +12,9 @@ module.exports =  React.createClass({
     },
     componentDidMount: function() {
         this.getCate();
+        console.log("dimo")
     },
+
 
     componentWillUnmount: function() {
 
@@ -20,23 +22,26 @@ module.exports =  React.createClass({
     },
     getCate:function(){
         var self = this;
-        $.get("/json/category", function(result){
-            if(result.needLogin){
-                location.href = "/user/login"
-                return;
-            }
-            else{
-                var data = []
-                for(var i = 0;i<result.length;i++){
-                    data.push({
-                        id:result[i].id,
-                        title:result[i].title,
-                    })
+        if(!this.state.category.length){
+            $.get("/json/category", function(result){
+                if(result.needLogin){
+                    location.href = "/user/login"
+                    return;
                 }
-                self.setState({category:data})
-            }
+                else{
+                    var data = []
+                    for(var i = 0;i<result.length;i++){
+                        data.push({
+                            id:result[i].id,
+                            title:result[i].title,
+                        })
+                    }
+                    self.setState({category:data})
+                }
 
-        })
+            })
+        }
+
     },
   renderTab: function() {
       var type = this.props.params.type
@@ -57,12 +62,13 @@ module.exports =  React.createClass({
     }
 
     for(var i = 0;i< this.state.category.length;i++){
-      var category = this.state.category[i];
-        var className = category.id == type ?"active":"";
-        if(type == "all"||type == "new"||type=="hot"){
+        var category = this.state.category[i];
+        if(category.id){
+            var className = category.id == type ?"active":"";
             var tab = (<Link  activeClassName="active" className={className}  data-type = {category.title} to={"/template/market/"+category.id}>{category.title}</Link>)
             result.push(tab);
         }
+
     }
     return result;
 
@@ -71,15 +77,16 @@ module.exports =  React.createClass({
 
   render: function() {
     var type = this.props.params.type
+      console.log(type)
     return (
       <div>
         <Header active="market"></Header>
         <div id="template-market">
           <div className="container">
             <div className="template-list">
-                    <div ref="tabbar" className="list" >
-                      {this.renderTab()}
-                    </div>
+                <div ref="tabbar" className="list" >
+                  {this.renderTab()}
+                </div>
                 <TemplateList type={type}></TemplateList>
             </div>
 

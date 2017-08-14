@@ -697,26 +697,29 @@ webpackJsonp([9,19],{
 	    },
 	    componentDidMount: function componentDidMount() {
 	        this.getCate();
+	        console.log("dimo");
 	    },
 
 	    componentWillUnmount: function componentWillUnmount() {},
 	    getCate: function getCate() {
 	        var self = this;
-	        $.get("/json/category", function (result) {
-	            if (result.needLogin) {
-	                location.href = "/user/login";
-	                return;
-	            } else {
-	                var data = [];
-	                for (var i = 0; i < result.length; i++) {
-	                    data.push({
-	                        id: result[i].id,
-	                        title: result[i].title
-	                    });
+	        if (!this.state.category.length) {
+	            $.get("/json/category", function (result) {
+	                if (result.needLogin) {
+	                    location.href = "/user/login";
+	                    return;
+	                } else {
+	                    var data = [];
+	                    for (var i = 0; i < result.length; i++) {
+	                        data.push({
+	                            id: result[i].id,
+	                            title: result[i].title
+	                        });
+	                    }
+	                    self.setState({ category: data });
 	                }
-	                self.setState({ category: data });
-	            }
-	        });
+	            });
+	        }
 	    },
 	    renderTab: function renderTab() {
 	        var type = this.props.params.type;
@@ -737,8 +740,8 @@ webpackJsonp([9,19],{
 
 	        for (var i = 0; i < this.state.category.length; i++) {
 	            var category = this.state.category[i];
-	            var className = category.id == type ? "active" : "";
-	            if (type == "all" || type == "new" || type == "hot") {
+	            if (category.id) {
+	                var className = category.id == type ? "active" : "";
 	                var tab = React.createElement(
 	                    _reactRouter.Link,
 	                    { activeClassName: 'active', className: className, 'data-type': category.title, to: "/template/market/" + category.id },
@@ -752,6 +755,7 @@ webpackJsonp([9,19],{
 
 	    render: function render() {
 	        var type = this.props.params.type;
+	        console.log(type);
 	        return React.createElement(
 	            'div',
 	            null,
@@ -792,30 +796,27 @@ webpackJsonp([9,19],{
 	    displayName: "exports",
 
 	    getInitialState: function getInitialState() {
+	        console.log(2);
 	        return {
 	            tab: "all",
 	            siteList: [{ title: 123, id: 1 }]
 	        };
 	    },
+	    getDefaultProps: function getDefaultProps() {
+
+	        return {
+	            type: "all"
+	        };
+	    },
 	    componentDidMount: function componentDidMount() {
 	        var self = this;
-	        this.tabbar = $(this.refs["tabbar"]);
+
 	        self.flush();
-	        // $(this).delegate(".create", "click", function (ev){
-	        //     return;
-	        //     ev.preventDefault();
-	        //     $.post("/json/site?template=" + $(ev.target).attr("data-id"),{name: $(ev.target).attr("data-name") + new Date().getTime() }, function (data){
-	        //         if (data.needLogin){
-	        //             location.href = data.loginURL + "?redirect=" + encodeURIComponent(location.href)
-	        //             return;
-	        //         }
-	        //         self.flush();
-	        //     })
-	        // })
 	    },
 	    flush: function flush(tab) {
 	        var self = this;
-	        var tab = this.props.type || "all";
+	        var tab = this.props.type;
+
 	        if (tab == "all" || tab == "hot" || tab == "new") {
 	            $.get("/json/template/" + tab + "?page=0", function (data) {
 	                if (data.needLogin) {
@@ -839,36 +840,15 @@ webpackJsonp([9,19],{
 	        }
 	    },
 
-	    showTab: function showTab(e) {
-	        var target = $(e.target);
-
-	        this.setState({ tab: target.attr("data-type") });
-
-	        this.flush(target.attr("data-type"));
-	    },
-
 	    render: function render() {
+	        this.flush();
 	        return React.createElement(
 	            "div",
 	            { className: "body" },
 	            this.renderItem()
 	        );
 	    },
-	    renderTab: function renderTab() {
-	        var result = [];
-	        var types = [{ name: "all", "title": "全部" }, { name: "new", "title": "最新模板" }, { name: "hot", "title": "热门模板" }, { name: "company", "title": "企业精选" }, { name: "sale", "title": "营销模板" }];
 
-	        for (var i = 0; i < types.length; i++) {
-	            var className = types[i].name == this.state.tab ? "active" : "";
-	            var tab = React.createElement(
-	                "a",
-	                { className: className, "data-type": types[i].name, href: "#" },
-	                types[i].title
-	            );
-	            result.push(tab);
-	        }
-	        return result;
-	    },
 	    renderItem: function renderItem() {
 	        var result = [];
 	        for (var i = 0; i < this.state.siteList.length; i++) {
