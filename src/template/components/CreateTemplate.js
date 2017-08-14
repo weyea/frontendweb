@@ -61,6 +61,7 @@ module.exports =   React.createClass({
       for(var i = 0;i<this.state.category.length;i++){
         children.push(<option value={this.state.category[i].id}>{this.state.category[i].title}</option>)
       }
+      return children;
     },
   render: function() {
     return (

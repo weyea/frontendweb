@@ -458,6 +458,7 @@ webpackJsonp([8,19],{
 	        this.state.category[i].title
 	      ));
 	    }
+	    return children;
 	  },
 	  render: function render() {
 	    return React.createElement(
