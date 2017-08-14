@@ -439,7 +439,7 @@ webpackJsonp([8,19],{
 	        return;
 	      } else {
 	        var data = [];
-	        for (var i = 0; i < result; i++) {
+	        for (var i = 0; i < result.length; i++) {
 	          data.push({
 	            id: result[i].id,
 	            title: result[i].title
