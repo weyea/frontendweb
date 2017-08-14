@@ -803,14 +803,15 @@ webpackJsonp([9,19],{
 
 	    getInitialState: function getInitialState() {
 	        return {
-	            tab: "all",
+	            type: "all",
 	            siteList: [{ title: 123, id: 1 }]
 	        };
 	    },
 	    componentDidMount: function componentDidMount() {},
 	    componentDidUpdate: function componentDidUpdate() {
-
-	        this.flush();
+	        if (this.state.type !== this.props.type) {
+	            this.flush();
+	        }
 	    },
 	    flush: function flush(tab) {
 	        var self = this;
@@ -822,7 +823,7 @@ webpackJsonp([9,19],{
 	                    return;
 	                }
 	                if (typeof data !== "string") {
-	                    self.setState({ siteList: data });
+	                    self.setState({ siteList: data, type: this.props.type });
 	                }
 	            });
 	        } else {
@@ -832,15 +833,13 @@ webpackJsonp([9,19],{
 	                    return;
 	                }
 	                if (typeof data !== "string") {
-	                    self.setState({ siteList: data });
+	                    self.setState({ siteList: data, type: this.props.type });
 	                }
 	            });
 	        }
 	    },
 
-	    componentWillReceiveProps: function componentWillReceiveProps() {
-	        this.flush();
-	    },
+	    componentWillReceiveProps: function componentWillReceiveProps() {},
 
 	    render: function render() {
 	        return React.createElement(
