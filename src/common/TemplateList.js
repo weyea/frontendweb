@@ -4,7 +4,7 @@ require('./TemplateList.css');
 module.exports = React.createClass({
     getInitialState:function(){
       return {
-          tab:"all",
+          type:"all",
           siteList:[{title:123, id:1}]
       };
     },
@@ -12,8 +12,11 @@ module.exports = React.createClass({
 
     },
     componentDidUpdate:function(){
+        if(this.state.type!==this.props.type){
+            this.flush();
+        }
 
-        this.flush();
+
     },
     flush: function (tab){
         var self = this;
@@ -25,7 +28,7 @@ module.exports = React.createClass({
                     return;
                 }
                 if(typeof data !=="string"){
-                    self.setState({siteList:data})
+                    self.setState({siteList:data, type: this.props.type})
                 }
 
 
@@ -40,7 +43,7 @@ module.exports = React.createClass({
                     return;
                 }
                 if(typeof data !=="string"){
-                    self.setState({siteList:data})
+                    self.setState({siteList:data, type: this.props.type})
                 }
 
             })
@@ -50,7 +53,7 @@ module.exports = React.createClass({
 
 
     componentWillReceiveProps:function(){
-        this.flush();
+
 
     },
 
