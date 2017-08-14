@@ -727,14 +727,13 @@ webpackJsonp([9,19],{
 
 	        for (var i = 0; i < types.length; i++) {
 	            var className = types[i].name == type ? "active" : "";
-	            if (type == "all" || type == "new" || type == "hot") {
-	                var tab = React.createElement(
-	                    _reactRouter.Link,
-	                    { activeClassName: 'active', className: className, 'data-type': types[i].name, to: "/template/market/" + types[i].name },
-	                    types[i].title
-	                );
-	                result.push(tab);
-	            }
+
+	            var tab = React.createElement(
+	                _reactRouter.Link,
+	                { activeClassName: 'active', className: className, 'data-type': types[i].name, to: "/template/market/" + types[i].name },
+	                types[i].title
+	            );
+	            result.push(tab);
 	        }
 
 	        for (var i = 0; i < this.state.category.length; i++) {

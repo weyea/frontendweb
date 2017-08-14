@@ -53,10 +53,10 @@ module.exports =  React.createClass({
 
     for(var i=0;i<types.length;i++){
       var className = types[i].name == type ?"active":"";
-      if(type == "all"||type == "new"||type=="hot"){
+
           var tab = (<Link  activeClassName="active" className={className}  data-type = {types[i].name} to={"/template/market/"+types[i].name}>{types[i].title}</Link>)
           result.push(tab);
-      }
+
 
     }
 
