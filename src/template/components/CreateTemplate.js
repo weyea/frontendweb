@@ -66,7 +66,7 @@ module.exports =   React.createClass({
   render: function() {
     return (
       <div className ="create-template">
-          <form>
+
             <div className="form-group">
               <label htmlFor="exampleInputEmail1">模板名称</label>
               <input type="text" className="form-control" id="tempalte-name" placeholder=""/>
@@ -75,7 +75,7 @@ module.exports =   React.createClass({
               </select>
             </div>
             <a  href="#" onClick={this.createTemplate} className="btn btn-default">Submit</a>
-        </form>
+
 
       </div>
     );

@@ -688,55 +688,95 @@ webpackJsonp([9,19],{
 	var TemplateList = __webpack_require__(656);
 
 	module.exports = React.createClass({
-	  displayName: 'exports',
+	    displayName: 'exports',
 
-	  getInitialState: function getInitialState() {
-	    return {};
-	  },
-	  renderTab: function renderTab() {
-	    var type = this.props.params.type;
-	    var result = [];
-	    var types = [{ name: "all", "title": "全部" }, { name: "new", "title": "最新模板" }, { name: "hot", "title": "热门模板" }, { name: "company", "title": "企业精选" }, { name: "sale", "title": "营销模板" }];
+	    getInitialState: function getInitialState() {
+	        return {
+	            category: []
+	        };
+	    },
+	    componentDidMount: function componentDidMount() {
+	        this.getCate();
+	    },
 
-	    for (var i = 0; i < types.length; i++) {
-	      var className = types[i].name == type ? "active" : "";
-	      var tab = React.createElement(
-	        _reactRouter.Link,
-	        { activeClassName: 'active', className: className, 'data-type': types[i].name, to: "/template/market/" + types[i].name },
-	        types[i].title
-	      );
-	      result.push(tab);
-	    }
-	    return result;
-	  },
+	    componentWillUnmount: function componentWillUnmount() {},
+	    getCate: function getCate() {
+	        var self = this;
+	        $.get("/json/category", function (result) {
+	            if (result.needLogin) {
+	                location.href = "/user/login";
+	                return;
+	            } else {
+	                var data = [];
+	                for (var i = 0; i < result.length; i++) {
+	                    data.push({
+	                        id: result[i].id,
+	                        title: result[i].title
+	                    });
+	                }
+	                self.setState({ category: data });
+	            }
+	        });
+	    },
+	    renderTab: function renderTab() {
+	        var type = this.props.params.type;
+	        var result = [];
+	        var types = [{ name: "all", "title": "全部" }, { name: "new", "title": "最新模板" }, { name: "hot", "title": "热门模板" }];
 
-	  render: function render() {
-	    var type = this.props.params.type;
-	    return React.createElement(
-	      'div',
-	      null,
-	      React.createElement(_Header2.default, { active: 'market' }),
-	      React.createElement(
-	        'div',
-	        { id: 'template-market' },
-	        React.createElement(
-	          'div',
-	          { className: 'container' },
-	          React.createElement(
+	        for (var i = 0; i < types.length; i++) {
+	            var className = types[i].name == type ? "active" : "";
+	            if (type == "all" || type == "new" || type == "hot") {
+	                var tab = React.createElement(
+	                    _reactRouter.Link,
+	                    { activeClassName: 'active', className: className, 'data-type': types[i].name, to: "/template/market/" + types[i].name },
+	                    types[i].title
+	                );
+	                result.push(tab);
+	            }
+	        }
+
+	        for (var i = 0; i < this.state.category.length; i++) {
+	            var category = this.state.category[i];
+	            var className = category.id == type ? "active" : "";
+	            if (type == "all" || type == "new" || type == "hot") {
+	                var tab = React.createElement(
+	                    _reactRouter.Link,
+	                    { activeClassName: 'active', className: className, 'data-type': category.title, to: "/template/market/" + category.id },
+	                    category.title
+	                );
+	                result.push(tab);
+	            }
+	        }
+	        return result;
+	    },
+
+	    render: function render() {
+	        var type = this.props.params.type;
+	        return React.createElement(
 	            'div',
-	            { className: 'template-list' },
+	            null,
+	            React.createElement(_Header2.default, { active: 'market' }),
 	            React.createElement(
-	              'div',
-	              { ref: 'tabbar', className: 'list' },
-	              this.renderTab()
+	                'div',
+	                { id: 'template-market' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'container' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'template-list' },
+	                        React.createElement(
+	                            'div',
+	                            { ref: 'tabbar', className: 'list' },
+	                            this.renderTab()
+	                        ),
+	                        React.createElement(TemplateList, { type: type })
+	                    )
+	                )
 	            ),
-	            React.createElement(TemplateList, { type: type })
-	          )
-	        )
-	      ),
-	      React.createElement(_Footer2.default, null)
-	    );
-	  }
+	            React.createElement(_Footer2.default, null)
+	        );
+	    }
 	});
 
 /***/ },

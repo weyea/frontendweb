@@ -465,28 +465,24 @@ webpackJsonp([8,19],{
 	      'div',
 	      { className: 'create-template' },
 	      React.createElement(
-	        'form',
-	        null,
+	        'div',
+	        { className: 'form-group' },
 	        React.createElement(
-	          'div',
-	          { className: 'form-group' },
-	          React.createElement(
-	            'label',
-	            { htmlFor: 'exampleInputEmail1' },
-	            '模板名称'
-	          ),
-	          React.createElement('input', { type: 'text', className: 'form-control', id: 'tempalte-name', placeholder: '' }),
-	          React.createElement(
-	            'select',
-	            { id: 'template-cate', name: 'cateId' },
-	            this.renderCate()
-	          )
+	          'label',
+	          { htmlFor: 'exampleInputEmail1' },
+	          '模板名称'
 	        ),
+	        React.createElement('input', { type: 'text', className: 'form-control', id: 'tempalte-name', placeholder: '' }),
 	        React.createElement(
-	          'a',
-	          { href: '#', onClick: this.createTemplate, className: 'btn btn-default' },
-	          'Submit'
+	          'select',
+	          { id: 'template-cate', name: 'cateId' },
+	          this.renderCate()
 	        )
+	      ),
+	      React.createElement(
+	        'a',
+	        { href: '#', onClick: this.createTemplate, className: 'btn btn-default' },
+	        'Submit'
 	      )
 	    );
 	  }
