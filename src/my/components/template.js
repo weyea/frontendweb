@@ -112,7 +112,6 @@ module.exports = React.createClass({
 
                     <div className="tab-content">
                         <div role="tabpanel" className="tab-pane active" id="home">
-
                             <div></div>
                         </div>
                         <div role="tabpanel" className="tab-pane" id="profile">...</div>

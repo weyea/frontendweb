@@ -511,7 +511,7 @@ webpackJsonp([17,19],{
 	      ),
 	      "market": React.createElement(
 	        _reactRouter.Link,
-	        { activeClassName: "active", className: "market", to: "/template/market" },
+	        { activeClassName: "active", className: "market", to: "/template/market/all" },
 	        "模板市场"
 	      ),
 	      "my": React.createElement(
@@ -836,29 +836,9 @@ webpackJsonp([17,19],{
 	    },
 	    flush: function flush(tab) {
 	        var self = this;
-	        var tab = tab || this.state.tab;
-	        if (this.state.tab == "all") {
-	            $.get("/json/template/?page=0", function (data) {
-	                if (data.needLogin) {
-	                    location.href = "/user/login";
-	                    return;
-	                }
-	                if (typeof data !== "string") {
-	                    self.setState({ siteList: data });
-	                }
-	            });
-	        } else if (this.state.tab == "new") {
-	            $.get("/json/template/new?page=0", function (data) {
-	                if (data.needLogin) {
-	                    location.href = "/user/login";
-	                    return;
-	                }
-	                if (typeof data !== "string") {
-	                    self.setState({ siteList: data });
-	                }
-	            });
-	        } else if (this.state.tab == "hot") {
-	            $.get("/json/template/hot?page=0", function (data) {
+	        var tab = this.props.type || "all";
+	        if (tab == "all" || tab == "hot" || tab == "new") {
+	            $.get("/json/template/" + tab + "?page=0", function (data) {
 	                if (data.needLogin) {
 	                    location.href = "/user/login";
 	                    return;
@@ -868,7 +848,7 @@ webpackJsonp([17,19],{
 	                }
 	            });
 	        } else {
-	            $.get("/json/template/bycategory?page=0&&category=" + this.state.tab, function (data) {
+	            $.get("/json/template/bycategory?page=0&&category=" + tab, function (data) {
 	                if (data.needLogin) {
 	                    location.href = "/user/login";
 	                    return;
@@ -891,22 +871,13 @@ webpackJsonp([17,19],{
 	    render: function render() {
 	        return React.createElement(
 	            "div",
-	            { className: "template-list" },
-	            React.createElement(
-	                "div",
-	                { ref: "tabbar", className: "list", onClick: this.showTab },
-	                this.renderTab()
-	            ),
-	            React.createElement(
-	                "div",
-	                { className: "body" },
-	                this.renderItem()
-	            )
+	            { className: "body" },
+	            this.renderItem()
 	        );
 	    },
 	    renderTab: function renderTab() {
 	        var result = [];
-	        var types = [{ name: "all", "title": "全部" }, { name: "new", "title": "最新模板" }, { name: "hot", "title": "热门模板" }, { name: "company", "title": "企业精选" }, { name: "landingpage", "title": "单页模板" }, { name: "sale", "title": "营销模板" }];
+	        var types = [{ name: "all", "title": "全部" }, { name: "new", "title": "最新模板" }, { name: "hot", "title": "热门模板" }, { name: "company", "title": "企业精选" }, { name: "sale", "title": "营销模板" }];
 
 	        for (var i = 0; i < types.length; i++) {
 	            var className = types[i].name == this.state.tab ? "active" : "";

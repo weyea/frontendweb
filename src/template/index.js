@@ -11,5 +11,5 @@
           ])
         })
       },
-      indexRoute: { onEnter: (nextState, replace) => replace('/template/market') },
+      indexRoute: { onEnter: (nextState, replace) => replace('/template/market') }
     }

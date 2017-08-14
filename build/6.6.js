@@ -377,7 +377,7 @@ webpackJsonp([6,19],{
 	      ),
 	      "market": React.createElement(
 	        _reactRouter.Link,
-	        { activeClassName: "active", className: "market", to: "/template/market" },
+	        { activeClassName: "active", className: "market", to: "/template/market/all" },
 	        "模板市场"
 	      ),
 	      "my": React.createElement(

@@ -95,7 +95,7 @@ webpackJsonp([8,19],{
 	      ),
 	      "market": React.createElement(
 	        _reactRouter.Link,
-	        { activeClassName: "active", className: "market", to: "/template/market" },
+	        { activeClassName: "active", className: "market", to: "/template/market/all" },
 	        "模板市场"
 	      ),
 	      "my": React.createElement(
@@ -405,19 +405,24 @@ webpackJsonp([8,19],{
 	  displayName: 'exports',
 
 	  getInitialState: function getInitialState() {
-	    return { secondsElapsed: 0 };
+	    return {
+	      secondsElapsed: 0,
+	      category: []
+	    };
 	  },
 
 	  componentDidMount: function componentDidMount() {
-	    this.interval = setInterval(this.tick, 1000);
+
+	    this.getCate();
 	  },
 
-	  componentWillUnmount: function componentWillUnmount() {
-	    clearInterval(this.interval);
-	  },
+	  componentWillUnmount: function componentWillUnmount() {},
 
 	  createTemplate: function createTemplate() {
-	    $.post("/json/template", { title: $("#tempalte-name").val() }, function (result) {
+
+	    var ids = $("#template-cate").val();
+
+	    $.post("/json/template", { title: $("#tempalte-name").val(), categories: [ids] }, function (result) {
 	      if (result.needLogin) {
 	        location.href = "/user/login";
 	        return;
@@ -425,6 +430,34 @@ webpackJsonp([8,19],{
 	        alert("创建成功");
 	      }
 	    });
+	  },
+	  getCate: function getCate() {
+	    var self = this;
+	    $.get("/json/category", function (result) {
+	      if (result.needLogin) {
+	        location.href = "/user/login";
+	        return;
+	      } else {
+	        var data = [];
+	        for (var i = 0; i < result; i++) {
+	          data.push({
+	            id: result[i].id,
+	            title: result[i].title
+	          });
+	        }
+	        self.setState({ category: data });
+	      }
+	    });
+	  },
+	  renderCate: function renderCate() {
+	    var children = [];
+	    for (var i = 0; i < this.state.category.length; i++) {
+	      children.push(React.createElement(
+	        'option',
+	        { value: this.state.category[i].id },
+	        this.state.category[i].title
+	      ));
+	    }
 	  },
 	  render: function render() {
 	    return React.createElement(
@@ -441,7 +474,12 @@ webpackJsonp([8,19],{
 	            { htmlFor: 'exampleInputEmail1' },
 	            '模板名称'
 	          ),
-	          React.createElement('input', { type: 'text', className: 'form-control', id: 'tempalte-name', placeholder: '' })
+	          React.createElement('input', { type: 'text', className: 'form-control', id: 'tempalte-name', placeholder: '' }),
+	          React.createElement(
+	            'select',
+	            { id: 'template-cate', name: 'cateId' },
+	            this.renderCate()
+	          )
 	        ),
 	        React.createElement(
 	          'a',

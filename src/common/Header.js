@@ -43,7 +43,7 @@ export default  React.createClass({
     var result = [];
     var items = {
       "home":<Link activeClassName="active" className="home" to="/">首页</Link>,
-      "market":<Link activeClassName="active" className="market" to="/template/market">模板市场</Link>,
+      "market":<Link activeClassName="active" className="market" to="/template/market/all">模板市场</Link>,
       "my":<Link activeClassName="active" className="my" to="/my">我的站点</Link>,
       "tru":<Link activeClassName="active" className="tru" to="/template/tru">新手指南</Link>
     }

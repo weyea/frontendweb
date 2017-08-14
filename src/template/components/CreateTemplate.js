@@ -2,21 +2,29 @@ import Header from '../../common/Header'
 import Footer from '../../common/Footer'
 module.exports =   React.createClass({
   getInitialState: function() {
-    return {secondsElapsed: 0};
+    return {
+      secondsElapsed: 0,
+        category:[]
+    };
   },
 
 
   componentDidMount: function() {
-    this.interval = setInterval(this.tick, 1000);
+
+      this.getCate();
 
   },
 
   componentWillUnmount: function() {
-    clearInterval(this.interval);
+
+
   },
 
   createTemplate:function(){
-    $.post("/json/template",{title:$("#tempalte-name").val()}, function(result){
+
+    var ids = $("#template-cate").val();
+
+    $.post("/json/template",{title:$("#tempalte-name").val(),categories:[ids]}, function(result){
       if(result.needLogin){
         location.href = "/user/login"
         return;
@@ -27,6 +35,33 @@ module.exports =   React.createClass({
 
     })
   },
+    getCate:function(){
+      var self = this;
+        $.get("/json/category", function(result){
+            if(result.needLogin){
+                location.href = "/user/login"
+                return;
+            }
+            else{
+              var data = []
+                for(var i = 0;i<result;i++){
+                  data.push({
+                      id:result[i].id,
+                      title:result[i].title,
+                  })
+                }
+                self.setState({category:data})
+
+            }
+
+        })
+    },
+    renderCate:function () {
+      var children = [];
+      for(var i = 0;i<this.state.category.length;i++){
+        children.push(<option value={this.state.category[i].id}>{this.state.category[i].title}</option>)
+      }
+    },
   render: function() {
     return (
       <div className ="create-template">
@@ -34,6 +69,9 @@ module.exports =   React.createClass({
             <div className="form-group">
               <label htmlFor="exampleInputEmail1">模板名称</label>
               <input type="text" className="form-control" id="tempalte-name" placeholder=""/>
+              <select  id="template-cate" name="cateId">
+                  {this.renderCate()}
+              </select>
             </div>
             <a  href="#" onClick={this.createTemplate} className="btn btn-default">Submit</a>
         </form>
