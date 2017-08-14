@@ -827,14 +827,14 @@ webpackJsonp([17,19],{
 	    flush: function flush(tab) {
 	        var self = this;
 	        var tab = this.props.type;
-	        if (tab == "all" || tab == "new" || tab == "host") {
+	        if (tab == "all" || tab == "new" || tab == "hot") {
 	            $.get("/json/template/" + tab + "?page=0", function (data) {
 	                if (data.needLogin) {
 	                    location.href = "/user/login";
 	                    return;
 	                }
 	                if (typeof data !== "string") {
-	                    self.setState({ siteList: data, type: this.props.type });
+	                    self.setState({ siteList: data, type: self.props.type });
 	                }
 	            });
 	        } else {
@@ -844,7 +844,7 @@ webpackJsonp([17,19],{
 	                    return;
 	                }
 	                if (typeof data !== "string") {
-	                    self.setState({ siteList: data, type: this.props.type });
+	                    self.setState({ siteList: data, type: self.props.type });
 	                }
 	            });
 	        }
