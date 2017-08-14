@@ -460,6 +460,7 @@ webpackJsonp([8,19],{
 	    }
 	    return children;
 	  },
+
 	  render: function render() {
 	    return React.createElement(
 	      'div',

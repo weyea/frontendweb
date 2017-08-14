@@ -697,7 +697,6 @@ webpackJsonp([9,19],{
 	    },
 	    componentDidMount: function componentDidMount() {
 	        this.getCate();
-	        console.log("dimo");
 	    },
 
 	    componentWillUnmount: function componentWillUnmount() {},
@@ -744,7 +743,7 @@ webpackJsonp([9,19],{
 	                var className = category.id == type ? "active" : "";
 	                var tab = React.createElement(
 	                    _reactRouter.Link,
-	                    { activeClassName: 'active', className: className, 'data-type': category.title, to: "/template/market/" + category.id },
+	                    { activeClassName: 'active', className: className, 'data-type': category.id, to: "/template/market/" + category.id },
 	                    category.title
 	                );
 	                result.push(tab);
@@ -752,10 +751,17 @@ webpackJsonp([9,19],{
 	        }
 	        return result;
 	    },
+	    showTab: function showTab(e) {
+	        var target = $(e.target);
+
+	        this.setState({ tab: target.attr("data-type") });
+
+	        this.flush(target.attr("data-type"));
+	    },
 
 	    render: function render() {
 	        var type = this.props.params.type;
-	        console.log(type);
+
 	        return React.createElement(
 	            'div',
 	            null,
@@ -796,28 +802,20 @@ webpackJsonp([9,19],{
 	    displayName: "exports",
 
 	    getInitialState: function getInitialState() {
-	        console.log(2);
 	        return {
 	            tab: "all",
 	            siteList: [{ title: 123, id: 1 }]
 	        };
 	    },
-	    getDefaultProps: function getDefaultProps() {
+	    componentDidMount: function componentDidMount() {},
+	    componentDidUpdate: function componentDidUpdate() {
 
-	        return {
-	            type: "all"
-	        };
-	    },
-	    componentDidMount: function componentDidMount() {
-	        var self = this;
-
-	        self.flush();
+	        this.flush();
 	    },
 	    flush: function flush(tab) {
 	        var self = this;
 	        var tab = this.props.type;
-
-	        if (tab == "all" || tab == "hot" || tab == "new") {
+	        if (tab == "all" || tab == "new" || tab == "host") {
 	            $.get("/json/template/" + tab + "?page=0", function (data) {
 	                if (data.needLogin) {
 	                    location.href = "/user/login";
@@ -840,8 +838,11 @@ webpackJsonp([9,19],{
 	        }
 	    },
 
-	    render: function render() {
+	    componentWillReceiveProps: function componentWillReceiveProps() {
 	        this.flush();
+	    },
+
+	    render: function render() {
 	        return React.createElement(
 	            "div",
 	            { className: "body" },

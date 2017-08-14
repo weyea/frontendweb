@@ -12,9 +12,8 @@ module.exports =  React.createClass({
     },
     componentDidMount: function() {
         this.getCate();
-        console.log("dimo")
-    },
 
+    },
 
     componentWillUnmount: function() {
 
@@ -65,7 +64,7 @@ module.exports =  React.createClass({
         var category = this.state.category[i];
         if(category.id){
             var className = category.id == type ?"active":"";
-            var tab = (<Link  activeClassName="active" className={className}  data-type = {category.title} to={"/template/market/"+category.id}>{category.title}</Link>)
+            var tab = (<Link  activeClassName="active" className={className}  data-type = {category.id} to={"/template/market/"+category.id}>{category.title}</Link>)
             result.push(tab);
         }
 
@@ -73,18 +72,26 @@ module.exports =  React.createClass({
     return result;
 
   },
+    showTab:function(e){
+        var target = $(e.target)
+
+        this.setState({tab:target.attr("data-type")})
+
+        this.flush(target.attr("data-type"));
+    },
 
 
-  render: function() {
+
+    render: function() {
     var type = this.props.params.type
-      console.log(type)
+
     return (
       <div>
         <Header active="market"></Header>
         <div id="template-market">
           <div className="container">
             <div className="template-list">
-                <div ref="tabbar" className="list" >
+                <div ref="tabbar" className="list"  >
                   {this.renderTab()}
                 </div>
                 <TemplateList type={type}></TemplateList>
@@ -92,7 +99,6 @@ module.exports =  React.createClass({
 
           </div>
           </div>
-
           <Footer></Footer>
       </div>
 

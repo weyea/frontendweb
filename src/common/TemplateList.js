@@ -3,29 +3,22 @@ require('./TemplateList.css');
 
 module.exports = React.createClass({
     getInitialState:function(){
-        console.log(2)
       return {
           tab:"all",
           siteList:[{title:123, id:1}]
       };
     },
-    getDefaultProps:function(){
-
-      return {
-          type :"all"
-      }
-    },
     componentDidMount: function (){
-        var self = this;
 
-        self.flush();
+    },
+    componentDidUpdate:function(){
 
+        this.flush();
     },
     flush: function (tab){
         var self = this;
         var tab = this.props.type
-
-        if(tab == "all" || tab == "hot" || tab =="new") {
+        if(tab == "all" || tab == "new" || tab == "host") {
             $.get("/json/template/"+tab+"?page=0", function (data){
                 if (data.needLogin){
                     location.href = "/user/login"
@@ -34,6 +27,8 @@ module.exports = React.createClass({
                 if(typeof data !=="string"){
                     self.setState({siteList:data})
                 }
+
+
 
             })
         }
@@ -54,8 +49,12 @@ module.exports = React.createClass({
     },
 
 
-    render:function(){
+    componentWillReceiveProps:function(){
         this.flush();
+
+    },
+
+    render:function(){
       return (
           <div className="body">
               {this.renderItem()}

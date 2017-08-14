@@ -63,6 +63,7 @@ module.exports =   React.createClass({
       }
       return children;
     },
+
   render: function() {
     return (
       <div className ="create-template">
