@@ -153,7 +153,7 @@ webpackJsonp([2,19],{
 
 /***/ },
 
-/***/ 636:
+/***/ 637:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -163,14 +163,14 @@ webpackJsonp([2,19],{
 	  path: 'user',
 	  getChildRoutes: function getChildRoutes(partialNextState, callback) {
 	    __webpack_require__.e/* nsure */(4, function (require) {
-	      callback(null, [__webpack_require__(637), __webpack_require__(643)]);
+	      callback(null, [__webpack_require__(638), __webpack_require__(644)]);
 	    });
 	  }
 	};
 
 /***/ },
 
-/***/ 651:
+/***/ 652:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -180,7 +180,7 @@ webpackJsonp([2,19],{
 	  path: 'template',
 	  getChildRoutes: function getChildRoutes(partialNextState, callback) {
 	    __webpack_require__.e/* nsure */(7, function (require) {
-	      callback(null, [__webpack_require__(652), __webpack_require__(654)]);
+	      callback(null, [__webpack_require__(653), __webpack_require__(655)]);
 	    });
 	  },
 
@@ -191,7 +191,7 @@ webpackJsonp([2,19],{
 
 /***/ },
 
-/***/ 662:
+/***/ 663:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -203,9 +203,9 @@ webpackJsonp([2,19],{
 	  path: 'my',
 	  getChildRoutes: function getChildRoutes(partialNextState, callback) {
 	    __webpack_require__.e/* nsure */(10, function (require) {
-	      callback(null, [__webpack_require__(663),
+	      callback(null, [__webpack_require__(664),
 	      // require('./routes/preview'),
-	      __webpack_require__(671), __webpack_require__(672)]);
+	      __webpack_require__(672), __webpack_require__(673)]);
 	    });
 	  },
 
@@ -213,7 +213,7 @@ webpackJsonp([2,19],{
 	  getIndexRoute: function getIndexRoute(partialNextState, callback) {
 	    __webpack_require__.e/* nsure */(14, function (require) {
 	      callback(null, {
-	        component: __webpack_require__(678)
+	        component: __webpack_require__(679)
 	      });
 	    });
 	  }
@@ -221,7 +221,7 @@ webpackJsonp([2,19],{
 
 /***/ },
 
-/***/ 679:
+/***/ 680:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -232,14 +232,14 @@ webpackJsonp([2,19],{
 
 	  getComponents: function getComponents(nextState, callback) {
 	    __webpack_require__.e/* nsure */(15, function (require) {
-	      callback(null, __webpack_require__(680));
+	      callback(null, __webpack_require__(681));
 	    });
 	  }
 	};
 
 /***/ },
 
-/***/ 686:
+/***/ 687:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -250,7 +250,7 @@ webpackJsonp([2,19],{
 
 	  getComponents: function getComponents(nextState, callback) {
 	    __webpack_require__.e/* nsure */(16, function (require) {
-	      callback(null, __webpack_require__(687));
+	      callback(null, __webpack_require__(688));
 	    });
 	  }
 	};

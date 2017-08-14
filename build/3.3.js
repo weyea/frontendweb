@@ -5105,7 +5105,11 @@ webpackJsonp([3,19],[
 	    }
 
 	    designer.configs.templateUrl = url;
+	    designer.configs.serverData = window.serverData;
+	    designer.configs.id = this.props.params.appId;
+	    designer.configs.type = this.props.params.type;
 	    designer.configs.saveUrl = "/json/designer/" + this.props.params.type + "/" + this.props.params.appId;
+	    designer.configs.publishUrl = "/json/app/" + this.props.params.appId + "/publish";
 	    designer.configs.captureUrl = "/json/designer/capture/" + this.props.params.type + "/" + this.props.params.appId;
 	    designer.configs.uploadMaterial = "/json/material";
 	    designer.configs.getMaterial = "/json/material";
@@ -19882,7 +19886,7 @@ webpackJsonp([3,19],[
 	});
 
 	window.addEventListener("beforeunload", function (event) {
-	    play.history.saveToStorage();
+	    // play.history.saveToStorage()
 	});
 
 	$(window).on("iframeComplete", function (e, win) {
@@ -29139,6 +29143,7 @@ webpackJsonp([3,19],[
 	        },
 
 	        saveToStorage: function saveToStorage() {
+	            var key = designer.configs.type + designer.configs.id;
 	            if (this.stack.length > 0) {
 
 	                if (this.index < this.stack.length - 1) {
@@ -29152,19 +29157,22 @@ webpackJsonp([3,19],[
 	                    stack: this.stack
 	                };
 	                var stringData = JSON.stringify(data);
-	                localStorage.setItem("history", stringData);
+	                localStorage.setItem(key, stringData);
 	            }
 	        },
 	        removeStorage: function removeStorage() {
-	            localStorage.removeItem("history");
+	            var key = designer.configs.type + designer.configs.id;
+	            localStorage.removeItem(key);
 	        },
 
 	        hasStorage: function hasStorage() {
-	            return localStorage.getItem("history");
+	            var key = designer.configs.type + designer.configs.id;
+	            return localStorage.getItem(key);
 	        },
 
 	        getFromStorage: function getFromStorage() {
-	            var stringData = localStorage.getItem("history");
+	            var key = designer.configs.type + designer.configs.id;
+	            var stringData = localStorage.getItem(key);
 	            if (stringData) {
 	                var data = JSON.parse(stringData);
 	                this.stack = data.stack || [];
@@ -34691,6 +34699,7 @@ webpackJsonp([3,19],[
 	var HistoryModal = __webpack_require__(633);
 	var ImageView = __webpack_require__(634);
 	var EventView = __webpack_require__(635);
+	var PublishView = __webpack_require__(636);
 
 	Sophie.createStyleSheet({
 	  'app': {
@@ -34711,7 +34720,8 @@ webpackJsonp([3,19],[
 	      Sophie.element(PageManagerModal, null),
 	      Sophie.element(HistoryModal, null),
 	      Sophie.element(ImageView, null),
-	      Sophie.element(EventView, null)
+	      Sophie.element(EventView, null),
+	      Sophie.element(PublishView, null)
 	    );
 	  },
 	  componentDidMount: function componentDidMount() {
@@ -41070,6 +41080,8 @@ webpackJsonp([3,19],[
 	        $('#accordion1', this).collapse({
 	            toggle: false
 	        });
+
+	        this.bindPublish();
 	    },
 
 	    render: function render() {
@@ -41212,21 +41224,27 @@ webpackJsonp([3,19],[
 	                    null,
 	                    Sophie.element(
 	                        "a",
-	                        { "class": "cmd-capture", href: "#" },
-	                        Sophie.element("i", { "class": "fa fa-binoculars" })
-	                    )
-	                ),
-	                Sophie.element(
-	                    "li",
-	                    null,
-	                    Sophie.element(
-	                        "a",
-	                        { "class": "", href: "#", "data-cmd": "cmd-save" },
+	                        { "class": "", title: "保存", href: "#", "data-cmd": "cmd-save" },
 	                        Sophie.element("i", { "class": "fa fa-floppy-o" })
 	                    )
-	                )
+	                ),
+	                this.renderPublish()
 	            )
 	        );
+	    },
+
+	    renderPublish: function renderPublish() {
+	        if (designer.configs.type == "app") {
+	            return Sophie.element(
+	                "li",
+	                null,
+	                Sophie.element(
+	                    "a",
+	                    { "class": "", title: "发布", href: "#", "data-cmd": "cmd-publish" },
+	                    Sophie.element("i", { "class": "fa fa-eye" })
+	                )
+	            );
+	        }
 	    },
 	    capture: function capture() {
 	        console.log("capture");
@@ -41242,7 +41260,43 @@ webpackJsonp([3,19],[
 
 	        $.post(designer.configs.saveUrl, data, function (result) {
 
+	            alert("发布成功");
+	            console.log(result);
+	        });
+	    },
+	    showPublish: function showPublish() {
+
+	        $("#app-publish").modal('show');
+	    },
+	    publish: function publish() {
+	        var self = this;
+	        if (designer.configs.serverData.isPublish) {
+	            self._publish();
+	        } else {
+	            this.showPublish();
+	        }
+	    },
+
+	    bindPublish: function bindPublish() {
+	        var self = this;
+	        $("#submit-publish").click(function () {
+	            var subdomain = $("#app-subdomain").val();
+	            if (!subdomain) {
+	                alert("子域名不能为空");
+	                return;
+	            }
+	            self._publish(subdomain);
+	        });
+	    },
+
+	    _publish: function _publish(subdomain) {
+	        var data = play.getPageData();
+	        data.subdomain = subdomain || "";
+
+	        $.post(designer.configs.publishUrl, data, function (result) {
+
 	            alert("保存成功");
+	            $("#app-publish").modal('hide');
 	            console.log(result);
 	        });
 	    },
@@ -41326,6 +41380,9 @@ webpackJsonp([3,19],[
 
 	            if (type == "cmd-save") {
 	                self.save();
+	            }
+	            if (type == "cmd-publish") {
+	                self.publish();
 	            }
 
 	            if (type == "draw") {
@@ -43564,6 +43621,83 @@ webpackJsonp([3,19],[
 	});
 
 	module.exports = WidgetPanel;
+
+/***/ },
+/* 636 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	var ImagePanel = Sophie.createClass({
+	    getInitialState: function getInitialState() {
+	        return {
+	            initState: false,
+	            urls: []
+	        };
+	    },
+
+	    componentDidMount: function componentDidMount() {
+	        var h = this.nativeNode;
+	    },
+	    render: function render() {
+	        var urls = this.state.urls;
+	        return Sophie.element(
+	            "div",
+	            { "class": "modal fade", tabindex: "-1", role: "dialog", "aria-labelledby": "myModalLabel", "aria-hidden": "true", id: "app-publish" },
+	            Sophie.element(
+	                "div",
+	                { "class": "modal-dialog" },
+	                Sophie.element(
+	                    "div",
+	                    { "class": "modal-content" },
+	                    Sophie.element(
+	                        "div",
+	                        { "class": "modal-header" },
+	                        Sophie.element(
+	                            "button",
+	                            { type: "button", "class": "close", "data-dismiss": "modal", "aria-hidden": "true" },
+	                            "×"
+	                        ),
+	                        Sophie.element(
+	                            "h4",
+	                            { "class": "modal-title" },
+	                            "发布"
+	                        )
+	                    ),
+	                    Sophie.element(
+	                        "div",
+	                        { "class": "modal-body" },
+	                        Sophie.element(
+	                            "div",
+	                            { "class": "form-group" },
+	                            "http://www.",
+	                            Sophie.element("input", { id: "app-subdomain", type: "text", "class": "form-control", placeholder: "子域名" }),
+	                            ".dotlinkface.com"
+	                        )
+	                    ),
+	                    Sophie.element(
+	                        "div",
+	                        { "class": "modal-footer" },
+	                        Sophie.element(
+	                            "button",
+	                            { type: "button", id: "submit-publish", "class": "btn btn-default" },
+	                            "发布"
+	                        )
+	                    )
+	                )
+	            )
+	        );
+	    }
+
+	});
+
+	Sophie.createStyleSheet({
+	    "#app-publish input": { width: "120px", display: "inline", fontSize: "18px" },
+	    "#app-publish .modal-body": { fontSize: "16px" }
+
+	});
+
+	module.exports = ImagePanel;
 
 /***/ }
 ]);
