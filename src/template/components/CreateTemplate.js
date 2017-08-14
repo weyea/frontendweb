@@ -24,7 +24,7 @@ module.exports =   React.createClass({
 
     var ids = $("#template-cate").val();
 
-    $.post("/json/template",{title:$("#tempalte-name").val(),category:id,categories:[ids]}, function(result){
+    $.post("/json/template",{title:$("#tempalte-name").val(),category:ids,categories:[ids]}, function(result){
       if(result.needLogin){
         location.href = "/user/login"
         return;
