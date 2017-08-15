@@ -394,7 +394,6 @@ webpackJsonp([9,19],{
 
 	    var i = 0;
 	    for (var p in items) {
-
 	      result.push(React.createElement(
 	        "li",
 	        { key: i++ },

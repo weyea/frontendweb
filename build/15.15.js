@@ -422,7 +422,7 @@ webpackJsonp([15,19],{
 	                    React.createElement(
 	                        "a",
 	                        { className: "navbar-brand", href: "/" },
-	                        "点线面"
+	                        React.createElement("img", { src: window.rootPath + "img/logo1x.png" })
 	                    )
 	                ),
 	                React.createElement(
