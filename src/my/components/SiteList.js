@@ -75,7 +75,7 @@ module.exports =  React.createClass({
         return (<div className="site-list-wrap">
                 <div className="add-site">
                     <div className="container">
-                        <a className="btn btn-green add-site-button" href="/template/market">创建新站点</a>
+                        <a className="btn btn-green add-site-button" href="/template/market/all">创建新站点</a>
                     </div>
                 </div>
 

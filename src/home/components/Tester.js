@@ -20,10 +20,10 @@ export default  React.createClass({
             return;
         }
 
-          $.post("/json/tester",{phone:value},function(){
-              alert("申请已经发送")
-          },function(){
-              alert("发送失败")
+          $.post("/json/tester",{phone:value},function(result){
+             if(result.success){
+                 alert("申请已经发送")
+             }
           })
     },
     render: function() {

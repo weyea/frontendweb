@@ -997,7 +997,7 @@ webpackJsonp([13,19],{
 	                    { className: "container" },
 	                    React.createElement(
 	                        "a",
-	                        { className: "btn btn-green add-site-button", href: "/template/market" },
+	                        { className: "btn btn-green add-site-button", href: "/template/market/all" },
 	                        "创建新站点"
 	                    )
 	                )

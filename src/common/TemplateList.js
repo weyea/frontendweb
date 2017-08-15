@@ -5,11 +5,11 @@ module.exports = React.createClass({
     getInitialState:function(){
       return {
           type:"all",
-          siteList:[{title:123, id:1}]
+          siteList:[]
       };
     },
     componentDidMount: function (){
-
+        this.flush();
     },
     componentDidUpdate:function(){
         if(this.state.type!==this.props.type){
@@ -30,12 +30,8 @@ module.exports = React.createClass({
                 if(typeof data !=="string"){
                     self.setState({siteList:data, type: self.props.type})
                 }
-
-
-
             })
         }
-
         else {
             $.get("/json/template/bycategory?page=0&&category="+tab, function (data){
                 if (data.needLogin){
@@ -45,7 +41,6 @@ module.exports = React.createClass({
                 if(typeof data !=="string"){
                     self.setState({siteList:data, type: self.props.type})
                 }
-
             })
         }
 
@@ -53,7 +48,6 @@ module.exports = React.createClass({
 
 
     componentWillReceiveProps:function(){
-
 
     },
 
