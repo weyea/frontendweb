@@ -50,9 +50,7 @@ export default  React.createClass({
 
       var i = 0;
       for(var p in items){
-
           result.push(<li key = {i++} >{items[p]}</li>)
-
       }
       return result;
   },
