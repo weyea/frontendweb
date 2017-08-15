@@ -5,6 +5,7 @@ import Footer from '../../common/Footer'
 import TopTen from './TopTen'
 import StunningSite from './StunningSite'
 import Banner from './Banner'
+import Tester from './Tester'
 module.exports =  React.createClass({
   getInitialState: function() {
     return {};
@@ -61,6 +62,7 @@ module.exports =  React.createClass({
 
 
           <StunningSite></StunningSite>
+        <Tester></Tester>
 
           <Footer></Footer>
 
