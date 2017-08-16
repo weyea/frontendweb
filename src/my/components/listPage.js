@@ -28,7 +28,7 @@ module.exports =  React.createClass({
 
     del:function(id){
         window.confirm("确定删除这个站点嘛？")
-
+        var self = this;
         var url = "/json/"+this.props.type+"/"+id
         $.ajax({
             url:url,

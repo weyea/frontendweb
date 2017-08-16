@@ -4,7 +4,8 @@ module.exports =  React.createClass({
     getDefaultProps:function(){
         return {
             value:"",
-            className:""
+            className:"",
+            placeHolder:"设置标题"
         }
     },
     getInitialState: function() {
@@ -38,7 +39,7 @@ module.exports =  React.createClass({
         this.noEditor();
         if(this.props.onChange){
             var value = $(this.refs["target"]).text();
-            if(value !== this.props.value){
+            if(value !== this.props.value&&value !== this.props.placeHolder){
                 this.props.onChange(value, this.props.value, function(success){
                     if(!success){
                         self.setValue({value:this.props.value})
@@ -55,7 +56,7 @@ module.exports =  React.createClass({
     render: function() {
 
         return (
-            <span ref="target"  onMouseEnter={this.toEditor} onBlur = {this.change} onClick = {this.toEditor} contentEditable={this.state.contentEditable}   className={this.props.className +" edit-title"} type ="text"  >{this.props.value}</span>
+            <span ref="target"  onMouseEnter={this.toEditor} onBlur = {this.change} onClick = {this.toEditor} contentEditable={this.state.contentEditable}   className={this.props.className +" edit-title"} type ="text"  >{this.props.value||this.props.placeHolder}</span>
         );
     }
 });
