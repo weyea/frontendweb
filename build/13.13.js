@@ -947,7 +947,7 @@ webpackJsonp([13,19],{
 	                    React.createElement(
 	                        "a",
 	                        { href: url },
-	                        url
+	                        "http:" + url
 	                    )
 	                );
 	            } else {

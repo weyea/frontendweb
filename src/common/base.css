@@ -395,15 +395,18 @@ footer section:last-child p {
 
 
 .btn-green,.btn-green:hover{
-    background:#00c4d8;
-    border-radius:2px;
-    color:#fff;
+    border-radius: 2px;
+    color: #fff;
+    padding: 3px 16px;
+    font-size: 12px;
 }
 
 .btn-green-border,.btn-green-border:hover{
-    border:solid 1px #00c4d8;
-    border-radius:2px;
-    color:#fff;
+    border:solid 1px  #00c4d8;
+    color: #00c4d8;
+    border-radius: 2px;
+    padding: 3px 16px;
+    font-size: 12px;
 }
 
 .btn-green-s,.btn-green-s:hover{
