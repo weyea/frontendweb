@@ -494,7 +494,7 @@ webpackJsonp([13,19],{
 
 /***/ },
 
-/***/ 666:
+/***/ 665:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -506,7 +506,7 @@ webpackJsonp([13,19],{
 	var _reactRouter = __webpack_require__(120);
 
 	var login = __webpack_require__(223);
-	__webpack_require__(667);
+	__webpack_require__(666);
 
 	exports.default = React.createClass({
 	    displayName: "BackHeader",
@@ -662,13 +662,13 @@ webpackJsonp([13,19],{
 
 /***/ },
 
-/***/ 667:
+/***/ 666:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(668);
+	var content = __webpack_require__(667);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(72)(content, {});
@@ -689,7 +689,7 @@ webpackJsonp([13,19],{
 
 /***/ },
 
-/***/ 668:
+/***/ 667:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(71)();
@@ -704,13 +704,13 @@ webpackJsonp([13,19],{
 
 /***/ },
 
-/***/ 669:
+/***/ 668:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(670);
+	var content = __webpack_require__(669);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(72)(content, {});
@@ -731,7 +731,7 @@ webpackJsonp([13,19],{
 
 /***/ },
 
-/***/ 670:
+/***/ 669:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(71)();
@@ -746,12 +746,12 @@ webpackJsonp([13,19],{
 
 /***/ },
 
-/***/ 675:
+/***/ 674:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _BackHeader = __webpack_require__(666);
+	var _BackHeader = __webpack_require__(665);
 
 	var _BackHeader2 = _interopRequireDefault(_BackHeader);
 
@@ -761,9 +761,9 @@ webpackJsonp([13,19],{
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var SiteList = __webpack_require__(676);
-	__webpack_require__(669);
-	__webpack_require__(677);
+	var SiteList = __webpack_require__(675);
+	__webpack_require__(668);
+	__webpack_require__(676);
 	module.exports = React.createClass({
 	    displayName: 'exports',
 
@@ -899,12 +899,12 @@ webpackJsonp([13,19],{
 
 /***/ },
 
-/***/ 676:
+/***/ 675:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	__webpack_require__(677);
+	__webpack_require__(676);
 	module.exports = React.createClass({
 	    displayName: "exports",
 
@@ -1010,6 +1010,60 @@ webpackJsonp([13,19],{
 	        );
 	    },
 
+	    renderUrl: function renderUrl(site) {
+	        if (site.isPublish) {
+	            React.createElement(
+	                "p",
+	                { className: "url" },
+	                React.createElement(
+	                    "a",
+	                    { href: "//" + site.subdomain.name + ".dotlinkface.com" },
+	                    "/app/" + site.id
+	                )
+	            );
+	        } else {
+	            React.createElement(
+	                "p",
+	                { className: "url" },
+	                "没有发布暂无地址"
+	            );
+	        }
+	    },
+	    renderAction: function renderAction(site) {
+	        var result = [];
+	        if (site.isPublish) {
+	            result.push(React.createElement(
+	                "a",
+	                { "data-id": site.id, onClick: this.unPublish, className: "unpublish btn btn-green " },
+	                "下线"
+	            ));
+	        } else {
+	            // result.push( <a  data-id = {site.id} onClick = {this.publish} className="publish btn btn-green ">发布</a>)
+	        }
+	    },
+
+	    publish: function publish(e) {
+	        var target = $(e.target);
+	        var id = target.attr("data-id");
+	        $.post("/json/app/" + id + "/publish", function (result) {
+	            if (result.success) {
+	                alert("发布成功");
+	            } else {
+	                alert("发布失败");
+	            }
+	        });
+	    },
+
+	    unPublish: function unPublish() {
+	        $.post("/json/app/" + id + "/unpublish", function (result) {
+	            if (result.success) {
+	                alert("发布成功");
+	            } else {
+	                alert("发布失败");
+	            }
+	        });
+	    },
+
 	    renderItem: function renderItem() {
 	        var result = [];
 	        for (var i = 0; i < this.state.siteList.length; i++) {
@@ -1040,15 +1094,7 @@ webpackJsonp([13,19],{
 	                            "已发布"
 	                        )
 	                    ),
-	                    React.createElement(
-	                        "p",
-	                        { className: "url" },
-	                        React.createElement(
-	                            "a",
-	                            { href: "/app/" + site.id },
-	                            "/app/" + site.id
-	                        )
-	                    ),
+	                    this.renderUrl(),
 	                    React.createElement(
 	                        "p",
 	                        { className: "visitors" },
@@ -1069,6 +1115,7 @@ webpackJsonp([13,19],{
 	                            { className: "edit btn btn-green " },
 	                            "设计"
 	                        ),
+	                        this.renderAction(site),
 	                        React.createElement(
 	                            "a",
 	                            { className: "data icon" },
@@ -1099,13 +1146,13 @@ webpackJsonp([13,19],{
 
 /***/ },
 
-/***/ 677:
+/***/ 676:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(678);
+	var content = __webpack_require__(677);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(72)(content, {});
@@ -1126,7 +1173,7 @@ webpackJsonp([13,19],{
 
 /***/ },
 
-/***/ 678:
+/***/ 677:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(71)();

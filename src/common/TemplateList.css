@@ -28,25 +28,32 @@ color:#00c4d8;
 .template-list .templ{
     width: 300px;
     float: left;
-    margin-right: 50px;
+    margin-right: 46px;
+    margin-left: 4px;
     margin-bottom: 30px;
     position: relative;
     margin-top: 35px;
 }
 
+
 .template-list .templ h3{
   text-align:center;
   margin-top: 30px;
 }
+
+
 .template-list .templ .bd{
-    background: url("../../img/browser.png") 0 0 no-repeat;
+    /*background: url("../../img/browser.png") 0 0 no-repeat;*/
     /*padding-top: 22px;*/
     background-size: contain;
     width: 330px;
     height: 246px;
     overflow: hidden;
-    border-radius: 5px;
+    /*border-radius: 5px;*/
+    box-shadow: 0px 1px 22px 1px rgba(0,0,0,0.16);
 }
+
+
 .template-list .templ .mobile{
     position: absolute;
     top: 188px;
