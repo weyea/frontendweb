@@ -83,10 +83,19 @@ module.exports =  React.createClass({
     },
 
     renderBlank: function() {
-        return <div className = "container blank-tips">
-            <div className = "tips">您还没有创建网站，去模板市场挑选一个吧！</div>
-            <a  className = "btn btn-green-line " href="/template/market">挑选免费模板</a><a  className = "btn btn-green-line" href="/template/market">新建空白站点</a>
-        </div>
+      if(this.props.type == "app"){
+          return <div className = "container blank-tips">
+              <div className = "tips">您还没有创建网站，去模板市场挑选一个吧！</div>
+              <a  className = "btn btn-green-line " href="/template/market/all">挑选免费模板</a><a  className = "btn btn-green-line" href="/template/market">新建空白站点</a>
+          </div>
+      }
+      else{
+          return <div className = "container blank-tips">
+              <div className = "tips">您还没有模板，去创建一个新的吧！</div>
+              <a  className = "btn btn-green-line" href="/template/create">新建模板</a>
+          </div>
+      }
+
     },
 
     renderList: function() {
@@ -128,7 +137,7 @@ module.exports =  React.createClass({
                     self.unPublish(id)
                 }
 
-            })(id);
+            })(site.id);
            result.push( <a data-id = {site.id} onClick={fun} className="unpublish btn btn-green-border ">下线</a>)
         }
         else{
