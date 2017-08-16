@@ -829,25 +829,42 @@ webpackJsonp([14,19],{
 	    },
 
 	    renderBlank: function renderBlank() {
-	        return React.createElement(
-	            "div",
-	            { className: "container blank-tips" },
-	            React.createElement(
+	        if (this.props.type == "app") {
+	            return React.createElement(
 	                "div",
-	                { className: "tips" },
-	                "您还没有创建网站，去模板市场挑选一个吧！"
-	            ),
-	            React.createElement(
-	                "a",
-	                { className: "btn btn-green-line ", href: "/template/market" },
-	                "挑选免费模板"
-	            ),
-	            React.createElement(
-	                "a",
-	                { className: "btn btn-green-line", href: "/template/market" },
-	                "新建空白站点"
-	            )
-	        );
+	                { className: "container blank-tips" },
+	                React.createElement(
+	                    "div",
+	                    { className: "tips" },
+	                    "您还没有创建网站，去模板市场挑选一个吧！"
+	                ),
+	                React.createElement(
+	                    "a",
+	                    { className: "btn btn-green-line ", href: "/template/market/all" },
+	                    "挑选免费模板"
+	                ),
+	                React.createElement(
+	                    "a",
+	                    { className: "btn btn-green-line", href: "/template/market" },
+	                    "新建空白站点"
+	                )
+	            );
+	        } else {
+	            return React.createElement(
+	                "div",
+	                { className: "container blank-tips" },
+	                React.createElement(
+	                    "div",
+	                    { className: "tips" },
+	                    "您还没有模板，去创建一个新的吧！"
+	                ),
+	                React.createElement(
+	                    "a",
+	                    { className: "btn btn-green-line", href: "/template/create" },
+	                    "新建模板"
+	                )
+	            );
+	        }
 	    },
 
 	    renderList: function renderList() {
@@ -911,7 +928,7 @@ webpackJsonp([14,19],{
 	                return function () {
 	                    self.unPublish(id);
 	                };
-	            }(id);
+	            }(site.id);
 	            result.push(React.createElement(
 	                "a",
 	                { "data-id": site.id, onClick: fun, className: "unpublish btn btn-green-border " },
