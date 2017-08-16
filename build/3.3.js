@@ -5103,17 +5103,19 @@ webpackJsonp([3,19],[
 	    } else {
 	      url = "/designer/source/" + this.props.params.type + "/" + this.props.params.appId;
 	    }
+	    $.get("/json/" + this.props.params.type + "/" + this.props.params.appId, function (result) {
 
-	    designer.configs.templateUrl = url;
-	    designer.configs.serverData = window.serverData;
-	    designer.configs.id = this.props.params.appId;
-	    designer.configs.type = this.props.params.type;
-	    designer.configs.saveUrl = "/json/designer/" + this.props.params.type + "/" + this.props.params.appId;
-	    designer.configs.publishUrl = "/json/app/" + this.props.params.appId + "/publish";
-	    designer.configs.captureUrl = "/json/designer/capture/" + this.props.params.type + "/" + this.props.params.appId;
-	    designer.configs.uploadMaterial = "/json/material";
-	    designer.configs.getMaterial = "/json/material";
-	    designer.run();
+	      designer.configs.templateUrl = url;
+	      designer.configs.serverData = result;
+	      designer.configs.id = this.props.params.appId;
+	      designer.configs.type = this.props.params.type;
+	      designer.configs.saveUrl = "/json/designer/" + this.props.params.type + "/" + this.props.params.appId;
+	      designer.configs.publishUrl = "/json/app/" + this.props.params.appId + "/publish";
+	      designer.configs.captureUrl = "/json/designer/capture/" + this.props.params.type + "/" + this.props.params.appId;
+	      designer.configs.uploadMaterial = "/json/material";
+	      designer.configs.getMaterial = "/json/material";
+	      designer.run();
+	    });
 	  },
 	  componentWillUnmount: function componentWillUnmount() {},
 	  render: function render() {
@@ -41258,7 +41260,7 @@ webpackJsonp([3,19],[
 
 	        $.post(designer.configs.saveUrl, data, function (result) {
 
-	            alert("发布成功");
+	            alert("保存成功");
 	            console.log(result);
 	        });
 	    },
@@ -41293,7 +41295,7 @@ webpackJsonp([3,19],[
 
 	        $.post(designer.configs.publishUrl, data, function (result) {
 
-	            alert("保存成功");
+	            alert("发布成功");
 	            $("#app-publish").modal('hide');
 	            console.log(result);
 	        });
