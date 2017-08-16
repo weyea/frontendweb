@@ -41234,17 +41234,15 @@ webpackJsonp([3,19],[
 	    },
 
 	    renderPublish: function renderPublish() {
-	        if (designer.configs.type == "app") {
-	            return Sophie.element(
-	                "li",
-	                null,
-	                Sophie.element(
-	                    "a",
-	                    { "class": "", title: "发布", href: "#", "data-cmd": "cmd-publish" },
-	                    Sophie.element("i", { "class": "fa fa-eye" })
-	                )
-	            );
-	        }
+	        return Sophie.element(
+	            "li",
+	            null,
+	            Sophie.element(
+	                "a",
+	                { "class": "", title: "发布", href: "#", "data-cmd": "cmd-publish" },
+	                Sophie.element("i", { "class": "fa fa-eye" })
+	            )
+	        );
 	    },
 	    capture: function capture() {
 	        console.log("capture");
@@ -41270,7 +41268,7 @@ webpackJsonp([3,19],[
 	    },
 	    publish: function publish() {
 	        var self = this;
-	        if (designer.configs.serverData.isPublish) {
+	        if (designer.configs.serverData.isPublish || designer.configs.type !== "app") {
 	            self._publish();
 	        } else {
 	            this.showPublish();
