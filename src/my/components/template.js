@@ -4,15 +4,20 @@ import './app.css'
 
 import '../../utils/upload'
 
-var App = require("./app")
 
- class  Template  extends App {
-    getDefaultProps() {
-        return {
-            type:"template"
-        }
-    }
-}
+var DetailPage =require("./detailPage")
+module.exports = React.createClass({
 
-module.exports = Template;
 
+    render: function () {
+
+
+        return (
+
+            <DetailPage id={this.props.params.id} type ="template"></DetailPage>
+        );
+    },
+
+
+
+});

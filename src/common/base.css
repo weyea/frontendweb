@@ -400,6 +400,12 @@ footer section:last-child p {
     color:#fff;
 }
 
+.btn-green-border,.btn-green-border:hover{
+    border:solid 1px #00c4d8;
+    border-radius:2px;
+    color:#fff;
+}
+
 .btn-green-s,.btn-green-s:hover{
     background:#00c4d8;
     border-radius:2px;

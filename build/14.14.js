@@ -746,12 +746,13 @@ webpackJsonp([14,19],{
 
 /***/ },
 
-/***/ 676:
+/***/ 677:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	__webpack_require__(677);
+	__webpack_require__(678);
+	var EditableSpan = __webpack_require__(680);
 	module.exports = React.createClass({
 	    displayName: "exports",
 
@@ -778,12 +779,26 @@ webpackJsonp([14,19],{
 	        });
 	    },
 
-	    changeTitle: function changeTitle(id, title, oldValue, target) {
+	    del: function del(id) {
+	        window.confirm("确定删除这个站点嘛？");
+
+	        var url = "/json/" + this.props.type + "/" + id;
+	        $.ajax({
+	            url: url,
+	            type: "DELETE",
+	            success: function success() {
+	                self.flush();
+	            }
+	        });
+	    },
+
+	    changeTitle: function changeTitle(id, title, oldValue, callback) {
 	        $.post("/json/app/" + id, { title: title }, function (result) {
 	            if (result.success) {} else {
 	                alert("更新失败");
-	                target.val(oldValue);
+	                //target.val(oldValue)
 	            }
+	            callback(result.success);
 	        });
 	    },
 
@@ -892,7 +907,7 @@ webpackJsonp([14,19],{
 	        if (site.isPublish) {
 	            result.push(React.createElement(
 	                "a",
-	                { "data-id": site.id, onClick: this.unPublish, className: "unpublish btn btn-green " },
+	                { "data-id": site.id, onClick: this.unPublish, className: "unpublish btn btn-green-border " },
 	                "下线"
 	            ));
 	        } else {
@@ -923,7 +938,7 @@ webpackJsonp([14,19],{
 	    },
 
 	    renderBg: function renderBg() {},
-	    renderVisitor: function renderVisitor() {
+	    renderVisitor: function renderVisitor(site) {
 	        if (this.props.type == "app") {
 	            return React.createElement(
 	                "p",
@@ -933,7 +948,7 @@ webpackJsonp([14,19],{
 	                    "span",
 	                    { "class": "num" },
 	                    " ",
-	                    site.pv.num,
+	                    site.pv && site.pv.num,
 	                    " "
 	                )
 	            );
@@ -941,9 +956,21 @@ webpackJsonp([14,19],{
 	    },
 
 	    renderItem: function renderItem() {
+	        var self = this;
 	        var result = [];
 	        for (var i = 0; i < this.state.siteList.length; i++) {
 	            var site = this.state.siteList[i];
+	            var fun = function (id, value) {
+	                return function (newValue, callback) {
+	                    self.changeTitle(id, newValue, value, callback);
+	                };
+	            }(site.id, site.value);
+
+	            var del = function (id) {
+	                return function () {
+	                    self.del(id);
+	                };
+	            }(site.id);
 	            var item = React.createElement(
 	                "div",
 	                { className: "templ" },
@@ -952,7 +979,7 @@ webpackJsonp([14,19],{
 	                    { className: "bd" },
 	                    React.createElement(
 	                        "a",
-	                        { href: "#" },
+	                        { href: "/my/" + this.props.type + "/" + site.id },
 	                        React.createElement("img", { src: site.logo || window.rootPath + "img/template_bg.png" })
 	                    )
 	                ),
@@ -962,8 +989,7 @@ webpackJsonp([14,19],{
 	                    React.createElement(
 	                        "h3",
 	                        null,
-	                        React.createElement("input", { "data-siteid": site.id, "data-oldvalue": site.title, className: "edit-title", type: "text", placeholder: site.title }),
-	                        " ",
+	                        React.createElement(EditableSpan, { ref: "edit-title", onChange: fun, value: site.title }),
 	                        React.createElement(
 	                            "span",
 	                            { className: "status" },
@@ -983,16 +1009,12 @@ webpackJsonp([14,19],{
 	                        this.renderAction(site),
 	                        React.createElement(
 	                            "a",
-	                            { className: "data icon" },
-	                            "数据"
-	                        ),
-	                        React.createElement(
-	                            "a",
 	                            { className: "share icon" },
 	                            "分享"
 	                        )
 	                    )
-	                )
+	                ),
+	                React.createElement("span", { onClick: del, className: "del-icon fa fa-remove" })
 	            );
 
 	            result.push(item);
@@ -1001,6 +1023,7 @@ webpackJsonp([14,19],{
 	    },
 
 	    render: function render() {
+
 	        return React.createElement(
 	            "div",
 	            { className: "site-list" },
@@ -1011,13 +1034,13 @@ webpackJsonp([14,19],{
 
 /***/ },
 
-/***/ 677:
+/***/ 678:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(678);
+	var content = __webpack_require__(679);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(72)(content, {});
@@ -1038,7 +1061,7 @@ webpackJsonp([14,19],{
 
 /***/ },
 
-/***/ 678:
+/***/ 679:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(71)();
@@ -1046,14 +1069,81 @@ webpackJsonp([14,19],{
 
 
 	// module
-	exports.push([module.id, "    .add-site {\n\n        border-bottom:1px solid #eaeaea;\n        padding: 0 0px 20px 0;\n\n    }\n\n    .add-site-button {\n\n    }\n\n    .site-list {\n        overflow: hidden;\n        display: block;\n        margin: 50px 0 16px 0px;\n        display: flex;\n        flex-direction: row;\n    }\n\n    #my-site-list {\n\n        display: flex;\n        flex-direction: row;\n        flex-wrap: wrap;\n        padding-bottom: 100px;\n    }\n\n\n    .site-list-wrap{\n        width: 100%;\n    }\n    .site-list .templ {\n        background:#ffffff;\n\n        width:540px;\n        margin-top: 20px;\n        margin-right: 30px;\n        height:206px;\n        display: flex;\n        flex-direction: row;\n        box-shadow: 0px 1px 4px 1px rgba(0,0,0,0.16);\n\n\n\n\n    }\n    .site-list .templ .bd {\n        background: url(\"/imgbrowser.png\") 0 0 no-repeat;\n        background:#ffffff;\n\n        width:236px;\n        height:206px;\n    }\n\n    .site-list .templ .des {\n        padding:15px 15px 15px 20px;\n        position: relative;\n        color: #666666;\n    }\n\n\n    .site-list .templ h3  {\n        family:MicrosoftYaHei;\n        font-size:12px;\n        color:#666666;\n        letter-spacing:0.99px;\n        text-align: center;\n        margin: 0;\n\n    }\n    .site-list .templ .status  {\n        padding: 1px 2px;\n        color: #fff;\n        border-radius: 2px;\n        background-color: #84C634;\n        font-size: 11px;\n        margin-left: 10px;\n\n    }\n\n    .site-list .templ h3  .edit-title  {\n        family:MicrosoftYaHei;\n\n        color:#666666;\n        letter-spacing:0.99px;\n        text-align: left;\n        font-size: 20px;\n    }\n\n\n    .site-list .templ  .url {\n        margin-top: 15px;\n\n    }\n\n    .site-list .templ  .url  a{\n        color: #00C4D8;\n    }\n\n    .site-list .templ  .action{\n        position: absolute;\n        bottom:20px;\n        left:20px;\n    }\n\n    .site-list .templ  .action a{\n        margin-right: 10px;\n    }\n\n    .site-list .templ  .visitors span{\n        color: #00C4D8;\n        font-size: 18px;\n        margin-left: 10px;\n\n    }\n\n    .site-list  .edit-title{\n        border: none;\n\n    }\n    .site-list  .edit-title:hover,.site-list  .edit-title:focus{\n        border:solid 1px #ccc;\n    }\n\n\n\n    .site-list .templ img {\n        width: 100%;\n    }\n\n    .blank-tips .tips{\n        font-family:MicrosoftYaHei;\n        font-size:20px;\n        color:#cccccc;\n        letter-spacing:1.66px;\n        margin-bottom: 30px;\n    }\n\n    .blank-tips .btn{\n        margin-right: 30px;\n    }\n\n", ""]);
+	exports.push([module.id, "    .add-site {\n\n        border-bottom:1px solid #eaeaea;\n        padding: 0 0px 20px 0;\n\n    }\n\n    .add-site-button {\n\n    }\n\n    .site-list {\n        overflow: hidden;\n        display: block;\n        margin: 50px 0 16px 0px;\n        display: flex;\n        flex-direction: row;\n    }\n\n    #my-site-list {\n\n        display: flex;\n        flex-direction: row;\n        flex-wrap: wrap;\n        padding-bottom: 100px;\n    }\n\n\n    .site-list-wrap{\n        width: 100%;\n    }\n    .site-list .templ {\n        background:#ffffff;\n\n        width:540px;\n        margin-top: 20px;\n        margin-right: 30px;\n        height:206px;\n        display: flex;\n        flex-direction: row;\n        box-shadow: 0px 1px 4px 1px rgba(0,0,0,0.16);\n        position: relative;\n\n\n\n\n    }\n    .site-list .templ .bd {\n        background: url(\"/imgbrowser.png\") 0 0 no-repeat;\n        background:#ffffff;\n\n        width:236px;\n        height:206px;\n    }\n\n    .site-list .templ .des {\n        padding:15px 15px 15px 20px;\n        position: relative;\n        color: #666666;\n    }\n\n\n    .site-list .templ h3  {\n        family:MicrosoftYaHei;\n        font-size:12px;\n        color:#666666;\n        letter-spacing:0.99px;\n        text-align: center;\n        margin: 0;\n\n    }\n    .site-list .templ .status  {\n        padding: 1px 2px;\n        color: #fff;\n        border-radius: 2px;\n        background-color: #84C634;\n        font-size: 11px;\n        margin-left: 10px;\n\n    }\n\n    .site-list .templ h3  .edit-title  {\n        family:MicrosoftYaHei;\n\n        color:#666666;\n        letter-spacing:0.99px;\n        text-align: left;\n        font-size: 20px;\n    }\n\n\n    .site-list .templ  .url {\n        margin-top: 15px;\n\n    }\n\n    .site-list .templ  .url  a{\n        color: #00C4D8;\n    }\n\n    .site-list .templ  .action{\n        position: absolute;\n        bottom:20px;\n        left:20px;\n    }\n\n    .site-list .templ  .action a{\n        margin-right: 10px;\n    }\n\n    .site-list .templ  .visitors span{\n        color: #00C4D8;\n        font-size: 18px;\n        margin-left: 10px;\n\n    }\n\n    .site-list  .edit-title{\n        border: none;\n\n    }\n    .site-list  .edit-title:hover,.site-list  .edit-title:focus{\n        border:solid 1px #ccc;\n    }\n\n\n\n    .site-list .templ img {\n        width: 100%;\n    }\n\n    .site-list .templ .del-icon {\n        position: absolute;\n        top:10px;\n        right:10px;\n    }\n\n\n\n    .blank-tips .tips{\n        font-family:MicrosoftYaHei;\n        font-size:20px;\n        color:#cccccc;\n        letter-spacing:1.66px;\n        margin-bottom: 30px;\n    }\n\n    .blank-tips .btn{\n        margin-right: 30px;\n    }\n\n", ""]);
 
 	// exports
 
 
 /***/ },
 
-/***/ 679:
+/***/ 680:
+/***/ function(module, exports) {
+
+	"use strict";
+
+	module.exports = React.createClass({
+	    displayName: "exports",
+
+	    getDefaultProps: function getDefaultProps() {
+	        return {
+	            value: "",
+	            className: ""
+	        };
+	    },
+	    getInitialState: function getInitialState() {
+	        return {
+	            contentEditable: false
+	        };
+	    },
+	    compontentDidMount: function compontentDidMount() {
+	        $(document).delegate(".edit-title", "change", function (ev) {
+	            var target = $(ev.target);
+	            var id = target.attr("data-siteid");
+	            var newValue = target.val();
+	            var value = target.attr("data-oldvalue");
+	            if (value !== newValue) {
+	                self.changeTitle(id, newValue, value, target);
+	            }
+	        });
+	    },
+	    toEditor: function toEditor() {
+	        this.setState({ contentEditable: true });
+	    },
+
+	    noEditor: function noEditor() {
+	        this.setState({ contentEditable: false });
+	    },
+
+	    change: function change() {
+	        var self = this;
+	        this.noEditor();
+	        if (this.props.onChange) {
+	            var value = $(this.refs["target"]).text();
+	            if (value !== this.props.value) {
+	                this.props.onChange(value, this.props.value, function (success) {
+	                    if (!success) {
+	                        self.setValue({ value: this.props.value });
+	                    } else {
+	                        self.setValue({ value: value });
+	                    }
+	                });
+	            }
+	        }
+	    },
+
+	    render: function render() {
+
+	        return React.createElement(
+	            "span",
+	            { ref: "target", onMouseEnter: this.toEditor, onBlur: this.change, onClick: this.toEditor, contentEditable: this.state.contentEditable, className: this.props.className + " edit-title", type: "text" },
+	            this.props.value
+	        );
+	    }
+	});
+
+/***/ },
+
+/***/ 681:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1068,7 +1158,7 @@ webpackJsonp([14,19],{
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var SiteList = __webpack_require__(676);
+	var SiteList = __webpack_require__(682);
 	__webpack_require__(668);
 	module.exports = React.createClass({
 	  displayName: 'exports',
@@ -1087,6 +1177,24 @@ webpackJsonp([14,19],{
 	      React.createElement(_Footer2.default, null)
 	    );
 	  }
+
+	});
+
+/***/ },
+
+/***/ 682:
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var ListPage = __webpack_require__(677);
+	module.exports = React.createClass({
+	    displayName: "exports",
+
+
+	    render: function render() {
+	        return React.createElement(ListPage, { type: "app" });
+	    }
 
 	});
 

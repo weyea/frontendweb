@@ -18,9 +18,9 @@ module.exports  = {
     getIndexRoute(partialNextState, callback) {
       require.ensure([], function (require) {
         callback(null, {
-          component: require('./components/index'),
+          component: require('./components/SiteListPage'),
         })
       })
-    },
+    }
 
   }
