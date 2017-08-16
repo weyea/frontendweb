@@ -110,7 +110,7 @@ module.exports =  React.createClass({
       if(this.props.type =="app"){
           if(site.isPublish){
               var url = "//"+site.subdomain.name+".dotlinkface.com"
-            result =  <p className="url"><a href={url}>{url}</a></p>
+            result =  <p className="url"><a href={url}>{"http:"+url}</a></p>
           }
           else{
              result =  <p className="url">没有发布暂无地址</p>
@@ -185,8 +185,7 @@ module.exports =  React.createClass({
                 <a  href={"/my/"+this.props.type+"/"+site.id}><img src={site.logo||window.rootPath+"img/template_bg.png"}/></a>
             </div>
             <div className="des">
-                <h3>
-                    <EditableSpan ref="edit-title" onChange = {fun} value={site.title}></EditableSpan>
+                <h3><EditableSpan ref="edit-title" onChange = {fun} value={site.title}></EditableSpan>
                     {/*<span  contentEditable="true"  data-siteid = {site.id} data-oldvalue = {site.title}   className="edit-title" type ="text"  placeholder ={site.title}   >{site.title} </span> */}
                     <span className="status">{site.isPublish?"已发布": "未发布"}</span></h3>
                 {this.renderUrl(site)}

@@ -55,8 +55,7 @@ module.exports =  React.createClass({
 
     render: function() {
 
-        return (
-            <span ref="target"  onMouseEnter={this.toEditor} onBlur = {this.change} onClick = {this.toEditor} contentEditable={this.state.contentEditable}   className={this.props.className +" edit-title"} type ="text"  >{this.props.value||this.props.placeHolder}</span>
+        return (<span ref="target"  onMouseEnter={this.toEditor} onBlur = {this.change} onClick = {this.toEditor} contentEditable={this.state.contentEditable}   className={this.props.className +" edit-title"} type ="text"  >{this.props.value||this.props.placeHolder}</span>
         );
     }
 });
