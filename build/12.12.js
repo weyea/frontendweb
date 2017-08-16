@@ -1,4 +1,4 @@
-webpackJsonp([12,19],{
+webpackJsonp([12,11,19],{
 
 /***/ 71:
 /***/ function(module, exports) {
@@ -490,6 +490,222 @@ webpackJsonp([12,19],{
 	            )
 	        );
 	    }
+	});
+
+/***/ },
+
+/***/ 664:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _BackHeader = __webpack_require__(665);
+
+	var _BackHeader2 = _interopRequireDefault(_BackHeader);
+
+	var _Footer = __webpack_require__(641);
+
+	var _Footer2 = _interopRequireDefault(_Footer);
+
+	__webpack_require__(668);
+
+	__webpack_require__(670);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	module.exports = React.createClass({
+	    displayName: 'exports',
+
+
+	    getDefaultProps: function getDefaultProps() {
+	        return {
+	            type: "app"
+	        };
+	    },
+	    getInitialState: function getInitialState() {
+	        return { site: { id: this.props.params.id, title: "站点" } };
+	    },
+
+	    componentDidMount: function componentDidMount() {
+	        this.getData();
+	        this.uploadImg();
+	        this.bindEvent();
+	    },
+
+	    uploadImg: function uploadImg() {
+
+	        // Change this to the location of your server-side upload handler:
+	        var url = "/json/" + this.props.type + "/" + this.props.params.id + "/bg";
+	        var $input = $("#fileupload").html5_upload({
+	            url: url,
+	            sendBoundary: window.FormData || $.browser.mozilla,
+	            onStart: function onStart(event, total) {
+	                return true;
+	                return confirm("You are trying to upload " + total + " files. Are you sure?");
+	            },
+	            fieldName: "file",
+	            onProgress: function onProgress(event, progress, name, number, total) {
+	                console.log(progress, number);
+	            },
+	            setName: function setName(text) {
+	                $("#progress_report_name").text(text);
+	            },
+	            setStatus: function setStatus(text) {
+	                $("#progress_report_status").text(text);
+	            },
+	            setProgress: function setProgress(val) {
+	                $("#progress_report_bar").css('width', Math.ceil(val * 100) + "%");
+	            },
+	            onFinishOne: function onFinishOne(event, response, name, number, total) {
+	                console.log(response);
+	            },
+	            onError: function onError(event, name, error) {
+	                alert('error while uploading file ' + name);
+	            }
+	        });
+	    },
+
+	    getData: function getData() {
+	        var _this = this;
+
+	        var id = this.props.params.id;
+	        $.get("/json/" + this.props.type + "/" + id, function (site) {
+	            if (debug) {} else {
+	                _this.setState({ site: site });
+	            }
+	        });
+	    },
+	    bindEvent: function bindEvent() {
+	        var delEl = $(".del-site", this.nativeNode);
+	        delEl.on("click", function (ev) {
+	            ev.preventDefault();
+	            window.confirm("确定删除这个站点嘛？");
+
+	            var url = $(ev.target).attr("href");
+	            $.ajax({
+	                url: url,
+	                type: "DELETE",
+	                success: function success() {
+	                    location.href = "/my";
+	                }
+	            });
+	        });
+	    },
+
+	    render: function render() {
+
+	        var site = window.serverData || {};
+	        return React.createElement(
+	            'div',
+	            null,
+	            React.createElement(_BackHeader2.default, { active: 'my' }),
+	            React.createElement(
+	                'div',
+	                { id: 'app-detail' },
+	                this.renderItem()
+	            ),
+	            React.createElement(_Footer2.default, null)
+	        );
+	    },
+
+	    renderItem: function renderItem() {
+	        if (this.state.site || debug) {
+	            var site = this.state.site;
+	            return React.createElement(
+	                'div',
+	                { className: 'container' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'templ' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'bd' },
+	                        React.createElement(
+	                            'a',
+	                            { href: "/my/" + this.props.type + "/" + site.id },
+	                            React.createElement('img', { src: site.logo || window.rootPath + "img/template_bg.png" })
+	                        )
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'des' },
+	                        React.createElement(
+	                            'h3',
+	                            null,
+	                            React.createElement(
+	                                'a',
+	                                { href: "/" + this.props.type + "/" + site.id },
+	                                site.title
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            null,
+	                            React.createElement(
+	                                'p',
+	                                { className: 'action' },
+	                                React.createElement('input', { id: 'fileupload', type: 'file', name: 'file' }),
+	                                React.createElement(
+	                                    'a',
+	                                    { className: '', href: "/designer/" + this.props.type + "/" + site.id },
+	                                    '设计'
+	                                ),
+	                                React.createElement(
+	                                    'span',
+	                                    null,
+	                                    '  |  '
+	                                ),
+	                                React.createElement(
+	                                    'a',
+	                                    { className: 'del-site', href: "/json/" + this.props.type + "/" + site.id },
+	                                    '删除 '
+	                                )
+	                            )
+	                        )
+	                    )
+	                ),
+	                React.createElement(
+	                    'ul',
+	                    { className: 'nav nav-tabs', role: 'tablist' },
+	                    React.createElement(
+	                        'li',
+	                        { role: 'presentation', className: 'active' },
+	                        React.createElement(
+	                            'a',
+	                            { href: '#home', role: 'tab', 'data-toggle': 'tab' },
+	                            '数据'
+	                        )
+	                    ),
+	                    React.createElement(
+	                        'li',
+	                        { role: 'presentation' },
+	                        React.createElement('a', { href: '#profile', role: 'tab', 'data-toggle': 'tab' })
+	                    )
+	                ),
+	                React.createElement(
+	                    'div',
+	                    { className: 'tab-content' },
+	                    React.createElement(
+	                        'div',
+	                        { role: 'tabpanel', className: 'tab-pane active', id: 'home' },
+	                        React.createElement('div', null)
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { role: 'tabpanel', className: 'tab-pane', id: 'profile' },
+	                        '...'
+	                    )
+	                )
+	            );
+	        } else {
+	            return React.createElement(
+	                'div',
+	                { className: 'loading' },
+	                '加载中...'
+	            );
+	        }
+	    }
+
 	});
 
 /***/ },
@@ -1003,6 +1219,8 @@ webpackJsonp([12,19],{
 
 	'use strict';
 
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 	var _BackHeader = __webpack_require__(665);
 
 	var _BackHeader2 = _interopRequireDefault(_BackHeader);
@@ -1017,194 +1235,36 @@ webpackJsonp([12,19],{
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	module.exports = React.createClass({
-	    displayName: 'exports',
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	    getInitialState: function getInitialState() {
-	        return { site: { id: this.props.params.id, title: "站点" } };
-	    },
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-	    componentDidMount: function componentDidMount() {
-	        this.getData();
-	        this.uploadImg();
-	        this.bindEvent();
-	    },
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	    uploadImg: function uploadImg() {
+	var App = __webpack_require__(664);
 
-	        // Change this to the location of your server-side upload handler:
-	        var url = "/json/template/" + this.props.params.id + "/bg";
-	        var $input = $("#fileupload").html5_upload({
-	            url: url,
-	            sendBoundary: window.FormData || $.browser.mozilla,
-	            onStart: function onStart(event, total) {
-	                return true;
-	                return confirm("You are trying to upload " + total + " files. Are you sure?");
-	            },
-	            fieldName: "file",
-	            onProgress: function onProgress(event, progress, name, number, total) {
-	                console.log(progress, number);
-	            },
-	            setName: function setName(text) {
-	                $("#progress_report_name").text(text);
-	            },
-	            setStatus: function setStatus(text) {
-	                $("#progress_report_status").text(text);
-	            },
-	            setProgress: function setProgress(val) {
-	                $("#progress_report_bar").css('width', Math.ceil(val * 100) + "%");
-	            },
-	            onFinishOne: function onFinishOne(event, response, name, number, total) {
-	                //alert(response);
-	            },
-	            onError: function onError(event, name, error) {
-	                alert('error while uploading file ' + name);
-	            }
-	        });
-	    },
+	var Template = function (_App) {
+	    _inherits(Template, _App);
 
-	    getData: function getData() {
-	        var _this = this;
+	    function Template() {
+	        _classCallCheck(this, Template);
 
-	        var id = this.props.params.id;
-	        $.get("/json/template/" + id, function (site) {
-	            if (debug) {} else {
-	                _this.setState({ site: site });
-	            }
-	        });
-	    },
-
-	    render: function render() {
-
-	        var site = window.serverData || {};
-	        return React.createElement(
-	            'div',
-	            null,
-	            React.createElement(_BackHeader2.default, { active: 'my' }),
-	            React.createElement(
-	                'div',
-	                { id: 'app-detail' },
-	                this.renderItem()
-	            ),
-	            React.createElement(_Footer2.default, null)
-	        );
-	    },
-
-	    renderItem: function renderItem() {
-	        if (this.state.site || debug) {
-	            var site = this.state.site;
-	            return React.createElement(
-	                'div',
-	                { className: 'container' },
-	                React.createElement(
-	                    'div',
-	                    { className: 'templ' },
-	                    React.createElement(
-	                        'div',
-	                        { className: 'bd' },
-	                        React.createElement(
-	                            'a',
-	                            { href: "/my/preview/template/" + site.id },
-	                            React.createElement('img', { src: site.logo || window.rootPath + "img/template_bg.png" })
-	                        )
-	                    ),
-	                    React.createElement(
-	                        'div',
-	                        { className: 'des' },
-	                        React.createElement(
-	                            'h3',
-	                            null,
-	                            React.createElement(
-	                                'a',
-	                                { href: "/app/" + site.id },
-	                                site.title
-	                            )
-	                        ),
-	                        React.createElement(
-	                            'div',
-	                            null,
-	                            React.createElement(
-	                                'p',
-	                                { className: 'action' },
-	                                React.createElement('input', { id: 'fileupload', type: 'file', name: 'file' }),
-	                                React.createElement(
-	                                    'a',
-	                                    { className: '', href: "/designer/template/" + site.id },
-	                                    '设计'
-	                                ),
-	                                React.createElement(
-	                                    'span',
-	                                    null,
-	                                    '  |  '
-	                                ),
-	                                React.createElement(
-	                                    'a',
-	                                    { className: 'del-site', href: "/json/template/" + site.id },
-	                                    '删除 '
-	                                )
-	                            )
-	                        )
-	                    )
-	                ),
-	                React.createElement(
-	                    'ul',
-	                    { className: 'nav nav-tabs', role: 'tablist' },
-	                    React.createElement(
-	                        'li',
-	                        { role: 'presentation', className: 'active' },
-	                        React.createElement(
-	                            'a',
-	                            { href: '#home', role: 'tab', 'data-toggle': 'tab' },
-	                            '数据'
-	                        )
-	                    ),
-	                    React.createElement(
-	                        'li',
-	                        { role: 'presentation' },
-	                        React.createElement('a', { href: '#profile', role: 'tab', 'data-toggle': 'tab' })
-	                    )
-	                ),
-	                React.createElement(
-	                    'div',
-	                    { className: 'tab-content' },
-	                    React.createElement(
-	                        'div',
-	                        { role: 'tabpanel', className: 'tab-pane active', id: 'home' },
-	                        React.createElement('div', null)
-	                    ),
-	                    React.createElement(
-	                        'div',
-	                        { role: 'tabpanel', className: 'tab-pane', id: 'profile' },
-	                        '...'
-	                    )
-	                )
-	            );
-	        } else {
-	            return React.createElement(
-	                'div',
-	                { className: 'loading' },
-	                '加载中...'
-	            );
-	        }
-	    },
-	    bindEvent: function bindEvent() {
-	        var delEl = $(".del-site", this.nativeNode);
-	        delEl.on("click", function (ev) {
-	            ev.preventDefault();
-	            window.confirm("确定删除这个站点嘛？");
-
-	            var url = $(ev.target).attr("href");
-	            $.ajax({
-	                url: url,
-	                type: "DELETE",
-	                success: function success() {
-	                    location.href = "/my";
-	                }
-	            });
-	        });
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(Template).apply(this, arguments));
 	    }
 
-	});
+	    _createClass(Template, [{
+	        key: 'getDefaultProps',
+	        value: function getDefaultProps() {
+	            return {
+	                type: "template"
+	            };
+	        }
+	    }]);
+
+	    return Template;
+	}(App);
+
+	module.exports = Template;
 
 /***/ }
 

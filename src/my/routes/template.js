@@ -5,16 +5,14 @@ module.exports = {
     getChildRoutes(partialNextState, callback) {
         require.ensure([], function (require) {
             callback(null, [
-
                 require('./templateDetail')
-
             ])
         })
     },
     getIndexRoute(partialNextState, callback) {
         require.ensure([], function (require) {
             callback(null, {
-                component: require('../components/TemplateList'),
+                component: require('../components/TemplateListPage'),
             })
         })
     },

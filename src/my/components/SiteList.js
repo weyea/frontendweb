@@ -4,10 +4,14 @@ module.exports =  React.createClass({
   getInitialState:function(){
     return {siteList:[]};
   },
+    getDefaultProps:function () {
+      return {
+          type:"app"
+      }
+    },
   componentDidMount: function (){
       var self = this;
       self.flush();
-
 
       $(document).delegate(".edit-title","change", function(ev){
           var target = $(ev.target);
@@ -15,25 +19,24 @@ module.exports =  React.createClass({
           var newValue = target.val();
           var value = target.attr("data-oldvalue");
           if(value !== newValue){
-              self.changeTitle(id, newValue)
+              self.changeTitle(id, newValue, value, target)
           }
-
       })
-
-
 
   },
 
-    changeTitle:function(id, title){
+    changeTitle:function(id, title, oldValue, target){
         $.post("/json/app/"+id,{title: title}, function(result){
             if(result.success){
 
             }
             else{
                 alert("更新失败")
+                target.val(oldValue)
             }
         })
     },
+
   flush: function (){
       var self = this;
       if(debug){
@@ -88,12 +91,17 @@ module.exports =  React.createClass({
     },
 
     renderUrl:function(site){
-        if(site.isPublish){
-            <p className="url"><a href={"//"+site.subdomain.name+".dotlinkface.com"}>{"/app/"+site.id}</a></p>
-        }
-        else{
-            <p className="url">没有发布暂无地址</p>
-        }
+      var result ;
+      if(this.props.type =="app"){
+          if(site.isPublish){
+            result =  <p className="url"><a href={"//"+site.subdomain.name+".dotlinkface.com"}>{"/app/"+site.id}</a></p>
+          }
+          else{
+             result =  <p className="url">没有发布暂无地址</p>
+          }
+      }
+      return result;
+
     },
     renderAction:function(site){
         var result = [];
@@ -108,7 +116,7 @@ module.exports =  React.createClass({
     publish:function(e){
         var target = $(e.target);
         var id = target.attr("data-id");
-        $.post("/json/app/"+id+"/publish",function(result){
+        $.post("/json/"+this.props.type+"/"+id+"/publish",function(result){
             if(result.success){
                 alert("发布成功")
             }
@@ -119,7 +127,7 @@ module.exports =  React.createClass({
     },
 
     unPublish: function(){
-        $.post("/json/app/"+id+"/unpublish",function(result){
+        $.post("/json/"+this.props.type+"/"+id+"/unpublish",function(result){
             if(result.success){
                 alert("发布成功")
             }
@@ -129,6 +137,15 @@ module.exports =  React.createClass({
         })
     },
 
+    renderBg:function () {
+
+    },
+    renderVisitor:function(){
+        if(this.props.type == "app"){
+            return  <p className="visitors">过去7天的访问量: <span class="num"> {site.pv.num} </span></p>;
+        }
+    },
+
   renderItem:function(){
     var result = []
     for(var i=0;i<this.state.siteList.length;i++){
@@ -136,13 +153,12 @@ module.exports =  React.createClass({
       var item =(
         <div className="templ">
             <div className="bd">
-                <a  href={"/my/app/"+site.id}><img src={site.logo||window.rootPath+"img/template_bg.png"}/></a>
+                <a  href="#"><img src={site.logo||window.rootPath+"img/template_bg.png"}/></a>
             </div>
-
             <div className="des">
-                <h3><input   data-siteid = {site.id} data-oldvalue = {site.title}   className="edit-title" type ="text"  placeholder ={site.title}   /> <span className="status">已发布</span></h3>
-                {this.renderUrl()}
-                <p className="visitors">过去7天的访问量: <span class="num"> {site.pv.num} </span></p>
+                <h3><input   data-siteid = {site.id} data-oldvalue = {site.title}   className="edit-title" type ="text"  placeholder ={site.title}   /> <span className="status">{site.isPublish?"已发布": "未发布"}</span></h3>
+                {this.renderUrl(site)}
+                {this.renderVisitor(site)}
                 <div className="action">
                     <a className="edit btn btn-green ">设计</a>
                     {this.renderAction(site)}

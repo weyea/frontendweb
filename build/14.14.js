@@ -746,17 +746,22 @@ webpackJsonp([14,19],{
 
 /***/ },
 
-/***/ 675:
+/***/ 676:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	__webpack_require__(676);
+	__webpack_require__(677);
 	module.exports = React.createClass({
 	    displayName: "exports",
 
 	    getInitialState: function getInitialState() {
 	        return { siteList: [] };
+	    },
+	    getDefaultProps: function getDefaultProps() {
+	        return {
+	            type: "app"
+	        };
 	    },
 	    componentDidMount: function componentDidMount() {
 	        var self = this;
@@ -768,18 +773,20 @@ webpackJsonp([14,19],{
 	            var newValue = target.val();
 	            var value = target.attr("data-oldvalue");
 	            if (value !== newValue) {
-	                self.changeTitle(id, newValue);
+	                self.changeTitle(id, newValue, value, target);
 	            }
 	        });
 	    },
 
-	    changeTitle: function changeTitle(id, title) {
+	    changeTitle: function changeTitle(id, title, oldValue, target) {
 	        $.post("/json/app/" + id, { title: title }, function (result) {
 	            if (result.success) {} else {
 	                alert("更新失败");
+	                target.val(oldValue);
 	            }
 	        });
 	    },
+
 	    flush: function flush() {
 	        var self = this;
 	        if (debug) {
@@ -858,23 +865,27 @@ webpackJsonp([14,19],{
 	    },
 
 	    renderUrl: function renderUrl(site) {
-	        if (site.isPublish) {
-	            React.createElement(
-	                "p",
-	                { className: "url" },
-	                React.createElement(
-	                    "a",
-	                    { href: "//" + site.subdomain.name + ".dotlinkface.com" },
-	                    "/app/" + site.id
-	                )
-	            );
-	        } else {
-	            React.createElement(
-	                "p",
-	                { className: "url" },
-	                "没有发布暂无地址"
-	            );
+	        var result;
+	        if (this.props.type == "app") {
+	            if (site.isPublish) {
+	                result = React.createElement(
+	                    "p",
+	                    { className: "url" },
+	                    React.createElement(
+	                        "a",
+	                        { href: "//" + site.subdomain.name + ".dotlinkface.com" },
+	                        "/app/" + site.id
+	                    )
+	                );
+	            } else {
+	                result = React.createElement(
+	                    "p",
+	                    { className: "url" },
+	                    "没有发布暂无地址"
+	                );
+	            }
 	        }
+	        return result;
 	    },
 	    renderAction: function renderAction(site) {
 	        var result = [];
@@ -892,7 +903,7 @@ webpackJsonp([14,19],{
 	    publish: function publish(e) {
 	        var target = $(e.target);
 	        var id = target.attr("data-id");
-	        $.post("/json/app/" + id + "/publish", function (result) {
+	        $.post("/json/" + this.props.type + "/" + id + "/publish", function (result) {
 	            if (result.success) {
 	                alert("发布成功");
 	            } else {
@@ -902,13 +913,31 @@ webpackJsonp([14,19],{
 	    },
 
 	    unPublish: function unPublish() {
-	        $.post("/json/app/" + id + "/unpublish", function (result) {
+	        $.post("/json/" + this.props.type + "/" + id + "/unpublish", function (result) {
 	            if (result.success) {
 	                alert("发布成功");
 	            } else {
 	                alert("发布失败");
 	            }
 	        });
+	    },
+
+	    renderBg: function renderBg() {},
+	    renderVisitor: function renderVisitor() {
+	        if (this.props.type == "app") {
+	            return React.createElement(
+	                "p",
+	                { className: "visitors" },
+	                "过去7天的访问量: ",
+	                React.createElement(
+	                    "span",
+	                    { "class": "num" },
+	                    " ",
+	                    site.pv.num,
+	                    " "
+	                )
+	            );
+	        }
 	    },
 
 	    renderItem: function renderItem() {
@@ -923,7 +952,7 @@ webpackJsonp([14,19],{
 	                    { className: "bd" },
 	                    React.createElement(
 	                        "a",
-	                        { href: "/my/app/" + site.id },
+	                        { href: "#" },
 	                        React.createElement("img", { src: site.logo || window.rootPath + "img/template_bg.png" })
 	                    )
 	                ),
@@ -938,22 +967,11 @@ webpackJsonp([14,19],{
 	                        React.createElement(
 	                            "span",
 	                            { className: "status" },
-	                            "已发布"
+	                            site.isPublish ? "已发布" : "未发布"
 	                        )
 	                    ),
-	                    this.renderUrl(),
-	                    React.createElement(
-	                        "p",
-	                        { className: "visitors" },
-	                        "过去7天的访问量: ",
-	                        React.createElement(
-	                            "span",
-	                            { "class": "num" },
-	                            " ",
-	                            site.pv.num,
-	                            " "
-	                        )
-	                    ),
+	                    this.renderUrl(site),
+	                    this.renderVisitor(site),
 	                    React.createElement(
 	                        "div",
 	                        { className: "action" },
@@ -993,13 +1011,13 @@ webpackJsonp([14,19],{
 
 /***/ },
 
-/***/ 676:
+/***/ 677:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(677);
+	var content = __webpack_require__(678);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(72)(content, {});
@@ -1020,7 +1038,7 @@ webpackJsonp([14,19],{
 
 /***/ },
 
-/***/ 677:
+/***/ 678:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(71)();
@@ -1035,7 +1053,7 @@ webpackJsonp([14,19],{
 
 /***/ },
 
-/***/ 678:
+/***/ 679:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1050,10 +1068,11 @@ webpackJsonp([14,19],{
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var SiteList = __webpack_require__(675);
+	var SiteList = __webpack_require__(676);
 	__webpack_require__(668);
 	module.exports = React.createClass({
 	  displayName: 'exports',
+
 
 	  getInitialState: function getInitialState() {
 	    return {};

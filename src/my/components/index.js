@@ -4,6 +4,7 @@ import Footer from '../../common/Footer'
 var SiteList = require("./SiteList")
 require('./app.css')
 module.exports =  React.createClass({
+
   getInitialState: function() {
     return {};
   },
@@ -12,13 +13,10 @@ module.exports =  React.createClass({
     return (
       <div className = "my">
         <Header active="my"></Header>
-            <SiteList></SiteList>
+        <SiteList></SiteList>
         <Footer></Footer>
       </div>
-
-
     );
-  },
-
+  }
 
 });

@@ -5,6 +5,12 @@ import './app.css'
 import '../../utils/upload'
 
 module.exports = React.createClass({
+
+    getDefaultProps:function(){
+        return {
+            type:"app"
+        }
+    },
     getInitialState: function () {
         return {site:{id:this.props.params.id,title:"站点"}};
     },
@@ -20,7 +26,7 @@ module.exports = React.createClass({
 
 
         // Change this to the location of your server-side upload handler:
-        var url = "/json/app/"+this.props.params.id+"/bg";
+        var url = "/json/"+this.props.type+"/"+this.props.params.id+"/bg";
         var $input = $("#fileupload").html5_upload({
             url: url,
             sendBoundary: window.FormData || $.browser.mozilla,
@@ -53,7 +59,7 @@ module.exports = React.createClass({
 
     getData: function(){
         var id = this.props.params.id;
-        $.get("/json/app/"+id, (site) => {
+        $.get("/json/"+this.props.type+"/"+id, (site) => {
             if(debug){
 
             }
@@ -104,16 +110,16 @@ module.exports = React.createClass({
                 <div  className="container">
                     <div className="templ">
                         <div className="bd">
-                            <a href={"/my/app/"+site.id}><img src={site.logo||window.rootPath+"img/template_bg.png"}/></a>
+                            <a href={"/my/"+this.props.type+"/"+site.id}><img src={site.logo||window.rootPath+"img/template_bg.png"}/></a>
                         </div>
                         <div className="des">
-                            <h3><a href={"/app/"+site.id}>{site.title}</a></h3>
+                            <h3><a href={"/"+this.props.type+"/"+site.id}>{site.title}</a></h3>
                             <div>
                                 <p className="action">
                                     <input id="fileupload" type="file" name="file" />
-                                    <a className="" href={"/designer/app/"+site.id}>设计</a>
+                                    <a className="" href={"/designer/"+this.props.type+"/"+site.id}>设计</a>
                                     <span>  |  </span>
-                                    <a className="del-site" href={"/json/app/"+site.id}>删除 </a>
+                                    <a className="del-site" href={"/json/"+this.props.type+"/"+site.id}>删除 </a>
                                 </p>
                             </div>
                         </div>

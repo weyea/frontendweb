@@ -761,125 +761,13 @@ webpackJsonp([13,19],{
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var SiteList = __webpack_require__(675);
+	var TemplateList = __webpack_require__(675);
 	__webpack_require__(668);
-	__webpack_require__(676);
 	module.exports = React.createClass({
 	    displayName: 'exports',
 
 	    getInitialState: function getInitialState() {
-	        return { siteList: [] };
-	    },
-	    componentDidMount: function componentDidMount() {
-	        var self = this;
-	        self.flush();
-	    },
-	    flush: function flush() {
-	        var self = this;
-	        if (debug) {
-	            self.setState({ siteList: [{ id: 123, title: "我的新站点" }] });
-	        } else {
-	            $.get("/json/template/my", function (data) {
-	                if (data.needLogin) {
-	                    location.href = "/user/login";
-	                    return;
-	                }
-
-	                if (typeof data !== "string") {
-	                    self.setState({ siteList: data });
-	                }
-	            });
-	        }
-	    },
-
-	    rendBody: function rendBody() {
-	        if (this.state.siteList.length == 0) {
-	            return this.renderBlank();
-	        } else {
-	            return this.renderList();
-	        }
-	    },
-
-	    renderBlank: function renderBlank() {
-	        return React.createElement(
-	            'div',
-	            { className: 'container blank-tips' },
-	            React.createElement(
-	                'div',
-	                { className: 'tips' },
-	                '您还没有创建m模板，快去一个吧！'
-	            ),
-	            React.createElement(
-	                'a',
-	                { className: 'btn btn-green-line ', href: '/template/create' },
-	                '创建模板'
-	            )
-	        );
-	    },
-
-	    renderList: function renderList() {
-	        return React.createElement(
-	            'div',
-	            { className: 'site-list-wrap' },
-	            React.createElement(
-	                'div',
-	                { className: 'add-site' },
-	                React.createElement(
-	                    'div',
-	                    { className: 'container' },
-	                    React.createElement(
-	                        'a',
-	                        { className: 'btn btn-green add-site-button', href: '/template/create' },
-	                        '创建模板'
-	                    )
-	                )
-	            ),
-	            React.createElement(
-	                'div',
-	                { className: 'container' },
-	                React.createElement(
-	                    'div',
-	                    { id: 'my-site-list' },
-	                    this.renderItem()
-	                )
-	            )
-	        );
-	    },
-
-	    renderItem: function renderItem() {
-	        var result = [];
-	        for (var i = 0; i < this.state.siteList.length; i++) {
-	            var site = this.state.siteList[i];
-	            var item = React.createElement(
-	                'div',
-	                { className: 'templ' },
-	                React.createElement(
-	                    'div',
-	                    { className: 'bd' },
-	                    React.createElement(
-	                        'a',
-	                        { href: "/my/template/" + site.id },
-	                        React.createElement('img', { src: site.logo || window.rootPath + "img/template_bg.png" })
-	                    )
-	                ),
-	                React.createElement(
-	                    'div',
-	                    { className: 'des' },
-	                    React.createElement(
-	                        'h3',
-	                        null,
-	                        React.createElement(
-	                            'a',
-	                            { href: "/template/" + site.id },
-	                            site.title
-	                        )
-	                    )
-	                )
-	            );
-
-	            result.push(item);
-	        }
-	        return result;
+	        return {};
 	    },
 
 	    render: function render() {
@@ -887,14 +775,11 @@ webpackJsonp([13,19],{
 	            'div',
 	            { className: 'my' },
 	            React.createElement(_BackHeader2.default, { active: 'my' }),
-	            React.createElement(
-	                'div',
-	                { className: 'site-list' },
-	                this.rendBody()
-	            ),
+	            React.createElement(TemplateList, null),
 	            React.createElement(_Footer2.default, null)
 	        );
 	    }
+
 	});
 
 /***/ },
@@ -902,14 +787,71 @@ webpackJsonp([13,19],{
 /***/ 675:
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _BackHeader = __webpack_require__(665);
+
+	var _BackHeader2 = _interopRequireDefault(_BackHeader);
+
+	var _Footer = __webpack_require__(641);
+
+	var _Footer2 = _interopRequireDefault(_Footer);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var SiteList = __webpack_require__(676);
+	__webpack_require__(668);
+	__webpack_require__(677);
+
+	var TemplateList = function (_SiteList) {
+	    _inherits(TemplateList, _SiteList);
+
+	    function TemplateList() {
+	        _classCallCheck(this, TemplateList);
+
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(TemplateList).apply(this, arguments));
+	    }
+
+	    _createClass(TemplateList, [{
+	        key: 'getDefaultProps',
+	        value: function getDefaultProps() {
+	            return {
+	                type: "template"
+	            };
+	        }
+	    }]);
+
+	    return TemplateList;
+	}(SiteList);
+
+	module.exports = TemplateList;
+
+/***/ },
+
+/***/ 676:
+/***/ function(module, exports, __webpack_require__) {
+
 	"use strict";
 
-	__webpack_require__(676);
+	__webpack_require__(677);
 	module.exports = React.createClass({
 	    displayName: "exports",
 
 	    getInitialState: function getInitialState() {
 	        return { siteList: [] };
+	    },
+	    getDefaultProps: function getDefaultProps() {
+	        return {
+	            type: "app"
+	        };
 	    },
 	    componentDidMount: function componentDidMount() {
 	        var self = this;
@@ -921,18 +863,20 @@ webpackJsonp([13,19],{
 	            var newValue = target.val();
 	            var value = target.attr("data-oldvalue");
 	            if (value !== newValue) {
-	                self.changeTitle(id, newValue);
+	                self.changeTitle(id, newValue, value, target);
 	            }
 	        });
 	    },
 
-	    changeTitle: function changeTitle(id, title) {
+	    changeTitle: function changeTitle(id, title, oldValue, target) {
 	        $.post("/json/app/" + id, { title: title }, function (result) {
 	            if (result.success) {} else {
 	                alert("更新失败");
+	                target.val(oldValue);
 	            }
 	        });
 	    },
+
 	    flush: function flush() {
 	        var self = this;
 	        if (debug) {
@@ -1011,23 +955,27 @@ webpackJsonp([13,19],{
 	    },
 
 	    renderUrl: function renderUrl(site) {
-	        if (site.isPublish) {
-	            React.createElement(
-	                "p",
-	                { className: "url" },
-	                React.createElement(
-	                    "a",
-	                    { href: "//" + site.subdomain.name + ".dotlinkface.com" },
-	                    "/app/" + site.id
-	                )
-	            );
-	        } else {
-	            React.createElement(
-	                "p",
-	                { className: "url" },
-	                "没有发布暂无地址"
-	            );
+	        var result;
+	        if (this.props.type == "app") {
+	            if (site.isPublish) {
+	                result = React.createElement(
+	                    "p",
+	                    { className: "url" },
+	                    React.createElement(
+	                        "a",
+	                        { href: "//" + site.subdomain.name + ".dotlinkface.com" },
+	                        "/app/" + site.id
+	                    )
+	                );
+	            } else {
+	                result = React.createElement(
+	                    "p",
+	                    { className: "url" },
+	                    "没有发布暂无地址"
+	                );
+	            }
 	        }
+	        return result;
 	    },
 	    renderAction: function renderAction(site) {
 	        var result = [];
@@ -1045,7 +993,7 @@ webpackJsonp([13,19],{
 	    publish: function publish(e) {
 	        var target = $(e.target);
 	        var id = target.attr("data-id");
-	        $.post("/json/app/" + id + "/publish", function (result) {
+	        $.post("/json/" + this.props.type + "/" + id + "/publish", function (result) {
 	            if (result.success) {
 	                alert("发布成功");
 	            } else {
@@ -1055,13 +1003,31 @@ webpackJsonp([13,19],{
 	    },
 
 	    unPublish: function unPublish() {
-	        $.post("/json/app/" + id + "/unpublish", function (result) {
+	        $.post("/json/" + this.props.type + "/" + id + "/unpublish", function (result) {
 	            if (result.success) {
 	                alert("发布成功");
 	            } else {
 	                alert("发布失败");
 	            }
 	        });
+	    },
+
+	    renderBg: function renderBg() {},
+	    renderVisitor: function renderVisitor() {
+	        if (this.props.type == "app") {
+	            return React.createElement(
+	                "p",
+	                { className: "visitors" },
+	                "过去7天的访问量: ",
+	                React.createElement(
+	                    "span",
+	                    { "class": "num" },
+	                    " ",
+	                    site.pv.num,
+	                    " "
+	                )
+	            );
+	        }
 	    },
 
 	    renderItem: function renderItem() {
@@ -1076,7 +1042,7 @@ webpackJsonp([13,19],{
 	                    { className: "bd" },
 	                    React.createElement(
 	                        "a",
-	                        { href: "/my/app/" + site.id },
+	                        { href: "#" },
 	                        React.createElement("img", { src: site.logo || window.rootPath + "img/template_bg.png" })
 	                    )
 	                ),
@@ -1091,22 +1057,11 @@ webpackJsonp([13,19],{
 	                        React.createElement(
 	                            "span",
 	                            { className: "status" },
-	                            "已发布"
+	                            site.isPublish ? "已发布" : "未发布"
 	                        )
 	                    ),
-	                    this.renderUrl(),
-	                    React.createElement(
-	                        "p",
-	                        { className: "visitors" },
-	                        "过去7天的访问量: ",
-	                        React.createElement(
-	                            "span",
-	                            { "class": "num" },
-	                            " ",
-	                            site.pv.num,
-	                            " "
-	                        )
-	                    ),
+	                    this.renderUrl(site),
+	                    this.renderVisitor(site),
 	                    React.createElement(
 	                        "div",
 	                        { className: "action" },
@@ -1146,13 +1101,13 @@ webpackJsonp([13,19],{
 
 /***/ },
 
-/***/ 676:
+/***/ 677:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(677);
+	var content = __webpack_require__(678);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(72)(content, {});
@@ -1173,7 +1128,7 @@ webpackJsonp([13,19],{
 
 /***/ },
 
-/***/ 677:
+/***/ 678:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(71)();

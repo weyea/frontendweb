@@ -7,9 +7,9 @@ module.exports  = {
     getChildRoutes(partialNextState, callback) {
       require.ensure([], function (require) {
         callback(null, [
-          require('./routes/app'),
-          // require('./routes/preview'),
-          require('./routes/template'),
+            require('./routes/app'),
+            //require('./routes/preview'),
+            require('./routes/template'),
             require('./routes/templateDetail')
         ])
       })
@@ -18,7 +18,7 @@ module.exports  = {
     getIndexRoute(partialNextState, callback) {
       require.ensure([], function (require) {
         callback(null, {
-          component: require('./components'),
+          component: require('./components/index'),
         })
       })
     },

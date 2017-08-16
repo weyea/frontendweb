@@ -516,6 +516,12 @@ webpackJsonp([11,19],{
 	module.exports = React.createClass({
 	    displayName: 'exports',
 
+
+	    getDefaultProps: function getDefaultProps() {
+	        return {
+	            type: "app"
+	        };
+	    },
 	    getInitialState: function getInitialState() {
 	        return { site: { id: this.props.params.id, title: "站点" } };
 	    },
@@ -529,7 +535,7 @@ webpackJsonp([11,19],{
 	    uploadImg: function uploadImg() {
 
 	        // Change this to the location of your server-side upload handler:
-	        var url = "/json/app/" + this.props.params.id + "/bg";
+	        var url = "/json/" + this.props.type + "/" + this.props.params.id + "/bg";
 	        var $input = $("#fileupload").html5_upload({
 	            url: url,
 	            sendBoundary: window.FormData || $.browser.mozilla,
@@ -563,7 +569,7 @@ webpackJsonp([11,19],{
 	        var _this = this;
 
 	        var id = this.props.params.id;
-	        $.get("/json/app/" + id, function (site) {
+	        $.get("/json/" + this.props.type + "/" + id, function (site) {
 	            if (debug) {} else {
 	                _this.setState({ site: site });
 	            }
@@ -616,7 +622,7 @@ webpackJsonp([11,19],{
 	                        { className: 'bd' },
 	                        React.createElement(
 	                            'a',
-	                            { href: "/my/app/" + site.id },
+	                            { href: "/my/" + this.props.type + "/" + site.id },
 	                            React.createElement('img', { src: site.logo || window.rootPath + "img/template_bg.png" })
 	                        )
 	                    ),
@@ -628,7 +634,7 @@ webpackJsonp([11,19],{
 	                            null,
 	                            React.createElement(
 	                                'a',
-	                                { href: "/app/" + site.id },
+	                                { href: "/" + this.props.type + "/" + site.id },
 	                                site.title
 	                            )
 	                        ),
@@ -641,7 +647,7 @@ webpackJsonp([11,19],{
 	                                React.createElement('input', { id: 'fileupload', type: 'file', name: 'file' }),
 	                                React.createElement(
 	                                    'a',
-	                                    { className: '', href: "/designer/app/" + site.id },
+	                                    { className: '', href: "/designer/" + this.props.type + "/" + site.id },
 	                                    '设计'
 	                                ),
 	                                React.createElement(
@@ -651,7 +657,7 @@ webpackJsonp([11,19],{
 	                                ),
 	                                React.createElement(
 	                                    'a',
-	                                    { className: 'del-site', href: "/json/app/" + site.id },
+	                                    { className: 'del-site', href: "/json/" + this.props.type + "/" + site.id },
 	                                    '删除 '
 	                                )
 	                            )
