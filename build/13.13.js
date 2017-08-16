@@ -864,7 +864,7 @@ webpackJsonp([13,19],{
 	        if (debug) {
 	            self.setState({ siteList: [{ id: 123, title: "我的新站点" }] });
 	        } else {
-	            $.get("/json/my/app", function (data) {
+	            $.get("/json/my/" + this.props.type, function (data) {
 	                if (data.needLogin) {
 	                    location.href = "/user/login";
 	                    return;
@@ -1086,7 +1086,7 @@ webpackJsonp([13,19],{
 	                        React.createElement(
 	                            "a",
 	                            { className: "edit btn btn-green " },
-	                            "设计"
+	                            "编辑"
 	                        ),
 	                        this.renderAction(site),
 	                        React.createElement(

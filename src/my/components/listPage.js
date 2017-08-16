@@ -58,7 +58,7 @@ module.exports =  React.createClass({
           self.setState({siteList:[{id:123,title:"我的新站点"}]})
       }
       else {
-          $.get("/json/my/app", function (data){
+          $.get("/json/my/"+this.props.type, function (data){
               if (data.needLogin){
                   location.href = "/user/login"
                   return;
@@ -207,7 +207,7 @@ module.exports =  React.createClass({
                 {this.renderUrl(site)}
                 {this.renderVisitor(site)}
                 <div className="action">
-                    <a className="edit btn btn-green ">设计</a>
+                    <a className="edit btn btn-green ">编辑</a>
                     {this.renderAction(site)}
                     {/*<a className="data icon">数据</a>*/}
                     <a className="share icon">分享</a>
