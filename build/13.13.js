@@ -940,13 +940,14 @@ webpackJsonp([13,19],{
 	        var result;
 	        if (this.props.type == "app") {
 	            if (site.isPublish) {
+	                var url = "//" + site.subdomain.name + ".dotlinkface.com";
 	                result = React.createElement(
 	                    "p",
 	                    { className: "url" },
 	                    React.createElement(
 	                        "a",
-	                        { href: "//" + site.subdomain.name + ".dotlinkface.com" },
-	                        "/app/" + site.id
+	                        { href: url },
+	                        url
 	                    )
 	                );
 	            } else {
@@ -970,6 +971,7 @@ webpackJsonp([13,19],{
 	        } else {
 	            // result.push( <a  data-id = {site.id} onClick = {this.publish} className="publish btn btn-green ">发布</a>)
 	        }
+	        return result;
 	    },
 
 	    publish: function publish(e) {
