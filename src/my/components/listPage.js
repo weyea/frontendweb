@@ -109,7 +109,8 @@ module.exports =  React.createClass({
       var result ;
       if(this.props.type =="app"){
           if(site.isPublish){
-            result =  <p className="url"><a href={"//"+site.subdomain.name+".dotlinkface.com"}>{"/app/"+site.id}</a></p>
+              var url = "//"+site.subdomain.name+".dotlinkface.com"
+            result =  <p className="url"><a href={url}>{url}</a></p>
           }
           else{
              result =  <p className="url">没有发布暂无地址</p>
@@ -126,6 +127,7 @@ module.exports =  React.createClass({
         else{
             // result.push( <a  data-id = {site.id} onClick = {this.publish} className="publish btn btn-green ">发布</a>)
         }
+        return  result;
     },
 
     publish:function(e){
