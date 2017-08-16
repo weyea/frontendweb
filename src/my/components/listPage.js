@@ -160,9 +160,11 @@ module.exports =  React.createClass({
     },
 
     unPublish: function(id){
+        var self = this;
         $.post("/json/"+this.props.type+"/"+id+"/unpublish",function(result){
             if(result.success){
                 alert("发布成功")
+                self.flush();
             }
             else{
                 alert("发布失败")
@@ -207,7 +209,7 @@ module.exports =  React.createClass({
                 {this.renderUrl(site)}
                 {this.renderVisitor(site)}
                 <div className="action">
-                    <a className="edit btn btn-green ">编辑</a>
+                    <a  target ="_blank"className="edit btn btn-green " href={"/designer/"+this.props.type+"/"+site.id}>编辑</a>
                     {this.renderAction(site)}
                     {/*<a className="data icon">数据</a>*/}
                     <a className="share icon">分享</a>

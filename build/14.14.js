@@ -953,9 +953,11 @@ webpackJsonp([14,19],{
 	    },
 
 	    unPublish: function unPublish(id) {
+	        var self = this;
 	        $.post("/json/" + this.props.type + "/" + id + "/unpublish", function (result) {
 	            if (result.success) {
 	                alert("发布成功");
+	                self.flush();
 	            } else {
 	                alert("发布失败");
 	            }
@@ -1028,7 +1030,7 @@ webpackJsonp([14,19],{
 	                        { className: "action" },
 	                        React.createElement(
 	                            "a",
-	                            { className: "edit btn btn-green " },
+	                            { target: "_blank", className: "edit btn btn-green ", href: "/designer/" + this.props.type + "/" + site.id },
 	                            "编辑"
 	                        ),
 	                        this.renderAction(site),
