@@ -121,8 +121,15 @@ module.exports =  React.createClass({
     },
     renderAction:function(site){
         var result = [];
+        var self = this;
         if(site.isPublish){
-           result.push( <a data-id = {site.id} onClick={this.unPublish} className="unpublish btn btn-green-border ">下线</a>)
+            var fun = (function(id){
+                return function(){
+                    self.unPublish(id)
+                }
+
+            })(id);
+           result.push( <a data-id = {site.id} onClick={fun} className="unpublish btn btn-green-border ">下线</a>)
         }
         else{
             // result.push( <a  data-id = {site.id} onClick = {this.publish} className="publish btn btn-green ">发布</a>)
@@ -143,7 +150,7 @@ module.exports =  React.createClass({
         })
     },
 
-    unPublish: function(){
+    unPublish: function(id){
         $.post("/json/"+this.props.type+"/"+id+"/unpublish",function(result){
             if(result.success){
                 alert("发布成功")

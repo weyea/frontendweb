@@ -395,6 +395,7 @@ footer section:last-child p {
 
 
 .btn-green,.btn-green:hover{
+    background:#00c4d8;
     border-radius: 2px;
     color: #fff;
     padding: 3px 16px;

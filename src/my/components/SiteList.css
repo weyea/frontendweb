@@ -67,6 +67,7 @@
         letter-spacing:0.99px;
         text-align: center;
         margin: 0;
+        display: inline-block;
 
     }
     .site-list .templ .status  {
