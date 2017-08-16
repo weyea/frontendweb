@@ -5097,6 +5097,8 @@ webpackJsonp([3,19],[
 	  },
 
 	  componentDidMount: function componentDidMount() {
+	    var _this = this;
+
 	    var url;
 	    if (location.host == "localhost:8484") {
 	      url = "/app.html";
@@ -5107,11 +5109,11 @@ webpackJsonp([3,19],[
 
 	      designer.configs.templateUrl = url;
 	      designer.configs.serverData = result;
-	      designer.configs.id = this.props.params.appId;
-	      designer.configs.type = this.props.params.type;
-	      designer.configs.saveUrl = "/json/designer/" + this.props.params.type + "/" + this.props.params.appId;
-	      designer.configs.publishUrl = "/json/app/" + this.props.params.appId + "/publish";
-	      designer.configs.captureUrl = "/json/designer/capture/" + this.props.params.type + "/" + this.props.params.appId;
+	      designer.configs.id = _this.props.params.appId;
+	      designer.configs.type = _this.props.params.type;
+	      designer.configs.saveUrl = "/json/designer/" + _this.props.params.type + "/" + _this.props.params.appId;
+	      designer.configs.publishUrl = "/json/app/" + _this.props.params.appId + "/publish";
+	      designer.configs.captureUrl = "/json/designer/capture/" + _this.props.params.type + "/" + _this.props.params.appId;
 	      designer.configs.uploadMaterial = "/json/material";
 	      designer.configs.getMaterial = "/json/material";
 	      designer.run();
