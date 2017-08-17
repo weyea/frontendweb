@@ -18,7 +18,6 @@ module.exports =   React.createClass({
       url = "/designer/source/"+this.props.params.type+"/"+this.props.params.appId;
     }
     $.get("/json/"+this.props.params.type+"/"+this.props.params.appId,(result)=>{
-
         designer.configs.templateUrl = url;
         designer.configs.serverData = result;
         designer.configs.id = this.props.params.appId

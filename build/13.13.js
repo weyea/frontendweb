@@ -1,4 +1,4 @@
-webpackJsonp([13,19],{
+webpackJsonp([13,21],{
 
 /***/ 71:
 /***/ function(module, exports) {
@@ -282,7 +282,7 @@ webpackJsonp([13,19],{
 
 /***/ },
 
-/***/ 641:
+/***/ 226:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -494,7 +494,42 @@ webpackJsonp([13,19],{
 
 /***/ },
 
-/***/ 665:
+/***/ 686:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _BackHeader = __webpack_require__(687);
+
+	var _BackHeader2 = _interopRequireDefault(_BackHeader);
+
+	var _Footer = __webpack_require__(226);
+
+	var _Footer2 = _interopRequireDefault(_Footer);
+
+	__webpack_require__(690);
+
+	__webpack_require__(692);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var DetailPage = __webpack_require__(693);
+
+	module.exports = React.createClass({
+	    displayName: 'exports',
+
+
+	    render: function render() {
+	        console.log(DetailPage);
+
+	        return React.createElement(DetailPage, { id: this.props.params.id, type: 'app' });
+	    }
+
+	});
+
+/***/ },
+
+/***/ 687:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -505,8 +540,8 @@ webpackJsonp([13,19],{
 
 	var _reactRouter = __webpack_require__(120);
 
-	var login = __webpack_require__(223);
-	__webpack_require__(666);
+	var login = __webpack_require__(225);
+	__webpack_require__(688);
 
 	exports.default = React.createClass({
 	    displayName: "BackHeader",
@@ -662,13 +697,13 @@ webpackJsonp([13,19],{
 
 /***/ },
 
-/***/ 666:
+/***/ 688:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(667);
+	var content = __webpack_require__(689);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(72)(content, {});
@@ -689,7 +724,7 @@ webpackJsonp([13,19],{
 
 /***/ },
 
-/***/ 667:
+/***/ 689:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(71)();
@@ -704,13 +739,13 @@ webpackJsonp([13,19],{
 
 /***/ },
 
-/***/ 668:
+/***/ 690:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(669);
+	var content = __webpack_require__(691);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(72)(content, {});
@@ -731,7 +766,7 @@ webpackJsonp([13,19],{
 
 /***/ },
 
-/***/ 669:
+/***/ 691:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(71)();
@@ -746,484 +781,470 @@ webpackJsonp([13,19],{
 
 /***/ },
 
-/***/ 675:
+/***/ 692:
+/***/ function(module, exports) {
+
+	'use strict';
+
+	(function ($) {
+	    $.fn.html5_upload = function (options) {
+
+	        function get_file_name(file) {
+	            return file.name || file.fileName;
+	        }
+	        function get_file_size(file) {
+	            return file.size || file.fileSize;
+	        }
+	        var available_events = ['onStart', 'onStartOne', 'onProgress', 'onFinishOne', 'onFinish', 'onError'];
+	        var options = $.extend({
+	            onStart: function onStart(event, total) {
+	                return true;
+	            },
+	            onStartOne: function onStartOne(event, name, number, total) {
+	                return true;
+	            },
+	            onProgress: function onProgress(event, progress, name, number, total) {},
+	            onFinishOne: function onFinishOne(event, response, name, number, total) {},
+	            onFinish: function onFinish(event, total) {},
+	            onError: function onError(event, name, error) {},
+	            onBrowserIncompatible: function onBrowserIncompatible() {
+	                alert("Sorry, but your browser is incompatible with uploading files using HTML5 (at least, with current preferences.\n Please install the latest version of Firefox, Safari or Chrome");
+	            },
+	            autostart: true,
+	            autoclear: true,
+	            stopOnFirstError: false,
+	            sendBoundary: false,
+	            fieldName: 'user_file[]', //ignore if sendBoundary is false
+	            extraFields: {}, // extra fields to send with file upload request (HTML5 only)
+	            method: 'post',
+
+	            STATUSES: {
+	                'STARTED': 'Started',
+	                'PROGRESS': 'Progress',
+	                'LOADED': 'Loaded',
+	                'FINISHED': 'Finished'
+	            },
+	            headers: {
+	                "Cache-Control": "no-cache",
+	                "X-Requested-With": "XMLHttpRequest",
+	                "X-File-Name": function XFileName(file) {
+	                    return encodeURIComponent(get_file_name(file));
+	                },
+	                "X-File-Size": function XFileSize(file) {
+	                    return get_file_size(file);
+	                },
+	                "X-CSRF-Token": $('meta[name="csrf-token"]').attr("content"),
+	                "Content-Type": function ContentType(file) {
+	                    if (!options.sendBoundary) return 'multipart/form-data';
+	                    return false;
+	                }
+	            },
+
+	            setName: function setName(text) {},
+	            setStatus: function setStatus(text) {},
+	            setProgress: function setProgress(value) {},
+
+	            genName: function genName(file, number, total) {
+	                return file + "(" + (number + 1) + " of " + total + ")";
+	            },
+	            genStatus: function genStatus(progress, finished) {
+	                if (finished) {
+	                    return options.STATUSES['FINISHED'];
+	                }
+	                if (progress == 0) {
+	                    return options.STATUSES['STARTED'];
+	                } else if (progress == 1) {
+	                    return options.STATUSES['LOADED'];
+	                } else {
+	                    return options.STATUSES['PROGRESS'];
+	                }
+	            },
+	            genProgress: function genProgress(loaded, total) {
+	                return loaded / total;
+	            }
+	        }, options);
+
+	        function upload(files) {
+	            var total = files.length;
+	            var $this = $(this);
+	            if (!$this.triggerHandler('html5_upload.onStart', [total])) {
+	                return false;
+	            }
+	            this.disabled = true;
+	            var uploaded = 0;
+	            var xhr = this.html5_upload['xhr'];
+	            this.html5_upload['continue_after_abort'] = true;
+	            function upload_file(number) {
+	                if (number == total) {
+	                    $this.triggerHandler('html5_upload.onFinish', [total]);
+	                    options.setStatus(options.genStatus(1, true));
+	                    $this.attr("disabled", false);
+	                    if (options.autoclear) {
+	                        $this.val("");
+	                    }
+	                    return;
+	                }
+	                var file = files[number];
+	                if (!$this.triggerHandler('html5_upload.onStartOne', [get_file_name(file), number, total])) {
+	                    return upload_file(number + 1);
+	                }
+	                options.setStatus(options.genStatus(0));
+	                options.setName(options.genName(get_file_name(file), number, total));
+	                options.setProgress(options.genProgress(0, get_file_size(file)));
+	                xhr.upload['onprogress'] = function (rpe) {
+	                    $this.triggerHandler('html5_upload.onProgress', [rpe.loaded / rpe.total, get_file_name(file), number, total]);
+	                    options.setStatus(options.genStatus(rpe.loaded / rpe.total));
+	                    options.setProgress(options.genProgress(rpe.loaded, rpe.total));
+	                };
+	                xhr.onload = function (load) {
+	                    if (xhr.status >= 205 || xhr.status < 200) {
+	                        $this.triggerHandler('html5_upload.onError', [get_file_name(file), load]);
+	                        if (!options.stopOnFirstError) {
+	                            upload_file(number + 1);
+	                        }
+	                    } else {
+	                        $this.triggerHandler('html5_upload.onFinishOne', [xhr.responseText, get_file_name(file), number, total]);
+	                        options.setStatus(options.genStatus(1, true));
+	                        options.setProgress(options.genProgress(get_file_size(file), get_file_size(file)));
+	                        upload_file(number + 1);
+	                    }
+	                };
+	                xhr.onabort = function () {
+	                    if ($this[0].html5_upload['continue_after_abort']) {
+	                        upload_file(number + 1);
+	                    } else {
+	                        $this.attr("disabled", false);
+	                        if (options.autoclear) {
+	                            $this.val("");
+	                        }
+	                    }
+	                };
+	                xhr.onerror = function (e) {
+	                    $this.triggerHandler('html5_upload.onError', [get_file_name(file), e]);
+	                    if (!options.stopOnFirstError) {
+	                        upload_file(number + 1);
+	                    }
+	                };
+	                xhr.open(options.method, typeof options.url == "function" ? options.url(number) : options.url, true);
+	                $.each(options.headers, function (key, val) {
+	                    val = typeof val == "function" ? val(file) : encodeURIComponent(val); // resolve value
+	                    if (val === false) return true; // if resolved value is boolean false, do not send this header
+	                    xhr.setRequestHeader(key, val);
+	                });
+
+	                if (!options.sendBoundary) {
+	                    xhr.send(file);
+	                } else {
+	                    if (window.FormData) {
+	                        //Many thanks to scottt.tw
+	                        var f = new FormData();
+	                        f.append(typeof options.fieldName == "function" ? options.fieldName() : options.fieldName, file);
+	                        options.extraFields = typeof options.extraFields == "function" ? options.extraFields() : options.extraFields;
+	                        $.each(options.extraFields, function (key, val) {
+	                            f.append(key, val);
+	                        });
+	                        xhr.send(f);
+	                    } else if (file.getAsBinary) {
+	                        //Thanks to jm.schelcher
+	                        var boundary = '------multipartformboundary' + new Date().getTime();
+	                        var dashdash = '--';
+	                        var crlf = '\r\n';
+
+	                        /* Build RFC2388 string. */
+	                        var builder = '';
+
+	                        builder += dashdash;
+	                        builder += boundary;
+	                        builder += crlf;
+
+	                        builder += 'Content-Disposition: form-data; name="' + (typeof options.fieldName == "function" ? options.fieldName() : options.fieldName) + '"';
+
+	                        //thanks to oyejo...@gmail.com for this fix
+	                        fileName = unescape(encodeURIComponent(get_file_name(file))); //encode_utf8
+
+	                        builder += '; filename="' + fileName + '"';
+	                        builder += crlf;
+
+	                        builder += 'Content-Type: ' + file.type;
+	                        builder += crlf;
+	                        builder += crlf;
+
+	                        /* Append binary data. */
+	                        builder += file.getAsBinary();
+	                        builder += crlf;
+
+	                        /* Write boundary. */
+	                        builder += dashdash;
+	                        builder += boundary;
+	                        builder += dashdash;
+	                        builder += crlf;
+
+	                        xhr.setRequestHeader('content-type', 'multipart/form-data; boundary=' + boundary);
+	                        xhr.sendAsBinary(builder);
+	                    } else {
+	                        options.onBrowserIncompatible();
+	                    }
+	                }
+	            }
+	            upload_file(0);
+	            return true;
+	        }
+
+	        try {
+	            return this.each(function () {
+	                var file_input = this;
+	                this.html5_upload = {
+	                    xhr: new XMLHttpRequest(),
+	                    continue_after_abort: true
+	                };
+	                if (options.autostart) {
+	                    $(this).bind('change', function (e) {
+	                        upload.call(e.target, this.files);
+	                    });
+	                }
+	                var self = this;
+	                $.each(available_events, function (event) {
+	                    if (options[available_events[event]]) {
+	                        $(self).bind("html5_upload." + available_events[event], options[available_events[event]]);
+	                    }
+	                });
+	                $(this).bind('html5_upload.startFromDrop', function (e, dropEvent) {
+	                    if (dropEvent.dataTransfer && dropEvent.dataTransfer.files.length) {
+	                        upload.call(file_input, dropEvent.dataTransfer.files);
+	                    }
+	                }).bind('html5_upload.start', upload).bind('html5_upload.cancelOne', function () {
+	                    this.html5_upload['xhr'].abort();
+	                }).bind('html5_upload.cancelAll', function () {
+	                    this.html5_upload['continue_after_abort'] = false;
+	                    this.html5_upload['xhr'].abort();
+	                }).bind('html5_upload.destroy', function () {
+	                    this.html5_upload['continue_after_abort'] = false;
+	                    this.xhr.abort();
+	                    delete this.html5_upload;
+	                    $(this).unbind('html5_upload.*').unbind('change', upload);
+	                });
+	            });
+	        } catch (ex) {
+	            options.onBrowserIncompatible();
+	            return false;
+	        }
+	    };
+	})(jQuery);
+
+/***/ },
+
+/***/ 693:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _BackHeader = __webpack_require__(665);
+	var _BackHeader = __webpack_require__(687);
 
 	var _BackHeader2 = _interopRequireDefault(_BackHeader);
 
-	var _Footer = __webpack_require__(641);
+	var _Footer = __webpack_require__(226);
 
 	var _Footer2 = _interopRequireDefault(_Footer);
 
+	__webpack_require__(690);
+
+	__webpack_require__(692);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var TemplateList = __webpack_require__(676);
-	__webpack_require__(668);
 	module.exports = React.createClass({
 	    displayName: 'exports',
 
-	    getInitialState: function getInitialState() {
-	        return {};
-	    },
 
-	    render: function render() {
-
-	        return React.createElement(
-	            'div',
-	            { className: 'my' },
-	            React.createElement(_BackHeader2.default, { active: 'my' }),
-	            React.createElement(TemplateList, null),
-	            React.createElement(_Footer2.default, null)
-	        );
-	    }
-
-	});
-
-/***/ },
-
-/***/ 676:
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	var ListPage = __webpack_require__(677);
-	module.exports = React.createClass({
-	    displayName: "exports",
-
-
-	    render: function render() {
-	        return React.createElement(ListPage, { type: "template" });
-	    }
-
-	});
-
-/***/ },
-
-/***/ 677:
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	__webpack_require__(678);
-	var EditableSpan = __webpack_require__(680);
-	module.exports = React.createClass({
-	    displayName: "exports",
-
-	    getInitialState: function getInitialState() {
-	        return { siteList: [] };
-	    },
 	    getDefaultProps: function getDefaultProps() {
 	        return {
 	            type: "app"
 	        };
 	    },
+	    getInitialState: function getInitialState() {
+	        return { site: { id: this.props.params.id, title: "站点" } };
+	    },
+
 	    componentDidMount: function componentDidMount() {
-	        var self = this;
-	        self.flush();
-
-	        $(document).delegate(".edit-title", "change", function (ev) {
-	            var target = $(ev.target);
-	            var id = target.attr("data-siteid");
-	            var newValue = target.val();
-	            var value = target.attr("data-oldvalue");
-	            if (value !== newValue) {
-	                self.changeTitle(id, newValue, value, target);
-	            }
-	        });
+	        this.getData();
+	        this.uploadImg();
+	        this.bindEvent();
 	    },
 
-	    del: function del(id) {
-	        window.confirm("确定删除这个站点嘛？");
-	        var self = this;
-	        var url = "/json/" + this.props.type + "/" + id;
-	        $.ajax({
+	    uploadImg: function uploadImg() {
+
+	        // Change this to the location of your server-side upload handler:
+	        var url = "/json/" + this.props.type + "/" + this.props.params.id + "/bg";
+	        var $input = $("#fileupload").html5_upload({
 	            url: url,
-	            type: "DELETE",
-	            success: function success() {
-	                self.flush();
+	            sendBoundary: window.FormData || $.browser.mozilla,
+	            onStart: function onStart(event, total) {
+	                return true;
+	                return confirm("You are trying to upload " + total + " files. Are you sure?");
+	            },
+	            fieldName: "file",
+	            onProgress: function onProgress(event, progress, name, number, total) {
+	                console.log(progress, number);
+	            },
+	            setName: function setName(text) {
+	                $("#progress_report_name").text(text);
+	            },
+	            setStatus: function setStatus(text) {
+	                $("#progress_report_status").text(text);
+	            },
+	            setProgress: function setProgress(val) {
+	                $("#progress_report_bar").css('width', Math.ceil(val * 100) + "%");
+	            },
+	            onFinishOne: function onFinishOne(event, response, name, number, total) {
+	                console.log(response);
+	            },
+	            onError: function onError(event, name, error) {
+	                alert('error while uploading file ' + name);
 	            }
 	        });
 	    },
 
-	    changeTitle: function changeTitle(id, title, oldValue, callback) {
-	        $.post("/json/app/" + id, { title: title }, function (result) {
-	            if (result.success) {} else {
-	                alert("更新失败");
-	                //target.val(oldValue)
+	    getData: function getData() {
+	        var _this = this;
+
+	        var id = this.props.params.id;
+	        $.get("/json/" + this.props.type + "/" + id, function (site) {
+	            if (debug) {} else {
+	                _this.setState({ site: site });
 	            }
-	            callback(result.success);
 	        });
 	    },
+	    bindEvent: function bindEvent() {
+	        var delEl = $(".del-site", this.nativeNode);
+	        delEl.on("click", function (ev) {
+	            ev.preventDefault();
+	            window.confirm("确定删除这个站点嘛？");
 
-	    flush: function flush() {
-	        var self = this;
-	        if (debug) {
-	            self.setState({ siteList: [{ id: 123, title: "我的新站点" }] });
-	        } else {
-	            $.get("/json/my/" + this.props.type, function (data) {
-	                if (data.needLogin) {
-	                    location.href = "/user/login";
-	                    return;
-	                }
-
-	                if (typeof data !== "string") {
-	                    self.setState({ siteList: data });
+	            var url = $(ev.target).attr("href");
+	            $.ajax({
+	                url: url,
+	                type: "DELETE",
+	                success: function success() {
+	                    location.href = "/my";
 	                }
 	            });
-	        }
+	        });
 	    },
 
-	    rendBody: function rendBody() {
-	        if (this.state.siteList.length == 0) {
-	            return this.renderBlank();
-	        } else {
-	            return this.renderList();
-	        }
-	    },
+	    render: function render() {
 
-	    renderBlank: function renderBlank() {
-	        if (this.props.type == "app") {
-	            return React.createElement(
-	                "div",
-	                { className: "container blank-tips" },
-	                React.createElement(
-	                    "div",
-	                    { className: "tips" },
-	                    "您还没有创建网站，去模板市场挑选一个吧！"
-	                ),
-	                React.createElement(
-	                    "a",
-	                    { className: "btn btn-green-line ", href: "/template/market/all" },
-	                    "挑选免费模板"
-	                ),
-	                React.createElement(
-	                    "a",
-	                    { className: "btn btn-green-line", href: "/template/market" },
-	                    "新建空白站点"
-	                )
-	            );
-	        } else {
-	            return React.createElement(
-	                "div",
-	                { className: "container blank-tips" },
-	                React.createElement(
-	                    "div",
-	                    { className: "tips" },
-	                    "您还没有模板，去创建一个新的吧！"
-	                ),
-	                React.createElement(
-	                    "a",
-	                    { className: "btn btn-green-line", href: "/template/create" },
-	                    "新建模板"
-	                )
-	            );
-	        }
-	    },
-
-	    renderList: function renderList() {
+	        var site = window.serverData || {};
 	        return React.createElement(
-	            "div",
-	            { className: "site-list-wrap" },
+	            'div',
+	            null,
+	            React.createElement(_BackHeader2.default, { active: 'my' }),
 	            React.createElement(
-	                "div",
-	                { className: "add-site" },
-	                React.createElement(
-	                    "div",
-	                    { className: "container" },
-	                    React.createElement(
-	                        "a",
-	                        { className: "btn btn-green add-site-button", href: "/template/market/all" },
-	                        "创建新站点"
-	                    )
-	                )
+	                'div',
+	                { id: 'app-detail' },
+	                this.renderItem()
 	            ),
-	            React.createElement(
-	                "div",
-	                { className: "container" },
-	                React.createElement(
-	                    "div",
-	                    { id: "my-site-list" },
-	                    this.renderItem()
-	                )
-	            )
+	            React.createElement(_Footer2.default, null)
 	        );
-	    },
-
-	    renderUrl: function renderUrl(site) {
-	        var result;
-	        if (this.props.type == "app") {
-	            if (site.isPublish) {
-	                var url = "//" + site.subdomain.name + ".dotlinkface.com";
-	                result = React.createElement(
-	                    "p",
-	                    { className: "url" },
-	                    React.createElement(
-	                        "a",
-	                        { href: url },
-	                        "http:" + url
-	                    )
-	                );
-	            } else {
-	                result = React.createElement(
-	                    "p",
-	                    { className: "url" },
-	                    "没有发布暂无地址"
-	                );
-	            }
-	        }
-	        return result;
-	    },
-	    renderAction: function renderAction(site) {
-	        var result = [];
-	        var self = this;
-	        if (site.isPublish) {
-	            var fun = function (id) {
-	                return function () {
-	                    self.unPublish(id);
-	                };
-	            }(site.id);
-	            result.push(React.createElement(
-	                "a",
-	                { "data-id": site.id, onClick: fun, className: "unpublish btn btn-green-border " },
-	                "下线"
-	            ));
-	        } else {
-	            // result.push( <a  data-id = {site.id} onClick = {this.publish} className="publish btn btn-green ">发布</a>)
-	        }
-	        return result;
-	    },
-
-	    publish: function publish(e) {
-	        var target = $(e.target);
-	        var id = target.attr("data-id");
-	        $.post("/json/" + this.props.type + "/" + id + "/publish", function (result) {
-	            if (result.success) {
-	                alert("发布成功");
-	            } else {
-	                alert("发布失败");
-	            }
-	        });
-	    },
-
-	    unPublish: function unPublish(id) {
-	        var self = this;
-	        $.post("/json/" + this.props.type + "/" + id + "/unpublish", function (result) {
-	            if (result.success) {
-	                alert("发布成功");
-	                self.flush();
-	            } else {
-	                alert("发布失败");
-	            }
-	        });
-	    },
-
-	    renderBg: function renderBg() {},
-	    renderVisitor: function renderVisitor(site) {
-	        if (this.props.type == "app") {
-	            return React.createElement(
-	                "p",
-	                { className: "visitors" },
-	                "过去7天的访问量: ",
-	                React.createElement(
-	                    "span",
-	                    { "class": "num" },
-	                    " ",
-	                    site.pv && site.pv.num,
-	                    " "
-	                )
-	            );
-	        }
 	    },
 
 	    renderItem: function renderItem() {
-	        var self = this;
-	        var result = [];
-	        for (var i = 0; i < this.state.siteList.length; i++) {
-	            var site = this.state.siteList[i];
-	            var fun = function (id, value) {
-	                return function (newValue, callback) {
-	                    self.changeTitle(id, newValue, value, callback);
-	                };
-	            }(site.id, site.value);
-
-	            var del = function (id) {
-	                return function () {
-	                    self.del(id);
-	                };
-	            }(site.id);
-	            var item = React.createElement(
-	                "div",
-	                { className: "templ" },
+	        if (this.state.site || debug) {
+	            var site = this.state.site;
+	            return React.createElement(
+	                'div',
+	                { className: 'container' },
 	                React.createElement(
-	                    "div",
-	                    { className: "bd" },
+	                    'div',
+	                    { className: 'templ' },
 	                    React.createElement(
-	                        "a",
-	                        { href: "/my/" + this.props.type + "/" + site.id },
-	                        React.createElement("img", { src: site.logo || window.rootPath + "img/template_bg.png" })
-	                    )
-	                ),
-	                React.createElement(
-	                    "div",
-	                    { className: "des" },
-	                    React.createElement(
-	                        "h3",
-	                        null,
-	                        React.createElement(EditableSpan, { ref: "edit-title", onChange: fun, value: site.title }),
+	                        'div',
+	                        { className: 'bd' },
 	                        React.createElement(
-	                            "span",
-	                            { className: "status" },
-	                            site.isPublish ? "已发布" : "未发布"
+	                            'a',
+	                            { href: "/my/" + this.props.type + "/" + site.id },
+	                            React.createElement('img', { src: site.logo || window.rootPath + "img/template_bg.png" })
 	                        )
 	                    ),
-	                    this.renderUrl(site),
-	                    this.renderVisitor(site),
 	                    React.createElement(
-	                        "div",
-	                        { className: "action" },
+	                        'div',
+	                        { className: 'des' },
 	                        React.createElement(
-	                            "a",
-	                            { target: "_blank", className: "edit btn btn-green ", href: "/designer/" + this.props.type + "/" + site.id },
-	                            "编辑"
+	                            'h3',
+	                            null,
+	                            React.createElement(
+	                                'a',
+	                                { href: "/" + this.props.type + "/" + site.id },
+	                                site.title
+	                            )
 	                        ),
-	                        this.renderAction(site),
 	                        React.createElement(
-	                            "a",
-	                            { className: "share icon" },
-	                            "分享"
+	                            'div',
+	                            null,
+	                            React.createElement(
+	                                'p',
+	                                { className: 'action' },
+	                                React.createElement('input', { id: 'fileupload', type: 'file', name: 'file' }),
+	                                React.createElement(
+	                                    'a',
+	                                    { className: '', href: "/designer/" + this.props.type + "/" + site.id },
+	                                    '设计'
+	                                ),
+	                                React.createElement(
+	                                    'span',
+	                                    null,
+	                                    '  |  '
+	                                ),
+	                                React.createElement(
+	                                    'a',
+	                                    { className: 'del-site', href: "/json/" + this.props.type + "/" + site.id },
+	                                    '删除 '
+	                                )
+	                            )
 	                        )
 	                    )
 	                ),
-	                React.createElement("span", { onClick: del, className: "del-icon fa fa-remove" })
+	                React.createElement(
+	                    'ul',
+	                    { className: 'nav nav-tabs', role: 'tablist' },
+	                    React.createElement(
+	                        'li',
+	                        { role: 'presentation', className: 'active' },
+	                        React.createElement(
+	                            'a',
+	                            { href: '#home', role: 'tab', 'data-toggle': 'tab' },
+	                            '数据'
+	                        )
+	                    ),
+	                    React.createElement(
+	                        'li',
+	                        { role: 'presentation' },
+	                        React.createElement('a', { href: '#profile', role: 'tab', 'data-toggle': 'tab' })
+	                    )
+	                ),
+	                React.createElement(
+	                    'div',
+	                    { className: 'tab-content' },
+	                    React.createElement(
+	                        'div',
+	                        { role: 'tabpanel', className: 'tab-pane active', id: 'home' },
+	                        React.createElement('div', null)
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { role: 'tabpanel', className: 'tab-pane', id: 'profile' },
+	                        '...'
+	                    )
+	                )
 	            );
-
-	            result.push(item);
+	        } else {
+	            return React.createElement(
+	                'div',
+	                { className: 'loading' },
+	                '加载中...'
+	            );
 	        }
-	        return result;
-	    },
-
-	    render: function render() {
-
-	        return React.createElement(
-	            "div",
-	            { className: "site-list" },
-	            this.rendBody()
-	        );
 	    }
-	});
 
-/***/ },
-
-/***/ 678:
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(679);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(72)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./SiteList.css", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js!./SiteList.css");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-
-/***/ 679:
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(71)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "    .add-site {\n\n        border-bottom:1px solid #eaeaea;\n        padding: 0 0px 20px 0;\n\n    }\n\n    .add-site-button {\n\n    }\n\n    .site-list {\n        overflow: hidden;\n        display: block;\n        margin: 50px 0 16px 0px;\n        display: flex;\n        flex-direction: row;\n    }\n\n    #my-site-list {\n\n        display: flex;\n        flex-direction: row;\n        flex-wrap: wrap;\n        padding-bottom: 100px;\n    }\n\n\n    .site-list-wrap{\n        width: 100%;\n    }\n    .site-list .templ {\n        background:#ffffff;\n\n        width:540px;\n        margin-top: 20px;\n        margin-right: 30px;\n        height:206px;\n        display: flex;\n        flex-direction: row;\n        box-shadow: 0px 1px 4px 1px rgba(0,0,0,0.16);\n        position: relative;\n\n\n\n\n    }\n    .site-list .templ .bd {\n        background: url(\"/imgbrowser.png\") 0 0 no-repeat;\n        background:#ffffff;\n\n        width:236px;\n        height:206px;\n    }\n\n    .site-list .templ .des {\n        padding:15px 15px 15px 20px;\n        position: relative;\n        color: #666666;\n    }\n\n\n    .site-list .templ h3  {\n        family:MicrosoftYaHei;\n        font-size:12px;\n        color:#666666;\n        letter-spacing:0.99px;\n        text-align: center;\n        margin: 0;\n        display: inline-block;\n\n    }\n    .site-list .templ .status  {\n        padding: 1px 2px;\n        color: #fff;\n        border-radius: 2px;\n        background-color: #84C634;\n        font-size: 11px;\n        margin-left: 10px;\n\n    }\n\n    .site-list .templ h3  .edit-title  {\n        family:MicrosoftYaHei;\n\n        color:#666666;\n        letter-spacing:0.99px;\n        text-align: left;\n        font-size: 20px;\n    }\n\n\n    .site-list .templ  .url {\n        margin-top: 15px;\n\n    }\n\n    .site-list .templ  .url  a{\n        color: #00C4D8;\n    }\n\n    .site-list .templ  .action{\n        position: absolute;\n        bottom:20px;\n        left:20px;\n        width:300px;\n    }\n\n    .site-list .templ  .action a{\n        margin-right: 10px;\n    }\n\n    .site-list .templ  .visitors span{\n        color: #00C4D8;\n        font-size: 18px;\n        margin-left: 10px;\n\n    }\n\n    .site-list  .edit-title{\n        border: none;\n\n    }\n    .site-list  .edit-title:hover,.site-list  .edit-title:focus{\n        border:solid 1px #ccc;\n    }\n\n\n\n    .site-list .templ img {\n        width: 100%;\n    }\n\n    .site-list .templ .del-icon {\n        position: absolute;\n        top:10px;\n        right:10px;\n    }\n\n\n\n    .blank-tips .tips{\n        font-family:MicrosoftYaHei;\n        font-size:20px;\n        color:#cccccc;\n        letter-spacing:1.66px;\n        margin-bottom: 30px;\n    }\n\n    .blank-tips .btn{\n        margin-right: 30px;\n    }\n\n", ""]);
-
-	// exports
-
-
-/***/ },
-
-/***/ 680:
-/***/ function(module, exports) {
-
-	"use strict";
-
-	module.exports = React.createClass({
-	    displayName: "exports",
-
-	    getDefaultProps: function getDefaultProps() {
-	        return {
-	            value: "",
-	            className: "",
-	            placeHolder: "设置标题"
-	        };
-	    },
-	    getInitialState: function getInitialState() {
-	        return {
-	            contentEditable: false
-	        };
-	    },
-	    compontentDidMount: function compontentDidMount() {
-	        $(document).delegate(".edit-title", "change", function (ev) {
-	            var target = $(ev.target);
-	            var id = target.attr("data-siteid");
-	            var newValue = target.val();
-	            var value = target.attr("data-oldvalue");
-	            if (value !== newValue) {
-	                self.changeTitle(id, newValue, value, target);
-	            }
-	        });
-	    },
-	    toEditor: function toEditor() {
-	        this.setState({ contentEditable: true });
-	    },
-
-	    noEditor: function noEditor() {
-	        this.setState({ contentEditable: false });
-	    },
-
-	    change: function change() {
-	        var self = this;
-	        this.noEditor();
-	        if (this.props.onChange) {
-	            var value = $(this.refs["target"]).text();
-	            if (value !== this.props.value && value !== this.props.placeHolder) {
-	                this.props.onChange(value, this.props.value, function (success) {
-	                    if (!success) {
-	                        self.setValue({ value: this.props.value });
-	                    } else {
-	                        self.setValue({ value: value });
-	                    }
-	                });
-	            }
-	        }
-	    },
-
-	    render: function render() {
-
-	        return React.createElement(
-	            "span",
-	            { ref: "target", onMouseEnter: this.toEditor, onBlur: this.change, onClick: this.toEditor, contentEditable: this.state.contentEditable, className: this.props.className + " edit-title", type: "text" },
-	            this.props.value || this.props.placeHolder
-	        );
-	    }
 	});
 
 /***/ }

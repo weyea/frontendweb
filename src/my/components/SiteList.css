@@ -60,7 +60,7 @@
     }
 
 
-    .site-list .templ h3  {
+    .site-list .templ h3.title  {
         family:MicrosoftYaHei;
         font-size:12px;
         color:#666666;
@@ -149,5 +149,10 @@
 
     .blank-tips .btn{
         margin-right: 30px;
+    }
+
+    .share-popover{
+        top:20px;
+        left:23px
     }
 

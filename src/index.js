@@ -36,6 +36,7 @@ const rootRoute = {
     getChildRoutes(partialNextState, callback) {
       require.ensure([], function (require) {
         callback(null, [
+          require('./home'),
           require('./designer'),
           require('./user'),
           require('./template'),
@@ -46,18 +47,12 @@ const rootRoute = {
       })
     },
 
-    getIndexRoute(partialNextState, callback) {
-      require.ensure([], function (require) {
-        callback(null, {
-          component: require('./home/components'),
-        })
-      })
-    },
 
+    indexRoute: { onEnter: (nextState, replace) => replace('/home') },
     getComponents(nextState, callback) {
-    require.ensure([], function (require) {
-      callback(null, require('./App'))
-    })
+        require.ensure([], function (require) {
+          callback(null, require('./App'))
+        })
     }
   }
 

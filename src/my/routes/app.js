@@ -1,10 +1,19 @@
 module.exports = {
 
-    path: 'app/:id',
+    path: 'app',
 
-    getComponents(nextState, callback) {
-      require.ensure([], function (require) {
-        callback(null, require('../components/app'))
-      })
-    }
+    getChildRoutes(partialNextState, callback) {
+        require.ensure([], function (require) {
+            callback(null, [
+                require('./appDetail')
+            ])
+        })
+    },
+    getIndexRoute(partialNextState, callback) {
+        require.ensure([], function (require) {
+            callback(null, {
+                component: require('../components/SiteListPage'),
+            })
+        })
+    },
   }

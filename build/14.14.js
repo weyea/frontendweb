@@ -1,4 +1,4 @@
-webpackJsonp([14,19],{
+webpackJsonp([14,21],{
 
 /***/ 71:
 /***/ function(module, exports) {
@@ -282,7 +282,7 @@ webpackJsonp([14,19],{
 
 /***/ },
 
-/***/ 641:
+/***/ 226:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -494,7 +494,7 @@ webpackJsonp([14,19],{
 
 /***/ },
 
-/***/ 665:
+/***/ 687:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -505,8 +505,8 @@ webpackJsonp([14,19],{
 
 	var _reactRouter = __webpack_require__(120);
 
-	var login = __webpack_require__(223);
-	__webpack_require__(666);
+	var login = __webpack_require__(225);
+	__webpack_require__(688);
 
 	exports.default = React.createClass({
 	    displayName: "BackHeader",
@@ -662,13 +662,13 @@ webpackJsonp([14,19],{
 
 /***/ },
 
-/***/ 666:
+/***/ 688:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(667);
+	var content = __webpack_require__(689);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(72)(content, {});
@@ -689,7 +689,7 @@ webpackJsonp([14,19],{
 
 /***/ },
 
-/***/ 667:
+/***/ 689:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(71)();
@@ -704,13 +704,13 @@ webpackJsonp([14,19],{
 
 /***/ },
 
-/***/ 668:
+/***/ 690:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(669);
+	var content = __webpack_require__(691);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(72)(content, {});
@@ -731,7 +731,7 @@ webpackJsonp([14,19],{
 
 /***/ },
 
-/***/ 669:
+/***/ 691:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(71)();
@@ -746,13 +746,73 @@ webpackJsonp([14,19],{
 
 /***/ },
 
-/***/ 677:
+/***/ 694:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _BackHeader = __webpack_require__(687);
+
+	var _BackHeader2 = _interopRequireDefault(_BackHeader);
+
+	var _Footer = __webpack_require__(226);
+
+	var _Footer2 = _interopRequireDefault(_Footer);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var SiteList = __webpack_require__(695);
+	__webpack_require__(690);
+	module.exports = React.createClass({
+	  displayName: 'exports',
+
+
+	  getInitialState: function getInitialState() {
+	    return {};
+	  },
+
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      { className: 'my' },
+	      React.createElement(_BackHeader2.default, { active: 'my' }),
+	      React.createElement(SiteList, null),
+	      React.createElement(_Footer2.default, null)
+	    );
+	  }
+
+	});
+
+/***/ },
+
+/***/ 695:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	__webpack_require__(678);
-	var EditableSpan = __webpack_require__(680);
+	var ListPage = __webpack_require__(696);
+	module.exports = React.createClass({
+	    displayName: "exports",
+
+
+	    render: function render() {
+	        return React.createElement(ListPage, { type: "app" });
+	    }
+
+	});
+
+/***/ },
+
+/***/ 696:
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	__webpack_require__(697);
+	var EditableSpan = __webpack_require__(699);
+	var SharePopover = __webpack_require__(700);
+	var WeixinPop = __webpack_require__(702);
+	console.log(SharePopover);
 	module.exports = React.createClass({
 	    displayName: "exports",
 
@@ -805,7 +865,7 @@ webpackJsonp([14,19],{
 	    flush: function flush() {
 	        var self = this;
 	        if (debug) {
-	            self.setState({ siteList: [{ id: 123, title: "我的新站点" }] });
+	            self.setState({ siteList: [{ id: 123, title: "我的新站点", subdomain: { name: 123 } }] });
 	        } else {
 	            $.get("/json/my/" + this.props.type, function (data) {
 	                if (data.needLogin) {
@@ -879,7 +939,7 @@ webpackJsonp([14,19],{
 	                    { className: "container" },
 	                    React.createElement(
 	                        "a",
-	                        { className: "btn btn-green add-site-button", href: "/template/market/all" },
+	                        { className: "btn btn-green add-site-button large", href: "/template/market/all" },
 	                        "创建新站点"
 	                    )
 	                )
@@ -982,6 +1042,12 @@ webpackJsonp([14,19],{
 	        }
 	    },
 
+	    showTips: function showTips(ev) {
+	        var target = $(ev.target);
+	        var next = target.next();
+	        next.show();
+	    },
+
 	    renderItem: function renderItem() {
 	        var self = this;
 	        var result = [];
@@ -1015,7 +1081,7 @@ webpackJsonp([14,19],{
 	                    { className: "des" },
 	                    React.createElement(
 	                        "h3",
-	                        null,
+	                        { className: "title" },
 	                        React.createElement(EditableSpan, { ref: "edit-title", onChange: fun, value: site.title }),
 	                        React.createElement(
 	                            "span",
@@ -1036,9 +1102,10 @@ webpackJsonp([14,19],{
 	                        this.renderAction(site),
 	                        React.createElement(
 	                            "a",
-	                            { className: "share icon" },
+	                            { className: "share-" + site.id + " icon" },
 	                            "分享"
-	                        )
+	                        ),
+	                        React.createElement(SharePopover, { url: "//" + site.subdomain && site.subdomain.name + ".dotlinkface.com", toggleSelector: ".share-" + site.id })
 	                    )
 	                ),
 	                React.createElement("span", { onClick: del, className: "del-icon fa fa-remove" })
@@ -1054,20 +1121,22 @@ webpackJsonp([14,19],{
 	        return React.createElement(
 	            "div",
 	            { className: "site-list" },
-	            this.rendBody()
+	            this.rendBody(),
+	            React.createElement(WeixinPop, null)
 	        );
 	    }
+
 	});
 
 /***/ },
 
-/***/ 678:
+/***/ 697:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(679);
+	var content = __webpack_require__(698);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(72)(content, {});
@@ -1088,7 +1157,7 @@ webpackJsonp([14,19],{
 
 /***/ },
 
-/***/ 679:
+/***/ 698:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(71)();
@@ -1096,14 +1165,14 @@ webpackJsonp([14,19],{
 
 
 	// module
-	exports.push([module.id, "    .add-site {\n\n        border-bottom:1px solid #eaeaea;\n        padding: 0 0px 20px 0;\n\n    }\n\n    .add-site-button {\n\n    }\n\n    .site-list {\n        overflow: hidden;\n        display: block;\n        margin: 50px 0 16px 0px;\n        display: flex;\n        flex-direction: row;\n    }\n\n    #my-site-list {\n\n        display: flex;\n        flex-direction: row;\n        flex-wrap: wrap;\n        padding-bottom: 100px;\n    }\n\n\n    .site-list-wrap{\n        width: 100%;\n    }\n    .site-list .templ {\n        background:#ffffff;\n\n        width:540px;\n        margin-top: 20px;\n        margin-right: 30px;\n        height:206px;\n        display: flex;\n        flex-direction: row;\n        box-shadow: 0px 1px 4px 1px rgba(0,0,0,0.16);\n        position: relative;\n\n\n\n\n    }\n    .site-list .templ .bd {\n        background: url(\"/imgbrowser.png\") 0 0 no-repeat;\n        background:#ffffff;\n\n        width:236px;\n        height:206px;\n    }\n\n    .site-list .templ .des {\n        padding:15px 15px 15px 20px;\n        position: relative;\n        color: #666666;\n    }\n\n\n    .site-list .templ h3  {\n        family:MicrosoftYaHei;\n        font-size:12px;\n        color:#666666;\n        letter-spacing:0.99px;\n        text-align: center;\n        margin: 0;\n        display: inline-block;\n\n    }\n    .site-list .templ .status  {\n        padding: 1px 2px;\n        color: #fff;\n        border-radius: 2px;\n        background-color: #84C634;\n        font-size: 11px;\n        margin-left: 10px;\n\n    }\n\n    .site-list .templ h3  .edit-title  {\n        family:MicrosoftYaHei;\n\n        color:#666666;\n        letter-spacing:0.99px;\n        text-align: left;\n        font-size: 20px;\n    }\n\n\n    .site-list .templ  .url {\n        margin-top: 15px;\n\n    }\n\n    .site-list .templ  .url  a{\n        color: #00C4D8;\n    }\n\n    .site-list .templ  .action{\n        position: absolute;\n        bottom:20px;\n        left:20px;\n        width:300px;\n    }\n\n    .site-list .templ  .action a{\n        margin-right: 10px;\n    }\n\n    .site-list .templ  .visitors span{\n        color: #00C4D8;\n        font-size: 18px;\n        margin-left: 10px;\n\n    }\n\n    .site-list  .edit-title{\n        border: none;\n\n    }\n    .site-list  .edit-title:hover,.site-list  .edit-title:focus{\n        border:solid 1px #ccc;\n    }\n\n\n\n    .site-list .templ img {\n        width: 100%;\n    }\n\n    .site-list .templ .del-icon {\n        position: absolute;\n        top:10px;\n        right:10px;\n    }\n\n\n\n    .blank-tips .tips{\n        font-family:MicrosoftYaHei;\n        font-size:20px;\n        color:#cccccc;\n        letter-spacing:1.66px;\n        margin-bottom: 30px;\n    }\n\n    .blank-tips .btn{\n        margin-right: 30px;\n    }\n\n", ""]);
+	exports.push([module.id, "    .add-site {\n\n        border-bottom:1px solid #eaeaea;\n        padding: 0 0px 20px 0;\n\n    }\n\n    .add-site-button {\n\n    }\n\n    .site-list {\n        overflow: hidden;\n        display: block;\n        margin: 50px 0 16px 0px;\n        display: flex;\n        flex-direction: row;\n    }\n\n    #my-site-list {\n\n        display: flex;\n        flex-direction: row;\n        flex-wrap: wrap;\n        padding-bottom: 100px;\n    }\n\n\n    .site-list-wrap{\n        width: 100%;\n    }\n    .site-list .templ {\n        background:#ffffff;\n\n        width:540px;\n        margin-top: 20px;\n        margin-right: 30px;\n        height:206px;\n        display: flex;\n        flex-direction: row;\n        box-shadow: 0px 1px 4px 1px rgba(0,0,0,0.16);\n        position: relative;\n\n\n\n\n    }\n    .site-list .templ .bd {\n        background: url(\"/imgbrowser.png\") 0 0 no-repeat;\n        background:#ffffff;\n\n        width:236px;\n        height:206px;\n    }\n\n    .site-list .templ .des {\n        padding:15px 15px 15px 20px;\n        position: relative;\n        color: #666666;\n    }\n\n\n    .site-list .templ h3.title  {\n        family:MicrosoftYaHei;\n        font-size:12px;\n        color:#666666;\n        letter-spacing:0.99px;\n        text-align: center;\n        margin: 0;\n        display: inline-block;\n\n    }\n    .site-list .templ .status  {\n        padding: 1px 2px;\n        color: #fff;\n        border-radius: 2px;\n        background-color: #84C634;\n        font-size: 11px;\n        margin-left: 10px;\n\n    }\n\n    .site-list .templ h3  .edit-title  {\n        family:MicrosoftYaHei;\n\n        color:#666666;\n        letter-spacing:0.99px;\n        text-align: left;\n        font-size: 20px;\n    }\n\n\n    .site-list .templ  .url {\n        margin-top: 15px;\n\n    }\n\n    .site-list .templ  .url  a{\n        color: #00C4D8;\n    }\n\n    .site-list .templ  .action{\n        position: absolute;\n        bottom:20px;\n        left:20px;\n        width:300px;\n    }\n\n    .site-list .templ  .action a{\n        margin-right: 10px;\n    }\n\n    .site-list .templ  .visitors span{\n        color: #00C4D8;\n        font-size: 18px;\n        margin-left: 10px;\n\n    }\n\n    .site-list  .edit-title{\n        border: none;\n\n    }\n    .site-list  .edit-title:hover,.site-list  .edit-title:focus{\n        border:solid 1px #ccc;\n    }\n\n\n\n    .site-list .templ img {\n        width: 100%;\n    }\n\n    .site-list .templ .del-icon {\n        position: absolute;\n        top:10px;\n        right:10px;\n    }\n\n\n\n    .blank-tips .tips{\n        font-family:MicrosoftYaHei;\n        font-size:20px;\n        color:#cccccc;\n        letter-spacing:1.66px;\n        margin-bottom: 30px;\n    }\n\n    .blank-tips .btn{\n        margin-right: 30px;\n    }\n\n    .share-popover{\n        top:20px;\n        left:23px\n    }\n\n", ""]);
 
 	// exports
 
 
 /***/ },
 
-/***/ 680:
+/***/ 699:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1171,60 +1240,308 @@ webpackJsonp([14,19],{
 
 /***/ },
 
-/***/ 681:
+/***/ 700:
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
-	var _BackHeader = __webpack_require__(665);
-
-	var _BackHeader2 = _interopRequireDefault(_BackHeader);
-
-	var _Footer = __webpack_require__(641);
-
-	var _Footer2 = _interopRequireDefault(_Footer);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var SiteList = __webpack_require__(682);
-	__webpack_require__(668);
+	var Popover = __webpack_require__(701);
 	module.exports = React.createClass({
-	  displayName: 'exports',
+	    displayName: "exports",
 
 
-	  getInitialState: function getInitialState() {
-	    return {};
-	  },
+	    getDefaultProps: function getDefaultProps() {
+	        return {
+	            toggleSelector: "popover",
+	            url: ""
+	        };
+	    },
 
-	  render: function render() {
-	    return React.createElement(
-	      'div',
-	      { className: 'my' },
-	      React.createElement(_BackHeader2.default, { active: 'my' }),
-	      React.createElement(SiteList, null),
-	      React.createElement(_Footer2.default, null)
-	    );
-	  }
+	    getInitialState: function getInitialState() {
+	        return {};
+	    },
+
+	    componentDidMount: function componentDidMount() {},
+
+	    hide: function hide() {
+	        this.refs["pop"].hide();
+	    },
+
+	    render: function render() {
+	        return React.createElement(
+	            Popover,
+	            { ref: "pop", toggleSelector: this.props.toggleSelector },
+	            React.createElement(
+	                "a",
+	                { onClick: this.showShareWeixin, className: "weixin" },
+	                "微信"
+	            ),
+	            React.createElement(
+	                "a",
+	                { href: "http://service.weibo.com/share/share.php?title=我的新网站上线了&url=" + this.props.url + "&source=bookmark#_loginLayer_1502947558461", className: "weibo" },
+	                "微博"
+	            )
+	        );
+	    },
+	    showShareWeixin: function showShareWeixin() {
+	        console.log("gi");
+	        if (window.sharePop) {
+	            window.sharePop.show(this.props.url);
+	        }
+	    },
+	    showWeixinShare: function showWeixinShare() {
+	        return React.createElement(
+	            "div",
+	            { className: "modal fade modal-weinxin-share", tabindex: "-1", role: "dialog" },
+	            React.createElement(
+	                "div",
+	                { className: "modal-dialog", role: "document" },
+	                React.createElement(
+	                    "div",
+	                    { className: "modal-content" },
+	                    React.createElement(
+	                        "div",
+	                        { className: "modal-header" },
+	                        React.createElement(
+	                            "button",
+	                            { type: "button", className: "close", "data-dismiss": "modal", "aria-label": "Close" },
+	                            React.createElement(
+	                                "span",
+	                                { "aria-hidden": "true" },
+	                                "×"
+	                            )
+	                        ),
+	                        React.createElement(
+	                            "h4",
+	                            { className: "modal-title" },
+	                            "Modal title"
+	                        )
+	                    ),
+	                    React.createElement(
+	                        "div",
+	                        { className: "modal-body" },
+	                        React.createElement("div", { id: "qr" })
+	                    ),
+	                    React.createElement(
+	                        "div",
+	                        { className: "modal-footer" },
+	                        React.createElement(
+	                            "button",
+	                            { type: "button", className: "btn btn-default", "data-dismiss": "modal" },
+	                            "Close"
+	                        ),
+	                        React.createElement(
+	                            "button",
+	                            { type: "button", className: "btn btn-primary" },
+	                            "Save changes"
+	                        )
+	                    )
+	                )
+	            )
+	        );
+	    }
+	});
+
+/***/ },
+
+/***/ 701:
+/***/ function(module, exports) {
+
+	"use strict";
+
+	module.exports = React.createClass({
+	    displayName: "exports",
+
+
+	    getDefaultProps: function getDefaultProps() {
+	        return {
+	            toggleSelector: "popover"
+
+	        };
+	    },
+
+	    getInitialState: function getInitialState() {
+	        return {
+	            show: false
+	        };
+	    },
+
+	    componentDidMount: function componentDidMount() {
+	        var self = this;
+
+	        $(document).on("click", function (ev) {
+
+	            var target = $(ev.target);
+
+	            if (!target.closest(self.props.toggleSelector).length && !target.closest(".popover").length) {
+	                self.setState({ show: false });
+	            }
+	        });
+
+	        $(document).delegate(this.props.toggleSelector, "click", function (ev) {
+
+	            self.setState({ show: true });
+	        });
+	    },
+	    hide: function hide() {
+	        self.setState({ show: false });
+	    },
+
+	    render: function render() {
+	        return React.createElement(
+	            "div",
+	            { style: { display: this.state.show ? "block" : "none" }, className: "popover bottom share-popover" },
+	            React.createElement("div", { className: "arrow" }),
+	            React.createElement(
+	                "h3",
+	                { className: "popover-title" },
+	                "分享"
+	            ),
+	            React.createElement(
+	                "div",
+	                { className: "popover-content" },
+	                this.props.children
+	            )
+	        );
+	    }
+	});
+
+/***/ },
+
+/***/ 702:
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	__webpack_require__(703);
+	module.exports = React.createClass({
+	    displayName: "exports",
+
+
+	    getDefaultProps: function getDefaultProps() {
+	        return {
+	            toggleSelector: "popover",
+	            url: ""
+	        };
+	    },
+
+	    getInitialState: function getInitialState() {
+	        return {};
+	    },
+
+	    componentDidMount: function componentDidMount() {
+	        window.sharePop = this;
+	    },
+
+	    hide: function hide() {},
+
+	    show: function show(url) {
+	        $("#qr").html("");
+	        $("#qr").qrcode({ width: 200, height: 200, text: url });
+	        $(".modal-weinxin-share").modal("show");
+	    },
+
+	    showWeixin: function showWeixin(url) {},
+
+	    render: function render() {
+	        return React.createElement(
+	            "div",
+	            { className: "modal fade modal-weinxin-share", tabindex: "-1", role: "dialog" },
+	            React.createElement(
+	                "div",
+	                { className: "modal-dialog", role: "document" },
+	                React.createElement(
+	                    "div",
+	                    { className: "modal-content" },
+	                    React.createElement(
+	                        "div",
+	                        { className: "modal-header" },
+	                        React.createElement(
+	                            "button",
+	                            { type: "button", className: "close", "data-dismiss": "modal", "aria-label": "Close" },
+	                            React.createElement(
+	                                "span",
+	                                { "aria-hidden": "true" },
+	                                "×"
+	                            )
+	                        ),
+	                        React.createElement(
+	                            "h4",
+	                            { className: "modal-title" },
+	                            "微信分享"
+	                        )
+	                    ),
+	                    React.createElement(
+	                        "div",
+	                        { className: "modal-body" },
+	                        React.createElement(
+	                            "div",
+	                            { className: "share-body" },
+	                            React.createElement("div", { id: "qr" }),
+	                            React.createElement(
+	                                "div",
+	                                null,
+	                                "打开微信，点击底部的“发现”，使用 “扫一扫” 即可将网页分享到我的朋友圈。"
+	                            )
+	                        )
+	                    ),
+	                    React.createElement(
+	                        "div",
+	                        { className: "modal-footer" },
+	                        React.createElement(
+	                            "button",
+	                            { type: "button", className: "btn btn-default", "data-dismiss": "modal" },
+	                            "关闭"
+	                        )
+	                    )
+	                )
+	            )
+	        );
+	    }
 
 	});
 
 /***/ },
 
-/***/ 682:
+/***/ 703:
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	// style-loader: Adds some css to the DOM by adding a <style> tag
 
-	var ListPage = __webpack_require__(677);
-	module.exports = React.createClass({
-	    displayName: "exports",
+	// load the styles
+	var content = __webpack_require__(704);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(72)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./weixinPop.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./weixinPop.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+
+/***/ 704:
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(71)();
+	// imports
 
 
-	    render: function render() {
-	        return React.createElement(ListPage, { type: "app" });
-	    }
+	// module
+	exports.push([module.id, ".share-body{\n    display: flex;\n    flex-direction: row;\n\n}\n\n.share-body #qr{\n    margin-right: 20px;\n}\n\n\n.modal-weinxin-share{\n    z-index: 9999;\n}", ""]);
 
-	});
+	// exports
+
 
 /***/ }
 

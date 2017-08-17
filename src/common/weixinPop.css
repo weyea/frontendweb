@@ -1,0 +1,14 @@
+.share-body{
+    display: flex;
+    flex-direction: row;
+
+}
+
+.share-body #qr{
+    margin-right: 20px;
+}
+
+
+.modal-weinxin-share{
+    z-index: 9999;
+}

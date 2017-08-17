@@ -10,17 +10,18 @@ module.exports  = {
             require('./routes/app'),
             //require('./routes/preview'),
             require('./routes/template'),
-            require('./routes/templateDetail')
+            // require('./routes/templateDetail')
         ])
       })
     },
     onEnter:login.checkLoginRouter,
-    getIndexRoute(partialNextState, callback) {
-      require.ensure([], function (require) {
-        callback(null, {
-          component: require('./components/SiteListPage'),
-        })
-      })
-    }
+    indexRoute: { onEnter: (nextState, replace) => replace('/my/app') },
+    // getIndexRoute(partialNextState, callback) {
+    //   require.ensure([], function (require) {
+    //     callback(null, {
+    //       component: require('./components/SiteListPage'),
+    //     })
+    //   })
+    // }
 
   }

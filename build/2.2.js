@@ -1,25 +1,24 @@
-webpackJsonp([2,19],{
+webpackJsonp([2,21],{
 
 /***/ 222:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var login = __webpack_require__(223);
 	module.exports = {
 
-	  path: 'designer/:type/:appId',
-	  onEnter: login.checkLoginRouter,
-	  getComponents: function getComponents(nextState, callback) {
-	    __webpack_require__.e/* nsure */(3, function (require) {
-	      callback(null, __webpack_require__(224));
-	    });
-	  }
+	    path: '/home',
+
+	    getComponents: function getComponents(nextState, callback) {
+	        __webpack_require__.e/* nsure */(3, function (require) {
+	            callback(null, __webpack_require__(223));
+	        });
+	    }
 	};
 
 /***/ },
 
-/***/ 223:
+/***/ 225:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -153,7 +152,26 @@ webpackJsonp([2,19],{
 
 /***/ },
 
-/***/ 637:
+/***/ 251:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var login = __webpack_require__(225);
+	module.exports = {
+
+	  path: 'designer/:type/:appId',
+	  onEnter: login.checkLoginRouter,
+	  getComponents: function getComponents(nextState, callback) {
+	    __webpack_require__.e/* nsure */(4, function (require) {
+	      callback(null, __webpack_require__(252));
+	    });
+	  }
+	};
+
+/***/ },
+
+/***/ 665:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -162,15 +180,15 @@ webpackJsonp([2,19],{
 
 	  path: 'user',
 	  getChildRoutes: function getChildRoutes(partialNextState, callback) {
-	    __webpack_require__.e/* nsure */(4, function (require) {
-	      callback(null, [__webpack_require__(638), __webpack_require__(644)]);
+	    __webpack_require__.e/* nsure */(5, function (require) {
+	      callback(null, [__webpack_require__(666), __webpack_require__(670)]);
 	    });
 	  }
 	};
 
 /***/ },
 
-/***/ 652:
+/***/ 678:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -179,8 +197,8 @@ webpackJsonp([2,19],{
 
 	  path: 'template',
 	  getChildRoutes: function getChildRoutes(partialNextState, callback) {
-	    __webpack_require__.e/* nsure */(7, function (require) {
-	      callback(null, [__webpack_require__(653), __webpack_require__(655)]);
+	    __webpack_require__.e/* nsure */(8, function (require) {
+	      callback(null, [__webpack_require__(679), __webpack_require__(681)]);
 	    });
 	  },
 
@@ -191,37 +209,33 @@ webpackJsonp([2,19],{
 
 /***/ },
 
-/***/ 662:
+/***/ 683:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var login = __webpack_require__(223);
+	var login = __webpack_require__(225);
 
 	module.exports = {
 
 	  path: 'my',
 	  getChildRoutes: function getChildRoutes(partialNextState, callback) {
-	    __webpack_require__.e/* nsure */(10, function (require) {
-	      callback(null, [__webpack_require__(663),
+	    __webpack_require__.e/* nsure */(11, function (require) {
+	      callback(null, [__webpack_require__(684),
 	      //require('./routes/preview'),
-	      __webpack_require__(672), __webpack_require__(673)]);
+	      __webpack_require__(705)]);
 	    });
 	  },
 
 	  onEnter: login.checkLoginRouter,
-	  getIndexRoute: function getIndexRoute(partialNextState, callback) {
-	    __webpack_require__.e/* nsure */(14, function (require) {
-	      callback(null, {
-	        component: __webpack_require__(681)
-	      });
-	    });
-	  }
+	  indexRoute: { onEnter: function onEnter(nextState, replace) {
+	      return replace('/my/app');
+	    } }
 	};
 
 /***/ },
 
-/***/ 683:
+/***/ 710:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -231,15 +245,15 @@ webpackJsonp([2,19],{
 	  path: 'preview/template/:id',
 
 	  getComponents: function getComponents(nextState, callback) {
-	    __webpack_require__.e/* nsure */(15, function (require) {
-	      callback(null, __webpack_require__(684));
+	    __webpack_require__.e/* nsure */(18, function (require) {
+	      callback(null, __webpack_require__(711));
 	    });
 	  }
 	};
 
 /***/ },
 
-/***/ 690:
+/***/ 717:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -249,8 +263,8 @@ webpackJsonp([2,19],{
 	  path: '*',
 
 	  getComponents: function getComponents(nextState, callback) {
-	    __webpack_require__.e/* nsure */(16, function (require) {
-	      callback(null, __webpack_require__(691));
+	    __webpack_require__.e/* nsure */(19, function (require) {
+	      callback(null, __webpack_require__(718));
 	    });
 	  }
 	};

@@ -1,6 +1,9 @@
 
 require("./SiteList.css")
 var EditableSpan = require("../../common/EditableSpan")
+var SharePopover = require("../../common/sharePopover")
+var WeixinPop = require("../../common/weixinPop")
+console.log(SharePopover);
 module.exports =  React.createClass({
   getInitialState:function(){
     return {siteList:[]};
@@ -55,7 +58,7 @@ module.exports =  React.createClass({
   flush: function (){
       var self = this;
       if(debug){
-          self.setState({siteList:[{id:123,title:"我的新站点"}]})
+          self.setState({siteList:[{id:123,title:"我的新站点",subdomain:{name:123}}]})
       }
       else {
           $.get("/json/my/"+this.props.type, function (data){
@@ -102,7 +105,7 @@ module.exports =  React.createClass({
         return (<div className="site-list-wrap">
                 <div className="add-site">
                     <div className="container">
-                        <a className="btn btn-green add-site-button" href="/template/market/all">创建新站点</a>
+                        <a className="btn btn-green add-site-button large" href="/template/market/all">创建新站点</a>
                     </div>
                 </div>
 
@@ -181,6 +184,12 @@ module.exports =  React.createClass({
         }
     },
 
+    showTips:function(ev){
+        var target = $(ev.target);
+        var next = target.next();
+        next.show();
+    },
+
   renderItem:function(){
         var self =this;
     var result = []
@@ -203,7 +212,7 @@ module.exports =  React.createClass({
                 <a  href={"/my/"+this.props.type+"/"+site.id}><img src={site.logo||window.rootPath+"img/template_bg.png"}/></a>
             </div>
             <div className="des">
-                <h3><EditableSpan ref="edit-title" onChange = {fun} value={site.title}></EditableSpan>
+                <h3 className="title"><EditableSpan ref="edit-title" onChange = {fun} value={site.title}></EditableSpan>
                     {/*<span  contentEditable="true"  data-siteid = {site.id} data-oldvalue = {site.title}   className="edit-title" type ="text"  placeholder ={site.title}   >{site.title} </span> */}
                     <span className="status">{site.isPublish?"已发布": "未发布"}</span></h3>
                 {this.renderUrl(site)}
@@ -212,11 +221,11 @@ module.exports =  React.createClass({
                     <a  target ="_blank"className="edit btn btn-green " href={"/designer/"+this.props.type+"/"+site.id}>编辑</a>
                     {this.renderAction(site)}
                     {/*<a className="data icon">数据</a>*/}
-                    <a className="share icon">分享</a>
+                    <a  className={"share-"+site.id +" icon"}>分享</a>
+                    <SharePopover url={"//"+site.subdomain&&site.subdomain.name+".dotlinkface.com"} toggleSelector = {".share-"+site.id}></SharePopover>
                 </div>
             </div>
             <span onClick={del} className="del-icon fa fa-remove"></span>
-
         </div>
       );
 
@@ -231,9 +240,12 @@ module.exports =  React.createClass({
     return (
       <div className = "site-list">
           {this.rendBody()}
+          <WeixinPop></WeixinPop>
       </div>
+
 
 
     );
   }
+
 });

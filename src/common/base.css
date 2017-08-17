@@ -401,6 +401,9 @@ footer section:last-child p {
     padding: 3px 16px;
     font-size: 12px;
 }
+.btn-green.large {
+    padding: 6px 16px;
+}
 
 .btn-green-border,.btn-green-border:hover{
     border:solid 1px  #00c4d8;
