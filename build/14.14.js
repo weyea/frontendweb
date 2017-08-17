@@ -1064,6 +1064,12 @@ webpackJsonp([14,21],{
 	                    self.del(id);
 	                };
 	            }(site.id);
+	            if (this.props.type == "app") {
+	                var url = "http://" + site.subdomain && site.subdomain.name + ".dotlinkface.com";
+	            } else {
+	                var url = "http://www.dotlinkface.com/preview/template/" + site.id;
+	            }
+
 	            var item = React.createElement(
 	                "div",
 	                { className: "templ" },
@@ -1105,7 +1111,7 @@ webpackJsonp([14,21],{
 	                            { className: "share-" + site.id + " icon" },
 	                            "分享"
 	                        ),
-	                        React.createElement(SharePopover, { url: "//" + site.subdomain && site.subdomain.name + ".dotlinkface.com", toggleSelector: ".share-" + site.id })
+	                        React.createElement(SharePopover, { url: url, type: this.props.type, toggleSelector: ".share-" + site.id })
 	                    )
 	                ),
 	                React.createElement("span", { onClick: del, className: "del-icon fa fa-remove" })
