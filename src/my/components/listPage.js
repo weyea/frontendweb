@@ -206,6 +206,13 @@ module.exports =  React.createClass({
                 self.del(id)
             }
         })(site.id);
+        if(this.props.type == "app"){
+            var url = "http://"+site.subdomain&&site.subdomain.name+".dotlinkface.com"
+        }
+        else{
+          var  url = "http://www.dotlinkface.com/preview/template/"+site.id
+        }
+
       var item =(
         <div className="templ">
             <div className="bd">
@@ -222,7 +229,7 @@ module.exports =  React.createClass({
                     {this.renderAction(site)}
                     {/*<a className="data icon">数据</a>*/}
                     <a  className={"share-"+site.id +" icon"}>分享</a>
-                    <SharePopover url={"//"+site.subdomain&&site.subdomain.name+".dotlinkface.com"} toggleSelector = {".share-"+site.id}></SharePopover>
+                    <SharePopover url={url} type ={this.props.type} toggleSelector = {".share-"+site.id}></SharePopover>
                 </div>
             </div>
             <span onClick={del} className="del-icon fa fa-remove"></span>
