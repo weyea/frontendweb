@@ -5133,6 +5133,7 @@ webpackJsonp([4,21],[
 	    } else {
 	      url = "/designer/source/" + this.props.params.type + "/" + this.props.params.appId;
 	    }
+
 	    $.get("/json/" + this.props.params.type + "/" + this.props.params.appId, function (result) {
 	      designer.configs.templateUrl = url;
 	      designer.configs.serverData = result;
