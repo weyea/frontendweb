@@ -5139,7 +5139,7 @@ webpackJsonp([4,21],[
 	      designer.configs.id = _this.props.params.appId;
 	      designer.configs.type = _this.props.params.type;
 	      designer.configs.saveUrl = "/json/designer/" + _this.props.params.type + "/" + _this.props.params.appId;
-	      designer.configs.publishUrl = "/json/app/" + _this.props.params.appId + "/publish";
+	      designer.configs.publishUrl = "/json/" + _this.props.params.type + "/" + _this.props.params.appId + "/publish";
 	      designer.configs.captureUrl = "/json/designer/capture/" + _this.props.params.type + "/" + _this.props.params.appId;
 	      designer.configs.uploadMaterial = "/json/material";
 	      designer.configs.getMaterial = "/json/material";
