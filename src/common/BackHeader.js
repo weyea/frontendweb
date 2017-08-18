@@ -45,7 +45,7 @@ export default  React.createClass({
         var result = [];
         var user = login.getUser();
         var items = {
-            "my":<Link activeClassName="active" className="my" to="/my">我的站点</Link>,
+            "my":<Link activeClassName="active" className="my" to="/my/app">我的站点</Link>,
             // "favarite":<Link activeClassName="active" className="favarite" to="/my/favarite">我的收藏</Link>,
             "template":<Link activeClassName="active" className="template" to="/my/template">我的模板</Link>,
             "account":<Link activeClassName="active" className="account" to="/my/account">账号中心</Link>,

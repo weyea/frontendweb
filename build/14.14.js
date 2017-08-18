@@ -582,7 +582,7 @@ webpackJsonp([14,21],{
 	        var items = {
 	            "my": React.createElement(
 	                _reactRouter.Link,
-	                { activeClassName: "active", className: "my", to: "/my" },
+	                { activeClassName: "active", className: "my", to: "/my/app" },
 	                "我的站点"
 	            ),
 	            // "favarite":<Link activeClassName="active" className="favarite" to="/my/favarite">我的收藏</Link>,
