@@ -178,11 +178,11 @@ module.exports =  React.createClass({
         var self = this;
         $.post("/json/"+this.props.type+"/"+id+"/unpublish",function(result){
             if(result.success){
-                alert("发布成功")
+                alert("下线成功")
                 self.flush();
             }
             else{
-                alert("发布失败")
+                alert("下线失败")
             }
         })
     },
