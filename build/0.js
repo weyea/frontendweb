@@ -12,7 +12,7 @@ module.exports = {
 
     getComponents: function getComponents(nextState, callback) {
         __webpack_require__.e/* require.ensure */(4).then((function (require) {
-            callback(null, __webpack_require__(513));
+            callback(null, __webpack_require__(531));
         }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
     }
 };
@@ -25,14 +25,14 @@ module.exports = {
 "use strict";
 
 
-var login = __webpack_require__(353);
+var login = __webpack_require__(354);
 module.exports = {
 
   path: 'designer/:type/:appId',
   onEnter: login.checkLoginRouter,
   getComponents: function getComponents(nextState, callback) {
     __webpack_require__.e/* require.ensure */(3).then((function (require) {
-      callback(null, __webpack_require__(533));
+      callback(null, __webpack_require__(551));
     }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
   }
 };
@@ -50,7 +50,7 @@ module.exports = {
   path: 'user',
   getChildRoutes: function getChildRoutes(partialNextState, callback) {
     __webpack_require__.e/* require.ensure */(14).then((function (require) {
-      callback(null, [__webpack_require__(855), __webpack_require__(859)]);
+      callback(null, [__webpack_require__(889), __webpack_require__(893)]);
     }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
   }
 };
@@ -68,7 +68,7 @@ module.exports = {
   path: 'template',
   getChildRoutes: function getChildRoutes(partialNextState, callback) {
     __webpack_require__.e/* require.ensure */(15).then((function (require) {
-      callback(null, [__webpack_require__(867), __webpack_require__(869)]);
+      callback(null, [__webpack_require__(901), __webpack_require__(903)]);
     }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
   },
 
@@ -85,16 +85,16 @@ module.exports = {
 "use strict";
 
 
-var login = __webpack_require__(353);
+var login = __webpack_require__(354);
 
 module.exports = {
 
   path: 'my',
   getChildRoutes: function getChildRoutes(partialNextState, callback) {
     __webpack_require__.e/* require.ensure */(16).then((function (require) {
-      callback(null, [__webpack_require__(870),
+      callback(null, [__webpack_require__(904),
       //require('./routes/preview'),
-      __webpack_require__(875)]
+      __webpack_require__(909)]
       // require('./routes/templateDetail')
       );
     }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
@@ -128,7 +128,7 @@ module.exports = {
 
   getComponents: function getComponents(nextState, callback) {
     __webpack_require__.e/* require.ensure */(10).then((function (require) {
-      callback(null, __webpack_require__(880));
+      callback(null, __webpack_require__(914));
     }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
   }
 };
@@ -147,14 +147,14 @@ module.exports = {
 
   getComponents: function getComponents(nextState, callback) {
     __webpack_require__.e/* require.ensure */(12).then((function (require) {
-      callback(null, __webpack_require__(886));
+      callback(null, __webpack_require__(920));
     }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
   }
 };
 
 /***/ }),
 
-/***/ 353:
+/***/ 354:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

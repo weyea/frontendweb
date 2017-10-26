@@ -31,16 +31,15 @@
     "webpack-merge": "^0.1.1"
   },
   "dependencies": {
-
+    "app": "file:///Users/zq/workspace/github/dotlinkface/app",
     "blueimp-file-upload": "^9.14.1",
-    "designer": "git+https://github.com/zhangquan/designer.git",
+    "designer": "file:///Users/zq/workspace/github/dotlinkface/designer",
     "jquery.cookie": "^1.4.1",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-router": "^3.0.5",
     "react-style": "~0.5.5",
-    "app": "git+https://github.com/zhangquan/app.git",
-    "sophie": "git+https://github.com/zhangquan/sophie.git",
+    "sophie": "file:///Users/zq/workspace/github/dotlinkface/sophie",
     "wysihtml": "^0.6.0-beta1"
   }
 }
