@@ -52804,6 +52804,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 this.saveToStorage();
             }
         },
+        backTo: function backTo(index) {
+            try {
+
+                if (index >= 0 && index <= this.index) {
+
+                    this._render(index);
+                }
+            } catch (e) {
+
+                console.error(e);
+            } finally {
+                this.index = index;
+                this.saveToStorage();
+            }
+        },
 
         forward: function forward() {
             try {
