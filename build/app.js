@@ -13854,6 +13854,7 @@ var renderData = function renderData(data, callback) {
             var htmlData = data.html;
 
             if (htmlData) {
+
                 if (typeof htmlData == "string") {
                     htmlData = JSON.parse(htmlData);
                 }
@@ -13867,6 +13868,7 @@ var renderData = function renderData(data, callback) {
         }
     } catch (e) {
         console.error(e);
+        return Base.firstVnode = Sophie.runApp(APP, {}, document.body, true);
     }
 };
 
