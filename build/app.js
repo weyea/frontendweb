@@ -13828,41 +13828,45 @@ var Page = __webpack_require__(36);
 var APP = __webpack_require__(111);
 
 var renderData = function renderData(data, callback) {
+    try {
 
-    if (data && data.html) {
-        var links = data.links || "";
-        links = links.split(",");
-        //创建links
-        for (var i = 0; i < links.length; i++) {
-            var hasExit = $('[href="' + $.trim(links[i]) + '"]').length;
-            if (!hasExit && !$.trim(links[i])) {
-                var linkEl = $('<link custom="true" rel="import" href="' + $.trim(links[i]) + '">');
-                $("head").append(linkEl);
+        if (data && data.html) {
+            var links = data.links || "";
+            links = links.split(",");
+            //创建links
+            for (var i = 0; i < links.length; i++) {
+                var hasExit = $('[href="' + $.trim(links[i]) + '"]').length;
+                if (!hasExit && !$.trim(links[i])) {
+                    var linkEl = $('<link custom="true" rel="import" href="' + $.trim(links[i]) + '">');
+                    $("head").append(linkEl);
+                }
             }
-        }
 
-        var pageStyle = $("#page-style").get(0);
-        $("#page-style").text("");
+            var pageStyle = $("#page-style").get(0);
+            $("#page-style").text("");
 
-        if (pageStyle.styleSheet) {
-            pageStyle.styleSheet.cssText = data.pagecss;
-        } else {
-            pageStyle.appendChild(document.createTextNode(data.pagecss));
-        }
-
-        var htmlData = data.html;
-
-        if (htmlData) {
-            if (typeof htmlData == "string") {
-                htmlData = JSON.parse(htmlData);
+            if (pageStyle.styleSheet) {
+                pageStyle.styleSheet.cssText = data.pagecss;
+            } else {
+                pageStyle.appendChild(document.createTextNode(data.pagecss));
             }
-            return Base.firstVnode = Sophie.runApp(APP, { data: htmlData }, document.body, true);
-            // Sophie.renderFromJSON(htmlData, null, callback)
+
+            var htmlData = data.html;
+
+            if (htmlData) {
+                if (typeof htmlData == "string") {
+                    htmlData = JSON.parse(htmlData);
+                }
+                return Base.firstVnode = Sophie.runApp(APP, { data: htmlData }, document.body, true);
+                // Sophie.renderFromJSON(htmlData, null, callback)
+            } else {
+                return Base.firstVnode = Sophie.runApp(APP, {}, document.body, true);
+            }
         } else {
             return Base.firstVnode = Sophie.runApp(APP, {}, document.body, true);
         }
-    } else {
-        return Base.firstVnode = Sophie.runApp(APP, {}, document.body, true);
+    } catch (e) {
+        console.error(e);
     }
 };
 
