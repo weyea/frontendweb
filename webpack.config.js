@@ -14,60 +14,78 @@ var SRC_DIR = 'src';
 //定义各入口JS路径
 var paths = {
     src: path.join(ROOT_PATH, SRC_DIR),
-  }
+}
 
 
-module.exports ={
+module.exports = {
 
-  entry: {
-    index: path.join(paths.src, 'index.js'),
-    app: path.join(paths.src, 'app/index.js')
+    entry: {
+        index: path.join(paths.src, 'index.js'),
+        app: path.join(paths.src, 'app/index.js')
 
-  },
-  output: {
-    path: path.join(__dirname, 'build'),
-    filename: '[name].js',
-    sourceMapFilename: '[file].map',
-  },
+    },
+    output: {
+        path: path.join(__dirname, 'build'),
+        filename: '[name].js',
+        sourceMapFilename: '[file].map',
+    },
 
-  module: {
-      loaders: [
-        {
-          test: /\.js$/,
-          // exclude: /(node_modules|bower_components)/,
-          loader: ["babel-loader"],
-          query: {},
-          blackList:[]
-        },
-        {
-          test: /\.css$/,
-          loader: "style!css"
-        },
+    module: {
+        loaders: [
+            {
+                test: /\.js$/,
+                // exclude: /(node_modules|bower_components)/,
+                loader: ["babel-loader"],
 
-      {test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192'}
+            },
 
-      ]
-  },
-  plugins: [
-    new CommonsChunkPlugin({
-      name: "commons",
-      // (the commons chunk name)
+            {
+                test: /\.css$/,
+                use: [
+                    'style-loader',
+                    'css-loader'
+                ]
+            },
+            {
+                test: /\.scss$/,
+                loader: [
+                    'style-loader',
+                    'css-loader',
+                    'sass-loader'
+                ]
+            },
+            {
+                test: /\.(woff|svg|eot|ttf)\??.*$/,
 
-      filename: "commons.js",
-      // (the filename of the commons chunk)
+                loader:
+                    'url-loader',
 
-      // minChunks: 3,
-      // (Modules must be shared between 3 entries)
+            },
 
-       chunks: [],
-      // (Only use these entries)
-    })
+            {test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192'}
 
-  ],
-  resolve: {
-      alias: {
-           "jquery": path.join(__dirname, "./jquery-stub.js")
-      }
+        ]
+    },
+    plugins: [
+        new CommonsChunkPlugin({
+            name: "commons",
+            // (the commons chunk name)
+
+            filename: "commons.js",
+            // (the filename of the commons chunk)
+
+            // minChunks: 3,
+            // (Modules must be shared between 3 entries)
+
+            chunks: [],
+            // (Only use these entries)
+        })
+
+    ],
+    resolve: {
+        alias: {
+            "jquery": path.join(__dirname, "./jquery-stub.js")
+        }
     }
 
 }
