@@ -862,7 +862,8 @@ module.exports = React.createClass({
                 ),
                 React.createElement(
                     "a",
-                    { className: "btn btn-green-line", href: "/template/market" },
+                    {
+                        className: "btn btn-green-line", href: "/template/market" },
                     "\u65B0\u5EFA\u7A7A\u767D\u7AD9\u70B9"
                 )
             );
@@ -884,6 +885,22 @@ module.exports = React.createClass({
         }
     },
 
+    showCreateLink: function showCreateLink() {
+        if (this.props.type == "app") {
+            return React.createElement(
+                "a",
+                { className: "btn btn-green add-site-button large", href: "/template/create" },
+                "\u521B\u5EFA\u65B0\u6A21\u677F"
+            );
+        } else {
+            React.createElement(
+                "a",
+                { className: "btn btn-green add-site-button large", href: "/template/market/all" },
+                "\u521B\u5EFA\u65B0\u7AD9\u70B9"
+            );
+        }
+    },
+
     renderList: function renderList() {
         return React.createElement(
             "div",
@@ -894,11 +911,7 @@ module.exports = React.createClass({
                 React.createElement(
                     "div",
                     { className: "container" },
-                    React.createElement(
-                        "a",
-                        { className: "btn btn-green add-site-button large", href: "/template/market/all" },
-                        "\u521B\u5EFA\u65B0\u7AD9\u70B9"
-                    )
+                    this.showCreateLink()
                 )
             ),
             React.createElement(
@@ -1036,7 +1049,8 @@ module.exports = React.createClass({
                     React.createElement(
                         "a",
                         { href: "/my/" + this.props.type + "/" + site.id },
-                        React.createElement("img", { src: site.logo || window.rootPath + "img/template_bg.png" })
+                        React.createElement("img", {
+                            src: site.logo || window.rootPath + "img/template_bg.png" })
                     )
                 ),
                 React.createElement(
@@ -1045,7 +1059,8 @@ module.exports = React.createClass({
                     React.createElement(
                         "h3",
                         { className: "title" },
-                        React.createElement(EditableSpan, { ref: "edit-title", onChange: fun, value: site.title }),
+                        React.createElement(EditableSpan, { ref: "edit-title", onChange: fun,
+                            value: site.title }),
                         React.createElement(
                             "span",
                             { className: "status" },
@@ -1059,7 +1074,8 @@ module.exports = React.createClass({
                         { className: "action" },
                         React.createElement(
                             "a",
-                            { target: "_blank", className: "edit btn btn-green ", href: "/designer/" + this.props.type + "/" + site.id },
+                            { target: "_blank", className: "edit btn btn-green ",
+                                href: "/designer/" + this.props.type + "/" + site.id },
                             "\u7F16\u8F91"
                         ),
                         this.renderAction(site),
@@ -1068,7 +1084,8 @@ module.exports = React.createClass({
                             { className: "share-" + site.id + " icon" },
                             "\u5206\u4EAB"
                         ),
-                        React.createElement(SharePopover, { url: url, type: this.props.type, toggleSelector: ".share-" + site.id })
+                        React.createElement(SharePopover, { url: url, type: this.props.type,
+                            toggleSelector: ".share-" + site.id })
                     )
                 ),
                 React.createElement("span", { onClick: del, className: "del-icon fa fa-remove" })
