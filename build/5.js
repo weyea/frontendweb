@@ -800,12 +800,17 @@ module.exports = React.createClass({
     },
 
     changeTitle: function changeTitle(id, title, oldValue, callback) {
-        $.post("/json/app/" + id, { title: title }, function (result) {
+        var urls = "/json/app/";
+        if (this.props.type == "app") {} else {
+            urls = "/json/template/";
+        }
+
+        $.post(urls + id, { title: title }, function (result) {
             if (result.success) {} else {
                 alert("更新失败");
                 //target.val(oldValue)
             }
-            callback(result.success);
+            callback && callback(result.success);
         });
     },
 
