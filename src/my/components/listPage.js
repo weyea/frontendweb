@@ -42,7 +42,15 @@ module.exports = React.createClass({
     },
 
     changeTitle: function (id, title, oldValue, callback) {
-        $.post("/json/app/" + id, {title: title}, function (result) {
+        var urls = "/json/app/"
+        if (this.props.type == "app") {
+
+        }
+        else{
+            urls = "/json/template/"
+        }
+
+        $.post(urls + id, {title: title}, function (result) {
             if (result.success) {
 
             }
