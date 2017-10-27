@@ -46,7 +46,7 @@ module.exports = React.createClass({
         if (this.props.type == "app") {
 
         }
-        else{
+        else {
             urls = "/json/template/"
         }
 
@@ -58,7 +58,7 @@ module.exports = React.createClass({
                 alert("更新失败")
                 //target.val(oldValue)
             }
-            callback&&callback(result.success)
+            callback && callback(result.success)
         })
     },
 
@@ -122,11 +122,11 @@ module.exports = React.createClass({
     },
 
     showCreateLink: function () {
-        if (this.props.type == "app") {
+        if (this.props.type == "template") {
             return <a className="btn btn-green add-site-button large" href="/template/create">创建新模板</a>
         }
         else {
-            <a className="btn btn-green add-site-button large" href="/template/market/all">创建新站点</a>
+            return <a className="btn btn-green add-site-button large" href="/template/market/all">创建新站点</a>
         }
     },
 

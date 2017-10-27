@@ -891,14 +891,14 @@ module.exports = React.createClass({
     },
 
     showCreateLink: function showCreateLink() {
-        if (this.props.type == "app") {
+        if (this.props.type == "template") {
             return React.createElement(
                 "a",
                 { className: "btn btn-green add-site-button large", href: "/template/create" },
                 "\u521B\u5EFA\u65B0\u6A21\u677F"
             );
         } else {
-            React.createElement(
+            return React.createElement(
                 "a",
                 { className: "btn btn-green add-site-button large", href: "/template/market/all" },
                 "\u521B\u5EFA\u65B0\u7AD9\u70B9"
