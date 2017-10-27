@@ -862,7 +862,8 @@ Sophie.createStyleSheet(_defineProperty({
     },
 
     ".p-layout": {
-        display: "block"
+        display: "block",
+        "background-size": "cover"
     },
 
     ".p-layout:before,.p-layout:after": {

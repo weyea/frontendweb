@@ -605,7 +605,8 @@ Sophie.createStyleSheet(_defineProperty({
     },
 
     ".p-layout": {
-        display: "block"
+        display: "block",
+        "background-size": "cover"
     },
 
     ".p-layout:before,.p-layout:after": {
@@ -63591,7 +63592,8 @@ var LayoutSet = Sophie.createClass("layout-set", {
                                             "max"
                                         )
                                     ),
-                                    Sophie.element("input", { type: "text", "data-cssunit": "px", "data-cssname": "maxWidth", "class": "form-control max-input" })
+                                    Sophie.element("input", { type: "text", "data-cssunit": "px", "data-cssname": "maxWidth",
+                                        "class": "form-control max-input" })
                                 )
                             ),
                             Sophie.element(
@@ -63609,7 +63611,8 @@ var LayoutSet = Sophie.createClass("layout-set", {
                                             "min"
                                         )
                                     ),
-                                    Sophie.element("input", { type: "text", "data-cssunit": "px", "data-cssname": "minWidth", "class": "form-control min-input" })
+                                    Sophie.element("input", { type: "text", "data-cssunit": "px", "data-cssname": "minWidth",
+                                        "class": "form-control min-input" })
                                 )
                             )
                         ),
@@ -63654,14 +63657,16 @@ var LayoutSet = Sophie.createClass("layout-set", {
                             Sophie.element(
                                 "div",
                                 { "class": "background-color" },
-                                Sophie.element("a", { "data-cssname": "backgroundColor", "class": "btn btn-small minicolors", value: "#7745ff" })
+                                Sophie.element("a", { "data-cssname": "backgroundColor", "class": "btn btn-small minicolors",
+                                    value: "#7745ff" })
                             ),
                             Sophie.element(
                                 "a",
-                                { "class": "background-image btn btn-small" },
+                                { "class": "background-image set-background-image btn btn-small" },
                                 Sophie.element(
                                     "i",
-                                    { "class": "fa fa-picture-o" },
+                                    {
+                                        "class": "fa fa-picture-o" },
                                     "\u80CC\u666F\u56FE"
                                 )
                             ),
@@ -63694,11 +63699,13 @@ var LayoutSet = Sophie.createClass("layout-set", {
                                 Sophie.element(
                                     "div",
                                     null,
-                                    Sophie.element("input", { "class": "border-width", "data-cssunit": "px", "data-cssname": "borderWidth", type: "text", value: "0" }),
+                                    Sophie.element("input", { "class": "border-width", "data-cssunit": "px", "data-cssname": "borderWidth",
+                                        type: "text", value: "0" }),
                                     Sophie.element(
                                         "div",
                                         { "class": "border-color" },
-                                        Sophie.element("a", { "data-cssname": "borderColor", "class": "btn btn-small minicolors", value: "#7745ff" })
+                                        Sophie.element("a", { "data-cssname": "borderColor", "class": "btn btn-small minicolors",
+                                            value: "#7745ff" })
                                     )
                                 ),
                                 Sophie.element(
@@ -63743,7 +63750,8 @@ var LayoutSet = Sophie.createClass("layout-set", {
                         Sophie.element(
                             "div",
                             null,
-                            Sophie.element("input", { "data-cssname": "borderRadius", "class": "textbox all", type: "text", placeholder: "N/A", value: "0" }),
+                            Sophie.element("input", { "data-cssname": "borderRadius", "class": "textbox all", type: "text", placeholder: "N/A",
+                                value: "0" }),
                             Sophie.element("input", { "data-cssname": "borderLeftRadius", "class": "textbox", type: "text", value: "0" }),
                             Sophie.element("input", { "data-cssname": "borderTopRadius", "class": "textbox", type: "text", value: "0" }),
                             Sophie.element("input", { "data-cssname": "borderRightRadius", "class": "textbox", type: "text", value: "0" }),
@@ -63822,6 +63830,26 @@ var LayoutSet = Sophie.createClass("layout-set", {
             if (el.is("p-layout")) {
                 self.editableInit(el);
             }
+        });
+
+        var isOK = false;
+        $('.set-background-image', this.nativeNode).on("click", function () {
+            $("#select-img-view").get(0).vnode.show();
+            isOK = true;
+
+            $(document).on("selectImg", function (ev, src) {
+
+                if (!isOK) return;
+                // var el = $(".style-bd-preivew", self.nativeNode)
+
+                // el.css("backgroundImage", "url('" + src + "')");
+
+                //  el.css("backgroundRepeat", "no-repeat no-repeat");
+
+                play.dom.css(play.select.selectedEL, "backgroundImage", "url('" + src + "')");
+                //  play.dom.css(play.select.selectedEL, "backgroundRepeat", "no-repeat no-repeat");
+                isOK = false;
+            });
         });
 
         this.max();
