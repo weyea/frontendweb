@@ -63669,8 +63669,7 @@ var LayoutSet = Sophie.createClass("layout-set", {
                                         "class": "fa fa-picture-o" },
                                     "\u80CC\u666F\u56FE"
                                 )
-                            ),
-                            Sophie.element(StyleBg, null)
+                            )
                         )
                     ),
                     Sophie.element(
@@ -64050,6 +64049,7 @@ var BG = Sophie.createClass("Style-bg", {
         $("#style-bd-modal").appendTo("body");
 
         $(document).delegate(".style-bd-preivew", "click", function () {
+            return;
 
             $("#select-img-view").get(0).vnode.show();
 
