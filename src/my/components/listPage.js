@@ -235,6 +235,7 @@ module.exports = React.createClass({
                     self.del(id)
                 }
             })(site.id);
+
             if (this.props.type == "app") {
                 var url = "http://" + site.subdomain && site.subdomain.name + ".dotlinkface.com"
             }
@@ -245,7 +246,7 @@ module.exports = React.createClass({
             var item = (
                 <div className="templ">
                     <div className="bd">
-                        <a href={"/my/" + this.props.type + "/" + site.id}><img
+                        <a href={url}><img
                             src={site.logo || window.rootPath + "img/template_bg.png"}/></a>
                     </div>
                     <div className="des">

@@ -1039,6 +1039,7 @@ module.exports = React.createClass({
                     self.del(id);
                 };
             }(site.id);
+
             if (this.props.type == "app") {
                 var url = "http://" + site.subdomain && site.subdomain.name + ".dotlinkface.com";
             } else {
@@ -1053,7 +1054,7 @@ module.exports = React.createClass({
                     { className: "bd" },
                     React.createElement(
                         "a",
-                        { href: "/my/" + this.props.type + "/" + site.id },
+                        { href: url },
                         React.createElement("img", {
                             src: site.logo || window.rootPath + "img/template_bg.png" })
                     )
