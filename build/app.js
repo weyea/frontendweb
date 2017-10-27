@@ -2524,12 +2524,13 @@ module.exports = {
         }
     },
     isEditing: function isEditing() {
-        return self !== top && top.play.isEditor;
+        return self !== top && top.play && top.play.isEditor;
     },
 
     getFontSize: function getFontSize() {
         return this.baseFontSize || 60;
     },
+
     setFontSize: function setFontSize(fontSize) {
         this.baseFontSize = fontSize;
     },
@@ -13854,7 +13855,6 @@ var renderData = function renderData(data, callback) {
             var htmlData = data.html;
 
             if (htmlData) {
-
                 if (typeof htmlData == "string") {
                     htmlData = JSON.parse(htmlData);
                 }
