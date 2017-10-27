@@ -50,7 +50,7 @@ module.exports = React.createClass({
                 alert("更新失败")
                 //target.val(oldValue)
             }
-            callback(result.success)
+            callback&&callback(result.success)
         })
     },
 
