@@ -66137,8 +66137,8 @@ var EditorView = Sophie.createClass("editor-view", {
 
             $(play.iframeDoc).on("scroll", function () {
                 var doc = $(play.iframeDoc);
-                var body = $('body', doc);
-                $("#editor-mask").css("top", body.scrollTop() * -1);
+
+                $("#editor-mask").css("top", doc.scrollTop() * -1 + "px");
             });
             self.initGridLines();
         });
