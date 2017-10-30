@@ -53526,6 +53526,9 @@ var _css = function _css(target, cssName, value, mediaName) {
         selector = selector + " .line-inner";
     }
 
+    if ((cssName == "backgroundColor" || cssName == "background-color") && target.is("p-page")) {
+        selector = utils.toSelector($("p-site", play.iframeDoc), mediaName);
+    }
     var media = mediaName || play.media || "all";
 
     var mediaCSS = play.mediaCSS;
