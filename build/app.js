@@ -2076,7 +2076,7 @@ var Text = Sophie.createClass("p-text", {
             //     self.prepareChildren();
             //     // document.execCommand("insertHTML", false, text);
             // }
-            $(document).trigger("textInputt");
+            $(document).trigger("textInputt", [target]);
         });
 
         target.on("cut", function (ev) {
@@ -2091,7 +2091,7 @@ var Text = Sophie.createClass("p-text", {
             //     self.prepareChildren();
             //     // document.execCommand("insertHTML", false, text);
             // }
-            $(document).trigger("textInputt");
+            $(document).trigger("textInputt", [target]);
         });
 
         target.on('keydown', function (ev) {
@@ -2107,25 +2107,27 @@ var Text = Sophie.createClass("p-text", {
         });
 
         target.on('keyup', function (ev) {
-            $(document).trigger("textInputt");
+            $(document).trigger("textInputt", [target]);
         });
 
         //ie 可能不支持
 
         target.on('change input', function (ev) {
-            $(document).trigger("textInputt");
+            $(document).trigger("textInputt", [target]);
         });
 
         target.on('textChange', function () {
 
-            $(document).trigger("textInputt");
+            $(document).trigger("textInputt", [target]);
         });
 
-        $(document).on("textInputt", function () {
-            $(document).trigger("beforeTextInput", [$(_this.nativeNode)]);
-            self.prepareChildren();
-            //this._updateTextHeight();
-            $(document).trigger("textInput", [$(_this.nativeNode)]);
+        $(document).on("textInputt", function (ev, eventTarget) {
+            if (target.is(eventTarget)) {
+                $(document).trigger("beforeTextInput", [$(_this.nativeNode)]);
+                self.prepareChildren();
+                //this._updateTextHeight();
+                $(document).trigger("textInput", [$(_this.nativeNode)]);
+            }
         });
 
         setTimeout(function () {
@@ -13588,7 +13590,7 @@ exports = module.exports = __webpack_require__(3)();
 
 
 // module
-exports.push([module.i, "p-header, p-footer {\n    background-color: #333333;\n}\n\nhtml p-header {\n    padding-bottom: 3em\n}\n\nhtml p-page {\n    padding-bottom: 15em\n}\n\nhtml p-footer {\n    padding-bottom: 5em\n}\n\nhtml p-layout {\n    padding-bottom: 5em\n}\n\nhtml * {\n    margin: 0;\n    padding: 0;\n\n    -webkit-box-sizing: border-box;\n    -moz-box-sizing: border-box;\n    box-sizing: border-box;\n    word-wrap: break-word;\n\n}\n\nbody:before, body:after {\n    display: table;\n    line-height: 0;\n    content: \"\";\n}\n\nbody * {\n    vertical-align: top;\n}\n\nbody {\n    font-size: inherit !important;\n\n}\n\n.p-container-fluid:before, .p-container-fluid:after, .p-container:before, .p-container:after {\n    display: table;\n    line-height: 0;\n    content: \"\"\n}\n\n.p-container-fluid, .p-container {\n    height: auto !important;\n    position: relative;\n    margin: auto !important\n}\n\n.p-container-absolute {\n    z-index: 10\n}\n\n.p-container-fluid > * {\n    width: 100% !important;\n    margin-left: auto !important;\n    margin-right: auto !important\n}\n\n#page {\n    -webkit-backface-visibility: hidden;\n    backface-visibility: hidden;\n    -webkit-transition: right .4s ease-in-out, opacity .4s linear, background .4s ease-in-out;\n    transition: right .4s ease-in-out, opacity .4s linear, background .4s ease-in-out;\n    position: relative;\n    right: 0\n}\n\nbody.resizing-y * {\n    cursor: ns-resize !important;\n}\n\nbody.resizing-x * {\n    cursor: ew-resize !important;\n}\n\n.p-absolute {\n    position: absolute !important;\n}\n\nchildren {\n    display: block\n}\n\nchildren:before, children:after {\n    display: table;\n    line-height: 0;\n    content: \"\";\n    clear: both;\n}\n\n.wysiwyg-text-align-center {\n    text-align: center\n}\n\n.wysiwyg-text-align-left {\n    text-align: left\n}\n\n.wysiwyg-text-align-right {\n    text-align: right\n}\n\n", ""]);
+exports.push([module.i, "p-header, p-footer {\n    background-color: #333333;\n}\n\nhtml p-header {\n    padding-bottom: 3em;\n    background-size: cover;\n}\n\nhtml p-page {\n    padding-bottom: 15em;\n    background-size: cover;\n}\n\nhtml p-footer {\n    padding-bottom: 5em;\n    background-size: cover;\n}\n\nhtml p-layout {\n    padding-bottom: 5em;\n    background-size: cover;\n}\n\nhtml * {\n    margin: 0;\n    padding: 0;\n\n    -webkit-box-sizing: border-box;\n    -moz-box-sizing: border-box;\n    box-sizing: border-box;\n    word-wrap: break-word;\n\n}\n\nbody:before, body:after {\n    display: table;\n    line-height: 0;\n    content: \"\";\n}\n\nbody * {\n    vertical-align: top;\n}\n\nbody {\n    font-size: inherit !important;\n\n}\n\n.p-container-fluid:before, .p-container-fluid:after, .p-container:before, .p-container:after {\n    display: table;\n    line-height: 0;\n    content: \"\"\n}\n\n.p-container-fluid, .p-container {\n    height: auto !important;\n    position: relative;\n    margin: auto !important\n}\n\n.p-container-absolute {\n    z-index: 10\n}\n\n.p-container-fluid > * {\n    width: 100% !important;\n    margin-left: auto !important;\n    margin-right: auto !important\n}\n\n#page {\n    -webkit-backface-visibility: hidden;\n    backface-visibility: hidden;\n    -webkit-transition: right .4s ease-in-out, opacity .4s linear, background .4s ease-in-out;\n    transition: right .4s ease-in-out, opacity .4s linear, background .4s ease-in-out;\n    position: relative;\n    right: 0\n}\n\nbody.resizing-y * {\n    cursor: ns-resize !important;\n}\n\nbody.resizing-x * {\n    cursor: ew-resize !important;\n}\n\n.p-absolute {\n    position: absolute !important;\n}\n\nchildren {\n    display: block\n}\n\nchildren:before, children:after {\n    display: table;\n    line-height: 0;\n    content: \"\";\n    clear: both;\n}\n\n.wysiwyg-text-align-center {\n    text-align: center\n}\n\n.wysiwyg-text-align-left {\n    text-align: left\n}\n\n.wysiwyg-text-align-right {\n    text-align: right\n}\n\n", ""]);
 
 // exports
 
