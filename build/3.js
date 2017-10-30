@@ -52829,14 +52829,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         },
 
         forward: function forward() {
-            if (this.index < this.maxLength - 1) {
+            if (this.index < this.maxLength - 1 && this.index < this.stack.length - 1) {
                 try {
 
                     var i = this.index + 1;
                     this.index = i;
-                    if (i < this.stack.length) {
-                        this._render(i);
-                    }
+
+                    this._render(i);
                 } catch (e) {
 
                     console.error(e);
