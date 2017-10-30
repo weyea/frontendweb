@@ -4063,7 +4063,6 @@ var Children = __webpack_require__(200);
 var GridLayout = __webpack_require__(11);
 var Layout = __webpack_require__(5);
 var PPage = Sophie.createClass("p-page", (_Sophie$createClass = {
-
     getDefaultProps: function getDefaultProps() {
         return {
             active: false,
@@ -4118,7 +4117,6 @@ var PPage = Sophie.createClass("p-page", (_Sophie$createClass = {
     },
 
     componentDidMount: function componentDidMount() {
-
         console.log('did');
     }
 
@@ -4129,13 +4127,12 @@ var PPage = Sophie.createClass("p-page", (_Sophie$createClass = {
 }), _Sophie$createClass), Layout);
 
 PPage.createStyleSheet({
+
     'p-page': {
         display: 'block',
         width: '100%!important',
-
         height: "auto",
         margin: '0!important'
-
     },
 
     'p-page.active': {
@@ -6049,7 +6046,7 @@ var PSite = Sophie.createClass("p-site", _defineProperty({
         for (var i = 0; i < children.length; i++) {
             if (children[i].props.id == pageID) {
                 children[i].props.title = title;
-                //children[i].forceUpdate();
+                children[i].forceUpdate();
                 if (pageNav.length) {
                     pageNav.get(0).vnode.initPage();
                 }
@@ -8766,7 +8763,8 @@ module.exports = ListImg;
 "use strict";
 
 
-var Sophie = __webpack_require__(1);var Base = __webpack_require__(2);
+var Sophie = __webpack_require__(1);
+var Base = __webpack_require__(2);
 var Shape = __webpack_require__(114);
 
 __webpack_require__(226);
@@ -8778,7 +8776,11 @@ var Line = Sophie.createClass("p-line", {
     },
     render: function render() {
 
-        return Sophie.element(this.root, { "data-dir": this.props.dir });
+        return Sophie.element(
+            this.root,
+            { "data-dir": this.props.dir },
+            Sophie.element("div", { "class": "line-inner" })
+        );
     }
 }, Shape);
 
@@ -14585,7 +14587,7 @@ var Footer = Sophie.createClass("p-footer-t", {
                 { "class": "num", row: "3" },
                 "\u6D59\u516C\u7F51\u5B89\u5907 44010502000281\u53F7"
             ));
-            items.push(Sophie.element(Line, { "class": "line-2", row: "3" }));
+            items.push(Sophie.element(Line, { "class": "line-2", dir: "v", row: "3" }));
             items.push(Sophie.element(
                 Text,
                 { "class": "copyright", row: "3" },
@@ -14682,7 +14684,7 @@ exports = module.exports = __webpack_require__(3)();
 
 
 // module
-exports.push([module.i, "p-line{\n    display: block;\n}\n\np-line[data-dir=\"h\"]{\n    height: 1px!important;\n    width: 300px;\n    border: none!important;\n    padding: 0;\n    background-color: black;\n}\n\n\np-line[data-dir=\"v\"]{\n    width: 1px!important;\n    height:300px;\n    border: none!important;\n    background-color: black;\n}", ""]);
+exports.push([module.i, "p-line {\n    display: block;\n    background: none !important;\n    border: none !important;\n    position: relative;\n}\n\np-line[data-dir=\"h\"] {\n    width: 300px;\n    height: 20px;\n}\n\np-line[data-dir=\"v\"] {\n    height: 300px;\n    width: 20px;\n}\np-line .line-inner{\n    position: absolute;\n    top:0;\n    left:0;\n}\n\np-line[data-dir=\"h\"] .line-inner {\n    height: 1px !important;\n    width: 100%;\n    border: none !important;\n    padding: 0;\n    background-color: black;\n    top: 50%!important;\n    left: 0!important;\n}\n\np-line[data-dir=\"v\"]  .line-inner {\n    width: 1px !important;\n    height: 100%;\n    border: none !important;\n    background-color: black;\n    left: 50%!important;\n    top: 0px!important;\n}", ""]);
 
 // exports
 
@@ -14722,7 +14724,7 @@ exports = module.exports = __webpack_require__(3)();
 
 
 // module
-exports.push([module.i, "p-footer-t{\n    display: block;\n    width: 20em;\n    margin: auto;\n    background-color: #303B41;\n\n    font-weight: 100;\n    height: 271px;\n}\n\np-footer-t p-button .p-text-wrap,p-footer-t p-text .p-text-wrap{\n    font-size: 12px;\n\n}\np-footer-t p-layout{\n    width: 100%;\n    background-color: transparent;\n    color: #fff;\n    height: auto;\n}\n\np-footer-t .title, p-footer-t .item{\n    width: 2.85em;\n}\np-footer-t .title{\n    margin-top: 36px;\n\n}\np-footer-t .item{\n    margin-top: 20px;\n}\np-footer-t p-button.item  .p-text-wrap{\n    font-size: 12px;\n    color: rgba(255,255,255, 0.6);\n}\n\np-footer-t .line-1{\n    width: 20em;\n    background-color:rgba(255,255,255, 0.1);\n    margin-top: 20px;\n}\n\np-footer-t  .num{\n    margin-left: 4.7em;\n    width: 190px;\n}\np-footer-t  .num, p-footer-t  .copyright{\n    height: 20px;\n    color: rgba(255,255,255, 0.6);\n    margin-top: 5px;\n\n}\n\np-footer-t  .copyright{\n    margin-left: 10px;\n    width: 500px;\n}\n\np-footer-t .line-2{\n    height: 11px;\n    width: 1px;\n    background-color:rgba(255,255,255, 0.6);\n    margin-left: 10px;\n    margin-top: 18px;\n}\n\np-footer-t p-pic{\n   width: 155px;\n    height: 155px;\n    margin-top: 34px;\n    margin-left: 30px;\n\n}\n\n\np-footer-t[data-theme=\"theme-2\"] .pic-1 {\n\n    margin-left: 150px;\n}\n\n\n\np-footer-t[data-theme=\"theme-3\"] {\n    height: 106px;\n}\n\np-footer-t[data-theme=\"theme-3\"] .title,p-footer-t[data-theme=\"theme-3\"] .item {\n    width: 50px;\n    margin-left: 10px;\n}\n\np-footer-t[data-theme=\"theme-4\"] {\n    height: 106px;\n}\n\np-footer-t[data-theme=\"theme-4\"] .title,p-footer-t[data-theme=\"theme-4\"] .item {\n    width: 50px;\n    margin-left: 10px;\n}\n\np-footer-t[data-theme=\"theme-4\"] .title{\n    margin-top: 20px;\n}\np-footer-t[data-theme=\"theme-5\"] {\n    height: 63px;\n}\n\n\np-footer-t[data-theme=\"theme-5\"] .num{\n    height: 20px;\n    color: rgba(255,255,255, 0.6);\n    margin-top: 15px;\n\n}\n\np-footer-t[data-theme=\"theme-5\"] .copyright{\n    margin-left: 10px;\n    width: 500px;\n    margin-top: 15px;\n}\n\np-footer-t[data-theme=\"theme-5\"] .line-2{\n    margin-top: 28px;\n}\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "p-footer-t {\n    display: block;\n    width: 20em;\n    margin: auto;\n    background-color: #303B41;\n\n    font-weight: 100;\n    height: 271px;\n}\n\np-footer-t p-button .p-text-wrap, p-footer-t p-text .p-text-wrap {\n    font-size: 12px;\n\n}\n\np-footer-t p-layout {\n    width: 100%;\n    background-color: transparent;\n    color: #fff;\n    height: auto;\n}\n\np-footer-t .title, p-footer-t .item {\n    width: 2.85em;\n}\n\np-footer-t .title {\n    margin-top: 36px;\n\n}\n\np-footer-t .item {\n    margin-top: 20px;\n}\n\np-footer-t p-button.item .p-text-wrap {\n    font-size: 12px;\n    color: rgba(255, 255, 255, 0.6);\n}\n\np-footer-t .line-1 {\n    width: 20em;\n    height: 40px;\n}\n\np-footer-t .line-1 .line-inner {\n    background-color: rgba(255, 255, 255, 0.1);\n}\n\np-footer-t .num {\n    margin-left: 4.7em;\n    width: 190px;\n}\n\np-footer-t .num, p-footer-t .copyright {\n    height: 20px;\n    color: rgba(255, 255, 255, 0.6);\n    margin-top: 5px;\n}\n\np-footer-t .copyright {\n    margin-left: 10px;\n    width: 500px;\n}\n\np-footer-t .line-2 {\n    height: 20px;\n    width: 30px;\n\n}\n\np-footer-t .line-2 .line-inner {\n    background-color: rgba(255, 255, 255, 0.6);\n}\n\np-footer-t p-pic {\n    width: 155px;\n    height: 155px;\n    margin-top: 34px;\n    margin-left: 30px;\n\n}\n\np-footer-t[data-theme=\"theme-2\"] .pic-1 {\n\n    margin-left: 150px;\n}\n\np-footer-t[data-theme=\"theme-3\"] {\n    height: 106px;\n}\n\np-footer-t[data-theme=\"theme-3\"] .title, p-footer-t[data-theme=\"theme-3\"] .item {\n    width: 50px;\n    margin-left: 10px;\n}\n\np-footer-t[data-theme=\"theme-4\"] {\n    height: 106px;\n}\n\np-footer-t[data-theme=\"theme-4\"] .title, p-footer-t[data-theme=\"theme-4\"] .item {\n    width: 50px;\n    margin-left: 10px;\n}\n\np-footer-t[data-theme=\"theme-4\"] .title {\n    margin-top: 20px;\n}\n\np-footer-t[data-theme=\"theme-5\"] {\n    height: 63px;\n}\n\np-footer-t[data-theme=\"theme-5\"] .num {\n    height: 20px;\n    color: rgba(255, 255, 255, 0.6);\n    margin-top: 15px;\n\n}\n\np-footer-t[data-theme=\"theme-5\"] .copyright {\n    margin-left: 10px;\n    width: 500px;\n    margin-top: 15px;\n}\n\np-footer-t[data-theme=\"theme-5\"] .line-2 {\n\n}\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
