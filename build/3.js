@@ -52749,7 +52749,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var select = play.select;
 
     var exports = {
-        maxLength: 20,
+        maxLength: 15,
         index: -1,
         stack: [],
         reset: function reset() {
