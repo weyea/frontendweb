@@ -52787,60 +52787,63 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         },
         //delete outdate data
         shift: function shift() {
-            var l = this.stack.length - this.maxLength;
-            this.stack.splice(0, l);
-            this.index -= l;
-            for (var i = 0; i < l; i++) {
-                //   this.itemRemoveFromStorage(i)
-            }
+            this._shift();
             this.saveToStorage();
         },
 
+        //delete outdate data
+        _shift: function _shift() {
+            var l = this.stack.length - this.maxLength;
+            this.stack.splice(0, l);
+            this.index -= l;
+        },
+
         back: function back() {
-            try {
-                var i = this.index - 1;
-                if (i > 0) {
+            if (this.index > 0) {
+                try {
 
+                    var i = this.index - 1;
                     this._render(i);
-                }
-            } catch (e) {
+                } catch (e) {
 
-                console.error(e);
-            } finally {
-                this.index = i;
-                this.saveToStorage();
+                    console.error(e);
+                } finally {
+                    this.index = i;
+                    this.saveToStorage();
+                }
             }
         },
         backTo: function backTo(index) {
-            try {
-
-                if (index >= 0 && index <= this.index) {
+            if (index >= 0 && index <= this.index) {
+                try {
 
                     this._render(index);
-                }
-            } catch (e) {
+                } catch (e) {
 
-                console.error(e);
-            } finally {
-                this.index = index;
-                this.saveToStorage();
+                    console.error(e);
+                } finally {
+                    this.index = index;
+                    this.saveToStorage();
+                }
             }
         },
 
         forward: function forward() {
-            try {
+            if (this.index < this.maxLength - 1) {
+                try {
 
-                var i = this.index + 1;
-                this.index = i;
-                if (i < this.stack.length) {
-                    this._render(i);
+                    var i = this.index + 1;
+                    this.index = i;
+                    if (i < this.stack.length) {
+                        this._render(i);
+                    }
+                } catch (e) {
+
+                    console.error(e);
+                } finally {
+                    this.index = i;
+                    this.saveToStorage();
                 }
-            } catch (e) {
-
-                console.error(e);
-            } finally {
-                this.index = i;
-                this.saveToStorage();
             }
         },
 
@@ -52897,12 +52900,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 try {
                     localStorage.setItem(key, stringData);
                 } catch (e) {
+                    localStorage.setItem(key, "");
                     this.maxLength -= 5;
                     this.shift();
-                    console.log(e);
+
+                    this.saveToStorage();
+                    console.error(e);
                 } finally {}
             }
         },
+
         removeStorage: function removeStorage() {
             var key = designer.configs.type + designer.configs.id;
             localStorage.removeItem(key);
