@@ -45950,7 +45950,12 @@ var play = (_play = {
     }
 
     if (play.is(el, "p-text") || play.is(el, "p-h")) {
-        baseConfig.editable = true;
+
+        var parent = $(vnode.parent.nativeNode);
+
+        if (play.is(parent, "p-nav-page") || play.is(parent, "p-nav-mobile")) {} else {
+            baseConfig.editable = true;
+        }
     }
 
     if (play.getListParent(el)) {
@@ -60795,6 +60800,13 @@ var TextSet = Sophie.createClass("font-set", {
     toEdit: function toEdit(el) {
         var self = this;
         var target = el || play.select.selectedEL;
+
+        if (play.getParent(target).is("p-nav-page")) {
+            return;
+        }
+        if (play.getParent(target).is("p-nav-mobile")) {
+            return;
+        }
 
         self._editing = true;
         var contentHtml = target.get(0).vnode.props.value;
