@@ -53585,24 +53585,29 @@ var _css = function _css(target, cssName, value, mediaName) {
     if (play.cssStatus && !isPositionCSS(cssName) && play.cssStatus !== "default") {
 
         if (play.cssStatus == "active") {
+            commonSelector = commonSelector + '[data-active="true"]';
             selector = selector + '[data-active="true"]';
         }
 
         if (play.cssStatus == "hover") {
-            selector = selector + '[data-hover="true"]';
+            commonSelector = commonSelector + '[data-hover="true"]';
+            selector = selector + '[data-active="true"]';
         }
     }
 
     if ((cssName == "fontSize" || cssName == "font-size") && target.find('> .p-text-wrap').length) {
+        commonSelector = commonSelector + " .p-text-wrap";
         selector = selector + " .p-text-wrap";
     }
 
     if ((cssName == "backgroundColor" || cssName == "background-color") && target.find('> .line-inner').length) {
+        commonSelector = commonSelector + " .line-inner";
         selector = selector + " .line-inner";
     }
 
     if ((cssName == "backgroundColor" || cssName == "background-color") && target.is("p-page")) {
         selector = utils.toSelector($("p-site", play.iframeDoc), mediaName);
+        commonSelector = utils.toCommonSeletor($("p-site", play.iframeDoc), mediaName);
     }
     var media = mediaName || play.media || "all";
 
