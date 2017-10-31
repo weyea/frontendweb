@@ -12915,7 +12915,7 @@ var baseClassPrototype = {
         for (var i = 0; i < children.length; i++) {
             var child = children[i];
             child.parent = this;
-            child.owner = child.creater = this.owner;
+            child.ownerDocument = child.owner = child.creater = this.owner;
             result.push(child);
         }
         this.props.children = this.children = this.attributes.children = result;
