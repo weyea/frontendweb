@@ -106,6 +106,12 @@ var Base = Sophie.createClass({
 
         appendClass(this);
 
+        if (this.props.isActive) {
+            self.appendClassName("active", this);
+        } else {
+            self.removeClassName("active", this);
+        }
+
         //区分来源，为原生的组件生成特有的class方便css设置
 
         if (this.ownerDocument == Sophie.firstVnode) {
@@ -204,11 +210,33 @@ var Base = Sophie.createClass({
         }
         target.props.class = target.props.className = className;
     },
+
+    removeClassName: function removeClassName(newClassName, target) {
+        target = target || this;
+        var className = target.props.class || target.props.className || "";
+        var classNameArray = className.split(/\s+/);
+
+        var has = classNameArray.find(function (t) {
+            return t == newClassName;
+        });
+        if (has) {
+            className = className.replace(newClassName, "");
+        }
+        target.props.class = target.props.className = className;
+    },
+
     //隐藏只能用这个
     hide: function hide() {
         this.props.isHidden = true;
     },
     show: function show() {},
+
+    active: function active() {
+        this.setProps({ acitve: true });
+    },
+    unActive: function unActive() {
+        this.setProps({ acitve: false });
+    },
 
     onLayout: function onLayout() {
         $(document).trigger("onLayout", [this]);
@@ -1762,7 +1790,8 @@ var Text = Sophie.createClass("p-text", {
             textHeight: 16,
             heightAuto: true,
             layoutType: "grid",
-            paddingBottom: 0
+            paddingBottom: 0,
+            isActive: false
         };
     },
 
@@ -2407,7 +2436,10 @@ var Base = __webpack_require__(2);
 var A = __webpack_require__(110);
 
 __webpack_require__(206);
-var Button = Sophie.createClass('p-button', {}, A);
+var Button = Sophie.createClass('p-button', {
+    getDefaultProps: function getDefaultProps() {}
+
+}, A);
 
 module.exports = Button;
 
@@ -4422,7 +4454,7 @@ var Nav = Sophie.createClass("p-nav-page", {
         var items = [];
 
         if (this.state.initRender == true) {
-            this.initPageChildren();
+
             var activeId = this.state.activeId;
             for (var i = 0; i < this.props.children.length; i++) {
                 var child = this.props.children[i];
@@ -4457,14 +4489,12 @@ var Nav = Sophie.createClass("p-nav-page", {
         self.activeBind();
         $(document).ready(function () {
             self.initPage();
+
+            self.activeFirst();
         });
 
         Sophie.ready(function () {
-            console.log("gogos");
-            // $(".navbar-toggle-render","p-header").emove();
             $('p-site').addClass("nav-close");
-            console.log("gogos");
-            setTimeout(function () {}, 0);
         });
     },
 
@@ -4486,9 +4516,28 @@ var Nav = Sophie.createClass("p-nav-page", {
 
     active: function active(id) {
         var self = this;
-        this.setState({
-            activeId: id
-        });
+
+        var childen = this.props.children;
+        for (var i = 0; i < childen.length; i++) {
+            if (childen[i].props.id == id) {
+                childen[i].active();
+            } else {
+                childen[i].unActive();
+            }
+        }
+        // this.setState({
+        //     activeId: id
+        // })
+    },
+
+    activeFirst: function activeFirst() {
+        var self = this;
+
+        var childen = this.props.children;
+        childen[0].active();
+        // this.setState({
+        //     activeId: id
+        // })
     },
 
     removeOne: function removeOne(id) {
@@ -4542,6 +4591,10 @@ var Nav = Sophie.createClass("p-nav-page", {
             pageData = [{ id: this.generateID(), title: "首页" }, { id: this.generateID(), title: "公司介绍" }, { id: this.generateID(), title: "最新动态" }, { id: this.generateID(), title: "案例展示" }, { id: this.generateID(), title: "服务简介" }, { id: this.generateID(), title: "关于我们" }];
             activeId = pageData[0].id;
         }
+
+        this.state.pageData = pageData;
+        this.state.activeId = activeId;
+        this.initPageChildren();
         this.setState({
             initRender: true,
             activeId: activeId,
@@ -8083,10 +8136,12 @@ var Sophie = __webpack_require__(1);
 var Text = __webpack_require__(14);
 
 var A = Sophie.createClass("p-a", {
+
     getDefaultProps: function getDefaultProps() {
         return {
             value: "按钮",
-            heightAuto: false
+            heightAuto: false,
+            isActive: false
         };
     }
 }, Text);
