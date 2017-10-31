@@ -1219,7 +1219,7 @@ module.exports = React.createClass({
 
 /***/ }),
 
-/***/ 877:
+/***/ 879:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
