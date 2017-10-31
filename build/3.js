@@ -106,12 +106,6 @@ var Base = Sophie.createClass({
 
         appendClass(this);
 
-        if (this.props.isActive) {
-            self.appendClassName("active", this);
-        } else {
-            self.removeClassName("active", this);
-        }
-
         //区分来源，为原生的组件生成特有的class方便css设置
 
         if (this.ownerDocument == Sophie.firstVnode) {
@@ -161,6 +155,10 @@ var Base = Sophie.createClass({
 
             if (self.props.style) {
                 rootTag.attributes.style = this.props.style;
+            }
+
+            if (self.props.isActive) {
+                rootTag.attributes["data-active"] = true;
             }
 
             return rootTag;
@@ -232,10 +230,15 @@ var Base = Sophie.createClass({
     show: function show() {},
 
     active: function active() {
-        this.setProps({ acitve: true });
+        this.props.isActive = true;
+
+        this.forceUpdate();
     },
+
     unActive: function unActive() {
-        this.setProps({ acitve: false });
+        this.props.isActive = false;
+
+        this.forceUpdate();
     },
 
     onLayout: function onLayout() {
@@ -4489,8 +4492,9 @@ var Nav = Sophie.createClass("p-nav-page", {
         self.activeBind();
         $(document).ready(function () {
             self.initPage();
-
-            self.activeFirst();
+            setTimeout(function () {
+                self.activeFirst();
+            });
         });
 
         Sophie.ready(function () {
@@ -4503,7 +4507,7 @@ var Nav = Sophie.createClass("p-nav-page", {
         $(this.nativeNode).delegate("li p-button", "click", function (ev) {
             ev.preventDefault();
             var li = $(ev.target).closest("p-button");
-            var id = li.attr("data-id");
+            var id = li.get(0).vnode.props["data-id"];
             var site = $("p-site");
             if (site.length) {
                 site.get(0).vnode.active(id);
@@ -4516,10 +4520,9 @@ var Nav = Sophie.createClass("p-nav-page", {
 
     active: function active(id) {
         var self = this;
-
         var childen = this.props.children;
         for (var i = 0; i < childen.length; i++) {
-            if (childen[i].props.id == id) {
+            if (childen[i].props["data-id"] == id) {
                 childen[i].active();
             } else {
                 childen[i].unActive();
@@ -4533,8 +4536,8 @@ var Nav = Sophie.createClass("p-nav-page", {
     activeFirst: function activeFirst() {
         var self = this;
 
-        var childen = this.props.children;
-        childen[0].active();
+        var children = this.props.children;
+        children[0].active();
         // this.setState({
         //     activeId: id
         // })
@@ -13928,7 +13931,7 @@ exports = module.exports = __webpack_require__(3)();
 
 
 // module
-exports.push([module.i, "p-nav-page[data-theme=\"theme-1\"]  ul li.active p-button,p-nav-page[data-theme=\"theme-1\"]  ul li:hover p-button{\n    color:#00C3D9;\n\n    border-radius: 5px;\n}\n\n\np-nav-page[data-theme=\"theme-2\"]  ul li.active p-button,p-nav-page[data-theme=\"theme-2\"]  ul li:hover p-button{\n    color:#00C3D9;\n    border-bottom:solid 1px #00C3D9;\n}\n\n\np-nav-page[data-theme=\"theme-3\"]{\n    background-color: #fff;\n    border-radius: 0.5em;\n}\n\np-nav-page[data-theme=\"theme-3\"]  ul li p-button,p-nav-page[data-theme=\"theme-3\"]  ul li p-button{\n    color:rgba(0,0,0,0.6);\n\n}\n\n\n\np-nav-page[data-theme=\"theme-4\"]{\n    background-color: #fff;\n    border-radius: 4px;\n}\n\np-nav-page[data-theme=\"theme-4\"]  ul li.active p-button,p-nav-page[data-theme=\"theme-4\"]  ul li:hover p-button{\n    color:#00C3D9;\n}\n\np-nav-page[data-theme=\"theme-4\"]  ul li p-button,p-nav-page[data-theme=\"theme-4\"]  ul li p-button{\n    color:rgba(0,0,0,0.6);\n\n}\n\n\np-nav-page[data-theme=\"theme-5\"]{\n    border:solid 1px   #00C3D9;\n\n}\n\np-nav-page[data-theme=\"theme-5\"]  ul li.active p-button,p-nav-page[data-theme=\"theme-5\"]  ul li:hover p-button{\n    background-color:#00C3D9;\n    color:#fff;\n\n}\n\np-nav-page[data-theme=\"theme-6\"]{\n    background-color: #00C3D9;\n\n}\n\np-nav-page[data-theme=\"theme-6\"]  ul li.active p-button,p-nav-page[data-theme=\"theme-6\"]  ul li:hover p-button{\n    background-color:#00A1B3;\n    color:#fff;\n\n}\n\np-nav-page[data-theme=\"theme-7\"]{\n    border:solid 1px   #00C3D9;\n    border-radius: 4px;\n\n}\n\np-nav-page[data-theme=\"theme-7\"]  ul li.active p-button,p-nav-page[data-theme=\"theme-7\"]  ul li:hover p-button{\n    background-color:#00C3D9;\n    color:#fff;\n\n}\n\n\np-nav-page[data-theme=\"theme-7\"]{\n    background-color: #00C3D9;\n    border-radius: 4px;\n\n\n}\n\np-nav-page[data-theme=\"theme-7\"]  ul li.active p-button,p-nav-page[data-theme=\"theme-7\"]ul li:hover p-button{\n    background-color:#00A1B3;\n    color:#fff;\n}\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "p-nav-page[data-theme=\"theme-1\"]  p-button[data-active=\"true\"],p-nav-page[data-theme=\"theme-1\"]  ul li p-button:hover {\n    color:#00C3D9;\n\n    border-radius: 5px;\n}\n\n\np-nav-page[data-theme=\"theme-2\"]  ul li  p-button[data-active=\"true\"],p-nav-page[data-theme=\"theme-2\"]  ul li p-button:hover {\n    color:#00C3D9;\n    border-bottom:solid 1px #00C3D9;\n}\n\n\np-nav-page[data-theme=\"theme-3\"]{\n    background-color: #fff;\n    border-radius: 0.5em;\n}\n\np-nav-page[data-theme=\"theme-3\"]  ul li p-button,p-nav-page[data-theme=\"theme-3\"]  ul li p-button{\n    color:rgba(0,0,0,0.6);\n\n}\n\n\n\np-nav-page[data-theme=\"theme-4\"]{\n    background-color: #fff;\n    border-radius: 4px;\n}\n\np-nav-page[data-theme=\"theme-4\"]  ul li  p-button[data-active=\"true\"],p-nav-page[data-theme=\"theme-4\"]  ul li p-button:hover {\n    color:#00C3D9;\n}\n\np-nav-page[data-theme=\"theme-4\"]  ul li p-button,p-nav-page[data-theme=\"theme-4\"]  ul li p-button{\n    color:rgba(0,0,0,0.6);\n\n}\n\n\np-nav-page[data-theme=\"theme-5\"]{\n    border:solid 1px   #00C3D9;\n\n}\n\np-nav-page[data-theme=\"theme-5\"]  ul li  p-button[data-active=\"true\"],p-nav-page[data-theme=\"theme-5\"]  ul li p-button:hover {\n    background-color:#00C3D9;\n    color:#fff;\n\n}\n\np-nav-page[data-theme=\"theme-6\"]{\n    background-color: #00C3D9;\n\n}\n\np-nav-page[data-theme=\"theme-6\"]  ul li  p-button[data-active=\"true\"],p-nav-page[data-theme=\"theme-6\"]  ul li p-button:hover {\n    background-color:#00A1B3;\n    color:#fff;\n\n}\n\np-nav-page[data-theme=\"theme-7\"]{\n    border:solid 1px   #00C3D9;\n    border-radius: 4px;\n\n}\n\np-nav-page[data-theme=\"theme-7\"]  ul li  p-button[data-active=\"true\"],p-nav-page[data-theme=\"theme-7\"]  ul li p-button:hover {\n    background-color:#00C3D9;\n    color:#fff;\n\n}\n\n\np-nav-page[data-theme=\"theme-7\"]{\n    background-color: #00C3D9;\n    border-radius: 4px;\n\n\n}\n\np-nav-page[data-theme=\"theme-7\"]  ul li  p-button[data-active=\"true\"],p-nav-page[data-theme=\"theme-7\"]ul li p-button:hover {\n    background-color:#00A1B3;\n    color:#fff;\n}\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -47410,8 +47413,15 @@ var utils = (_utils = {
     };
 
     //位置信息不可hover
-    if (play.cssStatus && !isPositionCSS(cssName) && play.cssStatus !== ".default") {
-        selector = selector + play.cssStatus;
+    if (play.cssStatus && !isPositionCSS(cssName) && play.cssStatus !== "default") {
+
+        if (play.cssStatus == "active") {
+            selector = selector + '[data-active="true"]';
+        }
+
+        if (play.cssStatus == "hover") {
+            selector = selector + '[data-hover="true"]';
+        }
     }
 
     var cssRules = styleSheet.cssRules;
@@ -59539,19 +59549,20 @@ var CSSPanel = Sophie.createClass("panel-css", {
 
             var status = target.attr("data-css-status");
 
-            play.cssStatus = "." + status;
+            play.cssStatus = status;
             target.addClass("active");
         });
 
         $(document).on("selectEl", function (ev, el, old) {
             setTimeout(function () {
-                if (el.hasClass("active")) {
+                console.log(el);
+                if (el.attr("data-active") == "true") {
                     $("#css-status a").removeClass("active");
-                    play.cssStatus = "." + "active";
+                    play.cssStatus = "active";
                     $('#css-status a').eq(1).addClass("active");
                 } else {
                     $("#css-status a").removeClass("active");
-                    play.cssStatus = "." + "default";
+                    play.cssStatus = "default";
 
                     $('#css-status a').eq(0).addClass("active");
                 }
