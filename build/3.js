@@ -47408,26 +47408,6 @@ var utils = (_utils = {
 
     if (!selector) return;
 
-    var positionCSS = ["width", "height", "margin-top", "margin-left", "margin-bottom", "margin-right"];
-
-    var isPositionCSS = function isPositionCSS(cssName) {
-        for (var i = 0; i < positionCSS.length; i++) {
-            if (positionCSS[i] == cssName) return true;
-        }
-    };
-
-    //位置信息不可hover
-    if (play.cssStatus && !isPositionCSS(cssName) && play.cssStatus !== "default") {
-
-        if (play.cssStatus == "active") {
-            selector = selector + '[data-active="true"]';
-        }
-
-        if (play.cssStatus == "hover") {
-            selector = selector + '[data-hover="true"]';
-        }
-    }
-
     var cssRules = styleSheet.cssRules;
 
     //查找相同选择器的规则
@@ -53592,6 +53572,27 @@ var _css = function _css(target, cssName, value, mediaName) {
     cssName = cssName.replace(/([A-Z])/g, "-$1").toLowerCase();
     var selector = utils.toSelector(target, mediaName);
     var commonSelector = utils.toCommonSeletor(target);
+
+    var positionCSS = ["width", "height", "margin-top", "margin-left", "margin-bottom", "margin-right"];
+
+    var isPositionCSS = function isPositionCSS(cssName) {
+        for (var i = 0; i < positionCSS.length; i++) {
+            if (positionCSS[i] == cssName) return true;
+        }
+    };
+
+    //位置信息不可hover
+    if (play.cssStatus && !isPositionCSS(cssName) && play.cssStatus !== "default") {
+
+        if (play.cssStatus == "active") {
+            selector = selector + '[data-active="true"]';
+        }
+
+        if (play.cssStatus == "hover") {
+            selector = selector + '[data-hover="true"]';
+        }
+    }
+
     if ((cssName == "fontSize" || cssName == "font-size") && target.find('> .p-text-wrap').length) {
         selector = selector + " .p-text-wrap";
     }
