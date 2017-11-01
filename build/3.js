@@ -67524,7 +67524,8 @@ Sophie.createStyleSheet({
         textAlign: 'center',
         lineHeight: '20px',
         position: "absolute",
-        backgroundColor: "rgba(0,0,0,0.2)"
+        backgroundColor: "rgba(0,0,0,0.8)",
+        color: "#fff"
     },
 
     'select-mask .show-width-inner ': {},
