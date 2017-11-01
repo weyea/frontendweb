@@ -45988,11 +45988,11 @@ var play = (_play = {
         baseConfig.parentable = false;
     }
 
-    if (play.is(el, "p-pic") && play.getProps(el).isCircle === true) {
+    if (play.is(el, "p-pic") && play.getProps(el).isCircle) {
         baseConfig.resizeable = { constrain: true, freeResize: true };
     }
 
-    if (play.is(el, "p-circle") && play.getProps(el).isCircle === true) {
+    if (play.is(el, "p-circle") && play.getProps(el).isCircle) {
         baseConfig.resizeable = { constrain: true, freeResize: true };
     }
 
@@ -55964,23 +55964,23 @@ var startDrag = function startDrag(startX, startY, starget) {
     }
 };
 
-var ondrag = function ondrag(startX, startY, endX, endY, starget) {
+var ondrag = function ondrag(startX, startY, endX, endY, starget, ev) {
     if (!status) return;
-    if ($(starget).hasClass("s-top") && resizeable.y !== false && resizeable.top !== false) {
+    if (($(starget).hasClass("s-top") || $(starget).hasClass("h-top")) && resizeable.y !== false && resizeable.top !== false) {
         sy = endY;
         dir = "top";
     }
 
-    if ($(starget).hasClass("s-left")) {
+    if ($(starget).hasClass("s-left") || $(starget).hasClass("h-left")) {
         sx = endX;
         dir = "left";
     }
-    if ($(starget).hasClass("s-right")) {
+    if ($(starget).hasClass("s-right") || $(starget).hasClass("h-right")) {
         ex = endX;
         dir = "right";
     }
 
-    if ($(starget).hasClass("s-bottom")) {
+    if ($(starget).hasClass("s-bottom") || $(starget).hasClass("h-bottom")) {
         ey = endY;
         // if (ey < sy)ey = sy;
         dir = "bottom";
@@ -56017,7 +56017,8 @@ var ondrag = function ondrag(startX, startY, endX, endY, starget) {
         }
 
         //约束比例
-        if (resizeable.constrain) {
+        if (resizeable.constrain || ev.shiftKey) {
+
             if (oCoord.width !== newCoords.width) {
                 var height = newCoords.width * (oldAllCoord.height / oldAllCoord.width);
                 newCoords.height = height;
@@ -56092,6 +56093,7 @@ var endDrag = function endDrag(startX, startY, endX, endY, starget) {
 
 $(document).on("iframeload", function () {
     drag.ondrag($("select-mask .side"), startDrag, ondrag, endDrag, play.iframeDoc);
+    drag.ondrag($("select-mask .handle"), startDrag, ondrag, endDrag, play.iframeDoc);
 });
 
 $(document).on("resizeEl", function (ev, el, coord) {
@@ -56663,7 +56665,7 @@ var MoveHelper = __webpack_require__(374);
 
         oldNodes = MoveHelper.getAllUpdateNodesForMove(target, oldParent);
 
-        if (ev.shiftKey) {
+        if (ev.altKey) {
             isCopy = true;
             oldNodes = $(MoveHelper.createCopy(oldNodes));
         } else {
@@ -56777,7 +56779,8 @@ var MoveHelper = __webpack_require__(374);
     $(document).on("iframeload", function () {
         drag.ondrag(play.iframeDoc, startDrag, ondrag, endDrag, play.iframeDoc);
         var selectMask = $("select-mask");
-        drag.ondrag(selectMask, startDrag, ondrag, endDrag, play.iframeDoc);
+        //drag.ondrag(selectMask, startDrag, ondrag, endDrag, play.iframeDoc);
+
     });
 })();
 
