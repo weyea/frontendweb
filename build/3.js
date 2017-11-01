@@ -1823,7 +1823,7 @@ var Text = Sophie.createClass("p-text", {
         target.on("mousedown mouseup dblclick click keyup keydown", function (ev) {
             var target = $(ev.target);
             if (self.state.editing) {
-                ev.stopPropagation();
+                // ev.stopPropagation();
             } else {
                 ev.preventDefault();
             }
@@ -1833,7 +1833,7 @@ var Text = Sophie.createClass("p-text", {
         el.on("mousedown mouseup dblclick click keyup keydown", function (ev) {
             var target = $(ev.target);
             if (self.state.editing) {
-                ev.stopPropagation();
+                // ev.stopPropagation();
             } else {
                 ev.preventDefault();
             }
@@ -7465,7 +7465,15 @@ function initClass(props, children, owner) {
         this.owner = owner;
         this.ownerDocument = owner;
     }
-    this.state = {};
+
+    //for history
+    if (props.__state) {
+        this.state = props.__state;
+        delete props.__state;
+    } else {
+        this.state = {};
+    }
+
     this.refs = {};
     this.props = this.attributes = utils.extend(true, {}, props || {});
     this.defaultProps = {};
@@ -7488,7 +7496,7 @@ function initClass(props, children, owner) {
         }
     }
 
-    this.state = this.getInitialState() || {};
+    this.state = utils.extend(true, {}, this.getInitialState() || {}, this.state);
 
     this._constructor.apply(this, arguments);
 }
@@ -13079,7 +13087,7 @@ module.exports = {
     },
 
     ready: ready,
-    renderToJSON: function renderToJSON(outVnode) {
+    renderToJSON: function renderToJSON(outVnode, state) {
         // app
         //isPlainObject
         var outVnode = outVnode || Sophie.firstVnode.rootVnode;
@@ -13123,6 +13131,10 @@ module.exports = {
                 delete attributes.children;
 
                 currentData.props = attributes;
+                if (state) {
+
+                    currentData.state = utils.extend(2, {}, component.state);
+                }
                 currentData.name = component.name;
             } else if (vnode.type == "text") {
                 currentData.type = vnode.type;
@@ -13161,6 +13173,10 @@ module.exports = {
 
             if (result === false) return;
             if (c.type == "thunk") {
+
+                if (c.state) {
+                    c.props.__state = c.state;
+                }
                 return Sophie.element(Sophie.registry[c.name], c.props, funChildren(c.children));
             } else if (c.type == "text") {
 
@@ -42854,6 +42870,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
             // Handle user typed input
             textInput.change(setFromTextInput);
+            textInput.bind("keyup", setFromTextInput);
             textInput.bind("paste", function () {
                 setTimeout(setFromTextInput, 1);
             });
@@ -45455,11 +45472,11 @@ var play = (_play = {
         cssString += cssRules[i].cssText + "\r\n";
     }
     return cssString;
-}), _defineProperty(_play, "getPageData", function getPageData(iframeDoc) {
+}), _defineProperty(_play, "getPageData", function getPageData(isState) {
 
     this.clearAllCSS();
 
-    var iframeDoc = iframeDoc || play.iframeDoc;
+    var iframeDoc = play.iframeDoc;
 
     var links = [];
 
@@ -45479,7 +45496,7 @@ var play = (_play = {
         }
     });
 
-    var html = play.iframeWin.Sophie.renderToJSON();
+    var html = play.iframeWin.Sophie.renderToJSON(undefined, isState);
     return {
 
         "html": JSON.stringify(html),
@@ -45639,9 +45656,9 @@ var play = (_play = {
         var runner = play.createStepRun();
 
         $(document).on("operator", function () {
-            play.select.reflow();
+
             runner.run(function () {
-                var jsonData = play.getPageData();
+                var jsonData = play.getPageData(true);
                 var data = JSON.stringify(jsonData);
                 var selected = play.select.selectedEL;
 
@@ -51802,6 +51819,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         cancelSelectEL: function cancelSelectEL() {
 
             select.selectedEL && select.selectedEL.removeAttr("data-moveable");
+            var el = select.selectedEL;
 
             $(select.selectedEL).trigger("unselect");
 
@@ -51813,6 +51831,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             // select.selectedEL = null;
 
             this.hideParentBar();
+
+            $(document).trigger("unSelectEl", [el]);
         },
 
         hideSelectMask: function hideSelectMask() {
@@ -52131,7 +52151,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
     }, _defineProperty(_selectWithGroup, "getUpContext", function getUpContext(target) {
         var parent = select.getUpSelectableEl(target);
-        var parentComponentContext = play.getUpVisibelCompontentContext(componentContext);
+        var parentComponentContext = play.getUpVisibelCompontentContext(parent);
         var parent = $(parentComponentContext.nativeNode);
         return parent;
     }), _defineProperty(_selectWithGroup, "getUpSelectableContext", function getUpSelectableContext(el) {
@@ -52527,7 +52547,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
         var canSelect = false;
         $(iframeDoc).on("mousedown", function (e) {
-            canSelect = true;
+
+            if ($(e.target).closest("[contenteditable='true']").length) {
+                canSelect = false;
+            } else {
+                canSelect = true;
+            }
         });
 
         $(iframeDoc).on("click", function (e) {
@@ -55174,7 +55199,8 @@ play.dom = {
 
                 //编辑不起作用
 
-                console.log(target);
+                play._clickType = false;
+                isDragging = false;
 
                 if (target.closest("[contenteditable='true']").length) {
                     return;
@@ -60917,36 +60943,53 @@ var TextSet = Sophie.createClass("font-set", {
         var self = this;
         var el = el || play.select.selectedEL;
 
-        el.get(0).vnode.cancelEdit();
-        play.utils.clearSelection();
-        if (el.get(0).vnode._editor) {
-            el.get(0).vnode._editor.disable();
+        if (play.getVnode(el).state.editing) {
+
+            el.get(0).vnode.cancelEdit();
+            play.utils.clearSelection();
+            if (el.get(0).vnode._editor) {
+                el.get(0).vnode._editor.disable();
+            }
+            // el.get(0).vnode._editor.stopObserving("onChange", function(){
+
+
+            self._editing = false;
+
+            $(document).trigger("cancelTextInput", [el]);
         }
-        // el.get(0).vnode._editor.stopObserving("onChange", function(){
-
-
-        self._editing = false;
-
-        $(document).trigger("cancelTextInput", [el]);
     },
 
     editor: function editor() {
-
         var self = this;
 
         $(document).on("unSelectEl", function (ev, el) {
-
             if (el && el.length) {
-
-                if (play.getEditableProp(el, "editable") && !el.is(play.select.selectedEL)) {
+                if (play.getEditableProp(el, "editable")) {
                     self.cancelEdit(el);
                     // $(".shortcutbar-font-cmd", self.shortcutbar).hide();
                 }
             }
         });
-        $(document).on("selectEl", function (ev, el) {
 
-            if (play.getEditableProp(play.select.selectedEL, "editable") && !play.select.selectedEL.is(el)) self.cancelEdit(play.select.selectedEL);
+        $(document).on("selectEl", function (ev, el) {
+            if (play.getEditableProp(play.select.selectedEL, "editable") && !play.select.selectedEL.is(el)) {
+                self.cancelEdit(play.select.selectedEL);
+            }
+        });
+
+        $(document).on("iframeload", function () {
+            $(play.iframeDoc).on("click", function (ev) {
+                var target = $(ev.target);
+                if (target.closest("[contenteditable='true']").length) {
+                    var parent = target.closest("[contenteditable='true']").parent();
+                    if (!play.select.selectedEL.is(parent)) {
+                        var vnode = play.getVnode(parent);
+                        if (vnode) {
+                            self.cancelEdit($(vnode.nativeNode));
+                        }
+                    }
+                }
+            });
         });
     },
 
@@ -60967,10 +61010,10 @@ var TextSet = Sophie.createClass("font-set", {
         });
 
         $(document).delegate(".cmd-unlink", "click", function () {
-
             play.iframeDoc.execCommand("Unlink");
         });
     },
+
     initOpen: function initOpen() {
 
         var self = this;
@@ -60982,9 +61025,7 @@ var TextSet = Sophie.createClass("font-set", {
         });
 
         $(document).on("selectEl", function (ev, target) {
-
             if (self.isText(target)) {
-
                 $("#font-set-panel").show();
                 $("panel-css .font-set").removeClass("font-set-selection");
                 self.open();
@@ -61202,42 +61243,32 @@ var TextSet = Sophie.createClass("font-set", {
             // showButtons: false,
             move: function move(color) {
                 var el = play.select.selectedEL;
-
                 $(document).trigger("doCSSChange", ["color", color.toRgbString()]);
-
                 // play.dom.css(el, "color", color.toRgbString())
-
                 //
                 // console.log(color.toRgbString()) // #ff0000
             },
-
             change: function change(color) {
                 var el = play.select.selectedEL;
-
                 $(document).trigger("doCSSChange", ["color", color.toRgbString()]);
-
                 // play.dom.css(el, "color", color.toRgbString())
                 //
                 //
                 // console.log(color.toRgbString()) // #ff0000
             }
-
         });
 
         /* 创建A连接 */
         $(".set-a-href", self.shortcutbar).click(function () {
-
             self.aHref.modal("show");
         });
 
         /* 设置icon */
         $(".set-icon", self.shortcutbar).click(function () {
-
             self.setIconModel.modal("show");
         });
 
         $(".cmd-createlink", self.aHref).click(function () {
-
             self.setLink($("#set-a-href-value").val());
             self.aHref.modal("hide");
         });
@@ -62361,7 +62392,8 @@ var ImgSet = Sophie.createClass("img-set", {
                                 { "class": "input-group-btn" },
                                 Sophie.element(
                                     "button",
-                                    { type: "button", "class": "btn btn-default dropdown-toggle", style: "padding: 2px 5px",
+                                    { type: "button", "class": "btn btn-default dropdown-toggle",
+                                        style: "padding: 2px 5px",
                                         "data-toggle": "dropdown" },
                                     "\u9009\u62E9",
                                     Sophie.element("span", { "class": "caret" })
@@ -62446,7 +62478,8 @@ var ImgSet = Sophie.createClass("img-set", {
                             { "class": "input-group" },
                             Sophie.element(
                                 "a",
-                                { "class": "repeat-set", href: "#", "data-cssname": "backgroundSize", mselect: "true", value: "cover" },
+                                { "class": "repeat-set", href: "#", "data-cssname": "backgroundSize", mselect: "true",
+                                    value: "cover" },
                                 "cover"
                             ),
                             Sophie.element(
@@ -62498,7 +62531,8 @@ var ImgSet = Sophie.createClass("img-set", {
                             { "class": "modal-header" },
                             Sophie.element(
                                 "button",
-                                { type: "button", "class": "close", "data-dismiss": "modal", "aria-hidden": "true" },
+                                { type: "button", "class": "close", "data-dismiss": "modal",
+                                    "aria-hidden": "true" },
                                 "\xD7"
                             ),
                             Sophie.element(
@@ -62526,10 +62560,13 @@ var ImgSet = Sophie.createClass("img-set", {
             )
         );
     },
+
     editableInit: function editableInit(el) {
+
         if (el.is("p-pic")) {
             $(el).prop("showName", "图片");
         }
+
         if (el.is("p-img")) {
             $(el).prop("showName", "图片");
 
@@ -62539,14 +62576,12 @@ var ImgSet = Sophie.createClass("img-set", {
                 }
             });
         } else if (el.is("p-pic-circle")) {
-
             $(el).prop("showName", "圆形图片");
             play.registerEditableProp($(el).prop("tagName"), {
                 "resizeable": { constrain: true }
             });
         } else if (el.is("p-logo")) {
             $(el).prop("showName", "LOGO");
-
             $(el).prop("parentContainer", "p-header");
         }
 
@@ -62638,7 +62673,6 @@ var ImgSet = Sophie.createClass("img-set", {
         $(document).on("beforeAddNewEl", function (ev, el) {
 
             $("img", el).on("load", function () {
-
                 play.select.reflow();
             });
 
@@ -62735,7 +62769,6 @@ var ImgSet = Sophie.createClass("img-set", {
         });
 
         $(".set-href", self.shortcutbar).click(function () {
-
             self.imgHref.modal("show");
         });
 
@@ -62748,9 +62781,11 @@ var ImgSet = Sophie.createClass("img-set", {
                 var a = target.find("a");
 
                 if (a.css("background-size") == "cover") {
-                    a.css("backgroundSize", "contain");
+                    play.dom.css(a, "background-size", "contain");
+                    //a.css("backgroundSize", "contain")
                 } else {
-                    a.css("backgroundSize", "cover");
+                    play.dom.css(a, "background-size", "cover");
+                    // a.css("backgroundSize", "cover")
                     // target.css("background-size", "cover")
                 }
                 return;
@@ -65181,7 +65216,7 @@ var ColorPicker = Sophie.createClass("colorpicker", {
         $("#picker").spectrum({
             flat: true,
             // allowEmpty:true,
-            preferredFormat: "rgb",
+            preferredFormat: "hex3",
             color: "rgb(68, 128, 38)",
             showInput: true,
             showAlpha: true,
@@ -65192,6 +65227,19 @@ var ColorPicker = Sophie.createClass("colorpicker", {
             showInitial: true,
             palette: [["rgb(0, 0, 0)", "rgb(67, 67, 67)", "rgb(102, 102, 102)", "rgb(153, 153, 153)", "rgb(183, 183, 183)", "rgb(204, 204, 204)", "rgb(217, 217, 217)", "rgb(239, 239, 239)", "rgb(243, 243, 243)", "rgb(255, 255, 255)"], ["rgb(152, 0, 0)", "rgb(255, 0, 0)", "rgb(255, 153, 0)", "rgb(255, 255, 0)", "rgb(0, 255, 0)", "rgb(0, 255, 255)", "rgb(74, 134, 232)", "rgb(0, 0, 255)", "rgb(153, 0, 255)", "rgb(255, 0, 255)"], ["rgb(230, 184, 175)", "rgb(244, 204, 204)", "rgb(252, 229, 205)", "rgb(255, 242, 204)", "rgb(217, 234, 211)", "rgb(208, 224, 227)", "rgb(201, 218, 248)", "rgb(207, 226, 243)", "rgb(217, 210, 233)", "rgb(234, 209, 220)", "rgb(221, 126, 107)", "rgb(234, 153, 153)", "rgb(249, 203, 156)", "rgb(255, 229, 153)", "rgb(182, 215, 168)", "rgb(162, 196, 201)", "rgb(164, 194, 244)", "rgb(159, 197, 232)", "rgb(180, 167, 214)", "rgb(213, 166, 189)", "rgb(204, 65, 37)", "rgb(224, 102, 102)", "rgb(246, 178, 107)", "rgb(255, 217, 102)", "rgb(147, 196, 125)", "rgb(118, 165, 175)", "rgb(109, 158, 235)", "rgb(111, 168, 220)", "rgb(142, 124, 195)", "rgb(194, 123, 160)", "rgb(166, 28, 0)", "rgb(204, 0, 0)", "rgb(230, 145, 56)", "rgb(241, 194, 50)", "rgb(106, 168, 79)", "rgb(69, 129, 142)", "rgb(60, 120, 216)", "rgb(61, 133, 198)", "rgb(103, 78, 167)", "rgb(166, 77, 121)", "rgb(133, 32, 12)", "rgb(153, 0, 0)", "rgb(180, 95, 6)", "rgb(191, 144, 0)", "rgb(56, 118, 29)", "rgb(19, 79, 92)", "rgb(17, 85, 204)", "rgb(11, 83, 148)", "rgb(53, 28, 117)", "rgb(116, 27, 71)", "rgb(91, 15, 0)", "rgb(102, 0, 0)", "rgb(120, 63, 4)", "rgb(127, 96, 0)", "rgb(39, 78, 19)", "rgb(12, 52, 61)", "rgb(28, 69, 135)", "rgb(7, 55, 99)", "rgb(32, 18, 77)", "rgb(76, 17, 48)", "rgba(0, 0, 0, 0)"]],
             move: function move(color) {
+                var rgb = color.toRgb(); // #ff0000
+
+
+                var rgba = "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + "," + color.alpha + ")";
+
+                if (targetColorInput) {
+                    targetColorInput.css("backgroundColor", rgba);
+                    targetColorInput.attr("value", rgba);
+
+                    $(document).trigger("doCSSChange", [targetColorInput.attr("data-cssname"), rgba]);
+                }
+            },
+            change: function change(color) {
                 var rgb = color.toRgb(); // #ff0000
 
 
@@ -65216,6 +65264,7 @@ var ColorPicker = Sophie.createClass("colorpicker", {
         targetColorInput = input;
         $('#tabs .colorpicker').tab('show');
         $("#picker").spectrum("set", targetColorInput.css("backgroundColor"));
+        $("#picker").spectrum("reflow");
     },
 
     render: function render() {
@@ -65526,7 +65575,7 @@ var QuickBar = Sophie.createClass("quick-bar", {
                         null,
                         "\u7AD9\u70B9\u540D\u79F0"
                     ),
-                    "  ",
+                    " ",
                     Sophie.element("i", { "class": "icon iconfont icon-jiantou" })
                 ),
                 Sophie.element(PageManagerView, null),
@@ -65550,12 +65599,14 @@ var QuickBar = Sophie.createClass("quick-bar", {
                     ),
                     Sophie.element(
                         "button",
-                        { "data-cmd": "draw", "data-tagname": "p-pic", "data-props": "{\"isCircle\":\"true\"}", type: "button", "class": "btn btn-default btn-lg" },
+                        { "data-cmd": "draw", "data-tagname": "p-pic", "data-props": "{\"isCircle\":\"true\"}", type: "button",
+                            "class": "btn btn-default btn-lg" },
                         Sophie.element("span", { "class": "glyphicon glyphicon-unchecked", "aria-hidden": "true" })
                     ),
                     Sophie.element(
                         "button",
-                        { type: "button", "class": "btn btn-default btn-lg", "data-toggle": "modal", "data-target": "#my-iconlist-modal" },
+                        { type: "button", "class": "btn btn-default btn-lg", "data-toggle": "modal",
+                            "data-target": "#my-iconlist-modal" },
                         Sophie.element("span", { "class": "glyphicon glyphicon-star", "aria-hidden": "true" })
                     )
                 )
@@ -65628,11 +65679,22 @@ var QuickBar = Sophie.createClass("quick-bar", {
         });
     },
 
-    save: function save() {
+    save: function save(callback) {
         var data = play.getPageData();
         $.post(designer.configs.saveUrl, data, function (result) {
             alert("保存成功");
             console.log(result);
+        });
+    },
+
+    preview: function preview() {
+        var data = play.getPageData();
+        var type = designer.configs.type;
+        var id = designer.configs.id;
+        var url = "/designer/source/" + type + "/" + id;
+        $.post(designer.configs.saveUrl, data, function (result) {
+
+            window.open(url, "预览");
         });
     },
     showPublish: function showPublish() {
@@ -65738,7 +65800,8 @@ var QuickBar = Sophie.createClass("quick-bar", {
         });
         $(document).delegate(".cmd-preview", "click", function () {
 
-            $("body").addClass("preview");
+            // $("body").addClass("preview")
+            self.preview();
         });
         $(document).delegate(".cmd-capture", "click", function () {
 
@@ -67227,6 +67290,7 @@ var SelectMask = Sophie.createClass("select-mask", {
 
     selectCood: function selectCood(cood, isResizable, isMoveable, isSimple) {
 
+        console.log("gogos");
         var mask = $(this.nativeNode);
 
         var self = this.nativeNode;

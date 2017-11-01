@@ -2080,7 +2080,7 @@ var Text = Sophie.createClass("p-text", {
         target.on("mousedown mouseup dblclick click keyup keydown", function (ev) {
             var target = $(ev.target);
             if (self.state.editing) {
-                ev.stopPropagation();
+                // ev.stopPropagation();
             } else {
                 ev.preventDefault();
             }
@@ -2090,7 +2090,7 @@ var Text = Sophie.createClass("p-text", {
         el.on("mousedown mouseup dblclick click keyup keydown", function (ev) {
             var target = $(ev.target);
             if (self.state.editing) {
-                ev.stopPropagation();
+                // ev.stopPropagation();
             } else {
                 ev.preventDefault();
             }
@@ -7722,7 +7722,15 @@ function initClass(props, children, owner) {
         this.owner = owner;
         this.ownerDocument = owner;
     }
-    this.state = {};
+
+    //for history
+    if (props.__state) {
+        this.state = props.__state;
+        delete props.__state;
+    } else {
+        this.state = {};
+    }
+
     this.refs = {};
     this.props = this.attributes = utils.extend(true, {}, props || {});
     this.defaultProps = {};
@@ -7745,7 +7753,7 @@ function initClass(props, children, owner) {
         }
     }
 
-    this.state = this.getInitialState() || {};
+    this.state = utils.extend(true, {}, this.getInitialState() || {}, this.state);
 
     this._constructor.apply(this, arguments);
 }
@@ -13336,7 +13344,7 @@ module.exports = {
     },
 
     ready: ready,
-    renderToJSON: function renderToJSON(outVnode) {
+    renderToJSON: function renderToJSON(outVnode, state) {
         // app
         //isPlainObject
         var outVnode = outVnode || Sophie.firstVnode.rootVnode;
@@ -13380,6 +13388,10 @@ module.exports = {
                 delete attributes.children;
 
                 currentData.props = attributes;
+                if (state) {
+
+                    currentData.state = utils.extend(2, {}, component.state);
+                }
                 currentData.name = component.name;
             } else if (vnode.type == "text") {
                 currentData.type = vnode.type;
@@ -13418,6 +13430,10 @@ module.exports = {
 
             if (result === false) return;
             if (c.type == "thunk") {
+
+                if (c.state) {
+                    c.props.__state = c.state;
+                }
                 return Sophie.element(Sophie.registry[c.name], c.props, funChildren(c.children));
             } else if (c.type == "text") {
 
