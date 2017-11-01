@@ -35801,74 +35801,29 @@ var WidgetPanel = Sophie.createClass("widget-panel", {
                         "div",
                         { role: "tabpanel", "class": "tab-pane", id: "widget-panel-button" },
                         Sophie.element(
-                            "div",
-                            { "class": "widget-item theme-1", "data-tagname": "p-button", "data-theme": "theme-1",
-                                "data-cmd": "draw" },
-                            Sophie.element(
-                                "div",
-                                { "class": "bg" },
-                                Sophie.element(
-                                    "div",
-                                    { "class": "scale" },
-                                    Sophie.element(App.Button, { theme: "theme-1" })
-                                )
-                            )
+                            Scale,
+                            null,
+                            Sophie.element(App.Button, { theme: "theme-1" })
                         ),
                         Sophie.element(
-                            "div",
-                            { "class": "widget-item theme-2", "data-tagname": "p-button", "data-theme": "theme-2",
-                                "data-cmd": "draw" },
-                            Sophie.element(
-                                "div",
-                                { "class": "bg" },
-                                Sophie.element(
-                                    "div",
-                                    { "class": "scale" },
-                                    Sophie.element(App.Button, { theme: "theme-2" })
-                                )
-                            )
+                            Scale,
+                            null,
+                            Sophie.element(App.Button, { theme: "theme-2" })
                         ),
                         Sophie.element(
-                            "div",
-                            { "class": "widget-item theme-4", "data-tagname": "p-button", "data-theme": "theme-4",
-                                "data-cmd": "draw" },
-                            Sophie.element(
-                                "div",
-                                { "class": "bg" },
-                                Sophie.element(
-                                    "div",
-                                    { "class": "scale" },
-                                    Sophie.element(App.Button, { theme: "theme-4" })
-                                )
-                            )
+                            Scale,
+                            null,
+                            Sophie.element(App.Button, { theme: "theme-3" })
                         ),
                         Sophie.element(
-                            "div",
-                            { "class": "widget-item theme-4", "data-tagname": "p-button", "data-theme": "theme-4",
-                                "data-cmd": "draw" },
-                            Sophie.element(
-                                "div",
-                                { "class": "bg" },
-                                Sophie.element(
-                                    "div",
-                                    { "class": "scale" },
-                                    Sophie.element(App.Button, { theme: "theme-4" })
-                                )
-                            )
+                            Scale,
+                            null,
+                            Sophie.element(App.Button, { theme: "theme-4" })
                         ),
                         Sophie.element(
-                            "div",
-                            { "class": "widget-item theme-5", "data-tagname": "p-button", "data-theme": "theme-5",
-                                "data-cmd": "draw" },
-                            Sophie.element(
-                                "div",
-                                { "class": "bg" },
-                                Sophie.element(
-                                    "div",
-                                    { "class": "scale" },
-                                    Sophie.element(App.Button, { theme: "theme-5" })
-                                )
-                            )
+                            Scale,
+                            null,
+                            Sophie.element(App.Button, { theme: "theme-5" })
                         )
                     ),
                     Sophie.element("div", { role: "tabpanel", "class": "tab-pane ", id: "widget-panel-share" }),
@@ -50952,7 +50907,7 @@ var clearAllCSS = exports.clearAllCSS = function clearAllCSS(el) {
     clearCSS(styleSheet, el);
     var children = play.getChildren(el);
     for (var i = 0; i < children.length; i++) {
-        this.clearAllCSS(children[i]);
+        clearAllCSS(children[i]);
     }
 };
 
@@ -51846,7 +51801,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         },
 
         move: function move(coords) {
-
             play.selectMaskVNode.move(coords);
         },
         pointerEvents: function pointerEvents(value) {
@@ -53651,8 +53605,9 @@ var _css = function _css(target, cssName, value, mediaName) {
             selector = selector + '[data-active=true]';
         }
 
+        //@todo keep same each other for while
         if (play.cssStatus == "hover") {
-            commonSelector = commonSelector + '[data-hover=true]';
+            commonSelector = commonSelector + '[data-active=true]';
             selector = selector + '[data-active=true]';
         }
     }
@@ -57573,6 +57528,13 @@ var _RelativeCoord = __webpack_require__(374);
                 }, 0);
             });
 
+            $(document).on("cssStatusChange", function (ev, target) {
+
+                setTimeout(function () {
+                    self.showCSS();
+                }, 0);
+            });
+
             $(document).on("resizeEl", function (ev, target) {
 
                 setTimeout(function () {
@@ -59674,8 +59636,20 @@ var CSSPanel = Sophie.createClass("panel-css", {
 
             var status = target.attr("data-css-status");
 
+            var oldStatus = play.cssStatus;
             play.cssStatus = status;
             target.addClass("active");
+
+            if (status == "active" || status == "hover") {
+                if (play.select.selectedEL && play.select.selectedEL.length == 1) {
+
+                    play.getVnode(play.select.selectedEL).active();
+                }
+            } else {
+                play.getVnode(play.select.selectedEL).unActive();
+            }
+
+            $(document).trigger("cssStatusChange", [status, oldStatus]);
         });
 
         $(document).on("selectEl", function (ev, el, old) {
@@ -65446,24 +65420,31 @@ var WidgetPanel = Sophie.createClass("w", {
         var childWidth = childNativeNode.width();
         var childHeight = childNativeNode.height();
 
-        var percent = width / childWidth;
+        if (childWidth > width) {
+            var percent = width / childWidth;
 
-        var realHeight = width / childWidth * childHeight;
+            var realHeight = width / childWidth * childHeight;
 
-        var top = (childHeight - realHeight) / 2;
-        var left = (childWidth - width) / 2;
+            var top = (childHeight - realHeight) / 2;
+            var left = (childWidth - width) / 2;
 
-        this.setState({
-            height: realHeight
-        });
+            this.setState({
+                height: realHeight
+            });
 
-        var scaleStyle = 'transform: scale(' + percent + ',' + percent + ') translate(-' + left + 'px,-' + top + 'px)';
+            var scaleStyle = 'transform: scale(' + percent + ',' + percent + ') translate(-' + left + 'px,-' + top + 'px)';
 
-        childNativeNode.css({
-            "transform": 'scale(' + percent + ',' + percent + ')',
-            "left": '-' + left + 'px',
-            "top": '-' + top + 'px'
-        });
+            childNativeNode.css({
+                "transform": 'scale(' + percent + ',' + percent + ')',
+                "left": '-' + left + 'px',
+                "top": '-' + top + 'px'
+            });
+        } else {
+
+            this.setState({
+                height: childHeight
+            });
+        }
     },
 
     initScale: function initScale() {
