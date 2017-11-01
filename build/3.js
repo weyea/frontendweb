@@ -22652,7 +22652,7 @@ function cateChildrenByPosition(children, mediaName) {
         var vnode = node.el.get(0).vnode;
         if (vnode.props[mediaName] && vnode.props[mediaName].isHidden) {
             hiddenEls.push(node);
-        } else if (vnode.isRender !== true) {
+        } else if (vnode.isRender !== true && !node.add && !node.isMove && !node.remove) {
             hiddenEls.push(node);
         } else if (vnode.isHidden === true) {
 
@@ -32780,6 +32780,7 @@ function getChangedChildrenNodes(parent, addedEls, removedEls, movedEls, mediaNa
 
     if (addedEls) {
         for (var i = 0; i < addedEls.length; i++) {
+            addedEls[i].add = true;
             addedEls[i] = appendPropsToNode(addedEls[i], parent);
         }
 
@@ -32788,6 +32789,7 @@ function getChangedChildrenNodes(parent, addedEls, removedEls, movedEls, mediaNa
 
     if (removedEls) {
         for (var i = 0; i < removedEls.length; i++) {
+            removedEls[i].remove = true;
             removedEls[i] = appendPropsToNode(removedEls[i], parent);
         }
 
@@ -50691,11 +50693,18 @@ var defaultExports = {
 
     moveEl: function moveEl(newPoint, oldPoint) {
 
-        if (!newPoint.parent.is(oldPoint.parent)) {
-            gridLayout.updateLayout(oldPoint.parent, [], [oldPoint.el]);
+        if (!newPoint.parent.is(oldPoint.parent) && !oldPoint.isCopy) {
+            gridLayout.updateLayout(oldPoint.parent, [], oldPoint.nodes);
+            gridLayout.updateLayout(newPoint.parent, newPoint.nodes, [], []);
+        } else {
+            if (oldPoint.isCopy) {
+                gridLayout.updateLayout(newPoint.parent, newPoint.nodes, [], []);
+            } else {
+                gridLayout.updateLayout(newPoint.parent, [], [], newPoint.nodes);
+            }
         }
 
-        gridLayout.updateLayout(newPoint.parent, [], [], newPoint.nodes);
+        //   gridLayout.updateLayout(newPoint.parent, [], [], newPoint.nodes)
         //  this.appendIdToEl(utils.toJqueryObject(newPoint.nodes), newPoint.parent);
 
         //  $(document).trigger("moveEl", [utils.toJqueryObject(newPoint.nodes), newPoint.coord, oldPoint.coord,newPoint.parent]);
@@ -53589,7 +53598,7 @@ var _css = function _css(target, cssName, value, mediaName) {
     var selector = utils.toSelector(target, mediaName);
     var commonSelector = utils.toCommonSeletor(target);
 
-    var positionCSS = ["width", "height", "margin-top", "margin-left", "margin-bottom", "margin-right"];
+    var positionCSS = ["width", "height", "left", "top", "right", "bottom", "margin-top", "padding-bottom", "padding-top", "padding-left", "padding-right", "margin-left", "margin-bottom", "margin-right"];
 
     var isPositionCSS = function isPositionCSS(cssName) {
         for (var i = 0; i < positionCSS.length; i++) {
@@ -56660,12 +56669,15 @@ var MoveHelper = __webpack_require__(375);
         oldAllCoord = position.getAllCoord(target);
 
         oldNodes = MoveHelper.getAllUpdateNodesForMove(target, oldParent);
+        oldPoint.nodes = oldNodes;
 
         if (ev.altKey) {
             isCopy = true;
             oldNodes = $(MoveHelper.createCopy(oldNodes));
+            oldPoint.isCopy = isCopy;
         } else {
             isCopy = false;
+            oldPoint.isCopy = isCopy;
         }
 
         if (!isCopy) {
