@@ -23426,617 +23426,6 @@ module.exports = {
 "use strict";
 
 
-var _BaseCoord = __webpack_require__(391);
-
-var position = play.position;
-var utils = play.utils;
-var GridLayout = play.gridLayout;
-
-
-module.exports = {
-
-    trigger: function trigger(name, nodes, oldNodes, parent) {
-        for (var i = 0; i < nodes.length; i++) {
-            var el = nodes[i].el;
-            var coord = nodes[i].coord;
-            var oldCoord = this._getOldCoord(el, oldNodes);
-            $(document).trigger(name, [el, coord, oldCoord, parent]);
-        }
-    },
-    _getOldCoord: function _getOldCoord(el, oldNodes) {
-        for (var i = 0; i < oldNodes.length; i++) {
-            if (el.is(oldNodes[i].el)) {
-                return oldNodes[i].coord;
-            }
-        }
-    },
-    getAllUpdateNodesForMove: function getAllUpdateNodesForMove(targets, parent) {
-
-        return utils.toNodeArray(targets);
-    },
-
-    getAllUpdateNodesForResize: function getAllUpdateNodesForResize(targets, parent) {
-        this._initSiteHeight();
-        return utils.toNodeArray(targets);
-    },
-
-    _initSiteHeight: function _initSiteHeight() {
-        this._siteHeight = $("body", play.iframeDoc).height();
-    },
-    _updateSiteHeight: function _updateSiteHeight() {
-        // var height= $("body",play.iframeDoc).height();
-        // if(height < this._siteHeight){
-        //     $("body",play.iframeDoc).height(height)
-        // }
-
-    },
-    _cancelSiteHeight: function _cancelSiteHeight() {
-        $("body", play.iframeDoc).css("height", "");
-    },
-
-    createElPlaceholder: function createElPlaceholder(nodes) {
-        var target = nodes.el;
-        if (utils.isStatic(target) && target.parent().length) {
-            var placeHolderDiv = $('<div style="visibility: hidden;"></div>');
-
-            placeHolderDiv.css("marginLeft", target.css("marginLeft"));
-            placeHolderDiv.css("marginTop", target.css("marginTop"));
-            placeHolderDiv.width(target.outerWidth());
-            placeHolderDiv.height(target.outerHeight());
-            placeHolderDiv.insertBefore(target);
-            target.get(0).vnode.placeHolderDiv = placeHolderDiv;
-        }
-    },
-
-    prepareForStartMove: function prepareForStartMove(nodes, parent, isResize, createPlaceholder) {
-        // if(parent&&parent.is("p-group")){
-        //     this.prepareForStartMove(utils.toNodeArray([parent]))
-        // }
-        //
-        // if(parent&&parent.is("p-group")){
-        //     nodes = utils.toNodeArray(play.getChildren(parent))
-        // }
-
-        for (var i = 0; i < nodes.length; i++) {
-            var target = nodes[i].el;
-            var coord = nodes[i].coord;
-            if (createPlaceholder !== false) {
-                this.createElPlaceholder(nodes[i]);
-            }
-
-            target.css("position", "fixed");
-            target.css("margin", "0px");
-            target.css("padding", "0px");
-            target.css("pointer-events", "none");
-            target.css("z-index", "1000000");
-            target.css({
-                width: coord.width + "px",
-                height: coord.height + "px"
-            });
-            target.offset({ left: coord.left, top: coord.top });
-
-            if (isResize && target.is("p-group")) {
-                var children = play.getChildren(target);
-                this.prepareForStartMove(utils.toNodeArray(children), isResize);
-            }
-        }
-    },
-
-    removePlaceHolder: function removePlaceHolder(nodes, parent, isResize) {
-        for (var i = 0; i < nodes.length; i++) {
-            var target = nodes[i].el;
-
-            if (target.get(0).vnode.placeHolderDiv) {
-                target.get(0).vnode.placeHolderDiv.remove();
-            }
-
-            if (isResize && target.is("p-group")) {
-                var children = play.getChildren(target);
-                this.removePlaceHolder(utils.toNodeArray(children), undefined, isResize);
-            }
-        }
-    },
-
-    prepareForStopMove: function prepareForStopMove(nodes, parent, isResize) {
-        // if(parent&&parent.is("p-group")){
-        //     this.prepareForStopMove(utils.toNodeArray([parent]))
-        // }
-        //
-        // if(parent&&parent.is("p-group")){
-        //     nodes = utils.toNodeArray(play.getChildren(parent))
-        // }
-
-        for (var i = 0; i < nodes.length; i++) {
-            var target = nodes[i].el;
-
-            utils.removeCSS(target);
-            target.removeClass("p-absolute");
-            if (target.get(0).vnode.placeHolderDiv) {
-                target.get(0).vnode.placeHolderDiv.remove();
-            }
-
-            if (isResize && target.is("p-group")) {
-                var children = play.getChildren(target);
-                this.prepareForStopMove(utils.toNodeArray(children), undefined, isResize);
-            }
-        }
-    },
-
-    prepareForStopMoveRelative: function prepareForStopMoveRelative(target, isResize) {
-
-        utils.removeCSS(target);
-        var parent = play.getParent(target);
-
-        if (!parent.is("p-site")) {
-            this.prepareForStopMoveRelative(parent, isResize);
-        }
-    },
-
-    resizeAllNodesForRelative: function resizeAllNodesForRelative(coord, startPosition, node, parent, isResize) {
-        var newNodes = [{ el: node, coord: coord }];
-        var oldCoord = play.coords.getCoord(node);
-
-        this._moveNodeForRelative(node, coord, startPosition, isResize);
-
-        if (!parent.is("p-site")) {
-
-            if (parent.is('p-group')) {
-                var newParentCoord = this.getParentCoord(parent, newNodes);
-                this.resizeAllNodesForRelative(newParentCoord, undefined, parent, play.getParent(parent, true), true);
-            } else if (play.isLayout(parent) && !play.isShadow(parent) || parent.is("p-body")) {
-
-                //只能根元素使用， 根元素是自动高度的。
-
-            }
-        }
-        this._updateSiteHeight();
-        return newNodes;
-    },
-
-    resizeAllNodes: function resizeAllNodes(oldAllCoord, newAllCoord, nodes, parent, isResize) {
-
-        var newNodes = [];
-        for (var i = 0; i < nodes.length; i++) {
-            var newNode = this.getNewNodeAfterResize(oldAllCoord, newAllCoord, nodes[i], parent, isResize);
-            newNodes.push(newNode);
-        }
-
-        // if(parent&&parent.is("p-group")){
-        //     var newParentCoord = this.getParentCoord(parent, newNodes);
-        //     this._moveNode({el:parent, coord:newParentCoord})
-        //     var newChildrenNodes = this.getNewChildrenNodes(parent, nodes)
-        //     nodes = newChildrenNodes;
-        //
-        // }
-
-        for (var i = 0; i < nodes.length; i++) {
-            var existNodes = newNodes.filter(function (node) {
-                return node.el.is(nodes[i].el);
-            });
-
-            if (existNodes.length) {
-
-                this._moveNode(existNodes[0], isResize);
-                if (existNodes[0].el.is("p-group")) {
-
-                    var dirs = utils.getDirs(existNodes[0].coord, nodes[i].coord);
-                    if ((dirs.width || dirs.height) && isResize) {
-                        var groupChildrenNodes = play.utils.toNodeArray(play.getChildren(nodes[i].el));
-                        this.resizeAllNodes(nodes[i].coord, existNodes[0].coord, groupChildrenNodes, undefined, isResize);
-                    }
-                }
-            } else {
-                this._moveNode(nodes[i], isResize);
-            }
-        }
-
-        return newNodes;
-    },
-
-    _moveNode: function _moveNode(node, isResize) {
-        var target = node.el,
-            coord = node.coord;
-        if (target) {
-            if (isResize) {
-                target.css({
-                    width: coord.width + "px",
-                    height: coord.height + "px",
-                    overflow: "hidden",
-                    padding: 0
-                });
-                target.offset({ left: coord.left, top: coord.top });
-            } else {
-
-                target.offset({ left: coord.left, top: coord.top });
-            }
-        }
-    },
-
-    _moveNodeForRelative: function _moveNodeForRelative(target, coord, startPosition, isResize) {
-
-        if (target) {
-            if (isResize) {
-                target.css({
-                    height: coord.height + "px",
-                    padding: 0,
-                    overflow: "hidden"
-                });
-            } else {
-                target.css({
-                    marginTop: coord.top - startPosition.top + "px"
-                });
-            }
-        }
-    },
-
-    getNewNodeAfterResize: function getNewNodeAfterResize(oldAllCoord, newAllCoord, node, parent, isResize) {
-        var target = $(node.el);
-        var coord = node.coord;
-
-        var newCoord = (0, _BaseCoord.getCoordAfterResize)(oldAllCoord, newAllCoord, coord);
-
-        if (isResize) {
-
-            if (target.length == 1 && play.isHeightAutoLayout(target)) {
-                if (false) {
-
-                    if (newCoord.height < play.getProps(target).textHeight) {
-                        newCoord.height = play.getProps(target).textHeight;
-                        newCoord.bottom = newCoord.height + newCoord.top;
-                    }
-                } else {
-                    var children = play.getChildren(target);
-                    var allCoord = play.coords.getAllCoord(children);
-                    if (newCoord.bottom < allCoord.bottom) {
-                        newCoord.bottom = allCoord.bottom;
-                        newCoord.height = newCoord.bottom - newCoord.top;
-                    }
-                }
-            }
-
-            $(document).trigger("doResizing", [target, newCoord, coord, parent]);
-        } else {
-            $(document).trigger("doMoving", [target, newCoord, coord, parent]);
-        }
-
-        return {
-            el: target,
-            coord: newCoord
-        };
-    },
-
-    getNewNodesAfterResize: function getNewNodesAfterResize(oldAllCoord, newAllCoord, nodes) {
-        var result = [];
-        for (var i = 0; i < nodes.length; i++) {
-            result.push(this.getNewNodeAfterResize(oldAllCoord, newAllCoord, nodes[i]));
-        }
-        return result;
-    },
-
-    createCopy: function createCopy(nodes) {
-        var results = [];
-        var nodes = play.dom.copyElsFromNodes(nodes);
-        return nodes;
-    },
-
-    getPoint: function getPoint(parent, parentCoord, nodes, coord) {
-        return {
-            parent: parent,
-            parentCoord: parentCoord,
-            nodes: nodes,
-            coord: coord,
-            ignore: {}
-        };
-    },
-
-    getMoveParent: function getMoveParent(editableProps, parent, mousePosition, el) {
-        var newParent;
-        if (editableProps && editableProps.parentContainer) {
-            newParent = $(editableProps.parentContainer, play.iframeDoc);
-        }
-
-        if (play.getProps(el).parentFixed) {
-            return parent;
-        }
-
-        if (play.is(parent, "p-group")) {
-            return parent;
-        } else {
-
-            newParent = position.getFullInParentNearby(mousePosition);
-        }
-
-        if (!newParent || newParent.length == 0) {
-            newParent = parent || $("p-page.active", play.iframeDoc);
-        }
-
-        // if(el&&el.is("p-bg")){
-        //     if(newParent.closest("p-header").length){
-        //         newParent = newParent.closest("p-header")
-        //     }
-        //     else if(newParent.closest("p-page").length){
-        //         newParent = newParent.closest("p-page")
-        //     }
-        //     else{
-        //         newParent = $("p-footer",play.iframeDoc)
-        //     }
-        // }
-
-        return newParent;
-    },
-
-    getNewChildrenNodes: function getNewChildrenNodes(parent, newNodes) {
-        var children = play.getChildren(parent);
-
-        var newChildrenNodes = [];
-        for (var i = 0; i < children.length; i++) {
-            var nodes = newNodes.filter(function (node) {
-                return node.el.is(children[i]);
-            });
-
-            if (nodes.length) {
-                newChildrenNodes.push(nodes[0]);
-            } else {
-                newChildrenNodes.push({
-                    el: children[i],
-                    coord: play.coords.getCoord(children[i])
-                });
-            }
-        }
-        return newChildrenNodes;
-    },
-
-    getParentCoord: function getParentCoord(parent, newNodes, mediaName) {
-        var mediaName = mediaName || play.mediaName;
-        var nodes = this.getNewChildrenNodes(parent, newNodes, mediaName);
-        return play.gridLayout.getAllCoordFormLayout(nodes);
-    },
-
-    getAvCoord: function getAvCoord(newCoord, oldCoord, el, spaceCoord) {
-        var dirs = utils.getDirs(newCoord, oldCoord);
-        var windowMaxWidth = $(play.iframeDoc).width();
-        var maxWidth = windowMaxWidth > play.maxWidth ? play.maxWidth : windowMaxWidth;
-
-        var coord = $.extend({}, newCoord);
-        if (el.length == 1 && $(el[0]).get(0).vnode.props.fullWidth) {
-
-            return newCoord;
-        }
-
-        if (newCoord.width > play.maxWidth) {
-            coord = this._getMaxCoord(coord, oldCoord);
-        }
-
-        //得到子元素的定位
-
-
-        return coord;
-    },
-
-    // type move;reize;
-    _getSpaceCoord: function _getSpaceCoord(layout, parent, nodes) {
-
-        var disTops = [],
-            disBottoms = [],
-            disRights = [],
-            disLefts = [];
-        for (var i = 0; i < nodes.length; i++) {
-            // var relativeLayout =  GridLayout.getRelativeLayout(layout, nodes[i])
-            //  var point = grid.getDOMPointByLayout()
-
-            var point = GridLayout.getPointByEl(layout, nodes[i].el);
-            var domPoint = play.grid.getDOMPointByLayout(layout, point, {
-                el: nodes[i].el,
-                parent: parent,
-                parentCoord: position.coord(parent),
-                coord: nodes[i].coord
-            });
-
-            disLefts.push(domPoint.coord.left - domPoint.spaceCoord.left);
-            disBottoms.push(domPoint.spaceCoord.bottom - domPoint.coord.bottom);
-            disTops.push(domPoint.coord.top - domPoint.spaceCoord.top);
-            disRights.push(domPoint.spaceCoord.right - domPoint.coord.right);
-        }
-
-        var allCoord = GridLayout.getAllCoordFormLayout(nodes);
-
-        var disLeft = Math.min.apply(null, disLefts);
-        var disRight = Math.min.apply(null, disRights);
-        var disBottom = Math.min.apply(null, disBottoms);
-        var disTop = Math.min.apply(null, disTops);
-
-        var newCoord = {
-            left: allCoord.left - disLeft,
-            right: allCoord.right + disRight,
-            top: allCoord.top - disTop,
-            bottom: allCoord.bottom + disBottom
-        };
-
-        newCoord.width = newCoord.right - newCoord.right;
-        newCoord.height = newCoord.bottom - newCoord.top;
-        return newCoord;
-    },
-    getSpaceCoord: function getSpaceCoord(layout, parent, nodes) {
-        var avCoord = this._getSpaceCoord(layout, parent, nodes);
-        return this.getAvCoord(avCoord, {}, utils.toElArray(nodes));
-    },
-    getAvailableCoord: function getAvailableCoord(layout, parent, nodes, newCoord) {
-        var spaceCoord = this.getSpaceCoord(layout, parent, nodes);
-        var oldCoord = GridLayout.getAllCoordFormLayout(nodes);
-        return this._getAvailableCoord(newCoord, oldCoord, spaceCoord);
-    },
-    _getAvailableCoord: function _getAvailableCoord(newCoord, oldCoord, spaceCoord) {
-        return this._getMaxCoord(newCoord, oldCoord, spaceCoord);
-    },
-    _getMaxCoord: function _getMaxCoord(newCoord, oldCoord, spaceCoord) {
-        var coord = $.extend({}, newCoord);
-        var dirs = utils.getDirs(coord, oldCoord);
-
-        var windowMaxWidth = play.viewportWidth;
-        var maxWidth = windowMaxWidth > play.maxWidth ? play.maxWidth : windowMaxWidth;
-
-        var maxCoord = spaceCoord || {
-            top: 0,
-            left: windowMaxWidth / 2 - maxWidth / 2,
-            right: windowMaxWidth / 2 + maxWidth / 2,
-            bottom: 20000
-        };
-
-        if (coord.top < maxCoord.top) {
-            coord.top = maxCoord.top;
-            if (dirs.height) {
-                coord.height = coord.bottom - coord.top;
-            } else {
-                coord.bottom = coord.top + coord.height;
-            }
-        }
-
-        if (coord.left < maxCoord.left) {
-            coord.left = maxCoord.left;
-            if (dirs.width) {
-                coord.width = coord.right - coord.left;
-            } else {
-                coord.right = coord.left + coord.width;
-            }
-        }
-
-        if (coord.right > maxCoord.right) {
-            coord.right = maxCoord.right;
-            if (dirs.width) {
-                coord.width = coord.right - coord.left;
-            } else {
-                coord.left = coord.right - coord.width;
-            }
-        }
-        if (coord.bottom > maxCoord.bottom) {
-            coord.bottom = maxCoord.bottom;
-            if (dirs.height) {
-                coord.height = coord.bottom - coord.top;
-            } else {
-                coord.top = coord.bottom - coord.height;
-            }
-        }
-
-        return coord;
-    },
-
-    getMaxParentCoord: function getMaxParentCoord(el, parentCoord, mediaName) {
-        if (mediaName !== "pc") return parentCoord;
-        if (el && el.length == 1 && el.get(0).vnode.props.fullWidth) {
-            return parentCoord;
-        } else {
-            return this._getMaxCoord(parentCoord, {});
-        }
-    },
-
-    setAllBottomElCoords: function setAllBottomElCoords(layout, el) {
-        var els = play.gridLayout.getAllBottomEls(layout, el);
-        for (var i = 0; i < els.length; i++) {
-            var coord = position.coord(els[i]);
-            play.coords.setCoord(els[i], coord, play.mediaName);
-        }
-        return els;
-    }
-
-};
-
-$(document).on("iframeload", function () {
-    $(play.iframeDoc).on('scroll', function () {
-        var docHeight = $("body", play.iframeDoc).height();
-        var winHeight = $(play.iframe).height();
-        if ($("body", play.iframeDoc).scrollTop() + winHeight < docHeight) {
-            module.exports._cancelSiteHeight();
-        }
-    });
-});
-
-/***/ }),
-/* 375 */,
-/* 376 */,
-/* 377 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-var META = __webpack_require__(381)('meta');
-var isObject = __webpack_require__(345);
-var has = __webpack_require__(355);
-var setDesc = __webpack_require__(349).f;
-var id = 0;
-var isExtensible = Object.isExtensible || function () {
-  return true;
-};
-var FREEZE = !__webpack_require__(344)(function () {
-  return isExtensible(Object.preventExtensions({}));
-});
-var setMeta = function setMeta(it) {
-  setDesc(it, META, { value: {
-      i: 'O' + ++id, // object ID
-      w: {} // weak collections IDs
-    } });
-};
-var fastKey = function fastKey(it, create) {
-  // return primitive with prefix
-  if (!isObject(it)) return (typeof it === 'undefined' ? 'undefined' : _typeof(it)) == 'symbol' ? it : (typeof it == 'string' ? 'S' : 'P') + it;
-  if (!has(it, META)) {
-    // can't set metadata to uncaught frozen object
-    if (!isExtensible(it)) return 'F';
-    // not necessary to add metadata
-    if (!create) return 'E';
-    // add missing metadata
-    setMeta(it);
-    // return object ID
-  }return it[META].i;
-};
-var getWeak = function getWeak(it, create) {
-  if (!has(it, META)) {
-    // can't set metadata to uncaught frozen object
-    if (!isExtensible(it)) return true;
-    // not necessary to add metadata
-    if (!create) return false;
-    // add missing metadata
-    setMeta(it);
-    // return hash weak collections IDs
-  }return it[META].w;
-};
-// add metadata on freeze-family methods calling
-var onFreeze = function onFreeze(it) {
-  if (FREEZE && meta.NEED && isExtensible(it) && !has(it, META)) setMeta(it);
-  return it;
-};
-var meta = module.exports = {
-  KEY: META,
-  NEED: false,
-  fastKey: fastKey,
-  getWeak: getWeak,
-  onFreeze: onFreeze
-};
-
-/***/ }),
-/* 378 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-// 22.1.3.31 Array.prototype[@@unscopables]
-var UNSCOPABLES = __webpack_require__(346)('unscopables');
-var ArrayProto = Array.prototype;
-if (ArrayProto[UNSCOPABLES] == undefined) __webpack_require__(356)(ArrayProto, UNSCOPABLES, {});
-module.exports = function (key) {
-  ArrayProto[UNSCOPABLES][key] = true;
-};
-
-/***/ }),
-/* 379 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
@@ -24615,6 +24004,617 @@ function getLayoutHeight(el, responseCoord, mediaName) {
         return responseCoord.height;
     }
 }
+
+/***/ }),
+/* 375 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _BaseCoord = __webpack_require__(391);
+
+var position = play.position;
+var utils = play.utils;
+var GridLayout = play.gridLayout;
+
+
+module.exports = {
+
+    trigger: function trigger(name, nodes, oldNodes, parent) {
+        for (var i = 0; i < nodes.length; i++) {
+            var el = nodes[i].el;
+            var coord = nodes[i].coord;
+            var oldCoord = this._getOldCoord(el, oldNodes);
+            $(document).trigger(name, [el, coord, oldCoord, parent]);
+        }
+    },
+    _getOldCoord: function _getOldCoord(el, oldNodes) {
+        for (var i = 0; i < oldNodes.length; i++) {
+            if (el.is(oldNodes[i].el)) {
+                return oldNodes[i].coord;
+            }
+        }
+    },
+    getAllUpdateNodesForMove: function getAllUpdateNodesForMove(targets, parent) {
+
+        return utils.toNodeArray(targets);
+    },
+
+    getAllUpdateNodesForResize: function getAllUpdateNodesForResize(targets, parent) {
+        this._initSiteHeight();
+        return utils.toNodeArray(targets);
+    },
+
+    _initSiteHeight: function _initSiteHeight() {
+        this._siteHeight = $("body", play.iframeDoc).height();
+    },
+    _updateSiteHeight: function _updateSiteHeight() {
+        // var height= $("body",play.iframeDoc).height();
+        // if(height < this._siteHeight){
+        //     $("body",play.iframeDoc).height(height)
+        // }
+
+    },
+    _cancelSiteHeight: function _cancelSiteHeight() {
+        $("body", play.iframeDoc).css("height", "");
+    },
+
+    createElPlaceholder: function createElPlaceholder(nodes) {
+        var target = nodes.el;
+        if (utils.isStatic(target) && target.parent().length) {
+            var placeHolderDiv = $('<div style="visibility: hidden;"></div>');
+
+            placeHolderDiv.css("marginLeft", target.css("marginLeft"));
+            placeHolderDiv.css("marginTop", target.css("marginTop"));
+            placeHolderDiv.width(target.outerWidth());
+            placeHolderDiv.height(target.outerHeight());
+            placeHolderDiv.insertBefore(target);
+            target.get(0).vnode.placeHolderDiv = placeHolderDiv;
+        }
+    },
+
+    prepareForStartMove: function prepareForStartMove(nodes, parent, isResize, createPlaceholder) {
+        // if(parent&&parent.is("p-group")){
+        //     this.prepareForStartMove(utils.toNodeArray([parent]))
+        // }
+        //
+        // if(parent&&parent.is("p-group")){
+        //     nodes = utils.toNodeArray(play.getChildren(parent))
+        // }
+
+        for (var i = 0; i < nodes.length; i++) {
+            var target = nodes[i].el;
+            var coord = nodes[i].coord;
+            if (createPlaceholder !== false) {
+                this.createElPlaceholder(nodes[i]);
+            }
+
+            target.css("position", "fixed");
+            target.css("margin", "0px");
+            target.css("padding", "0px");
+            target.css("pointer-events", "none");
+            target.css("z-index", "1000000");
+            target.css({
+                width: coord.width + "px",
+                height: coord.height + "px"
+            });
+            target.offset({ left: coord.left, top: coord.top });
+
+            if (isResize && target.is("p-group")) {
+                var children = play.getChildren(target);
+                this.prepareForStartMove(utils.toNodeArray(children), isResize);
+            }
+        }
+    },
+
+    removePlaceHolder: function removePlaceHolder(nodes, parent, isResize) {
+        for (var i = 0; i < nodes.length; i++) {
+            var target = nodes[i].el;
+
+            if (target.get(0).vnode.placeHolderDiv) {
+                target.get(0).vnode.placeHolderDiv.remove();
+            }
+
+            if (isResize && target.is("p-group")) {
+                var children = play.getChildren(target);
+                this.removePlaceHolder(utils.toNodeArray(children), undefined, isResize);
+            }
+        }
+    },
+
+    prepareForStopMove: function prepareForStopMove(nodes, parent, isResize) {
+        // if(parent&&parent.is("p-group")){
+        //     this.prepareForStopMove(utils.toNodeArray([parent]))
+        // }
+        //
+        // if(parent&&parent.is("p-group")){
+        //     nodes = utils.toNodeArray(play.getChildren(parent))
+        // }
+
+        for (var i = 0; i < nodes.length; i++) {
+            var target = nodes[i].el;
+
+            utils.removeCSS(target);
+            target.removeClass("p-absolute");
+            if (target.get(0).vnode.placeHolderDiv) {
+                target.get(0).vnode.placeHolderDiv.remove();
+            }
+
+            if (isResize && target.is("p-group")) {
+                var children = play.getChildren(target);
+                this.prepareForStopMove(utils.toNodeArray(children), undefined, isResize);
+            }
+        }
+    },
+
+    prepareForStopMoveRelative: function prepareForStopMoveRelative(target, isResize) {
+
+        utils.removeCSS(target);
+        var parent = play.getParent(target);
+
+        if (!parent.is("p-site")) {
+            this.prepareForStopMoveRelative(parent, isResize);
+        }
+    },
+
+    resizeAllNodesForRelative: function resizeAllNodesForRelative(coord, startPosition, node, parent, isResize) {
+        var newNodes = [{ el: node, coord: coord }];
+        var oldCoord = play.coords.getCoord(node);
+
+        this._moveNodeForRelative(node, coord, startPosition, isResize);
+
+        if (!parent.is("p-site")) {
+
+            if (parent.is('p-group')) {
+                var newParentCoord = this.getParentCoord(parent, newNodes);
+                this.resizeAllNodesForRelative(newParentCoord, undefined, parent, play.getParent(parent, true), true);
+            } else if (play.isLayout(parent) && !play.isShadow(parent) || parent.is("p-body")) {
+
+                //只能根元素使用， 根元素是自动高度的。
+
+            }
+        }
+        this._updateSiteHeight();
+        return newNodes;
+    },
+
+    resizeAllNodes: function resizeAllNodes(oldAllCoord, newAllCoord, nodes, parent, isResize) {
+
+        var newNodes = [];
+        for (var i = 0; i < nodes.length; i++) {
+            var newNode = this.getNewNodeAfterResize(oldAllCoord, newAllCoord, nodes[i], parent, isResize);
+            newNodes.push(newNode);
+        }
+
+        // if(parent&&parent.is("p-group")){
+        //     var newParentCoord = this.getParentCoord(parent, newNodes);
+        //     this._moveNode({el:parent, coord:newParentCoord})
+        //     var newChildrenNodes = this.getNewChildrenNodes(parent, nodes)
+        //     nodes = newChildrenNodes;
+        //
+        // }
+
+        for (var i = 0; i < nodes.length; i++) {
+            var existNodes = newNodes.filter(function (node) {
+                return node.el.is(nodes[i].el);
+            });
+
+            if (existNodes.length) {
+
+                this._moveNode(existNodes[0], isResize);
+                if (existNodes[0].el.is("p-group")) {
+
+                    var dirs = utils.getDirs(existNodes[0].coord, nodes[i].coord);
+                    if ((dirs.width || dirs.height) && isResize) {
+                        var groupChildrenNodes = play.utils.toNodeArray(play.getChildren(nodes[i].el));
+                        this.resizeAllNodes(nodes[i].coord, existNodes[0].coord, groupChildrenNodes, undefined, isResize);
+                    }
+                }
+            } else {
+                this._moveNode(nodes[i], isResize);
+            }
+        }
+
+        return newNodes;
+    },
+
+    _moveNode: function _moveNode(node, isResize) {
+        var target = node.el,
+            coord = node.coord;
+        if (target) {
+            if (isResize) {
+                target.css({
+                    width: coord.width + "px",
+                    height: coord.height + "px",
+                    overflow: "hidden",
+                    padding: 0
+                });
+                target.offset({ left: coord.left, top: coord.top });
+            } else {
+
+                target.offset({ left: coord.left, top: coord.top });
+            }
+        }
+    },
+
+    _moveNodeForRelative: function _moveNodeForRelative(target, coord, startPosition, isResize) {
+
+        if (target) {
+            if (isResize) {
+                target.css({
+                    height: coord.height + "px",
+                    padding: 0,
+                    overflow: "hidden"
+                });
+            } else {
+                target.css({
+                    marginTop: coord.top - startPosition.top + "px"
+                });
+            }
+        }
+    },
+
+    getNewNodeAfterResize: function getNewNodeAfterResize(oldAllCoord, newAllCoord, node, parent, isResize) {
+        var target = $(node.el);
+        var coord = node.coord;
+
+        var newCoord = (0, _BaseCoord.getCoordAfterResize)(oldAllCoord, newAllCoord, coord);
+
+        if (isResize) {
+
+            if (target.length == 1 && play.isHeightAutoLayout(target)) {
+                if (false) {
+
+                    if (newCoord.height < play.getProps(target).textHeight) {
+                        newCoord.height = play.getProps(target).textHeight;
+                        newCoord.bottom = newCoord.height + newCoord.top;
+                    }
+                } else {
+                    var children = play.getChildren(target);
+                    var allCoord = play.coords.getAllCoord(children);
+                    if (newCoord.bottom < allCoord.bottom) {
+                        newCoord.bottom = allCoord.bottom;
+                        newCoord.height = newCoord.bottom - newCoord.top;
+                    }
+                }
+            }
+
+            $(document).trigger("doResizing", [target, newCoord, coord, parent]);
+        } else {
+            $(document).trigger("doMoving", [target, newCoord, coord, parent]);
+        }
+
+        return {
+            el: target,
+            coord: newCoord
+        };
+    },
+
+    getNewNodesAfterResize: function getNewNodesAfterResize(oldAllCoord, newAllCoord, nodes) {
+        var result = [];
+        for (var i = 0; i < nodes.length; i++) {
+            result.push(this.getNewNodeAfterResize(oldAllCoord, newAllCoord, nodes[i]));
+        }
+        return result;
+    },
+
+    createCopy: function createCopy(nodes) {
+        var results = [];
+        var nodes = play.dom.copyElsFromNodes(nodes);
+        return nodes;
+    },
+
+    getPoint: function getPoint(parent, parentCoord, nodes, coord) {
+        return {
+            parent: parent,
+            parentCoord: parentCoord,
+            nodes: nodes,
+            coord: coord,
+            ignore: {}
+        };
+    },
+
+    getMoveParent: function getMoveParent(editableProps, parent, mousePosition, el) {
+        var newParent;
+        if (editableProps && editableProps.parentContainer) {
+            newParent = $(editableProps.parentContainer, play.iframeDoc);
+        }
+
+        if (play.getProps(el).parentFixed) {
+            return parent;
+        }
+
+        if (play.is(parent, "p-group")) {
+            return parent;
+        } else {
+
+            newParent = position.getFullInParentNearby(mousePosition);
+        }
+
+        if (!newParent || newParent.length == 0) {
+            newParent = parent || $("p-page.active", play.iframeDoc);
+        }
+
+        // if(el&&el.is("p-bg")){
+        //     if(newParent.closest("p-header").length){
+        //         newParent = newParent.closest("p-header")
+        //     }
+        //     else if(newParent.closest("p-page").length){
+        //         newParent = newParent.closest("p-page")
+        //     }
+        //     else{
+        //         newParent = $("p-footer",play.iframeDoc)
+        //     }
+        // }
+
+        return newParent;
+    },
+
+    getNewChildrenNodes: function getNewChildrenNodes(parent, newNodes) {
+        var children = play.getChildren(parent);
+
+        var newChildrenNodes = [];
+        for (var i = 0; i < children.length; i++) {
+            var nodes = newNodes.filter(function (node) {
+                return node.el.is(children[i]);
+            });
+
+            if (nodes.length) {
+                newChildrenNodes.push(nodes[0]);
+            } else {
+                newChildrenNodes.push({
+                    el: children[i],
+                    coord: play.coords.getCoord(children[i])
+                });
+            }
+        }
+        return newChildrenNodes;
+    },
+
+    getParentCoord: function getParentCoord(parent, newNodes, mediaName) {
+        var mediaName = mediaName || play.mediaName;
+        var nodes = this.getNewChildrenNodes(parent, newNodes, mediaName);
+        return play.gridLayout.getAllCoordFormLayout(nodes);
+    },
+
+    getAvCoord: function getAvCoord(newCoord, oldCoord, el, spaceCoord) {
+        var dirs = utils.getDirs(newCoord, oldCoord);
+        var windowMaxWidth = $(play.iframeDoc).width();
+        var maxWidth = windowMaxWidth > play.maxWidth ? play.maxWidth : windowMaxWidth;
+
+        var coord = $.extend({}, newCoord);
+        if (el.length == 1 && $(el[0]).get(0).vnode.props.fullWidth) {
+
+            return newCoord;
+        }
+
+        if (newCoord.width > play.maxWidth) {
+            coord = this._getMaxCoord(coord, oldCoord);
+        }
+
+        //得到子元素的定位
+
+
+        return coord;
+    },
+
+    // type move;reize;
+    _getSpaceCoord: function _getSpaceCoord(layout, parent, nodes) {
+
+        var disTops = [],
+            disBottoms = [],
+            disRights = [],
+            disLefts = [];
+        for (var i = 0; i < nodes.length; i++) {
+            // var relativeLayout =  GridLayout.getRelativeLayout(layout, nodes[i])
+            //  var point = grid.getDOMPointByLayout()
+
+            var point = GridLayout.getPointByEl(layout, nodes[i].el);
+            var domPoint = play.grid.getDOMPointByLayout(layout, point, {
+                el: nodes[i].el,
+                parent: parent,
+                parentCoord: position.coord(parent),
+                coord: nodes[i].coord
+            });
+
+            disLefts.push(domPoint.coord.left - domPoint.spaceCoord.left);
+            disBottoms.push(domPoint.spaceCoord.bottom - domPoint.coord.bottom);
+            disTops.push(domPoint.coord.top - domPoint.spaceCoord.top);
+            disRights.push(domPoint.spaceCoord.right - domPoint.coord.right);
+        }
+
+        var allCoord = GridLayout.getAllCoordFormLayout(nodes);
+
+        var disLeft = Math.min.apply(null, disLefts);
+        var disRight = Math.min.apply(null, disRights);
+        var disBottom = Math.min.apply(null, disBottoms);
+        var disTop = Math.min.apply(null, disTops);
+
+        var newCoord = {
+            left: allCoord.left - disLeft,
+            right: allCoord.right + disRight,
+            top: allCoord.top - disTop,
+            bottom: allCoord.bottom + disBottom
+        };
+
+        newCoord.width = newCoord.right - newCoord.right;
+        newCoord.height = newCoord.bottom - newCoord.top;
+        return newCoord;
+    },
+    getSpaceCoord: function getSpaceCoord(layout, parent, nodes) {
+        var avCoord = this._getSpaceCoord(layout, parent, nodes);
+        return this.getAvCoord(avCoord, {}, utils.toElArray(nodes));
+    },
+    getAvailableCoord: function getAvailableCoord(layout, parent, nodes, newCoord) {
+        var spaceCoord = this.getSpaceCoord(layout, parent, nodes);
+        var oldCoord = GridLayout.getAllCoordFormLayout(nodes);
+        return this._getAvailableCoord(newCoord, oldCoord, spaceCoord);
+    },
+    _getAvailableCoord: function _getAvailableCoord(newCoord, oldCoord, spaceCoord) {
+        return this._getMaxCoord(newCoord, oldCoord, spaceCoord);
+    },
+    _getMaxCoord: function _getMaxCoord(newCoord, oldCoord, spaceCoord) {
+        var coord = $.extend({}, newCoord);
+        var dirs = utils.getDirs(coord, oldCoord);
+
+        var windowMaxWidth = play.viewportWidth;
+        var maxWidth = windowMaxWidth > play.maxWidth ? play.maxWidth : windowMaxWidth;
+
+        var maxCoord = spaceCoord || {
+            top: 0,
+            left: windowMaxWidth / 2 - maxWidth / 2,
+            right: windowMaxWidth / 2 + maxWidth / 2,
+            bottom: 20000
+        };
+
+        if (coord.top < maxCoord.top) {
+            coord.top = maxCoord.top;
+            if (dirs.height) {
+                coord.height = coord.bottom - coord.top;
+            } else {
+                coord.bottom = coord.top + coord.height;
+            }
+        }
+
+        if (coord.left < maxCoord.left) {
+            coord.left = maxCoord.left;
+            if (dirs.width) {
+                coord.width = coord.right - coord.left;
+            } else {
+                coord.right = coord.left + coord.width;
+            }
+        }
+
+        if (coord.right > maxCoord.right) {
+            coord.right = maxCoord.right;
+            if (dirs.width) {
+                coord.width = coord.right - coord.left;
+            } else {
+                coord.left = coord.right - coord.width;
+            }
+        }
+        if (coord.bottom > maxCoord.bottom) {
+            coord.bottom = maxCoord.bottom;
+            if (dirs.height) {
+                coord.height = coord.bottom - coord.top;
+            } else {
+                coord.top = coord.bottom - coord.height;
+            }
+        }
+
+        return coord;
+    },
+
+    getMaxParentCoord: function getMaxParentCoord(el, parentCoord, mediaName) {
+        if (mediaName !== "pc") return parentCoord;
+        if (el && el.length == 1 && el.get(0).vnode.props.fullWidth) {
+            return parentCoord;
+        } else {
+            return this._getMaxCoord(parentCoord, {});
+        }
+    },
+
+    setAllBottomElCoords: function setAllBottomElCoords(layout, el) {
+        var els = play.gridLayout.getAllBottomEls(layout, el);
+        for (var i = 0; i < els.length; i++) {
+            var coord = position.coord(els[i]);
+            play.coords.setCoord(els[i], coord, play.mediaName);
+        }
+        return els;
+    }
+
+};
+
+$(document).on("iframeload", function () {
+    $(play.iframeDoc).on('scroll', function () {
+        var docHeight = $("body", play.iframeDoc).height();
+        var winHeight = $(play.iframe).height();
+        if ($("body", play.iframeDoc).scrollTop() + winHeight < docHeight) {
+            module.exports._cancelSiteHeight();
+        }
+    });
+});
+
+/***/ }),
+/* 376 */,
+/* 377 */,
+/* 378 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var META = __webpack_require__(381)('meta');
+var isObject = __webpack_require__(345);
+var has = __webpack_require__(355);
+var setDesc = __webpack_require__(349).f;
+var id = 0;
+var isExtensible = Object.isExtensible || function () {
+  return true;
+};
+var FREEZE = !__webpack_require__(344)(function () {
+  return isExtensible(Object.preventExtensions({}));
+});
+var setMeta = function setMeta(it) {
+  setDesc(it, META, { value: {
+      i: 'O' + ++id, // object ID
+      w: {} // weak collections IDs
+    } });
+};
+var fastKey = function fastKey(it, create) {
+  // return primitive with prefix
+  if (!isObject(it)) return (typeof it === 'undefined' ? 'undefined' : _typeof(it)) == 'symbol' ? it : (typeof it == 'string' ? 'S' : 'P') + it;
+  if (!has(it, META)) {
+    // can't set metadata to uncaught frozen object
+    if (!isExtensible(it)) return 'F';
+    // not necessary to add metadata
+    if (!create) return 'E';
+    // add missing metadata
+    setMeta(it);
+    // return object ID
+  }return it[META].i;
+};
+var getWeak = function getWeak(it, create) {
+  if (!has(it, META)) {
+    // can't set metadata to uncaught frozen object
+    if (!isExtensible(it)) return true;
+    // not necessary to add metadata
+    if (!create) return false;
+    // add missing metadata
+    setMeta(it);
+    // return hash weak collections IDs
+  }return it[META].w;
+};
+// add metadata on freeze-family methods calling
+var onFreeze = function onFreeze(it) {
+  if (FREEZE && meta.NEED && isExtensible(it) && !has(it, META)) setMeta(it);
+  return it;
+};
+var meta = module.exports = {
+  KEY: META,
+  NEED: false,
+  fastKey: fastKey,
+  getWeak: getWeak,
+  onFreeze: onFreeze
+};
+
+/***/ }),
+/* 379 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+// 22.1.3.31 Array.prototype[@@unscopables]
+var UNSCOPABLES = __webpack_require__(346)('unscopables');
+var ArrayProto = Array.prototype;
+if (ArrayProto[UNSCOPABLES] == undefined) __webpack_require__(356)(ArrayProto, UNSCOPABLES, {});
+module.exports = function (key) {
+  ArrayProto[UNSCOPABLES][key] = true;
+};
 
 /***/ }),
 /* 380 */
@@ -25839,7 +25839,7 @@ var global = __webpack_require__(343);
 var $export = __webpack_require__(341);
 var redefine = __webpack_require__(357);
 var redefineAll = __webpack_require__(390);
-var meta = __webpack_require__(377);
+var meta = __webpack_require__(378);
 var forOf = __webpack_require__(389);
 var anInstance = __webpack_require__(388);
 var isObject = __webpack_require__(345);
@@ -32081,7 +32081,7 @@ module.exports = function fill(value /* , start = 0, end = @length */) {
 "use strict";
 
 
-var addToUnscopables = __webpack_require__(378);
+var addToUnscopables = __webpack_require__(379);
 var step = __webpack_require__(484);
 var Iterators = __webpack_require__(397);
 var toIObject = __webpack_require__(359);
@@ -32692,7 +32692,7 @@ var _getPropsFromLayout = __webpack_require__(454);
 
 var _RelativeLayout = __webpack_require__(403);
 
-var _RelativeCoord = __webpack_require__(379);
+var _RelativeCoord = __webpack_require__(374);
 
 var _BaseCoord = __webpack_require__(391);
 
@@ -33813,7 +33813,7 @@ var $iterDefine = __webpack_require__(440);
 var step = __webpack_require__(484);
 var setSpecies = __webpack_require__(387);
 var DESCRIPTORS = __webpack_require__(348);
-var fastKey = __webpack_require__(377).fastKey;
+var fastKey = __webpack_require__(378).fastKey;
 var validate = __webpack_require__(398);
 var SIZE = DESCRIPTORS ? '_s' : 'size';
 
@@ -33982,7 +33982,7 @@ module.exports = __webpack_require__(414)(SET, function (get) {
 
 var each = __webpack_require__(370)(0);
 var redefine = __webpack_require__(357);
-var meta = __webpack_require__(377);
+var meta = __webpack_require__(378);
 var assign = __webpack_require__(472);
 var weak = __webpack_require__(492);
 var isObject = __webpack_require__(345);
@@ -34049,7 +34049,7 @@ if (fails(function () {
 
 
 var redefineAll = __webpack_require__(390);
-var getWeak = __webpack_require__(377).getWeak;
+var getWeak = __webpack_require__(378).getWeak;
 var anObject = __webpack_require__(342);
 var isObject = __webpack_require__(345);
 var anInstance = __webpack_require__(388);
@@ -34796,7 +34796,7 @@ exports._computerPhoneCeilHeight = _computerPhoneCeilHeight;
 exports._computerPhoneCeilHeightForSlideLayout = _computerPhoneCeilHeightForSlideLayout;
 exports._updateColumnLayoutResponseCoord = _updateColumnLayoutResponseCoord;
 
-var _RelativeCoord = __webpack_require__(379);
+var _RelativeCoord = __webpack_require__(374);
 
 var _BaseCoord = __webpack_require__(391);
 
@@ -36924,7 +36924,7 @@ var has = __webpack_require__(355);
 var DESCRIPTORS = __webpack_require__(348);
 var $export = __webpack_require__(341);
 var redefine = __webpack_require__(357);
-var META = __webpack_require__(377).KEY;
+var META = __webpack_require__(378).KEY;
 var $fails = __webpack_require__(344);
 var shared = __webpack_require__(405);
 var setToStringTag = __webpack_require__(395);
@@ -37289,7 +37289,7 @@ __webpack_require__(369)('getOwnPropertyNames', function () {
 
 // 19.1.2.5 Object.freeze(O)
 var isObject = __webpack_require__(345);
-var meta = __webpack_require__(377).onFreeze;
+var meta = __webpack_require__(378).onFreeze;
 
 __webpack_require__(369)('freeze', function ($freeze) {
   return function freeze(it) {
@@ -37306,7 +37306,7 @@ __webpack_require__(369)('freeze', function ($freeze) {
 
 // 19.1.2.17 Object.seal(O)
 var isObject = __webpack_require__(345);
-var meta = __webpack_require__(377).onFreeze;
+var meta = __webpack_require__(378).onFreeze;
 
 __webpack_require__(369)('seal', function ($seal) {
   return function seal(it) {
@@ -37323,7 +37323,7 @@ __webpack_require__(369)('seal', function ($seal) {
 
 // 19.1.2.15 Object.preventExtensions(O)
 var isObject = __webpack_require__(345);
-var meta = __webpack_require__(377).onFreeze;
+var meta = __webpack_require__(378).onFreeze;
 
 __webpack_require__(369)('preventExtensions', function ($preventExtensions) {
   return function preventExtensions(it) {
@@ -39049,7 +39049,7 @@ var $export = __webpack_require__(341);
 
 $export($export.P, 'Array', { copyWithin: __webpack_require__(483) });
 
-__webpack_require__(378)('copyWithin');
+__webpack_require__(379)('copyWithin');
 
 /***/ }),
 /* 637 */
@@ -39063,7 +39063,7 @@ var $export = __webpack_require__(341);
 
 $export($export.P, 'Array', { fill: __webpack_require__(448) });
 
-__webpack_require__(378)('fill');
+__webpack_require__(379)('fill');
 
 /***/ }),
 /* 638 */
@@ -39086,7 +39086,7 @@ $export($export.P + $export.F * forced, 'Array', {
     return $find(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
   }
 });
-__webpack_require__(378)(KEY);
+__webpack_require__(379)(KEY);
 
 /***/ }),
 /* 639 */
@@ -39109,7 +39109,7 @@ $export($export.P + $export.F * forced, 'Array', {
     return $find(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
   }
 });
-__webpack_require__(378)(KEY);
+__webpack_require__(379)(KEY);
 
 /***/ }),
 /* 640 */
@@ -40205,7 +40205,7 @@ $export($export.P, 'Array', {
   }
 });
 
-__webpack_require__(378)('includes');
+__webpack_require__(379)('includes');
 
 /***/ }),
 /* 675 */
@@ -40234,7 +40234,7 @@ $export($export.P, 'Array', {
   }
 });
 
-__webpack_require__(378)('flatMap');
+__webpack_require__(379)('flatMap');
 
 /***/ }),
 /* 676 */
@@ -40262,7 +40262,7 @@ $export($export.P, 'Array', {
   }
 });
 
-__webpack_require__(378)('flatten');
+__webpack_require__(379)('flatten');
 
 /***/ }),
 /* 677 */
@@ -49869,7 +49869,7 @@ function updateParentHeight(parent, oldCoord, coord, mediaName) {
 "use strict";
 
 
-var _RelativeCoord = __webpack_require__(379);
+var _RelativeCoord = __webpack_require__(374);
 
 var utils = play.utils,
     position = play.position,
@@ -49884,7 +49884,7 @@ var overDistance = 50;
 var gridLayout = play.gridLayout;
 
 var Group = __webpack_require__(456);
-var MoveHelper = __webpack_require__(374);
+var MoveHelper = __webpack_require__(375);
 
 //绝对定位的元素只找绝对定位的元素
 var isRightEl = function isRightEl(el, ex, isStatic) {
@@ -50939,7 +50939,7 @@ play.grid = defaultExports;
 "use strict";
 
 
-var _RelativeCoord = __webpack_require__(379);
+var _RelativeCoord = __webpack_require__(374);
 
 var _BaseCoord = __webpack_require__(391);
 
@@ -53610,13 +53610,13 @@ var _css = function _css(target, cssName, value, mediaName) {
     if (play.cssStatus && !isPositionCSS(cssName) && play.cssStatus !== "default") {
 
         if (play.cssStatus == "active") {
-            commonSelector = commonSelector + '[data-active="true"]';
-            selector = selector + '[data-active="true"]';
+            commonSelector = commonSelector + '[data-active=true]';
+            selector = selector + '[data-active=true]';
         }
 
         if (play.cssStatus == "hover") {
-            commonSelector = commonSelector + '[data-hover="true"]';
-            selector = selector + '[data-active="true"]';
+            commonSelector = commonSelector + '[data-hover=true]';
+            selector = selector + '[data-active=true]';
         }
     }
 
@@ -55336,7 +55336,7 @@ play.dom = {
 "use strict";
 
 
-var MoveHelper = __webpack_require__(374);
+var MoveHelper = __webpack_require__(375);
 (function () {
 
     //拖拽新元素
@@ -55664,7 +55664,7 @@ var MoveHelper = __webpack_require__(374);
 "use strict";
 
 
-var MoveHelper = __webpack_require__(374);
+var MoveHelper = __webpack_require__(375);
 
 (function () {
 
@@ -55871,7 +55871,7 @@ var MoveHelper = __webpack_require__(374);
 "use strict";
 
 
-var MoveHelper = __webpack_require__(374);
+var MoveHelper = __webpack_require__(375);
 
 //不影响其它元素位置的resize
 
@@ -56117,7 +56117,7 @@ $(document).on("resizeEl", function (ev, el, coord) {
 "use strict";
 
 
-var MoveHelper = __webpack_require__(374);
+var MoveHelper = __webpack_require__(375);
 //影响下方位置的resize
 
 (function () {
@@ -56437,7 +56437,7 @@ var MoveHelper = __webpack_require__(374);
 "use strict";
 
 
-var MoveHelper = __webpack_require__(374);
+var MoveHelper = __webpack_require__(375);
 (function () {
 
     var utils = play.utils,
@@ -56614,7 +56614,7 @@ var MoveHelper = __webpack_require__(374);
 
 
 //不影响位置的移动
-var MoveHelper = __webpack_require__(374);
+var MoveHelper = __webpack_require__(375);
 
 (function () {
 
@@ -57264,6 +57264,8 @@ var MoveHelper = __webpack_require__(374);
 
 var _BaseCoord = __webpack_require__(391);
 
+var _RelativeCoord = __webpack_require__(374);
+
 (function () {
 
     var utils = play.utils,
@@ -57472,8 +57474,27 @@ var _BaseCoord = __webpack_require__(391);
                         play.select.selectedEL && play.dom.css(play.select.selectedEL, cssname, value);
                         cfg.syn && $(cfg.syn).css(cssname, value);
                         $(document).trigger("textCSSChange", [play.select.selectedEL, cssname, value, unit]);
-                    } else {
+                    } else if (cssname == "width" || cssname == "height") {
 
+                        var resizeable = play.isAllResizable(play.select.selectedEL);
+                        if (!resizeable) return;
+
+                        if (resizeable) {
+                            var relativeCoord = play.coords.getCoord(play.select.selectedEL);
+                            if (cssname == "width") {
+                                relativeCoord.width = value;
+                                relativeCoord.right = relativeCoord.left + relativeCoord.width;
+                            }
+                            if (cssname == "height") {
+                                relativeCoord.height = value;
+                                relativeCoord.bottom = relativeCoord.top + relativeCoord.height;
+                            }
+                            play.gridLayout.updateLayout(play.getParent(play.select.selectedEL), [], [], [{
+                                el: play.select.selectedEL,
+                                coord: relativeCoord
+                            }]);
+                        }
+                    } else {
                         if (unit) {
                             value += unit;
                         }
@@ -57482,7 +57503,7 @@ var _BaseCoord = __webpack_require__(391);
                         cfg.syn && $(cfg.syn).css(cssname, value);
                     }
                 }
-
+                select.reflow();
                 $(document).trigger("cssChange", [play.select.selectedEL, cssname, value, unit]);
             });
 
@@ -57510,8 +57531,25 @@ var _BaseCoord = __webpack_require__(391);
                     self.showCSS();
                 }, 0);
             });
+
+            $(document).on("resizeEl", function (ev, target) {
+
+                setTimeout(function () {
+                    self._showCSS("width", play.select.selectedEL);
+                    self._showCSS("height", play.select.selectedEL);
+                }, 0);
+            });
+
+            $(document).on("doResizing", function (ev, target) {
+
+                setTimeout(function () {
+                    self._showCSS("width", play.select.selectedEL);
+                    self._showCSS("height", play.select.selectedEL);
+                }, 0);
+            });
         },
-        showCSS: function showCSS() {
+
+        showCSS: function showCSS(cssName) {
 
             var el = play.select.selectedEL;
 
@@ -57519,29 +57557,32 @@ var _BaseCoord = __webpack_require__(391);
 
             for (var p in this.css) {
 
-                if (p == "backgroundRepeatX") {
-                    var value = el.css("backgroundRepeat");
-                    value = value.split(" ")[0];
-                } else if (p == "backgroundRepeatY") {
-                    var value = el.css("backgroundRepeat");
-                    value = value.split(" ")[1] || value.split(" ")[0];
-                } else if (p == "backgroundPosition") {
-                    var value = el.css(p);
-                } else if (p == "fontSize" && el.find(".p-text-wrap").length) {
-                    var textWrap = el.find(".p-text-wrap");
-                    var value = textWrap.css(p);
-                } else {
-                    var value = el.css(p);
-                }
+                this._showCSS(p, el);
+            }
+        },
 
-                var cfg = this.css[p];
+        _showCSS: function _showCSS(p, el) {
+            if (p == "backgroundRepeatX") {
+                var value = el.css("backgroundRepeat");
+                value = value.split(" ")[0];
+            } else if (p == "backgroundRepeatY") {
+                var value = el.css("backgroundRepeat");
+                value = value.split(" ")[1] || value.split(" ")[0];
+            } else if (p == "backgroundPosition") {
+                var value = el.css(p);
+            } else if (p == "fontSize" && el.find(".p-text-wrap").length) {
+                var textWrap = el.find(".p-text-wrap");
+                var value = textWrap.css(p);
+            } else {
+                var value = el.css(p);
+            }
 
-                //自定义渲染方法
-                if (cfg.showData) {
-                    cfg.showData(el);
-                    continue;
-                }
+            var cfg = this.css[p];
 
+            //自定义渲染方法
+            if (cfg.showData) {
+                cfg.showData(el);
+            } else {
                 for (var i = 0; i < this.contexts.length; i++) {
 
                     var target = $('[data-cssname="' + p + '"]', this.contexts[i]);
@@ -57605,6 +57646,7 @@ var _BaseCoord = __webpack_require__(391);
                 }
             }
         },
+
         borderRadiusSet: function borderRadiusSet() {
             var render = function render(el, cssname, value) {
 
@@ -57682,6 +57724,7 @@ var _BaseCoord = __webpack_require__(391);
             this.css["borderBottomRadius"] = conf;
             this.css["borderTopRadius"] = conf;
         },
+
         widthSet: function widthSet() {
             var host = this;
 
@@ -58121,7 +58164,7 @@ var _BaseCoord = __webpack_require__(391);
 
 var _LayoutPoint = __webpack_require__(421);
 
-var _RelativeCoord = __webpack_require__(379);
+var _RelativeCoord = __webpack_require__(374);
 
 var _utils = __webpack_require__(371);
 
@@ -58135,7 +58178,7 @@ var _BaseCoord = __webpack_require__(391);
 
 var _LayoutFromProps = __webpack_require__(402);
 
-var MoveHelper = __webpack_require__(374);
+var MoveHelper = __webpack_require__(375);
 
 play.LayoutResponse = {
     setNeedUpdate: function setNeedUpdate(el, type) {
@@ -58763,7 +58806,7 @@ $(document).on("operator", function () {
 
 var _ResponseCoord = __webpack_require__(506);
 
-var _RelativeCoord = __webpack_require__(379);
+var _RelativeCoord = __webpack_require__(374);
 
 //不同视图之前切换
 //初始化布局参数
@@ -58881,7 +58924,7 @@ $(document).on("iframeload", function () {
 
 
 //不影响位置的移动
-var MoveHelper = __webpack_require__(374);
+var MoveHelper = __webpack_require__(375);
 
 (function () {
 
@@ -60662,7 +60705,7 @@ module.exports = LayoutTwoSet;
 
 var _fontAlignAFont, _fontStyleA;
 
-var _RelativeCoord = __webpack_require__(379);
+var _RelativeCoord = __webpack_require__(374);
 
 var _UpdateLayout = __webpack_require__(455);
 
@@ -63673,7 +63716,7 @@ var LayoutSet = Sophie.createClass("layout-set", {
                         Sophie.element(
                             "label",
                             null,
-                            "\u5BBD\u5EA6"
+                            "\u5BBD\u9AD8"
                         ),
                         Sophie.element(
                             "div",
@@ -63684,16 +63727,7 @@ var LayoutSet = Sophie.createClass("layout-set", {
                                 Sophie.element(
                                     "div",
                                     { "class": "input-group" },
-                                    Sophie.element(
-                                        "span",
-                                        { "class": "input-group-btn" },
-                                        Sophie.element(
-                                            "button",
-                                            { "class": "btn btn-default max-btn", type: "button" },
-                                            "max"
-                                        )
-                                    ),
-                                    Sophie.element("input", { type: "text", "data-cssunit": "px", "data-cssname": "maxWidth",
+                                    Sophie.element("input", { type: "text", "data-cssunit": "px", "data-cssname": "width",
                                         "class": "form-control max-input" })
                                 )
                             ),
@@ -63703,43 +63737,8 @@ var LayoutSet = Sophie.createClass("layout-set", {
                                 Sophie.element(
                                     "div",
                                     { "class": "input-group" },
-                                    Sophie.element(
-                                        "span",
-                                        { "class": "input-group-btn" },
-                                        Sophie.element(
-                                            "button",
-                                            { "class": "btn btn-default min-btn", type: "button" },
-                                            "min"
-                                        )
-                                    ),
-                                    Sophie.element("input", { type: "text", "data-cssunit": "px", "data-cssname": "minWidth",
+                                    Sophie.element("input", { type: "text", "data-cssunit": "px", "data-cssname": "height",
                                         "class": "form-control min-input" })
-                                )
-                            )
-                        ),
-                        Sophie.element(
-                            "div",
-                            { "class": "input-c2", style: "display: none" },
-                            Sophie.element(
-                                "div",
-                                { "class": "input-vlabel" },
-                                Sophie.element("input", { "class": "form-control", type: "text", "data-cssunit": "px",
-                                    "data-cssname": "maxWidth" }),
-                                Sophie.element(
-                                    "span",
-                                    null,
-                                    "\u6700\u5927\u5BBD\u5EA6"
-                                )
-                            ),
-                            Sophie.element(
-                                "div",
-                                { "class": "input-vlabel" },
-                                Sophie.element("input", { "class": "form-control", type: "text", "data-cssunit": "px",
-                                    "data-cssname": "minWidth" }),
-                                Sophie.element(
-                                    "span",
-                                    null,
-                                    "\u6700\u5C0F\u5BBD\u5EA6"
                                 )
                             )
                         )
@@ -63987,11 +63986,8 @@ Sophie.createStyleSheet({
         float: 'left',
         width: '48%',
         marginRight: '2%'
-    },
-
-    '.size': {
-        display: 'none'
     }
+
 });
 
 module.exports = LayoutSet;
@@ -64841,7 +64837,7 @@ module.exports = NavPageSet;
 "use strict";
 
 
-var _RelativeCoord = __webpack_require__(379);
+var _RelativeCoord = __webpack_require__(374);
 
 var TabSet = Sophie.createClass("tabs-set", {
     componentDidMount: function componentDidMount() {
@@ -67293,7 +67289,6 @@ var SelectMask = Sophie.createClass("select-mask", {
 
     selectCood: function selectCood(cood, isResizable, isMoveable, isSimple) {
 
-        console.log("gogos");
         var mask = $(this.nativeNode);
 
         var self = this.nativeNode;
