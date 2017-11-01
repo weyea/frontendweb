@@ -73,7 +73,7 @@ var _Footer2 = _interopRequireDefault(_Footer);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-__webpack_require__(892);
+__webpack_require__(894);
 // var Header = require('./common/Header');
 // var Footer = require('./common/Footer');
 
@@ -845,13 +845,13 @@ function updateLink(linkElement, obj) {
 
 /***/ }),
 
-/***/ 892:
+/***/ 894:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(893);
+var content = __webpack_require__(895);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
 var update = __webpack_require__(4)(content, {});
@@ -872,7 +872,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 893:
+/***/ 895:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(3)();
