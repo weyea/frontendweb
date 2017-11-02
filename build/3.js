@@ -60166,8 +60166,8 @@ var CSSPanel = Sophie.createClass("panel-css", {
 
         $(document).on("selectEl", function (ev, el, old) {
             setTimeout(function () {
-                console.log(el);
-                if (el.attr("data-active") == "true") {
+
+                if (el.attr("data-active") == "true" && false) {
                     $("#css-status a").removeClass("active");
                     play.cssStatus = "active";
                     $('#css-status a').eq(1).addClass("active");
