@@ -66798,7 +66798,7 @@ exports = module.exports = __webpack_require__(3)();
 
 
 // module
-exports.push([module.i, "\n.widget-item-scale {\n    height: 130px;\n    overflow: hidden;\n    display: block;\n    cursor: pointer;\n    margin-bottom: 10px;\n}\n\n.widget-item-scale .bg {\n    pointer-events: none;\n    font-size: 60px;\n    width: 1280px;\n    height: 100%;\n    position: relative;\n}\n\n.widget-item-scale .bg > * {\n\n    position: absolute;\n    top: 0;\n    left: 0;\n}\n\n.cmd-undo.disable, .cmd-redo.disable {\n    opacity: 0.5;\n}\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n.widget-item-scale {\n    height: 130px;\n    overflow: hidden;\n    display: block;\n    cursor: pointer;\n    margin-bottom: 10px;\n}\n\n\n.widget-item-scale .bg {\n    pointer-events: none;\n    font-size: 60px;\n    width: 1280px;\n    height: 100%;\n    position: relative;\n}\n\n\n.widget-item-scale .bg > * {\n    position: absolute;\n    top: 0;\n    left: 0;\n}\n\n\n.cmd-undo.disable, .cmd-redo.disable {\n    opacity: 0.5;\n}\n\n\n.quickbar .base-component button span{\n    color: #fff;\n}\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
