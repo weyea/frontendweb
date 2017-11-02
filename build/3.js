@@ -163,6 +163,22 @@ var Base = Sophie.createClass({
 
             return rootTag;
         };
+        var self = this;
+
+        $(document).on("mouseover", function (ev) {
+            var target = $(ev.target);
+            var el = $(self.nativeNode);
+            if (target.closest(el).length) {
+                self.active();
+            }
+        });
+        $(document).on("mouseout", function (ev) {
+            var target = $(ev.target);
+            var el = $(self.nativeNode);
+            if (target.closest(el).length) {
+                self.unActive();
+            }
+        });
     },
 
     componentDidMount: function componentDidMount() {},
@@ -230,15 +246,20 @@ var Base = Sophie.createClass({
     show: function show() {},
 
     active: function active() {
-        this.props.isActive = true;
+        if (!this.props.isActive) {
 
-        this.forceUpdate();
+            this.props.isActive = true;
+
+            this.forceUpdate();
+        }
     },
 
     unActive: function unActive() {
-        this.props.isActive = false;
+        if (this.props.isActive) {
+            this.props.isActive = false;
 
-        this.forceUpdate();
+            this.forceUpdate();
+        }
     },
 
     onLayout: function onLayout() {
@@ -869,8 +890,9 @@ Sophie.createStyleSheet({
         display: 'block',
         width: '5em',
         height: '5em',
-        overflow: 'visible',
+        overflow: 'hidden',
         position: 'relative'
+
     },
 
     '.p-pic  .pic-wrap': {
