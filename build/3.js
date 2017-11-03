@@ -68757,7 +68757,7 @@ var ImagePanel = Sophie.createClass({
             $.get(window.designer.configs.getMaterial, function (datas) {
                 var results = [];
                 for (var i = 0; i < datas.length; i++) {
-                    results.push(datas[i].url);
+                    results.push({ id: datas[i], url: datas[i].url });
                 }
 
                 _this.setState({ urls: results });
@@ -68772,14 +68772,17 @@ var ImagePanel = Sophie.createClass({
     upload: function upload() {
         var self = this;
         var url = window.designer.configs.uploadMaterial;
+
         var $input = $("#material-file-upload").html5_upload({
             url: url,
             sendBoundary: window.FormData || $.browser.mozilla,
             onStart: function onStart(event, total) {
+                self.addImg({ url: "#placehold", id: "123" });
                 return true;
             },
             fieldName: "file",
             onProgress: function onProgress(event, progress, name, number, total) {
+                this.showProcess(number);
                 console.log(progress, number);
             },
             setName: function setName(text) {
@@ -68792,9 +68795,11 @@ var ImagePanel = Sophie.createClass({
                 $("#progress_report_bar").css('width', Math.ceil(val * 100) + "%");
             },
             onFinishOne: function onFinishOne(event, response, name, number, total) {
-                self.addImg(JSON.parse(response).url);
+                self.removeImg({ url: "#placehold", id: "123" });
+                self.addImg({ id: JSON.parse(response).id, url: JSON.parse(response).url });
             },
             onError: function onError(event, name, error) {
+                self.removeImg({ url: "#placehold", id: "123" });
                 alert('error while uploading file ' + name);
             }
         });
@@ -68813,14 +68818,61 @@ var ImagePanel = Sophie.createClass({
             var dataUrl = $(e.target).attr("data-url");
             $(e.target).trigger("selectImg", dataUrl);
         });
+
+        $(h).on("click", ".delete", function (e) {
+            var target = $(e.target);
+            var id = target.attr("data-id");
+            var url = target.attr("data-url");
+            self.delPic({ id: id, url: url });
+        });
     },
     addImg: function addImg(url) {
 
-        if (!this.status.urls.includes(url)) {
+        if (!this.includes(url)) {
             var urls = [url].concat(this.state.urls);
             this.setState({ urls: urls });
         }
     },
+
+    includes: function includes(url) {
+        return this.state.urls.find(function (thisUrl, index) {
+            return thisUrl.url == url.url;
+        });
+    },
+
+    removeImg: function removeImg(url) {
+
+        for (var i = 0; i < this.state.urls.length; i++) {
+            if (this.state.urls[i].url == url.url) {
+                var urls = this.state.urls.splice(index, 1);
+                this.setState({ urls: urls });
+            }
+        }
+    },
+
+    delPic: function delPic(url) {
+        var url = window.designer.configs.uploadMaterial;
+        var self = this;
+        for (var i = 0; i < this.state.urls.length; i++) {
+            if (this.state.urls[i].id == url.id) {
+                $.ajax({
+                    url: url,
+                    method: "delete",
+                    data: {
+                        id: url.id
+                    },
+                    dataType: "json",
+                    success: function success() {
+                        self.removeImg(url);
+                    }
+                });
+            }
+        }
+    },
+    showProcess: function showProcess(num) {
+        $("#img-load-placehold span").html(num);
+    },
+
     show: function show() {
 
         $("#select-img-view").modal("show");
@@ -68903,7 +68955,20 @@ var ImagePanel = Sophie.createClass({
         var result = [];
         var urls = this.state.urls;
         for (var i = 0; i < urls.length; i++) {
-            result.push(Sophie.element("div", { "class": "img", "data-url": urls[i], style: "background-image:url(" + urls[i] + ")" }));
+            if (urls[i].url == "#placehold") {
+                result.push(Sophie.element(
+                    "div",
+                    { "class": "img", id: "img-upload-placehold" },
+                    Sophie.element("span", null)
+                ));
+            } else {
+                result.push(Sophie.element(
+                    "div",
+                    { "class": "img", "data-id": urls[i].id, "data-url": urls[i].url,
+                        style: "background-image:url(" + urls[i].url + ")" },
+                    Sophie.element("span", { "class": "delete icon iconfont icon-shanchu" })
+                ));
+            }
         }
         return result;
     }
@@ -69137,7 +69202,7 @@ exports = module.exports = __webpack_require__(3)();
 
 
 // module
-exports.push([module.i, "#select-img-view .modal-dialog .modal-content {\n    width: 662px;\n    height: 504px;\n\n}\n\n#select-img-view .modal-dialog {\n    width: 662px !important;\n    margin: auto !important;\n}\n\n#select-img-view .modal-dialog .modal-body {\n    padding-right: 0;\n}\n\n#select-img-view .modal-dialog .modal-body .tab-pane {\n\n}\n\n#select-img-view .tab-content > .active {\n    display: flex;\n    flex-direction: row;\n    flex-wrap: wrap;\n}\n\n#select-img-view .modal-dialog .modal-header {\n    padding-bottom: 0;\n}\n\n#select-img-view .modal-dialog .modal-header .nav-tabs a {\n    font-size: 14px;\n\n    color: rgba(59, 59, 65, 0.6);\n\n}\n\n#select-img-view .img {\n    width: 140px;\n    height: 140px;\n\n    margin-right: 20px;\n    margin-top: 20px;\n    cursor: pointer;\n    background-size: contain;\n\n    background-repeat: no-repeat;\n    background-position: center;\n}\n\n#select-img-view .nav-tabs {\n    border-bottom: 0;\n    padding: 0;\n}\n\n#select-img-view .nav-tabs > li.active > a, #select-img-view .nav-tabs > li.active > a:focus, #select-img-view .nav-tabs > li.active > a:hover {\n    color: #555;\n    cursor: default;\n    background-color: #fff;\n    border-bottom: 4px solid #0DACBD !important;\n}\n\n#select-img-view .upload-btn {\n    position: absolute;\n    top: 20px;\n    right: 20px\n}", ""]);
+exports.push([module.i, "#select-img-view .modal-dialog .modal-content {\n    width: 662px;\n    height: 504px;\n\n}\n\n#select-img-view .modal-dialog {\n    width: 662px !important;\n    margin: auto !important;\n}\n\n#select-img-view .modal-dialog .modal-body {\n    padding-right: 0;\n}\n\n#select-img-view .modal-dialog .modal-body .tab-pane {\n\n}\n\n#select-img-view .tab-content > .active {\n    display: flex;\n    flex-direction: row;\n    flex-wrap: wrap;\n}\n\n#select-img-view .modal-dialog .modal-header {\n    padding-bottom: 0;\n}\n\n#select-img-view .modal-dialog .modal-header .nav-tabs a {\n    font-size: 14px;\n\n    color: rgba(59, 59, 65, 0.6);\n\n}\n\n#select-img-view .img {\n    width: 140px;\n    height: 140px;\n\n    margin-right: 20px;\n    margin-top: 20px;\n    cursor: pointer;\n    background-size: contain;\n\n    background-repeat: no-repeat;\n    background-position: center;\n    position: relative;\n}\n\n#select-img-view .img .delete {\n    position: absolute;\n    top: 10px;\n    right: 10px;\n    width: 16px;\n    height: 16px;\n    color: red;\n\n    display: none;\n}\n\n#select-img-view .img:hover .delete {\n\n    display: block;\n}\n\n#select-img-view #img-upload-placehold {\n    width: 140px;\n    height: 140px;\n    line-height: 140px;\n    text-align: center;\n\n    margin-right: 20px;\n    margin-top: 20px;\n    cursor: pointer;\n    background-size: contain;\n\n    background-repeat: no-repeat;\n    background-position: center;\n    background-color: rgba(0, 0, 0, 0.7);\n    color: #fff;\n}\n\n#select-img-view .nav-tabs {\n    border-bottom: 0;\n    padding: 0;\n}\n\n#select-img-view .nav-tabs > li.active > a, #select-img-view .nav-tabs > li.active > a:focus, #select-img-view .nav-tabs > li.active > a:hover {\n    color: #555;\n    cursor: default;\n    background-color: #fff;\n    border-bottom: 4px solid #0DACBD !important;\n}\n\n#select-img-view .upload-btn {\n    position: absolute;\n    top: 20px;\n    right: 20px\n}", ""]);
 
 // exports
 
