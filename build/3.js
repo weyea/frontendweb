@@ -68875,7 +68875,7 @@ var ImagePanel = Sophie.createClass({
             self.error(url);
         };
         var start = function start() {
-            this.addImg({ url: "#placehold", id: 123 });
+            self.addImg({ url: "#placehold", id: 123 });
         };
 
         return Sophie.element(
