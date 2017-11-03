@@ -55838,11 +55838,14 @@ var MoveHelper = __webpack_require__(375);
     var layoutWithoutEl;
     var newPoint;
 
+    var status = 0;
     var start = function start(startX, startY, target) {
 
+        status = 0;
         if (target.parent().is("button")) {
             target = target.parent();
         }
+        newEl = undefined;
 
         var cmdArds = {};
         //icons
@@ -55866,6 +55869,8 @@ var MoveHelper = __webpack_require__(375);
             } else {
                 var theme = target.attr("data-theme");
                 var tagName = target.attr("data-tagname");
+
+                if (!tagName) return;
                 var props = target.attr("data-props");
                 if (props) {
                     props = JSON.parse(props);
@@ -63084,22 +63089,7 @@ var ImgSet = Sophie.createClass("img-set", {
                 Sophie.element(
                     "a",
                     { title: "\u8BBE\u7F6E\u56FE\u7247", "class": "btn  set-src" },
-                    Sophie.element("i", { "class": "fa fa-picture-o" })
-                ),
-                Sophie.element(
-                    "a",
-                    { title: "\u8BBE\u7F6E\u5730\u5740", "class": "btn  set-href" },
-                    Sophie.element("i", { "class": "fa fa-link" })
-                ),
-                Sophie.element(
-                    "a",
-                    { title: "\u8BBE\u7F6E\u663E\u793A\u65B9\u5F0F", "class": "btn set-size" },
-                    Sophie.element("i", { "class": "fa fa-expand" })
-                ),
-                Sophie.element(
-                    "a",
-                    { style: "display:none", title: "\u88C1\u526A\u56FE\u7247", "class": "btn  set-crop" },
-                    Sophie.element("i", { "class": "fa fa-crop" })
+                    "\u56FE\u7247\u5E93"
                 )
             ),
             Sophie.element(
@@ -67682,21 +67672,6 @@ var SelectMask = Sophie.createClass("select-mask", {
                 Sophie.element(
                     "div",
                     { "class": "shortcutbar-wrap" },
-                    Sophie.element(
-                        "div",
-                        { "class": "show-name" },
-                        Sophie.element(
-                            "a",
-                            { href: "#", "class": "parent-tagname" },
-                            Sophie.element("span", null)
-                        ),
-                        Sophie.element("span", { style: "display:none", "class": "fa fa-angle-right" }),
-                        Sophie.element(
-                            "a",
-                            { href: "#", "class": "current-tagname" },
-                            Sophie.element("span", null)
-                        )
-                    ),
                     Sophie.element("div", { "class": "tools-bar", id: "mask-tools-bar" })
                 )
             ),
@@ -68418,7 +68393,6 @@ Sophie.createStyleSheet({
 
         height: '36px',
         lineHeight: '36px',
-        paddingLeft: '20px',
 
         color: '#fff',
         display: 'inline-block',
