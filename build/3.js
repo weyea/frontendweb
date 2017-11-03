@@ -68864,6 +68864,7 @@ var ImagePanel = Sophie.createClass({
     render: function render() {
         var urls = this.state.urls;
         var self = this;
+
         var finish = function finish(url) {
             self.addImg(url);
         };
@@ -68872,6 +68873,9 @@ var ImagePanel = Sophie.createClass({
         };
         var error = function error(url) {
             self.error(url);
+        };
+        var start = function start() {
+            this.addImg({ url: "#placehold", id: 123 });
         };
 
         return Sophie.element(
@@ -68928,7 +68932,7 @@ var ImagePanel = Sophie.createClass({
                 Sophie.element(
                     "div",
                     { "class": "upload-btn" },
-                    Sophie.element(_UploadButton.UploadButton, { error: error, progress: progress,
+                    Sophie.element(_UploadButton.UploadButton, { error: error, start: start, progress: progress,
                         url: window.designer.configs.uploadMaterial, finish: finish })
                 )
             )
