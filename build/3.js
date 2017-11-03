@@ -68757,7 +68757,7 @@ var ImagePanel = Sophie.createClass({
             $.get(window.designer.configs.getMaterial, function (datas) {
                 var results = [];
                 for (var i = 0; i < datas.length; i++) {
-                    results.push({ id: datas[i], url: datas[i].url });
+                    results.push({ id: datas[i].id, url: datas[i].url });
                 }
 
                 _this.setState({ urls: results });
