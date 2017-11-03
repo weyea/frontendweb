@@ -68815,8 +68815,11 @@ var ImagePanel = Sophie.createClass({
         });
     },
     addImg: function addImg(url) {
-        var urls = [url].concat(this.state.urls);
-        this.setState({ urls: urls });
+
+        if (!this.status.urls.includes(url)) {
+            var urls = [url].concat(this.state.urls);
+            this.setState({ urls: urls });
+        }
     },
     show: function show() {
 
