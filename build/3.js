@@ -68824,16 +68824,13 @@ var ImagePanel = Sophie.createClass({
     },
 
     delPic: function delPic(url) {
-        var serverurl = window.designer.configs.uploadMaterial;
+        var serverurl = window.designer.configs.uploadMaterial + "/" + url.id;
         var self = this;
         for (var i = 0; i < this.state.urls.length; i++) {
             if (this.state.urls[i].id == url.id) {
                 $.ajax({
                     url: serverurl,
                     method: "delete",
-                    data: {
-                        id: url.id
-                    },
                     dataType: "json",
                     success: function success() {
                         self.removeImg(url);
