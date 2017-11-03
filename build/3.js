@@ -68817,7 +68817,7 @@ var ImagePanel = Sophie.createClass({
 
         for (var i = 0; i < this.state.urls.length; i++) {
             if (this.state.urls[i].url == url.url) {
-                var urls = this.state.urls.splice(index, 1);
+                var urls = this.state.urls.splice(i, 1);
                 this.setState({ urls: urls });
             }
         }
