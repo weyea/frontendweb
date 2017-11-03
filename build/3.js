@@ -68841,7 +68841,7 @@ var ImagePanel = Sophie.createClass({
     },
 
     showProcess: function showProcess(num) {
-        $("#img-upload-placehold span").html(num);
+        $("#img-upload-placehold span.num").html(num);
     },
 
     error: function error() {
@@ -68947,7 +68947,7 @@ var ImagePanel = Sophie.createClass({
                 result.push(Sophie.element(
                     "div",
                     { "class": "img", id: "img-upload-placehold" },
-                    Sophie.element("span", null)
+                    Sophie.element("span", { "class": "num" })
                 ));
             } else {
                 result.push(Sophie.element(
