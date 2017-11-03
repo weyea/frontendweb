@@ -68954,7 +68954,7 @@ var ImagePanel = Sophie.createClass({
                     "div",
                     { "class": "img", "data-id": urls[i].id, "data-url": urls[i].url,
                         style: "background-image:url(" + urls[i].url + ")" },
-                    Sophie.element("span", { "class": "delete icon iconfont icon-shanchu" })
+                    Sophie.element("i", { "class": "delete icon iconfont icon-shanchu" })
                 ));
             }
         }
