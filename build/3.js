@@ -66360,7 +66360,7 @@ var QuickBar = Sophie.createClass("quick-bar", {
     },
 
     renderPreview: function renderPreview() {
-        var data = play.getPageData();
+
         var type = designer.configs.type;
         var id = designer.configs.id;
         var url = "/designer/source/" + type + "/" + id;
