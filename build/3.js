@@ -68841,7 +68841,7 @@ var ImagePanel = Sophie.createClass({
     },
 
     showProcess: function showProcess(num) {
-        $("#img-load-placehold span").html(num);
+        $("#img-upload-placehold span").html(num);
     },
 
     error: function error() {
@@ -68866,6 +68866,7 @@ var ImagePanel = Sophie.createClass({
         var self = this;
 
         var finish = function finish(url) {
+            self.removeImg({ url: "#placehold", id: 123 });
             self.addImg(url);
         };
         var progress = function progress(url) {
