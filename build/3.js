@@ -68817,8 +68817,8 @@ var ImagePanel = Sophie.createClass({
 
         for (var i = 0; i < this.state.urls.length; i++) {
             if (this.state.urls[i].url == url.url) {
-                var urls = this.state.urls.splice(i, 1);
-                this.setState({ urls: urls });
+                this.state.urls.splice(i, 1);
+                this.forceUpdate();
             }
         }
     },
@@ -69012,10 +69012,12 @@ var UploadButton = exports.UploadButton = Sophie.createClass("upload-button", {
         var callback = this.props.finish;
         var progress = this.props.progress;
         var error = this.props.error;
+        var start = this.props.start;
         var $input = $("#material-file-upload").html5_upload({
             url: url,
             sendBoundary: window.FormData || $.browser.mozilla,
             onStart: function onStart(event, total) {
+                start && start();
                 return true;
             },
             fieldName: "file",
