@@ -68764,7 +68764,7 @@ var ImagePanel = Sophie.createClass({
             });
         } else {
             this.setState({
-                urls: ["images/1.jpg", "images/2.jpg", "images/7.jpg", "images/4.jpg", "images/3.jpg", "images/01.jpg"]
+                urls: [{ url: "images/1.jpg", id: 1 }, { url: "images/2.jpg", id: 2 }, { url: "images/7.jpg", id: 3 }, { url: "images/4.jpg", id: 4 }, { url: "images/3.jpg", id: 5 }, { url: "images/01.jpg", id: 6 }]
             });
         }
     },
@@ -68772,40 +68772,11 @@ var ImagePanel = Sophie.createClass({
     upload: function upload() {
         var self = this;
         var url = window.designer.configs.uploadMaterial;
-
-        var $input = $("#material-file-upload").html5_upload({
-            url: url,
-            sendBoundary: window.FormData || $.browser.mozilla,
-            onStart: function onStart(event, total) {
-                self.addImg({ url: "#placehold", id: "123" });
-                return true;
-            },
-            fieldName: "file",
-            onProgress: function onProgress(event, progress, name, number, total) {
-                this.showProcess(number);
-                console.log(progress, number);
-            },
-            setName: function setName(text) {
-                $("#progress_report_name").text(text);
-            },
-            setStatus: function setStatus(text) {
-                $("#progress_report_status").text(text);
-            },
-            setProgress: function setProgress(val) {
-                $("#progress_report_bar").css('width', Math.ceil(val * 100) + "%");
-            },
-            onFinishOne: function onFinishOne(event, response, name, number, total) {
-                self.removeImg({ url: "#placehold", id: "123" });
-                self.addImg({ id: JSON.parse(response).id, url: JSON.parse(response).url });
-            },
-            onError: function onError(event, name, error) {
-                self.removeImg({ url: "#placehold", id: "123" });
-                alert('error while uploading file ' + name);
-            }
-        });
     },
+
     componentDidMount: function componentDidMount() {
         var h = this.nativeNode;
+        var self = this;
 
         $("#select-img-view").modal({
             show: false,
@@ -68820,12 +68791,14 @@ var ImagePanel = Sophie.createClass({
         });
 
         $(h).on("click", ".delete", function (e) {
-            var target = $(e.target);
+            e.stopPropagation();
+            var target = $(e.target).parents(".img");
             var id = target.attr("data-id");
             var url = target.attr("data-url");
             self.delPic({ id: id, url: url });
         });
     },
+
     addImg: function addImg(url) {
 
         if (!this.includes(url)) {
@@ -68851,12 +68824,12 @@ var ImagePanel = Sophie.createClass({
     },
 
     delPic: function delPic(url) {
-        var url = window.designer.configs.uploadMaterial;
+        var serverurl = window.designer.configs.uploadMaterial;
         var self = this;
         for (var i = 0; i < this.state.urls.length; i++) {
             if (this.state.urls[i].id == url.id) {
                 $.ajax({
-                    url: url,
+                    url: serverurl,
                     method: "delete",
                     data: {
                         id: url.id
@@ -68869,12 +68842,16 @@ var ImagePanel = Sophie.createClass({
             }
         }
     },
+
     showProcess: function showProcess(num) {
         $("#img-load-placehold span").html(num);
     },
 
-    show: function show() {
+    error: function error() {
+        this.removeImg({ url: "#placehold", id: 123 });
+    },
 
+    show: function show() {
         $("#select-img-view").modal("show");
 
         if (!this.state.initState) {
@@ -68882,14 +68859,22 @@ var ImagePanel = Sophie.createClass({
             this.state.initState = true;
         }
     },
+
     hide: function hide() {
         $("#select-img-view").modal("hide");
     },
+
     render: function render() {
         var urls = this.state.urls;
         var self = this;
         var finish = function finish(url) {
             self.addImg(url);
+        };
+        var progress = function progress(url) {
+            self.showProcess(url);
+        };
+        var error = function error(url) {
+            self.error(url);
         };
 
         return Sophie.element(
@@ -68946,7 +68931,8 @@ var ImagePanel = Sophie.createClass({
                 Sophie.element(
                     "div",
                     { "class": "upload-btn" },
-                    Sophie.element(_UploadButton.UploadButton, { finish: finish })
+                    Sophie.element(_UploadButton.UploadButton, { error: error, progress: progress,
+                        url: window.designer.configs.uploadMaterial, finish: finish })
                 )
             )
         );
@@ -69023,6 +69009,8 @@ var UploadButton = exports.UploadButton = Sophie.createClass("upload-button", {
         var self = this;
         var url = this.props.url;
         var callback = this.props.finish;
+        var progress = this.props.progress;
+        var error = this.props.error;
         var $input = $("#material-file-upload").html5_upload({
             url: url,
             sendBoundary: window.FormData || $.browser.mozilla,
@@ -69033,19 +69021,16 @@ var UploadButton = exports.UploadButton = Sophie.createClass("upload-button", {
             onProgress: function onProgress(event, progress, name, number, total) {
                 console.log(progress, number);
             },
-            setName: function setName(text) {
-                $("#progress_report_name").text(text);
-            },
-            setStatus: function setStatus(text) {
-                $("#progress_report_status").text(text);
-            },
+            setName: function setName(text) {},
+            setStatus: function setStatus(text) {},
             setProgress: function setProgress(val) {
-                $("#progress_report_bar").css('width', Math.ceil(val * 100) + "%");
+                progress && progress(Math.ceil(val * 100) + "%");
             },
             onFinishOne: function onFinishOne(event, response, name, number, total) {
-                callback(JSON.parse(response).url);
+                callback(JSON.parse(response));
             },
             onError: function onError(event, name, error) {
+                error && error();
                 alert('上线失败 ' + name);
             }
         });
