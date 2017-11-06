@@ -60234,7 +60234,7 @@ $(document).bind("keydown", "ctrl+u", function (e) {
 window._clearPhone = function () {
     var selectedEL = play.select.selectedEL;
     if (selectedEL.length) {
-        play.getProps(selectedEL).props["phone"] = undefined;
+        play.getProps(selectedEL)["phone"] = undefined;
     }
 };
 
