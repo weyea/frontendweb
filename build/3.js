@@ -25580,10 +25580,29 @@ function getLayoutFromProps(parent, mediaName) {
     if (!props[mediaName]) {
         props[mediaName] = {};
     }
+
     var childrenVnode = props.children;
     var nodes = (0, _utils.childrenToNode)(childrenVnode);
 
     if (play.getLayoutType(parent) == "grid") {
+
+        //@todo 为site增加自己的布局
+        if (play.is(parent, "p-site")) {
+
+            var vnode = play.getVnode(parent);
+            var cate = vnode.cateChildren();
+            var cateChildren = [cate.header].concat(vnode.renderActivePage(cate.pages)).concat(cate.footer);
+
+            for (var i = 0; i < cateChildren.length; i++) {
+                cateChildren[i] = toNode(cateChildren[i]);
+            }
+            return {
+                type: "column",
+                children: cateChildren,
+                hiddenLayout: [],
+                absoluteLayout: []
+            };
+        }
 
         var gridLayout = props[mediaName].gridLayout;
 
@@ -25596,7 +25615,6 @@ function getLayoutFromProps(parent, mediaName) {
 
             };
             var layoutType = parent.get(0).vnode.props.layoutType || "grid";
-
             resultLayout.type = parent.get(0).vnode.props.subLayoutType || "column";
 
             var positionChildren = (0, _utils.cateChildrenByPosition)(nodes);
@@ -33108,7 +33126,6 @@ function getPropsFromLayout(layout, parent) {
         }
         gridLayout.children = children;
     }
-
     var absoluteLayout = layout.absoluteLayout;
     if (absoluteLayout) {
         gridLayout.absoluteLayout = [];
@@ -33124,7 +33141,6 @@ function getPropsFromLayout(layout, parent) {
             gridLayout.hiddenLayout.push(getPropsFromLayout(hiddenLayout[i], parent));
         }
     }
-
     return gridLayout;
 }
 
@@ -33397,6 +33413,11 @@ function _updateLayout(parent, addedEls, removedEls, movedEls, mediaName) {
 
 function renderLayout(parent, layout, mediaName) {
     var props = play.getProps(parent);
+
+    if (parent.is("p-site")) {
+        return;
+    }
+
     if (props.layoutType == "grid") {
         var mediaName = mediaName || play.mediaName;
         var parentVnode = parent.get(0).vnode;
@@ -62335,15 +62356,12 @@ var TextSet = Sophie.createClass("font-set", {
 
     createLink: function createLink() {
         var saveSel;
-
         $(document).delegate(".cmd-show-creade-link", "click", function () {
-
             saveSel = play.utils.saveSelection();
             $('#myModal').modal("show");
         });
 
         $(document).delegate(".cmd-createlink", "click", function () {
-
             $('#myModal').modal("hide");
             play.utils.restoreSelection(saveSel);
             play.iframeDoc.execCommand("createLink", "false", $("#linkvalue").val());
@@ -62366,13 +62384,13 @@ var TextSet = Sophie.createClass("font-set", {
 
         $(document).on("selectEl", function (ev, target) {
             if (self.isText(target)) {
-                $("#font-set-panel").show();
-                $("panel-css .font-set").removeClass("font-set-selection");
-                self.open();
-                $("panel-css .title").html("文字");
+                // $("#font-set-panel").show();
+                // $("panel-css .font-set").removeClass("font-set-selection")
+                // self.open();
+                // $("panel-css .title").html("文字");
             } else {
-                $("#font-set-panel").hide();
-            }
+                    // $("#font-set-panel").hide();
+                }
         });
     },
 
