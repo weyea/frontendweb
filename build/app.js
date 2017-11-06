@@ -6968,6 +6968,8 @@ var Nav = Sophie.createClass("p-nav-page-mobile", {
     getDefaultProps: function getDefaultProps() {
         return {
             position: 'fixed',
+            parentFixed: true,
+            parentSelector: "p-header",
             pc: {
                 isHidden: true
             }
@@ -8337,7 +8339,8 @@ __webpack_require__(214);
 var NavMobile = Sophie.createClass("p-nav-mobile", {
     getDefaultProps: function getDefaultProps() {
         return {
-
+            parentFixed: true,
+            parentSelector: "p-header",
             position: 'absolute',
             pc: {
                 isHidden: true

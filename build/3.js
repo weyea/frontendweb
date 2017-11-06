@@ -6711,6 +6711,8 @@ var Nav = Sophie.createClass("p-nav-page-mobile", {
     getDefaultProps: function getDefaultProps() {
         return {
             position: 'fixed',
+            parentFixed: true,
+            parentSelector: "p-header",
             pc: {
                 isHidden: true
             }
@@ -8080,7 +8082,8 @@ __webpack_require__(214);
 var NavMobile = Sophie.createClass("p-nav-mobile", {
     getDefaultProps: function getDefaultProps() {
         return {
-
+            parentFixed: true,
+            parentSelector: "p-header",
             position: 'absolute',
             pc: {
                 isHidden: true
@@ -23784,6 +23787,7 @@ module.exports = {
             top: coord.top + coord.height / 2
         };
     },
+
     trigger: function trigger(name, nodes, oldNodes, parent) {
         for (var i = 0; i < nodes.length; i++) {
             var el = nodes[i].el;
@@ -23792,6 +23796,7 @@ module.exports = {
             $(document).trigger(name, [el, coord, oldCoord, parent]);
         }
     },
+
     _getOldCoord: function _getOldCoord(el, oldNodes) {
         for (var i = 0; i < oldNodes.length; i++) {
             if (el.is(oldNodes[i].el)) {
@@ -23799,6 +23804,7 @@ module.exports = {
             }
         }
     },
+
     getAllUpdateNodesForMove: function getAllUpdateNodesForMove(targets, parent) {
 
         return utils.toNodeArray(targets);
@@ -46628,6 +46634,9 @@ var play = (_play = {
     if (play.is(el, "p-nav-bar")) {
         baseConfig.removeable = false;
     }
+    if (play.is(el, "p-nav-mobile")) {
+        baseConfig.removeable = false;
+    }
 
     if (play.is(el, "p-site") || play.is(el, "p-body")) {
 
@@ -47715,7 +47724,7 @@ var utils = (_utils = {
         return false;
     }
 }), _defineProperty(_utils, 'clearSelection', function clearSelection() {
-    var sel = Rangy.getSelection();
+    var sel = Rangy.getSelection(play.iframeWin);
     if (sel) {
         sel.removeAllRanges();
     }
@@ -51482,7 +51491,7 @@ var defaultExports = {
                     //响应布局
                     //添加padding
 
-                    if (childEl.length) {
+                    if (childEl.length && play.getProps(childEl).isHidden !== true) {
                         play.dom.copyCSSForNewEl(childEl);
                         var relativeCoord = position.getRelativeCoord(childEl);
                         (0, _RelativeCoord.setRelativeCoord)(childEl, relativeCoord);
@@ -56412,6 +56421,11 @@ var MoveHelper = __webpack_require__(373);
             };
         }
 
+        if (play.mediaName !== "pc") {
+            alert("移动端无法单独添加内部，请切换的pc端添加");
+            return;
+        }
+
         if (!cmdArds.tagName) return;
 
         if (tagName == "p-nav-page" || tagName == "p-nav-mobile") {
@@ -56515,7 +56529,7 @@ var MoveHelper = __webpack_require__(373);
         var drag = play.drag;
         setTimeout(function () {
             helper = drag.createHelper();
-            drag.ondrag($("#widget-panel  .tab-content .widget-item-scale"), start, ondrag, end);
+            drag.ondrag($("#widget-panel  .tab-content"), start, ondrag, end);
             drag.ondrag($("#base-component button"), start, ondrag, end);
             drag.ondrag($("#my-iconlist-modal i"), start, ondrag, end);
         }, 5000);
@@ -56746,6 +56760,11 @@ var MoveHelper = __webpack_require__(373);
     var start = function start(ev) {
 
         var target = $(ev.target);
+
+        if (play.mediaName !== "pc") {
+            alert("移动端无法单独添加内部，请切换的pc端添加");
+            return;
+        }
 
         var cmdArds = MoveHelper.getAddArgs(target);
         if (!cmdArds || !cmdArds.tagName) return;
@@ -62314,9 +62333,9 @@ var TextSet = Sophie.createClass("font-set", {
         var el = el || play.select.selectedEL;
 
         if (play.getVnode(el).state.editing) {
-
-            el.get(0).vnode.cancelEdit();
             play.utils.clearSelection();
+            el.get(0).vnode.cancelEdit();
+
             if (el.get(0).vnode._editor) {
                 el.get(0).vnode._editor.disable();
             }
@@ -62393,13 +62412,13 @@ var TextSet = Sophie.createClass("font-set", {
 
         $(document).on("selectEl", function (ev, target) {
             if (self.isText(target)) {
-                // $("#font-set-panel").show();
-                // $("panel-css .font-set").removeClass("font-set-selection")
-                // self.open();
-                // $("panel-css .title").html("文字");
+                $("#font-set-panel").show();
+                $("panel-css .font-set").removeClass("font-set-selection");
+                self.open();
+                $("panel-css .title").html("文字");
             } else {
-                    // $("#font-set-panel").hide();
-                }
+                $("#font-set-panel").hide();
+            }
         });
     },
 
@@ -62712,6 +62731,573 @@ var TextSet = Sophie.createClass("font-set", {
         }
     },
 
+    renderBar: function renderBar() {
+        return Sophie.element(
+            "div",
+            { "class": "shortcutbar-font-cmd", "data-role": "editor-toolbar" },
+            Sophie.element(
+                "div",
+                { "class": "btn-group handle" },
+                Sophie.element(
+                    "a",
+                    { "class": "btn shortcutbar-font-edit " },
+                    Sophie.element("i", { "class": "fa fa-pencil" })
+                )
+            ),
+            Sophie.element(
+                "a",
+                { title: "\u8BBE\u7F6E\u5730\u5740", "class": "btn   set-a-href" },
+                Sophie.element("i", { "class": "fa fa-link" })
+            ),
+            Sophie.element(
+                "a",
+                { style: "display:none", title: "\u8BBE\u7F6Eicon", "class": "btn   set-icon" },
+                Sophie.element("i", {
+                    "class": "glyphicon glyphicon-glass" })
+            ),
+            Sophie.element(
+                "div",
+                { "class": "btn-group more" },
+                Sophie.element(
+                    "a",
+                    { "class": "btn  minicolors", "data-edit": "foreColor", "data-cssname": "color",
+                        title: "Bold (Ctrl/Cmd+B)" },
+                    Sophie.element("i", { "class": "fa fa-text" })
+                )
+            ),
+            Sophie.element(
+                "div",
+                { "class": "btn-group more dropdown" },
+                Sophie.element(
+                    "a",
+                    { "class": "btn  dropdown-toggle", "data-cssname": "fontFamily", "data-toggle": "dropdown",
+                        "aria-haspopup": "true", role: "button", "aria-expanded": "false", title: "Font" },
+                    Sophie.element("i", { "class": "fa fa-font" }),
+                    Sophie.element("b", { "class": "caret" })
+                ),
+                Sophie.element(
+                    "ul",
+                    { "class": "dropdown-menu" },
+                    Sophie.element(
+                        "li",
+                        null,
+                        Sophie.element(
+                            "a",
+                            { href: "#", "data-edit": "fontName Serif", style: "font-family:'Serif'" },
+                            "Serif"
+                        )
+                    ),
+                    Sophie.element(
+                        "li",
+                        null,
+                        Sophie.element(
+                            "a",
+                            { href: "#", "data-edit": "fontName Sans", style: "font-family:'Sans'" },
+                            "Sans"
+                        )
+                    ),
+                    Sophie.element(
+                        "li",
+                        null,
+                        Sophie.element(
+                            "a",
+                            { "data-edit": "fontName Arial", style: "font-family:'Arial'" },
+                            "Arial"
+                        )
+                    ),
+                    Sophie.element(
+                        "li",
+                        null,
+                        Sophie.element(
+                            "a",
+                            { "data-edit": "fontName Arial Black", style: "font-family:'Arial Black'" },
+                            "Arial Black"
+                        )
+                    ),
+                    Sophie.element(
+                        "li",
+                        null,
+                        Sophie.element(
+                            "a",
+                            { "data-edit": "fontName Courier", style: "font-family:'Courier'" },
+                            "Courier"
+                        )
+                    ),
+                    Sophie.element(
+                        "li",
+                        null,
+                        Sophie.element(
+                            "a",
+                            { "data-edit": "fontName Courier New", style: "font-family:'Courier New'" },
+                            "Courier New"
+                        )
+                    ),
+                    Sophie.element(
+                        "li",
+                        null,
+                        Sophie.element(
+                            "a",
+                            { "data-edit": "fontName Comic Sans MS", style: "font-family:'Comic Sans MS'" },
+                            "Comic Sans MS"
+                        )
+                    ),
+                    Sophie.element(
+                        "li",
+                        null,
+                        Sophie.element(
+                            "a",
+                            { "data-edit": "fontName Helvetica",
+                                style: "font-family:'Helvetica'" },
+                            "Helvetica"
+                        )
+                    ),
+                    Sophie.element(
+                        "li",
+                        null,
+                        Sophie.element(
+                            "a",
+                            { "data-edit": "fontName Impact", style: "font-family:'Impact'" },
+                            "Impact"
+                        )
+                    ),
+                    Sophie.element(
+                        "li",
+                        null,
+                        Sophie.element(
+                            "a",
+                            { "data-edit": "fontName Lucida Grande", style: "font-family:'Lucida Grande'" },
+                            "Lucida Grande"
+                        )
+                    ),
+                    Sophie.element(
+                        "li",
+                        null,
+                        Sophie.element(
+                            "a",
+                            { "data-edit": "fontName Lucida Sans", style: "font-family:'Lucida Sans'" },
+                            "Lucida Sans"
+                        )
+                    ),
+                    Sophie.element(
+                        "li",
+                        null,
+                        Sophie.element(
+                            "a",
+                            { "data-edit": "fontName Tahoma", style: "font-family:'Tahoma'" },
+                            "Tahoma"
+                        )
+                    ),
+                    Sophie.element(
+                        "li",
+                        null,
+                        Sophie.element(
+                            "a",
+                            { "data-edit": "fontName Times", style: "font-family:'Times'" },
+                            "Times"
+                        )
+                    ),
+                    Sophie.element(
+                        "li",
+                        null,
+                        Sophie.element(
+                            "a",
+                            { "data-edit": "fontName Times New Roman",
+                                style: "font-family:'Times New Roman'" },
+                            "Times New Roman"
+                        )
+                    ),
+                    Sophie.element(
+                        "li",
+                        null,
+                        Sophie.element(
+                            "a",
+                            { "data-edit": "fontName Verdana", style: "font-family:'Verdana'" },
+                            "Verdana"
+                        )
+                    )
+                )
+            ),
+            Sophie.element(
+                "div",
+                { "class": "btn-group more dropdown" },
+                Sophie.element(
+                    "a",
+                    { "data-cssname": "fontSize", "data-cssunit": "px", "class": "btn  dropdown-toggle",
+                        "data-toggle": "dropdown",
+                        title: "Font Size" },
+                    Sophie.element(
+                        "span",
+                        null,
+                        "4"
+                    ),
+                    "\xA0",
+                    Sophie.element("b", { "class": "caret" })
+                ),
+                Sophie.element(
+                    "ul",
+                    { "class": "dropdown-menu" },
+                    Sophie.element(
+                        "li",
+                        null,
+                        Sophie.element(
+                            "a",
+                            { "data-edit": "fontSize 12", value: "12px" },
+                            "12"
+                        )
+                    ),
+                    Sophie.element(
+                        "li",
+                        null,
+                        Sophie.element(
+                            "a",
+                            { "data-edit": "fontSize 13" },
+                            "13"
+                        )
+                    ),
+                    Sophie.element(
+                        "li",
+                        null,
+                        Sophie.element(
+                            "a",
+                            { "data-edit": "fontSize 14" },
+                            "14"
+                        )
+                    ),
+                    Sophie.element(
+                        "li",
+                        null,
+                        Sophie.element(
+                            "a",
+                            { "data-edit": "fontSize 16" },
+                            "16"
+                        )
+                    ),
+                    Sophie.element(
+                        "li",
+                        null,
+                        Sophie.element(
+                            "a",
+                            { "data-edit": "fontSize 18" },
+                            "18"
+                        )
+                    ),
+                    Sophie.element(
+                        "li",
+                        null,
+                        Sophie.element(
+                            "a",
+                            { "data-edit": "fontSize 20" },
+                            "20"
+                        )
+                    ),
+                    Sophie.element(
+                        "li",
+                        null,
+                        Sophie.element(
+                            "a",
+                            { "data-edit": "fontSize 24" },
+                            "24"
+                        )
+                    ),
+                    Sophie.element(
+                        "li",
+                        null,
+                        Sophie.element(
+                            "a",
+                            { "data-edit": "fontSize 30" },
+                            "30"
+                        )
+                    ),
+                    Sophie.element(
+                        "li",
+                        null,
+                        Sophie.element(
+                            "a",
+                            { "data-edit": "fontSize 30" },
+                            "36"
+                        )
+                    ),
+                    Sophie.element(
+                        "li",
+                        null,
+                        Sophie.element(
+                            "a",
+                            { "data-edit": "fontSize 30" },
+                            "40"
+                        )
+                    ),
+                    Sophie.element(
+                        "li",
+                        null,
+                        Sophie.element(
+                            "a",
+                            { "data-edit": "fontSize 30" },
+                            "48"
+                        )
+                    ),
+                    Sophie.element(
+                        "li",
+                        null,
+                        Sophie.element(
+                            "a",
+                            { "data-edit": "fontSize 30" },
+                            "60"
+                        )
+                    ),
+                    Sophie.element(
+                        "li",
+                        null,
+                        Sophie.element(
+                            "a",
+                            { "data-edit": "fontSize 30" },
+                            "80"
+                        )
+                    )
+                )
+            ),
+            Sophie.element(
+                "div",
+                { "class": "btn-group more dropdown" },
+                Sophie.element(
+                    "a",
+                    { "data-cssname": "lineHeight", "data-cssunit": "px", "class": "btn  dropdown-toggle",
+                        "data-toggle": "dropdown",
+                        title: "line height" },
+                    Sophie.element(
+                        "span",
+                        null,
+                        "4"
+                    ),
+                    "\xA0",
+                    Sophie.element("b", { "class": "caret" })
+                ),
+                Sophie.element(
+                    "ul",
+                    { "class": "dropdown-menu" },
+                    Sophie.element(
+                        "li",
+                        null,
+                        Sophie.element(
+                            "a",
+                            { "data-edit": "lineHeight 12", value: "12px" },
+                            "12"
+                        )
+                    ),
+                    Sophie.element(
+                        "li",
+                        null,
+                        Sophie.element(
+                            "a",
+                            { "data-edit": "lineHeight 13" },
+                            "13"
+                        )
+                    ),
+                    Sophie.element(
+                        "li",
+                        null,
+                        Sophie.element(
+                            "a",
+                            { "data-edit": "lineHeight 14" },
+                            "14"
+                        )
+                    ),
+                    Sophie.element(
+                        "li",
+                        null,
+                        Sophie.element(
+                            "a",
+                            { "data-edit": "lineHeight 16" },
+                            "16"
+                        )
+                    ),
+                    Sophie.element(
+                        "li",
+                        null,
+                        Sophie.element(
+                            "a",
+                            { "data-edit": "lineHeight 18" },
+                            "18"
+                        )
+                    ),
+                    Sophie.element(
+                        "li",
+                        null,
+                        Sophie.element(
+                            "a",
+                            { "data-edit": "lineHeight 20" },
+                            "20"
+                        )
+                    ),
+                    Sophie.element(
+                        "li",
+                        null,
+                        Sophie.element(
+                            "a",
+                            { "data-edit": "lineHeight 24" },
+                            "24"
+                        )
+                    ),
+                    Sophie.element(
+                        "li",
+                        null,
+                        Sophie.element(
+                            "a",
+                            { "data-edit": "lineHeight 30" },
+                            "30"
+                        )
+                    ),
+                    Sophie.element(
+                        "li",
+                        null,
+                        Sophie.element(
+                            "a",
+                            { "data-edit": "lineHeight 30" },
+                            "36"
+                        )
+                    ),
+                    Sophie.element(
+                        "li",
+                        null,
+                        Sophie.element(
+                            "a",
+                            { "data-edit": "lineHeight 30" },
+                            "40"
+                        )
+                    ),
+                    Sophie.element(
+                        "li",
+                        null,
+                        Sophie.element(
+                            "a",
+                            { "data-edit": "lineHeight 30" },
+                            "48"
+                        )
+                    ),
+                    Sophie.element(
+                        "li",
+                        null,
+                        Sophie.element(
+                            "a",
+                            { "data-edit": "lineHeight 30" },
+                            "60"
+                        )
+                    ),
+                    Sophie.element(
+                        "li",
+                        null,
+                        Sophie.element(
+                            "a",
+                            { "data-edit": "lineHeight 30" },
+                            "80"
+                        )
+                    )
+                )
+            ),
+            Sophie.element(
+                "div",
+                { "class": "btn-group more" },
+                Sophie.element(
+                    "a",
+                    { "class": "btn ", "data-cssname": "fontWeight", "reset-value": "normal", "data-cssvalue": "bold",
+                        "data-edit": "bold", title: "Bold (Ctrl/Cmd+B)" },
+                    Sophie.element("i", { "class": "fa fa-bold" })
+                ),
+                Sophie.element(
+                    "a",
+                    { "class": "btn ", "data-cssname": "fontStyle", "reset-value": "normal", "data-cssvalue": "italic",
+                        "data-edit": "italic", title: "Italic (Ctrl/Cmd+I)" },
+                    Sophie.element("i", { "class": "fa fa-italic" })
+                ),
+                Sophie.element(
+                    "a",
+                    { "class": "btn ", "data-cssname": "textDecoration", "reset-value": "none",
+                        "data-cssvalue": "underline",
+                        "data-edit": "underline", title: "Underline (Ctrl/Cmd+U)" },
+                    Sophie.element("i", {
+                        "class": "fa fa-underline" })
+                )
+            ),
+            Sophie.element(
+                "div",
+                { "class": "btn-group more" },
+                Sophie.element(
+                    "a",
+                    { "class": "btn ", "data-cssname": "textAlign", "data-cssvalue": "left",
+                        "data-edit": "justifyleft",
+                        title: "Align Left (Ctrl/Cmd+L)" },
+                    Sophie.element("i", { "class": "fa fa-align-left" })
+                ),
+                Sophie.element(
+                    "a",
+                    { "class": "btn ", "data-cssname": "textAlign", "data-cssvalue": "center",
+                        "data-edit": "justifyCenter",
+                        title: "Center (Ctrl/Cmd+E)" },
+                    Sophie.element("i", { "class": "fa fa-align-center" })
+                ),
+                Sophie.element(
+                    "a",
+                    { "class": "btn ", "data-cssname": "textAlign", "data-cssvalue": "right",
+                        "data-edit": "justifyRight",
+                        title: "Align Right (Ctrl/Cmd+R)" },
+                    Sophie.element("i", {
+                        "class": "fa fa-align-right" })
+                )
+            ),
+            Sophie.element(
+                "div",
+                { "class": "btn-group  more edit" },
+                Sophie.element(
+                    "a",
+                    { "class": "", "data-edit": "insertunorderedlist", title: "Bullet list" },
+                    Sophie.element("i", {
+                        "class": "fa fa-list-ul" })
+                ),
+                Sophie.element(
+                    "a",
+                    { "class": "", "data-edit": "insertorderedlist", title: "Number list" },
+                    Sophie.element("i", {
+                        "class": "fa fa-list-ol" })
+                ),
+                Sophie.element(
+                    "a",
+                    { "class": "", "data-edit": "outdent", title: "Reduce indent (Shift+Tab)" },
+                    Sophie.element("i", {
+                        "class": "fa fa-outdent" })
+                ),
+                Sophie.element(
+                    "a",
+                    { "class": "", "data-edit": "indent", title: "Indent (Tab)" },
+                    Sophie.element("i", { "class": "fa fa-indent" })
+                )
+            ),
+            Sophie.element(
+                "div",
+                { "class": "btn-group more edit" },
+                Sophie.element(
+                    "a",
+                    { "class": "btn dropdown-toggle", "data-toggle": "dropdown", title: "Hyperlink" },
+                    Sophie.element("i", {
+                        "class": "fa fa-link" })
+                ),
+                Sophie.element(
+                    "div",
+                    { "class": "dropdown-menu input-append" },
+                    Sophie.element("input", { "class": "span2", placeholder: "URL", type: "text", "data-edit": "createLink" }),
+                    Sophie.element(
+                        "button",
+                        { "class": "btn", type: "button" },
+                        "Add"
+                    )
+                ),
+                Sophie.element(
+                    "a",
+                    { "class": "", "data-edit": "unlink", title: "Remove Hyperlink" },
+                    Sophie.element("i", { "class": "fa fa-unlink" })
+                )
+            )
+        );
+    },
+
     render: function render() {
         var _Sophie$element, _Sophie$element2;
 
@@ -62944,557 +63530,6 @@ var TextSet = Sophie.createClass("font-set", {
                                     { "class": "btn shortcutbar-font-edit " },
                                     Sophie.element("i", { "class": "fa fa-pencil" })
                                 )
-                            ),
-                            Sophie.element(
-                                "a",
-                                { title: "\u8BBE\u7F6E\u5730\u5740", "class": "btn   set-a-href" },
-                                Sophie.element("i", { "class": "fa fa-link" })
-                            ),
-                            Sophie.element(
-                                "a",
-                                { style: "display:none", title: "\u8BBE\u7F6Eicon", "class": "btn   set-icon" },
-                                Sophie.element("i", {
-                                    "class": "glyphicon glyphicon-glass" })
-                            ),
-                            Sophie.element(
-                                "div",
-                                { "class": "btn-group more" },
-                                Sophie.element(
-                                    "a",
-                                    { "class": "btn  minicolors", "data-edit": "foreColor", "data-cssname": "color",
-                                        title: "Bold (Ctrl/Cmd+B)" },
-                                    Sophie.element("i", { "class": "fa fa-text" })
-                                )
-                            ),
-                            Sophie.element(
-                                "div",
-                                { "class": "btn-group more dropdown" },
-                                Sophie.element(
-                                    "a",
-                                    { "class": "btn  dropdown-toggle", "data-cssname": "fontFamily", "data-toggle": "dropdown",
-                                        "aria-haspopup": "true", role: "button", "aria-expanded": "false", title: "Font" },
-                                    Sophie.element("i", { "class": "fa fa-font" }),
-                                    Sophie.element("b", { "class": "caret" })
-                                ),
-                                Sophie.element(
-                                    "ul",
-                                    { "class": "dropdown-menu" },
-                                    Sophie.element(
-                                        "li",
-                                        null,
-                                        Sophie.element(
-                                            "a",
-                                            { href: "#", "data-edit": "fontName Serif", style: "font-family:'Serif'" },
-                                            "Serif"
-                                        )
-                                    ),
-                                    Sophie.element(
-                                        "li",
-                                        null,
-                                        Sophie.element(
-                                            "a",
-                                            { href: "#", "data-edit": "fontName Sans", style: "font-family:'Sans'" },
-                                            "Sans"
-                                        )
-                                    ),
-                                    Sophie.element(
-                                        "li",
-                                        null,
-                                        Sophie.element(
-                                            "a",
-                                            { "data-edit": "fontName Arial", style: "font-family:'Arial'" },
-                                            "Arial"
-                                        )
-                                    ),
-                                    Sophie.element(
-                                        "li",
-                                        null,
-                                        Sophie.element(
-                                            "a",
-                                            { "data-edit": "fontName Arial Black", style: "font-family:'Arial Black'" },
-                                            "Arial Black"
-                                        )
-                                    ),
-                                    Sophie.element(
-                                        "li",
-                                        null,
-                                        Sophie.element(
-                                            "a",
-                                            { "data-edit": "fontName Courier", style: "font-family:'Courier'" },
-                                            "Courier"
-                                        )
-                                    ),
-                                    Sophie.element(
-                                        "li",
-                                        null,
-                                        Sophie.element(
-                                            "a",
-                                            { "data-edit": "fontName Courier New", style: "font-family:'Courier New'" },
-                                            "Courier New"
-                                        )
-                                    ),
-                                    Sophie.element(
-                                        "li",
-                                        null,
-                                        Sophie.element(
-                                            "a",
-                                            { "data-edit": "fontName Comic Sans MS", style: "font-family:'Comic Sans MS'" },
-                                            "Comic Sans MS"
-                                        )
-                                    ),
-                                    Sophie.element(
-                                        "li",
-                                        null,
-                                        Sophie.element(
-                                            "a",
-                                            { "data-edit": "fontName Helvetica",
-                                                style: "font-family:'Helvetica'" },
-                                            "Helvetica"
-                                        )
-                                    ),
-                                    Sophie.element(
-                                        "li",
-                                        null,
-                                        Sophie.element(
-                                            "a",
-                                            { "data-edit": "fontName Impact", style: "font-family:'Impact'" },
-                                            "Impact"
-                                        )
-                                    ),
-                                    Sophie.element(
-                                        "li",
-                                        null,
-                                        Sophie.element(
-                                            "a",
-                                            { "data-edit": "fontName Lucida Grande", style: "font-family:'Lucida Grande'" },
-                                            "Lucida Grande"
-                                        )
-                                    ),
-                                    Sophie.element(
-                                        "li",
-                                        null,
-                                        Sophie.element(
-                                            "a",
-                                            { "data-edit": "fontName Lucida Sans", style: "font-family:'Lucida Sans'" },
-                                            "Lucida Sans"
-                                        )
-                                    ),
-                                    Sophie.element(
-                                        "li",
-                                        null,
-                                        Sophie.element(
-                                            "a",
-                                            { "data-edit": "fontName Tahoma", style: "font-family:'Tahoma'" },
-                                            "Tahoma"
-                                        )
-                                    ),
-                                    Sophie.element(
-                                        "li",
-                                        null,
-                                        Sophie.element(
-                                            "a",
-                                            { "data-edit": "fontName Times", style: "font-family:'Times'" },
-                                            "Times"
-                                        )
-                                    ),
-                                    Sophie.element(
-                                        "li",
-                                        null,
-                                        Sophie.element(
-                                            "a",
-                                            { "data-edit": "fontName Times New Roman",
-                                                style: "font-family:'Times New Roman'" },
-                                            "Times New Roman"
-                                        )
-                                    ),
-                                    Sophie.element(
-                                        "li",
-                                        null,
-                                        Sophie.element(
-                                            "a",
-                                            { "data-edit": "fontName Verdana", style: "font-family:'Verdana'" },
-                                            "Verdana"
-                                        )
-                                    )
-                                )
-                            ),
-                            Sophie.element(
-                                "div",
-                                { "class": "btn-group more dropdown" },
-                                Sophie.element(
-                                    "a",
-                                    { "data-cssname": "fontSize", "data-cssunit": "px", "class": "btn  dropdown-toggle",
-                                        "data-toggle": "dropdown",
-                                        title: "Font Size" },
-                                    Sophie.element(
-                                        "span",
-                                        null,
-                                        "4"
-                                    ),
-                                    "\xA0",
-                                    Sophie.element("b", { "class": "caret" })
-                                ),
-                                Sophie.element(
-                                    "ul",
-                                    { "class": "dropdown-menu" },
-                                    Sophie.element(
-                                        "li",
-                                        null,
-                                        Sophie.element(
-                                            "a",
-                                            { "data-edit": "fontSize 12", value: "12px" },
-                                            "12"
-                                        )
-                                    ),
-                                    Sophie.element(
-                                        "li",
-                                        null,
-                                        Sophie.element(
-                                            "a",
-                                            { "data-edit": "fontSize 13" },
-                                            "13"
-                                        )
-                                    ),
-                                    Sophie.element(
-                                        "li",
-                                        null,
-                                        Sophie.element(
-                                            "a",
-                                            { "data-edit": "fontSize 14" },
-                                            "14"
-                                        )
-                                    ),
-                                    Sophie.element(
-                                        "li",
-                                        null,
-                                        Sophie.element(
-                                            "a",
-                                            { "data-edit": "fontSize 16" },
-                                            "16"
-                                        )
-                                    ),
-                                    Sophie.element(
-                                        "li",
-                                        null,
-                                        Sophie.element(
-                                            "a",
-                                            { "data-edit": "fontSize 18" },
-                                            "18"
-                                        )
-                                    ),
-                                    Sophie.element(
-                                        "li",
-                                        null,
-                                        Sophie.element(
-                                            "a",
-                                            { "data-edit": "fontSize 20" },
-                                            "20"
-                                        )
-                                    ),
-                                    Sophie.element(
-                                        "li",
-                                        null,
-                                        Sophie.element(
-                                            "a",
-                                            { "data-edit": "fontSize 24" },
-                                            "24"
-                                        )
-                                    ),
-                                    Sophie.element(
-                                        "li",
-                                        null,
-                                        Sophie.element(
-                                            "a",
-                                            { "data-edit": "fontSize 30" },
-                                            "30"
-                                        )
-                                    ),
-                                    Sophie.element(
-                                        "li",
-                                        null,
-                                        Sophie.element(
-                                            "a",
-                                            { "data-edit": "fontSize 30" },
-                                            "36"
-                                        )
-                                    ),
-                                    Sophie.element(
-                                        "li",
-                                        null,
-                                        Sophie.element(
-                                            "a",
-                                            { "data-edit": "fontSize 30" },
-                                            "40"
-                                        )
-                                    ),
-                                    Sophie.element(
-                                        "li",
-                                        null,
-                                        Sophie.element(
-                                            "a",
-                                            { "data-edit": "fontSize 30" },
-                                            "48"
-                                        )
-                                    ),
-                                    Sophie.element(
-                                        "li",
-                                        null,
-                                        Sophie.element(
-                                            "a",
-                                            { "data-edit": "fontSize 30" },
-                                            "60"
-                                        )
-                                    ),
-                                    Sophie.element(
-                                        "li",
-                                        null,
-                                        Sophie.element(
-                                            "a",
-                                            { "data-edit": "fontSize 30" },
-                                            "80"
-                                        )
-                                    )
-                                )
-                            ),
-                            Sophie.element(
-                                "div",
-                                { "class": "btn-group more dropdown" },
-                                Sophie.element(
-                                    "a",
-                                    { "data-cssname": "lineHeight", "data-cssunit": "px", "class": "btn  dropdown-toggle",
-                                        "data-toggle": "dropdown",
-                                        title: "line height" },
-                                    Sophie.element(
-                                        "span",
-                                        null,
-                                        "4"
-                                    ),
-                                    "\xA0",
-                                    Sophie.element("b", { "class": "caret" })
-                                ),
-                                Sophie.element(
-                                    "ul",
-                                    { "class": "dropdown-menu" },
-                                    Sophie.element(
-                                        "li",
-                                        null,
-                                        Sophie.element(
-                                            "a",
-                                            { "data-edit": "lineHeight 12", value: "12px" },
-                                            "12"
-                                        )
-                                    ),
-                                    Sophie.element(
-                                        "li",
-                                        null,
-                                        Sophie.element(
-                                            "a",
-                                            { "data-edit": "lineHeight 13" },
-                                            "13"
-                                        )
-                                    ),
-                                    Sophie.element(
-                                        "li",
-                                        null,
-                                        Sophie.element(
-                                            "a",
-                                            { "data-edit": "lineHeight 14" },
-                                            "14"
-                                        )
-                                    ),
-                                    Sophie.element(
-                                        "li",
-                                        null,
-                                        Sophie.element(
-                                            "a",
-                                            { "data-edit": "lineHeight 16" },
-                                            "16"
-                                        )
-                                    ),
-                                    Sophie.element(
-                                        "li",
-                                        null,
-                                        Sophie.element(
-                                            "a",
-                                            { "data-edit": "lineHeight 18" },
-                                            "18"
-                                        )
-                                    ),
-                                    Sophie.element(
-                                        "li",
-                                        null,
-                                        Sophie.element(
-                                            "a",
-                                            { "data-edit": "lineHeight 20" },
-                                            "20"
-                                        )
-                                    ),
-                                    Sophie.element(
-                                        "li",
-                                        null,
-                                        Sophie.element(
-                                            "a",
-                                            { "data-edit": "lineHeight 24" },
-                                            "24"
-                                        )
-                                    ),
-                                    Sophie.element(
-                                        "li",
-                                        null,
-                                        Sophie.element(
-                                            "a",
-                                            { "data-edit": "lineHeight 30" },
-                                            "30"
-                                        )
-                                    ),
-                                    Sophie.element(
-                                        "li",
-                                        null,
-                                        Sophie.element(
-                                            "a",
-                                            { "data-edit": "lineHeight 30" },
-                                            "36"
-                                        )
-                                    ),
-                                    Sophie.element(
-                                        "li",
-                                        null,
-                                        Sophie.element(
-                                            "a",
-                                            { "data-edit": "lineHeight 30" },
-                                            "40"
-                                        )
-                                    ),
-                                    Sophie.element(
-                                        "li",
-                                        null,
-                                        Sophie.element(
-                                            "a",
-                                            { "data-edit": "lineHeight 30" },
-                                            "48"
-                                        )
-                                    ),
-                                    Sophie.element(
-                                        "li",
-                                        null,
-                                        Sophie.element(
-                                            "a",
-                                            { "data-edit": "lineHeight 30" },
-                                            "60"
-                                        )
-                                    ),
-                                    Sophie.element(
-                                        "li",
-                                        null,
-                                        Sophie.element(
-                                            "a",
-                                            { "data-edit": "lineHeight 30" },
-                                            "80"
-                                        )
-                                    )
-                                )
-                            ),
-                            Sophie.element(
-                                "div",
-                                { "class": "btn-group more" },
-                                Sophie.element(
-                                    "a",
-                                    { "class": "btn ", "data-cssname": "fontWeight", "reset-value": "normal", "data-cssvalue": "bold",
-                                        "data-edit": "bold", title: "Bold (Ctrl/Cmd+B)" },
-                                    Sophie.element("i", { "class": "fa fa-bold" })
-                                ),
-                                Sophie.element(
-                                    "a",
-                                    { "class": "btn ", "data-cssname": "fontStyle", "reset-value": "normal", "data-cssvalue": "italic",
-                                        "data-edit": "italic", title: "Italic (Ctrl/Cmd+I)" },
-                                    Sophie.element("i", { "class": "fa fa-italic" })
-                                ),
-                                Sophie.element(
-                                    "a",
-                                    { "class": "btn ", "data-cssname": "textDecoration", "reset-value": "none",
-                                        "data-cssvalue": "underline",
-                                        "data-edit": "underline", title: "Underline (Ctrl/Cmd+U)" },
-                                    Sophie.element("i", {
-                                        "class": "fa fa-underline" })
-                                )
-                            ),
-                            Sophie.element(
-                                "div",
-                                { "class": "btn-group more" },
-                                Sophie.element(
-                                    "a",
-                                    { "class": "btn ", "data-cssname": "textAlign", "data-cssvalue": "left",
-                                        "data-edit": "justifyleft",
-                                        title: "Align Left (Ctrl/Cmd+L)" },
-                                    Sophie.element("i", { "class": "fa fa-align-left" })
-                                ),
-                                Sophie.element(
-                                    "a",
-                                    { "class": "btn ", "data-cssname": "textAlign", "data-cssvalue": "center",
-                                        "data-edit": "justifyCenter",
-                                        title: "Center (Ctrl/Cmd+E)" },
-                                    Sophie.element("i", { "class": "fa fa-align-center" })
-                                ),
-                                Sophie.element(
-                                    "a",
-                                    { "class": "btn ", "data-cssname": "textAlign", "data-cssvalue": "right",
-                                        "data-edit": "justifyRight",
-                                        title: "Align Right (Ctrl/Cmd+R)" },
-                                    Sophie.element("i", {
-                                        "class": "fa fa-align-right" })
-                                )
-                            ),
-                            Sophie.element(
-                                "div",
-                                { "class": "btn-group  more edit" },
-                                Sophie.element(
-                                    "a",
-                                    { "class": "", "data-edit": "insertunorderedlist", title: "Bullet list" },
-                                    Sophie.element("i", {
-                                        "class": "fa fa-list-ul" })
-                                ),
-                                Sophie.element(
-                                    "a",
-                                    { "class": "", "data-edit": "insertorderedlist", title: "Number list" },
-                                    Sophie.element("i", {
-                                        "class": "fa fa-list-ol" })
-                                ),
-                                Sophie.element(
-                                    "a",
-                                    { "class": "", "data-edit": "outdent", title: "Reduce indent (Shift+Tab)" },
-                                    Sophie.element("i", {
-                                        "class": "fa fa-outdent" })
-                                ),
-                                Sophie.element(
-                                    "a",
-                                    { "class": "", "data-edit": "indent", title: "Indent (Tab)" },
-                                    Sophie.element("i", { "class": "fa fa-indent" })
-                                )
-                            ),
-                            Sophie.element(
-                                "div",
-                                { "class": "btn-group more edit" },
-                                Sophie.element(
-                                    "a",
-                                    { "class": "btn dropdown-toggle", "data-toggle": "dropdown", title: "Hyperlink" },
-                                    Sophie.element("i", {
-                                        "class": "fa fa-link" })
-                                ),
-                                Sophie.element(
-                                    "div",
-                                    { "class": "dropdown-menu input-append" },
-                                    Sophie.element("input", { "class": "span2", placeholder: "URL", type: "text", "data-edit": "createLink" }),
-                                    Sophie.element(
-                                        "button",
-                                        { "class": "btn", type: "button" },
-                                        "Add"
-                                    )
-                                ),
-                                Sophie.element(
-                                    "a",
-                                    { "class": "", "data-edit": "unlink", title: "Remove Hyperlink" },
-                                    Sophie.element("i", { "class": "fa fa-unlink" })
-                                )
                             )
                         )
                     )
@@ -63638,7 +63673,7 @@ Sophie.createStyleSheet({
         pointerEvents: "auto",
 
         position: "relative",
-        width: "462px"
+        width: "35px"
     },
 
     '.shortcutbar-font.more': {
@@ -70165,7 +70200,7 @@ var QuickBar = Sophie.createClass("left-quick-bar", _defineProperty({
     tabsShow: function tabsShow() {
         var self = this;
         $("#quickbar-tabs a").click(function (ev) {
-            if (self.isClosed) {
+            if (self.isClosed && play.mediaName == "pc") {
                 self.open();
             } else {
                 self.close();
@@ -70194,7 +70229,7 @@ var QuickBar = Sophie.createClass("left-quick-bar", _defineProperty({
     var self = this;
     this.isClosed = true;
     $(self.nativeNode).click(function (ev) {
-        if (self.isClosed) {
+        if (self.isClosed && play.mediaName == "pc") {
             self.open();
         } else {
             self.close();
