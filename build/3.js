@@ -99,7 +99,6 @@ var Base = Sophie.createClass({
             }
 
             if (instance.super) {
-
                 appendClass(instance.super);
             }
         };
@@ -141,7 +140,6 @@ var Base = Sophie.createClass({
                 attributes: {
                     class: $.trim(self.props.className || self.props.class),
                     id: self.props.id || self.props.key
-
                 }
             };
 
@@ -160,6 +158,9 @@ var Base = Sophie.createClass({
             if (self.props.isActive) {
                 rootTag.attributes["data-active"] = true;
             }
+            if (self.props.isHover) {
+                rootTag.attributes["data-hover"] = true;
+            }
 
             return rootTag;
         };
@@ -169,14 +170,14 @@ var Base = Sophie.createClass({
             var target = $(ev.target);
             var el = $(self.nativeNode);
             if (target.closest(el).length) {
-                self.active();
+                self.hover();
             }
         });
         $(document).on("mouseout", function (ev) {
             var target = $(ev.target);
             var el = $(self.nativeNode);
             if (target.closest(el).length) {
-                self.unActive();
+                self.unHover();
             }
         });
     },
@@ -188,15 +189,14 @@ var Base = Sophie.createClass({
         var layoutType = this.props.layoutType;
         if (layoutType == "grid" || layoutType === undefined) {
             var children = this.props.children;
-
             for (var i = 0; i < children.length; i++) {
-
                 if (children[i].props.isShadow) {
                     throw new Error("正常布局不能使用shadow元素" + this.tagName + " " + this.props.theme);
                 }
             }
         }
     },
+
     appendClassNameAfter: function appendClassNameAfter(newClassName, target) {
         target = target || this;
         var className = target.props.class || target.props.className || "";
@@ -211,6 +211,7 @@ var Base = Sophie.createClass({
         }
         target.props.class = target.props.className = className;
     },
+
     appendClassName: function appendClassName(newClassName, target) {
         target = target || this;
         var className = target.props.class || target.props.className || "";
@@ -243,21 +244,33 @@ var Base = Sophie.createClass({
     hide: function hide() {
         this.props.isHidden = true;
     },
+
     show: function show() {},
 
     active: function active() {
         if (!this.props.isActive) {
 
             this.props.isActive = true;
-
+            this.forceUpdate();
+        }
+    },
+    unActive: function unActive() {
+        if (this.props.isActive) {
+            this.props.isActive = false;
             this.forceUpdate();
         }
     },
 
-    unActive: function unActive() {
-        if (this.props.isActive) {
-            this.props.isActive = false;
+    hover: function hover() {
+        if (!this.props.isHover) {
+            this.props.isHover = true;
+            this.forceUpdate();
+        }
+    },
 
+    unHover: function unHover() {
+        if (this.props.isHover) {
+            this.props.isHover = false;
             this.forceUpdate();
         }
     },
@@ -1193,8 +1206,12 @@ module.exports = {
             }
         } else {
             var vnode = this.findChild(layout);
-            if (vnode.props[media].isHidden !== true) {
-                result = vnode;
+            if (vnode) {
+                if (vnode.props[media].isHidden !== true) {
+                    result = vnode;
+                } else {
+                    result = [];
+                }
             } else {
                 result = [];
             }
@@ -21430,14 +21447,12 @@ var Tabs = Sophie.createClass("p-tabs", {
             layoutType: "grid",
             subLayoutType: "column",
             paddingBottom: 0,
-
             heightAuto: true
         };
     },
 
     getInitialState: function getInitialState() {
         var activeId = "";
-
         if (this.props.children.length) {
             var cate = this.cateChildren();
             var pages = cate.pages;
@@ -21445,7 +21460,6 @@ var Tabs = Sophie.createClass("p-tabs", {
                 activeId = pages[0].props.id;
             }
         }
-
         return {
             activeId: activeId
         };
@@ -21469,7 +21483,6 @@ var Tabs = Sophie.createClass("p-tabs", {
     render: function render() {
         this.setNavItems();
         var cate = this.cateChildren();
-
         return Sophie.element(
             this.root,
             null,
@@ -21478,7 +21491,6 @@ var Tabs = Sophie.createClass("p-tabs", {
         );
     },
     renderActivePage: function renderActivePage(pages) {
-
         var result = [];
         for (var i = 0; i < pages.length; i++) {
             var id = pages[i].props.id;
@@ -54570,7 +54582,13 @@ var _createCSS = function _createCSS(selector, name, value, media) {
     var cssName = name.replace(/([A-Z])/g, "-$1").toLowerCase();
     //响应式支持
 
+
     utils.createCSSRule(selector, cssName, value, "all");
+
+    if (selector.indexOf("[data-active=true]") !== -1) {
+        selector = selector.replace("[data-active=true]", "[data-hover=true]");
+        utils.createCSSRule(selector, cssName, value, "all");
+    }
 };
 
 var copyCSSForNewEl = function copyCSSForNewEl(from) {
@@ -67918,6 +67936,10 @@ var EditorView = Sophie.createClass("editor-view", {
             self.setState({ headerHeight: height, footerHeight: top });
         };
         //
+
+        $(document).on("selectEl", function () {
+            fun();
+        });
         $(document).on("addNewEl moveEl cssChange resizeEl removeEl", function () {
             fun();
         });
