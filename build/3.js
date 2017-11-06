@@ -25539,6 +25539,20 @@ var propsTolayout = function propsTolayout(gridLayout, parent, parentCoord) {
             resultLayout.hiddenLayout.push(findEl(hiddenLayout[i].id || hiddenLayout[i].pid, children));
         }
     }
+
+    //@todo 为site增加自己的布局
+    if (play.is(parent, "p-site")) {
+
+        var vnode = play.getVnode(parent);
+        var cate = vnode.cateChildren();
+        var cateChildren = [cate.header].concat(vnode.renderActivePage(cate.pages)).concat(cate.footer);
+
+        for (var i = 0; i < cateChildren.length; i++) {
+            cateChildren[i] = toNode(cateChildren[i]);
+        }
+
+        resultLayout.children = cateChildren;
+    }
     return resultLayout;
 };
 
@@ -25586,24 +25600,6 @@ function getLayoutFromProps(parent, mediaName) {
 
     if (play.getLayoutType(parent) == "grid") {
 
-        //@todo 为site增加自己的布局
-        if (play.is(parent, "p-site")) {
-
-            var vnode = play.getVnode(parent);
-            var cate = vnode.cateChildren();
-            var cateChildren = [cate.header].concat(vnode.renderActivePage(cate.pages)).concat(cate.footer);
-
-            for (var i = 0; i < cateChildren.length; i++) {
-                cateChildren[i] = toNode(cateChildren[i]);
-            }
-            return {
-                type: "column",
-                children: cateChildren,
-                hiddenLayout: [],
-                absoluteLayout: []
-            };
-        }
-
         var gridLayout = props[mediaName].gridLayout;
 
         if (!gridLayout) {
@@ -25635,6 +25631,19 @@ function getLayoutFromProps(parent, mediaName) {
             resultLayout.hiddenLayout = hiddenEls;
             (0, _utils.markLayout)(resultLayout);
             // props[mediaName].gridLayout = getPropsFromLayout(resultLayout);
+            //@todo 为site增加自己的布局
+            if (play.is(parent, "p-site")) {
+
+                var vnode = play.getVnode(parent);
+                var cate = vnode.cateChildren();
+                var cateChildren = [cate.header].concat(vnode.renderActivePage(cate.pages)).concat(cate.footer);
+
+                for (var i = 0; i < cateChildren.length; i++) {
+                    cateChildren[i] = toNode(cateChildren[i]);
+                }
+
+                resultLayout.children = cateChildren;
+            }
             return resultLayout;
         } else {
             return propsTolayout(gridLayout, parent, parentCoord);
@@ -33414,9 +33423,9 @@ function _updateLayout(parent, addedEls, removedEls, movedEls, mediaName) {
 function renderLayout(parent, layout, mediaName) {
     var props = play.getProps(parent);
 
-    if (parent.is("p-site")) {
-        return;
-    }
+    // if(parent.is("p-site")){
+    //     return;
+    // }
 
     if (props.layoutType == "grid") {
         var mediaName = mediaName || play.mediaName;
