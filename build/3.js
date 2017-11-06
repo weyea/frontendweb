@@ -60231,6 +60231,13 @@ $(document).bind("keydown", "ctrl+u", function (e) {
     }
 });
 
+window._clearPhone = function () {
+    var selectedEL = play.select.selectedEL;
+    if (selectedEL.length) {
+        play.getProps(selectedEL).props["phone"] = undefined;
+    }
+};
+
 window.initCoord = initCoord;
 $(document).on("iframeload", function () {
     setTimeout(function () {
@@ -60989,10 +60996,10 @@ var CSSPanel = Sophie.createClass("panel-css", {
             if (status == "active" || status == "hover") {
                 if (play.select.selectedEL && play.select.selectedEL.length == 1) {
 
-                    play.getVnode(play.select.selectedEL).active();
+                    play.getVnode(play.select.selectedEL).hover();
                 }
             } else {
-                play.getVnode(play.select.selectedEL).unActive();
+                play.getVnode(play.select.selectedEL).unHover();
             }
 
             $(document).trigger("cssStatusChange", [status, oldStatus]);
@@ -66932,7 +66939,6 @@ var WidgetPanel = Sophie.createClass("w", {
                 "top": '-' + top + 'px'
             });
         } else {
-
             this.setState({
                 height: childHeight
             });
@@ -67221,14 +67227,14 @@ var QuickBar = Sophie.createClass("quick-bar", {
         var id = designer.configs.id;
         var url = "/designer/source/" + type + "/" + id;
         $.post(designer.configs.saveUrl, data, function (result) {
-
             window.open(url, "预览");
         });
     },
-    showPublish: function showPublish() {
 
+    showPublish: function showPublish() {
         $("#app-publish").modal('show');
     },
+
     publish: function publish() {
         var self = this;
         if (designer.configs.serverData.isPublish || designer.configs.type !== "app") {
