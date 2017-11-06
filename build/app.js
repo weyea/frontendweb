@@ -14502,7 +14502,7 @@ exports = module.exports = __webpack_require__(3)();
 
 
 // module
-exports.push([module.i, "p-nav-mobile {\n    display: block;\n\n    width: 44px;\n    height: 34px;\n    overflow: hidden;\n    position: absolute;\n    left: 18em;\n    top: 1em;\n}\n\np-nav-mobile p-nav-bar{\n    width: 100%;\n    height: 100%;\n}\n\nhtml.nav-open > body {\n    position: fixed;\n    width: 100%;\n}\n\nhtml.nav-open p-nav-mobile p-nav-page-mask {\n    display: block !important;\n    pointer-events: inherit;\n    -webkit-transform: translateX(0);\n    transform: translateX(0);\n    -webkit-transition: -webkit-transform 0s;\n    transition: -webkit-transform 0s;\n    transition: transform 0s;\n    transition: transform 0s, -webkit-transform 0s;\n\n}\n\nhtml.nav-close p-nav-mobile p-nav-page-mask {\n\n}\n\nhtml.nav-open p-nav-page {\n    display: none !important;\n}\n\nhtml.nav-close p-nav-page {\n    display: none;\n}\n\n", ""]);
+exports.push([module.i, "p-nav-mobile {\n    display: block;\n\n    width: 44px;\n    height: 34px;\n    overflow: hidden;\n    position: absolute;\n    left: 18em;\n    top: 1em;\n}\n\np-nav-mobile p-nav-bar{\n    width: 100%;\n    height: 100%;\n}\n\nhtml.nav-open > body {\n    position: fixed;\n    width: 100%;\n}\n\nhtml.nav-open p-nav-mobile p-nav-page-mask {\n    display: block !important;\n    pointer-events: inherit;\n    -webkit-transform: translateX(0);\n    transform: translateX(0);\n    -webkit-transition: -webkit-transform 0s;\n    transition: -webkit-transform 0s;\n    transition: transform 0s;\n    transition: transform 0s, -webkit-transform 0s;\n\n}\n\nhtml.nav-close p-nav-mobile p-nav-page-mask {\n\n}\n\n", ""]);
 
 // exports
 
