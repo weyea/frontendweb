@@ -53034,6 +53034,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }
     }), _defineProperty(_selectWithGroup, "getTopSelectableEl", function getTopSelectableEl(target, context) {
 
+        //no p-site
         if (!target.jquery) {
             return false;
         }
@@ -53044,12 +53045,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         if (target.is(context)) {
             return false;
         }
-        if (target.is("app") || target.is("p-site")) {
+        if (target.is("p-site")) {
             return;
         }
         var parent = play.getParent(target);
 
         if (parent.is(context)) {
+            return;
+        }
+
+        if (parent.is("p-site")) {
             return;
         }
 
@@ -53117,7 +53122,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             //选择 子元素
             //选择上下文为当前元素。当前元素也成为上下文
             selectWithGroup.unSelectContext();
-
             play.select.selectEl(target);
         } else if (target.closest(context).length) {
             selectWithGroup.selectContext(context);
@@ -56772,9 +56776,7 @@ var MoveHelper = __webpack_require__(373);
             }
 
             if (newParent && newParent.length) {
-
                 var newParentCoord = play.coords.getCoord(newParent);
-
                 newNodes = [{ el: newEl, coord: coord }];
                 newPoint = MoveHelper.getPoint(newParent, newParentCoord, newNodes);
 
