@@ -4721,12 +4721,15 @@ var Nav = Sophie.createClass("p-nav-page", {
             pageData: [],
             activeId: "",
             initRender: false
+
         };
     },
 
     getDefaultProps: function getDefaultProps() {
         return {
             theme: "",
+            parentFixed: true,
+            parentSelector: "p-header",
             phone: {
                 isHidden: true
             }
@@ -5967,7 +5970,8 @@ var PSite = Sophie.createClass("p-site", _defineProperty({
 
     getDefaultProps: function getDefaultProps() {
         return {
-            id: "p-site"
+            id: "p-site",
+            paddingBottom: 0
         };
     },
     getInitialState: function getInitialState() {
@@ -14642,7 +14646,9 @@ var Footer = Sophie.createClass("p-footer-t", {
 
     getDefaultProps: function getDefaultProps() {
         return {
-            fullWidth: false
+            fullWidth: false,
+            parentFixed: true,
+            parentSelector: "p-header"
         };
     },
     getDefaultChildren: function getDefaultChildren() {

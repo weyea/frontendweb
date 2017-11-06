@@ -670,7 +670,7 @@ function updateLink(linkElement, obj) {
 
 /***/ }),
 
-/***/ 869:
+/***/ 872:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -686,7 +686,7 @@ var _Footer2 = _interopRequireDefault(_Footer);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-__webpack_require__(870);
+__webpack_require__(873);
 module.exports = React.createClass({
     displayName: 'exports',
 
@@ -784,13 +784,13 @@ module.exports = React.createClass({
 
 /***/ }),
 
-/***/ 870:
+/***/ 873:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(871);
+var content = __webpack_require__(874);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
 var update = __webpack_require__(4)(content, {});
@@ -811,7 +811,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 871:
+/***/ 874:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(3)();
