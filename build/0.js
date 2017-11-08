@@ -50,7 +50,7 @@ module.exports = {
   path: 'user',
   getChildRoutes: function getChildRoutes(partialNextState, callback) {
     __webpack_require__.e/* require.ensure */(14).then((function (require) {
-      callback(null, [__webpack_require__(871), __webpack_require__(875)]);
+      callback(null, [__webpack_require__(873), __webpack_require__(877)]);
     }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
   }
 };
@@ -68,7 +68,7 @@ module.exports = {
   path: 'template',
   getChildRoutes: function getChildRoutes(partialNextState, callback) {
     __webpack_require__.e/* require.ensure */(15).then((function (require) {
-      callback(null, [__webpack_require__(883), __webpack_require__(885)]);
+      callback(null, [__webpack_require__(885), __webpack_require__(887)]);
     }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
   },
 
@@ -92,9 +92,9 @@ module.exports = {
   path: 'my',
   getChildRoutes: function getChildRoutes(partialNextState, callback) {
     __webpack_require__.e/* require.ensure */(16).then((function (require) {
-      callback(null, [__webpack_require__(886),
+      callback(null, [__webpack_require__(888),
       //require('./routes/preview'),
-      __webpack_require__(891)]
+      __webpack_require__(893)]
       // require('./routes/templateDetail')
       );
     }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
@@ -128,7 +128,7 @@ module.exports = {
 
   getComponents: function getComponents(nextState, callback) {
     __webpack_require__.e/* require.ensure */(10).then((function (require) {
-      callback(null, __webpack_require__(896));
+      callback(null, __webpack_require__(898));
     }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
   }
 };
@@ -147,7 +147,7 @@ module.exports = {
 
   getComponents: function getComponents(nextState, callback) {
     __webpack_require__.e/* require.ensure */(12).then((function (require) {
-      callback(null, __webpack_require__(902));
+      callback(null, __webpack_require__(904));
     }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
   }
 };
