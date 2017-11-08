@@ -42400,9 +42400,15 @@ var play = (_play = {
     });
 
     var html = play.iframeWin.Sophie.renderToJSON(undefined, isState);
+    if (!isState) {
+        html = JSON.stringify(html);
+    } else {
+        html = JSON.parse(JSON.stringify(html));
+    }
+
     return {
 
-        "html": JSON.stringify(html),
+        "html": html,
         "pagecss": this.getPageStyleText(),
         "links": links.join(","),
         "selectornum": this.getID()
@@ -42562,7 +42568,7 @@ var play = (_play = {
 
             runner.run(function () {
                 var jsonData = play.getPageData(true);
-                var data = JSON.stringify(jsonData);
+
                 var selected = play.select.selectedEL;
 
                 var selector = "";
@@ -42571,10 +42577,10 @@ var play = (_play = {
                 }
 
                 if (play.iframeWin.App.firstVnode && jsonData.html) {
-                    play.iframeWin.App.firstVnode.props.data = JSON.parse(jsonData.html);
+                    play.iframeWin.App.firstVnode.props.data = jsonData.html;
                 }
 
-                play.history.push(data, selector);
+                play.history.push(jsonData, selector);
                 // localStorage.setItem(key, data);
             }, 10);
         });
@@ -49886,7 +49892,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 var target = this.stack[i];
                 var content = target.content;
 
-                play.renderData(JSON.parse(content), function () {
+                play.renderData(content, function () {
 
                     if (target.selector) {
                         play.select.selectEl($(target.selector, play.iframeDoc));
