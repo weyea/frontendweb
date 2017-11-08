@@ -12,7 +12,7 @@ module.exports = {
 
     getComponents: function getComponents(nextState, callback) {
         __webpack_require__.e/* require.ensure */(4).then((function (require) {
-            callback(null, __webpack_require__(515));
+            callback(null, __webpack_require__(514));
         }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
     }
 };
@@ -32,7 +32,7 @@ module.exports = {
   onEnter: login.checkLoginRouter,
   getComponents: function getComponents(nextState, callback) {
     __webpack_require__.e/* require.ensure */(3).then((function (require) {
-      callback(null, __webpack_require__(535));
+      callback(null, __webpack_require__(534));
     }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
   }
 };

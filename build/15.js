@@ -31,13 +31,13 @@ module.exports = {
 
     getComponents: function getComponents(nextState, callback) {
         __webpack_require__.e/* require.ensure */(2/* duplicate */).then((function (require) {
-            callback(null, __webpack_require__(514));
+            callback(null, __webpack_require__(513));
         }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
     },
     getIndexRoute: function getIndexRoute(partialNextState, callback) {
         __webpack_require__.e/* require.ensure */(2/* duplicate */).then((function (require) {
             callback(null, {
-                component: __webpack_require__(514)
+                component: __webpack_require__(513)
             });
         }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
     }
