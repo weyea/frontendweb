@@ -4184,7 +4184,7 @@ var PPage = Sophie.createClass("p-page", (_Sophie$createClass = {
         };
     },
     getDefaultChildren: function getDefaultChildren() {
-        return Sophie.element(Section, null);
+        return Sophie.element(Section, { id: "p-page-first-section" });
     },
 
     active: function active() {
