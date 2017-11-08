@@ -43893,6 +43893,7 @@ var utils = (_utils = {
     fun.__timer = setTimeout(fun, time || 200);
 }), _defineProperty(_utils, 'hasSelection', function hasSelection(win) {
 
+    var win = win || play.iframeWin;
     if (win.getSelection) {
         var sel = win.getSelection();
         if (sel) {
