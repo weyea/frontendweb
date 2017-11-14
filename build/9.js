@@ -749,7 +749,7 @@ function updateLink(linkElement, obj) {
 
 /***/ }),
 
-/***/ 404:
+/***/ 406:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1002,7 +1002,7 @@ function updateLink(linkElement, obj) {
 
 /***/ }),
 
-/***/ 456:
+/***/ 457:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1018,7 +1018,7 @@ var _Footer2 = _interopRequireDefault(_Footer);
 
 __webpack_require__(377);
 
-__webpack_require__(404);
+__webpack_require__(406);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1219,7 +1219,7 @@ module.exports = React.createClass({
 
 /***/ }),
 
-/***/ 890:
+/***/ 897:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1235,11 +1235,11 @@ var _Footer2 = _interopRequireDefault(_Footer);
 
 __webpack_require__(377);
 
-__webpack_require__(404);
+__webpack_require__(406);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var DetailPage = __webpack_require__(456);
+var DetailPage = __webpack_require__(457);
 
 module.exports = React.createClass({
     displayName: 'exports',

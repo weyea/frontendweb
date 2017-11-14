@@ -12,7 +12,7 @@ module.exports = {
 
     getComponents: function getComponents(nextState, callback) {
         __webpack_require__.e/* require.ensure */(4).then((function (require) {
-            callback(null, __webpack_require__(514));
+            callback(null, __webpack_require__(518));
         }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
     }
 };
@@ -32,7 +32,7 @@ module.exports = {
   onEnter: login.checkLoginRouter,
   getComponents: function getComponents(nextState, callback) {
     __webpack_require__.e/* require.ensure */(3).then((function (require) {
-      callback(null, __webpack_require__(534));
+      callback(null, __webpack_require__(538));
     }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
   }
 };
@@ -50,7 +50,7 @@ module.exports = {
   path: 'user',
   getChildRoutes: function getChildRoutes(partialNextState, callback) {
     __webpack_require__.e/* require.ensure */(14).then((function (require) {
-      callback(null, [__webpack_require__(873), __webpack_require__(877)]);
+      callback(null, [__webpack_require__(880), __webpack_require__(884)]);
     }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
   }
 };
@@ -68,7 +68,7 @@ module.exports = {
   path: 'template',
   getChildRoutes: function getChildRoutes(partialNextState, callback) {
     __webpack_require__.e/* require.ensure */(15).then((function (require) {
-      callback(null, [__webpack_require__(885), __webpack_require__(887)]);
+      callback(null, [__webpack_require__(892), __webpack_require__(894)]);
     }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
   },
 
@@ -92,9 +92,9 @@ module.exports = {
   path: 'my',
   getChildRoutes: function getChildRoutes(partialNextState, callback) {
     __webpack_require__.e/* require.ensure */(16).then((function (require) {
-      callback(null, [__webpack_require__(888),
+      callback(null, [__webpack_require__(895),
       //require('./routes/preview'),
-      __webpack_require__(893)]
+      __webpack_require__(900)]
       // require('./routes/templateDetail')
       );
     }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
@@ -128,7 +128,7 @@ module.exports = {
 
   getComponents: function getComponents(nextState, callback) {
     __webpack_require__.e/* require.ensure */(10).then((function (require) {
-      callback(null, __webpack_require__(898));
+      callback(null, __webpack_require__(905));
     }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
   }
 };
@@ -147,7 +147,7 @@ module.exports = {
 
   getComponents: function getComponents(nextState, callback) {
     __webpack_require__.e/* require.ensure */(12).then((function (require) {
-      callback(null, __webpack_require__(904));
+      callback(null, __webpack_require__(911));
     }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
   }
 };
