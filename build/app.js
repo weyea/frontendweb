@@ -928,7 +928,10 @@ Sophie.createStyleSheet(_defineProperty({
 
     ".p-layout": {
         display: "block",
-        "background-size": "cover"
+        "background-size": "cover",
+        borderStyle: "solid",
+        borderWidth: "0"
+
     },
 
     ".p-layout:before,.p-layout:after": {
@@ -2396,7 +2399,7 @@ Sophie.createStyleSheet({
         overflow: 'hidden',
         outline: 'none',
         display: 'block'
-    }, _defineProperty(_pText, "overflow", "hidden"), _defineProperty(_pText, "width", '5em'), _defineProperty(_pText, "height", '0.5em'), _defineProperty(_pText, "fontSize", "inherit!important"), _pText),
+    }, _defineProperty(_pText, "overflow", "hidden"), _defineProperty(_pText, "width", '5em'), _defineProperty(_pText, "height", '0.5em'), _defineProperty(_pText, "fontSize", "inherit!important"), _defineProperty(_pText, "borderStyle", "solid"), _defineProperty(_pText, "borderWidth", "0"), _pText),
 
     'p-text .p-text-wrap': (_pTextPTextWrap = {
         textDecoration: 'none',
@@ -6848,6 +6851,7 @@ Sophie.createStyleSheet({
         height: "auto",
         position: "relative",
         zIndex: "100"
+
     },
 
     'p-header .p-container-nav': {
@@ -6945,7 +6949,9 @@ Sophie.createStyleSheet({
 
         width: '44px',
         height: '34px',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        borderStyle: "solid",
+        borderWidth: "0"
 
     },
 
@@ -8391,7 +8397,8 @@ var Section = Sophie.createClass("p-section", {
             src: null,
             className: "",
             fullWidth: true,
-            layoutType: "grid"
+            layoutType: "grid",
+            isSection: true
 
         };
     },
@@ -8921,7 +8928,9 @@ Sophie.createStyleSheet({
         display: 'table',
         padding: '0 10px',
         cursor: 'pointer',
-        verticalAlign: 'middle'
+        verticalAlign: 'middle',
+        borderStyle: "solid",
+        borderWidth: "0"
 
     },
 
@@ -8968,6 +8977,7 @@ var NavBar = __webpack_require__(66);
 __webpack_require__(221);
 
 var NavMobile = Sophie.createClass("p-nav-mobile", {
+
     getDefaultProps: function getDefaultProps() {
         return {
             parentFixed: true,
@@ -8978,6 +8988,7 @@ var NavMobile = Sophie.createClass("p-nav-mobile", {
             }
         };
     },
+
     getDefaultChildren: function getDefaultChildren() {
         return [Sophie.element(NavPageMask, { theme: this.props.theme })];
     },
@@ -8992,9 +9003,11 @@ var NavMobile = Sophie.createClass("p-nav-mobile", {
             this.props.children
         );
     },
+
     showNav: function showNav() {
         this.refs['navBar'].showNav();
     },
+
     hideNav: function hideNav() {
         this.refs["navBar"].hideNav();
     }
@@ -9071,6 +9084,11 @@ var LayoutInner = __webpack_require__(6);
 
 var ListImg = Sophie.createClass("p-list-img", {
     constructor: function constructor() {},
+    getDefaultProps: function getDefaultProps() {
+        return {
+            isSection: false
+        };
+    },
     getTemplate: function getTemplate() {
         return Sophie.element(Pic, null);
     },
@@ -15174,7 +15192,7 @@ exports = module.exports = __webpack_require__(3)();
 
 
 // module
-exports.push([module.i, "p-nav-mobile {\n    display: block;\n\n    width: 44px;\n    height: 34px;\n    overflow: hidden;\n    position: absolute;\n    left: 18em;\n    top: 1em;\n}\n\np-nav-mobile p-nav-bar{\n    width: 100%;\n    height: 100%;\n}\n\nhtml.nav-open > body {\n    position: fixed;\n    width: 100%;\n}\n\nhtml.nav-open p-nav-mobile p-nav-page-mask {\n    display: block !important;\n    pointer-events: inherit;\n    -webkit-transform: translateX(0);\n    transform: translateX(0);\n    -webkit-transition: -webkit-transform 0s;\n    transition: -webkit-transform 0s;\n    transition: transform 0s;\n    transition: transform 0s, -webkit-transform 0s;\n\n}\n\nhtml.nav-close p-nav-mobile p-nav-page-mask {\n\n}\n\n", ""]);
+exports.push([module.i, "p-nav-mobile {\n    display: block;\n\n    width: 44px;\n    height: 34px;\n    overflow: hidden;\n    position: absolute;\n    left: 18em;\n    top: 1em;\n    border-style: solid;\n    border-width:0px\n}\n\np-nav-mobile p-nav-bar{\n    width: 100%;\n    height: 100%;\n}\n\nhtml.nav-open > body {\n    position: fixed;\n    width: 100%;\n}\n\nhtml.nav-open p-nav-mobile p-nav-page-mask {\n    display: block !important;\n    pointer-events: inherit;\n    -webkit-transform: translateX(0);\n    transform: translateX(0);\n    -webkit-transition: -webkit-transform 0s;\n    transition: -webkit-transform 0s;\n    transition: transform 0s;\n    transition: transform 0s, -webkit-transform 0s;\n\n}\n\nhtml.nav-close p-nav-mobile p-nav-page-mask {\n\n}\n\n", ""]);
 
 // exports
 
@@ -15260,7 +15278,7 @@ var Footer = Sophie.createClass("p-footer-t", {
         return {
             fullWidth: false,
             parentFixed: true,
-            parentSelector: "p-header"
+            parentSelector: "p-footer"
         };
     },
     getDefaultChildren: function getDefaultChildren() {
@@ -16483,7 +16501,8 @@ var PIC = Sophie.createClass("p-bg", {
     getDefaultProps: function getDefaultProps() {
         return {
             src: "http://dotlinkface.oss-cn-shanghai.aliyuncs.com/default.jpg",
-            fullWidth: true
+            fullWidth: true,
+            isSection: true
         };
     },
     componentDidMount: function componentDidMount() {
@@ -16577,7 +16596,8 @@ var NavBar = Sophie.createClass("p-masonry", {
             columnNum: 4,
             phoneColumnNum: 0,
             gutter: 20,
-            layoutType: "masonry"
+            layoutType: "masonry",
+            isSection: false
         };
     },
 
@@ -18750,7 +18770,8 @@ module.exports = Nav;
 "use strict";
 
 
-var Sophie = __webpack_require__(1);var Base = __webpack_require__(2);
+var Sophie = __webpack_require__(1);
+var Base = __webpack_require__(2);
 var Masonry = __webpack_require__(117);
 var imagesloaded = __webpack_require__(118);
 
@@ -18766,7 +18787,8 @@ var NavBar = Sophie.createClass("p-collage", {
             initHeight: 500,
             columnNum: 3,
             phoneColumnNum: 0,
-            gutter: 20
+            gutter: 20,
+            isSection: true
         };
     },
 
@@ -18778,7 +18800,8 @@ var NavBar = Sophie.createClass("p-collage", {
 
     getDefaultChildren: function getDefaultChildren() {
         if (this.props.theme == "theme-1") {
-            return [Sophie.element(Pic, { "class": "", src: "http://dotlinkface-cdn.oss-cn-shanghai.aliyuncs.com/templ/ales-krivec-2051.jpg" }), Sophie.element(Pic, { src: "http://dotlinkface-cdn.oss-cn-shanghai.aliyuncs.com/templ/casey-horner-339165.jpg" }), Sophie.element(Pic, { src: "http://dotlinkface-cdn.oss-cn-shanghai.aliyuncs.com/templ/claudio-guglieri-287940.jpg" }), Sophie.element(Pic, { src: "http://dotlinkface-cdn.oss-cn-shanghai.aliyuncs.com/templ/grant-mccurdy-20366.jpg" }), Sophie.element(Pic, { src: "http://dotlinkface-cdn.oss-cn-shanghai.aliyuncs.com/templ/jonatan-pie-226191.jpg" })];
+            return [Sophie.element(Pic, { "class": "",
+                src: "http://dotlinkface-cdn.oss-cn-shanghai.aliyuncs.com/templ/ales-krivec-2051.jpg" }), Sophie.element(Pic, { src: "http://dotlinkface-cdn.oss-cn-shanghai.aliyuncs.com/templ/casey-horner-339165.jpg" }), Sophie.element(Pic, { src: "http://dotlinkface-cdn.oss-cn-shanghai.aliyuncs.com/templ/claudio-guglieri-287940.jpg" }), Sophie.element(Pic, { src: "http://dotlinkface-cdn.oss-cn-shanghai.aliyuncs.com/templ/grant-mccurdy-20366.jpg" }), Sophie.element(Pic, { src: "http://dotlinkface-cdn.oss-cn-shanghai.aliyuncs.com/templ/jonatan-pie-226191.jpg" })];
         }
 
         return [Sophie.element(Pic, { src: "http://dotlinkface-cdn.oss-cn-shanghai.aliyuncs.com/templ/ales-krivec-2051.jpg" }), Sophie.element(Pic, { src: "http://dotlinkface-cdn.oss-cn-shanghai.aliyuncs.com/templ/casey-horner-339165.jpg" }), Sophie.element(Pic, { src: "http://dotlinkface-cdn.oss-cn-shanghai.aliyuncs.com/templ/claudio-guglieri-287940.jpg" }), Sophie.element(Pic, { src: "http://dotlinkface-cdn.oss-cn-shanghai.aliyuncs.com/templ/grant-mccurdy-20366.jpg" }), Sophie.element(Pic, { src: "http://dotlinkface-cdn.oss-cn-shanghai.aliyuncs.com/templ/jonatan-pie-226191.jpg" })];
@@ -19088,7 +19111,8 @@ var Slide = Sophie.createClass("p-slide", {
             heightAuto: false,
             layoutType: "slide",
             subLayoutType: "row",
-            isResponseLayout: false //响应不改变布局
+            isResponseLayout: false, //响应不改变布局
+            isSection: true
         };
     },
 
@@ -21730,7 +21754,8 @@ var Tabs = Sophie.createClass("p-tabs", {
             layoutType: "grid",
             subLayoutType: "column",
             paddingBottom: 0,
-            heightAuto: true
+            heightAuto: true,
+            isSection: false
         };
     },
 
