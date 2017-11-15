@@ -1674,6 +1674,15 @@ module.exports = {
         } else {
             return this.renderNativeGridLayoutFullWidthForRoot ? this.renderNativeGridLayoutFullWidthForRoot() : this.props.children;
         }
+    },
+    renderGridChildrenFullWidthForPage: function renderGridChildrenFullWidthForPage() {
+        var media = window.App.getMediaName();
+
+        if (!this.props[media]) {
+            this.props[media] = {};
+        }
+
+        return this.renderNativeGridLayoutFullWidthForRoot ? this.renderNativeGridLayoutFullWidthForRoot() : this.props.children;
     }
 };
 
@@ -3958,7 +3967,7 @@ var PPage = Sophie.createClass("p-page", (_Sophie$createClass = {
         return Sophie.element(
             this.root,
             { "data-active": this.state.active, id: this.props.id, title: this.props.title },
-            this.renderGridChildrenFullWidthForRoot()
+            this.renderGridChildrenFullWidthForPage()
         );
     },
 
@@ -12650,7 +12659,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 /*!
- * EventEmitter v5.2.3 - git.io/ee
+ * EventEmitter v5.2.4 - git.io/ee
  * Unlicense - http://unlicense.org/
  * Oliver Caldwell - http://oli.me.uk/
  * @preserve
