@@ -14664,7 +14664,7 @@ exports = module.exports = __webpack_require__(3)();
 
 
 // module
-exports.push([module.i, "p-section {\n    display: block;\n    height: 7.5em;\n    width: 100%;\n    position: relative;\n}\n\np-section:before, p-section:after {\n    display: table;\n    lineHeight: 0;\n    content: ''\n}\n\np-section > p-pic.inner-item {\n    display: block;\n    width: 100%;\n    height: 100%;\n    position: absolute;\n    top: 0;\n    left: 0;\n    z-index: -1;\n}\n\np-section[data-theme=\"theme-1\"] p-layout-inner {\n    width: 100%;\n    height: 100%;\n}\n\np-section[data-theme=\"theme-1\"] p-h.title {\n    margin: auto;\n    margin-top: 2.85em;\n    color: #fff;\n    text-align: center;\n    height: 1em;\n    font-weight: 400;\n}\n\np-section[data-theme=\"theme-1\"] p-h.title .p-text-wrap {\n    font-size: 40px;\n}\n\np-section[data-theme=\"theme-1\"] p-button.button {\n    margin: auto;\n    margin-top: 20px;\n    color: #fff;\n    border: solid 1px #fff;\n    width: 140px;\n    height: 36px;\n}\n\n/* section */\n\np-section[data-theme=\"theme-2\"] p-h.title {\n    margin: auto;\n    margin-top: 2.26em;\n    color: #fff;\n    text-align: center;\n    height: 0.87em;\n    font-weight: 400;\n}\n\np-section[data-theme=\"theme-2\"] p-h.title .p-text-wrap {\n    font-size: 52.2px;\n}\n\np-section[data-theme=\"theme-2\"] p-text.text .p-text-wrap {\n\n    font-size: 14px;\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-2\"] p-text.text {\n    margin: auto;\n    margin-top: 20px;\n    color: #fff;\n    width: 17em;\n\n    font-weight: 100;\n\n}\n\n/*3*/\n\np-section[data-theme=\"theme-3\"] p-h.title {\n    margin-left: 2em;\n    color: #fff;\n    text-align: center;\n    height: 0.87em;\n    font-weight: 400;\n    margin-top: 2em;\n}\n\np-section[data-theme=\"theme-3\"] p-h.title .p-text-wrap {\n    font-size: 40px;\n}\n\np-section[data-theme=\"theme-3\"] p-text.text .p-text-wrap {\n\n    font-size: 14px;\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-3\"] p-text.text {\n    margin-left: 2em;\n    margin-top: 20px;\n    color: #fff;\n    width: 17em;\n    height: 20px;\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-3\"] p-button.button.active {\n\n    color: #fff;\n    background-color: #00C3D9;\n    margin-left: 2.2em;\n\n    border: none;\n\n}\n\np-section[data-theme=\"theme-3\"] p-button.button {\n    margin-left: 20px;\n    margin-top: 50px;\n    color: #fff;\n    border: solid 1px #fff;\n    width: 138px;\n    height: 36px;\n\n}\n\n/*4*/\n\np-section[data-theme=\"theme-4\"]  .box {\n    margin: auto;\n\n    margin-top: 1.67em;\n    color: #fff;\n    border: solid 1px #fff;\n    width: 9em;\n    height: 4.7em;\n    background-color: #fff;\n}\n\np-section[data-theme=\"theme-4\"]    .box p-h.title {\n\n    color: #000;\n    width: 9em;\n    text-align: center;\n    margin-top: 41px;\n    height: 20px;\n\n}\n\np-section[data-theme=\"theme-4\"]    .box p-text.text {\n    margin: auto;\n    margin-top: 20px;\n    color: rgba(48, 59, 65, 0.6);\n    width: 7.633em;\n    height: 1em;\n    text-align: center;\n\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-4\"]    .box p-text.text .p-text-wrap {\n\n    font-size: 12px;\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-4\"]    .box p-button.button {\n    margin: auto;\n    margin-top: 20px;\n    color: rgba(48, 59, 65, 0.6);\n    width: 7.633em;\n    height: 60px;\n    text-align: center;\n\n    font-weight: 100;\n\n}\n\n/*5*/\n\np-section[data-theme=\"theme-5\"]       .grid-row {\n    height: 100% !important;\n}\n\np-section[data-theme=\"theme-5\"]        .box {\n    margin: auto;\n    height: 100%;\n    width: 100%;\n    color: #fff;\n}\n\np-section[data-theme=\"theme-5\"]        .box-1 {\n\n    background-color: rgba(255, 255, 255, 0.9);\n}\n\np-section[data-theme=\"theme-5\"]        .box-2 {\n\n    background-color: rgba(239, 67, 71, 0.9);\n}\n\np-section[data-theme=\"theme-5\"]        .box-3 {\n\n    background-color: rgba(245, 166, 35, 0.9);\n}\n\np-section[data-theme=\"theme-5\"]  .box-4 {\n\n    background-color: rgba(39, 108, 155, 0.9);\n}\n\np-section[data-theme=\"theme-5\"]  .box p-h {\n\n    color: #fff;\n\n    text-align: center;\n    margin: auto;\n    margin-top: 1.96em;\n    height: 20px;\n\n}\n\np-section[data-theme=\"theme-5\"]    .box-1 p-h {\n\n    color: #000;\n}\n\np-section[data-theme=\"theme-5\"]    .box p-h .p-text-wrap {\n\n    font-size: 30px;\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-5\"]    .box p-text {\n    margin: auto;\n    margin-top: 20px;\n    color: #fff;\n    width: 5.25em;\n    height: 1em;\n    text-align: center;\n\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-5\"]    .box-1 p-text {\n\n    color: #303B41\n\n}\n\np-section[data-theme=\"theme-5\"]    .box p-text .p-text-wrap {\n\n    font-size: 12px;\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-5\"]    .box p-button {\n    margin: auto;\n    margin-top: 20px;\n    color: #fff;\n\n    height: 1em;\n    text-align: center;\n\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-5\"]    .box-1 p-button {\n\n    color: #303B41;\n\n}\n\n@media screen and (max-width: 768px) {\n\n}\n\n/*6*/\n\np-section[data-theme=\"theme-6\"] {\n    background-color: #FAFAFA;\n    height: 11.5em;\n}\n\np-section[data-theme=\"theme-6\"] .box {\n    width: 100%;\n    height: 100%;\n    background-color: transparent;\n}\n\np-section[data-theme=\"theme-6\"] p-h.title {\n    text-align: center;\n    margin: auto;\n    margin-top: 1em;\n    height: 20px;\n    width: 100%;\n}\n\np-section[data-theme=\"theme-6\"] p-pic.pic {\n    color: #000;\n    width: 4.3em;\n    height: 4.3em;\n    border-radius: 2.15em;\n    margin-top: 1.3em;\n    margin-left: 2.1em;\n}\n\np-section[data-theme=\"theme-6\"] p-pic.pic-1 {\n\n    margin-left: 2.22em;\n}\n\np-section[data-theme=\"theme-6\"] p-h.title .p-text-wrap {\n\n    font-size: 30px;\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-6\"] p-text.text {\n    margin: auto;\n    margin-top: 20px;\n    color: #fff;\n    width: 5.25em;\n    height: 1em;\n    text-align: center;\n    margin-left: 1.5em;\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-6\"] p-text.text-1 {\n    margin-left: 1.6em;\n\n}\n\np-section[data-theme=\"theme-6\"] p-text.text {\n\n    color: #303B41\n\n}\n\np-section[data-theme=\"theme-6\"] p-text.text .p-text-wrap {\n\n    font-size: 12px;\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-6\"] p-button.button {\n    margin: auto;\n    margin-top: 20px;\n    color: #fff;\n\n    height: 60px;\n    text-align: center;\n\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-6\"] p-button.button {\n\n    color: #303B41;\n\n}\n\n/*7*/\n\np-section[data-theme=\"theme-7\"] .grid-row {\n    height: 100% !important;\n}\n\np-section[data-theme=\"theme-7\"]  .box {\n    margin: auto;\n    width: 100%;\n    height: 100%;\n    color: #fff;\n\n}\n\np-section[data-theme=\"theme-7\"] .box-1 {\n\n    background-color: transparent;\n}\n\np-section[data-theme=\"theme-7\"]  .box-2 {\n\n    background-color: #FCF8ED;\n}\n\np-section[data-theme=\"theme-7\"] .box-3 {\n\n    background-color: transparent;\n}\n\np-section[data-theme=\"theme-7\"] .box-4 {\n\n    background-color: #FCF8ED;\n}\n\np-section[data-theme=\"theme-7\"]   .box p-h {\n\n    color: #BC9B5D;\n\n    text-align: center;\n    margin: auto;\n    margin-top: 1.96em;\n    height: 20px;\n\n}\n\np-section[data-theme=\"theme-7\"] .box p-h .p-text-wrap {\n\n    font-size: 30px;\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-7\"] .box p-text {\n    margin: auto;\n    margin-top: 20px;\n    color: #303B41;\n    width: 4em;\n    height: 1em;\n    text-align: center;\n\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-7\"]  .box p-text .p-text-wrap {\n\n    font-size: 12px;\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-7\"]  .box p-button {\n    margin: auto;\n    margin-top: 20px;\n    color: #303B41;\n\n    height: 60px;\n    text-align: center;\n\n    font-weight: 100;\n\n}\n\n/*8*/\n\np-section[data-theme=\"theme-8\"]  .inner-item {\n    width: 100%;\n    height: 100%;\n}\n\np-section[data-theme=\"theme-8\"] .box {\n    margin: auto;\n    margin-top: 75px;\n    width: 5em;\n    height: 5em;\n    color: #fff;\n    background-color: rgba(255, 255, 255, 0.9);\n    margin-left: 10px;\n\n}\n\np-section[data-theme=\"theme-8\"]  .box-1 {\n\n    background-color: rgba(255, 255, 255, 0.9);\n    margin-left: 0.2em;\n}\n\np-section[data-theme=\"theme-8\"]  .box .p-h {\n\n    color: #000;\n\n    text-align: center;\n    margin: auto;\n    margin-top: 0.7em;\n    height: 20px;\n\n}\n\np-section[data-theme=\"theme-8\"]  .box .p-h .p-text-wrap {\n\n    font-size: 30px;\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-8\"]    .box .p-text {\n    margin: auto;\n    margin-top: 20px;\n    color: #303B41;\n    width: 3.6em;\n    height: 1em;\n    text-align: center;\n\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-8\"]    .box p-text .p-text-wrap {\n\n    font-size: 12px;\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-8\"]    .box p-button {\n    margin: auto;\n    margin-top: 20px;\n    color: #303B41;\n\n    height: 60px;\n    text-align: center;\n\n    font-weight: 100;\n\n}\n\n/*9*/\n\np-section[data-theme=\"theme-9\"] {\n    height: 12.8em;\n    background-color: #F0F0F0;\n}\n\np-section[data-theme=\"theme-9\"] .layout-inner {\n    width: 100%;\n    height: 100%;\n}\n\np-section[data-theme=\"theme-9\"] p-h.title {\n\n    color: #000;\n\n    text-align: center;\n    margin: auto;\n    margin-top: 1em;\n    height: 20px;\n\n}\n\np-section[data-theme=\"theme-9\"] p-h.title .p-text-wrap {\n\n    font-size: 30px;\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-9\"] p-text.text {\n    margin: auto;\n    margin-top: 1.18em;\n    color: #303B41;\n    width: 8.76em;\n    height: 1em;\n    text-align: center;\n\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-9\"] p-text.title .p-text-wrap {\n\n    font-size: 12px;\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-9\"] p-pic.pic {\n    margin: auto;\n    margin-top: 1em;\n    color: #303B41;\n    width: 11.65em;\n    height: 5.83em;\n    text-align: center;\n\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-9\"] p-button.button {\n    margin: auto;\n    margin-top: 1em;\n    color: #fff;\n    background-color: #00C3D9;\n\n    border: none;\n\n}\n\n/*10*/\n\np-section[data-theme=\"theme-10\"] {\n    height: 7.67em;\n    background-color: #F0F0F0;\n}\n\np-section[data-theme=\"theme-10\"] .layout-inner {\n    width: 100%;\n    height: 100%;\n}\n\np-section[data-theme=\"theme-10\"] p-h.title {\n\n    color: #000;\n\n    text-align: center;\n    margin: auto;\n    margin-top: 2.28em;\n    height: 20px;\n    margin-left: 2em;\n\n}\n\np-section[data-theme=\"theme-10\"] p-h.title .p-text-wrap {\n\n    font-size: 30px;\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-10\"] p-text.text {\n    margin: auto;\n    margin-top: 0.3em;\n    color: #303B41;\n    width: 8.76em;\n    height: 1em;\n    text-align: center;\n    margin-left: 2em;\n    font-weight: 100;\n    text-align: left;\n\n}\n\np-section[data-theme=\"theme-10\"] p-text.text .p-text-wrap {\n\n    font-size: 12px;\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-10\"] p-pic.pic {\n\n    margin-top: 0.56em;\n    color: #303B41;\n    width: 4.36em;\n    height: 7.11em;\n    text-align: center;\n    margin-left: 4.6em;\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-10\"] p-button.button {\n    margin: auto;\n    margin-top: 1em;\n    margin-left: 2.2em;\n    color: #fff;\n    background-color: #00C3D9;\n\n    border: none;\n\n}\n\n/*11*/\n\np-section[data-theme=\"theme-11\"] {\n    height: 3.9em;\n    background-color: #303B41;\n}\n\np-section[data-theme=\"theme-11\"] .layout-inner {\n    width: 100%;\n    height: 100%;\n}\n\np-section[data-theme=\"theme-11\"] p-layout {\n\n    width: 100%;\n    height: 100%\n\n}\n\np-section[data-theme=\"theme-11\"] p-layout {\n\n    background-color: transparent;\n\n}\n\np-section[data-theme=\"theme-11\"]   .column {\n    width: 33.33%;\n    height: 100%\n\n}\n\np-section[data-theme=\"theme-11\"]  .column .icon {\n    width: 50px;\n    height: 50px;\n    margin-top: 52px;\n    margin-left: 0.7em;\n}\n\np-section[data-theme=\"theme-11\"]  .column .icon .p-text-wrap {\n\n    font-size: 30px;\n\n}\n\np-section[data-theme=\"theme-11\"]  .column .title {\n\n    text-align: center;\n\n    margin-top: 0.9em;\n    height: 20px;\n    margin-left: 10px;\n    width: 100px;\n    color: #fff;\n}\n\np-section[data-theme=\"theme-11\"] .column .title .p-text-wrap {\n    font-size: 35px;\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-11\"]  .column .text {\n    margin: auto;\n    margin-top: 20px;\n    color: #fff;\n    width: 6em;\n    height: 70px;\n    padding: 0;\n    text-align: center;\n    margin-left: 0.7em;\n    font-weight: 100;\n    text-align: left;\n\n}\n\np-section[data-theme=\"theme-11\"]  .column .text .p-text-wrap {\n\n    font-size: 14px;\n    font-weight: 100;\n    vertical-align: top;\n\n}\n\n/***12**/\n\np-section[data-theme=\"theme-12\"] {\n    height: 12em\n\n}\n\np-section[data-theme=\"theme-12\"]  .box {\n    margin: auto;\n\n    height: 100%;\n    width: 100%;\n    color: #fff;\n\n}\n\np-section[data-theme=\"theme-12\"]  .box-1 {\n\n    background-color: transparent;\n}\n\np-section[data-theme=\"theme-12\"]  .box-2 {\n\n    background-color: #FCF8ED;\n}\n\np-section[data-theme=\"theme-12\"]  .box-3 {\n\n    background-color: transparent;\n}\n\np-section[data-theme=\"theme-12\"]  .box-4 {\n\n    background-color: #FCF8ED;\n}\n\np-section[data-theme=\"theme-12\"]  .box-6 {\n\n    background-color: transparent;\n}\n\np-section[data-theme=\"theme-12\"]  .box-5 {\n\n    background-color: #FCF8ED;\n}\n\np-section[data-theme=\"theme-12\"]  .box-8 {\n\n    background-color: transparent;\n}\n\np-section[data-theme=\"theme-12\"]  .box-7 {\n\n    background-color: #FCF8ED;\n}\n\np-section[data-theme=\"theme-12\"]    .box p-h {\n\n    color: #BC9B5D;\n\n    text-align: center;\n    margin: auto;\n    margin-top: 1.96em;\n    height: 20px;\n\n}\n\np-section[data-theme=\"theme-12\"]    .box p-h .p-text-wrap {\n    font-size: 30px;\n    font-weight: 100;\n}\n\np-section[data-theme=\"theme-12\"]    .box p-text {\n    margin: auto;\n    margin-top: 20px;\n    color: #303B41;\n    width: 4em;\n    height: 1em;\n    text-align: center;\n    font-weight: 100;\n}\n\np-section[data-theme=\"theme-12\"]    .box p-text .p-text-wrap {\n\n    font-size: 12px;\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-12\"]    .box p-button {\n    margin: auto;\n    margin-top: 20px;\n    color: #303B41;\n\n    height: 1em;\n    text-align: center;\n\n    font-weight: 100;\n\n}\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "p-section {\n    display: block;\n    height: 7.5em;\n    width: 100%;\n    position: relative;\n    border-width: 0 !important;\n}\n\np-section:before, p-section:after {\n    display: table;\n    lineHeight: 0;\n    content: ''\n}\n\np-section > p-pic.inner-item {\n    display: block;\n    width: 100%;\n    height: 100%;\n    position: absolute;\n    top: 0;\n    left: 0;\n    z-index: -1;\n}\n\np-section[data-theme=\"theme-1\"] p-layout-inner {\n    width: 100%;\n    height: 100%;\n}\n\np-section[data-theme=\"theme-1\"] p-h.title {\n    margin: auto;\n    margin-top: 2.85em;\n    color: #fff;\n    text-align: center;\n    height: 1em;\n    font-weight: 400;\n}\n\np-section[data-theme=\"theme-1\"] p-h.title .p-text-wrap {\n    font-size: 40px;\n}\n\np-section[data-theme=\"theme-1\"] p-button.button {\n    margin: auto;\n    margin-top: 20px;\n    color: #fff;\n    border: solid 1px #fff;\n    width: 140px;\n    height: 36px;\n}\n\n/* section */\n\np-section[data-theme=\"theme-2\"] p-h.title {\n    margin: auto;\n    margin-top: 2.26em;\n    color: #fff;\n    text-align: center;\n    height: 0.87em;\n    font-weight: 400;\n}\n\np-section[data-theme=\"theme-2\"] p-h.title .p-text-wrap {\n    font-size: 52.2px;\n}\n\np-section[data-theme=\"theme-2\"] p-text.text .p-text-wrap {\n\n    font-size: 14px;\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-2\"] p-text.text {\n    margin: auto;\n    margin-top: 20px;\n    color: #fff;\n    width: 17em;\n\n    font-weight: 100;\n\n}\n\n/*3*/\n\np-section[data-theme=\"theme-3\"] p-h.title {\n    margin-left: 2em;\n    color: #fff;\n    text-align: center;\n    height: 0.87em;\n    font-weight: 400;\n    margin-top: 2em;\n}\n\np-section[data-theme=\"theme-3\"] p-h.title .p-text-wrap {\n    font-size: 40px;\n}\n\np-section[data-theme=\"theme-3\"] p-text.text .p-text-wrap {\n\n    font-size: 14px;\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-3\"] p-text.text {\n    margin-left: 2em;\n    margin-top: 20px;\n    color: #fff;\n    width: 17em;\n    height: 20px;\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-3\"] p-button.button.active {\n\n    color: #fff;\n    background-color: #00C3D9;\n    margin-left: 2.2em;\n\n    border: none;\n\n}\n\np-section[data-theme=\"theme-3\"] p-button.button {\n    margin-left: 20px;\n    margin-top: 50px;\n    color: #fff;\n    border: solid 1px #fff;\n    width: 138px;\n    height: 36px;\n\n}\n\n/*4*/\n\np-section[data-theme=\"theme-4\"]  .box {\n    margin: auto;\n\n    margin-top: 1.67em;\n    color: #fff;\n    border: solid 1px #fff;\n    width: 9em;\n    height: 4.7em;\n    background-color: #fff;\n}\n\np-section[data-theme=\"theme-4\"]    .box p-h.title {\n\n    color: #000;\n    width: 9em;\n    text-align: center;\n    margin-top: 41px;\n    height: 20px;\n\n}\n\np-section[data-theme=\"theme-4\"]    .box p-text.text {\n    margin: auto;\n    margin-top: 20px;\n    color: rgba(48, 59, 65, 0.6);\n    width: 7.633em;\n    height: 1em;\n    text-align: center;\n\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-4\"]    .box p-text.text .p-text-wrap {\n\n    font-size: 12px;\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-4\"]    .box p-button.button {\n    margin: auto;\n    margin-top: 20px;\n    color: rgba(48, 59, 65, 0.6);\n    width: 7.633em;\n    height: 60px;\n    text-align: center;\n\n    font-weight: 100;\n\n}\n\n/*5*/\n\np-section[data-theme=\"theme-5\"]       .grid-row {\n    height: 100% !important;\n}\n\np-section[data-theme=\"theme-5\"]        .box {\n    margin: auto;\n    height: 100%;\n    width: 100%;\n    color: #fff;\n}\n\np-section[data-theme=\"theme-5\"]        .box-1 {\n\n    background-color: rgba(255, 255, 255, 0.9);\n}\n\np-section[data-theme=\"theme-5\"]        .box-2 {\n\n    background-color: rgba(239, 67, 71, 0.9);\n}\n\np-section[data-theme=\"theme-5\"]        .box-3 {\n\n    background-color: rgba(245, 166, 35, 0.9);\n}\n\np-section[data-theme=\"theme-5\"]  .box-4 {\n\n    background-color: rgba(39, 108, 155, 0.9);\n}\n\np-section[data-theme=\"theme-5\"]  .box p-h {\n\n    color: #fff;\n\n    text-align: center;\n    margin: auto;\n    margin-top: 1.96em;\n    height: 20px;\n\n}\n\np-section[data-theme=\"theme-5\"]    .box-1 p-h {\n\n    color: #000;\n}\n\np-section[data-theme=\"theme-5\"]    .box p-h .p-text-wrap {\n\n    font-size: 30px;\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-5\"]    .box p-text {\n    margin: auto;\n    margin-top: 20px;\n    color: #fff;\n    width: 5.25em;\n    height: 1em;\n    text-align: center;\n\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-5\"]    .box-1 p-text {\n\n    color: #303B41\n\n}\n\np-section[data-theme=\"theme-5\"]    .box p-text .p-text-wrap {\n\n    font-size: 12px;\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-5\"]    .box p-button {\n    margin: auto;\n    margin-top: 20px;\n    color: #fff;\n\n    height: 1em;\n    text-align: center;\n\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-5\"]    .box-1 p-button {\n\n    color: #303B41;\n\n}\n\n@media screen and (max-width: 768px) {\n\n}\n\n/*6*/\n\np-section[data-theme=\"theme-6\"] {\n    background-color: #FAFAFA;\n    height: 11.5em;\n}\n\np-section[data-theme=\"theme-6\"] .box {\n    width: 100%;\n    height: 100%;\n    background-color: transparent;\n}\n\np-section[data-theme=\"theme-6\"] p-h.title {\n    text-align: center;\n    margin: auto;\n    margin-top: 1em;\n    height: 20px;\n    width: 100%;\n}\n\np-section[data-theme=\"theme-6\"] p-pic.pic {\n    color: #000;\n    width: 4.3em;\n    height: 4.3em;\n    border-radius: 2.15em;\n    margin-top: 1.3em;\n    margin-left: 2.1em;\n}\n\np-section[data-theme=\"theme-6\"] p-pic.pic-1 {\n\n    margin-left: 2.22em;\n}\n\np-section[data-theme=\"theme-6\"] p-h.title .p-text-wrap {\n\n    font-size: 30px;\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-6\"] p-text.text {\n    margin: auto;\n    margin-top: 20px;\n    color: #fff;\n    width: 5.25em;\n    height: 1em;\n    text-align: center;\n    margin-left: 1.5em;\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-6\"] p-text.text-1 {\n    margin-left: 1.6em;\n\n}\n\np-section[data-theme=\"theme-6\"] p-text.text {\n\n    color: #303B41\n\n}\n\np-section[data-theme=\"theme-6\"] p-text.text .p-text-wrap {\n\n    font-size: 12px;\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-6\"] p-button.button {\n    margin: auto;\n    margin-top: 20px;\n    color: #fff;\n\n    height: 60px;\n    text-align: center;\n\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-6\"] p-button.button {\n\n    color: #303B41;\n\n}\n\n/*7*/\n\np-section[data-theme=\"theme-7\"] .grid-row {\n    height: 100% !important;\n}\n\np-section[data-theme=\"theme-7\"]  .box {\n    margin: auto;\n    width: 100%;\n    height: 100%;\n    color: #fff;\n\n}\n\np-section[data-theme=\"theme-7\"] .box-1 {\n\n    background-color: transparent;\n}\n\np-section[data-theme=\"theme-7\"]  .box-2 {\n\n    background-color: #FCF8ED;\n}\n\np-section[data-theme=\"theme-7\"] .box-3 {\n\n    background-color: transparent;\n}\n\np-section[data-theme=\"theme-7\"] .box-4 {\n\n    background-color: #FCF8ED;\n}\n\np-section[data-theme=\"theme-7\"]   .box p-h {\n\n    color: #BC9B5D;\n\n    text-align: center;\n    margin: auto;\n    margin-top: 1.96em;\n    height: 20px;\n\n}\n\np-section[data-theme=\"theme-7\"] .box p-h .p-text-wrap {\n\n    font-size: 30px;\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-7\"] .box p-text {\n    margin: auto;\n    margin-top: 20px;\n    color: #303B41;\n    width: 4em;\n    height: 1em;\n    text-align: center;\n\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-7\"]  .box p-text .p-text-wrap {\n\n    font-size: 12px;\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-7\"]  .box p-button {\n    margin: auto;\n    margin-top: 20px;\n    color: #303B41;\n\n    height: 60px;\n    text-align: center;\n\n    font-weight: 100;\n\n}\n\n/*8*/\n\np-section[data-theme=\"theme-8\"]  .inner-item {\n    width: 100%;\n    height: 100%;\n}\n\np-section[data-theme=\"theme-8\"] .box {\n    margin: auto;\n    margin-top: 75px;\n    width: 5em;\n    height: 5em;\n    color: #fff;\n    background-color: rgba(255, 255, 255, 0.9);\n    margin-left: 10px;\n\n}\n\np-section[data-theme=\"theme-8\"]  .box-1 {\n\n    background-color: rgba(255, 255, 255, 0.9);\n    margin-left: 0.2em;\n}\n\np-section[data-theme=\"theme-8\"]  .box .p-h {\n\n    color: #000;\n\n    text-align: center;\n    margin: auto;\n    margin-top: 0.7em;\n    height: 20px;\n\n}\n\np-section[data-theme=\"theme-8\"]  .box .p-h .p-text-wrap {\n\n    font-size: 30px;\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-8\"]    .box .p-text {\n    margin: auto;\n    margin-top: 20px;\n    color: #303B41;\n    width: 3.6em;\n    height: 1em;\n    text-align: center;\n\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-8\"]    .box p-text .p-text-wrap {\n\n    font-size: 12px;\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-8\"]    .box p-button {\n    margin: auto;\n    margin-top: 20px;\n    color: #303B41;\n\n    height: 60px;\n    text-align: center;\n\n    font-weight: 100;\n\n}\n\n/*9*/\n\np-section[data-theme=\"theme-9\"] {\n    height: 12.8em;\n    background-color: #F0F0F0;\n}\n\np-section[data-theme=\"theme-9\"] .layout-inner {\n    width: 100%;\n    height: 100%;\n}\n\np-section[data-theme=\"theme-9\"] p-h.title {\n\n    color: #000;\n\n    text-align: center;\n    margin: auto;\n    margin-top: 1em;\n    height: 20px;\n\n}\n\np-section[data-theme=\"theme-9\"] p-h.title .p-text-wrap {\n\n    font-size: 30px;\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-9\"] p-text.text {\n    margin: auto;\n    margin-top: 1.18em;\n    color: #303B41;\n    width: 8.76em;\n    height: 1em;\n    text-align: center;\n\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-9\"] p-text.title .p-text-wrap {\n\n    font-size: 12px;\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-9\"] p-pic.pic {\n    margin: auto;\n    margin-top: 1em;\n    color: #303B41;\n    width: 11.65em;\n    height: 5.83em;\n    text-align: center;\n\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-9\"] p-button.button {\n    margin: auto;\n    margin-top: 1em;\n    color: #fff;\n    background-color: #00C3D9;\n\n    border: none;\n\n}\n\n/*10*/\n\np-section[data-theme=\"theme-10\"] {\n    height: 7.67em;\n    background-color: #F0F0F0;\n}\n\np-section[data-theme=\"theme-10\"] .layout-inner {\n    width: 100%;\n    height: 100%;\n}\n\np-section[data-theme=\"theme-10\"] p-h.title {\n\n    color: #000;\n\n    text-align: center;\n    margin: auto;\n    margin-top: 2.28em;\n    height: 20px;\n    margin-left: 2em;\n\n}\n\np-section[data-theme=\"theme-10\"] p-h.title .p-text-wrap {\n\n    font-size: 30px;\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-10\"] p-text.text {\n    margin: auto;\n    margin-top: 0.3em;\n    color: #303B41;\n    width: 8.76em;\n    height: 1em;\n    text-align: center;\n    margin-left: 2em;\n    font-weight: 100;\n    text-align: left;\n\n}\n\np-section[data-theme=\"theme-10\"] p-text.text .p-text-wrap {\n\n    font-size: 12px;\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-10\"] p-pic.pic {\n\n    margin-top: 0.56em;\n    color: #303B41;\n    width: 4.36em;\n    height: 7.11em;\n    text-align: center;\n    margin-left: 4.6em;\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-10\"] p-button.button {\n    margin: auto;\n    margin-top: 1em;\n    margin-left: 2.2em;\n    color: #fff;\n    background-color: #00C3D9;\n\n    border: none;\n\n}\n\n/*11*/\n\np-section[data-theme=\"theme-11\"] {\n    height: 3.9em;\n    background-color: #303B41;\n}\n\np-section[data-theme=\"theme-11\"] .layout-inner {\n    width: 100%;\n    height: 100%;\n}\n\np-section[data-theme=\"theme-11\"] p-layout {\n\n    width: 100%;\n    height: 100%\n\n}\n\np-section[data-theme=\"theme-11\"] p-layout {\n\n    background-color: transparent;\n\n}\n\np-section[data-theme=\"theme-11\"]   .column {\n    width: 33.33%;\n    height: 100%\n\n}\n\np-section[data-theme=\"theme-11\"]  .column .icon {\n    width: 50px;\n    height: 50px;\n    margin-top: 52px;\n    margin-left: 0.7em;\n}\n\np-section[data-theme=\"theme-11\"]  .column .icon .p-text-wrap {\n\n    font-size: 30px;\n\n}\n\np-section[data-theme=\"theme-11\"]  .column .title {\n\n    text-align: center;\n\n    margin-top: 0.9em;\n    height: 20px;\n    margin-left: 10px;\n    width: 100px;\n    color: #fff;\n}\n\np-section[data-theme=\"theme-11\"] .column .title .p-text-wrap {\n    font-size: 35px;\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-11\"]  .column .text {\n    margin: auto;\n    margin-top: 20px;\n    color: #fff;\n    width: 6em;\n    height: 70px;\n    padding: 0;\n    text-align: center;\n    margin-left: 0.7em;\n    font-weight: 100;\n    text-align: left;\n\n}\n\np-section[data-theme=\"theme-11\"]  .column .text .p-text-wrap {\n\n    font-size: 14px;\n    font-weight: 100;\n    vertical-align: top;\n\n}\n\n/***12**/\n\np-section[data-theme=\"theme-12\"] {\n    height: 12em\n\n}\n\np-section[data-theme=\"theme-12\"]  .box {\n    margin: auto;\n\n    height: 100%;\n    width: 100%;\n    color: #fff;\n\n}\n\np-section[data-theme=\"theme-12\"]  .box-1 {\n\n    background-color: transparent;\n}\n\np-section[data-theme=\"theme-12\"]  .box-2 {\n\n    background-color: #FCF8ED;\n}\n\np-section[data-theme=\"theme-12\"]  .box-3 {\n\n    background-color: transparent;\n}\n\np-section[data-theme=\"theme-12\"]  .box-4 {\n\n    background-color: #FCF8ED;\n}\n\np-section[data-theme=\"theme-12\"]  .box-6 {\n\n    background-color: transparent;\n}\n\np-section[data-theme=\"theme-12\"]  .box-5 {\n\n    background-color: #FCF8ED;\n}\n\np-section[data-theme=\"theme-12\"]  .box-8 {\n\n    background-color: transparent;\n}\n\np-section[data-theme=\"theme-12\"]  .box-7 {\n\n    background-color: #FCF8ED;\n}\n\np-section[data-theme=\"theme-12\"]    .box p-h {\n\n    color: #BC9B5D;\n\n    text-align: center;\n    margin: auto;\n    margin-top: 1.96em;\n    height: 20px;\n\n}\n\np-section[data-theme=\"theme-12\"]    .box p-h .p-text-wrap {\n    font-size: 30px;\n    font-weight: 100;\n}\n\np-section[data-theme=\"theme-12\"]    .box p-text {\n    margin: auto;\n    margin-top: 20px;\n    color: #303B41;\n    width: 4em;\n    height: 1em;\n    text-align: center;\n    font-weight: 100;\n}\n\np-section[data-theme=\"theme-12\"]    .box p-text .p-text-wrap {\n\n    font-size: 12px;\n    font-weight: 100;\n\n}\n\np-section[data-theme=\"theme-12\"]    .box p-button {\n    margin: auto;\n    margin-top: 20px;\n    color: #303B41;\n\n    height: 1em;\n    text-align: center;\n\n    font-weight: 100;\n\n}\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -22882,6 +22882,16 @@ function setRelativeCoord(el, coord, mediaName, isOldCoord) {
 
     coord = $.extend({}, coord);
 
+    // var borderWidth = 0
+    //
+    // try{
+    //      borderWidth = parseInt(el.css("border-width"))
+    // }
+    // catch(e){
+    //
+    // }
+
+
     // if (play.isShadow(el)) return;
 
     var parent = play.getParent(el);
@@ -23794,6 +23804,558 @@ module.exports = function (TYPE, $create) {
 "use strict";
 
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+if (__webpack_require__(348)) {
+  var LIBRARY = __webpack_require__(382);
+  var global = __webpack_require__(343);
+  var fails = __webpack_require__(344);
+  var $export = __webpack_require__(341);
+  var $typed = __webpack_require__(417);
+  var $buffer = __webpack_require__(454);
+  var ctx = __webpack_require__(364);
+  var anInstance = __webpack_require__(388);
+  var propertyDesc = __webpack_require__(380);
+  var hide = __webpack_require__(357);
+  var redefineAll = __webpack_require__(390);
+  var toInteger = __webpack_require__(370);
+  var toLength = __webpack_require__(350);
+  var toIndex = __webpack_require__(493);
+  var toAbsoluteIndex = __webpack_require__(384);
+  var toPrimitive = __webpack_require__(368);
+  var has = __webpack_require__(356);
+  var classof = __webpack_require__(403);
+  var isObject = __webpack_require__(345);
+  var toObject = __webpack_require__(351);
+  var isArrayIter = __webpack_require__(445);
+  var create = __webpack_require__(385);
+  var getPrototypeOf = __webpack_require__(362);
+  var gOPN = __webpack_require__(386).f;
+  var getIterFn = __webpack_require__(447);
+  var uid = __webpack_require__(381);
+  var wks = __webpack_require__(346);
+  var createArrayMethod = __webpack_require__(372);
+  var createArrayIncludes = __webpack_require__(408);
+  var speciesConstructor = __webpack_require__(415);
+  var ArrayIterators = __webpack_require__(450);
+  var Iterators = __webpack_require__(399);
+  var $iterDetect = __webpack_require__(412);
+  var setSpecies = __webpack_require__(387);
+  var arrayFill = __webpack_require__(449);
+  var arrayCopyWithin = __webpack_require__(483);
+  var $DP = __webpack_require__(349);
+  var $GOPD = __webpack_require__(361);
+  var dP = $DP.f;
+  var gOPD = $GOPD.f;
+  var RangeError = global.RangeError;
+  var TypeError = global.TypeError;
+  var Uint8Array = global.Uint8Array;
+  var ARRAY_BUFFER = 'ArrayBuffer';
+  var SHARED_BUFFER = 'Shared' + ARRAY_BUFFER;
+  var BYTES_PER_ELEMENT = 'BYTES_PER_ELEMENT';
+  var PROTOTYPE = 'prototype';
+  var ArrayProto = Array[PROTOTYPE];
+  var $ArrayBuffer = $buffer.ArrayBuffer;
+  var $DataView = $buffer.DataView;
+  var arrayForEach = createArrayMethod(0);
+  var arrayFilter = createArrayMethod(2);
+  var arraySome = createArrayMethod(3);
+  var arrayEvery = createArrayMethod(4);
+  var arrayFind = createArrayMethod(5);
+  var arrayFindIndex = createArrayMethod(6);
+  var arrayIncludes = createArrayIncludes(true);
+  var arrayIndexOf = createArrayIncludes(false);
+  var arrayValues = ArrayIterators.values;
+  var arrayKeys = ArrayIterators.keys;
+  var arrayEntries = ArrayIterators.entries;
+  var arrayLastIndexOf = ArrayProto.lastIndexOf;
+  var arrayReduce = ArrayProto.reduce;
+  var arrayReduceRight = ArrayProto.reduceRight;
+  var arrayJoin = ArrayProto.join;
+  var arraySort = ArrayProto.sort;
+  var arraySlice = ArrayProto.slice;
+  var arrayToString = ArrayProto.toString;
+  var arrayToLocaleString = ArrayProto.toLocaleString;
+  var ITERATOR = wks('iterator');
+  var TAG = wks('toStringTag');
+  var TYPED_CONSTRUCTOR = uid('typed_constructor');
+  var DEF_CONSTRUCTOR = uid('def_constructor');
+  var ALL_CONSTRUCTORS = $typed.CONSTR;
+  var TYPED_ARRAY = $typed.TYPED;
+  var VIEW = $typed.VIEW;
+  var WRONG_LENGTH = 'Wrong length!';
+
+  var $map = createArrayMethod(1, function (O, length) {
+    return allocate(speciesConstructor(O, O[DEF_CONSTRUCTOR]), length);
+  });
+
+  var LITTLE_ENDIAN = fails(function () {
+    // eslint-disable-next-line no-undef
+    return new Uint8Array(new Uint16Array([1]).buffer)[0] === 1;
+  });
+
+  var FORCED_SET = !!Uint8Array && !!Uint8Array[PROTOTYPE].set && fails(function () {
+    new Uint8Array(1).set({});
+  });
+
+  var toOffset = function toOffset(it, BYTES) {
+    var offset = toInteger(it);
+    if (offset < 0 || offset % BYTES) throw RangeError('Wrong offset!');
+    return offset;
+  };
+
+  var validate = function validate(it) {
+    if (isObject(it) && TYPED_ARRAY in it) return it;
+    throw TypeError(it + ' is not a typed array!');
+  };
+
+  var allocate = function allocate(C, length) {
+    if (!(isObject(C) && TYPED_CONSTRUCTOR in C)) {
+      throw TypeError('It is not a typed array constructor!');
+    }return new C(length);
+  };
+
+  var speciesFromList = function speciesFromList(O, list) {
+    return fromList(speciesConstructor(O, O[DEF_CONSTRUCTOR]), list);
+  };
+
+  var fromList = function fromList(C, list) {
+    var index = 0;
+    var length = list.length;
+    var result = allocate(C, length);
+    while (length > index) {
+      result[index] = list[index++];
+    }return result;
+  };
+
+  var addGetter = function addGetter(it, key, internal) {
+    dP(it, key, { get: function get() {
+        return this._d[internal];
+      } });
+  };
+
+  var $from = function from(source /* , mapfn, thisArg */) {
+    var O = toObject(source);
+    var aLen = arguments.length;
+    var mapfn = aLen > 1 ? arguments[1] : undefined;
+    var mapping = mapfn !== undefined;
+    var iterFn = getIterFn(O);
+    var i, length, values, result, step, iterator;
+    if (iterFn != undefined && !isArrayIter(iterFn)) {
+      for (iterator = iterFn.call(O), values = [], i = 0; !(step = iterator.next()).done; i++) {
+        values.push(step.value);
+      }O = values;
+    }
+    if (mapping && aLen > 2) mapfn = ctx(mapfn, arguments[2], 2);
+    for (i = 0, length = toLength(O.length), result = allocate(this, length); length > i; i++) {
+      result[i] = mapping ? mapfn(O[i], i) : O[i];
+    }
+    return result;
+  };
+
+  var $of = function of() /* ...items */{
+    var index = 0;
+    var length = arguments.length;
+    var result = allocate(this, length);
+    while (length > index) {
+      result[index] = arguments[index++];
+    }return result;
+  };
+
+  // iOS Safari 6.x fails here
+  var TO_LOCALE_BUG = !!Uint8Array && fails(function () {
+    arrayToLocaleString.call(new Uint8Array(1));
+  });
+
+  var $toLocaleString = function toLocaleString() {
+    return arrayToLocaleString.apply(TO_LOCALE_BUG ? arraySlice.call(validate(this)) : validate(this), arguments);
+  };
+
+  var proto = {
+    copyWithin: function copyWithin(target, start /* , end */) {
+      return arrayCopyWithin.call(validate(this), target, start, arguments.length > 2 ? arguments[2] : undefined);
+    },
+    every: function every(callbackfn /* , thisArg */) {
+      return arrayEvery(validate(this), callbackfn, arguments.length > 1 ? arguments[1] : undefined);
+    },
+    fill: function fill(value /* , start, end */) {
+      // eslint-disable-line no-unused-vars
+      return arrayFill.apply(validate(this), arguments);
+    },
+    filter: function filter(callbackfn /* , thisArg */) {
+      return speciesFromList(this, arrayFilter(validate(this), callbackfn, arguments.length > 1 ? arguments[1] : undefined));
+    },
+    find: function find(predicate /* , thisArg */) {
+      return arrayFind(validate(this), predicate, arguments.length > 1 ? arguments[1] : undefined);
+    },
+    findIndex: function findIndex(predicate /* , thisArg */) {
+      return arrayFindIndex(validate(this), predicate, arguments.length > 1 ? arguments[1] : undefined);
+    },
+    forEach: function forEach(callbackfn /* , thisArg */) {
+      arrayForEach(validate(this), callbackfn, arguments.length > 1 ? arguments[1] : undefined);
+    },
+    indexOf: function indexOf(searchElement /* , fromIndex */) {
+      return arrayIndexOf(validate(this), searchElement, arguments.length > 1 ? arguments[1] : undefined);
+    },
+    includes: function includes(searchElement /* , fromIndex */) {
+      return arrayIncludes(validate(this), searchElement, arguments.length > 1 ? arguments[1] : undefined);
+    },
+    join: function join(separator) {
+      // eslint-disable-line no-unused-vars
+      return arrayJoin.apply(validate(this), arguments);
+    },
+    lastIndexOf: function lastIndexOf(searchElement /* , fromIndex */) {
+      // eslint-disable-line no-unused-vars
+      return arrayLastIndexOf.apply(validate(this), arguments);
+    },
+    map: function map(mapfn /* , thisArg */) {
+      return $map(validate(this), mapfn, arguments.length > 1 ? arguments[1] : undefined);
+    },
+    reduce: function reduce(callbackfn /* , initialValue */) {
+      // eslint-disable-line no-unused-vars
+      return arrayReduce.apply(validate(this), arguments);
+    },
+    reduceRight: function reduceRight(callbackfn /* , initialValue */) {
+      // eslint-disable-line no-unused-vars
+      return arrayReduceRight.apply(validate(this), arguments);
+    },
+    reverse: function reverse() {
+      var that = this;
+      var length = validate(that).length;
+      var middle = Math.floor(length / 2);
+      var index = 0;
+      var value;
+      while (index < middle) {
+        value = that[index];
+        that[index++] = that[--length];
+        that[length] = value;
+      }return that;
+    },
+    some: function some(callbackfn /* , thisArg */) {
+      return arraySome(validate(this), callbackfn, arguments.length > 1 ? arguments[1] : undefined);
+    },
+    sort: function sort(comparefn) {
+      return arraySort.call(validate(this), comparefn);
+    },
+    subarray: function subarray(begin, end) {
+      var O = validate(this);
+      var length = O.length;
+      var $begin = toAbsoluteIndex(begin, length);
+      return new (speciesConstructor(O, O[DEF_CONSTRUCTOR]))(O.buffer, O.byteOffset + $begin * O.BYTES_PER_ELEMENT, toLength((end === undefined ? length : toAbsoluteIndex(end, length)) - $begin));
+    }
+  };
+
+  var $slice = function slice(start, end) {
+    return speciesFromList(this, arraySlice.call(validate(this), start, end));
+  };
+
+  var $set = function set(arrayLike /* , offset */) {
+    validate(this);
+    var offset = toOffset(arguments[1], 1);
+    var length = this.length;
+    var src = toObject(arrayLike);
+    var len = toLength(src.length);
+    var index = 0;
+    if (len + offset > length) throw RangeError(WRONG_LENGTH);
+    while (index < len) {
+      this[offset + index] = src[index++];
+    }
+  };
+
+  var $iterators = {
+    entries: function entries() {
+      return arrayEntries.call(validate(this));
+    },
+    keys: function keys() {
+      return arrayKeys.call(validate(this));
+    },
+    values: function values() {
+      return arrayValues.call(validate(this));
+    }
+  };
+
+  var isTAIndex = function isTAIndex(target, key) {
+    return isObject(target) && target[TYPED_ARRAY] && (typeof key === 'undefined' ? 'undefined' : _typeof(key)) != 'symbol' && key in target && String(+key) == String(key);
+  };
+  var $getDesc = function getOwnPropertyDescriptor(target, key) {
+    return isTAIndex(target, key = toPrimitive(key, true)) ? propertyDesc(2, target[key]) : gOPD(target, key);
+  };
+  var $setDesc = function defineProperty(target, key, desc) {
+    if (isTAIndex(target, key = toPrimitive(key, true)) && isObject(desc) && has(desc, 'value') && !has(desc, 'get') && !has(desc, 'set')
+    // TODO: add validation descriptor w/o calling accessors
+    && !desc.configurable && (!has(desc, 'writable') || desc.writable) && (!has(desc, 'enumerable') || desc.enumerable)) {
+      target[key] = desc.value;
+      return target;
+    }return dP(target, key, desc);
+  };
+
+  if (!ALL_CONSTRUCTORS) {
+    $GOPD.f = $getDesc;
+    $DP.f = $setDesc;
+  }
+
+  $export($export.S + $export.F * !ALL_CONSTRUCTORS, 'Object', {
+    getOwnPropertyDescriptor: $getDesc,
+    defineProperty: $setDesc
+  });
+
+  if (fails(function () {
+    arrayToString.call({});
+  })) {
+    arrayToString = arrayToLocaleString = function toString() {
+      return arrayJoin.call(this);
+    };
+  }
+
+  var $TypedArrayPrototype$ = redefineAll({}, proto);
+  redefineAll($TypedArrayPrototype$, $iterators);
+  hide($TypedArrayPrototype$, ITERATOR, $iterators.values);
+  redefineAll($TypedArrayPrototype$, {
+    slice: $slice,
+    set: $set,
+    constructor: function constructor() {/* noop */},
+    toString: arrayToString,
+    toLocaleString: $toLocaleString
+  });
+  addGetter($TypedArrayPrototype$, 'buffer', 'b');
+  addGetter($TypedArrayPrototype$, 'byteOffset', 'o');
+  addGetter($TypedArrayPrototype$, 'byteLength', 'l');
+  addGetter($TypedArrayPrototype$, 'length', 'e');
+  dP($TypedArrayPrototype$, TAG, {
+    get: function get() {
+      return this[TYPED_ARRAY];
+    }
+  });
+
+  // eslint-disable-next-line max-statements
+  module.exports = function (KEY, BYTES, wrapper, CLAMPED) {
+    CLAMPED = !!CLAMPED;
+    var NAME = KEY + (CLAMPED ? 'Clamped' : '') + 'Array';
+    var GETTER = 'get' + KEY;
+    var SETTER = 'set' + KEY;
+    var TypedArray = global[NAME];
+    var Base = TypedArray || {};
+    var TAC = TypedArray && getPrototypeOf(TypedArray);
+    var FORCED = !TypedArray || !$typed.ABV;
+    var O = {};
+    var TypedArrayPrototype = TypedArray && TypedArray[PROTOTYPE];
+    var getter = function getter(that, index) {
+      var data = that._d;
+      return data.v[GETTER](index * BYTES + data.o, LITTLE_ENDIAN);
+    };
+    var setter = function setter(that, index, value) {
+      var data = that._d;
+      if (CLAMPED) value = (value = Math.round(value)) < 0 ? 0 : value > 0xff ? 0xff : value & 0xff;
+      data.v[SETTER](index * BYTES + data.o, value, LITTLE_ENDIAN);
+    };
+    var addElement = function addElement(that, index) {
+      dP(that, index, {
+        get: function get() {
+          return getter(this, index);
+        },
+        set: function set(value) {
+          return setter(this, index, value);
+        },
+        enumerable: true
+      });
+    };
+    if (FORCED) {
+      TypedArray = wrapper(function (that, data, $offset, $length) {
+        anInstance(that, TypedArray, NAME, '_d');
+        var index = 0;
+        var offset = 0;
+        var buffer, byteLength, length, klass;
+        if (!isObject(data)) {
+          length = toIndex(data);
+          byteLength = length * BYTES;
+          buffer = new $ArrayBuffer(byteLength);
+        } else if (data instanceof $ArrayBuffer || (klass = classof(data)) == ARRAY_BUFFER || klass == SHARED_BUFFER) {
+          buffer = data;
+          offset = toOffset($offset, BYTES);
+          var $len = data.byteLength;
+          if ($length === undefined) {
+            if ($len % BYTES) throw RangeError(WRONG_LENGTH);
+            byteLength = $len - offset;
+            if (byteLength < 0) throw RangeError(WRONG_LENGTH);
+          } else {
+            byteLength = toLength($length) * BYTES;
+            if (byteLength + offset > $len) throw RangeError(WRONG_LENGTH);
+          }
+          length = byteLength / BYTES;
+        } else if (TYPED_ARRAY in data) {
+          return fromList(TypedArray, data);
+        } else {
+          return $from.call(TypedArray, data);
+        }
+        hide(that, '_d', {
+          b: buffer,
+          o: offset,
+          l: byteLength,
+          e: length,
+          v: new $DataView(buffer)
+        });
+        while (index < length) {
+          addElement(that, index++);
+        }
+      });
+      TypedArrayPrototype = TypedArray[PROTOTYPE] = create($TypedArrayPrototype$);
+      hide(TypedArrayPrototype, 'constructor', TypedArray);
+    } else if (!fails(function () {
+      TypedArray(1);
+    }) || !fails(function () {
+      new TypedArray(-1); // eslint-disable-line no-new
+    }) || !$iterDetect(function (iter) {
+      new TypedArray(); // eslint-disable-line no-new
+      new TypedArray(null); // eslint-disable-line no-new
+      new TypedArray(1.5); // eslint-disable-line no-new
+      new TypedArray(iter); // eslint-disable-line no-new
+    }, true)) {
+      TypedArray = wrapper(function (that, data, $offset, $length) {
+        anInstance(that, TypedArray, NAME);
+        var klass;
+        // `ws` module bug, temporarily remove validation length for Uint8Array
+        // https://github.com/websockets/ws/pull/645
+        if (!isObject(data)) return new Base(toIndex(data));
+        if (data instanceof $ArrayBuffer || (klass = classof(data)) == ARRAY_BUFFER || klass == SHARED_BUFFER) {
+          return $length !== undefined ? new Base(data, toOffset($offset, BYTES), $length) : $offset !== undefined ? new Base(data, toOffset($offset, BYTES)) : new Base(data);
+        }
+        if (TYPED_ARRAY in data) return fromList(TypedArray, data);
+        return $from.call(TypedArray, data);
+      });
+      arrayForEach(TAC !== Function.prototype ? gOPN(Base).concat(gOPN(TAC)) : gOPN(Base), function (key) {
+        if (!(key in TypedArray)) hide(TypedArray, key, Base[key]);
+      });
+      TypedArray[PROTOTYPE] = TypedArrayPrototype;
+      if (!LIBRARY) TypedArrayPrototype.constructor = TypedArray;
+    }
+    var $nativeIterator = TypedArrayPrototype[ITERATOR];
+    var CORRECT_ITER_NAME = !!$nativeIterator && ($nativeIterator.name == 'values' || $nativeIterator.name == undefined);
+    var $iterator = $iterators.values;
+    hide(TypedArray, TYPED_CONSTRUCTOR, true);
+    hide(TypedArrayPrototype, TYPED_ARRAY, NAME);
+    hide(TypedArrayPrototype, VIEW, true);
+    hide(TypedArrayPrototype, DEF_CONSTRUCTOR, TypedArray);
+
+    if (CLAMPED ? new TypedArray(1)[TAG] != NAME : !(TAG in TypedArrayPrototype)) {
+      dP(TypedArrayPrototype, TAG, {
+        get: function get() {
+          return NAME;
+        }
+      });
+    }
+
+    O[NAME] = TypedArray;
+
+    $export($export.G + $export.W + $export.F * (TypedArray != Base), O);
+
+    $export($export.S, NAME, {
+      BYTES_PER_ELEMENT: BYTES
+    });
+
+    $export($export.S + $export.F * fails(function () {
+      Base.of.call(TypedArray, 1);
+    }), NAME, {
+      from: $from,
+      of: $of
+    });
+
+    if (!(BYTES_PER_ELEMENT in TypedArrayPrototype)) hide(TypedArrayPrototype, BYTES_PER_ELEMENT, BYTES);
+
+    $export($export.P, NAME, proto);
+
+    setSpecies(NAME);
+
+    $export($export.P + $export.F * FORCED_SET, NAME, { set: $set });
+
+    $export($export.P + $export.F * !CORRECT_ITER_NAME, NAME, $iterators);
+
+    if (!LIBRARY && TypedArrayPrototype.toString != arrayToString) TypedArrayPrototype.toString = arrayToString;
+
+    $export($export.P + $export.F * fails(function () {
+      new TypedArray(1).slice();
+    }), NAME, { slice: $slice });
+
+    $export($export.P + $export.F * (fails(function () {
+      return [1, 2].toLocaleString() != new TypedArray([1, 2]).toLocaleString();
+    }) || !fails(function () {
+      TypedArrayPrototype.toLocaleString.call([1, 2]);
+    })), NAME, { toLocaleString: $toLocaleString });
+
+    Iterators[NAME] = CORRECT_ITER_NAME ? $nativeIterator : $iterator;
+    if (!LIBRARY && !CORRECT_ITER_NAME) hide(TypedArrayPrototype, ITERATOR, $iterator);
+  };
+} else module.exports = function () {/* empty */};
+
+/***/ }),
+/* 374 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var Map = __webpack_require__(488);
+var $export = __webpack_require__(341);
+var shared = __webpack_require__(407)('metadata');
+var store = shared.store || (shared.store = new (__webpack_require__(491))());
+
+var getOrCreateMetadataMap = function getOrCreateMetadataMap(target, targetKey, create) {
+  var targetMetadata = store.get(target);
+  if (!targetMetadata) {
+    if (!create) return undefined;
+    store.set(target, targetMetadata = new Map());
+  }
+  var keyMetadata = targetMetadata.get(targetKey);
+  if (!keyMetadata) {
+    if (!create) return undefined;
+    targetMetadata.set(targetKey, keyMetadata = new Map());
+  }return keyMetadata;
+};
+var ordinaryHasOwnMetadata = function ordinaryHasOwnMetadata(MetadataKey, O, P) {
+  var metadataMap = getOrCreateMetadataMap(O, P, false);
+  return metadataMap === undefined ? false : metadataMap.has(MetadataKey);
+};
+var ordinaryGetOwnMetadata = function ordinaryGetOwnMetadata(MetadataKey, O, P) {
+  var metadataMap = getOrCreateMetadataMap(O, P, false);
+  return metadataMap === undefined ? undefined : metadataMap.get(MetadataKey);
+};
+var ordinaryDefineOwnMetadata = function ordinaryDefineOwnMetadata(MetadataKey, MetadataValue, O, P) {
+  getOrCreateMetadataMap(O, P, true).set(MetadataKey, MetadataValue);
+};
+var ordinaryOwnMetadataKeys = function ordinaryOwnMetadataKeys(target, targetKey) {
+  var metadataMap = getOrCreateMetadataMap(target, targetKey, false);
+  var keys = [];
+  if (metadataMap) metadataMap.forEach(function (_, key) {
+    keys.push(key);
+  });
+  return keys;
+};
+var toMetaKey = function toMetaKey(it) {
+  return it === undefined || (typeof it === 'undefined' ? 'undefined' : _typeof(it)) == 'symbol' ? it : String(it);
+};
+var exp = function exp(O) {
+  $export($export.S, 'Reflect', O);
+};
+
+module.exports = {
+  store: store,
+  map: getOrCreateMetadataMap,
+  has: ordinaryHasOwnMetadata,
+  get: ordinaryGetOwnMetadata,
+  set: ordinaryDefineOwnMetadata,
+  keys: ordinaryOwnMetadataKeys,
+  key: toMetaKey,
+  exp: exp
+};
+
+/***/ }),
+/* 375 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
 var _RelativeCoord = __webpack_require__(354);
 
 var _BaseCoord = __webpack_require__(393);
@@ -24424,558 +24986,6 @@ $(document).on("iframeload", function () {
         }
     });
 });
-
-/***/ }),
-/* 374 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-if (__webpack_require__(348)) {
-  var LIBRARY = __webpack_require__(382);
-  var global = __webpack_require__(343);
-  var fails = __webpack_require__(344);
-  var $export = __webpack_require__(341);
-  var $typed = __webpack_require__(417);
-  var $buffer = __webpack_require__(454);
-  var ctx = __webpack_require__(364);
-  var anInstance = __webpack_require__(388);
-  var propertyDesc = __webpack_require__(380);
-  var hide = __webpack_require__(357);
-  var redefineAll = __webpack_require__(390);
-  var toInteger = __webpack_require__(370);
-  var toLength = __webpack_require__(350);
-  var toIndex = __webpack_require__(493);
-  var toAbsoluteIndex = __webpack_require__(384);
-  var toPrimitive = __webpack_require__(368);
-  var has = __webpack_require__(356);
-  var classof = __webpack_require__(403);
-  var isObject = __webpack_require__(345);
-  var toObject = __webpack_require__(351);
-  var isArrayIter = __webpack_require__(445);
-  var create = __webpack_require__(385);
-  var getPrototypeOf = __webpack_require__(362);
-  var gOPN = __webpack_require__(386).f;
-  var getIterFn = __webpack_require__(447);
-  var uid = __webpack_require__(381);
-  var wks = __webpack_require__(346);
-  var createArrayMethod = __webpack_require__(372);
-  var createArrayIncludes = __webpack_require__(408);
-  var speciesConstructor = __webpack_require__(415);
-  var ArrayIterators = __webpack_require__(450);
-  var Iterators = __webpack_require__(399);
-  var $iterDetect = __webpack_require__(412);
-  var setSpecies = __webpack_require__(387);
-  var arrayFill = __webpack_require__(449);
-  var arrayCopyWithin = __webpack_require__(483);
-  var $DP = __webpack_require__(349);
-  var $GOPD = __webpack_require__(361);
-  var dP = $DP.f;
-  var gOPD = $GOPD.f;
-  var RangeError = global.RangeError;
-  var TypeError = global.TypeError;
-  var Uint8Array = global.Uint8Array;
-  var ARRAY_BUFFER = 'ArrayBuffer';
-  var SHARED_BUFFER = 'Shared' + ARRAY_BUFFER;
-  var BYTES_PER_ELEMENT = 'BYTES_PER_ELEMENT';
-  var PROTOTYPE = 'prototype';
-  var ArrayProto = Array[PROTOTYPE];
-  var $ArrayBuffer = $buffer.ArrayBuffer;
-  var $DataView = $buffer.DataView;
-  var arrayForEach = createArrayMethod(0);
-  var arrayFilter = createArrayMethod(2);
-  var arraySome = createArrayMethod(3);
-  var arrayEvery = createArrayMethod(4);
-  var arrayFind = createArrayMethod(5);
-  var arrayFindIndex = createArrayMethod(6);
-  var arrayIncludes = createArrayIncludes(true);
-  var arrayIndexOf = createArrayIncludes(false);
-  var arrayValues = ArrayIterators.values;
-  var arrayKeys = ArrayIterators.keys;
-  var arrayEntries = ArrayIterators.entries;
-  var arrayLastIndexOf = ArrayProto.lastIndexOf;
-  var arrayReduce = ArrayProto.reduce;
-  var arrayReduceRight = ArrayProto.reduceRight;
-  var arrayJoin = ArrayProto.join;
-  var arraySort = ArrayProto.sort;
-  var arraySlice = ArrayProto.slice;
-  var arrayToString = ArrayProto.toString;
-  var arrayToLocaleString = ArrayProto.toLocaleString;
-  var ITERATOR = wks('iterator');
-  var TAG = wks('toStringTag');
-  var TYPED_CONSTRUCTOR = uid('typed_constructor');
-  var DEF_CONSTRUCTOR = uid('def_constructor');
-  var ALL_CONSTRUCTORS = $typed.CONSTR;
-  var TYPED_ARRAY = $typed.TYPED;
-  var VIEW = $typed.VIEW;
-  var WRONG_LENGTH = 'Wrong length!';
-
-  var $map = createArrayMethod(1, function (O, length) {
-    return allocate(speciesConstructor(O, O[DEF_CONSTRUCTOR]), length);
-  });
-
-  var LITTLE_ENDIAN = fails(function () {
-    // eslint-disable-next-line no-undef
-    return new Uint8Array(new Uint16Array([1]).buffer)[0] === 1;
-  });
-
-  var FORCED_SET = !!Uint8Array && !!Uint8Array[PROTOTYPE].set && fails(function () {
-    new Uint8Array(1).set({});
-  });
-
-  var toOffset = function toOffset(it, BYTES) {
-    var offset = toInteger(it);
-    if (offset < 0 || offset % BYTES) throw RangeError('Wrong offset!');
-    return offset;
-  };
-
-  var validate = function validate(it) {
-    if (isObject(it) && TYPED_ARRAY in it) return it;
-    throw TypeError(it + ' is not a typed array!');
-  };
-
-  var allocate = function allocate(C, length) {
-    if (!(isObject(C) && TYPED_CONSTRUCTOR in C)) {
-      throw TypeError('It is not a typed array constructor!');
-    }return new C(length);
-  };
-
-  var speciesFromList = function speciesFromList(O, list) {
-    return fromList(speciesConstructor(O, O[DEF_CONSTRUCTOR]), list);
-  };
-
-  var fromList = function fromList(C, list) {
-    var index = 0;
-    var length = list.length;
-    var result = allocate(C, length);
-    while (length > index) {
-      result[index] = list[index++];
-    }return result;
-  };
-
-  var addGetter = function addGetter(it, key, internal) {
-    dP(it, key, { get: function get() {
-        return this._d[internal];
-      } });
-  };
-
-  var $from = function from(source /* , mapfn, thisArg */) {
-    var O = toObject(source);
-    var aLen = arguments.length;
-    var mapfn = aLen > 1 ? arguments[1] : undefined;
-    var mapping = mapfn !== undefined;
-    var iterFn = getIterFn(O);
-    var i, length, values, result, step, iterator;
-    if (iterFn != undefined && !isArrayIter(iterFn)) {
-      for (iterator = iterFn.call(O), values = [], i = 0; !(step = iterator.next()).done; i++) {
-        values.push(step.value);
-      }O = values;
-    }
-    if (mapping && aLen > 2) mapfn = ctx(mapfn, arguments[2], 2);
-    for (i = 0, length = toLength(O.length), result = allocate(this, length); length > i; i++) {
-      result[i] = mapping ? mapfn(O[i], i) : O[i];
-    }
-    return result;
-  };
-
-  var $of = function of() /* ...items */{
-    var index = 0;
-    var length = arguments.length;
-    var result = allocate(this, length);
-    while (length > index) {
-      result[index] = arguments[index++];
-    }return result;
-  };
-
-  // iOS Safari 6.x fails here
-  var TO_LOCALE_BUG = !!Uint8Array && fails(function () {
-    arrayToLocaleString.call(new Uint8Array(1));
-  });
-
-  var $toLocaleString = function toLocaleString() {
-    return arrayToLocaleString.apply(TO_LOCALE_BUG ? arraySlice.call(validate(this)) : validate(this), arguments);
-  };
-
-  var proto = {
-    copyWithin: function copyWithin(target, start /* , end */) {
-      return arrayCopyWithin.call(validate(this), target, start, arguments.length > 2 ? arguments[2] : undefined);
-    },
-    every: function every(callbackfn /* , thisArg */) {
-      return arrayEvery(validate(this), callbackfn, arguments.length > 1 ? arguments[1] : undefined);
-    },
-    fill: function fill(value /* , start, end */) {
-      // eslint-disable-line no-unused-vars
-      return arrayFill.apply(validate(this), arguments);
-    },
-    filter: function filter(callbackfn /* , thisArg */) {
-      return speciesFromList(this, arrayFilter(validate(this), callbackfn, arguments.length > 1 ? arguments[1] : undefined));
-    },
-    find: function find(predicate /* , thisArg */) {
-      return arrayFind(validate(this), predicate, arguments.length > 1 ? arguments[1] : undefined);
-    },
-    findIndex: function findIndex(predicate /* , thisArg */) {
-      return arrayFindIndex(validate(this), predicate, arguments.length > 1 ? arguments[1] : undefined);
-    },
-    forEach: function forEach(callbackfn /* , thisArg */) {
-      arrayForEach(validate(this), callbackfn, arguments.length > 1 ? arguments[1] : undefined);
-    },
-    indexOf: function indexOf(searchElement /* , fromIndex */) {
-      return arrayIndexOf(validate(this), searchElement, arguments.length > 1 ? arguments[1] : undefined);
-    },
-    includes: function includes(searchElement /* , fromIndex */) {
-      return arrayIncludes(validate(this), searchElement, arguments.length > 1 ? arguments[1] : undefined);
-    },
-    join: function join(separator) {
-      // eslint-disable-line no-unused-vars
-      return arrayJoin.apply(validate(this), arguments);
-    },
-    lastIndexOf: function lastIndexOf(searchElement /* , fromIndex */) {
-      // eslint-disable-line no-unused-vars
-      return arrayLastIndexOf.apply(validate(this), arguments);
-    },
-    map: function map(mapfn /* , thisArg */) {
-      return $map(validate(this), mapfn, arguments.length > 1 ? arguments[1] : undefined);
-    },
-    reduce: function reduce(callbackfn /* , initialValue */) {
-      // eslint-disable-line no-unused-vars
-      return arrayReduce.apply(validate(this), arguments);
-    },
-    reduceRight: function reduceRight(callbackfn /* , initialValue */) {
-      // eslint-disable-line no-unused-vars
-      return arrayReduceRight.apply(validate(this), arguments);
-    },
-    reverse: function reverse() {
-      var that = this;
-      var length = validate(that).length;
-      var middle = Math.floor(length / 2);
-      var index = 0;
-      var value;
-      while (index < middle) {
-        value = that[index];
-        that[index++] = that[--length];
-        that[length] = value;
-      }return that;
-    },
-    some: function some(callbackfn /* , thisArg */) {
-      return arraySome(validate(this), callbackfn, arguments.length > 1 ? arguments[1] : undefined);
-    },
-    sort: function sort(comparefn) {
-      return arraySort.call(validate(this), comparefn);
-    },
-    subarray: function subarray(begin, end) {
-      var O = validate(this);
-      var length = O.length;
-      var $begin = toAbsoluteIndex(begin, length);
-      return new (speciesConstructor(O, O[DEF_CONSTRUCTOR]))(O.buffer, O.byteOffset + $begin * O.BYTES_PER_ELEMENT, toLength((end === undefined ? length : toAbsoluteIndex(end, length)) - $begin));
-    }
-  };
-
-  var $slice = function slice(start, end) {
-    return speciesFromList(this, arraySlice.call(validate(this), start, end));
-  };
-
-  var $set = function set(arrayLike /* , offset */) {
-    validate(this);
-    var offset = toOffset(arguments[1], 1);
-    var length = this.length;
-    var src = toObject(arrayLike);
-    var len = toLength(src.length);
-    var index = 0;
-    if (len + offset > length) throw RangeError(WRONG_LENGTH);
-    while (index < len) {
-      this[offset + index] = src[index++];
-    }
-  };
-
-  var $iterators = {
-    entries: function entries() {
-      return arrayEntries.call(validate(this));
-    },
-    keys: function keys() {
-      return arrayKeys.call(validate(this));
-    },
-    values: function values() {
-      return arrayValues.call(validate(this));
-    }
-  };
-
-  var isTAIndex = function isTAIndex(target, key) {
-    return isObject(target) && target[TYPED_ARRAY] && (typeof key === 'undefined' ? 'undefined' : _typeof(key)) != 'symbol' && key in target && String(+key) == String(key);
-  };
-  var $getDesc = function getOwnPropertyDescriptor(target, key) {
-    return isTAIndex(target, key = toPrimitive(key, true)) ? propertyDesc(2, target[key]) : gOPD(target, key);
-  };
-  var $setDesc = function defineProperty(target, key, desc) {
-    if (isTAIndex(target, key = toPrimitive(key, true)) && isObject(desc) && has(desc, 'value') && !has(desc, 'get') && !has(desc, 'set')
-    // TODO: add validation descriptor w/o calling accessors
-    && !desc.configurable && (!has(desc, 'writable') || desc.writable) && (!has(desc, 'enumerable') || desc.enumerable)) {
-      target[key] = desc.value;
-      return target;
-    }return dP(target, key, desc);
-  };
-
-  if (!ALL_CONSTRUCTORS) {
-    $GOPD.f = $getDesc;
-    $DP.f = $setDesc;
-  }
-
-  $export($export.S + $export.F * !ALL_CONSTRUCTORS, 'Object', {
-    getOwnPropertyDescriptor: $getDesc,
-    defineProperty: $setDesc
-  });
-
-  if (fails(function () {
-    arrayToString.call({});
-  })) {
-    arrayToString = arrayToLocaleString = function toString() {
-      return arrayJoin.call(this);
-    };
-  }
-
-  var $TypedArrayPrototype$ = redefineAll({}, proto);
-  redefineAll($TypedArrayPrototype$, $iterators);
-  hide($TypedArrayPrototype$, ITERATOR, $iterators.values);
-  redefineAll($TypedArrayPrototype$, {
-    slice: $slice,
-    set: $set,
-    constructor: function constructor() {/* noop */},
-    toString: arrayToString,
-    toLocaleString: $toLocaleString
-  });
-  addGetter($TypedArrayPrototype$, 'buffer', 'b');
-  addGetter($TypedArrayPrototype$, 'byteOffset', 'o');
-  addGetter($TypedArrayPrototype$, 'byteLength', 'l');
-  addGetter($TypedArrayPrototype$, 'length', 'e');
-  dP($TypedArrayPrototype$, TAG, {
-    get: function get() {
-      return this[TYPED_ARRAY];
-    }
-  });
-
-  // eslint-disable-next-line max-statements
-  module.exports = function (KEY, BYTES, wrapper, CLAMPED) {
-    CLAMPED = !!CLAMPED;
-    var NAME = KEY + (CLAMPED ? 'Clamped' : '') + 'Array';
-    var GETTER = 'get' + KEY;
-    var SETTER = 'set' + KEY;
-    var TypedArray = global[NAME];
-    var Base = TypedArray || {};
-    var TAC = TypedArray && getPrototypeOf(TypedArray);
-    var FORCED = !TypedArray || !$typed.ABV;
-    var O = {};
-    var TypedArrayPrototype = TypedArray && TypedArray[PROTOTYPE];
-    var getter = function getter(that, index) {
-      var data = that._d;
-      return data.v[GETTER](index * BYTES + data.o, LITTLE_ENDIAN);
-    };
-    var setter = function setter(that, index, value) {
-      var data = that._d;
-      if (CLAMPED) value = (value = Math.round(value)) < 0 ? 0 : value > 0xff ? 0xff : value & 0xff;
-      data.v[SETTER](index * BYTES + data.o, value, LITTLE_ENDIAN);
-    };
-    var addElement = function addElement(that, index) {
-      dP(that, index, {
-        get: function get() {
-          return getter(this, index);
-        },
-        set: function set(value) {
-          return setter(this, index, value);
-        },
-        enumerable: true
-      });
-    };
-    if (FORCED) {
-      TypedArray = wrapper(function (that, data, $offset, $length) {
-        anInstance(that, TypedArray, NAME, '_d');
-        var index = 0;
-        var offset = 0;
-        var buffer, byteLength, length, klass;
-        if (!isObject(data)) {
-          length = toIndex(data);
-          byteLength = length * BYTES;
-          buffer = new $ArrayBuffer(byteLength);
-        } else if (data instanceof $ArrayBuffer || (klass = classof(data)) == ARRAY_BUFFER || klass == SHARED_BUFFER) {
-          buffer = data;
-          offset = toOffset($offset, BYTES);
-          var $len = data.byteLength;
-          if ($length === undefined) {
-            if ($len % BYTES) throw RangeError(WRONG_LENGTH);
-            byteLength = $len - offset;
-            if (byteLength < 0) throw RangeError(WRONG_LENGTH);
-          } else {
-            byteLength = toLength($length) * BYTES;
-            if (byteLength + offset > $len) throw RangeError(WRONG_LENGTH);
-          }
-          length = byteLength / BYTES;
-        } else if (TYPED_ARRAY in data) {
-          return fromList(TypedArray, data);
-        } else {
-          return $from.call(TypedArray, data);
-        }
-        hide(that, '_d', {
-          b: buffer,
-          o: offset,
-          l: byteLength,
-          e: length,
-          v: new $DataView(buffer)
-        });
-        while (index < length) {
-          addElement(that, index++);
-        }
-      });
-      TypedArrayPrototype = TypedArray[PROTOTYPE] = create($TypedArrayPrototype$);
-      hide(TypedArrayPrototype, 'constructor', TypedArray);
-    } else if (!fails(function () {
-      TypedArray(1);
-    }) || !fails(function () {
-      new TypedArray(-1); // eslint-disable-line no-new
-    }) || !$iterDetect(function (iter) {
-      new TypedArray(); // eslint-disable-line no-new
-      new TypedArray(null); // eslint-disable-line no-new
-      new TypedArray(1.5); // eslint-disable-line no-new
-      new TypedArray(iter); // eslint-disable-line no-new
-    }, true)) {
-      TypedArray = wrapper(function (that, data, $offset, $length) {
-        anInstance(that, TypedArray, NAME);
-        var klass;
-        // `ws` module bug, temporarily remove validation length for Uint8Array
-        // https://github.com/websockets/ws/pull/645
-        if (!isObject(data)) return new Base(toIndex(data));
-        if (data instanceof $ArrayBuffer || (klass = classof(data)) == ARRAY_BUFFER || klass == SHARED_BUFFER) {
-          return $length !== undefined ? new Base(data, toOffset($offset, BYTES), $length) : $offset !== undefined ? new Base(data, toOffset($offset, BYTES)) : new Base(data);
-        }
-        if (TYPED_ARRAY in data) return fromList(TypedArray, data);
-        return $from.call(TypedArray, data);
-      });
-      arrayForEach(TAC !== Function.prototype ? gOPN(Base).concat(gOPN(TAC)) : gOPN(Base), function (key) {
-        if (!(key in TypedArray)) hide(TypedArray, key, Base[key]);
-      });
-      TypedArray[PROTOTYPE] = TypedArrayPrototype;
-      if (!LIBRARY) TypedArrayPrototype.constructor = TypedArray;
-    }
-    var $nativeIterator = TypedArrayPrototype[ITERATOR];
-    var CORRECT_ITER_NAME = !!$nativeIterator && ($nativeIterator.name == 'values' || $nativeIterator.name == undefined);
-    var $iterator = $iterators.values;
-    hide(TypedArray, TYPED_CONSTRUCTOR, true);
-    hide(TypedArrayPrototype, TYPED_ARRAY, NAME);
-    hide(TypedArrayPrototype, VIEW, true);
-    hide(TypedArrayPrototype, DEF_CONSTRUCTOR, TypedArray);
-
-    if (CLAMPED ? new TypedArray(1)[TAG] != NAME : !(TAG in TypedArrayPrototype)) {
-      dP(TypedArrayPrototype, TAG, {
-        get: function get() {
-          return NAME;
-        }
-      });
-    }
-
-    O[NAME] = TypedArray;
-
-    $export($export.G + $export.W + $export.F * (TypedArray != Base), O);
-
-    $export($export.S, NAME, {
-      BYTES_PER_ELEMENT: BYTES
-    });
-
-    $export($export.S + $export.F * fails(function () {
-      Base.of.call(TypedArray, 1);
-    }), NAME, {
-      from: $from,
-      of: $of
-    });
-
-    if (!(BYTES_PER_ELEMENT in TypedArrayPrototype)) hide(TypedArrayPrototype, BYTES_PER_ELEMENT, BYTES);
-
-    $export($export.P, NAME, proto);
-
-    setSpecies(NAME);
-
-    $export($export.P + $export.F * FORCED_SET, NAME, { set: $set });
-
-    $export($export.P + $export.F * !CORRECT_ITER_NAME, NAME, $iterators);
-
-    if (!LIBRARY && TypedArrayPrototype.toString != arrayToString) TypedArrayPrototype.toString = arrayToString;
-
-    $export($export.P + $export.F * fails(function () {
-      new TypedArray(1).slice();
-    }), NAME, { slice: $slice });
-
-    $export($export.P + $export.F * (fails(function () {
-      return [1, 2].toLocaleString() != new TypedArray([1, 2]).toLocaleString();
-    }) || !fails(function () {
-      TypedArrayPrototype.toLocaleString.call([1, 2]);
-    })), NAME, { toLocaleString: $toLocaleString });
-
-    Iterators[NAME] = CORRECT_ITER_NAME ? $nativeIterator : $iterator;
-    if (!LIBRARY && !CORRECT_ITER_NAME) hide(TypedArrayPrototype, ITERATOR, $iterator);
-  };
-} else module.exports = function () {/* empty */};
-
-/***/ }),
-/* 375 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-var Map = __webpack_require__(488);
-var $export = __webpack_require__(341);
-var shared = __webpack_require__(407)('metadata');
-var store = shared.store || (shared.store = new (__webpack_require__(491))());
-
-var getOrCreateMetadataMap = function getOrCreateMetadataMap(target, targetKey, create) {
-  var targetMetadata = store.get(target);
-  if (!targetMetadata) {
-    if (!create) return undefined;
-    store.set(target, targetMetadata = new Map());
-  }
-  var keyMetadata = targetMetadata.get(targetKey);
-  if (!keyMetadata) {
-    if (!create) return undefined;
-    targetMetadata.set(targetKey, keyMetadata = new Map());
-  }return keyMetadata;
-};
-var ordinaryHasOwnMetadata = function ordinaryHasOwnMetadata(MetadataKey, O, P) {
-  var metadataMap = getOrCreateMetadataMap(O, P, false);
-  return metadataMap === undefined ? false : metadataMap.has(MetadataKey);
-};
-var ordinaryGetOwnMetadata = function ordinaryGetOwnMetadata(MetadataKey, O, P) {
-  var metadataMap = getOrCreateMetadataMap(O, P, false);
-  return metadataMap === undefined ? undefined : metadataMap.get(MetadataKey);
-};
-var ordinaryDefineOwnMetadata = function ordinaryDefineOwnMetadata(MetadataKey, MetadataValue, O, P) {
-  getOrCreateMetadataMap(O, P, true).set(MetadataKey, MetadataValue);
-};
-var ordinaryOwnMetadataKeys = function ordinaryOwnMetadataKeys(target, targetKey) {
-  var metadataMap = getOrCreateMetadataMap(target, targetKey, false);
-  var keys = [];
-  if (metadataMap) metadataMap.forEach(function (_, key) {
-    keys.push(key);
-  });
-  return keys;
-};
-var toMetaKey = function toMetaKey(it) {
-  return it === undefined || (typeof it === 'undefined' ? 'undefined' : _typeof(it)) == 'symbol' ? it : String(it);
-};
-var exp = function exp(O) {
-  $export($export.S, 'Reflect', O);
-};
-
-module.exports = {
-  store: store,
-  map: getOrCreateMetadataMap,
-  has: ordinaryHasOwnMetadata,
-  get: ordinaryGetOwnMetadata,
-  set: ordinaryDefineOwnMetadata,
-  keys: ordinaryOwnMetadataKeys,
-  key: toMetaKey,
-  exp: exp
-};
 
 /***/ }),
 /* 376 */,
@@ -37120,7 +37130,7 @@ $export($export.G + $export.W + $export.F * !__webpack_require__(417).ABV, {
 "use strict";
 
 
-__webpack_require__(374)('Int8', 1, function (init) {
+__webpack_require__(373)('Int8', 1, function (init) {
   return function Int8Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
@@ -37133,7 +37143,7 @@ __webpack_require__(374)('Int8', 1, function (init) {
 "use strict";
 
 
-__webpack_require__(374)('Uint8', 1, function (init) {
+__webpack_require__(373)('Uint8', 1, function (init) {
   return function Uint8Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
@@ -37146,7 +37156,7 @@ __webpack_require__(374)('Uint8', 1, function (init) {
 "use strict";
 
 
-__webpack_require__(374)('Uint8', 1, function (init) {
+__webpack_require__(373)('Uint8', 1, function (init) {
   return function Uint8ClampedArray(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
@@ -37159,7 +37169,7 @@ __webpack_require__(374)('Uint8', 1, function (init) {
 "use strict";
 
 
-__webpack_require__(374)('Int16', 2, function (init) {
+__webpack_require__(373)('Int16', 2, function (init) {
   return function Int16Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
@@ -37172,7 +37182,7 @@ __webpack_require__(374)('Int16', 2, function (init) {
 "use strict";
 
 
-__webpack_require__(374)('Uint16', 2, function (init) {
+__webpack_require__(373)('Uint16', 2, function (init) {
   return function Uint16Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
@@ -37185,7 +37195,7 @@ __webpack_require__(374)('Uint16', 2, function (init) {
 "use strict";
 
 
-__webpack_require__(374)('Int32', 4, function (init) {
+__webpack_require__(373)('Int32', 4, function (init) {
   return function Int32Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
@@ -37198,7 +37208,7 @@ __webpack_require__(374)('Int32', 4, function (init) {
 "use strict";
 
 
-__webpack_require__(374)('Uint32', 4, function (init) {
+__webpack_require__(373)('Uint32', 4, function (init) {
   return function Uint32Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
@@ -37211,7 +37221,7 @@ __webpack_require__(374)('Uint32', 4, function (init) {
 "use strict";
 
 
-__webpack_require__(374)('Float32', 4, function (init) {
+__webpack_require__(373)('Float32', 4, function (init) {
   return function Float32Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
@@ -37224,7 +37234,7 @@ __webpack_require__(374)('Float32', 4, function (init) {
 "use strict";
 
 
-__webpack_require__(374)('Float64', 8, function (init) {
+__webpack_require__(373)('Float64', 8, function (init) {
   return function Float64Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
@@ -38359,7 +38369,7 @@ $export($export.S, 'Promise', { 'try': function _try(callbackfn) {
 "use strict";
 
 
-var metadata = __webpack_require__(375);
+var metadata = __webpack_require__(374);
 var anObject = __webpack_require__(342);
 var toMetaKey = metadata.key;
 var ordinaryDefineOwnMetadata = metadata.set;
@@ -38375,7 +38385,7 @@ metadata.exp({ defineMetadata: function defineMetadata(metadataKey, metadataValu
 "use strict";
 
 
-var metadata = __webpack_require__(375);
+var metadata = __webpack_require__(374);
 var anObject = __webpack_require__(342);
 var toMetaKey = metadata.key;
 var getOrCreateMetadataMap = metadata.map;
@@ -38398,7 +38408,7 @@ metadata.exp({ deleteMetadata: function deleteMetadata(metadataKey, target /* , 
 "use strict";
 
 
-var metadata = __webpack_require__(375);
+var metadata = __webpack_require__(374);
 var anObject = __webpack_require__(342);
 var getPrototypeOf = __webpack_require__(362);
 var ordinaryHasOwnMetadata = metadata.has;
@@ -38425,7 +38435,7 @@ metadata.exp({ getMetadata: function getMetadata(metadataKey, target /* , target
 
 var Set = __webpack_require__(490);
 var from = __webpack_require__(499);
-var metadata = __webpack_require__(375);
+var metadata = __webpack_require__(374);
 var anObject = __webpack_require__(342);
 var getPrototypeOf = __webpack_require__(362);
 var ordinaryOwnMetadataKeys = metadata.keys;
@@ -38450,7 +38460,7 @@ metadata.exp({ getMetadataKeys: function getMetadataKeys(target /* , targetKey *
 "use strict";
 
 
-var metadata = __webpack_require__(375);
+var metadata = __webpack_require__(374);
 var anObject = __webpack_require__(342);
 var ordinaryGetOwnMetadata = metadata.get;
 var toMetaKey = metadata.key;
@@ -38466,7 +38476,7 @@ metadata.exp({ getOwnMetadata: function getOwnMetadata(metadataKey, target /* , 
 "use strict";
 
 
-var metadata = __webpack_require__(375);
+var metadata = __webpack_require__(374);
 var anObject = __webpack_require__(342);
 var ordinaryOwnMetadataKeys = metadata.keys;
 var toMetaKey = metadata.key;
@@ -38482,7 +38492,7 @@ metadata.exp({ getOwnMetadataKeys: function getOwnMetadataKeys(target /* , targe
 "use strict";
 
 
-var metadata = __webpack_require__(375);
+var metadata = __webpack_require__(374);
 var anObject = __webpack_require__(342);
 var getPrototypeOf = __webpack_require__(362);
 var ordinaryHasOwnMetadata = metadata.has;
@@ -38506,7 +38516,7 @@ metadata.exp({ hasMetadata: function hasMetadata(metadataKey, target /* , target
 "use strict";
 
 
-var metadata = __webpack_require__(375);
+var metadata = __webpack_require__(374);
 var anObject = __webpack_require__(342);
 var ordinaryHasOwnMetadata = metadata.has;
 var toMetaKey = metadata.key;
@@ -38522,7 +38532,7 @@ metadata.exp({ hasOwnMetadata: function hasOwnMetadata(metadataKey, target /* , 
 "use strict";
 
 
-var $metadata = __webpack_require__(375);
+var $metadata = __webpack_require__(374);
 var anObject = __webpack_require__(342);
 var aFunction = __webpack_require__(352);
 var toMetaKey = $metadata.key;
@@ -47493,7 +47503,7 @@ var overDistance = 50;
 var gridLayout = play.gridLayout;
 
 var Group = __webpack_require__(456);
-var MoveHelper = __webpack_require__(373);
+var MoveHelper = __webpack_require__(375);
 
 //绝对定位的元素只找绝对定位的元素
 var isRightEl = function isRightEl(el, ex, isStatic) {
@@ -53319,7 +53329,7 @@ var _CSS = __webpack_require__(508);
 "use strict";
 
 
-var MoveHelper = __webpack_require__(373);
+var MoveHelper = __webpack_require__(375);
 (function () {
 
     //拖拽新元素
@@ -53661,7 +53671,7 @@ var _section = __webpack_require__(405);
 
 var _ScrollToVisible = __webpack_require__(507);
 
-var MoveHelper = __webpack_require__(373);
+var MoveHelper = __webpack_require__(375);
 
 
 //拖拽新元素
@@ -53879,7 +53889,7 @@ $(document).on("iframeload", function () {
 "use strict";
 
 
-var MoveHelper = __webpack_require__(373);
+var MoveHelper = __webpack_require__(375);
 
 (function () {
 
@@ -54082,7 +54092,7 @@ var MoveHelper = __webpack_require__(373);
 "use strict";
 
 
-var MoveHelper = __webpack_require__(373);
+var MoveHelper = __webpack_require__(375);
 
 //不影响其它元素位置的resize
 
@@ -54340,7 +54350,7 @@ $(document).on("resizeEl", function (ev, el, coord) {
 "use strict";
 
 
-var MoveHelper = __webpack_require__(373);
+var MoveHelper = __webpack_require__(375);
 //影响下方位置的resize
 
 (function () {
@@ -54663,7 +54673,7 @@ var MoveHelper = __webpack_require__(373);
 "use strict";
 
 
-var MoveHelper = __webpack_require__(373);
+var MoveHelper = __webpack_require__(375);
 (function () {
 
     var utils = play.utils,
@@ -54844,7 +54854,7 @@ var MoveHelper = __webpack_require__(373);
 var _RelativeCoord = __webpack_require__(354);
 
 //不影响位置的移动
-var MoveHelper = __webpack_require__(373);
+var MoveHelper = __webpack_require__(375);
 
 
 (function () {
@@ -56228,7 +56238,7 @@ var _LayoutFromProps = __webpack_require__(391);
 
 var _utils2 = __webpack_require__(363);
 
-var MoveHelper = __webpack_require__(373);
+var MoveHelper = __webpack_require__(375);
 
 play.LayoutResponse = {
     setNeedUpdate: function setNeedUpdate(el, type) {
@@ -57063,7 +57073,6 @@ $(document).on("iframeload", function () {
 
 
 //不影响位置的移动
-var MoveHelper = __webpack_require__(373);
 
 (function () {
 
@@ -57080,7 +57089,6 @@ var MoveHelper = __webpack_require__(373);
 
     var start = 0;
     var startDrag = function startDrag(startX, startY, starget, ev) {
-
         start = 1;
         oldCoord = {
             left: $("#tool-panel").offset().left,
@@ -57095,9 +57103,7 @@ var MoveHelper = __webpack_require__(373);
     };
 
     var ondrag = function ondrag(startX, startY, endX, endY, starget) {
-
         if (start !== 1) return;
-
         $("#tool-panel").css({
             left: oldCoord.left + endX - startX + "px",
             top: oldCoord.top + endY - startY + "px"
@@ -57119,7 +57125,6 @@ var MoveHelper = __webpack_require__(373);
             pointerEvents: "none"
         });
     };
-
     $(document).on("iframeload", function () {
         drag.ondrag($("#tool-panel .handle"), startDrag, ondrag, endDrag);
     });
@@ -60039,10 +60044,10 @@ var TextSet = Sophie.createClass("font-set", {
                         Sophie.element("input", { "class": "slide", "data-cssname": "lineHeight",
                             type: "text",
                             name: "opacity",
-                            "data-slider-min": "1",
-                            "data-slider-max": "2",
+                            "data-slider-min": "1.5",
+                            "data-slider-max": "4",
                             "data-slider-step": "0.1",
-                            "data-slider-value": "1",
+                            "data-slider-value": "1.5",
                             "data-target-input": "#font-line-input"
                         }),
                         Sophie.element("input", { id: "font-line-input", "class": "form-control",
@@ -65514,7 +65519,8 @@ Sophie.createStyleSheet({
     }, _defineProperty(_shortcutbarWrap, "color", '#fff'), _defineProperty(_shortcutbarWrap, "whiteSpace", 'nowrap'), _defineProperty(_shortcutbarWrap, "zIndex", '999'), _defineProperty(_shortcutbarWrap, "background", "#2c383e"), _defineProperty(_shortcutbarWrap, "borderRadius", 5), _defineProperty(_shortcutbarWrap, "position", 'absolute'), _defineProperty(_shortcutbarWrap, "top", 0), _defineProperty(_shortcutbarWrap, "left", 0), _shortcutbarWrap),
 
     '.dragging .shortcutbar': {
-        printerEvent: "none"
+        printerEvent: "none",
+        "display": "none"
     },
 
     '.shortcutbar .show-name': {
@@ -65732,7 +65738,7 @@ exports = module.exports = __webpack_require__(3)();
 
 
 // module
-exports.push([module.i, ".parent-mask {\n  z-index: 1000;\n  position: absolute;\n  pointer-events: none;\n  /* background-color: rgba(74, 134, 232, 0.2);*/\n  border: #2ebdff solid 1px;\n  left: 0;\n  top: 0; }\n\n.context-mask {\n  z-index: 998;\n  position: absolute;\n  pointer-events: none;\n  /* background-color: rgba(74, 134, 232, 0.2);*/\n  outline: #ccc dashed 1px;\n  /* box-shadow:  0 0 0 4px rgba(0, 127, 255, 0.65),  0 0 0 4px rgba(0, 127, 255, 0.65), 0 0 0 0px rgba(0, 127, 255, 0.65);*/\n  left: 0;\n  top: 0; }\n\n.context-mask .parent-tagname {\n  pointer-events: auto;\n  position: absolute;\n  background-color: #ccc;\n  height: 20px;\n  line-height: 20px;\n  padding: 0 5px;\n  display: none; }\n\n.selection-up {\n  position: absolute;\n  bottom: 0;\n  right: 50px;\n  background-color: red;\n  width: 30px;\n  height: 30px;\n  pointer-events: auto; }\n\n.selection-add {\n  position: absolute;\n  bottom: -15px;\n  right: -15px;\n  background-color: red;\n  width: 30px;\n  height: 30px;\n  pointer-events: auto; }\n\n.quick-panel {\n  position: absolute;\n  top: 0;\n  right: -30px;\n  width: 30px;\n  pointer-events: auto; }\n\n.quick-panel.inner {\n  right: 0 !important; }\n\n.quick-panel a {\n  width: 30px;\n  height: 30px;\n  background-color: #C6D1D6;\n  color: #fff;\n  display: block;\n  text-align: center;\n  line-height: 30px;\n  font-size: 12px; }\n\n.quick-panel a.q-s-up {\n  display: none; }\n\n.quick-panel a.q-s-down {\n  display: none; }\n\n.quick-panel a:hover {\n  background-color: #00C3D9;\n  text-decoration: none; }\n\n.quick-panel.section a.q-s-up, .quick-panel.section a.q-s-down {\n  display: block; }\n\n.max-layout {\n  height: 100%;\n  position: relative;\n  width: 100%;\n  margin: auto;\n  pointer-events: none !important; }\n\n.draging #mask-shortcutbar {\n  display: none; }\n", ""]);
+exports.push([module.i, ".parent-mask {\n  z-index: 1000;\n  position: absolute;\n  pointer-events: none;\n  /* background-color: rgba(74, 134, 232, 0.2);*/\n  border: #2ebdff solid 1px;\n  left: 0;\n  top: 0; }\n\n.context-mask {\n  z-index: 998;\n  position: absolute;\n  pointer-events: none;\n  /* background-color: rgba(74, 134, 232, 0.2);*/\n  outline: #ccc dashed 1px;\n  /* box-shadow:  0 0 0 4px rgba(0, 127, 255, 0.65),  0 0 0 4px rgba(0, 127, 255, 0.65), 0 0 0 0px rgba(0, 127, 255, 0.65);*/\n  left: 0;\n  top: 0; }\n\n.context-mask .parent-tagname {\n  pointer-events: auto;\n  position: absolute;\n  background-color: #ccc;\n  height: 20px;\n  line-height: 20px;\n  padding: 0 5px;\n  display: none; }\n\n.selection-up {\n  position: absolute;\n  bottom: 0;\n  right: 50px;\n  background-color: red;\n  width: 30px;\n  height: 30px;\n  pointer-events: auto; }\n\n.selection-add {\n  position: absolute;\n  bottom: -15px;\n  right: -15px;\n  background-color: red;\n  width: 30px;\n  height: 30px;\n  pointer-events: auto; }\n\n.quick-panel {\n  position: absolute;\n  top: 0;\n  right: -30px;\n  width: 30px;\n  pointer-events: auto; }\n\n.quick-panel.inner {\n  right: 0 !important; }\n\n.quick-panel a {\n  width: 30px;\n  height: 30px;\n  background-color: #C6D1D6;\n  color: #fff;\n  display: block;\n  text-align: center;\n  line-height: 30px;\n  font-size: 12px; }\n\n.quick-panel a.q-s-up {\n  display: none; }\n\n.quick-panel a.q-s-down {\n  display: none; }\n\n.quick-panel a:hover {\n  background-color: #00C3D9;\n  text-decoration: none; }\n\n.quick-panel.section a.q-s-up, .quick-panel.section a.q-s-down {\n  display: block; }\n\n.max-layout {\n  height: 100%;\n  position: relative;\n  width: 100%;\n  margin: auto;\n  pointer-events: none !important; }\n\n.dragging #mask-shortcutbar, .dragging .shortcutbar {\n  display: none !important; }\n", ""]);
 
 // exports
 
