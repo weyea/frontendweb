@@ -105,6 +105,10 @@ var Base = Sophie.createClass({
 
         appendClass(this);
 
+        if (this.props.layoutType !== "grid") {
+            self.appendClassName("layouttype-" + this.props.layoutType, this);
+        }
+
         //区分来源，为原生的组件生成特有的class方便css设置
 
         if (this.ownerDocument == Sophie.firstVnode) {
@@ -674,7 +678,6 @@ Sophie.createStyleSheet(_defineProperty({
         "background-size": "cover",
         borderStyle: "solid",
         borderWidth: "0"
-
     },
 
     ".p-layout:before,.p-layout:after": {
@@ -1583,6 +1586,7 @@ module.exports = {
             return this._renderGridChildren();
         }
     },
+
     renderChildren: function renderChildren() {
         this.props.layoutType = "grid";
         return this.renderGridChildren();
@@ -8154,6 +8158,9 @@ var Section = Sophie.createClass("p-section", {
 
         };
     },
+    getTemplate: function getTemplate() {
+        return Sophie.element(LayoutInner, null);
+    },
     componentDidMount: function componentDidMount() {
 
         // var src = $(this.node).attr("src")||"http://img.tuku.cn/file_big/201502/ad45f0968eba4b92ba549cc7abf0e70a.jpg"
@@ -14166,7 +14173,7 @@ exports = module.exports = __webpack_require__(3)();
 
 
 // module
-exports.push([module.i, "p-header, p-footer {\n    background-color: #333333;\n}\n\nhtml p-header {\n    padding-bottom: 3em;\n    background-size: cover;\n}\n\n\nhtml p-footer {\n    padding-bottom: 5em;\n    background-size: cover;\n}\n\nhtml p-layout {\n    padding-bottom: 5em;\n    background-size: cover;\n}\n\nhtml * {\n    margin: 0;\n    padding: 0;\n\n    -webkit-box-sizing: border-box;\n    -moz-box-sizing: border-box;\n    box-sizing: border-box;\n    word-wrap: break-word;\n\n}\n\nbody:before, body:after {\n    display: table;\n    line-height: 0;\n    content: \"\";\n}\n\nbody * {\n    vertical-align: top;\n}\n\nbody {\n    font-size: inherit !important;\n\n}\n\n.p-container-fluid:before, .p-container-fluid:after, .p-container:before, .p-container:after {\n    display: table;\n    line-height: 0;\n    content: \"\"\n}\n\n.p-container-fluid, .p-container {\n    height: auto !important;\n    position: relative;\n    margin: auto !important\n}\n\n.p-container-absolute {\n    z-index: 10\n}\n\n.p-container-fluid > * {\n    width: 100% !important;\n    margin-left: auto !important;\n    margin-right: auto !important\n}\n\n#page {\n    -webkit-backface-visibility: hidden;\n    backface-visibility: hidden;\n    -webkit-transition: right .4s ease-in-out, opacity .4s linear, background .4s ease-in-out;\n    transition: right .4s ease-in-out, opacity .4s linear, background .4s ease-in-out;\n    position: relative;\n    right: 0\n}\n\nbody.resizing-y * {\n    cursor: ns-resize !important;\n}\n\nbody.resizing-x * {\n    cursor: ew-resize !important;\n}\n\n.p-absolute {\n    position: absolute !important;\n}\n\nchildren {\n    display: block\n}\n\nchildren:before, children:after {\n    display: table;\n    line-height: 0;\n    content: \"\";\n    clear: both;\n}\n\n.wysiwyg-text-align-center {\n    text-align: center\n}\n\n.wysiwyg-text-align-left {\n    text-align: left\n}\n\n.wysiwyg-text-align-right {\n    text-align: right\n}\n\n", ""]);
+exports.push([module.i, "p-header, p-footer {\n    background-color: #333333;\n}\n\nhtml p-header {\n    padding-bottom: 3em;\n    background-size: cover;\n}\n\n\nhtml p-footer {\n    padding-bottom: 5em;\n    background-size: cover;\n}\n\nhtml p-layout {\n    padding-bottom: 5em;\n    background-size: cover;\n}\n\nhtml * {\n    margin: 0;\n    padding: 0;\n\n    -webkit-box-sizing: border-box;\n    -moz-box-sizing: border-box;\n    box-sizing: border-box;\n    word-wrap: break-word;\n\n}\n\nbody:before, body:after {\n    display: table;\n    line-height: 0;\n    content: \"\";\n}\n\nbody * {\n    vertical-align: top;\n}\n\nbody {\n    font-size: inherit !important;\n\n}\n\n.p-container-fluid:before, .p-container-fluid:after, .p-container:before, .p-container:after {\n    display: table;\n    line-height: 0;\n    content: \"\"\n}\n\n.p-container-fluid, .p-container {\n    height: auto !important;\n    position: relative;\n    margin: auto !important\n}\n\n.p-container-absolute {\n    z-index: 10\n}\n\n.p-container-fluid > * {\n    width: 100% !important;\n    margin-left: auto !important;\n    margin-right: auto !important\n}\n\n#page {\n    -webkit-backface-visibility: hidden;\n    backface-visibility: hidden;\n    -webkit-transition: right .4s ease-in-out, opacity .4s linear, background .4s ease-in-out;\n    transition: right .4s ease-in-out, opacity .4s linear, background .4s ease-in-out;\n    position: relative;\n    right: 0\n}\n\nbody.resizing-y * {\n    cursor: ns-resize !important;\n}\n\nbody.resizing-x * {\n    cursor: ew-resize !important;\n}\n\n.p-absolute {\n    position: absolute !important;\n}\n\nchildren {\n    display: block\n}\n\nchildren:before, children:after {\n    display: table;\n    line-height: 0;\n    content: \"\";\n    clear: both;\n}\n\n.wysiwyg-text-align-center {\n    text-align: center\n}\n\n.wysiwyg-text-align-left {\n    text-align: left\n}\n\n.wysiwyg-text-align-right {\n    text-align: right\n}\n\n.layouttype-list, layouttype-column{\n    padding-bottom: 0!important;\n}\n", ""]);
 
 // exports
 
@@ -14522,7 +14529,7 @@ exports = module.exports = __webpack_require__(3)();
 
 
 // module
-exports.push([module.i, ".layout-column{\n    width: 100%;\n    height:100%;\n}\n\n.layout-column .c-ceil{\n    width:25%;\n    height:100%;\n    float: left;\n}", ""]);
+exports.push([module.i, ".layout-column {\n    width: 100%;\n    height: 100%;\n}\n\n.layout-column .c-ceil {\n    width: 25%;\n    height: 100%;\n    float: left;\n    position: relative;\n}\n\n\n\n.layout-column  .c-ceil > .p-layout-inner,.layout-column  .c-ceil > .p-pic-inner {\n    position: absolute;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    display: block;\n    overflow: hidden;\n    flex: 1;\n    width: auto;\n    height: auto\n\n}\n", ""]);
 
 // exports
 
@@ -24382,6 +24389,8 @@ module.exports = {
             cmdArds.props = {
                 iconName: className
             };
+
+            return cmdArds;
         } else {
             var component = target.get(0).vnode.props.component;
             if (component) {
@@ -32911,11 +32920,6 @@ var WidgetPanel = Sophie.createClass("widget-panel", {
                     Scale,
                     null,
                     Sophie.element(App.NavPage, { theme: "theme-1", pageData: this.renderNavItem() })
-                ),
-                Sophie.element(
-                    Scale,
-                    null,
-                    Sophie.element(App.NavPage, { theme: "theme-2", pageData: this.renderNavItem() })
                 ),
                 Sophie.element(
                     Scale,
@@ -45380,9 +45384,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             if (coord.top > viewport.top + viewport.height) {
                 return false;
             }
-            if (coord.right >= viewport.right) {
-                return false;
-            }
+
             return true;
         },
 
@@ -53757,7 +53759,12 @@ var start = function start(ev) {
     }
 
     var cmdArds = MoveHelper.getAddArgs(target);
+
     if (!cmdArds || !cmdArds.tagName) return;
+
+    if (cmdArds && cmdArds.tagName == "p-icon") {
+        $("#my-iconlist-modal").modal("hide");
+    }
 
     if (cmdArds.tagName == "p-nav-page" || cmdArds.tagName == "p-nav-mobile") {
         if ($(cmdArds.tagName, play.iframeDoc).length) {
@@ -60117,23 +60124,7 @@ var TextSet = Sophie.createClass("font-set", {
                             )
                         )
                     ),
-                    Sophie.element(
-                        "div",
-                        { "class": "shortcutbar-font", style: "display: none" },
-                        Sophie.element(
-                            "div",
-                            { "class": "shortcutbar-font-cmd", "data-role": "editor-toolbar" },
-                            Sophie.element(
-                                "div",
-                                { "class": "btn-group handle" },
-                                Sophie.element(
-                                    "a",
-                                    { "class": "btn shortcutbar-font-edit " },
-                                    Sophie.element("i", { "class": "fa fa-pencil" })
-                                )
-                            )
-                        )
-                    )
+                    Sophie.element("div", { "class": "shortcutbar-font", style: "display: none" })
                 )
             ),
             Sophie.element(
@@ -62215,13 +62206,36 @@ var ImgSet = Sophie.createClass("section-set", {
             { "class": "section-set", style: "display:none" },
             Sophie.element(
                 "div",
-                { "class": "shortcutbar-section", style: "display: none" },
+                { "class": "form-group column" },
                 Sophie.element(
-                    "a",
-                    { title: "\u8BBE\u7F6E\u80CC\u666F", "class": "btn  set-src" },
-                    Sophie.element("i", { "class": "fa fa-picture-o" })
+                    "div",
+                    { "class": "row" },
+                    Sophie.element(
+                        "label",
+                        { "class": "f-label" },
+                        "\u5206\u680F"
+                    ),
+                    Sophie.element("input", { "class": "width-input", type: "text", "data-cssunit": "px", "data-cssname": "width" }),
+                    Sophie.element(
+                        "label",
+                        { "class": "f-label" },
+                        "\u95F4\u8DDD"
+                    ),
+                    Sophie.element("input", { "class": "padding-input", type: "text", "data-cssunit": "px", "data-cssname": "width" })
+                ),
+                Sophie.element(
+                    "div",
+                    { "class": "fullwidth" },
+                    Sophie.element("input", { type: "checkbox", "data-cssname": "fullWidth" }),
+                    " ",
+                    Sophie.element(
+                        "label",
+                        null,
+                        "\u5168\u5C4F"
+                    )
                 )
             ),
+            Sophie.element("div", { "class": "shortcutbar-section", style: "display: none" }),
             Sophie.element(
                 "div",
                 { "class": "modal fade", id: "set-section-href", tabindex: "-1", role: "dialog", "aria-labelledby": "myModalLabel",
@@ -62237,7 +62251,8 @@ var ImgSet = Sophie.createClass("section-set", {
                             { "class": "modal-header" },
                             Sophie.element(
                                 "button",
-                                { type: "button", "class": "close", "data-dismiss": "modal", "aria-hidden": "true" },
+                                { type: "button", "class": "close", "data-dismiss": "modal",
+                                    "aria-hidden": "true" },
                                 "\xD7"
                             ),
                             Sophie.element(
@@ -62249,7 +62264,8 @@ var ImgSet = Sophie.createClass("section-set", {
                         Sophie.element(
                             "div",
                             { "class": "modal-body" },
-                            Sophie.element("input", { type: "text", "class": "form-control", id: "set-section-href-value", placeholder: "http://" })
+                            Sophie.element("input", { type: "text", "class": "form-control", id: "set-section-href-value",
+                                placeholder: "http://" })
                         ),
                         Sophie.element(
                             "div",
@@ -62761,8 +62777,8 @@ Sophie.createStyleSheet({
 
         pointerEvents: "auto",
 
-        position: "relative",
-        width: "462px"
+        position: "relative"
+
     },
 
     '.shortcutbar-icon.more': {
