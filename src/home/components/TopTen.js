@@ -26,7 +26,8 @@ export default  React.createClass({
         var l = this.state.template.length
         return (
             <div id="top-template">
-                    <h1>每日精选</h1>
+                    <h3 className="header">一次设计，多端适配</h3>
+                    <p className="desc"><span>一次编辑，轻松实现PC端、移动端同步展示，<br/> 市面上不同的显示器、手机屏幕均能无缝兼容</span></p>
                     <div className="slide">
                         <div id="carousel-example-generic" className="carousel slide" data-ride="carousel">
                             <ol className="carousel-indicators">

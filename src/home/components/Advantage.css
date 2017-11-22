@@ -1,0 +1,34 @@
+
+#advantage {
+    background-color: #00C3D9;
+}
+#advantage h3 {
+    text-align: center;
+    font-size: 36px;
+    font-family: "MicrosoftYaHei";
+    margin-top: 60px;
+    color: #fff;
+}
+#advantage .desc{
+    text-align: center;
+    margin-top: 50px;
+    line-height: 30px;
+    color: #fff;
+}
+
+#advantage .adv-cont {
+    margin-top: 100px;
+    margin-bottom: 120px;
+}
+#advantage .adv-cont-list dl {
+    color: #fff;
+}
+
+#advantage .adv-cont-list dt {
+    font-size: 26px;
+    margin-bottom: 20px;
+    font-weight: 400;
+}
+#advantage .adv-cont-list dd {
+    line-height: 28px;
+}

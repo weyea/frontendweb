@@ -27,6 +27,7 @@
 #service-list .desc{
     text-align: center;
     margin-top: 50px;
+    color: #999;
 }
 
 #service-list .serv-cont {
@@ -34,7 +35,7 @@
     margin-bottom: 120px;
 }
 #service-list .serv-cont-list{
-    
+
 }
 #service-list .serv-cont-list .serv-icon {
     float: left;

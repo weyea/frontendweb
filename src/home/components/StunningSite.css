@@ -1,13 +1,19 @@
 #stunning-site-list{
-    margin-top: 240px;
 }
 
 #stunning-site-list .header{
     font-family:MicrosoftYaHei;
     font-size:55px;
-    color:#00c4d8;
+    color:#333;
     letter-spacing:4.58px;
     text-align: center;
+    margin-top: 60px;
+}
+
+#stunning-site-list .desc{
+    text-align: center;
+    margin-top: 50px;
+    color: #999;
 }
 #stunning-site-list .body{
     margin-top: 60px;
@@ -23,6 +29,16 @@
     position: relative;
     margin-top: 30px;
 }
+#stunning-site-list .list .model-link,
+#stunning-site-list .list .model-img {
+    display: block;
+}
+#stunning-site-list .list .model-title {
+    text-align: center;
+    font-size: 16px;
+    margin-top: 30px;
+}
+
 #stunning-site-list .list .action{
 
     width: 324px;

@@ -1,6 +1,5 @@
 #top-template{
-    background:#00c4d8;
-    height:801px;
+    height:1150px;
 }
 
 #top-template:before,#top-template:after{
@@ -9,12 +8,16 @@
     display: table;
     content: " ";
 }
-#top-template h1{
+#top-template .header{
     text-align: center;
     font-size:55px;
-    color:#ffffff;
-    letter-spacing:4.58px;
-    margin-top: 75px;
+    font-family: "MicrosoftYaHei";
+    margin-top: 60px;
+}
+#top-template .desc {
+    text-align: center;
+    margin-top: 50px;
+    color: #999;
 }
 
 #top-template .slide{
