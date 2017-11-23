@@ -17,18 +17,6 @@
 #service-list {
     background-color: #FAFAFA;
 }
-#service-list h3 {
-    text-align: center;
-    font-size:55px;
-    font-family: "MicrosoftYaHei";
-    margin-top: 60px;
-
-}
-#service-list .desc{
-    text-align: center;
-    margin-top: 50px;
-    color: #999;
-}
 
 #service-list .serv-cont {
     margin-top: 100px;

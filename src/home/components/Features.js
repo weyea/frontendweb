@@ -16,7 +16,7 @@ export default  React.createClass({
             <div id="features">
                 <div className="container">
                     <h3 className="header">丰富的组件，精美的模板</h3>
-                    <p className="desc"><span>海量的组件和模板，就像乐高积木<br/>千变万化的创意，随你搭建！</span></p>
+                    <p className="header-desc"><span>海量的组件和模板，就像乐高积木<br/>千变万化的创意，随你搭建！</span></p>
                     <div className="body">
                         <div className="row feat-cont">
                             <div className="col-md-4 feat-cont-list">

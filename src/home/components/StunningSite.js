@@ -34,7 +34,7 @@ export default  React.createClass({
             <div id="stunning-site-list">
                 <div className="container">
                 <h3 className="header">精品全站模板</h3>
-                <p className="desc"><span>结合真实客户需求,打造精美的行业模板<br/>点击模板即可预览、试用</span></p>
+                <p className="header-desc"><span>结合真实客户需求,打造精美的行业模板<br/>点击模板即可预览、试用</span></p>
                 <div className="body">
                     {this.renderItem()}
                 </div>

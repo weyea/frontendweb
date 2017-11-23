@@ -1,18 +1,7 @@
 #features {
     background-color: #FAFAFA;
 }
-#features h3 {
-    text-align: center;
-    font-size:55px;
-    font-family: "MicrosoftYaHei";
-    margin-top: 60px;
 
-}
-#features .desc{
-    text-align: center;
-    margin-top: 50px;
-    color: #999;
-}
 
 #features .feat-cont {
     margin-top: 100px;
@@ -23,7 +12,7 @@
     text-align: center;
 }
 #features .feat-cont-list .feat-data {
-    border-color: #00C3D9;
+    border-color: #D6F2F5;
     border-width: 1px;
     border-style: solid;
     border-radius: 65px;

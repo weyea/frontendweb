@@ -16,7 +16,7 @@ export default  React.createClass({
             <div id="service-list">
                 <div className="container">
                     <h3 className="header">我们的能力</h3>
-                    <p className="desc"><span>点线面平台功能点陈述</span></p>
+                    <p className="header-desc"><span>点线面平台功能点陈述</span></p>
                     <div className="body">
                         <div className="row serv-cont">
                             <div className="col-md-3 serv-cont-list">

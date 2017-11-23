@@ -1,20 +1,4 @@
-#stunning-site-list{
-}
 
-#stunning-site-list .header{
-    font-family:MicrosoftYaHei;
-    font-size:55px;
-    color:#333;
-    letter-spacing:4.58px;
-    text-align: center;
-    margin-top: 60px;
-}
-
-#stunning-site-list .desc{
-    text-align: center;
-    margin-top: 50px;
-    color: #999;
-}
 #stunning-site-list .body{
     margin-top: 60px;
 }

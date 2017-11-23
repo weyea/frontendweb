@@ -1,5 +1,4 @@
 #top-template{
-    height:1150px;
 }
 
 #top-template:before,#top-template:after{
@@ -7,17 +6,6 @@
     clear: both;
     display: table;
     content: " ";
-}
-#top-template .header{
-    text-align: center;
-    font-size:55px;
-    font-family: "MicrosoftYaHei";
-    margin-top: 60px;
-}
-#top-template .desc {
-    text-align: center;
-    margin-top: 50px;
-    color: #999;
 }
 
 #top-template .slide{
