@@ -17,30 +17,17 @@
 #service-list {
     background-color: #FAFAFA;
 }
-#service-list h3 {
-    text-align: center;
-    font-size:55px;
-    font-family: "MicrosoftYaHei";
-    margin-top: 60px;
-
-}
-#service-list .desc{
-    text-align: center;
-    margin-top: 50px;
-}
 
 #service-list .serv-cont {
     margin-top: 100px;
     margin-bottom: 120px;
 }
 #service-list .serv-cont-list{
-    float: left;
-    width: 25%;
-    height: 180px;
+
 }
 #service-list .serv-cont-list .serv-icon {
     float: left;
-    width: 70px;
+    margin-right: 20px;
 }
 #service-list .serv-cont-list .serv-iconfont {
     color: #00C3D9;
@@ -60,4 +47,5 @@
     font-size: 13px;
     line-height:30px;
     margin-top: 30px;
+    height: 90px;
 }

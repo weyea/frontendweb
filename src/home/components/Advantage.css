@@ -1,0 +1,28 @@
+
+#advantage {
+    background-color: #00C3D9;
+}
+#advantage .header,
+#advantage .header-desc{
+    color: #fff;
+}
+#advantage .body {
+    margin-left: 50px;
+}
+#advantage .adv-cont {
+    margin-top: 100px;
+    margin-bottom: 120px;
+}
+#advantage .adv-cont-list dl {
+    color: #fff;
+}
+
+#advantage .adv-cont-list dt {
+    font-size: 26px;
+    margin-bottom: 20px;
+    font-weight: 400;
+    font-family: "MicrosoftYaHei";
+}
+#advantage .adv-cont-list dd {
+    line-height: 28px;
+}

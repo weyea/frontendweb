@@ -33,7 +33,8 @@ export default  React.createClass({
         return (
             <div id="stunning-site-list">
                 <div className="container">
-                <h3 className="header">用点线面创建的优秀站点</h3>
+                <h3 className="header">精品全站模板</h3>
+                <p className="header-desc"><span>结合真实客户需求,打造精美的行业模板<br/>点击模板即可预览、试用</span></p>
                 <div className="body">
                     {this.renderItem()}
                 </div>
@@ -50,7 +51,8 @@ export default  React.createClass({
                 <div key = {site.id} className="list">
 
                     <div className="bd">
-                        <a href={"/app/"+i}><img src={site.logo||window.rootPath+"img/01.png"}/></a>
+                        <a className="model-link" href={"/app/"+i}><img className="model-img" src={site.logo||window.rootPath+"img/01.png"}/></a>
+                        <div className="model-title">模板展示标题</div>
                     </div>
 
                     <div className="action" >
