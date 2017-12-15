@@ -57,7 +57,7 @@ module.exports = function () {
 
 /***/ }),
 
-/***/ 347:
+/***/ 358:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -270,7 +270,7 @@ exports.default = React.createClass({
 
 /***/ }),
 
-/***/ 376:
+/***/ 387:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -280,10 +280,10 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _reactRouter = __webpack_require__(138);
+var _reactRouter = __webpack_require__(139);
 
-var login = __webpack_require__(353);
-__webpack_require__(394);
+var login = __webpack_require__(365);
+__webpack_require__(406);
 
 exports.default = React.createClass({
     displayName: "BackHeader",
@@ -439,13 +439,13 @@ exports.default = React.createClass({
 
 /***/ }),
 
-/***/ 377:
+/***/ 388:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(396);
+var content = __webpack_require__(408);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
 var update = __webpack_require__(4)(content, {});
@@ -463,63 +463,6 @@ if(false) {
 	// When the module is disposed, remove the <style> tags
 	module.hot.dispose(function() { update(); });
 }
-
-/***/ }),
-
-/***/ 394:
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(395);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// add the styles to the DOM
-var update = __webpack_require__(4)(content, {});
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!./../../node_modules/css-loader/index.js!./BackHeader.css", function() {
-			var newContent = require("!!./../../node_modules/css-loader/index.js!./BackHeader.css");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-
-/***/ 395:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(3)();
-// imports
-
-
-// module
-exports.push([module.i, "#nav .main-back {\n    margin-top: 7px;\n}", ""]);
-
-// exports
-
-
-/***/ }),
-
-/***/ 396:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(3)();
-// imports
-
-
-// module
-exports.push([module.i, "\n#my-container {\n    display: block;\n    position: relative;\n}\n\n\n\n\n.blank-tips{\n    text-align: center;\n    padding: 200px;\n}\n\n\n#app-detail .templ{\n    display: flex;\n    flex-direction: row;\n    margin-bottom: 30px;\n}\n\n#app-detail .templ .bd{\n    width: 324px;\n    height: 234px;\n}\n\n#app-detail .templ .bd img{\n    width: 324px;\n    height: 234px;\n}\n\n#app-detail .templ .des{\n    flex: 1;\n    margin-left: 30px;\n}", ""]);
-
-// exports
-
 
 /***/ }),
 
@@ -750,6 +693,63 @@ function updateLink(linkElement, obj) {
 /***/ }),
 
 /***/ 406:
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(407);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// add the styles to the DOM
+var update = __webpack_require__(4)(content, {});
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!./../../node_modules/css-loader/index.js!./BackHeader.css", function() {
+			var newContent = require("!!./../../node_modules/css-loader/index.js!./BackHeader.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ 407:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)();
+// imports
+
+
+// module
+exports.push([module.i, "#nav .main-back {\n    margin-top: 7px;\n}", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ 408:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)();
+// imports
+
+
+// module
+exports.push([module.i, "\n#my-container {\n    display: block;\n    position: relative;\n}\n\n\n\n\n.blank-tips{\n    text-align: center;\n    padding: 200px;\n}\n\n\n#app-detail .templ{\n    display: flex;\n    flex-direction: row;\n    margin-bottom: 30px;\n}\n\n#app-detail .templ .bd{\n    width: 324px;\n    height: 234px;\n}\n\n#app-detail .templ .bd img{\n    width: 324px;\n    height: 234px;\n}\n\n#app-detail .templ .des{\n    flex: 1;\n    margin-left: 30px;\n}", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ 417:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1002,23 +1002,23 @@ function updateLink(linkElement, obj) {
 
 /***/ }),
 
-/***/ 457:
+/***/ 469:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _BackHeader = __webpack_require__(376);
+var _BackHeader = __webpack_require__(387);
 
 var _BackHeader2 = _interopRequireDefault(_BackHeader);
 
-var _Footer = __webpack_require__(347);
+var _Footer = __webpack_require__(358);
 
 var _Footer2 = _interopRequireDefault(_Footer);
 
-__webpack_require__(377);
+__webpack_require__(388);
 
-__webpack_require__(406);
+__webpack_require__(417);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1219,27 +1219,27 @@ module.exports = React.createClass({
 
 /***/ }),
 
-/***/ 903:
+/***/ 929:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _BackHeader = __webpack_require__(376);
+var _BackHeader = __webpack_require__(387);
 
 var _BackHeader2 = _interopRequireDefault(_BackHeader);
 
-var _Footer = __webpack_require__(347);
+var _Footer = __webpack_require__(358);
 
 var _Footer2 = _interopRequireDefault(_Footer);
 
-__webpack_require__(377);
+__webpack_require__(388);
 
-__webpack_require__(406);
+__webpack_require__(417);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var DetailPage = __webpack_require__(457);
+var DetailPage = __webpack_require__(469);
 module.exports = React.createClass({
     displayName: 'exports',
 

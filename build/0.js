@@ -1,6 +1,6 @@
 webpackJsonp([0],{
 
-/***/ 333:
+/***/ 344:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12,34 +12,34 @@ module.exports = {
 
     getComponents: function getComponents(nextState, callback) {
         __webpack_require__.e/* require.ensure */(4).then((function (require) {
-            callback(null, __webpack_require__(518));
+            callback(null, __webpack_require__(531));
         }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
     }
 };
 
 /***/ }),
 
-/***/ 334:
+/***/ 345:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var login = __webpack_require__(353);
+var login = __webpack_require__(365);
 module.exports = {
 
   path: 'designer/:type/:appId',
   onEnter: login.checkLoginRouter,
   getComponents: function getComponents(nextState, callback) {
     __webpack_require__.e/* require.ensure */(3).then((function (require) {
-      callback(null, __webpack_require__(538));
+      callback(null, __webpack_require__(551));
     }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
   }
 };
 
 /***/ }),
 
-/***/ 335:
+/***/ 346:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50,14 +50,14 @@ module.exports = {
   path: 'user',
   getChildRoutes: function getChildRoutes(partialNextState, callback) {
     __webpack_require__.e/* require.ensure */(14).then((function (require) {
-      callback(null, [__webpack_require__(881), __webpack_require__(885)]);
+      callback(null, [__webpack_require__(907), __webpack_require__(911)]);
     }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
   }
 };
 
 /***/ }),
 
-/***/ 336:
+/***/ 347:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68,7 +68,7 @@ module.exports = {
   path: 'template',
   getChildRoutes: function getChildRoutes(partialNextState, callback) {
     __webpack_require__.e/* require.ensure */(15).then((function (require) {
-      callback(null, [__webpack_require__(893), __webpack_require__(895)]);
+      callback(null, [__webpack_require__(919), __webpack_require__(921)]);
     }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
   },
 
@@ -79,22 +79,22 @@ module.exports = {
 
 /***/ }),
 
-/***/ 337:
+/***/ 348:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var login = __webpack_require__(353);
+var login = __webpack_require__(365);
 
 module.exports = {
 
   path: 'my',
   getChildRoutes: function getChildRoutes(partialNextState, callback) {
     __webpack_require__.e/* require.ensure */(16).then((function (require) {
-      callback(null, [__webpack_require__(896),
+      callback(null, [__webpack_require__(922),
       //require('./routes/preview'),
-      __webpack_require__(901)]
+      __webpack_require__(927)]
       // require('./routes/templateDetail')
       );
     }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
@@ -116,7 +116,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 338:
+/***/ 349:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -128,14 +128,14 @@ module.exports = {
 
   getComponents: function getComponents(nextState, callback) {
     __webpack_require__.e/* require.ensure */(10).then((function (require) {
-      callback(null, __webpack_require__(906));
+      callback(null, __webpack_require__(932));
     }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
   }
 };
 
 /***/ }),
 
-/***/ 339:
+/***/ 350:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -147,14 +147,14 @@ module.exports = {
 
   getComponents: function getComponents(nextState, callback) {
     __webpack_require__.e/* require.ensure */(12).then((function (require) {
-      callback(null, __webpack_require__(912));
+      callback(null, __webpack_require__(938));
     }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
   }
 };
 
 /***/ }),
 
-/***/ 353:
+/***/ 365:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
