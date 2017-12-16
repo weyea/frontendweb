@@ -2,10 +2,13 @@ var TemplateList= require('../../common/TemplateList');
 require('./index.css');
 import Header from '../../common/Header'
 import Footer from '../../common/Footer'
+import Advantage from './Advantage'
 import TopTen from './TopTen'
 import StunningSite from './StunningSite'
+import Features from './Features'
 import Banner from './Banner'
 import Tester from './Tester'
+import Service from './Service'
 module.exports =  React.createClass({
   getInitialState: function() {
     return {};
@@ -16,55 +19,22 @@ module.exports =  React.createClass({
       <div>
         <Header type="home" active="home"></Header>
          <Banner></Banner>
-        <div className="features">
-          <div className="container">
-        <div className="row">
-
-          <div className="col-md-4">
-          <div className="card more-template">
-            <div className="img" >
-
-            </div>
-            <h3>海量模板</h3>
-            <p>适用于各个行业的时尚大气模板，<br></br>免费注册，一键试用！</p>
-          </div>
-          </div>
-          <div className="col-md-4">
-          <div className="card response">
-            <div className="img" >
-
-            </div>
-            <h3>多终端展示</h3>
-            <p>PC端、移动端同步展示，<br></br>一次编辑，轻松实现多终端响应</p>
-          </div>
-          </div>
-          <div className="col-md-4">
-          <div className="card ocode">
-            <div className="img" >
-
-            </div>
-            <h3>0代码编辑</h3>
-            <p>简单而高度个性化的编辑器，<br></br>无需代码知识，简单拖拽完成您的网站！</p>
-          </div>
-
-          </div>
-        </div>
+        <div className="ocode">
+          <h3 className="header">零代码，动手即会</h3>
+          <p className="header-desc">简洁易用的设置，将建站能力大众化<br/>真正实现零代码</p>
         </div>
 
+        <Advantage></Advantage>
+        <TopTen></TopTen>
+        <Features></Features>
 
 
-        </div>
 
-
-
-
-          <TopTen></TopTen>
-
-
-          <StunningSite></StunningSite>
+        <StunningSite></StunningSite>
         <Tester></Tester>
+        <Service></Service>
 
-          <Footer></Footer>
+        <Footer></Footer>
 
       </div>
 

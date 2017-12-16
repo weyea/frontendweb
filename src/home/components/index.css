@@ -25,51 +25,25 @@ background-color:transparent;
 
 
 
-.features{
-  background:#ffffff;
 
-height:418px;
-}
-
-.features .card{
-  width: 268px;
-  margin: auto;
-  margin-top: 97px;
+h3.header{
+  font-family:MicrosoftYaHei;
+  font-size: 36px;
+  letter-spacing:2.5px;
+  margin-top: 75px;
   text-align: center;
 }
-.features  .img{
-
-  width:90px;
-  height:90px;
-  display: inline-block;
-}
-
-.features .more-template .img{
-  background: url("../../../img/sea.png") center  no-repeat;
-}
-
-.features  .response .img{
-background: url("../../../img/duan.png") center  no-repeat;
-}
-
-.features  .ocode .img{
-background: url("../../../img/0.png") center  no-repeat;
-}
-
-.features h3{
-  font-family:MicrosoftYaHei;
-font-size:30px;
-color:#333333;
-letter-spacing:2.5px;
-margin-top: 42px;
-}
-.features p{
+p.header-desc{
   font-size:13px;
-color:#666666;
-letter-spacing:1.85px;
-text-align:center;
+  color:#666666;
+  letter-spacing:1.85px;
+  text-align:center;
+  line-height: 30px;
+  margin-top: 25px;
 }
-
+.ocode .header-desc {
+  margin-bottom: 80px;
+}
 
 
 

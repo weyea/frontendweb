@@ -1,0 +1,51 @@
+@font-face {
+    font-family: 'serv-iconfont';  /* project id 454334 */
+    src: url('//at.alicdn.com/t/font_454334_2nmdd99e4j1qbyb9.eot');
+    src: url('//at.alicdn.com/t/font_454334_2nmdd99e4j1qbyb9.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_454334_2nmdd99e4j1qbyb9.woff') format('woff'),
+    url('//at.alicdn.com/t/font_454334_2nmdd99e4j1qbyb9.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_454334_2nmdd99e4j1qbyb9.svg#iconfont') format('svg');
+}
+
+.serv-iconfont {
+    font-family:"serv-iconfont" !important;
+    font-size:40px;
+    font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+#service-list {
+    background-color: #FAFAFA;
+}
+
+#service-list .serv-cont {
+    margin-top: 100px;
+    margin-bottom: 120px;
+}
+#service-list .serv-cont-list{
+
+}
+#service-list .serv-cont-list .serv-icon {
+    float: left;
+    margin-right: 20px;
+}
+#service-list .serv-cont-list .serv-iconfont {
+    color: #00C3D9;
+}
+#service-list .serv-cont-list dl {
+    float: left;
+    width: 195px;
+}
+#service-list .serv-cont-list dt {
+    color: #333;
+    font-size: 20px;
+    font-family: "MicrosoftYaHei";
+    font-weight: 400;
+}
+#service-list .serv-cont-list dd {
+    color: #666;
+    font-size: 13px;
+    line-height:30px;
+    margin-top: 30px;
+    height: 90px;
+}

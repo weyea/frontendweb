@@ -1,6 +1,4 @@
 #top-template{
-    background:#00c4d8;
-    height:801px;
 }
 
 #top-template:before,#top-template:after{
@@ -8,13 +6,6 @@
     clear: both;
     display: table;
     content: " ";
-}
-#top-template h1{
-    text-align: center;
-    font-size:55px;
-    color:#ffffff;
-    letter-spacing:4.58px;
-    margin-top: 75px;
 }
 
 #top-template .slide{
