@@ -77,7 +77,7 @@ export default  React.createClass({
                       <span className="icon-bar"></span>
                       <span className="icon-bar"></span>
                   </button>
-                  <a className="navbar-brand" href="/"><img src={window.rootPath +"img/logo1x.png"}/></a>
+                  <a className="navbar-brand logo" href="/"><img src={window.rootPath +"img/logo1x.png"}/></a>
               </div>
 
 

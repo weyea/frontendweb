@@ -12,7 +12,7 @@ if(currentScript.src){
 
 
 var history;
-if(/localhost:8484/.test(location.href)){
+if(/localhost/.test(location.href)){
   history = browserHistory
   window.rootPath = "/"
 }
