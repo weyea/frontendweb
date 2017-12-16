@@ -5431,7 +5431,7 @@ if (currentScript.src) {
 }
 
 var history;
-if (/localhost/.test(location.href)) {
+if (/localhost:8083/.test(location.href)) {
   history = _reactRouter.browserHistory;
   window.rootPath = "/";
 } else {
@@ -5439,7 +5439,7 @@ if (/localhost/.test(location.href)) {
   window.rootPath = "/frontendweb/";
 }
 
-if (/localhost/.test(location.href)) {
+if (/localhost:8083/.test(location.href)) {
   window.debug = true;
 } else {
   window.debug = false;

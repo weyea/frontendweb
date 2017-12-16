@@ -759,7 +759,6 @@ __webpack_require__(471);
 var EditableSpan = __webpack_require__(473);
 var SharePopover = __webpack_require__(474);
 var WeixinPop = __webpack_require__(476);
-console.log(SharePopover);
 module.exports = React.createClass({
     displayName: "exports",
 
