@@ -12,7 +12,7 @@ if(currentScript.src){
 
 
 var history;
-if(/localhost/.test(location.href)){
+if(/localhost:8083/.test(location.href)){
   history = browserHistory
   window.rootPath = "/"
 }
@@ -23,7 +23,7 @@ else {
 }
 
 
-if(/localhost/.test(location.href)){
+if(/localhost:8083/.test(location.href)){
     window.debug = true
 }
 else{

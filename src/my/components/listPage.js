@@ -2,7 +2,6 @@ require("./SiteList.css")
 var EditableSpan = require("../../common/EditableSpan")
 var SharePopover = require("../../common/sharePopover")
 var WeixinPop = require("../../common/weixinPop")
-console.log(SharePopover);
 module.exports = React.createClass({
     getInitialState: function () {
         return {siteList: []};
