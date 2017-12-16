@@ -6054,7 +6054,7 @@ var PSite = Sophie.createClass("p-site", _defineProperty({
 
         for (var i = 0; i < children.length; i++) {
             if (children[i].props.id == pageID) {
-                children[i].props.title = title;
+                children[i].props.pageTitle = title;
                 children[i].forceUpdate();
                 if (pageNav.length) {
                     pageNav.get(0).vnode.initPage();
@@ -34937,11 +34937,10 @@ var PangeManagerView = Sophie.createClass("pages", {
     setPage: function setPage(title, id) {
         var self = this;
         var site = $("p-site", play.iframeDoc);
+        debugger;
         site.get(0).vnode.setPage(id, title);
+        $(document).trigger("domChange");
         self.reflush();
-        setTimeout(function () {
-            $(document).trigger("domChange");
-        }, 100);
     },
 
     initAddPageModal: function initAddPageModal() {

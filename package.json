@@ -31,9 +31,9 @@
     "webpack-merge": "^0.1.1"
   },
   "dependencies": {
-    "app": "file:///Users/hanyan/www/weyea/app",
+    "app": "file:///Users/zq/workspace/github/dotlinkface/app",
     "blueimp-file-upload": "^9.14.1",
-    "designer": "file:///Users/hanyan/www/weyea/designer",
+    "designer": "file:///Users/zq/workspace/github/dotlinkface/designer",
     "jquery.cookie": "^1.4.1",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",

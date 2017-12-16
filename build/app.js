@@ -6311,7 +6311,7 @@ var PSite = Sophie.createClass("p-site", _defineProperty({
 
         for (var i = 0; i < children.length; i++) {
             if (children[i].props.id == pageID) {
-                children[i].props.title = title;
+                children[i].props.pageTitle = title;
                 children[i].forceUpdate();
                 if (pageNav.length) {
                     pageNav.get(0).vnode.initPage();
