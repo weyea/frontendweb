@@ -8,7 +8,7 @@ module.exports = React.createClass({
 
     componentDidMount: function () {
         var url;
-        if (location.host.indexOf("localhost") !== -1) {
+        if (location.host.indexOf("localhost:8082") !== -1) {
             url = "/app.html";
         }
         else {

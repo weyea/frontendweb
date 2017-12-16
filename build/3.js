@@ -35291,7 +35291,7 @@ module.exports = React.createClass({
         var _this = this;
 
         var url;
-        if (location.host.indexOf("localhost") !== -1) {
+        if (location.host.indexOf("localhost:8082") !== -1) {
             url = "/app.html";
         } else {
             url = "/designer/source/" + this.props.params.type + "/" + this.props.params.appId;

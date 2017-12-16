@@ -5439,7 +5439,7 @@ if (/localhost/.test(location.href)) {
   window.rootPath = "/frontendweb/";
 }
 
-if (/localhost:8484/.test(location.href)) {
+if (/localhost/.test(location.href)) {
   window.debug = true;
 } else {
   window.debug = false;
