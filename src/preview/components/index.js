@@ -20,6 +20,7 @@ module.exports =  React.createClass({
                   location.href = data.loginURL;
                   return;
               }
+              return;
               var url = "/designer/app/" + data.id
               location.href = url;
 
