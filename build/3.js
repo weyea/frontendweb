@@ -2022,7 +2022,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 /**
- * Fizzy UI utils v2.0.5
+ * Fizzy UI utils v2.0.7
  * MIT license
  */
 
@@ -2069,22 +2069,27 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
   // ----- makeArray ----- //
 
+  var arraySlice = Array.prototype.slice;
+
   // turn element or nodeList into an array
   utils.makeArray = function (obj) {
-    var ary = [];
     if (Array.isArray(obj)) {
       // use object if already an array
-      ary = obj;
-    } else if (obj && (typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) == 'object' && typeof obj.length == 'number') {
-      // convert nodeList to array
-      for (var i = 0; i < obj.length; i++) {
-        ary.push(obj[i]);
-      }
-    } else {
-      // array of single index
-      ary.push(obj);
+      return obj;
     }
-    return ary;
+    // return empty array if undefined or null. #6
+    if (obj === null || obj === undefined) {
+      return [];
+    }
+
+    var isArrayLike = (typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) == 'object' && typeof obj.length == 'number';
+    if (isArrayLike) {
+      // convert nodeList to array
+      return arraySlice.call(obj);
+    }
+
+    // array of single index
+    return [obj];
   };
 
   // ----- removeFrom ----- //
@@ -2163,22 +2168,21 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
   // ----- debounceMethod ----- //
 
   utils.debounceMethod = function (_class, methodName, threshold) {
+    threshold = threshold || 100;
     // original method
     var method = _class.prototype[methodName];
     var timeoutName = methodName + 'Timeout';
 
     _class.prototype[methodName] = function () {
       var timeout = this[timeoutName];
-      if (timeout) {
-        clearTimeout(timeout);
-      }
-      var args = arguments;
+      clearTimeout(timeout);
 
+      var args = arguments;
       var _this = this;
       this[timeoutName] = setTimeout(function () {
         method.apply(_this, args);
         delete _this[timeoutName];
-      }, threshold || 100);
+      }, threshold);
     };
   };
 
@@ -9864,9 +9868,9 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 /*!
- * Masonry v4.2.0
+ * Masonry v4.2.1
  * Cascading grid layout library
- * http://masonry.desandro.com
+ * https://masonry.desandro.com
  * MIT License
  * by David DeSandro
  */
@@ -10103,7 +10107,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 /*!
- * imagesLoaded v4.1.3
+ * imagesLoaded v4.1.4
  * JavaScript is all like "You images are done yet or what?"
  * MIT License
  */
@@ -10148,22 +10152,23 @@ function factory(window, EvEmitter) {
     return a;
   }
 
+  var arraySlice = Array.prototype.slice;
+
   // turn element or nodeList into an array
   function makeArray(obj) {
-    var ary = [];
     if (Array.isArray(obj)) {
       // use object if already an array
-      ary = obj;
-    } else if (typeof obj.length == 'number') {
-      // convert nodeList to array
-      for (var i = 0; i < obj.length; i++) {
-        ary.push(obj[i]);
-      }
-    } else {
-      // array of single index
-      ary.push(obj);
+      return obj;
     }
-    return ary;
+
+    var isArrayLike = (typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) == 'object' && typeof obj.length == 'number';
+    if (isArrayLike) {
+      // convert nodeList to array
+      return arraySlice.call(obj);
+    }
+
+    // array of single index
+    return [obj];
   }
 
   // -------------------------- imagesLoaded -------------------------- //
@@ -10179,13 +10184,19 @@ function factory(window, EvEmitter) {
       return new ImagesLoaded(elem, options, onAlways);
     }
     // use elem as selector string
+    var queryElem = elem;
     if (typeof elem == 'string') {
-      elem = document.querySelectorAll(elem);
+      queryElem = document.querySelectorAll(elem);
+    }
+    // bail if bad element
+    if (!queryElem) {
+      console.error('Bad element for imagesLoaded ' + (queryElem || elem));
+      return;
     }
 
-    this.elements = makeArray(elem);
+    this.elements = makeArray(queryElem);
     this.options = extend({}, this.options);
-
+    // shift arguments if no options set
     if (typeof options == 'function') {
       onAlways = options;
     } else {
@@ -10204,9 +10215,7 @@ function factory(window, EvEmitter) {
     }
 
     // HACK check async to allow time to bind listeners
-    setTimeout(function () {
-      this.check();
-    }.bind(this));
+    setTimeout(this.check.bind(this));
   }
 
   ImagesLoaded.prototype = Object.create(EvEmitter.prototype);
@@ -10374,7 +10383,9 @@ function factory(window, EvEmitter) {
   };
 
   LoadingImage.prototype.getIsImageComplete = function () {
-    return this.img.complete && this.img.naturalWidth !== undefined;
+    // check for non-zero, non-undefined naturalWidth
+    // fixes Safari+InfiniteScroll+Masonry bug infinite-scroll#671
+    return this.img.complete && this.img.naturalWidth;
   };
 
   LoadingImage.prototype.confirm = function (isLoaded, message) {
@@ -45343,7 +45354,7 @@ function v4(options, buf, offset) {
   var i = buf && offset || 0;
 
   if (typeof options == 'string') {
-    buf = options == 'binary' ? new Array(16) : null;
+    buf = options === 'binary' ? new Array(16) : null;
     options = null;
   }
   options = options || {};
@@ -45371,31 +45382,31 @@ module.exports = v4;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(global) {
+
 
 // Unique ID creation requires a high quality random # generator.  In the
 // browser this is a little complicated due to unknown quality of Math.random()
 // and inconsistent support for the `crypto` API.  We do the best we can via
 // feature-detection
-var rng;
 
-var crypto = global.crypto || global.msCrypto; // for IE 11
-if (crypto && crypto.getRandomValues) {
+// getRandomValues needs to be invoked in a context where "this" is a Crypto implementation.
+var getRandomValues = typeof crypto != 'undefined' && crypto.getRandomValues.bind(crypto) || typeof msCrypto != 'undefined' && msCrypto.getRandomValues.bind(msCrypto);
+if (getRandomValues) {
   // WHATWG crypto RNG - http://wiki.whatwg.org/wiki/Crypto
   var rnds8 = new Uint8Array(16); // eslint-disable-line no-undef
-  rng = function whatwgRNG() {
-    crypto.getRandomValues(rnds8);
+
+  module.exports = function whatwgRNG() {
+    getRandomValues(rnds8);
     return rnds8;
   };
-}
-
-if (!rng) {
+} else {
   // Math.random()-based (RNG)
   //
   // If all else fails, use Math.random().  It's fast, but is of unspecified
   // quality.
   var rnds = new Array(16);
-  rng = function rng() {
+
+  module.exports = function mathRNG() {
     for (var i = 0, r; i < 16; i++) {
       if ((i & 0x03) === 0) r = Math.random() * 0x100000000;
       rnds[i] = r >>> ((i & 0x03) << 3) & 0xff;
@@ -45404,9 +45415,6 @@ if (!rng) {
     return rnds;
   };
 }
-
-module.exports = rng;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(140)))
 
 /***/ }),
 /* 787 */
