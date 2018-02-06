@@ -79,6 +79,11 @@ module.exports = {
 
             chunks: [],
             // (Only use these entries)
+        }),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            }
         })
 
     ],
