@@ -826,16 +826,17 @@ module.exports = React.createClass({
 
                 if (typeof data !== "string") {
                     self.setState({ siteList: data });
-                    var siteList = data;
-                    for (var i = 0; i < siteList.length; i++) {
-                        var app = siteList[i];
-                        (function (a) {
-                            $.get("/json/app/" + a.id + "/pv/count", function (result) {
-                                a.pv = { num: result };
-                                self.setState({ siteList: siteList });
-                            });
-                        })(app);
-                    }
+                    // var siteList = data;
+                    // // for (var i = 0; i < siteList.length; i++) {
+                    // //     var app = siteList[i];
+                    // //     (function (a) {
+                    // //         $.get("/json/app/" + a.id + "/pv/count", function (result) {
+                    // //             a.pv = {num: result}
+                    // //             self.setState({siteList: siteList})
+                    // //         })
+                    // //
+                    // //     })(app);
+                    // // }
                 }
             });
         }
@@ -1040,7 +1041,11 @@ module.exports = React.createClass({
             }(site.id);
 
             if (this.props.type == "app") {
-                var url = "http://" + site.subdomain && site.subdomain.name + ".dotlinkface.com";
+                if (site.subdomain && site.subdomain.name) {
+                    var url = "http://" + site.subdomain.name + ".dotlinkface.com";
+                } else {
+                    var url = "http://dotlinkface.com/app/" + site.id;
+                }
             } else {
                 var url = "http://www.dotlinkface.com/preview/template/" + site.id;
             }
