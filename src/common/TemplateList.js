@@ -23,10 +23,7 @@ module.exports = React.createClass({
         var tab = this.props.type
         if(tab == "all" || tab == "new" || tab == "hot") {
             $.get("/json/template/"+tab+"?page=0", function (data){
-                if (data.needLogin){
-                    location.href = "/user/login"
-                    return;
-                }
+
                 if(typeof data !=="string"){
                     self.setState({siteList:data, type: self.props.type})
                 }
@@ -34,10 +31,7 @@ module.exports = React.createClass({
         }
         else {
             $.get("/json/template/bycategory?page=0&&category="+tab, function (data){
-                if (data.needLogin){
-                    location.href = "/user/login"
-                    return;
-                }
+
                 if(typeof data !=="string"){
                     self.setState({siteList:data, type: self.props.type})
                 }
