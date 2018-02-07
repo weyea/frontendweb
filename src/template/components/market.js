@@ -33,7 +33,7 @@ module.exports = React.createClass({
                     })
                 }
                 self.setState({category: data})
-                
+
 
             })
         }
