@@ -1,1 +1,1 @@
-webpackJsonp([17],{934:function(n,t,e){"use strict";n.exports={path:"template/:id",getComponents:function(n,t){e.e(8).then(function(n){t(null,e(935))}.bind(null,e)).catch(e.oe)}}}});
+webpackJsonp([17],{923:function(n,t,e){"use strict";n.exports={path:"template/:id",getComponents:function(n,t){e.e(8).then(function(n){t(null,e(924))}.bind(null,e)).catch(e.oe)}}}});
