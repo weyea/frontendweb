@@ -148,7 +148,7 @@ module.exports = React.createClass({
     getDomain: function (subdomain) {
         var host = location.host
         if (/^www/.test(host)) {
-            host = host.replace(/^www/, "www." + subdomain + ".")
+            host = host.replace(/^www/,subdomain + ".")
         }
 
         return host
