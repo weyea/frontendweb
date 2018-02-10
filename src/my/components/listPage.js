@@ -159,7 +159,7 @@ module.exports = React.createClass({
         var result;
         if (this.props.type == "app") {
             if (site.isPublish) {
-                var url = "//" +this.getDomain(site.subdomain)
+                var url = "//" +this.getDomain(site.subdomain.name)
                 result = <p className="url"><a href={url}>{"http:" + url}</a></p>
             }
             else {
