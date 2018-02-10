@@ -145,11 +145,21 @@ module.exports = React.createClass({
         </div>)
     },
 
+    getDomain: function (subdomain) {
+        var host = location.host
+        if (/^www/.test(host)) {
+            host = host.replace(/^www/, "www." + subdomain + ".")
+        }
+
+        return host
+
+    },
+
     renderUrl: function (site) {
         var result;
         if (this.props.type == "app") {
             if (site.isPublish) {
-                var url = "//" + site.subdomain.name + "."+location.host
+                var url = "//" +this.getDomain(site.subdomain)
                 result = <p className="url"><a href={url}>{"http:" + url}</a></p>
             }
             else {
@@ -236,11 +246,11 @@ module.exports = React.createClass({
             })(site.id);
 
             if (this.props.type == "app") {
-                if(site.subdomain && site.subdomain.name){
-                    var url = "http://" +site.subdomain.name + ".dotlinkface.com"
+                if (site.subdomain && site.subdomain.name) {
+                    var url = "http://" + site.subdomain.name + ".dotlinkface.com"
                 }
-                else{
-                    var url = "http://dotlinkface.com/app/"+site.id
+                else {
+                    var url = "http://dotlinkface.com/app/" + site.id
                 }
 
             }
