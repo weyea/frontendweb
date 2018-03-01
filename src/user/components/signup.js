@@ -143,7 +143,7 @@ module.exports =   React.createClass({
     },
     sendCode:function(target, t, ev){
 
-        ev.preventDefault();
+        ev&&ev.preventDefault();
         var self = this;
         var valid = this.checkoutPhone();
         var email = $(this.refs["email"]);
@@ -169,7 +169,7 @@ module.exports =   React.createClass({
     },
     submitLogin:function(target, t , ev){
         var self = this;
-        ev.preventDefault();
+        ev&&ev.preventDefault();
         var emailValue = $(this.refs["email"]).val();
         var username = $(this.refs["username"]).val();
         var password = $(this.refs["password"]).val();
